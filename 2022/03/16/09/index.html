@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1.1 计算机系统简介一、计算机的软硬件概念1.计算机系统 计算机系统 \begin{cases} \color{red}{硬件} \quad \color{black}{计算机的实体（主机、外设等）}\\ \color{red}{软件} \quad \color{black}{由具有各类特殊功能的信息（程序）组成}\\ \end{cases} 软件 \begin{cases} \color{re">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第1章 计算机系统概论">
+<meta property="og:url" content="http://example.com/2022/03/16/09/index.html">
+<meta property="og:site_name" content="Gingkocyx">
+<meta property="og:description" content="1.1 计算机系统简介一、计算机的软硬件概念1.计算机系统 计算机系统 \begin{cases} \color{red}{硬件} \quad \color{black}{计算机的实体（主机、外设等）}\\ \color{red}{软件} \quad \color{black}{由具有各类特殊功能的信息（程序）组成}\\ \end{cases} 软件 \begin{cases} \color{re">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202042609.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202241077.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202406326.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202446815.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221203119436.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221203951631.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221204027723.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205318632.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205352807.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205704580.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210015842.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210124089.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210629442.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210828885.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221211851184.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221211932915.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212003668.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212038827.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212108592.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223212632134.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212204068.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212232671.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223162855834.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223163918172.png">
+<meta property="article:published_time" content="2022-03-16T11:44:09.000Z">
+<meta property="article:modified_time" content="2022-03-17T09:18:49.604Z">
+<meta property="article:author" content="Bob Cheng">
+<meta property="article:tag" content="computer organization">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202042609.png">
+
+<link rel="canonical" href="http://example.com/2022/03/16/09/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>第1章 计算机系统概论 | Gingkocyx</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Gingkocyx</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">BCheng's blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/16/09/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bob Cheng">
+      <meta itemprop="description" content="markdown daily life & study">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gingkocyx">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          第1章 计算机系统概论
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-16 19:44:09" itemprop="dateCreated datePublished" datetime="2022-03-16T19:44:09+08:00">2022-03-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-17 17:18:49" itemprop="dateModified" datetime="2022-03-17T17:18:49+08:00">2022-03-17</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-1-计算机系统简介"><a href="#1-1-计算机系统简介" class="headerlink" title="1.1 计算机系统简介"></a>1.1 计算机系统简介</h1><h2 id="一、计算机的软硬件概念"><a href="#一、计算机的软硬件概念" class="headerlink" title="一、计算机的软硬件概念"></a>一、计算机的软硬件概念</h2><h3 id="1-计算机系统"><a href="#1-计算机系统" class="headerlink" title="1.计算机系统"></a>1.计算机系统</h3><script type="math/tex; mode=display">
+计算机系统
+\begin{cases}
+\color{red}{硬件} \quad \color{black}{计算机的实体（主机、外设等）}\\
+\color{red}{软件} \quad \color{black}{由具有各类特殊功能的信息（程序）组成}\\
+\end{cases}</script><script type="math/tex; mode=display">
+软件
+\begin{cases}
+\color{red}{系统软件} \quad \color{black}{用来管理整个计算机系统}\\
+\qquad \qquad \qquad 语言处理程序\\
+\qquad \qquad \qquad 操作系统\\
+\qquad \qquad \qquad 服务性程序\\
+\qquad \qquad \qquad 数据库管理系统\\
+\qquad \qquad \qquad 网络软件\\
+\color{red}{应用软件} \quad \color{black}{按任务需要编制成的各种程序}\\
+\end{cases}</script><span id="more"></span>
+<h3 id="2-计算机的解题过程"><a href="#2-计算机的解题过程" class="headerlink" title="2.计算机的解题过程"></a>2.计算机的解题过程</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202042609.png" alt="image-20220221202042609" style="zoom: 67%;" /></p>
+<h2 id="二、计算机系统的层次结构"><a href="#二、计算机系统的层次结构" class="headerlink" title="二、计算机系统的层次结构"></a>二、计算机系统的层次结构</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202241077.png" alt="image-20220221202241077" style="zoom:67%;" /></p>
+<p>实际机器$M_1$和微程序机器$M_0$构成硬件。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202406326.png" alt="image-20220221202406326" style="zoom:67%;" /></p>
+<h2 id="三、计算机体系结构和计算机组成"><a href="#三、计算机体系结构和计算机组成" class="headerlink" title="三、计算机体系结构和计算机组成"></a>三、计算机体系结构和计算机组成</h2><p>相关资料：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xifengw/article/details/99717216">微机原理、计算机组成原理与计算机体系结构之间的关系</a></p>
+<ul>
+<li><p>体系结构关注：计算机有哪些功能？</p>
+</li>
+<li><p>组成原理关注：计算机的功能如何实现？</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202446815.png" alt="image-20220221202446815" style="zoom:67%;" /></p>
+<h1 id="1-2-计算机系统组成"><a href="#1-2-计算机系统组成" class="headerlink" title="1.2 计算机系统组成"></a>1.2 计算机系统组成</h1><h2 id="一、冯·诺依曼计算机的特点"><a href="#一、冯·诺依曼计算机的特点" class="headerlink" title="一、冯·诺依曼计算机的特点"></a>一、冯·诺依曼计算机的特点</h2><ol>
+<li>计算机由五大部件组成：<strong>存储器、运算器、控制器、输入设备、输出设备</strong></li>
+<li>指令和数据以同等地位存于<code>存储器</code>，可按地址寻访</li>
+<li>指令和数据用二进制表示</li>
+<li>指令由<code>操作码</code>和<code>地址码</code>组成——具体内容详见ch7</li>
+<li>存储程序：指令在存储器内按顺序存放。指令通常<strong>按顺序执行</strong>，在特定条件下可根据运算结果或设定的条件改变执行顺序</li>
+<li>以<code>运算器</code>为中心：I/O设备与存储器间的数据传送通过运算器完成</li>
+</ol>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221203119436.png" alt="image-20220221203119436" style="zoom:67%;" /></p>
+<p>注：</p>
+<ol>
+<li>运算器：<strong>算术运算和逻辑运算</strong>。将中间结果暂存在运算器内</li>
+<li>存储器：存放数据和程序</li>
+<li>控制器：控制、<strong>指挥</strong>程序和数据的输入、运行以及处理运算结果</li>
+<li>输入设备（键鼠）：转化为机器能够识别的信息形式</li>
+<li>输出设备（打印机输出、显示器输出）：将运算结果转化为人们熟悉的信息形式</li>
+</ol>
+<h2 id="二、计算机硬件框图"><a href="#二、计算机硬件框图" class="headerlink" title="二、计算机硬件框图"></a>二、计算机硬件框图</h2><h3 id="1-以存储器为中心的计算机硬件框图"><a href="#1-以存储器为中心的计算机硬件框图" class="headerlink" title="1.以存储器为中心的计算机硬件框图"></a>1.以存储器为中心的计算机硬件框图</h3><script type="math/tex; mode=display">
+\rightarrow \quad 控制线 \\
+\dashrightarrow \quad 反馈线 \\
+\Rightarrow \quad 数据线 \\</script><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221203951631.png" alt="image-20220221203951631" style="zoom:67%;" /></p>
+<h3 id="2-现代计算机硬件框图"><a href="#2-现代计算机硬件框图" class="headerlink" title="2.现代计算机硬件框图"></a>2.现代计算机硬件框图</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221204027723.png" alt="image-20220221204027723" style="zoom:67%;" /></p>
+<ul>
+<li>CPU（中央处理器）：Central Processing Unit。计算机核心部件，由<strong>运算器</strong>和<strong>控制器</strong>组成</li>
+<li>ALU（算逻部件/算术逻辑单元）：Arithmetic &amp; Logical Unit。运算器核心部件，<strong>进行逻辑运算和算术运算</strong></li>
+<li>CU（控制单元）：Control Unit。控制器核心部件，产生微操作命令序列。<strong>用来解释存储器中的指令，发出各种操作命令来执行指令</strong></li>
+<li>I/O设备：Input/Output Equipment。</li>
+</ul>
+<h2 id="三、计算机的工作步骤"><a href="#三、计算机的工作步骤" class="headerlink" title="三、计算机的工作步骤"></a>三、计算机的工作步骤</h2><h3 id="1-上机前的准备"><a href="#1-上机前的准备" class="headerlink" title="1.上机前的准备"></a>1.上机前的准备</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205318632.png" alt="image-20220221205318632" style="zoom:67%;" /></p>
+<h4 id="编程举例"><a href="#编程举例" class="headerlink" title="编程举例"></a>编程举例</h4><ul>
+<li>运算：取被操作数、运算操作、暂存中间结果</li>
+<li>存储器：存储运算结果</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205352807.png" alt="image-20220221205352807" style="zoom:67%;" /></p>
+<h4 id="指令格式举例"><a href="#指令格式举例" class="headerlink" title="指令格式举例"></a>指令格式举例</h4><p>详见ch7。寻址、特征位、不同格式</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205704580.png" alt="img" style="zoom:67%;" /></p>
+<p>注：打印机的打印操作需要多条指令</p>
+<p>参考资料：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34112181/article/details/89566814">打印机主流的指令类型（ESC命令集+CPCL命令集+TSPL命令集）</a></p>
+<h4 id="计算-ax-2-bx-c-程序清单"><a href="#计算-ax-2-bx-c-程序清单" class="headerlink" title="计算$ax^2+bx+c$程序清单"></a>计算$ax^2+bx+c$程序清单</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210015842.png" alt="image-20220221210015842" style="zoom:67%;" /></p>
+<h3 id="2-计算机的解题过程-1"><a href="#2-计算机的解题过程-1" class="headerlink" title="2.计算机的解题过程"></a>2.计算机的解题过程</h3><h4 id="（1）存储器的基本组成"><a href="#（1）存储器的基本组成" class="headerlink" title="（1）存储器的基本组成"></a>（1）存储器的基本组成</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210124089.png" alt="image-20220221210124089" style="zoom:67%;" /></p>
+<ul>
+<li>MAR（存储器地址寄存器）：Memory Address Register</li>
+<li>MDR（主存数据寄存器）：Memory Data Register </li>
+<li>数据总线、读写控制</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210629442.png" alt="image-20220221210629442" style="zoom:67%;" /></p>
+<script type="math/tex; mode=display">
+计算过程： \\
+由MAR = 4位，存储单元的个数 = 2^4 = 16 \\
+由MDR = 8位，存储字长 = 8 \\</script><h4 id="（2）运算器的基本组成及操作过程"><a href="#（2）运算器的基本组成及操作过程" class="headerlink" title="（2）运算器的基本组成及操作过程"></a>（2）运算器的基本组成及操作过程</h4><p>规定动作的处理</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210828885.png" alt="image-20220221210828885" style="zoom:67%;" /></p>
+<ul>
+<li><p>ACC（累加器）：Accumulator。一种<strong>寄存器</strong>，能<strong>存放运算前被操作数</strong>，也能<strong>储存计算产生的中间结果</strong>。</p>
+<blockquote>
+<p>如果没有像累加器这样的寄存器，那么在每次计算 (加法，乘法，移位等等) 后就必须要把结果写回到<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/内存">内存</a>，也许马上就得读回来。然而存取主存的速度是比从<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/算术逻辑单元">算术逻辑单元</a>(ALU)到有直接路径的累加器存取更慢。</p>
+</blockquote>
+</li>
+<li><p>MQ（乘商寄存器）：Multiple-Quotient Register。负责数据的乘法与除法运算并可<strong>保存运算结果</strong>，是运算器的基本组成部分。<strong>也可保存运算结果的低位</strong></p>
+</li>
+</ul>
+<p>注：上图缺少了F寄存器（状态/标志寄存器）</p>
+<ul>
+<li><p>FR（标志寄存器）：Flags Register</p>
+<p>具有<strong>条件标志：进位、奇偶、辅助进位、零、符号、溢出标志</strong>，<strong>控制标记：跟踪、中断、方向标记</strong></p>
+</li>
+</ul>
+<p>参考资料：</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/256470714">标志寄存器</a></p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8/5757541#:~:text=%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%88%E7%A7%B0%20%E7%A8%8B%E5%BA%8F%E7%8A%B6%E6%80%81%E5%AD%97%20%EF%BC%88%E5%A4%96%E8%AF%AD%E7%BC%A9%E5%86%99%EF%BC%9APSW%E3%80%81%E5%A4%96%E8%AF%AD%E5%85%A8%E7%A7%B0%EF%BC%9AProgram,Status%20Word%EF%BC%89%E3%80%82%20%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA16%E4%BD%8D%E7%9A%84%E5%AD%98%E6%94%BE%E6%9D%A1%E4%BB%B6%E6%A0%87%E5%BF%97%E3%80%81%E6%8E%A7%E5%88%B6%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8C%E4%B8%BB%E8%A6%81%E7%94%A8%E4%BA%8E%E5%8F%8D%E6%98%A0%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8CALU%E8%BF%90%E7%AE%97%E7%BB%93%E6%9E%9C%E7%9A%84%E6%9F%90%E4%BA%9B%E7%89%B9%E5%BE%81%E5%8F%8A%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4%E7%9A%84%E6%89%A7%E8%A1%8C%E3%80%82">标志寄存器-百度百科</a></p>
+<h5 id="①加法操作过程"><a href="#①加法操作过程" class="headerlink" title="①加法操作过程"></a>①加法操作过程</h5><p>[ACC]看作被加数。</p>
+<p>从主存中取M地址号单元内的加数[M]，送至X寄存器中。</p>
+<p>将被加数[ACC]与加数[X]相加，结果（和）保留在ACC中。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221211851184.png" alt="image-20220221211851184" style="zoom:67%;" /></p>
+<h5 id="②减法操作过程"><a href="#②减法操作过程" class="headerlink" title="②减法操作过程"></a>②减法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221211932915.png" alt="image-20220221211932915" style="zoom:67%;" /></p>
+<h5 id="③乘法操作过程"><a href="#③乘法操作过程" class="headerlink" title="③乘法操作过程"></a>③乘法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212003668.png" alt="image-20220221212003668" style="zoom:67%;" /></p>
+<h5 id="④除法操作过程"><a href="#④除法操作过程" class="headerlink" title="④除法操作过程"></a>④除法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212038827.png" alt="image-20220221212038827" style="zoom:67%;" /></p>
+<h4 id="（3）控制器的基本组成"><a href="#（3）控制器的基本组成" class="headerlink" title="（3）控制器的基本组成"></a>（3）控制器的基本组成</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212108592.png" alt="image-20220221212108592" style="zoom:67%;" /></p>
+<ul>
+<li>PC（程序计数器）：Program Counter。存放<strong>欲执行的指令的地址</strong>，并可自动<strong>生成下一条指令地址</strong></li>
+<li>IR（指令寄存器）：Instruction Register。存放当前<strong>正在执行的指令</strong></li>
+<li>CU（控制单元）：Control Unit。控制器核心部件，产生微操作命令序列。<strong>用来解释存储器中的指令，发出各种操作命令来执行指令</strong></li>
+</ul>
+<h4 id="（4）主机完成一条指令的过程"><a href="#（4）主机完成一条指令的过程" class="headerlink" title="（4）主机完成一条指令的过程"></a>（4）主机完成一条指令的过程</h4><h5 id="以取数指令为例"><a href="#以取数指令为例" class="headerlink" title="以取数指令为例"></a>以取数指令为例</h5><ol>
+<li>程序计数器获得指令地址的初始值，</li>
+<li>MAR从存储体中获得指令地址对应的指令，通过地址总线送到MAR</li>
+<li>进入读取周期，把指令送至MDR</li>
+<li>通过数据总线送达指令至IR</li>
+<li>开始执行周期：进入CU，分析指令</li>
+<li>开始执行指令，指令寄存器进入MAR，给出数据地址</li>
+<li>通过MAR读取数据地址</li>
+<li>读周期，读取数据</li>
+<li>送达CPU的ACC中，修改PC</li>
+</ol>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223212632134.png" alt="img" style="zoom: 50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212204068.png" alt="image-20220221212204068" style="zoom:67%;" /></p>
+<h5 id="以存数指令为例"><a href="#以存数指令为例" class="headerlink" title="以存数指令为例"></a>以存数指令为例</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212232671.png" alt="image-20220221212232671" style="zoom:67%;" /></p>
+<p>ch4详细讨论</p>
+<p>一个CPU（运算器+控制器） + 存储器 + I/O系统 + 总线</p>
+<p>完成指令</p>
+<h4 id="（5）程序的运行过程"><a href="#（5）程序的运行过程" class="headerlink" title="（5）程序的运行过程"></a>（5）程序的运行过程</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223162855834.png" alt="image-20220223162855834" style="zoom:67%;" /></p>
+<ul>
+<li>PC地址加法器</li>
+</ul>
+<h1 id="1-3-计算机硬件的主要技术指标"><a href="#1-3-计算机硬件的主要技术指标" class="headerlink" title="1.3 计算机硬件的主要技术指标"></a>1.3 计算机硬件的主要技术指标</h1><h3 id="1-机器字长"><a href="#1-机器字长" class="headerlink" title="1.机器字长"></a>1.机器字长</h3><p>机器字长：CPU <strong>一次</strong>能处理数据的<strong>位数</strong>。与CPU中的<strong>寄存器位数</strong>有关</p>
+<ul>
+<li><p>影响精度</p>
+<blockquote>
+<p>字长越长，数的表示范围越大，精度越高</p>
+</blockquote>
+</li>
+<li><p>影响运算速度</p>
+<blockquote>
+<p>若：CPU字长较短，又要运算位数较多的数据，需要经过多次运算才能完成，影响机器的运算速度</p>
+</blockquote>
+</li>
+<li><p>影响硬件的造价</p>
+<blockquote>
+<p>直接影响加法器（或ALU）、数据总线以及存储字长的位数</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-运算速度"><a href="#2-运算速度" class="headerlink" title="2.运算速度"></a>2.运算速度</h3><ul>
+<li><p>主频：计算机工作统一步调，时钟周期的倒数</p>
+<p>晶振产生波形，与工作频率相同</p>
+</li>
+<li><p>（测试的方法）吉布森法</p>
+</li>
+<li><p>MIPS（每秒钟执行百万条指令）：Million Instructions Per Second</p>
+</li>
+</ul>
+<ul>
+<li><p>CPI （执行一条指令所需时钟周期数）：Clock Cycle Per Instruction</p>
+<p>一条指令对应波形的节拍数</p>
+</li>
+<li><p>FLOPS（每秒浮点运算次数）：Floating-point Operations Per Second</p>
+<p>浮点数的加法和乘法速度不同</p>
+</li>
+</ul>
+<h3 id="3-存储容量"><a href="#3-存储容量" class="headerlink" title="3.存储容量"></a>3.存储容量</h3><p>存放二进制信息的总位数</p>
+<ul>
+<li><p>主存容量：主存中存放二进制代码的总位数。、</p>
+<p><strong>MAR的位数反映存储单元的个数（$2^N$​​），MDR的位数反映存储字长（$M$​）</strong></p>
+<ul>
+<li><p>存储单元个数$\times$​存储字长</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223163918172.png" alt="image-20220223163918172"></p>
+</li>
+<li><p>字节数——1个字节被定义为8位二进制代码</p>
+</li>
+</ul>
+</li>
+<li><p>辅存容量——字节数</p>
+<p>80GB，1GB = $2^{30}$B</p>
+</li>
+</ul>
+<h1 id="课后习题"><a href="#课后习题" class="headerlink" title="课后习题"></a>课后习题</h1><p>1、冯·诺伊曼计算机的特点（5条）</p>
+<p>2、计算机如何区分存储器内的指令和数据</p>
+<ul>
+<li><p>通过<strong>不同的时间段</strong>来区分指令和数据</p>
+<p><u>取指令阶段</u>——指令；</p>
+<p><u>执行指令阶段</u>——数据。</p>
+</li>
+<li><p>通过<strong>地址来源</strong>区分</p>
+<p><u>PC（程序计数器）</u>提供的存储地址取出——指令；</p>
+<p><u>指令地址码</u>提供的存储地址取出——数据。</p>
+</li>
+</ul>
+<p>3、计算机硬件组成框图，各部件作用，计算机硬件主要及技术指标</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/computer-organization/" rel="tag"># computer organization</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/16/04/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/18/53/" rel="next" title="第3章 系统总线">
+      第3章 系统总线 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B"><span class="nav-text">1.1 计算机系统简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E8%BD%AF%E7%A1%AC%E4%BB%B6%E6%A6%82%E5%BF%B5"><span class="nav-text">一、计算机的软硬件概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F"><span class="nav-text">1.计算机系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E8%A7%A3%E9%A2%98%E8%BF%87%E7%A8%8B"><span class="nav-text">2.计算机的解题过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-text">二、计算机系统的层次结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%92%8C%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90"><span class="nav-text">三、计算机体系结构和计算机组成</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-2-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%BB%84%E6%88%90"><span class="nav-text">1.2 计算机系统组成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%86%AF%C2%B7%E8%AF%BA%E4%BE%9D%E6%9B%BC%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-text">一、冯·诺依曼计算机的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E6%A1%86%E5%9B%BE"><span class="nav-text">二、计算机硬件框图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%A5%E5%AD%98%E5%82%A8%E5%99%A8%E4%B8%BA%E4%B8%AD%E5%BF%83%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E6%A1%86%E5%9B%BE"><span class="nav-text">1.以存储器为中心的计算机硬件框图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%8E%B0%E4%BB%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E6%A1%86%E5%9B%BE"><span class="nav-text">2.现代计算机硬件框图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="nav-text">三、计算机的工作步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%B8%8A%E6%9C%BA%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87"><span class="nav-text">1.上机前的准备</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E7%A8%8B%E4%B8%BE%E4%BE%8B"><span class="nav-text">编程举例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F%E4%B8%BE%E4%BE%8B"><span class="nav-text">指令格式举例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97-ax-2-bx-c-%E7%A8%8B%E5%BA%8F%E6%B8%85%E5%8D%95"><span class="nav-text">计算$ax^2+bx+c$程序清单</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E8%A7%A3%E9%A2%98%E8%BF%87%E7%A8%8B-1"><span class="nav-text">2.计算机的解题过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90"><span class="nav-text">（1）存储器的基本组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E8%BF%90%E7%AE%97%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90%E5%8F%8A%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="nav-text">（2）运算器的基本组成及操作过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A0%E5%8A%A0%E6%B3%95%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="nav-text">①加法操作过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A1%E5%87%8F%E6%B3%95%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="nav-text">②减法操作过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A2%E4%B9%98%E6%B3%95%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="nav-text">③乘法操作过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A3%E9%99%A4%E6%B3%95%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="nav-text">④除法操作过程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E6%8E%A7%E5%88%B6%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90"><span class="nav-text">（3）控制器的基本组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%884%EF%BC%89%E4%B8%BB%E6%9C%BA%E5%AE%8C%E6%88%90%E4%B8%80%E6%9D%A1%E6%8C%87%E4%BB%A4%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-text">（4）主机完成一条指令的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%A5%E5%8F%96%E6%95%B0%E6%8C%87%E4%BB%A4%E4%B8%BA%E4%BE%8B"><span class="nav-text">以取数指令为例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%A5%E5%AD%98%E6%95%B0%E6%8C%87%E4%BB%A4%E4%B8%BA%E4%BE%8B"><span class="nav-text">以存数指令为例</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%885%EF%BC%89%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-text">（5）程序的运行过程</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E7%9A%84%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87"><span class="nav-text">1.3 计算机硬件的主要技术指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%9C%BA%E5%99%A8%E5%AD%97%E9%95%BF"><span class="nav-text">1.机器字长</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%BF%90%E7%AE%97%E9%80%9F%E5%BA%A6"><span class="nav-text">2.运算速度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AD%98%E5%82%A8%E5%AE%B9%E9%87%8F"><span class="nav-text">3.存储容量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BE%E5%90%8E%E4%B9%A0%E9%A2%98"><span class="nav-text">课后习题</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bob Cheng</p>
+  <div class="site-description" itemprop="description">markdown daily life & study</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bob Cheng</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
