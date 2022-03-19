@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.gingkocyx.top","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="2.1 等值式 定义1：若等价式A $\leftrightarrow$ B是重言式，则称A与B等值，记作A $\leftrightarrow$ B，并称A \leftrightarrow B是等值式 此时A和B真值相同（全0 or 全1）  几点说明：   定义中的符号\leftrightarrow不是联结符（词）  用真值表可检查两个公式是否等值     问题：判别下面命题公式是否为重言式(永真">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数理逻辑：第2节 命题逻辑等值计算">
+<meta property="og:url" content="https://www.gingkocyx.top/mathematical-logic/mathematical-logic-ch2/index.html">
+<meta property="og:site_name" content="Gingkocyx">
+<meta property="og:description" content="2.1 等值式 定义1：若等价式A $\leftrightarrow$ B是重言式，则称A与B等值，记作A $\leftrightarrow$ B，并称A \leftrightarrow B是等值式 此时A和B真值相同（全0 or 全1）  几点说明：   定义中的符号\leftrightarrow不是联结符（词）  用真值表可检查两个公式是否等值     问题：判别下面命题公式是否为重言式(永真">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301083009100.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301083123270.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301190541286.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301190743753.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091705613.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091721847.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091734879.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192357658.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192420027.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192436741.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192454515.png">
+<meta property="article:published_time" content="2022-03-19T11:54:51.000Z">
+<meta property="article:modified_time" content="2022-03-19T12:12:09.439Z">
+<meta property="article:author" content="Bob Cheng">
+<meta property="article:tag" content="mathematical logic">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301083009100.png">
+
+<link rel="canonical" href="https://www.gingkocyx.top/mathematical-logic/mathematical-logic-ch2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>数理逻辑：第2节 命题逻辑等值计算 | Gingkocyx</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Gingkocyx</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">BCheng's blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/mathematical-logic/mathematical-logic-ch2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bob Cheng">
+      <meta itemprop="description" content="markdown daily life & study">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gingkocyx">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数理逻辑：第2节 命题逻辑等值计算
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-03-19 19:54:51 / 修改时间：20:12:09" itemprop="dateCreated datePublished" datetime="2022-03-19T19:54:51+08:00">2022-03-19</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="2-1-等值式"><a href="#2-1-等值式" class="headerlink" title="2.1 等值式"></a>2.1 等值式</h1><ul>
+<li><p><strong>定义1</strong>：若<strong>等价式</strong>A $\leftrightarrow$ B是<strong>重言式</strong>，则称A与B等值，记作A $\leftrightarrow$ B，并称A <script type="math/tex">\leftrightarrow</script> B是等值式</p>
+<p>此时A和B真值相同（全0 or 全1）</p>
+</li>
+<li><p>几点说明： </p>
+<ul>
+<li>定义中的符号<script type="math/tex">\leftrightarrow</script>不是联结符（词） </li>
+<li>用<strong>真值表</strong>可检查两个公式是否等值</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>问题：判别下面命题公式是否为重言式(永真式)？ </p>
+<p>(( p∧ $\neg$ q) → r )∧ p ∧ (q → s) ∧ $\neg$ s → r<br>转化为: (( p∧ $\neg$ q) → r )∧ p ∧ (q → s) ∧ $\neg$ s → r <script type="math/tex">\leftrightarrow</script> 1</p>
+</blockquote>
+<span id="more"></span>
+<p>【例1】判断下列各组公式是否等值</p>
+<p>（1）p→(q→r) 与 (p $\land$ q) →r</p>
+<blockquote>
+<p>形式不同，表达含义相同。p，q都是r的前提</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301083009100.png" alt="image-20220301083009100" style="zoom:67%;" /></p>
+<p>（2）p→(q→r) 与 (p→q) →r</p>
+<blockquote>
+<p>含义不同，不等值</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301083123270.png" alt="image-20220301083123270" style="zoom:67%;" /></p>
+<h2 id="基本等值式"><a href="#基本等值式" class="headerlink" title="基本等值式"></a>基本等值式</h2><ul>
+<li><p><strong>双重否定律</strong>：  $\neg$ $\neg$ A <script type="math/tex">\leftrightarrow</script> A</p>
+</li>
+<li><p><strong>幂等律</strong>： A $\vee$ A <script type="math/tex">\leftrightarrow</script> A, $\qquad$ A $\land$ A <script type="math/tex">\leftrightarrow</script> A​ </p>
+<blockquote>
+<p>理解为两个集合的交/并</p>
+</blockquote>
+</li>
+<li><p><strong>交换律</strong>： A $\vee$ B <script type="math/tex">\leftrightarrow</script> B $\vee$ A,$\qquad$  A $\land$ B <script type="math/tex">\leftrightarrow</script> B $\land$ A​ </p>
+</li>
+<li><p><strong>结合律</strong> ： (A $\vee$ B) $\vee$ C <script type="math/tex">\leftrightarrow</script> A $\vee$ (B $\vee$ C), $\qquad$ (A $\land$ B) $\land$ C <script type="math/tex">\leftrightarrow</script> A $\land$ (B $\land$ C)​ </p>
+</li>
+<li><p><strong>分配律</strong> ：A $\vee$ (B $\land$ C) <script type="math/tex">\leftrightarrow</script> (A $\vee$ B) $\land$ (A $\vee$ C),$\qquad$ A $\land$ (B $\vee$ C) <script type="math/tex">\leftrightarrow</script> (A $\land$ B) $\vee$ (A $\land$ C)  </p>
+</li>
+<li><p><strong>德摩根律</strong>： $\neg$ (A $\vee$ B) <script type="math/tex">\leftrightarrow</script>  $\neg$ A $\land$  $\neg$ B, $\qquad$<br>$\neg$ (A $\land$ B) <script type="math/tex">\leftrightarrow</script>  $\neg$ A $\vee$ $\neg$ B​​</p>
+</li>
+<li><p><strong>吸收律</strong>： A $\vee$ (A $\land$ B) <script type="math/tex">\leftrightarrow</script> A, $\qquad$ A $\land$ (A $\vee$ B) <script type="math/tex">\leftrightarrow</script> A</p>
+<blockquote>
+<p>A把比它大的部分吸收</p>
+</blockquote>
+</li>
+<li><p><strong>零律</strong>： A $\vee$ 1 <script type="math/tex">\leftrightarrow</script> 1, $\qquad$  A $\land$ 0 <script type="math/tex">\leftrightarrow</script> 0</p>
+</li>
+<li><p><strong>同一律</strong>： A $\vee$ 0 <script type="math/tex">\leftrightarrow</script> A, $\qquad$ A $\land$ 1 <script type="math/tex">\leftrightarrow</script> A</p>
+</li>
+<li><p><strong>排中律</strong>： A $\vee$ $\neg$ A  <script type="math/tex">\leftrightarrow</script> 1</p>
+</li>
+<li><p><strong>矛盾律</strong>： A $\land$  $\neg$ A <script type="math/tex">\leftrightarrow</script> 0</p>
+<blockquote>
+<p>不可能既真又假</p>
+</blockquote>
+</li>
+<li><p><strong>蕴涵等值式</strong>： $\color{red}${A→B <script type="math/tex">\leftrightarrow</script> $\neg$ A $\vee$ B}</p>
+</li>
+<li><p><strong>等价等值式</strong>：{A <script type="math/tex">\leftrightarrow</script> B <script type="math/tex">\leftrightarrow</script> (A→B) $\land$ (B→A)} </p>
+<blockquote>
+<p>非A或B 与 非B或A</p>
+</blockquote>
+</li>
+<li><p><strong>假言易位</strong>： $\color{red}$ {A→B <script type="math/tex">\leftrightarrow</script> $\neg$ B→$\neg$ A} </p>
+<blockquote>
+<p>B是A的必要条件，A是B的充分条件</p>
+<p><strong>有A则有B</strong> 与 <strong>没有B则没有A</strong> 是同一件事</p>
+</blockquote>
+</li>
+<li><p><strong>等价否定等值式</strong>： $\color{red}$ {A <script type="math/tex">\leftrightarrow</script> B <script type="math/tex">\leftrightarrow</script> $\neg$ A <script type="math/tex">\leftrightarrow</script> $\neg$ B }</p>
+</li>
+<li><p><strong>归谬论</strong>：$\color{red}$ {(A→B) $\land$ (A→$\neg$ B) <script type="math/tex">\leftrightarrow</script> $\neg$ A}</p>
+<blockquote>
+<p>在A为真的前提下，能推出矛盾（B既真又假），则前提A为假——反证法</p>
+</blockquote>
+</li>
+</ul>
+<p>特别提示：必须牢记这16组等值式(24式)，这是继续学习的基础。</p>
+<h2 id="等值演算与置换规则"><a href="#等值演算与置换规则" class="headerlink" title="等值演算与置换规则"></a>等值演算与置换规则</h2><h3 id="1-等值演算"><a href="#1-等值演算" class="headerlink" title="1.等值演算"></a>1.等值演算</h3><p>由已知的等值式推演出新的等值式的过程</p>
+<blockquote>
+<p>每一步都是等值变换（每一步都使用等值式）</p>
+</blockquote>
+<h3 id="2-等值演算的基础"><a href="#2-等值演算的基础" class="headerlink" title="2.等值演算的基础"></a>2.等值演算的基础</h3><ul>
+<li><p>等值关系的性质：<strong>自反性、对称性、传递性</strong></p>
+<blockquote>
+<p>A与A是等值的</p>
+<p>如果A和B等值，则B和A等值</p>
+<p>如果A和B等值，B和C等值，则A和C等值</p>
+</blockquote>
+</li>
+<li><p>基本的等值式</p>
+</li>
+<li><p><strong>置换规则</strong></p>
+</li>
+</ul>
+<h3 id="3-置换规则"><a href="#3-置换规则" class="headerlink" title="3.置换规则"></a>3.置换规则</h3><p>设 $\Phi$(A)​​​​​ 是含公式 A​​​​ 的命题公式，$\Phi$ (B)​​​ 是用公式B​​置换$\Phi$ (A)​ 中所有的 A 后得到的命题公式。 </p>
+<p>若 B <script type="math/tex">\leftrightarrow</script> A​，则 $\Phi$(B) <script type="math/tex">\leftrightarrow</script> $\Phi$(A)。</p>
+<blockquote>
+<p>对公式的一部分做等值变换，变换后的结果仍然是等值的</p>
+</blockquote>
+<h3 id="等值演算的应用举例"><a href="#等值演算的应用举例" class="headerlink" title="等值演算的应用举例"></a>等值演算的应用举例</h3><ul>
+<li>证明两个公式等值</li>
+</ul>
+<p>​        <img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301190541286.png" alt="image-20220301190541286" style="zoom: 50%;" /></p>
+<p><strong>注：用等值演算不能直接证明两个公式不等值</strong></p>
+<ul>
+<li>判断公式类型：<script type="math/tex; mode=display">
+A 为矛盾式当且仅当 A \Leftrightarrow 0 \\
+A 为重言式当且仅当 A \Leftrightarrow 1 \\
+A 为非重言式的可满足式 \Leftrightarrow A既有成真赋值又有成假赋值 \\</script></li>
+</ul>
+<h3 id="证明两个公式不等值"><a href="#证明两个公式不等值" class="headerlink" title="证明两个公式不等值"></a>证明两个公式不等值</h3><ul>
+<li><p>真值表法</p>
+</li>
+<li><p>观察法——举出反例</p>
+</li>
+<li><p>先等值演算化简公式，再观察</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301190743753.png" alt="image-20220301190743753" style="zoom:50%;" /></p>
+</li>
+</ul>
+<h1 id="2-2-析取范式与合取范式"><a href="#2-2-析取范式与合取范式" class="headerlink" title="2.2 析取范式与合取范式"></a>2.2 析取范式与合取范式</h1><p>范式：比较规范的公式形式</p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li><p><strong>文字</strong>：命题变项及其否定的总称</p>
+<blockquote>
+<p>p, $\quad$ $\neg$ q</p>
+</blockquote>
+</li>
+<li><p><strong>简单析取式</strong>：仅由有限个文字构成的析取式</p>
+<blockquote>
+<p>p,$\quad$ $\neg$ q,$\quad$ p$\vee$ $\neg$ q, $\quad$ p$\vee$ q $\vee$ r,…​</p>
+</blockquote>
+</li>
+<li><p><strong>简单合取式</strong>：由有限个文字构成的合取式</p>
+<blockquote>
+<p>p,$\quad$ $\neg$ q,$\quad$ p$\land$ $\neg$ q, $\quad$ p$\land$ q $\land$ r,…</p>
+</blockquote>
+</li>
+<li><p><strong>析取范式</strong>：由有限个<strong>简单合取式</strong>组成的<strong>析取式</strong></p>
+<blockquote>
+<p>p,$\quad$ $\neg$ p $\land$ q,（简单合取式）$\quad$ p$\vee$ $\neg$ q, $\quad$ (p $\land$ $\neg$ q) $\vee$ ($\neg$ p $\land$ q $\land$ $\neg$ r) $\vee$ (q $\land$ r),…​</p>
+</blockquote>
+</li>
+<li><p><strong>合取范式</strong>：由有限个<strong>简单析取式</strong>组成的<strong>合取式</strong></p>
+<blockquote>
+<p>p,$\quad$ $\neg$ p $\vee$ q,（简单析取式）$\quad$ p$\land$ $\neg$ q, $\quad$ (p $\vee$ $\neg$ q) $\land$ ($\neg$ p $\vee$ q $\vee$ r) $\land$ (q $\vee$ r),…</p>
+</blockquote>
+</li>
+<li><p><strong>范式</strong>：析取范式与合取范式的总称</p>
+</li>
+</ol>
+<p>说明</p>
+<ul>
+<li>单个文字既是简单析取式，又是简单合取式</li>
+<li>形如 p $\land$ $\neg$ q $\land$ r, $\neg$ p $\land$ q $\vee$ $\neg$ r 的公式既是析取范式，又是合取范式</li>
+</ul>
+<p><strong>定理1</strong></p>
+<p>（1）一个<strong>简单析取式是重言式</strong>当且仅当<strong>它同时含有某个命题变项和它的否定式</strong></p>
+<blockquote>
+<p>p $\vee$ $\neg$ p $\vee$ r $\vee$ q</p>
+</blockquote>
+<p>（2）一个<strong>简单合取式是矛盾式</strong>当且仅当<strong>它同时含有某个命题变项和它的否定式</strong></p>
+<blockquote>
+<p>p $\land$ $\neg$ p $\land$ q</p>
+</blockquote>
+<p><strong>定理2</strong></p>
+<p>（1）一个<strong>析取范式是矛盾式</strong>当且仅当<strong>它每个简单合取式都是矛盾式</strong></p>
+<blockquote>
+<p>$\triangle$ $\vee$ $\triangle$ $\vee$ $\triangle$</p>
+</blockquote>
+<p>（2）一个<strong>合取范式是重言式</strong>当且仅当<strong>它的每个简单析取式都是重言式</strong></p>
+<blockquote>
+<p>$\triangle$ $\land$ $\triangle$ $\land$ $\triangle$</p>
+</blockquote>
+<p><strong>定理3</strong>（范式存在定理）</p>
+<p>任何命题公式都存在与之等值的析取范式与合取范式</p>
+<blockquote>
+<p>从任何公式出发，都有和它等值的<strong>析取范式</strong>和<strong>合取范式</strong></p>
+</blockquote>
+<h2 id="命题公式的范式"><a href="#命题公式的范式" class="headerlink" title="命题公式的范式"></a>命题公式的范式</h2><h3 id="求公式A的范式的步骤"><a href="#求公式A的范式的步骤" class="headerlink" title="求公式A的范式的步骤"></a>求公式A的范式的步骤</h3><ol>
+<li><p>消去A中的$\to$, <script type="math/tex">\leftrightarrow</script>（若存在）——<strong>（蕴含等价式、等价等值式、假言易位、等价否定等值式、归谬论）</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091705613.png" alt="image-20220301091705613" style="zoom: 50%;" /></p>
+</li>
+<li><p>否定连接词的内移或消去<strong>（德摩根律）</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091721847.png" alt="image-20220301091721847" style="zoom: 50%;" /></p>
+</li>
+<li><p>使用<strong>分配律</strong></p>
+</li>
+</ol>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091734879.png" alt="image-20220301091734879" style="zoom:50%;" /></p>
+<p>范式的不足——不唯一</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192357658.png" alt="image-20220301192357658" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192420027.png" alt="image-20220301192420027" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192436741.png" alt="image-20220301192436741" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192454515.png" alt="image-20220301192454515" style="zoom:50%;" /></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/mathematical-logic/" rel="tag"># mathematical logic</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/mathematical_logic/mathematical-logic-ch1/" rel="prev" title="数理逻辑：第1节 命题逻辑的基本概念">
+      <i class="fa fa-chevron-left"></i> 数理逻辑：第1节 命题逻辑的基本概念
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-1-%E7%AD%89%E5%80%BC%E5%BC%8F"><span class="nav-text">2.1 等值式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%AD%89%E5%80%BC%E5%BC%8F"><span class="nav-text">基本等值式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%89%E5%80%BC%E6%BC%94%E7%AE%97%E4%B8%8E%E7%BD%AE%E6%8D%A2%E8%A7%84%E5%88%99"><span class="nav-text">等值演算与置换规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%AD%89%E5%80%BC%E6%BC%94%E7%AE%97"><span class="nav-text">1.等值演算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%AD%89%E5%80%BC%E6%BC%94%E7%AE%97%E7%9A%84%E5%9F%BA%E7%A1%80"><span class="nav-text">2.等值演算的基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%BD%AE%E6%8D%A2%E8%A7%84%E5%88%99"><span class="nav-text">3.置换规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E5%80%BC%E6%BC%94%E7%AE%97%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B"><span class="nav-text">等值演算的应用举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%81%E6%98%8E%E4%B8%A4%E4%B8%AA%E5%85%AC%E5%BC%8F%E4%B8%8D%E7%AD%89%E5%80%BC"><span class="nav-text">证明两个公式不等值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-2-%E6%9E%90%E5%8F%96%E8%8C%83%E5%BC%8F%E4%B8%8E%E5%90%88%E5%8F%96%E8%8C%83%E5%BC%8F"><span class="nav-text">2.2 析取范式与合取范式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E9%A2%98%E5%85%AC%E5%BC%8F%E7%9A%84%E8%8C%83%E5%BC%8F"><span class="nav-text">命题公式的范式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E5%85%AC%E5%BC%8FA%E7%9A%84%E8%8C%83%E5%BC%8F%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="nav-text">求公式A的范式的步骤</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bob Cheng</p>
+  <div class="site-description" itemprop="description">markdown daily life & study</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bob Cheng</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

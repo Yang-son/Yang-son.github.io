@@ -59,7 +59,7 @@
 <meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302200713658.png">
 <meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302200648866.png">
 <meta property="article:published_time" content="2022-03-18T03:39:53.000Z">
-<meta property="article:modified_time" content="2022-03-19T11:16:11.251Z">
+<meta property="article:modified_time" content="2022-03-19T12:01:36.631Z">
 <meta property="article:author" content="Bob Cheng">
 <meta property="article:tag" content="computer organization">
 <meta name="twitter:card" content="summary">
@@ -217,7 +217,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-19 19:16:11" itemprop="dateModified" datetime="2022-03-19T19:16:11+08:00">2022-03-19</time>
+                <time title="修改时间：2022-03-19 20:01:36" itemprop="dateModified" datetime="2022-03-19T20:01:36+08:00">2022-03-19</time>
               </span>
 
           <br>
@@ -245,7 +245,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="关于本课程"><a href="#关于本课程" class="headerlink" title="关于本课程"></a>关于本课程</h2><p>计算机源头：主频——晶振（1个）</p>
+        <h1 id="关于本课程"><a href="#关于本课程" class="headerlink" title="关于本课程"></a>关于本课程</h1><p>计算机源头：主频——晶振（1个）</p>
 <p>计组的难点和重点：<strong>运算器、存储器、控制器、中断方式</strong></p>
 <p>计算机系统</p>
 <ul>
@@ -256,7 +256,7 @@
 </ul>
 <p>本课程重点是<strong>逻辑和时序，考虑一些负载能力</strong></p>
 <span id="more"></span>
-<h2 id="3-1-总线的基本概念"><a href="#3-1-总线的基本概念" class="headerlink" title="3.1 总线的基本概念"></a>3.1 总线的基本概念</h2><h3 id="一、为什么要用总线"><a href="#一、为什么要用总线" class="headerlink" title="一、为什么要用总线"></a>一、为什么要用总线</h3><p>冯诺依曼计算机结构：运算、控制、存储、输入、输出</p>
+<h1 id="3-1-总线的基本概念"><a href="#3-1-总线的基本概念" class="headerlink" title="3.1 总线的基本概念"></a>3.1 总线的基本概念</h1><h2 id="一、为什么要用总线"><a href="#一、为什么要用总线" class="headerlink" title="一、为什么要用总线"></a>一、为什么要用总线</h2><p>冯诺依曼计算机结构：运算、控制、存储、输入、输出</p>
 <p>至少包括三大部分，现代计算机更加复杂。需要把各个部件连接起来才能组成系统，协同工作。</p>
 <p>计算机如何连接：</p>
 <ul>
@@ -271,22 +271,22 @@
 <p><strong>将各部件连到一组公共信息传输线上，称为总线连接</strong></p>
 </li>
 </ul>
-<h3 id="二、什么是总线"><a href="#二、什么是总线" class="headerlink" title="二、什么是总线"></a>二、什么是总线</h3><blockquote>
+<h2 id="二、什么是总线"><a href="#二、什么是总线" class="headerlink" title="二、什么是总线"></a>二、什么是总线</h2><blockquote>
 <p>总线是连接各个部件的信息传输线，是<strong>各个部件共享的传输介质</strong></p>
 </blockquote>
 <ul>
 <li>结构简单，可控性好</li>
 </ul>
-<h3 id="三、总线上信息的传送"><a href="#三、总线上信息的传送" class="headerlink" title="三、总线上信息的传送"></a>三、总线上信息的传送</h3><ul>
+<h2 id="三、总线上信息的传送"><a href="#三、总线上信息的传送" class="headerlink" title="三、总线上信息的传送"></a>三、总线上信息的传送</h2><ul>
 <li>串行：传输距离长（设备之间），一次只能传输一个信号，速度慢</li>
 <li>并行：传输距离短（集中于机箱内部），一次传输多个信号，速度快</li>
 </ul>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/lKQvA54JcfjV6Er.png" alt="image-20220112101628214" style="zoom:50%;" /></p>
-<h3 id="四、总线结构的计算机"><a href="#四、总线结构的计算机" class="headerlink" title="四、总线结构的计算机"></a>四、总线结构的计算机</h3><ul>
+<h2 id="四、总线结构的计算机"><a href="#四、总线结构的计算机" class="headerlink" title="四、总线结构的计算机"></a>四、总线结构的计算机</h2><ul>
 <li>在某一时刻，<strong>只允许有一个部件向总线发送信息，而多个部件可以同时从总线上接收相同的信息</strong></li>
 <li>总线<strong>由许多传输线或通路组成</strong>，每条线可一位一位传输二进制代码。</li>
 </ul>
-<h4 id="1-面向-CPU-的双总线结构框图"><a href="#1-面向-CPU-的双总线结构框图" class="headerlink" title="1. 面向 CPU 的双总线结构框图"></a>1. 面向 CPU 的双总线结构框图</h4><blockquote>
+<h3 id="1-面向-CPU-的双总线结构框图"><a href="#1-面向-CPU-的双总线结构框图" class="headerlink" title="1. 面向 CPU 的双总线结构框图"></a>1. 面向 CPU 的双总线结构框图</h3><blockquote>
 <p>面向CPU的双总线结构：<strong>以CPU为核心，延展出两条总线：一条M总线连接主存；I/O总线连接I/O设备。</strong></p>
 <p>CPU与主存之间的信息传输比较繁忙，使用M总线提供信息传输服务。</p>
 <p>I/O设备与主存之间没有直接的信息通路，只能以CPU作为媒介。一旦外部设备与主存进行信息传输，CPU的运算任务重，还是有可能被打断。</p>
@@ -300,7 +300,7 @@
 </li>
 </ul>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/n97htaETFsq8ijy.png" alt="image-20220112102902317" style="zoom: 67%;" /></p>
-<h4 id="2-单总线结构框图"><a href="#2-单总线结构框图" class="headerlink" title="2. 单总线结构框图"></a>2. 单总线结构框图</h4><p>如何分配总线，避免冲突？——总线使用规则，硬件设计应考虑</p>
+<h3 id="2-单总线结构框图"><a href="#2-单总线结构框图" class="headerlink" title="2. 单总线结构框图"></a>2. 单总线结构框图</h3><p>如何分配总线，避免冲突？——总线使用规则，硬件设计应考虑</p>
 <p>使用<strong>三态门</strong>：数据双向，地址单向</p>
 <ul>
 <li>主设备（总线）发出者（控制者），同一时刻只能有一个</li>
@@ -314,13 +314,13 @@
 <p><strong>解决思路</strong>:引入多条总线，让数据并行传输</p>
 </blockquote>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/eLNS8o2EnHXCyfd.png" alt="image-20220112102154648" style="zoom: 67%;" /></p>
-<h4 id="3-以存储器为中心的双总线结构框图"><a href="#3-以存储器为中心的双总线结构框图" class="headerlink" title="3. 以存储器为中心的双总线结构框图"></a>3. 以存储器为中心的双总线结构框图</h4><p>将1和2结合起来</p>
+<h3 id="3-以存储器为中心的双总线结构框图"><a href="#3-以存储器为中心的双总线结构框图" class="headerlink" title="3. 以存储器为中心的双总线结构框图"></a>3. 以存储器为中心的双总线结构框图</h3><p>将1和2结合起来</p>
 <blockquote>
 <p>在单总线基础上又开辟出的一条CPU与主存之间的总线，称为<strong>存储总线</strong></p>
 <p>把CPU、主存、外部设备都挂在系统总线上；<strong>CPU和主存之间存储总线进行数据传输</strong></p>
 </blockquote>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/FZu58AsqfDSoT6y.png" alt="image-20220112103055281" style="zoom: 67%;" /></p>
-<h2 id="3-2-总线的分类（重点内容）"><a href="#3-2-总线的分类（重点内容）" class="headerlink" title="3.2 总线的分类（重点内容）"></a>3.2 总线的分类（重点内容）</h2><p>（重点内容）</p>
+<h1 id="3-2-总线的分类（重点内容）"><a href="#3-2-总线的分类（重点内容）" class="headerlink" title="3.2 总线的分类（重点内容）"></a>3.2 总线的分类（重点内容）</h1><p>（重点内容）</p>
 <ul>
 <li><p>总线按<strong>数据传送方式</strong>可以分为：并行传输总线 和 串行传输总线。</p>
 <p>并行传输总线中，又可按传输数据宽度分为：8位、16位、32位、64位等传输总线。</p>
@@ -331,13 +331,13 @@
 <p>系统总线按<strong>传输信息</strong>不同，分为：数据总线、地址总线、控制总线</p>
 </li>
 </ul>
-<h3 id="1-片内总线"><a href="#1-片内总线" class="headerlink" title="1.片内总线"></a>1.片内总线</h3><p><strong>芯片内部</strong>的总线</p>
+<h2 id="1-片内总线"><a href="#1-片内总线" class="headerlink" title="1.片内总线"></a>1.片内总线</h2><p><strong>芯片内部</strong>的总线</p>
 <blockquote>
 <p>CPU内的运算器和控制器之间的连线</p>
 <p>寄存器之间</p>
 <p>寄存器与算逻单元ALU之间</p>
 </blockquote>
-<h3 id="2-系统总线"><a href="#2-系统总线" class="headerlink" title="2.系统总线"></a>2.系统总线</h3><p><strong>计算机各部件之间</strong>（CPU、主存、I/O设备（通过I/O接口））的信息传输线</p>
+<h2 id="2-系统总线"><a href="#2-系统总线" class="headerlink" title="2.系统总线"></a>2.系统总线</h2><p><strong>计算机各部件之间</strong>（CPU、主存、I/O设备（通过I/O接口））的信息传输线</p>
 <ul>
 <li><p><u>数据总线：传输各部件之间的数据信息</u></p>
 <p><strong>双向</strong>，与<strong>机器字长、存储字长</strong>有关</p>
@@ -384,12 +384,12 @@
 </ul>
 </li>
 </ul>
-<h3 id="3-通信总线"><a href="#3-通信总线" class="headerlink" title="3.通信总线"></a>3.通信总线</h3><p>（了解即可）</p>
+<h2 id="3-通信总线"><a href="#3-通信总线" class="headerlink" title="3.通信总线"></a>3.通信总线</h2><p>（了解即可）</p>
 <p>用于 <strong>计算机系统之间</strong> 或 <strong>计算机系统与其他系统（如控制仪表、移动通信等）之间</strong>的通信</p>
 <p>传输方式：串行、并行</p>
-<h2 id="3-3-总线特性及性能指标"><a href="#3-3-总线特性及性能指标" class="headerlink" title="3.3 总线特性及性能指标"></a>3.3 总线特性及性能指标</h2><h3 id="一、总线物理实现"><a href="#一、总线物理实现" class="headerlink" title="一、总线物理实现"></a>一、总线物理实现</h3><p>从物理角度，总线由许多导线直接印制在电路板上，延伸到各个部件。</p>
+<h1 id="3-3-总线特性及性能指标"><a href="#3-3-总线特性及性能指标" class="headerlink" title="3.3 总线特性及性能指标"></a>3.3 总线特性及性能指标</h1><h2 id="一、总线物理实现"><a href="#一、总线物理实现" class="headerlink" title="一、总线物理实现"></a>一、总线物理实现</h2><p>从物理角度，总线由许多导线直接印制在电路板上，延伸到各个部件。</p>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223171231125.png" alt="image-20220223171231125" style="zoom:67%;" /></p>
-<h3 id="二、总线特性"><a href="#二、总线特性" class="headerlink" title="二、总线特性"></a>二、总线特性</h3><ol>
+<h2 id="二、总线特性"><a href="#二、总线特性" class="headerlink" title="二、总线特性"></a>二、总线特性</h2><ol>
 <li><p><strong>机械特性</strong>：<strong>尺寸</strong>、形状、<strong>管脚数</strong>及<strong>排列顺序</strong></p>
 </li>
 <li><p><strong>电气特性</strong>：<strong>传输方向</strong>和有效的<strong>电平</strong>范围</p>
@@ -417,7 +417,7 @@
 <p>总线中的任一根线在什么时间内有效</p>
 </li>
 </ol>
-<h3 id="三、总线的性能指标"><a href="#三、总线的性能指标" class="headerlink" title="三、总线的性能指标"></a>三、总线的性能指标</h3><p>1.<strong>总线宽度</strong></p>
+<h2 id="三、总线的性能指标"><a href="#三、总线的性能指标" class="headerlink" title="三、总线的性能指标"></a>三、总线的性能指标</h2><p>1.<strong>总线宽度</strong></p>
 <p><strong>数据总线</strong>的根数（16根、32根、64根，与传输位数有关）</p>
 <p>用<strong>bit（位）</strong>表示</p>
 <p>2.<strong>标准传输率</strong></p>
@@ -443,11 +443,11 @@
 <p>7.<strong>其他指标</strong></p>
 <p><strong>负载能力</strong>、电源电压（5V or 3.3V）、总线的宽度能否扩展</p>
 <p>负载能力即驱动能力：总线<strong>接上负载</strong>后，总线<strong>输入输出的逻辑电平</strong>能否<strong>保持在正常的额定范围</strong>内。</p>
-<h3 id="四、总线标准（重要）"><a href="#四、总线标准（重要）" class="headerlink" title="四、总线标准（重要）"></a>四、总线标准（重要）</h3><h4 id="什么是总线标准？"><a href="#什么是总线标准？" class="headerlink" title="什么是总线标准？"></a>什么是总线标准？</h4><blockquote>
+<h2 id="四、总线标准（重要）"><a href="#四、总线标准（重要）" class="headerlink" title="四、总线标准（重要）"></a>四、总线标准（重要）</h2><h3 id="什么是总线标准？"><a href="#什么是总线标准？" class="headerlink" title="什么是总线标准？"></a>什么是总线标准？</h3><blockquote>
 <p>总线标准，可视为系统与各模块、模块与模块之间的一个互连的<strong>标准界面</strong>。</p>
 <p>这个界面对它两端的模块都是透明的，即界面的任一方只需根据总线标准的要求完成自身一方接口的功能要求，而无须了解对方接口与总线的连接要求。</p>
 </blockquote>
-<h4 id="为什么要设置总线标准？"><a href="#为什么要设置总线标准？" class="headerlink" title="为什么要设置总线标准？"></a>为什么要设置总线标准？</h4><blockquote>
+<h3 id="为什么要设置总线标准？"><a href="#为什么要设置总线标准？" class="headerlink" title="为什么要设置总线标准？"></a>为什么要设置总线标准？</h3><blockquote>
 <p>采用总线标准可以为计算机接口的软硬件设计<strong>提供方便</strong>。</p>
 <p>对硬件设计而言，使各个模块的<strong>接口芯片设计</strong>相对<strong>独立</strong>；</p>
 <p>对软件设计而言，更有利于<strong>接口软件</strong>的<strong>模块化</strong>设计。</p>
@@ -456,7 +456,7 @@
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225205811812.png" alt="image-20220225205811812" style="zoom:67%;" /></p>
 <p><strong>注：串行不一定比并行慢</strong></p>
 <p>需要了解名称及特点（信号管脚、哪些管脚定义、有效电平）</p>
-<h4 id="1-ISA总线"><a href="#1-ISA总线" class="headerlink" title="1.ISA总线"></a>1.ISA总线</h4><blockquote>
+<h3 id="1-ISA总线"><a href="#1-ISA总线" class="headerlink" title="1.ISA总线"></a>1.ISA总线</h3><blockquote>
 <p>Industrial Standard Architecture</p>
 <p>用于早期计算机</p>
 </blockquote>
@@ -465,7 +465,7 @@
 <li>使用<strong>独立于CPU的总线时钟</strong>，因此<strong>CPU可以采用比总线频率更高的时钟</strong>，有利于CPU性能提升</li>
 <li><u>时钟频率<strong>8MHz</strong>，最大传输率<strong>16MBps</strong>，数据线为<strong>16位</strong>，地址线为<strong>24位</strong>。</u></li>
 </ul>
-<h4 id="2-EISA总线"><a href="#2-EISA总线" class="headerlink" title="2.EISA总线"></a>2.EISA总线</h4><blockquote>
+<h3 id="2-EISA总线"><a href="#2-EISA总线" class="headerlink" title="2.EISA总线"></a>2.EISA总线</h3><blockquote>
 <p>Extended Industrial Standard Architecture</p>
 </blockquote>
 <ul>
@@ -476,7 +476,7 @@
 <li><p><u>时钟频率<strong>8MHz</strong>，最大传输率<strong>33MBps</strong>，数据总线为<strong>32位</strong>，地址总线为<strong>32位</strong>，扩充DMA访问范围达$2^{32}$</u></p>
 </li>
 </ul>
-<h4 id="3-VESA-VL-BUS-总线"><a href="#3-VESA-VL-BUS-总线" class="headerlink" title="3.VESA(VL-BUS)总线"></a>3.VESA(VL-BUS)总线</h4><blockquote>
+<h3 id="3-VESA-VL-BUS-总线"><a href="#3-VESA-VL-BUS-总线" class="headerlink" title="3.VESA(VL-BUS)总线"></a>3.VESA(VL-BUS)总线</h3><blockquote>
 <p>Video Electronic Standard Association 视频电子标准协会</p>
 </blockquote>
 <ul>
@@ -490,7 +490,7 @@
 <li><p><u>CPU时钟频率为<strong>33MHz</strong>，最大传输率<strong>133MBps</strong>，数据线为<strong>32位</strong>，可通过扩展槽<strong>扩展到64位</strong>，配有<strong>局部控制器</strong></u></p>
 </li>
 </ul>
-<h4 id="4-PCI总线"><a href="#4-PCI总线" class="headerlink" title="4.PCI总线"></a>4.PCI总线</h4><blockquote>
+<h3 id="4-PCI总线"><a href="#4-PCI总线" class="headerlink" title="4.PCI总线"></a>4.PCI总线</h3><blockquote>
 <p>Peripheral Component Interconnect  外围部件互连</p>
 <p>1991, Intel</p>
 <p>图形用户接口和多媒体技术在PC系统中广泛应用，ISA总线和EISA总线由于受带宽的限制，已不能适应系统工作的要求，成为整个系统的主要瓶颈。因此对总线提出更高的性能要求</p>
@@ -542,7 +542,7 @@
 <li>设备驱动程序可被移植到各类平台上</li>
 </ul>
 <p>10、<strong>采用 多路复用技术，减少了总线引脚个数</strong></p>
-<h4 id="5-AGP总线"><a href="#5-AGP总线" class="headerlink" title="5.AGP总线"></a>5.AGP总线</h4><blockquote>
+<h3 id="5-AGP总线"><a href="#5-AGP总线" class="headerlink" title="5.AGP总线"></a>5.AGP总线</h3><blockquote>
 <p>Accelerated Graphics Port 加速图形端口</p>
 <p>用于处理三维数据，需有更宽广的数据传输带宽，PCI总线成为传输瓶颈</p>
 </blockquote>
@@ -558,7 +558,7 @@
 <p>后来版本数据传输速率可达2.1GBps</p>
 </li>
 </ul>
-<h4 id="6-RS-232C总线"><a href="#6-RS-232C总线" class="headerlink" title="6.RS-232C总线"></a>6.RS-232C总线</h4><blockquote>
+<h3 id="6-RS-232C总线"><a href="#6-RS-232C总线" class="headerlink" title="6.RS-232C总线"></a>6.RS-232C总线</h3><blockquote>
 <p>RS: Recommended Standard，232标识号，C 修改次数</p>
 <p>RS-232：仪器仪表（飞机、键盘）系统标准（220V等，温度、湿度、压力），可接距离远</p>
 </blockquote>
@@ -575,7 +575,7 @@
 <blockquote>
 <p>随着计算机网络发展，现代计算机之间的远距离通信可直接由网卡经网线（8根，双绞线）传输</p>
 </blockquote>
-<h4 id="7-USB总线"><a href="#7-USB总线" class="headerlink" title="7.USB总线"></a>7.USB总线</h4><blockquote>
+<h3 id="7-USB总线"><a href="#7-USB总线" class="headerlink" title="7.USB总线"></a>7.USB总线</h3><blockquote>
 <p>Universal Serial Bus 通用串行总线</p>
 <p>1994 七大公司联合开发计算机串行接口总线标准</p>
 <p>1996.1 USB 1.0 通用连接技术</p>
@@ -607,9 +607,9 @@
 <li>开放性、不具有专利版权的工业标准</li>
 <li>USB规范具有强大生命力</li>
 </ul>
-<h2 id="3-4-总线结构（了解即可）"><a href="#3-4-总线结构（了解即可）" class="headerlink" title="3.4 总线结构（了解即可）"></a>3.4 总线结构（了解即可）</h2><p>（了解即可）</p>
+<h1 id="3-4-总线结构（了解即可）"><a href="#3-4-总线结构（了解即可）" class="headerlink" title="3.4 总线结构（了解即可）"></a>3.4 总线结构（了解即可）</h1><p>（了解即可）</p>
 <p>通常可分为单总线结构和多总线结构</p>
-<h3 id="一、单总线结构"><a href="#一、单总线结构" class="headerlink" title="一、单总线结构"></a>一、单总线结构</h3><p>特点：</p>
+<h2 id="一、单总线结构"><a href="#一、单总线结构" class="headerlink" title="一、单总线结构"></a>一、单总线结构</h2><p>特点：</p>
 <ul>
 <li><p>效率低</p>
 </li>
@@ -617,7 +617,7 @@
 </li>
 </ul>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212054042.png" alt="image-20220225212054042" style="zoom:67%;" /></p>
-<h3 id="二、多总线结构"><a href="#二、多总线结构" class="headerlink" title="二、多总线结构"></a>二、多总线结构</h3><ol>
+<h2 id="二、多总线结构"><a href="#二、多总线结构" class="headerlink" title="二、多总线结构"></a>二、多总线结构</h2><ol>
 <li><p><strong>双总线结构</strong></p>
 <p>通道控制器</p>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212127403.png" alt="image-20220225212127403" style="zoom:67%;" /></p>
@@ -658,7 +658,7 @@
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212240661.png" alt="image-20220225212240661" style="zoom:67%;" /></p>
 </li>
 </ol>
-<h3 id="三、总线结构距离"><a href="#三、总线结构距离" class="headerlink" title="三、总线结构距离"></a>三、总线结构距离</h3><ol>
+<h2 id="三、总线结构距离"><a href="#三、总线结构距离" class="headerlink" title="三、总线结构距离"></a>三、总线结构距离</h2><ol>
 <li><strong>传统微型机总线结构</strong></li>
 </ol>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212312246.png" alt="image-20220225212312246" style="zoom:67%;" /></p>
@@ -675,7 +675,7 @@
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212418731.png" alt="image-20220225212418731" style="zoom:67%;" /></p>
 </li>
 </ol>
-<h2 id="3-5-总线控制（重点内容）"><a href="#3-5-总线控制（重点内容）" class="headerlink" title="3.5 总线控制（重点内容）"></a>3.5 总线控制（重点内容）</h2><p>（重点内容）</p>
+<h1 id="3-5-总线控制（重点内容）"><a href="#3-5-总线控制（重点内容）" class="headerlink" title="3.5 总线控制（重点内容）"></a>3.5 总线控制（重点内容）</h1><p>（重点内容）</p>
 <blockquote>
 <p>总线控制器统一管理总线上连接着的多个部件：</p>
 <p>什么时候由哪个部件发送信息、如何给信息传送定时、如何放置信息丢失、如何避免多个部件同时发送、如何规定接收信息的部件</p>
@@ -687,7 +687,7 @@
 <li><p><strong>通信控制</strong>：如何完成通讯过程，保证通讯过程的正确性</p>
 </li>
 </ul>
-<h3 id="一、总线判优控制（要掌握的内容）"><a href="#一、总线判优控制（要掌握的内容）" class="headerlink" title="一、总线判优控制（要掌握的内容）"></a>一、总线判优控制（要掌握的内容）</h3><h4 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1.基本概念"></a>1.基本概念</h4><ul>
+<h2 id="一、总线判优控制（要掌握的内容）"><a href="#一、总线判优控制（要掌握的内容）" class="headerlink" title="一、总线判优控制（要掌握的内容）"></a>一、总线判优控制（要掌握的内容）</h2><h3 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1.基本概念"></a>1.基本概念</h3><ul>
 <li><p>主设备（模块）：对总线有<strong>控制权</strong>——送信息：传输出去、准确；读信息：把从设备提供的信息取到主设备</p>
 <p>CPU、DMA</p>
 <p>I/O设备发出控制信号</p>
@@ -713,7 +713,7 @@
 <p>分布式：独立的计算机/服务器阵列</p>
 </li>
 </ul>
-<h4 id="2-链式查询方式"><a href="#2-链式查询方式" class="headerlink" title="2.链式查询方式"></a>2.链式查询方式</h4><p>链式查询方式：用于微型计算机、简单的嵌入式系统</p>
+<h3 id="2-链式查询方式"><a href="#2-链式查询方式" class="headerlink" title="2.链式查询方式"></a>2.链式查询方式</h3><p>链式查询方式：用于微型计算机、简单的嵌入式系统</p>
 <blockquote>
 <p>CPU/DMA挂在I/O接口上，作为控制器。带“圈”，低电平有效</p>
 <p>请求：高电平有效；回答：低电平有效</p>
@@ -733,7 +733,7 @@
 <p>BG已经过的设备不能分得总线控制权，只能等待下一轮循环</p>
 </blockquote>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220112112254188.png" alt="image-20220112112254188" style="zoom: 67%;" /></p>
-<h4 id="3-计数器定时查询方式"><a href="#3-计数器定时查询方式" class="headerlink" title="3.计数器定时查询方式"></a>3.计数器定时查询方式</h4><p>判优方式：总线控制部件中有计数器</p>
+<h3 id="3-计数器定时查询方式"><a href="#3-计数器定时查询方式" class="headerlink" title="3.计数器定时查询方式"></a>3.计数器定时查询方式</h3><p>判优方式：总线控制部件中有计数器</p>
 <p>$n$​台设备需要$log_2n$​​（向上取整）根控制总线</p>
 <p><strong>特点</strong></p>
 <ul>
@@ -749,7 +749,7 @@
 <p>例如，当1使用完，0若申请则只能等下一轮循环才可以使用</p>
 </blockquote>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220112112948908.png" alt="image-20220112112948908" style="zoom: 67%;" /></p>
-<h4 id="4-独立请求方式"><a href="#4-独立请求方式" class="headerlink" title="4.独立请求方式"></a>4.独立请求方式</h4><p>任何一个I/O接口都添加了两条线</p>
+<h3 id="4-独立请求方式"><a href="#4-独立请求方式" class="headerlink" title="4.独立请求方式"></a>4.独立请求方式</h3><p>任何一个I/O接口都添加了两条线</p>
 <p>$n$​台设备需要$2n$​根控制线</p>
 <p>总线控制器可以给CPU</p>
 <p>各个设备的优先级相同</p>
@@ -766,7 +766,7 @@
 <p>排队器——硬件（ch5，ch8）</p>
 </blockquote>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220112113806812.png" style="zoom: 67%;" /></p>
-<h3 id="二、总线通信控制"><a href="#二、总线通信控制" class="headerlink" title="二、总线通信控制"></a>二、总线通信控制</h3><ul>
+<h2 id="二、总线通信控制"><a href="#二、总线通信控制" class="headerlink" title="二、总线通信控制"></a>二、总线通信控制</h2><ul>
 <li><p>目的：解决通信双方<strong>协调配合</strong>问题</p>
 </li>
 <li><p>总线传输周期</p>
@@ -800,8 +800,8 @@
 </ul>
 </li>
 </ul>
-<h4 id="1-目的"><a href="#1-目的" class="headerlink" title="1.目的"></a>1.目的</h4><p>解决通信双方<strong>协调配合</strong>问题</p>
-<h4 id="2-总线传输周期"><a href="#2-总线传输周期" class="headerlink" title="2.总线传输周期"></a>2.总线传输周期</h4><script type="math/tex; mode=display">
+<h3 id="1-目的"><a href="#1-目的" class="headerlink" title="1.目的"></a>1.目的</h3><p>解决通信双方<strong>协调配合</strong>问题</p>
+<h3 id="2-总线传输周期"><a href="#2-总线传输周期" class="headerlink" title="2.总线传输周期"></a>2.总线传输周期</h3><script type="math/tex; mode=display">
 \begin{cases}
 申请分配阶段——主模块申请，总线仲裁决定 \\
 寻址阶段——主模块向从模块给出地址和命令 \\
@@ -814,13 +814,13 @@
 <li>结束阶段：主模块从系统总线<strong>撤销有关信息</strong>，让出总线使用权</li>
 </ul>
 <p>对于CPU，只有两个阶段，传输周期减少，速度变快</p>
-<h4 id="3-总线通信的四种方式"><a href="#3-总线通信的四种方式" class="headerlink" title="3.总线通信的四种方式"></a>3.总线通信的四种方式</h4><script type="math/tex; mode=display">
+<h3 id="3-总线通信的四种方式"><a href="#3-总线通信的四种方式" class="headerlink" title="3.总线通信的四种方式"></a>3.总线通信的四种方式</h3><script type="math/tex; mode=display">
 \begin{cases}
 同步通信——由统一时标控制数据传送 \\
 异步通信——采用应答方式，没有公共时钟标准 \\
 半同步通信——同步、异步结合 \\
 分离式通信——充分发掘系统总线每个瞬间的潜力 \\
-\end{cases}</script><h5 id="（1）同步式数据输入"><a href="#（1）同步式数据输入" class="headerlink" title="（1）同步式数据输入"></a>（1）同步式数据输入</h5><p>定宽、定距的时钟控制整个过程。</p>
+\end{cases}</script><h4 id="（1）同步式数据输入"><a href="#（1）同步式数据输入" class="headerlink" title="（1）同步式数据输入"></a>（1）同步式数据输入</h4><p>定宽、定距的时钟控制整个过程。</p>
 <p>固定的时间点给出固定的操作。</p>
 <blockquote>
 <p>$T_1$​​​的上升沿，主设备CPU<strong>给出地址信号</strong>；——如，指令“MOV ACC, (20H)”中的十六进制数(20H)，相应的地址信号变化，调整到对应的地址码上（依照指令）。</p>
@@ -841,7 +841,7 @@
 <p>$T_4$​：主模块撤销读命令，从模块撤销数据</p>
 <p>后面是下一个总线传输周期</p>
 </blockquote>
-<h5 id="（2）同步式数据输出"><a href="#（2）同步式数据输出" class="headerlink" title="（2）同步式数据输出"></a>（2）同步式数据输出</h5><blockquote>
+<h4 id="（2）同步式数据输出"><a href="#（2）同步式数据输出" class="headerlink" title="（2）同步式数据输出"></a>（2）同步式数据输出</h4><blockquote>
 <p>例如，”MOV (22H) A5H”，$\overline{MEMW}$</p>
 <p>命令慢，等地址和数据</p>
 <p>$T_1$上升沿：地址信号调整，保持稳定、有效</p>
@@ -856,7 +856,7 @@
 <p>$T_2$​：主模块发写命令，从模块接到写命令后，必须在规定时间内将数据总线上的数据写到地址总线所指明的单元中</p>
 <p>$T_4$：主模块撤销读命令，从模块撤销数据</p>
 </blockquote>
-<h5 id="（3）异步通信"><a href="#（3）异步通信" class="headerlink" title="（3）异步通信"></a>（3）异步通信</h5><p>采用<strong>应答方式</strong>，即：当主模块发出请求信号时，一直等待从模块反馈回来会打信号后才开始通信。</p>
+<h4 id="（3）异步通信"><a href="#（3）异步通信" class="headerlink" title="（3）异步通信"></a>（3）异步通信</h4><p>采用<strong>应答方式</strong>，即：当主模块发出请求信号时，一直等待从模块反馈回来会打信号后才开始通信。</p>
 <p>异步通信的应答方式分为：<strong>不互锁</strong>、<strong>半互锁</strong>和<strong>全互锁</strong></p>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220228131835118.png" alt="image-20220228131835118" style="zoom:67%;" /></p>
 <p>①<strong>不互锁</strong></p>
@@ -880,7 +880,7 @@
 <p><strong>从模块</strong>发出回答信号，<strong>必须待获知主模块请求信号已经撤销后</strong>，再撤销其回答信号。</p>
 </blockquote>
 <p>优点：可靠</p>
-<h5 id="（4）半同步通信（同步、异步结合）"><a href="#（4）半同步通信（同步、异步结合）" class="headerlink" title="（4）半同步通信（同步、异步结合）"></a>（4）半同步通信（同步、异步结合）</h5><p>（快的主设备等待慢的从设备，直到$\overline{WAIT}$变成高电平）</p>
+<h4 id="（4）半同步通信（同步、异步结合）"><a href="#（4）半同步通信（同步、异步结合）" class="headerlink" title="（4）半同步通信（同步、异步结合）"></a>（4）半同步通信（同步、异步结合）</h4><p>（快的主设备等待慢的从设备，直到$\overline{WAIT}$变成高电平）</p>
 <ul>
 <li><p>同步</p>
 <p><strong>发送方</strong>用系统<strong>时钟前沿</strong>发信号</p>
@@ -918,14 +918,14 @@
 <ul>
 <li>第四个阶段：读命令信号和数据信号从总线上撤销。第四个时钟周期结束，地址总线上的地址信号也撤销。</li>
 </ul>
-<h5 id="上述三种通信的共同点"><a href="#上述三种通信的共同点" class="headerlink" title="上述三种通信的共同点"></a>上述三种通信的共同点</h5><p>一个总线传输周期（以输入数据为例）</p>
+<h4 id="上述三种通信的共同点"><a href="#上述三种通信的共同点" class="headerlink" title="上述三种通信的共同点"></a>上述三种通信的共同点</h4><p>一个总线传输周期（以输入数据为例）</p>
 <ul>
 <li>主模块通过传输总线向从模块发地址、命令：<strong>占用地址、控制总线</strong></li>
 <li>从模块按照命令准备数据：<strong>不占用总线</strong>，总线空闲</li>
 <li>从模块经数据总线向主模块发数据：<strong>占用数据总线</strong></li>
 </ul>
 <p>下一步：把总线空闲的时间利用起来——<u>从模块内部读数据过程并无实质性的信息传输</u>，总线纯属空闲等待。</p>
-<h5 id="（5）分离式通信"><a href="#（5）分离式通信" class="headerlink" title="（5）分离式通信"></a>（5）分离式通信</h5><p><strong>充分挖掘系统总线每个瞬间的潜力</strong>——总线不闲下来</p>
+<h4 id="（5）分离式通信"><a href="#（5）分离式通信" class="headerlink" title="（5）分离式通信"></a>（5）分离式通信</h4><p><strong>充分挖掘系统总线每个瞬间的潜力</strong>——总线不闲下来</p>
 <p>各模块占用总线使用权都必须提出申请。在准备数据的过程中不占用总线。</p>
 <p>一个总线传输周期：$\begin{cases} 子周期1：主模块申请占用总线，使用完后即放弃总线的使用权 \\ 子周期2：从模块申请占用总线，将各种信息送至总线上  \end{cases}$​</p>
 <p>（主模块可以变成从模块）</p>
@@ -939,7 +939,7 @@
 <p><strong>充分提高了总线的有效占用</strong></p>
 <p>总线传输时间：总线完成一次完整而可靠传输所需时间</p>
 <p>总线的通信控制：总线传送过程中双方的时间配合方式</p>
-<h2 id="补充题"><a href="#补充题" class="headerlink" title="补充题"></a>补充题</h2><p>3.17 查资料完成：</p>
+<h1 id="补充题"><a href="#补充题" class="headerlink" title="补充题"></a>补充题</h1><p>3.17 查资料完成：</p>
 <p>①写出EISA（ISA）总线的标准信号定义</p>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220228190819228.png" alt="image-20220228190819228" style="zoom:67%;" /></p>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220228190847957.png" alt="image-20220228190847957" style="zoom:67%;" /></p>
@@ -947,7 +947,7 @@
 <p>②画出插座的俯视图</p>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/OIP-C.9x-HCafwPKCdoxJrUF4coQHaFj" alt="See the source image"  /></p>
 <p>③写出$A_1,D_1$的编号</p>
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><ul>
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><ul>
 <li><p>例3.1</p>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302195533905.png" alt="image-20220302195533905" style="zoom:67%;" /></p>
 </li>
@@ -1068,7 +1068,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E8%AF%BE%E7%A8%8B"><span class="nav-text">关于本课程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E6%80%BB%E7%BA%BF%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">3.1 总线的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E6%80%BB%E7%BA%BF"><span class="nav-text">一、为什么要用总线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E6%80%BB%E7%BA%BF"><span class="nav-text">二、什么是总线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%80%BB%E7%BA%BF%E4%B8%8A%E4%BF%A1%E6%81%AF%E7%9A%84%E4%BC%A0%E9%80%81"><span class="nav-text">三、总线上信息的传送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA"><span class="nav-text">四、总线结构的计算机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%9D%A2%E5%90%91-CPU-%E7%9A%84%E5%8F%8C%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%E6%A1%86%E5%9B%BE"><span class="nav-text">1. 面向 CPU 的双总线结构框图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%8D%95%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%E6%A1%86%E5%9B%BE"><span class="nav-text">2. 单总线结构框图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%BB%A5%E5%AD%98%E5%82%A8%E5%99%A8%E4%B8%BA%E4%B8%AD%E5%BF%83%E7%9A%84%E5%8F%8C%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%E6%A1%86%E5%9B%BE"><span class="nav-text">3. 以存储器为中心的双总线结构框图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E6%80%BB%E7%BA%BF%E7%9A%84%E5%88%86%E7%B1%BB%EF%BC%88%E9%87%8D%E7%82%B9%E5%86%85%E5%AE%B9%EF%BC%89"><span class="nav-text">3.2 总线的分类（重点内容）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%89%87%E5%86%85%E6%80%BB%E7%BA%BF"><span class="nav-text">1.片内总线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF"><span class="nav-text">2.系统总线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF"><span class="nav-text">3.通信总线</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E6%80%BB%E7%BA%BF%E7%89%B9%E6%80%A7%E5%8F%8A%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-text">3.3 总线特性及性能指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%80%BB%E7%BA%BF%E7%89%A9%E7%90%86%E5%AE%9E%E7%8E%B0"><span class="nav-text">一、总线物理实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%80%BB%E7%BA%BF%E7%89%B9%E6%80%A7"><span class="nav-text">二、总线特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%80%BB%E7%BA%BF%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-text">三、总线的性能指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%80%BB%E7%BA%BF%E6%A0%87%E5%87%86%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89"><span class="nav-text">四、总线标准（重要）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%80%BB%E7%BA%BF%E6%A0%87%E5%87%86%EF%BC%9F"><span class="nav-text">什么是总线标准？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%AE%BE%E7%BD%AE%E6%80%BB%E7%BA%BF%E6%A0%87%E5%87%86%EF%BC%9F"><span class="nav-text">为什么要设置总线标准？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-ISA%E6%80%BB%E7%BA%BF"><span class="nav-text">1.ISA总线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-EISA%E6%80%BB%E7%BA%BF"><span class="nav-text">2.EISA总线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-VESA-VL-BUS-%E6%80%BB%E7%BA%BF"><span class="nav-text">3.VESA(VL-BUS)总线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-PCI%E6%80%BB%E7%BA%BF"><span class="nav-text">4.PCI总线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-AGP%E6%80%BB%E7%BA%BF"><span class="nav-text">5.AGP总线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-RS-232C%E6%80%BB%E7%BA%BF"><span class="nav-text">6.RS-232C总线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-USB%E6%80%BB%E7%BA%BF"><span class="nav-text">7.USB总线</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%EF%BC%88%E4%BA%86%E8%A7%A3%E5%8D%B3%E5%8F%AF%EF%BC%89"><span class="nav-text">3.4 总线结构（了解即可）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%8D%95%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="nav-text">一、单总线结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%A4%9A%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="nav-text">二、多总线结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%E8%B7%9D%E7%A6%BB"><span class="nav-text">三、总线结构距离</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-%E6%80%BB%E7%BA%BF%E6%8E%A7%E5%88%B6%EF%BC%88%E9%87%8D%E7%82%B9%E5%86%85%E5%AE%B9%EF%BC%89"><span class="nav-text">3.5 总线控制（重点内容）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%80%BB%E7%BA%BF%E5%88%A4%E4%BC%98%E6%8E%A7%E5%88%B6%EF%BC%88%E8%A6%81%E6%8E%8C%E6%8F%A1%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%89"><span class="nav-text">一、总线判优控制（要掌握的内容）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">1.基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E9%93%BE%E5%BC%8F%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F"><span class="nav-text">2.链式查询方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%AE%A1%E6%95%B0%E5%99%A8%E5%AE%9A%E6%97%B6%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F"><span class="nav-text">3.计数器定时查询方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E7%8B%AC%E7%AB%8B%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F"><span class="nav-text">4.独立请求方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%80%BB%E7%BA%BF%E9%80%9A%E4%BF%A1%E6%8E%A7%E5%88%B6"><span class="nav-text">二、总线通信控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%9B%AE%E7%9A%84"><span class="nav-text">1.目的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%80%BB%E7%BA%BF%E4%BC%A0%E8%BE%93%E5%91%A8%E6%9C%9F"><span class="nav-text">2.总线传输周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%80%BB%E7%BA%BF%E9%80%9A%E4%BF%A1%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-text">3.总线通信的四种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%90%8C%E6%AD%A5%E5%BC%8F%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5"><span class="nav-text">（1）同步式数据输入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E5%90%8C%E6%AD%A5%E5%BC%8F%E6%95%B0%E6%8D%AE%E8%BE%93%E5%87%BA"><span class="nav-text">（2）同步式数据输出</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E5%BC%82%E6%AD%A5%E9%80%9A%E4%BF%A1"><span class="nav-text">（3）异步通信</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%884%EF%BC%89%E5%8D%8A%E5%90%8C%E6%AD%A5%E9%80%9A%E4%BF%A1%EF%BC%88%E5%90%8C%E6%AD%A5%E3%80%81%E5%BC%82%E6%AD%A5%E7%BB%93%E5%90%88%EF%BC%89"><span class="nav-text">（4）半同步通信（同步、异步结合）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%8A%E8%BF%B0%E4%B8%89%E7%A7%8D%E9%80%9A%E4%BF%A1%E7%9A%84%E5%85%B1%E5%90%8C%E7%82%B9"><span class="nav-text">上述三种通信的共同点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%885%EF%BC%89%E5%88%86%E7%A6%BB%E5%BC%8F%E9%80%9A%E4%BF%A1"><span class="nav-text">（5）分离式通信</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E9%A2%98"><span class="nav-text">补充题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E8%AF%BE%E7%A8%8B"><span class="nav-text">关于本课程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-1-%E6%80%BB%E7%BA%BF%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">3.1 总线的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E6%80%BB%E7%BA%BF"><span class="nav-text">一、为什么要用总线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E6%80%BB%E7%BA%BF"><span class="nav-text">二、什么是总线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%80%BB%E7%BA%BF%E4%B8%8A%E4%BF%A1%E6%81%AF%E7%9A%84%E4%BC%A0%E9%80%81"><span class="nav-text">三、总线上信息的传送</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA"><span class="nav-text">四、总线结构的计算机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%9D%A2%E5%90%91-CPU-%E7%9A%84%E5%8F%8C%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%E6%A1%86%E5%9B%BE"><span class="nav-text">1. 面向 CPU 的双总线结构框图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8D%95%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%E6%A1%86%E5%9B%BE"><span class="nav-text">2. 单总线结构框图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BB%A5%E5%AD%98%E5%82%A8%E5%99%A8%E4%B8%BA%E4%B8%AD%E5%BF%83%E7%9A%84%E5%8F%8C%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%E6%A1%86%E5%9B%BE"><span class="nav-text">3. 以存储器为中心的双总线结构框图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-2-%E6%80%BB%E7%BA%BF%E7%9A%84%E5%88%86%E7%B1%BB%EF%BC%88%E9%87%8D%E7%82%B9%E5%86%85%E5%AE%B9%EF%BC%89"><span class="nav-text">3.2 总线的分类（重点内容）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%89%87%E5%86%85%E6%80%BB%E7%BA%BF"><span class="nav-text">1.片内总线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF"><span class="nav-text">2.系统总线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF"><span class="nav-text">3.通信总线</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-3-%E6%80%BB%E7%BA%BF%E7%89%B9%E6%80%A7%E5%8F%8A%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-text">3.3 总线特性及性能指标</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%80%BB%E7%BA%BF%E7%89%A9%E7%90%86%E5%AE%9E%E7%8E%B0"><span class="nav-text">一、总线物理实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%80%BB%E7%BA%BF%E7%89%B9%E6%80%A7"><span class="nav-text">二、总线特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%80%BB%E7%BA%BF%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-text">三、总线的性能指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%80%BB%E7%BA%BF%E6%A0%87%E5%87%86%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89"><span class="nav-text">四、总线标准（重要）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%80%BB%E7%BA%BF%E6%A0%87%E5%87%86%EF%BC%9F"><span class="nav-text">什么是总线标准？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%AE%BE%E7%BD%AE%E6%80%BB%E7%BA%BF%E6%A0%87%E5%87%86%EF%BC%9F"><span class="nav-text">为什么要设置总线标准？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-ISA%E6%80%BB%E7%BA%BF"><span class="nav-text">1.ISA总线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-EISA%E6%80%BB%E7%BA%BF"><span class="nav-text">2.EISA总线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-VESA-VL-BUS-%E6%80%BB%E7%BA%BF"><span class="nav-text">3.VESA(VL-BUS)总线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-PCI%E6%80%BB%E7%BA%BF"><span class="nav-text">4.PCI总线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-AGP%E6%80%BB%E7%BA%BF"><span class="nav-text">5.AGP总线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-RS-232C%E6%80%BB%E7%BA%BF"><span class="nav-text">6.RS-232C总线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-USB%E6%80%BB%E7%BA%BF"><span class="nav-text">7.USB总线</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-4-%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%EF%BC%88%E4%BA%86%E8%A7%A3%E5%8D%B3%E5%8F%AF%EF%BC%89"><span class="nav-text">3.4 总线结构（了解即可）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%8D%95%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="nav-text">一、单总线结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%A4%9A%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="nav-text">二、多总线结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%E8%B7%9D%E7%A6%BB"><span class="nav-text">三、总线结构距离</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-5-%E6%80%BB%E7%BA%BF%E6%8E%A7%E5%88%B6%EF%BC%88%E9%87%8D%E7%82%B9%E5%86%85%E5%AE%B9%EF%BC%89"><span class="nav-text">3.5 总线控制（重点内容）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%80%BB%E7%BA%BF%E5%88%A4%E4%BC%98%E6%8E%A7%E5%88%B6%EF%BC%88%E8%A6%81%E6%8E%8C%E6%8F%A1%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%89"><span class="nav-text">一、总线判优控制（要掌握的内容）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">1.基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%93%BE%E5%BC%8F%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F"><span class="nav-text">2.链式查询方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%AE%A1%E6%95%B0%E5%99%A8%E5%AE%9A%E6%97%B6%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F"><span class="nav-text">3.计数器定时查询方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%8B%AC%E7%AB%8B%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F"><span class="nav-text">4.独立请求方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%80%BB%E7%BA%BF%E9%80%9A%E4%BF%A1%E6%8E%A7%E5%88%B6"><span class="nav-text">二、总线通信控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%9B%AE%E7%9A%84"><span class="nav-text">1.目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%80%BB%E7%BA%BF%E4%BC%A0%E8%BE%93%E5%91%A8%E6%9C%9F"><span class="nav-text">2.总线传输周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%80%BB%E7%BA%BF%E9%80%9A%E4%BF%A1%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-text">3.总线通信的四种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%90%8C%E6%AD%A5%E5%BC%8F%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5"><span class="nav-text">（1）同步式数据输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E5%90%8C%E6%AD%A5%E5%BC%8F%E6%95%B0%E6%8D%AE%E8%BE%93%E5%87%BA"><span class="nav-text">（2）同步式数据输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E5%BC%82%E6%AD%A5%E9%80%9A%E4%BF%A1"><span class="nav-text">（3）异步通信</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%884%EF%BC%89%E5%8D%8A%E5%90%8C%E6%AD%A5%E9%80%9A%E4%BF%A1%EF%BC%88%E5%90%8C%E6%AD%A5%E3%80%81%E5%BC%82%E6%AD%A5%E7%BB%93%E5%90%88%EF%BC%89"><span class="nav-text">（4）半同步通信（同步、异步结合）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8A%E8%BF%B0%E4%B8%89%E7%A7%8D%E9%80%9A%E4%BF%A1%E7%9A%84%E5%85%B1%E5%90%8C%E7%82%B9"><span class="nav-text">上述三种通信的共同点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%885%EF%BC%89%E5%88%86%E7%A6%BB%E5%BC%8F%E9%80%9A%E4%BF%A1"><span class="nav-text">（5）分离式通信</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E9%A2%98"><span class="nav-text">补充题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -1082,7 +1082,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
