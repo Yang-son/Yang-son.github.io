@@ -1,153 +1,1819 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>数理逻辑：第4节 命题逻辑的推理理论</title>
-      <link href="/mathematical_logic/mathematical-logic-ch4/"/>
-      <url>/mathematical_logic/mathematical-logic-ch4/</url>
-      
-        <content type="html"><![CDATA[<h1 id="4-1-推理的形式结构"><a href="#4-1-推理的形式结构" class="headerlink" title="4.1 推理的形式结构"></a>4.1 推理的形式结构</h1><h2 id="定义1："><a href="#定义1：" class="headerlink" title="定义1："></a><strong>定义1：</strong></h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225116596.png" alt="image-20220307225116596" style="zoom:67%;" /></p><p><strong>所有的前提都为真且结论为真</strong>或者<strong>有前提为假</strong>——有效结论</p><span id="more"></span><p>说明：</p><p>（2）根据定义1判断——前提的合取为假或者前提的合取为真且结论为真</p><p>（3）考虑前提为假的情况</p><h2 id="定理1："><a href="#定理1：" class="headerlink" title="定理1："></a><strong>定理1：</strong></h2><p>​    <img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225133270.png" alt="image-20220307225133270" style="zoom:67%;" /></p><blockquote><p>证明：</p><p>（$\Rightarrow$）前提为假或者前提的合取为真且结论为真，则该式为重言式</p><p>（$\Leftarrow$）同理</p></blockquote><h2 id="推理的形式结构（小结）"><a href="#推理的形式结构（小结）" class="headerlink" title="推理的形式结构（小结）"></a>推理的形式结构（小结）</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225217321.png" alt="image-20220307225217321" style="zoom:67%;" /></p><h2 id="推理实例"><a href="#推理实例" class="headerlink" title="推理实例"></a>推理实例</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308141355061.png" alt="image-20220308141355061" style="zoom:50%;" /></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308141408459.png" alt="image-20220308141408459" style="zoom:50%;" /></p><h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225300522.png" alt="image-20220307225300522" style="zoom:67%;" /></p><p>思考：</p><p>（1）数学证明是从前提为真出发，不考虑前提为假的情况</p><h2 id="推理定律——重言蕴含式"><a href="#推理定律——重言蕴含式" class="headerlink" title="推理定律——重言蕴含式"></a>推理定律——重言蕴含式</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225338038.png" alt="image-20220307225338038" style="zoom:67%;" /></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225355037.png" alt="image-20220307225355037" style="zoom:67%;" /></p><blockquote><p>1.A为真，B为真，则A与B为真</p><p>2.A与B为真，则A、B均为真</p><p>3.双重反</p><p>4、5放在一起看——消掉蕴含。蕴含式和前提都为真，则结论真</p><p>6.A、B有一个成立，则析取式成立</p><p>7.矛盾（倒着的T）可以推出任何公式</p><p>8.A和$\neg$A都成立则矛盾</p></blockquote><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225409278.png" alt="image-20220307225409278" style="zoom:67%;" /></p><blockquote><p>9.A析取B为真且B为假，则A为真</p><p>10.假定A推出B，B推出C，则A能推出C</p><p>11.A等价于B，B等价于C，则A等价于C</p></blockquote><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225518107.png" alt="image-20220307225518107" style="zoom:67%;" /></p><h1 id="4-2-自然推理系统P"><a href="#4-2-自然推理系统P" class="headerlink" title="4.2 自然推理系统P"></a>4.2 自然推理系统P</h1><h2 id="定义2："><a href="#定义2：" class="headerlink" title="定义2："></a><strong>定义2：</strong></h2><p>​    <img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225534809.png" alt="image-20220307225534809" style="zoom:67%;" /></p><blockquote><p>（3）做等值演算</p></blockquote><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225552982.png" alt="image-20220307225552982" style="zoom:67%;" /></p><p>线上为前提，线下为结论（线上成立，则线下的结论成立）</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225607270.png" alt="image-20220307225607270" style="zoom:67%;" /></p><blockquote><p>（10）想证明蕴涵式成立：（假定A成立，如果能证明B，则蕴含式成立）。方框为假设框，上推下</p><p>（11）析取引入1，析取引入2</p></blockquote><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225620760.png" alt="image-20220307225620760" style="zoom:67%;" /></p><blockquote><p>（15）要证非A成立，则证A推出矛盾</p></blockquote><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225634250.png" alt="image-20220307225634250" style="zoom:67%;" /></p><h2 id="在自然推理系统P中构造证明"><a href="#在自然推理系统P中构造证明" class="headerlink" title="在自然推理系统P中构造证明"></a>在自然推理系统P中构造证明</h2><p>设前提$A_1, A_2,…, A_k$，结论$B$及公式序列$C_1, C_2 ,…, C_l$。如果每一个$C_i(1 \leq i \le l)$是某个$A_j$, 或者可由序列中前面的公式应用推理规则得到, 并且$C_l =B$, 则称这个公式序列是由$A_1, A_2,…, A_k$推出B的<strong>证明</strong>。</p><blockquote><p>$C_i$是中间结论，利用中间结论和前提推出最终结论</p></blockquote><h2 id="直接证明法"><a href="#直接证明法" class="headerlink" title="直接证明法"></a>直接证明法</h2><ul><li>命题并符号化</li><li>写出证明的形式结构</li><li>证明</li></ul><h3 id="直接证明法举例"><a href="#直接证明法举例" class="headerlink" title="直接证明法举例"></a>直接证明法举例</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308144910269.png" alt="image-20220308144910269" style="zoom:50%;" /></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308144936758.png" alt="image-20220308144936758" style="zoom:50%;" /></p><h2 id="附加前提证明法"><a href="#附加前提证明法" class="headerlink" title="附加前提证明法"></a>附加前提证明法</h2><p>适用于结论为蕴含式</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308144441591.png" alt="image-20220308144441591" style="zoom:67%;" /></p><h3 id="附加前提证明法举例"><a href="#附加前提证明法举例" class="headerlink" title="附加前提证明法举例"></a>附加前提证明法举例</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308145032290.png" alt="image-20220308145032290" style="zoom:50%;" /></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308145051717.png" alt="image-20220308145051717" style="zoom:50%;" /></p><h2 id="归谬法（反证法）"><a href="#归谬法（反证法）" class="headerlink" title="归谬法（反证法）"></a>归谬法（反证法）</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308144510314.png" alt="image-20220308144510314" style="zoom:67%;" /></p><h3 id="归谬法证明举例"><a href="#归谬法证明举例" class="headerlink" title="归谬法证明举例"></a>归谬法证明举例</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308145122036.png" alt="image-20220308145122036" style="zoom:50%;" /></p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> mathematical logic </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>数理逻辑：第3节 主析（合）取范式</title>
-      <link href="/mathematical_logic/mathematical-logic-ch3/"/>
-      <url>/mathematical_logic/mathematical-logic-ch3/</url>
-      
-        <content type="html"><![CDATA[<ul><li>判断命题公式是否为重言式（永真式）？<ul><li>真值表</li><li>等值演算</li><li>主析取范式和主合取范式</li></ul></li></ul><span id="more"></span><h1 id="3-1主析取范式与主合取范式"><a href="#3-1主析取范式与主合取范式" class="headerlink" title="3.1主析取范式与主合取范式"></a>3.1主析取范式与主合取范式</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol><li><p><strong>文字</strong>：命题变项及其否定的总称</p><blockquote><p>$p, \quad \neg q$</p></blockquote></li><li><p><strong>简单析取式</strong>：仅由有限个文字构成的析取式</p><blockquote><p>$p,\quad \neg q,\quad p\vee \neg q, \quad p\vee q \vee r,…$​</p></blockquote></li><li><p><strong>简单合取式</strong>：由有限个文字构成的合取式</p><blockquote><p>$p,\quad \neg q,\quad p\land \neg q, \quad p\land q \land r,…$</p></blockquote></li><li><p><strong>析取范式</strong>：由有限个<strong>简单合取式</strong>组成的<strong>析取式</strong></p><blockquote><p>$p,\quad \neg p \land q,（简单合取式）\quad p\vee \neg q, \quad (p \land \neg q) \vee (\neg p \land q \land \neg r) \vee (q \land r),…$​</p></blockquote></li><li><p><strong>合取范式</strong>：由有限个<strong>简单析取式</strong>组成的<strong>合取式</strong></p><blockquote><p>$p,\quad \neg p \vee q,（简单析取式）\quad p\land \neg q, \quad (p \vee \neg q) \land (\neg p \vee q \vee r) \land (q \vee r),…$</p></blockquote></li><li><p><strong>范式</strong>：析取范式与合取范式的总称</p></li></ol><h2 id="求公式-A-的范式的步骤"><a href="#求公式-A-的范式的步骤" class="headerlink" title="求公式$A$的范式的步骤"></a>求公式$A$的范式的步骤</h2><ol><li><p>消去$A$中的$\to, \leftrightarrow$（若存在）——<strong>（蕴含等价式、等价等值式、假言易位、等价否定等值式、归谬论）</strong></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091705613.png" alt="image-20220301091705613" style="zoom: 50%;" /></p></li><li><p>否定连接词的内移或消去<strong>（德摩根律）</strong></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091721847.png" alt="image-20220301091721847" style="zoom: 50%;" /></p></li><li><p>使用<strong>分配律</strong></p></li></ol><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091734879.png" alt="image-20220301091734879" style="zoom:50%;" /></p><ul><li><p>公式范式的不足——不唯一</p></li><li><p>得到唯一的范式——主范式</p></li></ul><h2 id="极小项与极大项"><a href="#极小项与极大项" class="headerlink" title="极小项与极大项"></a>极小项与极大项</h2><ul><li><p><strong>定义1</strong>：在含有$n$个命题变项的<strong>简单合取式</strong>中，若每个命题变项均以文字的形式在其中出现且仅出现一次， 而且第$i$个文字出现在左起第$i$位上（$1 \leq i \leq n$），称这样的简单合取式为<strong>极小项</strong></p><blockquote><p>极小项——合取越多范围越小，取决于真值最小的文字</p><p>对于$p, q, r$（不缺项，规定了顺序：字母、下标）</p><p>$p \land q \land r$</p></blockquote></li><li><p><strong>定义2</strong>：在含有$n$个命题变项的<strong>简单析取式</strong>中，若每个命题变项均以文字的形式在其中出现且仅出现一次， 而且第$i$个文字出现在左起第$i$位上（$1 \leq i \leq n$），称这样的简单析取式为<strong>极大项</strong></p><blockquote><p>极大项——合取越多范围越大，只要有真值为1的文字，该项的真值为1</p><p>对于$p, q, r$（不缺项，规定了顺序：字母、下标）</p><p>$p \vee q \vee r$</p></blockquote></li><li><p>几点说明</p><ul><li><p>$n$个命题变项有$2^n$个极小项和$2^n$个极大项</p></li><li><p>$2^n$个极小项（极大项）均互不等值</p></li><li><p>用$m_i$表示第$i$个极小项，其中$i$是该极小项<strong>成真赋值</strong><br>的十进制表示</p><blockquote><p>$p \land q \land r$的成真赋值为111，$m_7$</p><p>$$成真赋值为011，$m_3$</p></blockquote></li><li><p>用$M_i$表示第$i$个极大项，其中$i$是该极大项<strong>成假赋值</strong><br>的十进制表示</p><blockquote><p>$p \vee q \vee r$的成假赋值为000，$M_0$</p><p>$$的成假赋值为100，$M_4$</p></blockquote></li><li><p>$m_i$（$M_i$）称为极小项（极大项）的名称</p></li></ul></li></ul><p>【实例】</p><ul><li>由两个命题变项$p, q$形成的极小项和极大项</li></ul><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304081627478.png" alt="image-20220304081627478" style="zoom:67%;" /></p><ul><li>由三个命题变项$p,q,r$形成的极小项和极大项</li></ul><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304081832381.png" alt="image-20220304081832381" style="zoom:67%;" /></p><ul><li><strong>$m_i与M_i的关系：\neg m_i \Leftrightarrow M_i, \neg M_i \Leftrightarrow m_i$</strong></li></ul><h2 id="主析取范式与主合取范式"><a href="#主析取范式与主合取范式" class="headerlink" title="主析取范式与主合取范式"></a>主析取范式与主合取范式</h2><ul><li>主析取范式——由极小项构成的析取范式</li><li>主合取范式——由极大项构成的合取范式</li></ul><blockquote><p>例如，n=3, 命题变项为 p, q, r 时，</p><p>$(\neg p\land \neg q \land r) \vee (\neg p\land q \land r) \Leftrightarrow  m_1 \vee m_3$ ——主析取范式<br>$(p \vee q \vee \neg r) \land (\neg p \vee \neg q \vee \neg r) \Leftrightarrow M_1 \land M_7$——主合取范式</p></blockquote><ul><li><p><strong>定理1</strong>（主范式的存在唯一定理）</p><p>任何命题公式都存在与之等值的主析取范式和主合取范式, 并且是惟一的</p></li></ul><h2 id="求命题公式主范式的步骤"><a href="#求命题公式主范式的步骤" class="headerlink" title="求命题公式主范式的步骤"></a>求命题公式主范式的步骤</h2><h3 id="求公式主析取范式的步骤"><a href="#求公式主析取范式的步骤" class="headerlink" title="求公式主析取范式的步骤"></a>求公式主析取范式的步骤</h3><p><strong>先求出析取范式，再变换成主析取范式</strong></p><p>设公式$A$含命题变项$p_1, p_2,…, p_n$</p><ul><li><p>(1) 求$A$的析取范式$A’=B_1 \vee B_2 \vee … \vee B_s$ , 其中$B_j$是<strong>简单合取式</strong> ，$j=1,2, … ,s$</p></li><li><p>(2) <strong>（每一个简单合取式变为极小项——合取1来补项）</strong></p><p>若某个$B_j$既不含$p_i$, 又不含$\neg p_i$, 则将$B_j$展开成：$B_j \Leftrightarrow B_j \land 1 \Leftrightarrow B_j \land (p_i \vee \neg p_i) \Leftrightarrow (B_j \land p_i) \vee (B_j \land \neg p_i)$</p><p>重复这个过程, 直到<strong>所有简单合取式都是长度为n的极小项</strong>为止</p></li><li><p>(3) <strong>消去重复出现的极小项</strong>, 即用$m_i$代替$m_i \vee m_i$ </p></li><li><p>(4) 将极小项按下标从小到大<strong>排列</strong></p></li></ul><h3 id="求公式主合取范式的步骤"><a href="#求公式主合取范式的步骤" class="headerlink" title="求公式主合取范式的步骤"></a>求公式主合取范式的步骤</h3><p><strong>先求出合取范式，再变换成主合取范式</strong></p><p>设公式$A$含命题变项$p_1, p_2,…, p_n$</p><ul><li><p>(1) 求$A$的合取范式$A’=B_1 \land  B_2 \land … \land B_s$ , 其中$B_j$是<strong>简单析取式</strong> ，$j=1,2, … ,s$</p></li><li><p>(2)<strong>（补项——析取0）</strong></p><p>若某个$B_j$既不含$p_i$, 又不含$\neg p_i$, 则将$B_j$展开成：$B_j \Leftrightarrow B_j \vee 0 \Leftrightarrow B_j \vee (p_i \land \neg p_i) \Leftrightarrow (B_j \vee p_i) \land (B_j \vee \neg p_i)$</p><p>重复这个过程, 直到<strong>所有简单析取式都是长度为n的极大项</strong>为止</p></li><li><p>(3)<strong>消去重复出现的极大项</strong>， 即用$M_i$代替$M_i \land M_i$ </p></li><li><p>(4) 将极大项按下标从小到大<strong>排列</strong></p></li></ul><p>【实例】</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304083543458.png" alt="image-20220304083543458" style="zoom:50%;" /></p><p><strong>我觉得可以使用卡诺图</strong></p><div class="table-container"><table><thead><tr><th style="text-align:center">p\qr</th><th style="text-align:center">00</th><th style="text-align:center">01</th><th style="text-align:center">11</th><th style="text-align:center">10</th></tr></thead><tbody><tr><td style="text-align:center"><strong>0</strong></td><td style="text-align:center"></td><td style="text-align:center">1</td><td style="text-align:center">1</td><td style="text-align:center"></td></tr><tr><td style="text-align:center"><strong>1</strong></td><td style="text-align:center"></td><td style="text-align:center">1</td><td style="text-align:center">1</td><td style="text-align:center">1</td></tr></tbody></table></div><p>主析取范式：成真赋值为1的项</p><p>主合取范式：成假赋值为0的项</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304083604370.png" alt="image-20220304083604370" style="zoom:50%;" /></p><p><strong>关注主析取范式和主合取范式出现项的下标的关系</strong></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304083622774.png" alt="image-20220304083622774" style="zoom:50%;" /></p><h2 id="由主析（合）取范式确定主合（析）取范式"><a href="#由主析（合）取范式确定主合（析）取范式" class="headerlink" title="由主析（合）取范式确定主合（析）取范式"></a>由主析（合）取范式确定主合（析）取范式</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230604125.png" alt="image-20220303230604125" style="zoom: 50%;" /></p><h2 id="用成真和成假赋值确定主范式"><a href="#用成真和成假赋值确定主范式" class="headerlink" title="用成真和成假赋值确定主范式"></a>用成真和成假赋值确定主范式</h2><p>已知成真赋值，则知道有多少个最小项。</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230652029.png" alt="image-20220303230652029" style="zoom: 50%;" /></p><h2 id="主范式的应用"><a href="#主范式的应用" class="headerlink" title="主范式的应用"></a>主范式的应用</h2><h3 id="1-求公式的成真成假赋值"><a href="#1-求公式的成真成假赋值" class="headerlink" title="1.求公式的成真成假赋值"></a>1.求公式的成真成假赋值</h3><p>设公式$A$含$n$个命题变项, $A$的主析取范式有<strong>$s$个极小项</strong>, 则$A$有<strong>$s$个成真赋值</strong>, 它们是极小项下标的二进制表示, <strong>其余$2^n-s$个赋值都是成假赋值</strong></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230838562.png" alt="image-20220303230838562" style="zoom:67%;" /></p><h3 id="2-判断公式的类型"><a href="#2-判断公式的类型" class="headerlink" title="2.判断公式的类型"></a>2.判断公式的类型</h3><p>根据极小项或成真赋值的个数</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230918268.png" alt="image-20220303230918268" style="zoom:67%;" /></p><ul><li>重言式：全部赋值为成真赋值</li><li>矛盾式：全部赋值为成假赋值</li><li>非重言的可满足式：<ul><li>至少一个成真赋值</li><li>至少一个成假赋值</li></ul></li></ul><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230949648.png" alt="image-20220303230949648" style="zoom: 50%;" /></p><h3 id="3-判断两个公式是否等值"><a href="#3-判断两个公式是否等值" class="headerlink" title="3.判断两个公式是否等值"></a>3.判断两个公式是否等值</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231031287.png" alt="image-20220303231031287" style="zoom: 50%;" /></p><h3 id="4-解实际问题"><a href="#4-解实际问题" class="headerlink" title="4.解实际问题"></a>4.解实际问题</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231044612.png" alt="image-20220303231044612" style="zoom: 50%;" /></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231059094.png" alt="image-20220303231059094" style="zoom: 50%;" /></p><h1 id="3-2-n元真值函数"><a href="#3-2-n元真值函数" class="headerlink" title="3.2 n元真值函数"></a>3.2 n元真值函数</h1><ul><li><p><strong>定义3</strong>：称$F:${0,1}$^n \to$ {0,1}为<strong>n元真值函数</strong></p><blockquote><p>例如，3元真值函数$F(x,y,z) = \begin{cases} 0 \\ 1 \\ \end{cases}$</p><ul><li>有3个变量</li><li>每个变量的取值只能是0或1</li><li>每一组符号串的函数值为0或1</li></ul><p>000，001，010，011，100，101，110，111——8个符号串</p><p>000的函数值可能为0 or 1</p></blockquote><p>$F(p_1,p_2,…p_n) = \begin{cases} 0 \\ 1 \end{cases}$</p><ul><li><p>n个命题变量$p_1,p_2,…,p_n$的取值方式有$2^n$种</p></li><li><p>每一组取值对应的函数值可能为0或1，有2种</p></li></ul><p><strong>共$2^{2^n}$个n元真值函数</strong></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231356068.png" alt="image-20220303231356068" style="zoom:67%;" /></p></li></ul><h2 id="1元真值函数"><a href="#1元真值函数" class="headerlink" title="1元真值函数"></a>1元真值函数</h2><ul><li>由1个命题变项p形成的极小项与极大项</li></ul><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304092048665.png" alt="image-20220304092048665" style="zoom: 67%;" /></p><p>1元真值函数一共有$2^{2^1} = 4$种命题公式</p><blockquote><p>横着看：有4个真值函数——对应$m_0 \vee m_1的四种取值组合——主析取范式$</p><ul><li>第一列：永假式真值表：$\neg m_0 \or \neg m_1$</li><li>第二列：$p$：$\neg m_0 \or m_1$</li><li>第三列：$\neg p$：$m_0  \vee \neg  m_1$</li><li>第四列：永真式：$m_0 \vee m_1$</li></ul><p>竖着看：真值函数的取值$p$</p><ul><li>第一行：$p$</li><li>第二行：$\neg p$</li></ul></blockquote><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304092346111.png" alt="image-20220304092346111" style="zoom:67%;" /></p><h2 id="2元真值函数"><a href="#2元真值函数" class="headerlink" title="2元真值函数"></a>2元真值函数</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304093005762.png" alt="image-20220304093005762" style="zoom:67%;" /></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304093027553.png" alt="image-20220304093027553" style="zoom:67%;" /></p><h2 id="公式与真值函数"><a href="#公式与真值函数" class="headerlink" title="公式与真值函数"></a>公式与真值函数</h2><ul><li>任何一个含n个命题变项的命题公式$A$都对应惟一的一个n元真值函数$ F $，$ F $恰好为$A$的真值表。</li><li><strong>等值的公式</strong>对应的<strong>真值函数</strong>相同。</li></ul><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304093448005.png" alt="image-20220304093448005" style="zoom:50%;" /></p><h1 id="3-3-联结词的完备集"><a href="#3-3-联结词的完备集" class="headerlink" title="3.3 联结词的完备集"></a>3.3 联结词的完备集</h1><ul><li><strong>定义4</strong>：设$S$是一个联结词集合，如果任何$n(n \geq 1)$ 元真值函数都可以由仅含$S$中的联结词构成的公式表示，则称$S$是<strong>联结词完备集</strong><ul><li>若$S$是联结词完备集, 则任何命题公式都可由$S$中的联结词表示</li></ul></li></ul><blockquote><p>与能够用或非表示，则它们是完备的</p></blockquote><ul><li><strong>定义5</strong>：</li></ul>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> mathematical logic </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>数理逻辑：第2节 命题逻辑等值计算</title>
-      <link href="/mathematical-logic/mathematical-logic-ch2/"/>
-      <url>/mathematical-logic/mathematical-logic-ch2/</url>
-      
-        <content type="html"><![CDATA[<h1 id="2-1-等值式"><a href="#2-1-等值式" class="headerlink" title="2.1 等值式"></a>2.1 等值式</h1><ul><li><p><strong>定义1</strong>：若<strong>等价式</strong>A $\leftrightarrow$ B是<strong>重言式</strong>，则称A与B等值，记作A $\leftrightarrow$ B，并称A <script type="math/tex">\leftrightarrow</script> B是等值式</p><p>此时A和B真值相同（全0 or 全1）</p></li><li><p>几点说明： </p><ul><li>定义中的符号<script type="math/tex">\leftrightarrow</script>不是联结符（词） </li><li>用<strong>真值表</strong>可检查两个公式是否等值</li></ul></li></ul><blockquote><p>问题：判别下面命题公式是否为重言式(永真式)？ </p><p>(( p∧ $\neg$ q) → r )∧ p ∧ (q → s) ∧ $\neg$ s → r<br>转化为: (( p∧ $\neg$ q) → r )∧ p ∧ (q → s) ∧ $\neg$ s → r <script type="math/tex">\leftrightarrow</script> 1</p></blockquote><span id="more"></span><p>【例1】判断下列各组公式是否等值</p><p>（1）p→(q→r) 与 (p $\land$ q) →r</p><blockquote><p>形式不同，表达含义相同。p，q都是r的前提</p></blockquote><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301083009100.png" alt="image-20220301083009100" style="zoom:67%;" /></p><p>（2）p→(q→r) 与 (p→q) →r</p><blockquote><p>含义不同，不等值</p></blockquote><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301083123270.png" alt="image-20220301083123270" style="zoom:67%;" /></p><h2 id="基本等值式"><a href="#基本等值式" class="headerlink" title="基本等值式"></a>基本等值式</h2><ul><li><p><strong>双重否定律</strong>：  $\neg$ $\neg$ A <script type="math/tex">\leftrightarrow</script> A</p></li><li><p><strong>幂等律</strong>： A $\vee$ A <script type="math/tex">\leftrightarrow</script> A, $\qquad$ A $\land$ A <script type="math/tex">\leftrightarrow</script> A​ </p><blockquote><p>理解为两个集合的交/并</p></blockquote></li><li><p><strong>交换律</strong>： A $\vee$ B <script type="math/tex">\leftrightarrow</script> B $\vee$ A,$\qquad$  A $\land$ B <script type="math/tex">\leftrightarrow</script> B $\land$ A​ </p></li><li><p><strong>结合律</strong> ： (A $\vee$ B) $\vee$ C <script type="math/tex">\leftrightarrow</script> A $\vee$ (B $\vee$ C), $\qquad$ (A $\land$ B) $\land$ C <script type="math/tex">\leftrightarrow</script> A $\land$ (B $\land$ C)​ </p></li><li><p><strong>分配律</strong> ：A $\vee$ (B $\land$ C) <script type="math/tex">\leftrightarrow</script> (A $\vee$ B) $\land$ (A $\vee$ C),$\qquad$ A $\land$ (B $\vee$ C) <script type="math/tex">\leftrightarrow</script> (A $\land$ B) $\vee$ (A $\land$ C)  </p></li><li><p><strong>德摩根律</strong>： $\neg$ (A $\vee$ B) <script type="math/tex">\leftrightarrow</script>  $\neg$ A $\land$  $\neg$ B, $\qquad$<br>$\neg$ (A $\land$ B) <script type="math/tex">\leftrightarrow</script>  $\neg$ A $\vee$ $\neg$ B​​</p></li><li><p><strong>吸收律</strong>： A $\vee$ (A $\land$ B) <script type="math/tex">\leftrightarrow</script> A, $\qquad$ A $\land$ (A $\vee$ B) <script type="math/tex">\leftrightarrow</script> A</p><blockquote><p>A把比它大的部分吸收</p></blockquote></li><li><p><strong>零律</strong>： A $\vee$ 1 <script type="math/tex">\leftrightarrow</script> 1, $\qquad$  A $\land$ 0 <script type="math/tex">\leftrightarrow</script> 0</p></li><li><p><strong>同一律</strong>： A $\vee$ 0 <script type="math/tex">\leftrightarrow</script> A, $\qquad$ A $\land$ 1 <script type="math/tex">\leftrightarrow</script> A</p></li><li><p><strong>排中律</strong>： A $\vee$ $\neg$ A  <script type="math/tex">\leftrightarrow</script> 1</p></li><li><p><strong>矛盾律</strong>： A $\land$  $\neg$ A <script type="math/tex">\leftrightarrow</script> 0</p><blockquote><p>不可能既真又假</p></blockquote></li><li><p><strong>蕴涵等值式</strong>： $\color{red}${A→B <script type="math/tex">\leftrightarrow</script> $\neg$ A $\vee$ B}</p></li><li><p><strong>等价等值式</strong>：{A <script type="math/tex">\leftrightarrow</script> B <script type="math/tex">\leftrightarrow</script> (A→B) $\land$ (B→A)} </p><blockquote><p>非A或B 与 非B或A</p></blockquote></li><li><p><strong>假言易位</strong>： $\color{red}$ {A→B <script type="math/tex">\leftrightarrow</script> $\neg$ B→$\neg$ A} </p><blockquote><p>B是A的必要条件，A是B的充分条件</p><p><strong>有A则有B</strong> 与 <strong>没有B则没有A</strong> 是同一件事</p></blockquote></li><li><p><strong>等价否定等值式</strong>： $\color{red}$ {A <script type="math/tex">\leftrightarrow</script> B <script type="math/tex">\leftrightarrow</script> $\neg$ A <script type="math/tex">\leftrightarrow</script> $\neg$ B }</p></li><li><p><strong>归谬论</strong>：$\color{red}$ {(A→B) $\land$ (A→$\neg$ B) <script type="math/tex">\leftrightarrow</script> $\neg$ A}</p><blockquote><p>在A为真的前提下，能推出矛盾（B既真又假），则前提A为假——反证法</p></blockquote></li></ul><p>特别提示：必须牢记这16组等值式(24式)，这是继续学习的基础。</p><h2 id="等值演算与置换规则"><a href="#等值演算与置换规则" class="headerlink" title="等值演算与置换规则"></a>等值演算与置换规则</h2><h3 id="1-等值演算"><a href="#1-等值演算" class="headerlink" title="1.等值演算"></a>1.等值演算</h3><p>由已知的等值式推演出新的等值式的过程</p><blockquote><p>每一步都是等值变换（每一步都使用等值式）</p></blockquote><h3 id="2-等值演算的基础"><a href="#2-等值演算的基础" class="headerlink" title="2.等值演算的基础"></a>2.等值演算的基础</h3><ul><li><p>等值关系的性质：<strong>自反性、对称性、传递性</strong></p><blockquote><p>A与A是等值的</p><p>如果A和B等值，则B和A等值</p><p>如果A和B等值，B和C等值，则A和C等值</p></blockquote></li><li><p>基本的等值式</p></li><li><p><strong>置换规则</strong></p></li></ul><h3 id="3-置换规则"><a href="#3-置换规则" class="headerlink" title="3.置换规则"></a>3.置换规则</h3><p>设 $\Phi$(A)​​​​​ 是含公式 A​​​​ 的命题公式，$\Phi$ (B)​​​ 是用公式B​​置换$\Phi$ (A)​ 中所有的 A 后得到的命题公式。 </p><p>若 B <script type="math/tex">\leftrightarrow</script> A​，则 $\Phi$(B) <script type="math/tex">\leftrightarrow</script> $\Phi$(A)。</p><blockquote><p>对公式的一部分做等值变换，变换后的结果仍然是等值的</p></blockquote><h3 id="等值演算的应用举例"><a href="#等值演算的应用举例" class="headerlink" title="等值演算的应用举例"></a>等值演算的应用举例</h3><ul><li>证明两个公式等值</li></ul><p>​        <img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301190541286.png" alt="image-20220301190541286" style="zoom: 50%;" /></p><p><strong>注：用等值演算不能直接证明两个公式不等值</strong></p><ul><li>判断公式类型：<script type="math/tex; mode=display">A 为矛盾式当且仅当 A \Leftrightarrow 0 \\A 为重言式当且仅当 A \Leftrightarrow 1 \\A 为非重言式的可满足式 \Leftrightarrow A既有成真赋值又有成假赋值 \\</script></li></ul><h3 id="证明两个公式不等值"><a href="#证明两个公式不等值" class="headerlink" title="证明两个公式不等值"></a>证明两个公式不等值</h3><ul><li><p>真值表法</p></li><li><p>观察法——举出反例</p></li><li><p>先等值演算化简公式，再观察</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301190743753.png" alt="image-20220301190743753" style="zoom:50%;" /></p></li></ul><h1 id="2-2-析取范式与合取范式"><a href="#2-2-析取范式与合取范式" class="headerlink" title="2.2 析取范式与合取范式"></a>2.2 析取范式与合取范式</h1><p>范式：比较规范的公式形式</p><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol><li><p><strong>文字</strong>：命题变项及其否定的总称</p><blockquote><p>p, $\quad$ $\neg$ q</p></blockquote></li><li><p><strong>简单析取式</strong>：仅由有限个文字构成的析取式</p><blockquote><p>p,$\quad$ $\neg$ q,$\quad$ p$\vee$ $\neg$ q, $\quad$ p$\vee$ q $\vee$ r,…​</p></blockquote></li><li><p><strong>简单合取式</strong>：由有限个文字构成的合取式</p><blockquote><p>p,$\quad$ $\neg$ q,$\quad$ p$\land$ $\neg$ q, $\quad$ p$\land$ q $\land$ r,…</p></blockquote></li><li><p><strong>析取范式</strong>：由有限个<strong>简单合取式</strong>组成的<strong>析取式</strong></p><blockquote><p>p,$\quad$ $\neg$ p $\land$ q,（简单合取式）$\quad$ p$\vee$ $\neg$ q, $\quad$ (p $\land$ $\neg$ q) $\vee$ ($\neg$ p $\land$ q $\land$ $\neg$ r) $\vee$ (q $\land$ r),…​</p></blockquote></li><li><p><strong>合取范式</strong>：由有限个<strong>简单析取式</strong>组成的<strong>合取式</strong></p><blockquote><p>p,$\quad$ $\neg$ p $\vee$ q,（简单析取式）$\quad$ p$\land$ $\neg$ q, $\quad$ (p $\vee$ $\neg$ q) $\land$ ($\neg$ p $\vee$ q $\vee$ r) $\land$ (q $\vee$ r),…</p></blockquote></li><li><p><strong>范式</strong>：析取范式与合取范式的总称</p></li></ol><p>说明</p><ul><li>单个文字既是简单析取式，又是简单合取式</li><li>形如 p $\land$ $\neg$ q $\land$ r, $\neg$ p $\land$ q $\vee$ $\neg$ r 的公式既是析取范式，又是合取范式</li></ul><p><strong>定理1</strong></p><p>（1）一个<strong>简单析取式是重言式</strong>当且仅当<strong>它同时含有某个命题变项和它的否定式</strong></p><blockquote><p>p $\vee$ $\neg$ p $\vee$ r $\vee$ q</p></blockquote><p>（2）一个<strong>简单合取式是矛盾式</strong>当且仅当<strong>它同时含有某个命题变项和它的否定式</strong></p><blockquote><p>p $\land$ $\neg$ p $\land$ q</p></blockquote><p><strong>定理2</strong></p><p>（1）一个<strong>析取范式是矛盾式</strong>当且仅当<strong>它每个简单合取式都是矛盾式</strong></p><blockquote><p>$\triangle$ $\vee$ $\triangle$ $\vee$ $\triangle$</p></blockquote><p>（2）一个<strong>合取范式是重言式</strong>当且仅当<strong>它的每个简单析取式都是重言式</strong></p><blockquote><p>$\triangle$ $\land$ $\triangle$ $\land$ $\triangle$</p></blockquote><p><strong>定理3</strong>（范式存在定理）</p><p>任何命题公式都存在与之等值的析取范式与合取范式</p><blockquote><p>从任何公式出发，都有和它等值的<strong>析取范式</strong>和<strong>合取范式</strong></p></blockquote><h2 id="命题公式的范式"><a href="#命题公式的范式" class="headerlink" title="命题公式的范式"></a>命题公式的范式</h2><h3 id="求公式A的范式的步骤"><a href="#求公式A的范式的步骤" class="headerlink" title="求公式A的范式的步骤"></a>求公式A的范式的步骤</h3><ol><li><p>消去A中的$\to$, <script type="math/tex">\leftrightarrow</script>（若存在）——<strong>（蕴含等价式、等价等值式、假言易位、等价否定等值式、归谬论）</strong></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091705613.png" alt="image-20220301091705613" style="zoom: 50%;" /></p></li><li><p>否定连接词的内移或消去<strong>（德摩根律）</strong></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091721847.png" alt="image-20220301091721847" style="zoom: 50%;" /></p></li><li><p>使用<strong>分配律</strong></p></li></ol><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091734879.png" alt="image-20220301091734879" style="zoom:50%;" /></p><p>范式的不足——不唯一</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192357658.png" alt="image-20220301192357658" style="zoom:50%;" /></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192420027.png" alt="image-20220301192420027" style="zoom:50%;" /></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192436741.png" alt="image-20220301192436741" style="zoom:50%;" /></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192454515.png" alt="image-20220301192454515" style="zoom:50%;" /></p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> mathematical logic </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>数理逻辑：第1节 命题逻辑的基本概念</title>
-      <link href="/mathematical_logic/mathematical-logic-ch1/"/>
-      <url>/mathematical_logic/mathematical-logic-ch1/</url>
-      
-        <content type="html"><![CDATA[<h1 id="1-1-命题与联结词"><a href="#1-1-命题与联结词" class="headerlink" title="1.1 命题与联结词"></a>1.1 命题与联结词</h1><h2 id="命题与真值"><a href="#命题与真值" class="headerlink" title="命题与真值"></a>命题与真值</h2><ul><li>命题：能<strong>唯一</strong>确定<strong>真假值</strong>的<strong>陈述句</strong></li><li>命题的真值：一个命题的真or假</li><li>真值的取值：真or假</li><li>真命题与假命题：由内容是否符合实际情况决定</li></ul><p>注意：</p><ul><li>感叹句、祈使句、疑问句、<strong>悖论</strong>不是命题</li><li>判断结果不唯一确定的陈述句不是命题（针对真值多种取值的情况）</li></ul><span id="more"></span><h2 id="命题分类"><a href="#命题分类" class="headerlink" title="命题分类"></a>命题分类</h2><ul><li>简单命题（原子命题）：不能分解成更简单的命题（基本单位）</li><li>命题符合：由简单命题通过<strong>联结词</strong>联结而成的命题</li><li>联结词有5类：与（$\land$​​）、或（$\vee$​）、非（$\neg$​）、蕴含（如果…那么（则）…）、等价（当且仅当，$\Leftrightarrow$​​）。$\neg$​为单联结词</li></ul><h2 id="简单命题符号化"><a href="#简单命题符号化" class="headerlink" title="简单命题符号化"></a>简单命题符号化</h2><ul><li>用小写英文字母$p,q,r,…,$$p_i$,$q_i$,$r_i(i\geq1)$表示简单命题</li><li>用”1“表示真，用”0“表示假</li></ul><h2 id="否定、合取、析取联结词"><a href="#否定、合取、析取联结词" class="headerlink" title="否定、合取、析取联结词"></a>否定、合取、析取联结词</h2><ul><li><p><strong>定义1</strong>：设 p为命题，<strong>复合命题</strong>“非p”(或“p的否定”) 称为 p的<strong>否定式</strong>，记作$\neg$​p，符号$\neg$​称作<strong>否定联结词</strong>。 </p><p>规定: $\neg$​p 为真当且仅当<u>p为假</u>。</p></li><li><p><strong>定义2</strong>：设p,q为两个命题，复合命题“p并且q”(或 “p 与 q”)称为 p与q的<strong>合取式</strong>，记作p∧q，∧称作<strong>合取联结词</strong>。</p><p>规定: p∧q为真当且仅当<u>p与q同时为真</u>。</p></li><li><p><strong>定义3</strong>：设p, q为两个命题，复合命题“p或q”称作 p 与 q 的<strong>析取式</strong>，记作p∨q，∨称作<strong>析取联结词</strong>。 </p><p>规定: p∨q为假当且仅当<u>p与q同时为假</u>。</p></li><li><p>关于”或“：$\begin{cases} 相容或：可兼 \qquad（例如：我上街买矿泉水或者买饮料） \\ 排斥或（异或）：不相容或,不可兼 \qquad （例如：某人星期一来或者星期二来） \\ \end{cases}$​</p><blockquote><p>又如：</p><p>ab = 0——a = 0 或 b = 0 </p><p>(a-1)·(a-2) = 0——a = 1 或 a = 2</p></blockquote><p>规定：数学上取<strong>相容或</strong></p><p>排斥或：($\neg$ p $\land$q) $\vee$ (p$\land$$\neg$ q)</p></li></ul><h2 id="蕴含联结词"><a href="#蕴含联结词" class="headerlink" title="蕴含联结词"></a>蕴含联结词</h2><ul><li><p><strong>定义4</strong>：设p, q为两个命题，复合命题”如果p, 则q” 称作p与q的<strong>蕴涵式</strong>，记作p→q， </p><p>并称p是蕴涵式的<strong>前件</strong>， q为蕴涵式的<strong>后件</strong>，→称作<strong>蕴涵联结词</strong>。 </p><p>规定：p→q为假当且仅当<u>p为真q为假</u>。</p><blockquote><p>蕴含举例：</p><p>对任何x，如果x&gt;3，则$x^2$&gt;9 真命题 </p><p>令x=4，如果 4&gt;3，则16&gt;9（前提真，结论真） </p><p>令x=-4，如果 -4&gt;3，则16&gt;9（前提假，结论真）</p><p>令x=-2，如果 -2&gt;3, 则4&gt;9（前提假，结论假）——<strong>整个</strong>命题为真</p><p><strong>对于该蕴含命题（真命题），不存在前提真，结论假的情况</strong></p></blockquote></li><li><p>要证明符合命题：如果p, 则q</p><ul><li>一般情况下，<strong>由前提真，证明结论真</strong></li><li>特殊情况下，<strong>前提为假，没有什么可做的</strong></li></ul><blockquote><p>可以用来证明</p><p>证：空集是任意集合的子集</p><p>任何集合S，$\oslash \subseteq S$​​​ </p><p>由子集的定义</p><p><strong>任何x，若$x \in \oslash$​，则$x \in S$​​​​ </strong>——空证明</p></blockquote></li><li><p>关于蕴含联结词的一些概念</p><ul><li><p>p→q 的逻辑关系：（有p一定有q，没有q一定没有p——逆否关系）——p$\subseteq$​​q</p><ul><li>q为p的必要条件</li><li>p为q的充分条件</li></ul><blockquote><p>p$\rightarrow$​​​q  $\Leftrightarrow$​​  $\neg$​q$\to$$\neg$​p</p><p>p与q等价：$\begin{cases} p \to q \\ \neg p \to \neg q  \end{cases}$</p></blockquote></li><li><p>“如果 p, 则 q” 有很多不同的表述方法：<strong>（需要好好理解）</strong></p><ul><li><p>若p，就q</p></li><li><p>只要p，就q</p></li><li><p><strong>p仅当q</strong></p><blockquote><p>p当且仅当q</p><p>$\begin{cases} p当q——当有q就有p（q为充分条件，写在→前面）\\  p仅当q——仅当q，才p（q为必要条件，写在→后面）/除非q，才p：p→q \\ \end{cases}$ </p></blockquote></li><li><p><strong>只有q，才p</strong></p></li><li><p>除非q，才p</p></li><li><p>除非q，否则非p（双重否定）</p><blockquote><p>除非q，否则p：$\neg p \rightarrow q$​</p></blockquote></li></ul></li><li><p>当 p 为假时，p→q 恒为真，称为空证明</p></li><li><p>常出现的错误：不分充分与必要条件</p></li><li><p>在自然语言中，“如果 p , 则 q ” ，p, q具有某种内在联系；</p><p><strong>但在数理逻辑中， p, q可以无任何内在联系</strong></p></li></ul></li></ul><h2 id="等价联结词"><a href="#等价联结词" class="headerlink" title="等价联结词"></a>等价联结词</h2><ul><li><p><strong>定义5</strong>：设 p, q为两个命题，复合命题“p当且仅当q” 称作p与q的<strong>等价式</strong>，记作p$\leftrightarrow$​q，$\leftrightarrow$​称作<strong>等价联结词</strong>。 </p><p>规定: <u>p$\leftrightarrow$​​q为真</u>当且仅当<u>p与q同时为真或同时为假。</u></p><p>​         p$\leftrightarrow$q 的逻辑关系：p与q互为充分必要条件。</p></li></ul><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>基本联结词：构成一层</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225084811509.png" alt="image-20220225084811509" style="zoom:67%;" /></p><p><strong>注意优先级：括号$&gt;$非$&gt;$与$&gt;$或$&gt;$蕴含$&gt;$等价</strong></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225085015688.png" alt="image-20220225085015688" style="zoom:67%;" /></p><h1 id="1-2-命题公式及其赋值"><a href="#1-2-命题公式及其赋值" class="headerlink" title="1.2 命题公式及其赋值"></a>1.2 命题公式及其赋值</h1><h2 id="命题变项与合式公式"><a href="#命题变项与合式公式" class="headerlink" title="命题变项与合式公式"></a>命题变项与合式公式</h2><ul><li><p><strong>命题常项</strong>（命题常元）：简单命题（相当于常数或常量）</p></li><li><p><strong>命题变项</strong>（命题变元）：可表示任意命题的变元 （相当于变量）——命题符号，无具体指向</p><p>命题变项不是命题。</p><p>常项与变项均用$ p, q, r, …,$ $p_i$ ,$q_i$ , $r_i$ $, …,$ 等表示。</p><p>将命题变项用联结词和圆括弧按一定的逻辑关系联结起来的符号串称为<strong>合式公式</strong>。</p></li></ul><ul><li><p>当使用联结词集{$\neg$, $\land$, $\vee$, →, $\leftrightarrow$}时，合式公式定义如下：</p><p><strong>定义6</strong>（<strong>合式公式</strong>的递归定义）（也称命题公式，简称公式）：</p><p>​    （1）单个命题变项和命题常项是合式公式, 称作<strong>原子命题公式</strong></p><p>​    （2）若A是合式公式，则 ($\neg$​A)也是合式公式</p><p>​    （3）若A, B是合式公式，则(A$\land$B), (A$\vee$B), (A→B),  (A$\leftrightarrow$B)也是合式公式</p><p>​    （4）只有有限次地应用(1)~(3) 形成的符号串是合式公式</p><p>设A是合式公式，B为A的一部分，若B也是合式公式，则称B为A的<strong>子公式</strong>。</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225090704496.png" alt="image-20220225090704496" style="zoom:67%;" /></p></li></ul><h2 id="合式公式的层次"><a href="#合式公式的层次" class="headerlink" title="合式公式的层次"></a>合式公式的层次</h2><ul><li><p><strong>定义7</strong>：</p><p>(1) 若公式A是单个命题变项，则称A为<strong>0层公式</strong>。 </p><blockquote><p>如：p, q, r</p></blockquote><p>(2) 称 $A$ 是$ n+1 (n<script type="math/tex">\geq</script>0)$ 层公式是指下面情况之一： </p><p>​    (a) $A=\neg B$，$B$ 是 $n$ 层公式； </p><p>​    (b)$ A=B \land C$，其中$B,C $分别为$ i $层和 $j$ 层公式，且 $n=max(i,j)$​；</p><p>​    (c)$A=B \vee C $, 其中 $B,C $的层次及 $n$ 同(b)； </p><p>​    (d) $A=B \to C$​, 其中$B,C$ 的层次及 $n$ 同(b)； </p><p>​    (e) $A=B \leftrightarrow C$, 其中$B,C$ 的层次及 $n$ 同(b)。 </p><p>(3) 若公式$A$的层次为$k$, 则称$A$为<strong>k层公式</strong>。</p><blockquote><p>例如：</p><p>公式 A = p，B =$\neg$​p，C=$\neg$​p→q，D=$\neg$​(p→q)$\leftrightarrow$​r,  E=(($\neg$​p$\land$​q) →r) $\leftrightarrow$​($\neg$r$\vee$s) </p><p>分别为0层，1层，2层，3层，4层公式。</p></blockquote></li></ul><h2 id="公式赋值"><a href="#公式赋值" class="headerlink" title="公式赋值"></a>公式赋值</h2><ul><li><p><strong>定义8</strong>：设$p_1 , p_2 , … , p_n$是出现在公式$A$中的全部命题变项, 给$p_1 , p_2 , … , p_n$各指定一个真值, 称为对$A$的一个赋值或解释。</p><p>若使$A$为$1$, 则称这组值为$A$的成真赋值;  </p><p>若使$A$为$0$, 则称这组值为$A$的成假赋值。</p></li><li><p>几点说明：<strong>（重要）</strong></p><ul><li><p>$A$中仅出现 $p_1 , p_2 , … , p_n，$给$A$赋值$\alpha = \alpha_1\alpha_2…\alpha_n$是指$p_1 =\alpha_1 , p_2 = \alpha_2 , …, p_n = \alpha_n , \alpha_i = 0$或$1$, $\alpha_i$之间不加标点符号。</p><p>按照命题符号的顺序赋值</p></li><li><p>$A$中仅出现$ p, q, r, …, $给$A$赋值$\alpha_1$$\alpha_2\alpha_3…$是指$ p=\alpha_1 , q=\alpha_2 , r=\alpha_3 …$</p></li><li><p>含$n$个命题变项的公式有$2^n$个赋值。</p><blockquote><p>如：</p><p>000, 010, 101, 110是  $\neg (p→q)\leftrightarrow r$的成真赋值 </p><p>001, 011, 100, 111是成假赋值。</p><p>——以上赋值的顺序按照$p, q, r$的顺序给出</p></blockquote></li></ul></li></ul><h2 id="真值表"><a href="#真值表" class="headerlink" title="真值表"></a>真值表</h2><ul><li><p><strong>定义9</strong>：将命题公式$A$在所有赋值下取值的情况列成表，称作$A$的真值表。</p></li><li><p>构造真值表的步骤</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225091751888.png" alt="image-20220225091751888" style="zoom:67%;" /></p></li></ul><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301200319538.png" alt="image-20220301200319538" style="zoom: 67%;" /></p><blockquote><p><strong>从表中可以看出哪些为成真赋值，那些为成假赋值</strong></p></blockquote><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301200342849.png" alt="image-20220301200342849" style="zoom:50%;" /></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301200358601.png" alt="image-20220301200358601" style="zoom:50%;" /></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301200413257.png" alt="image-20220301200413257" style="zoom:50%;" /></p><h2 id="公式的类型"><a href="#公式的类型" class="headerlink" title="公式的类型"></a>公式的类型</h2><ul><li><p><strong>定义10</strong>：</p><p>(1) 若$A$在它的任何赋值下均为真，则称$A$为<strong>重言式</strong>或<strong>永真式</strong>；</p><p>(2) 若$A$在它的任何赋值下均为假，则称$A$为<strong>矛盾式</strong>或<strong>永假式</strong>； </p><p>(3) 若$A$不是矛盾式，则称$A$是<strong>可满足式</strong></p><blockquote><p>可满足式包含两种情况</p><p>1.公式的值有时为真，又是为假（非重言式的可满足式）</p><p>2.全部赋值都为真（重言式）</p></blockquote><p>注：重言式是可满足式，但反之不真。</p></li><li><p>真值表的用途：</p><p>（1）求出公式的全部成真赋值与成假赋值；</p><p>（2）判断公式的类型</p></li></ul><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul><li><p>主要内容</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225093212858.png" alt="image-20220225093212858" style="zoom:67%;" /></p></li><li><p>基本要求</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225143205004.png" alt="image-20220225143205004" style="zoom:67%;" /></p></li></ul>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> mathematical logic </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>数理逻辑：绪论</title>
-      <link href="/mathematical_logic/mathematical-logic-ch0/"/>
-      <url>/mathematical_logic/mathematical-logic-ch0/</url>
-      
-        <content type="html"><![CDATA[<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>数理逻辑是用数学的方法研究<strong>推理</strong>，特别是研究数学中的推理</p><p>推理的前提和结论都是命题，命题的真假与<strong>内容是否符合现实</strong>有关。</p><script type="math/tex; mode=display">premises 前提 \quad（命题）\\\downarrow  \quad reason 推理 \\conclusions 结论 \quad （命题）\\</script><span id="more"></span><ol><li><p>正确的推理：从”正确的前提“能得到”正确的结论“的推理。</p><p>推理正确——可推导关系，属于<code>演绎逻辑</code>（与之相对的是<code>归纳逻辑</code>）</p><p>正确的前提：前提为真</p><p>正确的结论：结论为真</p></li><li><p>推理正确与否<strong>与前提和结论中命题是否为真命题没有关系</strong>。</p><p><strong>推理的正确性与命题的逻辑形式有关</strong></p><p><strong>命题内容决定命题的真假</strong></p><script type="math/tex; mode=display">命题：\begin{cases}内容 \\逻辑形式（抽象） \\\end{cases}</script><blockquote><p>所有中学生打网球（前提）</p><p>王军不打网球（前提）</p><p>王军不是中学生（结论）</p><p>——推理正确，不是所有命题都为真命题</p></blockquote><p>上述推理的逻辑形式为：</p><blockquote><p>S中所有元有R性质（前提）</p><p>a没有R性质（前提）</p><p>a不是S中的元（结论）</p></blockquote></li><li><p>数理逻辑中，用自然语言陈述命题会带来不方便</p></li><li><p>数理逻辑的研究语言为：对象语言、元语言</p><ul><li>对象语言：被研究对象的语言。<strong>形式语言</strong>，用符号构成的公式来代替自然语言中的命题，<strong>没有二义性</strong><ul><li>语义：符号，公式的含义</li><li>语法：由符号构成的公式的形状和语法结构</li></ul></li><li>元语言：辅助描述对象语言。自然语言</li></ul></li><li><p>数理逻辑产生的动机：将一切推理的正确性化归于计算的通用代数</p><ul><li>建立一种普遍适用的精确的科学语言</li><li>建立一种推理的演算</li></ul></li><li><p>预备知识：</p><ul><li><p>集合</p><p>集合S上的（n元）关系R</p><p>外延</p></li><li><p>归纳定义和归纳证明</p></li></ul></li></ol>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> mathematical logic </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>计算机组成原理：第3章 系统总线</title>
-      <link href="/computer_organization/computer-organization-ch3/"/>
-      <url>/computer_organization/computer-organization-ch3/</url>
-      
-        <content type="html"><![CDATA[<h1 id="关于本课程"><a href="#关于本课程" class="headerlink" title="关于本课程"></a>关于本课程</h1><p>计算机源头：主频——晶振（1个）</p><p>计组的难点和重点：<strong>运算器、存储器、控制器、中断方式</strong></p><p>计算机系统</p><ul><li>逻辑正确</li><li>时序正确：内存（读、写）、输入输出、中断工作（中断周期）、存储器直接存取周期（DMA周期）</li><li>负载能力</li><li>可靠性：抗干扰、工作环境</li></ul><p>本课程重点是<strong>逻辑和时序，考虑一些负载能力</strong></p><span id="more"></span><h1 id="3-1-总线的基本概念"><a href="#3-1-总线的基本概念" class="headerlink" title="3.1 总线的基本概念"></a>3.1 总线的基本概念</h1><h2 id="一、为什么要用总线"><a href="#一、为什么要用总线" class="headerlink" title="一、为什么要用总线"></a>一、为什么要用总线</h2><p>冯诺依曼计算机结构：运算、控制、存储、输入、输出</p><p>至少包括三大部分，现代计算机更加复杂。需要把各个部件连接起来才能组成系统，协同工作。</p><p>计算机如何连接：</p><ul><li><p>①分散连接（早期）</p><blockquote><p>以运算器为中心，内部连线复杂，I/O设备与存储器交换信息都需经过运算器，致使运算器停运，影响CPU工作效率。</p><p>改进为以存储器为中心，I/O设备与存储器交换信息可以经过运算器，引入中断、DMA等技术，CPU效率提升，仍无法解决I/O设备和主机连接之间的灵活性。</p></blockquote><p><strong>如果设备很多，两两连接的制作成本高、难度大。而且设备之间的接口占用大量空间。</strong></p></li><li><p>②为了解决分散连接的问题，引入总线</p><p><strong>将各部件连到一组公共信息传输线上，称为总线连接</strong></p></li></ul><h2 id="二、什么是总线"><a href="#二、什么是总线" class="headerlink" title="二、什么是总线"></a>二、什么是总线</h2><blockquote><p>总线是连接各个部件的信息传输线，是<strong>各个部件共享的传输介质</strong></p></blockquote><ul><li>结构简单，可控性好</li></ul><h2 id="三、总线上信息的传送"><a href="#三、总线上信息的传送" class="headerlink" title="三、总线上信息的传送"></a>三、总线上信息的传送</h2><ul><li>串行：传输距离长（设备之间），一次只能传输一个信号，速度慢</li><li>并行：传输距离短（集中于机箱内部），一次传输多个信号，速度快</li></ul><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/lKQvA54JcfjV6Er.png" alt="image-20220112101628214" style="zoom:50%;" /></p><h2 id="四、总线结构的计算机"><a href="#四、总线结构的计算机" class="headerlink" title="四、总线结构的计算机"></a>四、总线结构的计算机</h2><ul><li>在某一时刻，<strong>只允许有一个部件向总线发送信息，而多个部件可以同时从总线上接收相同的信息</strong></li><li>总线<strong>由许多传输线或通路组成</strong>，每条线可一位一位传输二进制代码。</li></ul><h3 id="1-面向-CPU-的双总线结构框图"><a href="#1-面向-CPU-的双总线结构框图" class="headerlink" title="1. 面向 CPU 的双总线结构框图"></a>1. 面向 CPU 的双总线结构框图</h3><blockquote><p>面向CPU的双总线结构：<strong>以CPU为核心，延展出两条总线：一条M总线连接主存；I/O总线连接I/O设备。</strong></p><p>CPU与主存之间的信息传输比较繁忙，使用M总线提供信息传输服务。</p><p>I/O设备与主存之间没有直接的信息通路，只能以CPU作为媒介。一旦外部设备与主存进行信息传输，CPU的运算任务重，还是有可能被打断。</p></blockquote><p>I/O接口把不同的设备进行转换（220V与5V）</p><p>好处：</p><ul><li><p>把慢速的设备通过设备总线送过来</p></li><li><p>CPU和主存通过M总线高速传输指令</p></li></ul><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/n97htaETFsq8ijy.png" alt="image-20220112102902317" style="zoom: 67%;" /></p><h3 id="2-单总线结构框图"><a href="#2-单总线结构框图" class="headerlink" title="2. 单总线结构框图"></a>2. 单总线结构框图</h3><p>如何分配总线，避免冲突？——总线使用规则，硬件设计应考虑</p><p>使用<strong>三态门</strong>：数据双向，地址单向</p><ul><li>主设备（总线）发出者（控制者），同一时刻只能有一个</li><li>从设备（信息来源）接收者，可以有多个</li></ul><p>没有芯片的快和慢的区分，<strong>总线的效率很低</strong></p><blockquote><p>单总线结构：所有设备连接到一条系统总线上</p><p>任何时候只能由一个设备使用总线。</p><p>如果某一个 I/O 设备与主存通过 I/O 接口进行数据传输，占用 CPU。则主存和 CPU 之间无法进行数据传输。会严重影响 CPU 设备的运行效率。并且如果设备较多，总线较长，向远端设备读或写的延迟大。会发生总线的征用。</p><p><strong>解决思路</strong>:引入多条总线，让数据并行传输</p></blockquote><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/eLNS8o2EnHXCyfd.png" alt="image-20220112102154648" style="zoom: 67%;" /></p><h3 id="3-以存储器为中心的双总线结构框图"><a href="#3-以存储器为中心的双总线结构框图" class="headerlink" title="3. 以存储器为中心的双总线结构框图"></a>3. 以存储器为中心的双总线结构框图</h3><p>将1和2结合起来</p><blockquote><p>在单总线基础上又开辟出的一条CPU与主存之间的总线，称为<strong>存储总线</strong></p><p>把CPU、主存、外部设备都挂在系统总线上；<strong>CPU和主存之间存储总线进行数据传输</strong></p></blockquote><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/FZu58AsqfDSoT6y.png" alt="image-20220112103055281" style="zoom: 67%;" /></p><h1 id="3-2-总线的分类（重点内容）"><a href="#3-2-总线的分类（重点内容）" class="headerlink" title="3.2 总线的分类（重点内容）"></a>3.2 总线的分类（重点内容）</h1><p>（重点内容）</p><ul><li><p>总线按<strong>数据传送方式</strong>可以分为：并行传输总线 和 串行传输总线。</p><p>并行传输总线中，又可按传输数据宽度分为：8位、16位、32位、64位等传输总线。</p></li><li><p>按<strong>总线的使用范围</strong>划分，又有计算机（包括外设）总线、测控总线、网络通信总线等</p></li><li><p>按<strong>连接部件</strong>不同，分为：片内总线、系统总线和通信总线</p><p>系统总线按<strong>传输信息</strong>不同，分为：数据总线、地址总线、控制总线</p></li></ul><h2 id="1-片内总线"><a href="#1-片内总线" class="headerlink" title="1.片内总线"></a>1.片内总线</h2><p><strong>芯片内部</strong>的总线</p><blockquote><p>CPU内的运算器和控制器之间的连线</p><p>寄存器之间</p><p>寄存器与算逻单元ALU之间</p></blockquote><h2 id="2-系统总线"><a href="#2-系统总线" class="headerlink" title="2.系统总线"></a>2.系统总线</h2><p><strong>计算机各部件之间</strong>（CPU、主存、I/O设备（通过I/O接口））的信息传输线</p><ul><li><p><u>数据总线：传输各部件之间的数据信息</u></p><p><strong>双向</strong>，与<strong>机器字长、存储字长</strong>有关</p><p>n位计算机：$D_{n-1}…D_2D_1D_0$​（一般为8、16、32位）</p><p><strong>数据总线的位数称为数据总线宽度</strong>，衡量系统性能的一个重要参数</p><blockquote><p>如果数据总线的宽度为8位，指令字长为16位，那么CPU在<strong>取指阶段</strong>必须<strong>两次访问主存</strong></p></blockquote></li><li><p><u>地址总线：指出<strong>数据总线上的源数据或目的数据</strong>在主存储单元的地址或I/O设备的地址</u></p><p>由CPU输出，<strong>单向</strong>，与<strong>存储单元的个数</strong>（存储地址、 I/O地址）有关。决定内存单元的个数，I/O地址个数</p><p>指示地址，字节的整数倍</p><p>$A_{m}…A_2A_1A_0$​</p><p><strong>地址线的位数与存储单元的个数有关</strong></p><blockquote><p>地址线为20根，则对应的存储单元的个数为$2^{20}$</p></blockquote></li><li><p><u>控制总线：用来发出各种控制信号的传输线</u></p><ul><li><p>对于CPU而言，<strong>有出 有入</strong></p><p>单CPU：CPU+DMA具有控制权。DMA需要申请、归还</p></li><li><p>发出控制信号</p><p>（存储器的读和写（互斥）、总线允许、中断确认）</p><blockquote><p>常见的控制信号：</p><p><strong>时钟、复位、总线请求、总线允许、中断请求、中断响应、存储器写、存储器读、I/O读、I/O写、传输响应</strong></p></blockquote><p>MEMR：存储器读——将指定<strong>存储单元</strong>的数据读取到<strong>数据总线</strong>上</p><p>MEMW：存储器写——将<strong>数据总线上的数据</strong>写入到<strong>存储器的指定地址单元</strong>内</p><p>IOR：（读）输入——从指定的<strong>I/O端口</strong>将数据读到<strong>数据总线</strong>上</p><p>IOW：（写）输出——将<strong>数据总线</strong>上的数据输出到指定的<strong>I/O端口</strong>内</p></li><li><p>多数为低电平有效</p></li><li><p>对于任一控制线而言，传输为<strong>单向</strong>。对于控制总线整体可认为是双向的</p></li><li><p>起到监视各部件状态的作用</p><blockquote><p>查询设备“忙”or“闲”，是否出错</p></blockquote></li></ul></li></ul><h2 id="3-通信总线"><a href="#3-通信总线" class="headerlink" title="3.通信总线"></a>3.通信总线</h2><p>（了解即可）</p><p>用于 <strong>计算机系统之间</strong> 或 <strong>计算机系统与其他系统（如控制仪表、移动通信等）之间</strong>的通信</p><p>传输方式：串行、并行</p><h1 id="3-3-总线特性及性能指标"><a href="#3-3-总线特性及性能指标" class="headerlink" title="3.3 总线特性及性能指标"></a>3.3 总线特性及性能指标</h1><h2 id="一、总线物理实现"><a href="#一、总线物理实现" class="headerlink" title="一、总线物理实现"></a>一、总线物理实现</h2><p>从物理角度，总线由许多导线直接印制在电路板上，延伸到各个部件。</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223171231125.png" alt="image-20220223171231125" style="zoom:67%;" /></p><h2 id="二、总线特性"><a href="#二、总线特性" class="headerlink" title="二、总线特性"></a>二、总线特性</h2><ol><li><p><strong>机械特性</strong>：<strong>尺寸</strong>、形状、<strong>管脚数</strong>及<strong>排列顺序</strong></p></li><li><p><strong>电气特性</strong>：<strong>传输方向</strong>和有效的<strong>电平</strong>范围</p><p>规定由CPU发出的信号称为输出信号，送入CPU为输入信号</p><blockquote><p>地址总线单向输出线、数据总线双向传输线——高1低0</p><p>控制总线单向。整体上有入、有出</p></blockquote></li><li><p><strong>功能特性</strong>：每根传输线的<strong>功能</strong></p><ul><li><p>地址总线：地址码</p></li><li><p>数据总线：传递数据</p></li><li><p>控制总线：发出控制信号</p></li></ul><blockquote><p>CPU发出——存储器读/写、I/O设备读/写</p><p>I/O向CPU发来——中断请求、DMA请求</p></blockquote></li><li><p><strong>时间特性</strong>：信号的<strong>时序</strong>关系</p><p>总线中的任一根线在什么时间内有效</p></li></ol><h2 id="三、总线的性能指标"><a href="#三、总线的性能指标" class="headerlink" title="三、总线的性能指标"></a>三、总线的性能指标</h2><p>1.<strong>总线宽度</strong></p><p><strong>数据总线</strong>的根数（16根、32根、64根，与传输位数有关）</p><p>用<strong>bit（位）</strong>表示</p><p>2.<strong>标准传输率</strong></p><p>单位时间内总线传送数据的字节数。每秒传输的最大字节数（<strong>MBps</strong>每秒传输的兆字节）</p><p>总线<strong>带宽</strong>，单位时间内总线上传输数据的<strong>位数</strong></p><p><u>与总线的宽度（数据线的根数）和时钟频率有关</u></p><blockquote><p>例如，总线上工作频率位33MHz，总线宽度为32位（4B），则总线带宽为$33 \times (32 \div 8) = 132$MBps</p></blockquote><p>3.<strong>时钟同步/异步</strong></p><p>总线上数据与时钟<strong>同步</strong>/<strong>不同步</strong>工作</p><p>4.<strong>总线复用</strong></p><p><u>一条信号线上<strong>分时</strong>传送两种信号</u></p><blockquote><p>将地址总线和数据总线共用一组物理线路，分时传输地址信号和数据信号，即为总线的多路复用</p></blockquote><p><strong>地址线</strong>与<strong>数据线</strong>复用（8086，为了减少芯片的管脚数，减少封装体积）</p><p>5.<strong>信号线数</strong></p><p>地址线、数据线和控制线的<strong>总和</strong></p><p>6.<strong>总线控制方式</strong></p><p>总线使用权的分配</p><p>突发工作、自动配置、仲裁方式、逻辑方式、计数方式</p><p>7.<strong>其他指标</strong></p><p><strong>负载能力</strong>、电源电压（5V or 3.3V）、总线的宽度能否扩展</p><p>负载能力即驱动能力：总线<strong>接上负载</strong>后，总线<strong>输入输出的逻辑电平</strong>能否<strong>保持在正常的额定范围</strong>内。</p><h2 id="四、总线标准（重要）"><a href="#四、总线标准（重要）" class="headerlink" title="四、总线标准（重要）"></a>四、总线标准（重要）</h2><h3 id="什么是总线标准？"><a href="#什么是总线标准？" class="headerlink" title="什么是总线标准？"></a>什么是总线标准？</h3><blockquote><p>总线标准，可视为系统与各模块、模块与模块之间的一个互连的<strong>标准界面</strong>。</p><p>这个界面对它两端的模块都是透明的，即界面的任一方只需根据总线标准的要求完成自身一方接口的功能要求，而无须了解对方接口与总线的连接要求。</p></blockquote><h3 id="为什么要设置总线标准？"><a href="#为什么要设置总线标准？" class="headerlink" title="为什么要设置总线标准？"></a>为什么要设置总线标准？</h3><blockquote><p>采用总线标准可以为计算机接口的软硬件设计<strong>提供方便</strong>。</p><p>对硬件设计而言，使各个模块的<strong>接口芯片设计</strong>相对<strong>独立</strong>；</p><p>对软件设计而言，更有利于<strong>接口软件</strong>的<strong>模块化</strong>设计。</p></blockquote><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225205744813.png" alt="image-20220225205744813" style="zoom:67%;" /></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225205811812.png" alt="image-20220225205811812" style="zoom:67%;" /></p><p><strong>注：串行不一定比并行慢</strong></p><p>需要了解名称及特点（信号管脚、哪些管脚定义、有效电平）</p><h3 id="1-ISA总线"><a href="#1-ISA总线" class="headerlink" title="1.ISA总线"></a>1.ISA总线</h3><blockquote><p>Industrial Standard Architecture</p><p>用于早期计算机</p></blockquote><ul><li>IBM为了采用全16位CPU而推出，又称<strong>AT总线</strong></li><li>使用<strong>独立于CPU的总线时钟</strong>，因此<strong>CPU可以采用比总线频率更高的时钟</strong>，有利于CPU性能提升</li><li><u>时钟频率<strong>8MHz</strong>，最大传输率<strong>16MBps</strong>，数据线为<strong>16位</strong>，地址线为<strong>24位</strong>。</u></li></ul><h3 id="2-EISA总线"><a href="#2-EISA总线" class="headerlink" title="2.EISA总线"></a>2.EISA总线</h3><blockquote><p>Extended Industrial Standard Architecture</p></blockquote><ul><li>在ISA基础上扩充开放的总线标准，<strong>与ISA可以完全兼容</strong></li><li>从CPU中<strong>分离出了总线控制权</strong>，是一种具有智能化的总线</li><li><p>能支持<strong>多个总线主控器</strong>和<strong>突发方式</strong>（总线上可以进行<strong>成块</strong>的数据传送）的传输</p></li><li><p><u>时钟频率<strong>8MHz</strong>，最大传输率<strong>33MBps</strong>，数据总线为<strong>32位</strong>，地址总线为<strong>32位</strong>，扩充DMA访问范围达$2^{32}$</u></p></li></ul><h3 id="3-VESA-VL-BUS-总线"><a href="#3-VESA-VL-BUS-总线" class="headerlink" title="3.VESA(VL-BUS)总线"></a>3.VESA(VL-BUS)总线</h3><blockquote><p>Video Electronic Standard Association 视频电子标准协会</p></blockquote><ul><li><p><strong>局部总线</strong>标准，又称VL-BUS(Local BUS)总线</p><p>局部总线：在<strong>系统外</strong>为<strong>两个以上的模块</strong>提供<strong>高速信息传输通道</strong></p></li><li><p>VL-BUS由CPU总线演化而来</p></li><li><p>通过<strong>局部控制器</strong>，<strong>将高速I/O设备直接挂在CPU上</strong>，实现CPU与高速I/O设备之间的高速数据交换</p></li><li><p><u>CPU时钟频率为<strong>33MHz</strong>，最大传输率<strong>133MBps</strong>，数据线为<strong>32位</strong>，可通过扩展槽<strong>扩展到64位</strong>，配有<strong>局部控制器</strong></u></p></li></ul><h3 id="4-PCI总线"><a href="#4-PCI总线" class="headerlink" title="4.PCI总线"></a>4.PCI总线</h3><blockquote><p>Peripheral Component Interconnect  外围部件互连</p><p>1991, Intel</p><p>图形用户接口和多媒体技术在PC系统中广泛应用，ISA总线和EISA总线由于受带宽的限制，已不能适应系统工作的要求，成为整个系统的主要瓶颈。因此对总线提出更高的性能要求</p><p>现代计算机普遍采用的标准</p></blockquote><p>参考资料：<a href="https://blog.csdn.net/fzhykx/article/details/79718744">PCI总线协议（一）</a></p><p>1、<strong>高性能</strong></p><ul><li>PCI总线是<strong>不依附于某个具体处理器</strong>的<strong>局部总线</strong></li><li>为系统提供高速的数据传输通道，<strong>与CPU时钟频率无关</strong>，<u>自身采用<strong>33MHz</strong>和<strong>66MHz</strong>频率的<strong>总线时钟</strong></u></li><li><u>数据线为<strong>32位</strong>，<strong>可扩展到64位</strong></u></li><li><u>传输速率从<strong>132MBps</strong>（33MHz时钟，32位数据通路）可升级到<strong>528MBps</strong>（66MHz，64位数据通路）</u></li><li>支持<strong>突发工作方式</strong>——若被传送的数据在主存中<strong>连续存放</strong>，则只需给出第一个数据的地址，不需要给出所有数据的地址信息（给第一个地址占一个时钟周期，其后每一个数据传送占一个时钟周期，提升传输速率）</li></ul><p>2、<strong>良好的兼容性</strong></p><ul><li><strong>PCI总线部件和接口插件相对于处理器独立</strong>，支持所有目前和将来不同结构的处理器，<strong>具有相当长的生命周期</strong></li><li>PCI总线与ISA和EISA总线均可<strong>兼容</strong>，可以<strong>转换</strong>为标准的ISA、EISA</li></ul><p>3、<strong>支持 即插即用(Plug and Play)</strong></p><ul><li>扩展卡只要<strong>插入系统便可工作</strong></li><li>PCI设备中配有<strong>存放设备具体信息</strong>的<strong>寄存器</strong>，这些信息可供<strong>BIOS（基本输入输出系统）和操作系统层的软件自动配置PCI总线部件和插件</strong>，使系统使用方便，无需手动配置</li></ul><p>4、<strong>支持 多主设备 能力</strong></p><ul><li>允许任何主设备和从设备之间实现<strong>点到点对等存取</strong>，体现了接纳设备的高度灵活性</li><li>主设备：一次总线传输期间，对总线有控制权的设备</li><li>从设备：一次总线传输期间，对总线没有控制权的设备</li></ul><p>5、<strong>具有与 处理器和存储器子系统 完全并行操作 的能力</strong></p><ul><li>PCI总线可视为CPU与外设之间的一个<strong>中间层</strong>，通过PCI桥路（PCI控制器）与CPU相连</li><li>PCI桥路有<strong>多级缓存</strong>，可把<strong>一批数据快速写入缓冲器中</strong>，在数据写入PCI设备过程中，可真正实现处理器/存储器子系统的安全并发工作。</li></ul><p>6、<strong>提供数据和地址 奇偶校验功能，保证数据的完整和准确</strong></p><p>7、<strong>支持两种电压标准：5V和3.3V</strong></p><ul><li>3.3~5V的组件技术可以使电压平滑过渡</li><li>3.3V电压的PCI总线技术可用于便携式微型计算机中</li></ul><p>8、<strong>可扩充性好</strong></p><ul><li>当PCI总线驱动能力不足时，可以采用多层结构</li></ul><p>9、<strong>软件兼容性好</strong></p><ul><li>PCI部件可以完全兼容现有的驱动程序和应用程序</li><li>设备驱动程序可被移植到各类平台上</li></ul><p>10、<strong>采用 多路复用技术，减少了总线引脚个数</strong></p><h3 id="5-AGP总线"><a href="#5-AGP总线" class="headerlink" title="5.AGP总线"></a>5.AGP总线</h3><blockquote><p>Accelerated Graphics Port 加速图形端口</p><p>用于处理三维数据，需有更宽广的数据传输带宽，PCI总线成为传输瓶颈</p></blockquote><ul><li><p>基于PCI 2.1，采用点对点通道方式</p></li><li><p>以<strong>66.7MHz</strong>的频率直接与主存联系，以主存作为帧缓冲器，实现了高速存取。</p></li><li><p>最大传输率<strong>266MBps</strong>，数据宽度位<strong>32位</strong>——传统PCI总线带宽的2倍</p></li><li><p>“双激励”(Double Pumping)传输技术：在一个时钟的上、下沿双向传递数据</p><p>传输频率为<strong>66.7MHz×2，即133MHz</strong>，最大传输率<strong>533MBps</strong></p><p>后来版本数据传输速率可达2.1GBps</p></li></ul><h3 id="6-RS-232C总线"><a href="#6-RS-232C总线" class="headerlink" title="6.RS-232C总线"></a>6.RS-232C总线</h3><blockquote><p>RS: Recommended Standard，232标识号，C 修改次数</p><p>RS-232：仪器仪表（飞机、键盘）系统标准（220V等，温度、湿度、压力），可接距离远</p></blockquote><ul><li><p>一种<strong>串行通信总线标准</strong></p></li><li><p>应用于串行二进制交换的<strong>数据终端设备（DTE, Data Terminal Equipment）</strong>（计算机）和<strong>数据通信设备（DCE, Data Communication Equipment）</strong>（调制解调器）之间的标准接口</p></li><li><p>规定的<strong>逻辑电平</strong>与计算机系统中TTL和MOS电平不同</p><p><strong>低电平表示逻辑“1”，并要求低电平为-15~-3V</strong></p><p><strong>高电平表示逻辑“0”，并要求高电平为+3~+15V</strong></p></li></ul><blockquote><p>随着计算机网络发展，现代计算机之间的远距离通信可直接由网卡经网线（8根，双绞线）传输</p></blockquote><h3 id="7-USB总线"><a href="#7-USB总线" class="headerlink" title="7.USB总线"></a>7.USB总线</h3><blockquote><p>Universal Serial Bus 通用串行总线</p><p>1994 七大公司联合开发计算机串行接口总线标准</p><p>1996.1 USB 1.0 通用连接技术</p></blockquote><p><strong>具有真正的即插即用特征</strong></p><ul><li>不关机情况下对外设实行安装和拆卸</li></ul><p><strong>具有很强的连接能力</strong></p><ul><li>使用USB HUB（USB集线器）实现系统扩展，最多可链式连接127个外设到同一系统</li></ul><p><strong>数据传输率</strong>（USB1.0版）</p><ul><li><strong>普通无屏蔽双绞线：1.5Mbps</strong></li><li><strong>带屏蔽双绞线：12Mbps</strong></li><li>USB 2.0版：<strong>480Mbps</strong></li></ul><p><strong>标准统一</strong></p><ul><li>减轻了对目前PC中所有标准接口的需求</li></ul><p><strong>连接电缆轻巧，电源体积缩小</strong></p><ul><li>USB使用4芯电缆。2条用于信号连接，2条用于电源/地（为外设提供+5V直流电源）</li></ul><p><strong>生命力强</strong></p><ul><li>开放性、不具有专利版权的工业标准</li><li>USB规范具有强大生命力</li></ul><h1 id="3-4-总线结构（了解即可）"><a href="#3-4-总线结构（了解即可）" class="headerlink" title="3.4 总线结构（了解即可）"></a>3.4 总线结构（了解即可）</h1><p>（了解即可）</p><p>通常可分为单总线结构和多总线结构</p><h2 id="一、单总线结构"><a href="#一、单总线结构" class="headerlink" title="一、单总线结构"></a>一、单总线结构</h2><p>特点：</p><ul><li><p>效率低</p></li><li><p>结构简单</p></li></ul><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212054042.png" alt="image-20220225212054042" style="zoom:67%;" /></p><h2 id="二、多总线结构"><a href="#二、多总线结构" class="headerlink" title="二、多总线结构"></a>二、多总线结构</h2><ol><li><p><strong>双总线结构</strong></p><p>通道控制器</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212127403.png" alt="image-20220225212127403" style="zoom:67%;" /></p></li><li><p><strong>三总线结构</strong></p><ul><li><p>I/O总线（慢）</p></li><li><p>主存总线</p></li><li><p>DMA总线（存储器直接存取）：直接管理主存和外设之间的信息交换</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212154222.png" alt="image-20220225212154222" style="zoom:67%;" /></p></li></ul></li><li><p><strong>三总线结构的又一形式</strong></p><ul><li><p>局部总线：提升CPU和主存速度不匹配</p></li><li><p>系统总线</p></li><li><p>扩展总线</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212215082.png" alt="image-20220225212215082" style="zoom:67%;" /></p></li></ul></li><li><p><strong>四总线结构</strong></p><ul><li><p>局部总线</p></li><li><p>系统总线</p></li><li><p>高速总线</p></li><li><p>扩展总线：将慢速设备划分并管理起来</p></li></ul><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212240661.png" alt="image-20220225212240661" style="zoom:67%;" /></p></li></ol><h2 id="三、总线结构距离"><a href="#三、总线结构距离" class="headerlink" title="三、总线结构距离"></a>三、总线结构距离</h2><ol><li><strong>传统微型机总线结构</strong></li></ol><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212312246.png" alt="image-20220225212312246" style="zoom:67%;" /></p><ol><li><strong>VL-BUS局部总线结构</strong></li></ol><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212329275.png" alt="image-20220225212329275" style="zoom:67%;" /></p><ol><li><p><strong>PCI 总线结构</strong></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212351878.png" alt="image-20220225212351878" style="zoom:67%;" /></p></li><li><p><strong>多层 PCI 总线结构</strong></p><p>桥联，连接多级总线</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212418731.png" alt="image-20220225212418731" style="zoom:67%;" /></p></li></ol><h1 id="3-5-总线控制（重点内容）"><a href="#3-5-总线控制（重点内容）" class="headerlink" title="3.5 总线控制（重点内容）"></a>3.5 总线控制（重点内容）</h1><p>（重点内容）</p><blockquote><p>总线控制器统一管理总线上连接着的多个部件：</p><p>什么时候由哪个部件发送信息、如何给信息传送定时、如何放置信息丢失、如何避免多个部件同时发送、如何规定接收信息的部件</p></blockquote><p>总线控制主要包括</p><ul><li><p><strong>判优控制（仲裁逻辑）</strong>：多个设备可能同时发出占用总线的请求，但总线在同一时刻只能有一个设备占用</p></li><li><p><strong>通信控制</strong>：如何完成通讯过程，保证通讯过程的正确性</p></li></ul><h2 id="一、总线判优控制（要掌握的内容）"><a href="#一、总线判优控制（要掌握的内容）" class="headerlink" title="一、总线判优控制（要掌握的内容）"></a>一、总线判优控制（要掌握的内容）</h2><h3 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1.基本概念"></a>1.基本概念</h3><ul><li><p>主设备（模块）：对总线有<strong>控制权</strong>——送信息：传输出去、准确；读信息：把从设备提供的信息取到主设备</p><p>CPU、DMA</p><p>I/O设备发出控制信号</p><blockquote><p>总线（主模块）——周期（时间段）决定传输的快和慢</p><p>①控制线决定命令性质（由控制信号指出）：$\begin{cases} I \\ O \end{cases}$</p><p>②地址线寻址——找到从模块</p><p>③数据线——内容</p><p>​            $\Downarrow$</p><p>总线规则：从设备“唯一”寻址</p><p>被选中的模块打开三态门（总线驱动器），接通</p><p>其他未选中的三态门关上</p><p>使用三态门还可以起到隔离的作用（对于故障的设备——系统可检测出溢出）</p></blockquote></li></ul><ul><li><p>从设备（模块）：<strong>响应</strong>主设备发来的总线命令</p><p>存储器、I/O接口地址</p></li><li><p>总线判优控制$\begin{cases} 集中式 \begin{cases} 链式查询 \\ 计数器定时查询 \\ 独立请求方式 \\  \end{cases} \\ 分布式 \\ \end{cases}$​</p><p>集中式（有总线控制器/部件）：一个核内的协调</p><p>分布式：独立的计算机/服务器阵列</p></li></ul><h3 id="2-链式查询方式"><a href="#2-链式查询方式" class="headerlink" title="2.链式查询方式"></a>2.链式查询方式</h3><p>链式查询方式：用于微型计算机、简单的嵌入式系统</p><blockquote><p>CPU/DMA挂在I/O接口上，作为控制器。带“圈”，低电平有效</p><p>请求：高电平有效；回答：低电平有效</p><p>总线控制部件分配</p><p>触发器：BS占用置1，未使用置0</p><p>BG信号未到达的设备处于等待状态</p></blockquote><p>判优方式：<strong>离总线控制器越近的部件，其优先级越高</strong></p><p>优点：①结构简单，只需要3根控制线；②增删设备容易；③可靠性设计容易实现</p><p>缺点：①对电路故障特别敏感（BS、BR、BG都很关键，一条出故障导致电路故障）；②当优先级高的部件频繁请求使用总线时，会使优先级较低的部件长期不能使用总线（<strong>优先级不够灵活</strong>）；③速度慢</p><blockquote><p>控制总线中有3根线用于总线控制（BS总线忙、BR总线请求、BG总线同意）</p><p>总线同意信号BG串行地从一个I/O接口送到下一个I/O接口。如果BG到达的接口<strong>有总线请求</strong>，<strong>BG信号就不再往下传</strong>，意味该接口获得总线使用权，并<strong>建立总线忙BS信号</strong>，表示它占用了总线</p><p>进入总线传输周期</p><p>使用结束</p><p>触发器让BS强行置0，总线释放</p><p>BG已经过的设备不能分得总线控制权，只能等待下一轮循环</p></blockquote><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220112112254188.png" alt="image-20220112112254188" style="zoom: 67%;" /></p><h3 id="3-计数器定时查询方式"><a href="#3-计数器定时查询方式" class="headerlink" title="3.计数器定时查询方式"></a>3.计数器定时查询方式</h3><p>判优方式：总线控制部件中有计数器</p><p>$n$​台设备需要$log_2n$​​（向上取整）根控制总线</p><p><strong>特点</strong></p><ul><li>对电路故障不如链式查询方式敏感（但BS、BR的问题仍存在）</li><li>增加了控制线（设备地址）数，控制也较复杂</li></ul><blockquote><p>多了一组设备地址线，少了一根总线同意线BG。</p><p>总线控制部件接到由BR送来的总线请求信号后，在总线未被使用（$BS = 0$）的情况下，总线控制部件中的计数器开始计数，并通过设备地址线，向各设备发送一组地址信号。</p><p>当某个请求占用总线的设备地址与计数值一致时（接收BS应答信号），便获得总线使用权，此时中止计数查询。</p><p>结束使用</p><p>BS总线忙置零，计数器继续计数，在该轮循环中找之后的申请的设备。</p><p>例如，当1使用完，0若申请则只能等下一轮循环才可以使用</p></blockquote><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220112112948908.png" alt="image-20220112112948908" style="zoom: 67%;" /></p><h3 id="4-独立请求方式"><a href="#4-独立请求方式" class="headerlink" title="4.独立请求方式"></a>4.独立请求方式</h3><p>任何一个I/O接口都添加了两条线</p><p>$n$​台设备需要$2n$​根控制线</p><p>总线控制器可以给CPU</p><p>各个设备的优先级相同</p><p><strong>特点</strong></p><ul><li>响应速度快，优先次序控制灵活（通过程序改变）</li><li>控制线数量多，总线控制更复杂</li><li>不存在线路敏感的问题（对比前两种）</li></ul><blockquote><p>每台设备均有一对总线请求线$BR_i$​和总线同意线$BG_i$​</p><p>总线控制部件中有排队器，可以根据优先次序确认响应哪一台设备的请求</p><p>总线控制权一般不允许嵌套（ch5，中断方式允许嵌套），不会出现打断</p><p>排队器——硬件（ch5，ch8）</p></blockquote><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220112113806812.png" style="zoom: 67%;" /></p><h2 id="二、总线通信控制"><a href="#二、总线通信控制" class="headerlink" title="二、总线通信控制"></a>二、总线通信控制</h2><ul><li><p>目的：解决通信双方<strong>协调配合</strong>问题</p></li><li><p>总线传输周期</p><ul><li><strong>申请分配阶段</strong>：<strong>主模块申请</strong>，总线仲裁决定</li><li><strong>寻址阶段</strong>：主模块向从模块<strong>给出地址</strong>和<strong>命令</strong></li><li><strong>传输阶段</strong>：主模块和从模块经数据总线<strong>交换数据</strong></li><li><strong>结束阶段</strong>：主模块从系统总线<strong>撤销有关信息</strong>，让出总线使用权</li></ul><p>对于CPU，只有两个阶段，传输周期减少，速度变快</p></li><li><p>总线通信的四种方式</p><ul><li><p>同步通信：由<strong>统一时标</strong>控制数据传送</p><blockquote><p>对于CPU，是主频——与内存进行通信</p></blockquote></li><li><p>异步通信：采用<strong>应答方式</strong>，没有公共时钟标准</p><blockquote><p>握手的方式，高速和低速</p></blockquote></li><li><p>半同步通信：<strong>同步、异步结合</strong></p><blockquote><p>有的时候可以采用同一频率工作，有时不能——如，乘法运算（允许增加节拍的整数倍）</p></blockquote></li><li><p>分离式通信：充分<strong>挖掘</strong>系统<strong>总线每个瞬间</strong>的潜力，发挥最大效能</p></li></ul></li></ul><h3 id="1-目的"><a href="#1-目的" class="headerlink" title="1.目的"></a>1.目的</h3><p>解决通信双方<strong>协调配合</strong>问题</p><h3 id="2-总线传输周期"><a href="#2-总线传输周期" class="headerlink" title="2.总线传输周期"></a>2.总线传输周期</h3><script type="math/tex; mode=display">\begin{cases}申请分配阶段——主模块申请，总线仲裁决定 \\寻址阶段——主模块向从模块给出地址和命令 \\传数阶段——主模块和从模块交换数据 \\结束阶段——主模块撤销有关信息 \\\end{cases}</script><ul><li>申请分配阶段：<strong>主模块申请</strong>，总线仲裁决定</li><li>寻址阶段：主模块向从模块<strong>给出地址</strong>和<strong>命令</strong></li><li>传数阶段：主模块和从模块经数据总线<strong>交换数据</strong></li><li>结束阶段：主模块从系统总线<strong>撤销有关信息</strong>，让出总线使用权</li></ul><p>对于CPU，只有两个阶段，传输周期减少，速度变快</p><h3 id="3-总线通信的四种方式"><a href="#3-总线通信的四种方式" class="headerlink" title="3.总线通信的四种方式"></a>3.总线通信的四种方式</h3><script type="math/tex; mode=display">\begin{cases}同步通信——由统一时标控制数据传送 \\异步通信——采用应答方式，没有公共时钟标准 \\半同步通信——同步、异步结合 \\分离式通信——充分发掘系统总线每个瞬间的潜力 \\\end{cases}</script><h4 id="（1）同步式数据输入"><a href="#（1）同步式数据输入" class="headerlink" title="（1）同步式数据输入"></a>（1）同步式数据输入</h4><p>定宽、定距的时钟控制整个过程。</p><p>固定的时间点给出固定的操作。</p><blockquote><p>$T_1$​​​的上升沿，主设备CPU<strong>给出地址信号</strong>；——如，指令“MOV ACC, (20H)”中的十六进制数(20H)，相应的地址信号变化，调整到对应的地址码上（依照指令）。</p><p>$T_2$​​​上升沿​，CPU<strong>给出读命令信号</strong>；——此时数据总线上可以有数，但不是指定的正确的数，因为还没传数，不是正确地址驱动。</p><p>与地址信号相符合的<strong>输入设备进行一系列内部操作</strong>，且必须<strong>在$T_3$​上升沿到来之前</strong>将CPU所需的<strong>数据送到数据总线</strong>上；——相应地址驱动一直保持（送数据并锁定）</p><p>地址不变，读命令一直有效，数据稳定</p><p>$T_3$​​上升沿，从设备给出数据信号，通过数据总线；——采样点，被采样的数据应稳定保持一段时间。</p><p>CPU在$T_3$​时钟期间内<strong>将数据总线上的信息送到其内部寄存器</strong>中；</p><p>$T_4$​上升沿，<strong>CPU撤销读命令</strong>。数据信号和控制信号撤销，结束后地址信号撤销。</p></blockquote><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220228131731765.png" alt="image-20220228131731765" style="zoom:67%;" /></p><blockquote><p>图中：斜坡表示电平发生变化（0$\leftrightarrow$​1）</p><p>$T_4$上升沿的数据应保持一段时间</p><p>$T_1$：主模块发地址</p><p>$T_2$：主模块发读命令</p><p>$T_3$：从模块提供数据</p><p>$T_4$​：主模块撤销读命令，从模块撤销数据</p><p>后面是下一个总线传输周期</p></blockquote><h4 id="（2）同步式数据输出"><a href="#（2）同步式数据输出" class="headerlink" title="（2）同步式数据输出"></a>（2）同步式数据输出</h4><blockquote><p>例如，”MOV (22H) A5H”，$\overline{MEMW}$</p><p>命令慢，等地址和数据</p><p>$T_1$上升沿：地址信号调整，保持稳定、有效</p><p>$T_{1.5}$：数据信号调整到对应位置</p><p>$T_2$：写命令，写，等待命令翻转，控制器控制采样。命令信号应前移，采样时应保持控制命令、地址、数据信号稳定</p><p>$T_4$​​：三态门关闭，<strong>地址先撤掉</strong></p></blockquote><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220228131812640.png" alt="image-20220228131812640" style="zoom:67%;" /></p><blockquote><p>$T_1$​：主模块发地址</p><p>$T_{1.5}$：主模块提供数据</p><p>$T_2$​：主模块发写命令，从模块接到写命令后，必须在规定时间内将数据总线上的数据写到地址总线所指明的单元中</p><p>$T_4$：主模块撤销读命令，从模块撤销数据</p></blockquote><h4 id="（3）异步通信"><a href="#（3）异步通信" class="headerlink" title="（3）异步通信"></a>（3）异步通信</h4><p>采用<strong>应答方式</strong>，即：当主模块发出请求信号时，一直等待从模块反馈回来会打信号后才开始通信。</p><p>异步通信的应答方式分为：<strong>不互锁</strong>、<strong>半互锁</strong>和<strong>全互锁</strong></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220228131835118.png" alt="image-20220228131835118" style="zoom:67%;" /></p><p>①<strong>不互锁</strong></p><blockquote><p><strong>主模块</strong>发出请求信号后，<strong>不必等待接到从模块的回答信号</strong>。经过一段时间，确认从模块已收到请求信号后，撤销其请求信号。</p></blockquote><p>“主设备不负责任”</p><p>优点：简单</p><p>缺点：从设备可能会接收不到请求信号</p><p>②<strong>半互锁</strong></p><blockquote><p><strong>主模块</strong>发出请求信号，<strong>必须待接到从模块的回答信号后再撤销其请求信号</strong>，有互锁关系；</p><p><strong>从模块</strong>在接到请求信号后发出回答信号，<strong>不必等待获知主模块的请求信号已经撤销</strong>。隔一段时间后自动撤销其回答信号，无互锁关系。</p></blockquote><p>“握手少”</p><p>从设备接收请求信号后，不管主设备</p><p>③<strong>全互锁</strong></p><p>双方存在互锁关系</p><blockquote><p><strong>主模块</strong>发出请求信号，<strong>必须待从模块回答后再撤销其请求信号</strong>；</p><p><strong>从模块</strong>发出回答信号，<strong>必须待获知主模块请求信号已经撤销后</strong>，再撤销其回答信号。</p></blockquote><p>优点：可靠</p><h4 id="（4）半同步通信（同步、异步结合）"><a href="#（4）半同步通信（同步、异步结合）" class="headerlink" title="（4）半同步通信（同步、异步结合）"></a>（4）半同步通信（同步、异步结合）</h4><p>（快的主设备等待慢的从设备，直到$\overline{WAIT}$变成高电平）</p><ul><li><p>同步</p><p><strong>发送方</strong>用系统<strong>时钟前沿</strong>发信号</p><p><strong>接收方</strong>用系统<strong>时钟后沿</strong>判断、识别</p></li><li><p>异步</p><p>允许不同速度的模块和谐工作</p><p>增加一条<strong>“等待”响应信号</strong> $\overline{WAIT}$​（低电平有效，节拍的整数倍）​​</p></li></ul><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220228132337109.png" alt="image-20220228132337109" style="zoom:67%;" /></p><blockquote><p>以输入数据为例的半同步通信时序：</p><p>$T_1$ 主模块发地址</p><p>$T_2$​ 主模块发命令</p><p>$T_W$​ 当$\overline{WAIT}$​为低电平时，等待一个$T$</p><p>$T_W$​ 当$\overline{WAIT}$​为低电平时，等待一个$T$</p><p>…</p><p>$T_3$ 从模块提供数据</p><p>$T_4$ 从模块撤销数据，主模块撤销命令</p></blockquote><ul><li><p>文字描述</p><ul><li>第一个阶段时钟信号开始：CPU给出地址信号，通过地址总线。</li></ul></li></ul><ul><li>第二个阶段：读操作，CPU给出读信号。第三个时钟周期开始前，如果从设备不能准备好，需通过$\overline{WAIT}$信号给出低电平，告诉CPU进行等待。CPU检测，若为低电平，则在第三周期到来前，插入时钟周期$T_w$。在下一个时钟周期到来前，主设备依然要检测$\overline{WAIT}$信号是否为低电平。如果$\overline{WAIT}$信号为高电平，则进入第三个阶段。</li></ul><ul><li>第三个阶段：数据准备好进行传输，数据已放在数据总线上，CPU接收数据。</li></ul><ul><li>第四个阶段：读命令信号和数据信号从总线上撤销。第四个时钟周期结束，地址总线上的地址信号也撤销。</li></ul><h4 id="上述三种通信的共同点"><a href="#上述三种通信的共同点" class="headerlink" title="上述三种通信的共同点"></a>上述三种通信的共同点</h4><p>一个总线传输周期（以输入数据为例）</p><ul><li>主模块通过传输总线向从模块发地址、命令：<strong>占用地址、控制总线</strong></li><li>从模块按照命令准备数据：<strong>不占用总线</strong>，总线空闲</li><li>从模块经数据总线向主模块发数据：<strong>占用数据总线</strong></li></ul><p>下一步：把总线空闲的时间利用起来——<u>从模块内部读数据过程并无实质性的信息传输</u>，总线纯属空闲等待。</p><h4 id="（5）分离式通信"><a href="#（5）分离式通信" class="headerlink" title="（5）分离式通信"></a>（5）分离式通信</h4><p><strong>充分挖掘系统总线每个瞬间的潜力</strong>——总线不闲下来</p><p>各模块占用总线使用权都必须提出申请。在准备数据的过程中不占用总线。</p><p>一个总线传输周期：$\begin{cases} 子周期1：主模块申请占用总线，使用完后即放弃总线的使用权 \\ 子周期2：从模块申请占用总线，将各种信息送至总线上  \end{cases}$​</p><p>（主模块可以变成从模块）</p><p><strong>分离式通信特点</strong></p><ul><li>各模块有权申请占用总线</li><li>采用同步方式通信，不等对方回答</li><li>各模块准备数据时，不占用总线</li><li>总线被占用时，无空闲（充分利用总线的带宽）</li></ul><p><strong>充分提高了总线的有效占用</strong></p><p>总线传输时间：总线完成一次完整而可靠传输所需时间</p><p>总线的通信控制：总线传送过程中双方的时间配合方式</p><h1 id="补充题"><a href="#补充题" class="headerlink" title="补充题"></a>补充题</h1><p>3.17 查资料完成：</p><p>①写出EISA（ISA）总线的标准信号定义</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220228190819228.png" alt="image-20220228190819228" style="zoom:67%;" /></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220228190847957.png" alt="image-20220228190847957" style="zoom:67%;" /></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220228190913283.png" alt="image-20220228190913283" style="zoom:67%;" /></p><p>②画出插座的俯视图</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/OIP-C.9x-HCafwPKCdoxJrUF4coQHaFj" alt="See the source image"  /></p><p>③写出$A_1,D_1$的编号</p><h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><ul><li><p>例3.1</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302195533905.png" alt="image-20220302195533905" style="zoom:67%;" /></p></li></ul><blockquote><p>在实际情况中，</p><ul><li><p>增加数据线的宽度会使整个CPU的设计产生变化。存储器从32$\to$64</p></li><li><p>增加总线的时钟频率要求更高的性能，否则会导致计算机不稳定（步调跟不上）</p></li></ul></blockquote><ul><li><p>例3.2</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302195829192.png" alt="image-20220302195829192" style="zoom:67%;" /></p></li></ul><blockquote><p><strong>异步串行通信的数据传送速率</strong>用<strong>波特率</strong>衡量。</p><p>波特率：单位时间内传送二进制数据的位数，单位：bps（位/秒）</p></blockquote><ul><li><p>例3.3</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302200713658.png" alt="image-20220302200713658" style="zoom:67%;" /></p></li><li><p>例3.4</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302200648866.png" alt="image-20220302200648866" style="zoom:67%;" /></p><blockquote><p>比特率：单位时间内通过信道传输的信息量称为比特传输速率，单位是比特/秒（bit/s）</p></blockquote></li></ul><p>【参考资料】：</p><p><a href="https://zhuanlan.zhihu.com/p/355061904">波特率和比特率</a></p><p><a href="https://blog.csdn.net/wordwarwordwar/article/details/78081156">波特率与比特率的关系</a></p><p><a href="https://blog.csdn.net/ymdq1113/article/details/69677116">波特率与比特率</a></p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> computer organization </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>计算机组成原理：第1章 计算机系统概论</title>
-      <link href="/computer_organization/computer-organization-ch1/"/>
-      <url>/computer_organization/computer-organization-ch1/</url>
-      
-        <content type="html"><![CDATA[<h1 id="1-1-计算机系统简介"><a href="#1-1-计算机系统简介" class="headerlink" title="1.1 计算机系统简介"></a>1.1 计算机系统简介</h1><h2 id="一、计算机的软硬件概念"><a href="#一、计算机的软硬件概念" class="headerlink" title="一、计算机的软硬件概念"></a>一、计算机的软硬件概念</h2><h3 id="1-计算机系统"><a href="#1-计算机系统" class="headerlink" title="1.计算机系统"></a>1.计算机系统</h3><script type="math/tex; mode=display">计算机系统\begin{cases}\color{red}{硬件} \quad \color{black}{计算机的实体（主机、外设等）}\\\color{red}{软件} \quad \color{black}{由具有各类特殊功能的信息（程序）组成}\\\end{cases}</script><script type="math/tex; mode=display">软件\begin{cases}\color{red}{系统软件} \quad \color{black}{用来管理整个计算机系统}\\\qquad \qquad \qquad 语言处理程序\\\qquad \qquad \qquad 操作系统\\\qquad \qquad \qquad 服务性程序\\\qquad \qquad \qquad 数据库管理系统\\\qquad \qquad \qquad 网络软件\\\color{red}{应用软件} \quad \color{black}{按任务需要编制成的各种程序}\\\end{cases}</script><span id="more"></span><h3 id="2-计算机的解题过程"><a href="#2-计算机的解题过程" class="headerlink" title="2.计算机的解题过程"></a>2.计算机的解题过程</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202042609.png" alt="image-20220221202042609" style="zoom: 67%;" /></p><h2 id="二、计算机系统的层次结构"><a href="#二、计算机系统的层次结构" class="headerlink" title="二、计算机系统的层次结构"></a>二、计算机系统的层次结构</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202241077.png" alt="image-20220221202241077" style="zoom:67%;" /></p><p>实际机器$M_1$和微程序机器$M_0$构成硬件。</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202406326.png" alt="image-20220221202406326" style="zoom:67%;" /></p><h2 id="三、计算机体系结构和计算机组成"><a href="#三、计算机体系结构和计算机组成" class="headerlink" title="三、计算机体系结构和计算机组成"></a>三、计算机体系结构和计算机组成</h2><p>相关资料：<a href="https://blog.csdn.net/xifengw/article/details/99717216">微机原理、计算机组成原理与计算机体系结构之间的关系</a></p><ul><li><p>体系结构关注：计算机有哪些功能？</p></li><li><p>组成原理关注：计算机的功能如何实现？</p></li></ul><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202446815.png" alt="image-20220221202446815" style="zoom:67%;" /></p><h1 id="1-2-计算机系统组成"><a href="#1-2-计算机系统组成" class="headerlink" title="1.2 计算机系统组成"></a>1.2 计算机系统组成</h1><h2 id="一、冯·诺依曼计算机的特点"><a href="#一、冯·诺依曼计算机的特点" class="headerlink" title="一、冯·诺依曼计算机的特点"></a>一、冯·诺依曼计算机的特点</h2><ol><li>计算机由五大部件组成：<strong>存储器、运算器、控制器、输入设备、输出设备</strong></li><li>指令和数据以同等地位存于<code>存储器</code>，可按地址寻访</li><li>指令和数据用二进制表示</li><li>指令由<code>操作码</code>和<code>地址码</code>组成——具体内容详见ch7</li><li>存储程序：指令在存储器内按顺序存放。指令通常<strong>按顺序执行</strong>，在特定条件下可根据运算结果或设定的条件改变执行顺序</li><li>以<code>运算器</code>为中心：I/O设备与存储器间的数据传送通过运算器完成</li></ol><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221203119436.png" alt="image-20220221203119436" style="zoom:67%;" /></p><p>注：</p><ol><li>运算器：<strong>算术运算和逻辑运算</strong>。将中间结果暂存在运算器内</li><li>存储器：存放数据和程序</li><li>控制器：控制、<strong>指挥</strong>程序和数据的输入、运行以及处理运算结果</li><li>输入设备（键鼠）：转化为机器能够识别的信息形式</li><li>输出设备（打印机输出、显示器输出）：将运算结果转化为人们熟悉的信息形式</li></ol><h2 id="二、计算机硬件框图"><a href="#二、计算机硬件框图" class="headerlink" title="二、计算机硬件框图"></a>二、计算机硬件框图</h2><h3 id="1-以存储器为中心的计算机硬件框图"><a href="#1-以存储器为中心的计算机硬件框图" class="headerlink" title="1.以存储器为中心的计算机硬件框图"></a>1.以存储器为中心的计算机硬件框图</h3><script type="math/tex; mode=display">\rightarrow \quad 控制线 \\\dashrightarrow \quad 反馈线 \\\Rightarrow \quad 数据线 \\</script><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221203951631.png" alt="image-20220221203951631" style="zoom:67%;" /></p><h3 id="2-现代计算机硬件框图"><a href="#2-现代计算机硬件框图" class="headerlink" title="2.现代计算机硬件框图"></a>2.现代计算机硬件框图</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221204027723.png" alt="image-20220221204027723" style="zoom:67%;" /></p><ul><li>CPU（中央处理器）：Central Processing Unit。计算机核心部件，由<strong>运算器</strong>和<strong>控制器</strong>组成</li><li>ALU（算逻部件/算术逻辑单元）：Arithmetic &amp; Logical Unit。运算器核心部件，<strong>进行逻辑运算和算术运算</strong></li><li>CU（控制单元）：Control Unit。控制器核心部件，产生微操作命令序列。<strong>用来解释存储器中的指令，发出各种操作命令来执行指令</strong></li><li>I/O设备：Input/Output Equipment。</li></ul><h2 id="三、计算机的工作步骤"><a href="#三、计算机的工作步骤" class="headerlink" title="三、计算机的工作步骤"></a>三、计算机的工作步骤</h2><h3 id="1-上机前的准备"><a href="#1-上机前的准备" class="headerlink" title="1.上机前的准备"></a>1.上机前的准备</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205318632.png" alt="image-20220221205318632" style="zoom:67%;" /></p><h4 id="编程举例"><a href="#编程举例" class="headerlink" title="编程举例"></a>编程举例</h4><ul><li>运算：取被操作数、运算操作、暂存中间结果</li><li>存储器：存储运算结果</li></ul><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205352807.png" alt="image-20220221205352807" style="zoom:67%;" /></p><h4 id="指令格式举例"><a href="#指令格式举例" class="headerlink" title="指令格式举例"></a>指令格式举例</h4><p>详见ch7。寻址、特征位、不同格式</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205704580.png" alt="img" style="zoom:67%;" /></p><p>注：打印机的打印操作需要多条指令</p><p>参考资料：<a href="https://blog.csdn.net/weixin_34112181/article/details/89566814">打印机主流的指令类型（ESC命令集+CPCL命令集+TSPL命令集）</a></p><h4 id="计算-ax-2-bx-c-程序清单"><a href="#计算-ax-2-bx-c-程序清单" class="headerlink" title="计算$ax^2+bx+c$程序清单"></a>计算$ax^2+bx+c$程序清单</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210015842.png" alt="image-20220221210015842" style="zoom:67%;" /></p><h3 id="2-计算机的解题过程-1"><a href="#2-计算机的解题过程-1" class="headerlink" title="2.计算机的解题过程"></a>2.计算机的解题过程</h3><h4 id="（1）存储器的基本组成"><a href="#（1）存储器的基本组成" class="headerlink" title="（1）存储器的基本组成"></a>（1）存储器的基本组成</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210124089.png" alt="image-20220221210124089" style="zoom:67%;" /></p><ul><li>MAR（存储器地址寄存器）：Memory Address Register</li><li>MDR（主存数据寄存器）：Memory Data Register </li><li>数据总线、读写控制</li></ul><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210629442.png" alt="image-20220221210629442" style="zoom:67%;" /></p><script type="math/tex; mode=display">计算过程： \\由MAR = 4位，存储单元的个数 = 2^4 = 16 \\由MDR = 8位，存储字长 = 8 \\</script><h4 id="（2）运算器的基本组成及操作过程"><a href="#（2）运算器的基本组成及操作过程" class="headerlink" title="（2）运算器的基本组成及操作过程"></a>（2）运算器的基本组成及操作过程</h4><p>规定动作的处理</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210828885.png" alt="image-20220221210828885" style="zoom:67%;" /></p><ul><li><p>ACC（累加器）：Accumulator。一种<strong>寄存器</strong>，能<strong>存放运算前被操作数</strong>，也能<strong>储存计算产生的中间结果</strong>。</p><blockquote><p>如果没有像累加器这样的寄存器，那么在每次计算 (加法，乘法，移位等等) 后就必须要把结果写回到<a href="https://baike.baidu.com/item/内存">内存</a>，也许马上就得读回来。然而存取主存的速度是比从<a href="https://baike.baidu.com/item/算术逻辑单元">算术逻辑单元</a>(ALU)到有直接路径的累加器存取更慢。</p></blockquote></li><li><p>MQ（乘商寄存器）：Multiple-Quotient Register。负责数据的乘法与除法运算并可<strong>保存运算结果</strong>，是运算器的基本组成部分。<strong>也可保存运算结果的低位</strong></p></li></ul><p>注：上图缺少了F寄存器（状态/标志寄存器）</p><ul><li><p>FR（标志寄存器）：Flags Register</p><p>具有<strong>条件标志：进位、奇偶、辅助进位、零、符号、溢出标志</strong>，<strong>控制标记：跟踪、中断、方向标记</strong></p></li></ul><p>参考资料：</p><p><a href="https://zhuanlan.zhihu.com/p/256470714">标志寄存器</a></p><p><a href="https://baike.baidu.com/item/%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8/5757541#:~:text=%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%88%E7%A7%B0%20%E7%A8%8B%E5%BA%8F%E7%8A%B6%E6%80%81%E5%AD%97%20%EF%BC%88%E5%A4%96%E8%AF%AD%E7%BC%A9%E5%86%99%EF%BC%9APSW%E3%80%81%E5%A4%96%E8%AF%AD%E5%85%A8%E7%A7%B0%EF%BC%9AProgram,Status%20Word%EF%BC%89%E3%80%82%20%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA16%E4%BD%8D%E7%9A%84%E5%AD%98%E6%94%BE%E6%9D%A1%E4%BB%B6%E6%A0%87%E5%BF%97%E3%80%81%E6%8E%A7%E5%88%B6%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8C%E4%B8%BB%E8%A6%81%E7%94%A8%E4%BA%8E%E5%8F%8D%E6%98%A0%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8CALU%E8%BF%90%E7%AE%97%E7%BB%93%E6%9E%9C%E7%9A%84%E6%9F%90%E4%BA%9B%E7%89%B9%E5%BE%81%E5%8F%8A%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4%E7%9A%84%E6%89%A7%E8%A1%8C%E3%80%82">标志寄存器-百度百科</a></p><h5 id="①加法操作过程"><a href="#①加法操作过程" class="headerlink" title="①加法操作过程"></a>①加法操作过程</h5><p>[ACC]看作被加数。</p><p>从主存中取M地址号单元内的加数[M]，送至X寄存器中。</p><p>将被加数[ACC]与加数[X]相加，结果（和）保留在ACC中。</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221211851184.png" alt="image-20220221211851184" style="zoom:67%;" /></p><h5 id="②减法操作过程"><a href="#②减法操作过程" class="headerlink" title="②减法操作过程"></a>②减法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221211932915.png" alt="image-20220221211932915" style="zoom:67%;" /></p><h5 id="③乘法操作过程"><a href="#③乘法操作过程" class="headerlink" title="③乘法操作过程"></a>③乘法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212003668.png" alt="image-20220221212003668" style="zoom:67%;" /></p><h5 id="④除法操作过程"><a href="#④除法操作过程" class="headerlink" title="④除法操作过程"></a>④除法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212038827.png" alt="image-20220221212038827" style="zoom:67%;" /></p><h4 id="（3）控制器的基本组成"><a href="#（3）控制器的基本组成" class="headerlink" title="（3）控制器的基本组成"></a>（3）控制器的基本组成</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212108592.png" alt="image-20220221212108592" style="zoom:67%;" /></p><ul><li>PC（程序计数器）：Program Counter。存放<strong>欲执行的指令的地址</strong>，并可自动<strong>生成下一条指令地址</strong></li><li>IR（指令寄存器）：Instruction Register。存放当前<strong>正在执行的指令</strong></li><li>CU（控制单元）：Control Unit。控制器核心部件，产生微操作命令序列。<strong>用来解释存储器中的指令，发出各种操作命令来执行指令</strong></li></ul><h4 id="（4）主机完成一条指令的过程"><a href="#（4）主机完成一条指令的过程" class="headerlink" title="（4）主机完成一条指令的过程"></a>（4）主机完成一条指令的过程</h4><h5 id="以取数指令为例"><a href="#以取数指令为例" class="headerlink" title="以取数指令为例"></a>以取数指令为例</h5><ol><li>程序计数器获得指令地址的初始值，</li><li>MAR从存储体中获得指令地址对应的指令，通过地址总线送到MAR</li><li>进入读取周期，把指令送至MDR</li><li>通过数据总线送达指令至IR</li><li>开始执行周期：进入CU，分析指令</li><li>开始执行指令，指令寄存器进入MAR，给出数据地址</li><li>通过MAR读取数据地址</li><li>读周期，读取数据</li><li>送达CPU的ACC中，修改PC</li></ol><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223212632134.png" alt="img" style="zoom: 50%;" /></p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212204068.png" alt="image-20220221212204068" style="zoom:67%;" /></p><h5 id="以存数指令为例"><a href="#以存数指令为例" class="headerlink" title="以存数指令为例"></a>以存数指令为例</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212232671.png" alt="image-20220221212232671" style="zoom:67%;" /></p><p>ch4详细讨论</p><p>一个CPU（运算器+控制器） + 存储器 + I/O系统 + 总线</p><p>完成指令</p><h4 id="（5）程序的运行过程"><a href="#（5）程序的运行过程" class="headerlink" title="（5）程序的运行过程"></a>（5）程序的运行过程</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223162855834.png" alt="image-20220223162855834" style="zoom:67%;" /></p><ul><li>PC地址加法器</li></ul><h1 id="1-3-计算机硬件的主要技术指标"><a href="#1-3-计算机硬件的主要技术指标" class="headerlink" title="1.3 计算机硬件的主要技术指标"></a>1.3 计算机硬件的主要技术指标</h1><h3 id="1-机器字长"><a href="#1-机器字长" class="headerlink" title="1.机器字长"></a>1.机器字长</h3><p>机器字长：CPU <strong>一次</strong>能处理数据的<strong>位数</strong>。与CPU中的<strong>寄存器位数</strong>有关</p><ul><li><p>影响精度</p><blockquote><p>字长越长，数的表示范围越大，精度越高</p></blockquote></li><li><p>影响运算速度</p><blockquote><p>若：CPU字长较短，又要运算位数较多的数据，需要经过多次运算才能完成，影响机器的运算速度</p></blockquote></li><li><p>影响硬件的造价</p><blockquote><p>直接影响加法器（或ALU）、数据总线以及存储字长的位数</p></blockquote></li></ul><h3 id="2-运算速度"><a href="#2-运算速度" class="headerlink" title="2.运算速度"></a>2.运算速度</h3><ul><li><p>主频：计算机工作统一步调，时钟周期的倒数</p><p>晶振产生波形，与工作频率相同</p></li><li><p>（测试的方法）吉布森法</p></li><li><p>MIPS（每秒钟执行百万条指令）：Million Instructions Per Second</p></li></ul><ul><li><p>CPI （执行一条指令所需时钟周期数）：Clock Cycle Per Instruction</p><p>一条指令对应波形的节拍数</p></li><li><p>FLOPS（每秒浮点运算次数）：Floating-point Operations Per Second</p><p>浮点数的加法和乘法速度不同</p></li></ul><h3 id="3-存储容量"><a href="#3-存储容量" class="headerlink" title="3.存储容量"></a>3.存储容量</h3><p>存放二进制信息的总位数</p><ul><li><p>主存容量：主存中存放二进制代码的总位数。、</p><p><strong>MAR的位数反映存储单元的个数（$2^N$​​），MDR的位数反映存储字长（$M$​）</strong></p><ul><li><p>存储单元个数$\times$​存储字长</p><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223163918172.png" alt="image-20220223163918172"></p></li><li><p>字节数——1个字节被定义为8位二进制代码</p></li></ul></li><li><p>辅存容量——字节数</p><p>80GB，1GB = $2^{30}$B</p></li></ul><h1 id="课后习题"><a href="#课后习题" class="headerlink" title="课后习题"></a>课后习题</h1><p>1、冯·诺伊曼计算机的特点（5条）</p><p>2、计算机如何区分存储器内的指令和数据</p><ul><li><p>通过<strong>不同的时间段</strong>来区分指令和数据</p><p><u>取指令阶段</u>——指令；</p><p><u>执行指令阶段</u>——数据。</p></li><li><p>通过<strong>地址来源</strong>区分</p><p><u>PC（程序计数器）</u>提供的存储地址取出——指令；</p><p><u>指令地址码</u>提供的存储地址取出——数据。</p></li></ul><p>3、计算机硬件组成框图，各部件作用，计算机硬件主要及技术指标</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> computer organization </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="/undefined/hello-world/"/>
-      <url>/undefined/hello-world/</url>
-      
-        <content type="html"><![CDATA[<p>你好，Hexo！你好，世界！</p><p>欢迎来到我的博客</p><p>我将持续记录日常学习、生活的点点滴滴</p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-  
-  
+<search>
+  <entry>
+    <title>计算机组成原理：第1章 计算机系统概论</title>
+    <url>/computer_organization/computer-organization-ch1/</url>
+    <content><![CDATA[<h1 id="1-1-计算机系统简介"><a href="#1-1-计算机系统简介" class="headerlink" title="1.1 计算机系统简介"></a>1.1 计算机系统简介</h1><h2 id="一、计算机的软硬件概念"><a href="#一、计算机的软硬件概念" class="headerlink" title="一、计算机的软硬件概念"></a>一、计算机的软硬件概念</h2><h3 id="1-计算机系统"><a href="#1-计算机系统" class="headerlink" title="1.计算机系统"></a>1.计算机系统</h3><script type="math/tex; mode=display">
+计算机系统
+\begin{cases}
+\color{red}{硬件} \quad \color{black}{计算机的实体（主机、外设等）}\\
+\color{red}{软件} \quad \color{black}{由具有各类特殊功能的信息（程序）组成}\\
+\end{cases}</script><script type="math/tex; mode=display">
+软件
+\begin{cases}
+\color{red}{系统软件} \quad \color{black}{用来管理整个计算机系统}\\
+\qquad \qquad \qquad 语言处理程序\\
+\qquad \qquad \qquad 操作系统\\
+\qquad \qquad \qquad 服务性程序\\
+\qquad \qquad \qquad 数据库管理系统\\
+\qquad \qquad \qquad 网络软件\\
+\color{red}{应用软件} \quad \color{black}{按任务需要编制成的各种程序}\\
+\end{cases}</script><span id="more"></span>
+<h3 id="2-计算机的解题过程"><a href="#2-计算机的解题过程" class="headerlink" title="2.计算机的解题过程"></a>2.计算机的解题过程</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202042609.png" alt="image-20220221202042609" style="zoom: 67%;" /></p>
+<h2 id="二、计算机系统的层次结构"><a href="#二、计算机系统的层次结构" class="headerlink" title="二、计算机系统的层次结构"></a>二、计算机系统的层次结构</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202241077.png" alt="image-20220221202241077" style="zoom:67%;" /></p>
+<p>实际机器$M_1$和微程序机器$M_0$构成硬件。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202406326.png" alt="image-20220221202406326" style="zoom:67%;" /></p>
+<h2 id="三、计算机体系结构和计算机组成"><a href="#三、计算机体系结构和计算机组成" class="headerlink" title="三、计算机体系结构和计算机组成"></a>三、计算机体系结构和计算机组成</h2><p>相关资料：<a href="https://blog.csdn.net/xifengw/article/details/99717216">微机原理、计算机组成原理与计算机体系结构之间的关系</a></p>
+<ul>
+<li><p>体系结构关注：计算机有哪些功能？</p>
+</li>
+<li><p>组成原理关注：计算机的功能如何实现？</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202446815.png" alt="image-20220221202446815" style="zoom:67%;" /></p>
+<h1 id="1-2-计算机系统组成"><a href="#1-2-计算机系统组成" class="headerlink" title="1.2 计算机系统组成"></a>1.2 计算机系统组成</h1><h2 id="一、冯·诺依曼计算机的特点"><a href="#一、冯·诺依曼计算机的特点" class="headerlink" title="一、冯·诺依曼计算机的特点"></a>一、冯·诺依曼计算机的特点</h2><ol>
+<li>计算机由五大部件组成：<strong>存储器、运算器、控制器、输入设备、输出设备</strong></li>
+<li>指令和数据以同等地位存于<code>存储器</code>，可按地址寻访</li>
+<li>指令和数据用二进制表示</li>
+<li>指令由<code>操作码</code>和<code>地址码</code>组成——具体内容详见ch7</li>
+<li>存储程序：指令在存储器内按顺序存放。指令通常<strong>按顺序执行</strong>，在特定条件下可根据运算结果或设定的条件改变执行顺序</li>
+<li>以<code>运算器</code>为中心：I/O设备与存储器间的数据传送通过运算器完成</li>
+</ol>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221203119436.png" alt="image-20220221203119436" style="zoom:67%;" /></p>
+<p>注：</p>
+<ol>
+<li>运算器：<strong>算术运算和逻辑运算</strong>。将中间结果暂存在运算器内</li>
+<li>存储器：存放数据和程序</li>
+<li>控制器：控制、<strong>指挥</strong>程序和数据的输入、运行以及处理运算结果</li>
+<li>输入设备（键鼠）：转化为机器能够识别的信息形式</li>
+<li>输出设备（打印机输出、显示器输出）：将运算结果转化为人们熟悉的信息形式</li>
+</ol>
+<h2 id="二、计算机硬件框图"><a href="#二、计算机硬件框图" class="headerlink" title="二、计算机硬件框图"></a>二、计算机硬件框图</h2><h3 id="1-以存储器为中心的计算机硬件框图"><a href="#1-以存储器为中心的计算机硬件框图" class="headerlink" title="1.以存储器为中心的计算机硬件框图"></a>1.以存储器为中心的计算机硬件框图</h3><script type="math/tex; mode=display">
+\rightarrow \quad 控制线 \\
+\dashrightarrow \quad 反馈线 \\
+\Rightarrow \quad 数据线 \\</script><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221203951631.png" alt="image-20220221203951631" style="zoom:67%;" /></p>
+<h3 id="2-现代计算机硬件框图"><a href="#2-现代计算机硬件框图" class="headerlink" title="2.现代计算机硬件框图"></a>2.现代计算机硬件框图</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221204027723.png" alt="image-20220221204027723" style="zoom:67%;" /></p>
+<ul>
+<li>CPU（中央处理器）：Central Processing Unit。计算机核心部件，由<strong>运算器</strong>和<strong>控制器</strong>组成</li>
+<li>ALU（算逻部件/算术逻辑单元）：Arithmetic &amp; Logical Unit。运算器核心部件，<strong>进行逻辑运算和算术运算</strong></li>
+<li>CU（控制单元）：Control Unit。控制器核心部件，产生微操作命令序列。<strong>用来解释存储器中的指令，发出各种操作命令来执行指令</strong></li>
+<li>I/O设备：Input/Output Equipment。</li>
+</ul>
+<h2 id="三、计算机的工作步骤"><a href="#三、计算机的工作步骤" class="headerlink" title="三、计算机的工作步骤"></a>三、计算机的工作步骤</h2><h3 id="1-上机前的准备"><a href="#1-上机前的准备" class="headerlink" title="1.上机前的准备"></a>1.上机前的准备</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205318632.png" alt="image-20220221205318632" style="zoom:67%;" /></p>
+<h4 id="编程举例"><a href="#编程举例" class="headerlink" title="编程举例"></a>编程举例</h4><ul>
+<li>运算：取被操作数、运算操作、暂存中间结果</li>
+<li>存储器：存储运算结果</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205352807.png" alt="image-20220221205352807" style="zoom:67%;" /></p>
+<h4 id="指令格式举例"><a href="#指令格式举例" class="headerlink" title="指令格式举例"></a>指令格式举例</h4><p>详见ch7。寻址、特征位、不同格式</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205704580.png" alt="img" style="zoom:67%;" /></p>
+<p>注：打印机的打印操作需要多条指令</p>
+<p>参考资料：<a href="https://blog.csdn.net/weixin_34112181/article/details/89566814">打印机主流的指令类型（ESC命令集+CPCL命令集+TSPL命令集）</a></p>
+<h4 id="计算-ax-2-bx-c-程序清单"><a href="#计算-ax-2-bx-c-程序清单" class="headerlink" title="计算$ax^2+bx+c$程序清单"></a>计算$ax^2+bx+c$程序清单</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210015842.png" alt="image-20220221210015842" style="zoom:67%;" /></p>
+<h3 id="2-计算机的解题过程-1"><a href="#2-计算机的解题过程-1" class="headerlink" title="2.计算机的解题过程"></a>2.计算机的解题过程</h3><h4 id="（1）存储器的基本组成"><a href="#（1）存储器的基本组成" class="headerlink" title="（1）存储器的基本组成"></a>（1）存储器的基本组成</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210124089.png" alt="image-20220221210124089" style="zoom:67%;" /></p>
+<ul>
+<li>MAR（存储器地址寄存器）：Memory Address Register</li>
+<li>MDR（主存数据寄存器）：Memory Data Register </li>
+<li>数据总线、读写控制</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210629442.png" alt="image-20220221210629442" style="zoom:67%;" /></p>
+<script type="math/tex; mode=display">
+计算过程： \\
+由MAR = 4位，存储单元的个数 = 2^4 = 16 \\
+由MDR = 8位，存储字长 = 8 \\</script><h4 id="（2）运算器的基本组成及操作过程"><a href="#（2）运算器的基本组成及操作过程" class="headerlink" title="（2）运算器的基本组成及操作过程"></a>（2）运算器的基本组成及操作过程</h4><p>规定动作的处理</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210828885.png" alt="image-20220221210828885" style="zoom:67%;" /></p>
+<ul>
+<li><p>ACC（累加器）：Accumulator。一种<strong>寄存器</strong>，能<strong>存放运算前被操作数</strong>，也能<strong>储存计算产生的中间结果</strong>。</p>
+<blockquote>
+<p>如果没有像累加器这样的寄存器，那么在每次计算 (加法，乘法，移位等等) 后就必须要把结果写回到<a href="https://baike.baidu.com/item/内存">内存</a>，也许马上就得读回来。然而存取主存的速度是比从<a href="https://baike.baidu.com/item/算术逻辑单元">算术逻辑单元</a>(ALU)到有直接路径的累加器存取更慢。</p>
+</blockquote>
+</li>
+<li><p>MQ（乘商寄存器）：Multiple-Quotient Register。负责数据的乘法与除法运算并可<strong>保存运算结果</strong>，是运算器的基本组成部分。<strong>也可保存运算结果的低位</strong></p>
+</li>
+</ul>
+<p>注：上图缺少了F寄存器（状态/标志寄存器）</p>
+<ul>
+<li><p>FR（标志寄存器）：Flags Register</p>
+<p>具有<strong>条件标志：进位、奇偶、辅助进位、零、符号、溢出标志</strong>，<strong>控制标记：跟踪、中断、方向标记</strong></p>
+</li>
+</ul>
+<p>参考资料：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/256470714">标志寄存器</a></p>
+<p><a href="https://baike.baidu.com/item/%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8/5757541#:~:text=%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%88%E7%A7%B0%20%E7%A8%8B%E5%BA%8F%E7%8A%B6%E6%80%81%E5%AD%97%20%EF%BC%88%E5%A4%96%E8%AF%AD%E7%BC%A9%E5%86%99%EF%BC%9APSW%E3%80%81%E5%A4%96%E8%AF%AD%E5%85%A8%E7%A7%B0%EF%BC%9AProgram,Status%20Word%EF%BC%89%E3%80%82%20%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA16%E4%BD%8D%E7%9A%84%E5%AD%98%E6%94%BE%E6%9D%A1%E4%BB%B6%E6%A0%87%E5%BF%97%E3%80%81%E6%8E%A7%E5%88%B6%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8C%E4%B8%BB%E8%A6%81%E7%94%A8%E4%BA%8E%E5%8F%8D%E6%98%A0%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8CALU%E8%BF%90%E7%AE%97%E7%BB%93%E6%9E%9C%E7%9A%84%E6%9F%90%E4%BA%9B%E7%89%B9%E5%BE%81%E5%8F%8A%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4%E7%9A%84%E6%89%A7%E8%A1%8C%E3%80%82">标志寄存器-百度百科</a></p>
+<h5 id="①加法操作过程"><a href="#①加法操作过程" class="headerlink" title="①加法操作过程"></a>①加法操作过程</h5><p>[ACC]看作被加数。</p>
+<p>从主存中取M地址号单元内的加数[M]，送至X寄存器中。</p>
+<p>将被加数[ACC]与加数[X]相加，结果（和）保留在ACC中。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221211851184.png" alt="image-20220221211851184" style="zoom:67%;" /></p>
+<h5 id="②减法操作过程"><a href="#②减法操作过程" class="headerlink" title="②减法操作过程"></a>②减法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221211932915.png" alt="image-20220221211932915" style="zoom:67%;" /></p>
+<h5 id="③乘法操作过程"><a href="#③乘法操作过程" class="headerlink" title="③乘法操作过程"></a>③乘法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212003668.png" alt="image-20220221212003668" style="zoom:67%;" /></p>
+<h5 id="④除法操作过程"><a href="#④除法操作过程" class="headerlink" title="④除法操作过程"></a>④除法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212038827.png" alt="image-20220221212038827" style="zoom:67%;" /></p>
+<h4 id="（3）控制器的基本组成"><a href="#（3）控制器的基本组成" class="headerlink" title="（3）控制器的基本组成"></a>（3）控制器的基本组成</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212108592.png" alt="image-20220221212108592" style="zoom:67%;" /></p>
+<ul>
+<li>PC（程序计数器）：Program Counter。存放<strong>欲执行的指令的地址</strong>，并可自动<strong>生成下一条指令地址</strong></li>
+<li>IR（指令寄存器）：Instruction Register。存放当前<strong>正在执行的指令</strong></li>
+<li>CU（控制单元）：Control Unit。控制器核心部件，产生微操作命令序列。<strong>用来解释存储器中的指令，发出各种操作命令来执行指令</strong></li>
+</ul>
+<h4 id="（4）主机完成一条指令的过程"><a href="#（4）主机完成一条指令的过程" class="headerlink" title="（4）主机完成一条指令的过程"></a>（4）主机完成一条指令的过程</h4><h5 id="以取数指令为例"><a href="#以取数指令为例" class="headerlink" title="以取数指令为例"></a>以取数指令为例</h5><ol>
+<li>程序计数器获得指令地址的初始值，</li>
+<li>MAR从存储体中获得指令地址对应的指令，通过地址总线送到MAR</li>
+<li>进入读取周期，把指令送至MDR</li>
+<li>通过数据总线送达指令至IR</li>
+<li>开始执行周期：进入CU，分析指令</li>
+<li>开始执行指令，指令寄存器进入MAR，给出数据地址</li>
+<li>通过MAR读取数据地址</li>
+<li>读周期，读取数据</li>
+<li>送达CPU的ACC中，修改PC</li>
+</ol>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223212632134.png" alt="img" style="zoom: 50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212204068.png" alt="image-20220221212204068" style="zoom:67%;" /></p>
+<h5 id="以存数指令为例"><a href="#以存数指令为例" class="headerlink" title="以存数指令为例"></a>以存数指令为例</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212232671.png" alt="image-20220221212232671" style="zoom:67%;" /></p>
+<p>ch4详细讨论</p>
+<p>一个CPU（运算器+控制器） + 存储器 + I/O系统 + 总线</p>
+<p>完成指令</p>
+<h4 id="（5）程序的运行过程"><a href="#（5）程序的运行过程" class="headerlink" title="（5）程序的运行过程"></a>（5）程序的运行过程</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223162855834.png" alt="image-20220223162855834" style="zoom:67%;" /></p>
+<ul>
+<li>PC地址加法器</li>
+</ul>
+<h1 id="1-3-计算机硬件的主要技术指标"><a href="#1-3-计算机硬件的主要技术指标" class="headerlink" title="1.3 计算机硬件的主要技术指标"></a>1.3 计算机硬件的主要技术指标</h1><h3 id="1-机器字长"><a href="#1-机器字长" class="headerlink" title="1.机器字长"></a>1.机器字长</h3><p>机器字长：CPU <strong>一次</strong>能处理数据的<strong>位数</strong>。与CPU中的<strong>寄存器位数</strong>有关</p>
+<ul>
+<li><p>影响精度</p>
+<blockquote>
+<p>字长越长，数的表示范围越大，精度越高</p>
+</blockquote>
+</li>
+<li><p>影响运算速度</p>
+<blockquote>
+<p>若：CPU字长较短，又要运算位数较多的数据，需要经过多次运算才能完成，影响机器的运算速度</p>
+</blockquote>
+</li>
+<li><p>影响硬件的造价</p>
+<blockquote>
+<p>直接影响加法器（或ALU）、数据总线以及存储字长的位数</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-运算速度"><a href="#2-运算速度" class="headerlink" title="2.运算速度"></a>2.运算速度</h3><ul>
+<li><p>主频：计算机工作统一步调，时钟周期的倒数</p>
+<p>晶振产生波形，与工作频率相同</p>
+</li>
+<li><p>（测试的方法）吉布森法</p>
+</li>
+<li><p>MIPS（每秒钟执行百万条指令）：Million Instructions Per Second</p>
+</li>
+</ul>
+<ul>
+<li><p>CPI （执行一条指令所需时钟周期数）：Clock Cycle Per Instruction</p>
+<p>一条指令对应波形的节拍数</p>
+</li>
+<li><p>FLOPS（每秒浮点运算次数）：Floating-point Operations Per Second</p>
+<p>浮点数的加法和乘法速度不同</p>
+</li>
+</ul>
+<h3 id="3-存储容量"><a href="#3-存储容量" class="headerlink" title="3.存储容量"></a>3.存储容量</h3><p>存放二进制信息的总位数</p>
+<ul>
+<li><p>主存容量：主存中存放二进制代码的总位数。、</p>
+<p><strong>MAR的位数反映存储单元的个数（$2^N$​​），MDR的位数反映存储字长（$M$​）</strong></p>
+<ul>
+<li><p>存储单元个数$\times$​存储字长</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223163918172.png" alt="image-20220223163918172"></p>
+</li>
+<li><p>字节数——1个字节被定义为8位二进制代码</p>
+</li>
+</ul>
+</li>
+<li><p>辅存容量——字节数</p>
+<p>80GB，1GB = $2^{30}$B</p>
+</li>
+</ul>
+<h1 id="课后习题"><a href="#课后习题" class="headerlink" title="课后习题"></a>课后习题</h1><p>1、冯·诺伊曼计算机的特点（5条）</p>
+<p>2、计算机如何区分存储器内的指令和数据</p>
+<ul>
+<li><p>通过<strong>不同的时间段</strong>来区分指令和数据</p>
+<p><u>取指令阶段</u>——指令；</p>
+<p><u>执行指令阶段</u>——数据。</p>
+</li>
+<li><p>通过<strong>地址来源</strong>区分</p>
+<p><u>PC（程序计数器）</u>提供的存储地址取出——指令；</p>
+<p><u>指令地址码</u>提供的存储地址取出——数据。</p>
+</li>
+</ul>
+<p>3、计算机硬件组成框图，各部件作用，计算机硬件主要及技术指标</p>
+]]></content>
+      <tags>
+        <tag>computer organization</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/undefined/hello-world/</url>
+    <content><![CDATA[<p>你好，Hexo！你好，世界！</p>
+<p>欢迎来到我的博客</p>
+<p>我将持续记录日常学习、生活的点点滴滴</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>数理逻辑：绪论</title>
+    <url>/mathematical_logic/mathematical-logic-ch0/</url>
+    <content><![CDATA[<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>数理逻辑是用数学的方法研究<strong>推理</strong>，特别是研究数学中的推理</p>
+<p>推理的前提和结论都是命题，命题的真假与<strong>内容是否符合现实</strong>有关。</p>
+<script type="math/tex; mode=display">
+premises 前提 \quad（命题）\\
+\downarrow  \quad reason 推理 \\
+conclusions 结论 \quad （命题）\\</script><span id="more"></span>
+<ol>
+<li><p>正确的推理：从”正确的前提“能得到”正确的结论“的推理。</p>
+<p>推理正确——可推导关系，属于<code>演绎逻辑</code>（与之相对的是<code>归纳逻辑</code>）</p>
+<p>正确的前提：前提为真</p>
+<p>正确的结论：结论为真</p>
+</li>
+<li><p>推理正确与否<strong>与前提和结论中命题是否为真命题没有关系</strong>。</p>
+<p><strong>推理的正确性与命题的逻辑形式有关</strong></p>
+<p><strong>命题内容决定命题的真假</strong></p>
+<script type="math/tex; mode=display">
+命题：
+\begin{cases}
+内容 \\
+逻辑形式（抽象） \\
+\end{cases}</script><blockquote>
+<p>所有中学生打网球（前提）</p>
+<p>王军不打网球（前提）</p>
+<p>王军不是中学生（结论）</p>
+<p>——推理正确，不是所有命题都为真命题</p>
+</blockquote>
+<p>上述推理的逻辑形式为：</p>
+<blockquote>
+<p>S中所有元有R性质（前提）</p>
+<p>a没有R性质（前提）</p>
+<p>a不是S中的元（结论）</p>
+</blockquote>
+</li>
+<li><p>数理逻辑中，用自然语言陈述命题会带来不方便</p>
+</li>
+<li><p>数理逻辑的研究语言为：对象语言、元语言</p>
+<ul>
+<li>对象语言：被研究对象的语言。<strong>形式语言</strong>，用符号构成的公式来代替自然语言中的命题，<strong>没有二义性</strong><ul>
+<li>语义：符号，公式的含义</li>
+<li>语法：由符号构成的公式的形状和语法结构</li>
+</ul>
+</li>
+<li>元语言：辅助描述对象语言。自然语言</li>
+</ul>
+</li>
+<li><p>数理逻辑产生的动机：将一切推理的正确性化归于计算的通用代数</p>
+<ul>
+<li>建立一种普遍适用的精确的科学语言</li>
+<li>建立一种推理的演算</li>
+</ul>
+</li>
+<li><p>预备知识：</p>
+<ul>
+<li><p>集合</p>
+<p>集合S上的（n元）关系R</p>
+<p>外延</p>
+</li>
+<li><p>归纳定义和归纳证明</p>
+</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>mathematical logic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机组成原理：第3章 系统总线</title>
+    <url>/computer_organization/computer-organization-ch3/</url>
+    <content><![CDATA[<h1 id="关于本课程"><a href="#关于本课程" class="headerlink" title="关于本课程"></a>关于本课程</h1><p>计算机源头：主频——晶振（1个）</p>
+<p>计组的难点和重点：<strong>运算器、存储器、控制器、中断方式</strong></p>
+<p>计算机系统</p>
+<ul>
+<li>逻辑正确</li>
+<li>时序正确：内存（读、写）、输入输出、中断工作（中断周期）、存储器直接存取周期（DMA周期）</li>
+<li>负载能力</li>
+<li>可靠性：抗干扰、工作环境</li>
+</ul>
+<p>本课程重点是<strong>逻辑和时序，考虑一些负载能力</strong></p>
+<span id="more"></span>
+<h1 id="3-1-总线的基本概念"><a href="#3-1-总线的基本概念" class="headerlink" title="3.1 总线的基本概念"></a>3.1 总线的基本概念</h1><h2 id="一、为什么要用总线"><a href="#一、为什么要用总线" class="headerlink" title="一、为什么要用总线"></a>一、为什么要用总线</h2><p>冯诺依曼计算机结构：运算、控制、存储、输入、输出</p>
+<p>至少包括三大部分，现代计算机更加复杂。需要把各个部件连接起来才能组成系统，协同工作。</p>
+<p>计算机如何连接：</p>
+<ul>
+<li><p>①分散连接（早期）</p>
+<blockquote>
+<p>以运算器为中心，内部连线复杂，I/O设备与存储器交换信息都需经过运算器，致使运算器停运，影响CPU工作效率。</p>
+<p>改进为以存储器为中心，I/O设备与存储器交换信息可以经过运算器，引入中断、DMA等技术，CPU效率提升，仍无法解决I/O设备和主机连接之间的灵活性。</p>
+</blockquote>
+<p><strong>如果设备很多，两两连接的制作成本高、难度大。而且设备之间的接口占用大量空间。</strong></p>
+</li>
+<li><p>②为了解决分散连接的问题，引入总线</p>
+<p><strong>将各部件连到一组公共信息传输线上，称为总线连接</strong></p>
+</li>
+</ul>
+<h2 id="二、什么是总线"><a href="#二、什么是总线" class="headerlink" title="二、什么是总线"></a>二、什么是总线</h2><blockquote>
+<p>总线是连接各个部件的信息传输线，是<strong>各个部件共享的传输介质</strong></p>
+</blockquote>
+<ul>
+<li>结构简单，可控性好</li>
+</ul>
+<h2 id="三、总线上信息的传送"><a href="#三、总线上信息的传送" class="headerlink" title="三、总线上信息的传送"></a>三、总线上信息的传送</h2><ul>
+<li>串行：传输距离长（设备之间），一次只能传输一个信号，速度慢</li>
+<li>并行：传输距离短（集中于机箱内部），一次传输多个信号，速度快</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/lKQvA54JcfjV6Er.png" alt="image-20220112101628214" style="zoom:50%;" /></p>
+<h2 id="四、总线结构的计算机"><a href="#四、总线结构的计算机" class="headerlink" title="四、总线结构的计算机"></a>四、总线结构的计算机</h2><ul>
+<li>在某一时刻，<strong>只允许有一个部件向总线发送信息，而多个部件可以同时从总线上接收相同的信息</strong></li>
+<li>总线<strong>由许多传输线或通路组成</strong>，每条线可一位一位传输二进制代码。</li>
+</ul>
+<h3 id="1-面向-CPU-的双总线结构框图"><a href="#1-面向-CPU-的双总线结构框图" class="headerlink" title="1. 面向 CPU 的双总线结构框图"></a>1. 面向 CPU 的双总线结构框图</h3><blockquote>
+<p>面向CPU的双总线结构：<strong>以CPU为核心，延展出两条总线：一条M总线连接主存；I/O总线连接I/O设备。</strong></p>
+<p>CPU与主存之间的信息传输比较繁忙，使用M总线提供信息传输服务。</p>
+<p>I/O设备与主存之间没有直接的信息通路，只能以CPU作为媒介。一旦外部设备与主存进行信息传输，CPU的运算任务重，还是有可能被打断。</p>
+</blockquote>
+<p>I/O接口把不同的设备进行转换（220V与5V）</p>
+<p>好处：</p>
+<ul>
+<li><p>把慢速的设备通过设备总线送过来</p>
+</li>
+<li><p>CPU和主存通过M总线高速传输指令</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/n97htaETFsq8ijy.png" alt="image-20220112102902317" style="zoom: 67%;" /></p>
+<h3 id="2-单总线结构框图"><a href="#2-单总线结构框图" class="headerlink" title="2. 单总线结构框图"></a>2. 单总线结构框图</h3><p>如何分配总线，避免冲突？——总线使用规则，硬件设计应考虑</p>
+<p>使用<strong>三态门</strong>：数据双向，地址单向</p>
+<ul>
+<li>主设备（总线）发出者（控制者），同一时刻只能有一个</li>
+<li>从设备（信息来源）接收者，可以有多个</li>
+</ul>
+<p>没有芯片的快和慢的区分，<strong>总线的效率很低</strong></p>
+<blockquote>
+<p>单总线结构：所有设备连接到一条系统总线上</p>
+<p>任何时候只能由一个设备使用总线。</p>
+<p>如果某一个 I/O 设备与主存通过 I/O 接口进行数据传输，占用 CPU。则主存和 CPU 之间无法进行数据传输。会严重影响 CPU 设备的运行效率。并且如果设备较多，总线较长，向远端设备读或写的延迟大。会发生总线的征用。</p>
+<p><strong>解决思路</strong>:引入多条总线，让数据并行传输</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/eLNS8o2EnHXCyfd.png" alt="image-20220112102154648" style="zoom: 67%;" /></p>
+<h3 id="3-以存储器为中心的双总线结构框图"><a href="#3-以存储器为中心的双总线结构框图" class="headerlink" title="3. 以存储器为中心的双总线结构框图"></a>3. 以存储器为中心的双总线结构框图</h3><p>将1和2结合起来</p>
+<blockquote>
+<p>在单总线基础上又开辟出的一条CPU与主存之间的总线，称为<strong>存储总线</strong></p>
+<p>把CPU、主存、外部设备都挂在系统总线上；<strong>CPU和主存之间存储总线进行数据传输</strong></p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/FZu58AsqfDSoT6y.png" alt="image-20220112103055281" style="zoom: 67%;" /></p>
+<h1 id="3-2-总线的分类（重点内容）"><a href="#3-2-总线的分类（重点内容）" class="headerlink" title="3.2 总线的分类（重点内容）"></a>3.2 总线的分类（重点内容）</h1><p>（重点内容）</p>
+<ul>
+<li><p>总线按<strong>数据传送方式</strong>可以分为：并行传输总线 和 串行传输总线。</p>
+<p>并行传输总线中，又可按传输数据宽度分为：8位、16位、32位、64位等传输总线。</p>
+</li>
+<li><p>按<strong>总线的使用范围</strong>划分，又有计算机（包括外设）总线、测控总线、网络通信总线等</p>
+</li>
+<li><p>按<strong>连接部件</strong>不同，分为：片内总线、系统总线和通信总线</p>
+<p>系统总线按<strong>传输信息</strong>不同，分为：数据总线、地址总线、控制总线</p>
+</li>
+</ul>
+<h2 id="1-片内总线"><a href="#1-片内总线" class="headerlink" title="1.片内总线"></a>1.片内总线</h2><p><strong>芯片内部</strong>的总线</p>
+<blockquote>
+<p>CPU内的运算器和控制器之间的连线</p>
+<p>寄存器之间</p>
+<p>寄存器与算逻单元ALU之间</p>
+</blockquote>
+<h2 id="2-系统总线"><a href="#2-系统总线" class="headerlink" title="2.系统总线"></a>2.系统总线</h2><p><strong>计算机各部件之间</strong>（CPU、主存、I/O设备（通过I/O接口））的信息传输线</p>
+<ul>
+<li><p><u>数据总线：传输各部件之间的数据信息</u></p>
+<p><strong>双向</strong>，与<strong>机器字长、存储字长</strong>有关</p>
+<p>n位计算机：$D_{n-1}…D_2D_1D_0$​（一般为8、16、32位）</p>
+<p><strong>数据总线的位数称为数据总线宽度</strong>，衡量系统性能的一个重要参数</p>
+<blockquote>
+<p>如果数据总线的宽度为8位，指令字长为16位，那么CPU在<strong>取指阶段</strong>必须<strong>两次访问主存</strong></p>
+</blockquote>
+</li>
+<li><p><u>地址总线：指出<strong>数据总线上的源数据或目的数据</strong>在主存储单元的地址或I/O设备的地址</u></p>
+<p>由CPU输出，<strong>单向</strong>，与<strong>存储单元的个数</strong>（存储地址、 I/O地址）有关。决定内存单元的个数，I/O地址个数</p>
+<p>指示地址，字节的整数倍</p>
+<p>$A_{m}…A_2A_1A_0$​</p>
+<p><strong>地址线的位数与存储单元的个数有关</strong></p>
+<blockquote>
+<p>地址线为20根，则对应的存储单元的个数为$2^{20}$</p>
+</blockquote>
+</li>
+<li><p><u>控制总线：用来发出各种控制信号的传输线</u></p>
+<ul>
+<li><p>对于CPU而言，<strong>有出 有入</strong></p>
+<p>单CPU：CPU+DMA具有控制权。DMA需要申请、归还</p>
+</li>
+<li><p>发出控制信号</p>
+<p>（存储器的读和写（互斥）、总线允许、中断确认）</p>
+<blockquote>
+<p>常见的控制信号：</p>
+<p><strong>时钟、复位、总线请求、总线允许、中断请求、中断响应、存储器写、存储器读、I/O读、I/O写、传输响应</strong></p>
+</blockquote>
+<p>MEMR：存储器读——将指定<strong>存储单元</strong>的数据读取到<strong>数据总线</strong>上</p>
+<p>MEMW：存储器写——将<strong>数据总线上的数据</strong>写入到<strong>存储器的指定地址单元</strong>内</p>
+<p>IOR：（读）输入——从指定的<strong>I/O端口</strong>将数据读到<strong>数据总线</strong>上</p>
+<p>IOW：（写）输出——将<strong>数据总线</strong>上的数据输出到指定的<strong>I/O端口</strong>内</p>
+</li>
+<li><p>多数为低电平有效</p>
+</li>
+<li><p>对于任一控制线而言，传输为<strong>单向</strong>。对于控制总线整体可认为是双向的</p>
+</li>
+<li><p>起到监视各部件状态的作用</p>
+<blockquote>
+<p>查询设备“忙”or“闲”，是否出错</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-通信总线"><a href="#3-通信总线" class="headerlink" title="3.通信总线"></a>3.通信总线</h2><p>（了解即可）</p>
+<p>用于 <strong>计算机系统之间</strong> 或 <strong>计算机系统与其他系统（如控制仪表、移动通信等）之间</strong>的通信</p>
+<p>传输方式：串行、并行</p>
+<h1 id="3-3-总线特性及性能指标"><a href="#3-3-总线特性及性能指标" class="headerlink" title="3.3 总线特性及性能指标"></a>3.3 总线特性及性能指标</h1><h2 id="一、总线物理实现"><a href="#一、总线物理实现" class="headerlink" title="一、总线物理实现"></a>一、总线物理实现</h2><p>从物理角度，总线由许多导线直接印制在电路板上，延伸到各个部件。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223171231125.png" alt="image-20220223171231125" style="zoom:67%;" /></p>
+<h2 id="二、总线特性"><a href="#二、总线特性" class="headerlink" title="二、总线特性"></a>二、总线特性</h2><ol>
+<li><p><strong>机械特性</strong>：<strong>尺寸</strong>、形状、<strong>管脚数</strong>及<strong>排列顺序</strong></p>
+</li>
+<li><p><strong>电气特性</strong>：<strong>传输方向</strong>和有效的<strong>电平</strong>范围</p>
+<p>规定由CPU发出的信号称为输出信号，送入CPU为输入信号</p>
+<blockquote>
+<p>地址总线单向输出线、数据总线双向传输线——高1低0</p>
+<p>控制总线单向。整体上有入、有出</p>
+</blockquote>
+</li>
+<li><p><strong>功能特性</strong>：每根传输线的<strong>功能</strong></p>
+<ul>
+<li><p>地址总线：地址码</p>
+</li>
+<li><p>数据总线：传递数据</p>
+</li>
+<li><p>控制总线：发出控制信号</p>
+</li>
+</ul>
+<blockquote>
+<p>CPU发出——存储器读/写、I/O设备读/写</p>
+<p>I/O向CPU发来——中断请求、DMA请求</p>
+</blockquote>
+</li>
+<li><p><strong>时间特性</strong>：信号的<strong>时序</strong>关系</p>
+<p>总线中的任一根线在什么时间内有效</p>
+</li>
+</ol>
+<h2 id="三、总线的性能指标"><a href="#三、总线的性能指标" class="headerlink" title="三、总线的性能指标"></a>三、总线的性能指标</h2><p>1.<strong>总线宽度</strong></p>
+<p><strong>数据总线</strong>的根数（16根、32根、64根，与传输位数有关）</p>
+<p>用<strong>bit（位）</strong>表示</p>
+<p>2.<strong>标准传输率</strong></p>
+<p>单位时间内总线传送数据的字节数。每秒传输的最大字节数（<strong>MBps</strong>每秒传输的兆字节）</p>
+<p>总线<strong>带宽</strong>，单位时间内总线上传输数据的<strong>位数</strong></p>
+<p><u>与总线的宽度（数据线的根数）和时钟频率有关</u></p>
+<blockquote>
+<p>例如，总线上工作频率位33MHz，总线宽度为32位（4B），则总线带宽为$33 \times (32 \div 8) = 132$MBps</p>
+</blockquote>
+<p>3.<strong>时钟同步/异步</strong></p>
+<p>总线上数据与时钟<strong>同步</strong>/<strong>不同步</strong>工作</p>
+<p>4.<strong>总线复用</strong></p>
+<p><u>一条信号线上<strong>分时</strong>传送两种信号</u></p>
+<blockquote>
+<p>将地址总线和数据总线共用一组物理线路，分时传输地址信号和数据信号，即为总线的多路复用</p>
+</blockquote>
+<p><strong>地址线</strong>与<strong>数据线</strong>复用（8086，为了减少芯片的管脚数，减少封装体积）</p>
+<p>5.<strong>信号线数</strong></p>
+<p>地址线、数据线和控制线的<strong>总和</strong></p>
+<p>6.<strong>总线控制方式</strong></p>
+<p>总线使用权的分配</p>
+<p>突发工作、自动配置、仲裁方式、逻辑方式、计数方式</p>
+<p>7.<strong>其他指标</strong></p>
+<p><strong>负载能力</strong>、电源电压（5V or 3.3V）、总线的宽度能否扩展</p>
+<p>负载能力即驱动能力：总线<strong>接上负载</strong>后，总线<strong>输入输出的逻辑电平</strong>能否<strong>保持在正常的额定范围</strong>内。</p>
+<h2 id="四、总线标准（重要）"><a href="#四、总线标准（重要）" class="headerlink" title="四、总线标准（重要）"></a>四、总线标准（重要）</h2><h3 id="什么是总线标准？"><a href="#什么是总线标准？" class="headerlink" title="什么是总线标准？"></a>什么是总线标准？</h3><blockquote>
+<p>总线标准，可视为系统与各模块、模块与模块之间的一个互连的<strong>标准界面</strong>。</p>
+<p>这个界面对它两端的模块都是透明的，即界面的任一方只需根据总线标准的要求完成自身一方接口的功能要求，而无须了解对方接口与总线的连接要求。</p>
+</blockquote>
+<h3 id="为什么要设置总线标准？"><a href="#为什么要设置总线标准？" class="headerlink" title="为什么要设置总线标准？"></a>为什么要设置总线标准？</h3><blockquote>
+<p>采用总线标准可以为计算机接口的软硬件设计<strong>提供方便</strong>。</p>
+<p>对硬件设计而言，使各个模块的<strong>接口芯片设计</strong>相对<strong>独立</strong>；</p>
+<p>对软件设计而言，更有利于<strong>接口软件</strong>的<strong>模块化</strong>设计。</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225205744813.png" alt="image-20220225205744813" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225205811812.png" alt="image-20220225205811812" style="zoom:67%;" /></p>
+<p><strong>注：串行不一定比并行慢</strong></p>
+<p>需要了解名称及特点（信号管脚、哪些管脚定义、有效电平）</p>
+<h3 id="1-ISA总线"><a href="#1-ISA总线" class="headerlink" title="1.ISA总线"></a>1.ISA总线</h3><blockquote>
+<p>Industrial Standard Architecture</p>
+<p>用于早期计算机</p>
+</blockquote>
+<ul>
+<li>IBM为了采用全16位CPU而推出，又称<strong>AT总线</strong></li>
+<li>使用<strong>独立于CPU的总线时钟</strong>，因此<strong>CPU可以采用比总线频率更高的时钟</strong>，有利于CPU性能提升</li>
+<li><u>时钟频率<strong>8MHz</strong>，最大传输率<strong>16MBps</strong>，数据线为<strong>16位</strong>，地址线为<strong>24位</strong>。</u></li>
+</ul>
+<h3 id="2-EISA总线"><a href="#2-EISA总线" class="headerlink" title="2.EISA总线"></a>2.EISA总线</h3><blockquote>
+<p>Extended Industrial Standard Architecture</p>
+</blockquote>
+<ul>
+<li>在ISA基础上扩充开放的总线标准，<strong>与ISA可以完全兼容</strong></li>
+<li>从CPU中<strong>分离出了总线控制权</strong>，是一种具有智能化的总线</li>
+<li><p>能支持<strong>多个总线主控器</strong>和<strong>突发方式</strong>（总线上可以进行<strong>成块</strong>的数据传送）的传输</p>
+</li>
+<li><p><u>时钟频率<strong>8MHz</strong>，最大传输率<strong>33MBps</strong>，数据总线为<strong>32位</strong>，地址总线为<strong>32位</strong>，扩充DMA访问范围达$2^{32}$</u></p>
+</li>
+</ul>
+<h3 id="3-VESA-VL-BUS-总线"><a href="#3-VESA-VL-BUS-总线" class="headerlink" title="3.VESA(VL-BUS)总线"></a>3.VESA(VL-BUS)总线</h3><blockquote>
+<p>Video Electronic Standard Association 视频电子标准协会</p>
+</blockquote>
+<ul>
+<li><p><strong>局部总线</strong>标准，又称VL-BUS(Local BUS)总线</p>
+<p>局部总线：在<strong>系统外</strong>为<strong>两个以上的模块</strong>提供<strong>高速信息传输通道</strong></p>
+</li>
+<li><p>VL-BUS由CPU总线演化而来</p>
+</li>
+<li><p>通过<strong>局部控制器</strong>，<strong>将高速I/O设备直接挂在CPU上</strong>，实现CPU与高速I/O设备之间的高速数据交换</p>
+</li>
+<li><p><u>CPU时钟频率为<strong>33MHz</strong>，最大传输率<strong>133MBps</strong>，数据线为<strong>32位</strong>，可通过扩展槽<strong>扩展到64位</strong>，配有<strong>局部控制器</strong></u></p>
+</li>
+</ul>
+<h3 id="4-PCI总线"><a href="#4-PCI总线" class="headerlink" title="4.PCI总线"></a>4.PCI总线</h3><blockquote>
+<p>Peripheral Component Interconnect  外围部件互连</p>
+<p>1991, Intel</p>
+<p>图形用户接口和多媒体技术在PC系统中广泛应用，ISA总线和EISA总线由于受带宽的限制，已不能适应系统工作的要求，成为整个系统的主要瓶颈。因此对总线提出更高的性能要求</p>
+<p>现代计算机普遍采用的标准</p>
+</blockquote>
+<p>参考资料：<a href="https://blog.csdn.net/fzhykx/article/details/79718744">PCI总线协议（一）</a></p>
+<p>1、<strong>高性能</strong></p>
+<ul>
+<li>PCI总线是<strong>不依附于某个具体处理器</strong>的<strong>局部总线</strong></li>
+<li>为系统提供高速的数据传输通道，<strong>与CPU时钟频率无关</strong>，<u>自身采用<strong>33MHz</strong>和<strong>66MHz</strong>频率的<strong>总线时钟</strong></u></li>
+<li><u>数据线为<strong>32位</strong>，<strong>可扩展到64位</strong></u></li>
+<li><u>传输速率从<strong>132MBps</strong>（33MHz时钟，32位数据通路）可升级到<strong>528MBps</strong>（66MHz，64位数据通路）</u></li>
+<li>支持<strong>突发工作方式</strong>——若被传送的数据在主存中<strong>连续存放</strong>，则只需给出第一个数据的地址，不需要给出所有数据的地址信息（给第一个地址占一个时钟周期，其后每一个数据传送占一个时钟周期，提升传输速率）</li>
+</ul>
+<p>2、<strong>良好的兼容性</strong></p>
+<ul>
+<li><strong>PCI总线部件和接口插件相对于处理器独立</strong>，支持所有目前和将来不同结构的处理器，<strong>具有相当长的生命周期</strong></li>
+<li>PCI总线与ISA和EISA总线均可<strong>兼容</strong>，可以<strong>转换</strong>为标准的ISA、EISA</li>
+</ul>
+<p>3、<strong>支持 即插即用(Plug and Play)</strong></p>
+<ul>
+<li>扩展卡只要<strong>插入系统便可工作</strong></li>
+<li>PCI设备中配有<strong>存放设备具体信息</strong>的<strong>寄存器</strong>，这些信息可供<strong>BIOS（基本输入输出系统）和操作系统层的软件自动配置PCI总线部件和插件</strong>，使系统使用方便，无需手动配置</li>
+</ul>
+<p>4、<strong>支持 多主设备 能力</strong></p>
+<ul>
+<li>允许任何主设备和从设备之间实现<strong>点到点对等存取</strong>，体现了接纳设备的高度灵活性</li>
+<li>主设备：一次总线传输期间，对总线有控制权的设备</li>
+<li>从设备：一次总线传输期间，对总线没有控制权的设备</li>
+</ul>
+<p>5、<strong>具有与 处理器和存储器子系统 完全并行操作 的能力</strong></p>
+<ul>
+<li>PCI总线可视为CPU与外设之间的一个<strong>中间层</strong>，通过PCI桥路（PCI控制器）与CPU相连</li>
+<li>PCI桥路有<strong>多级缓存</strong>，可把<strong>一批数据快速写入缓冲器中</strong>，在数据写入PCI设备过程中，可真正实现处理器/存储器子系统的安全并发工作。</li>
+</ul>
+<p>6、<strong>提供数据和地址 奇偶校验功能，保证数据的完整和准确</strong></p>
+<p>7、<strong>支持两种电压标准：5V和3.3V</strong></p>
+<ul>
+<li>3.3~5V的组件技术可以使电压平滑过渡</li>
+<li>3.3V电压的PCI总线技术可用于便携式微型计算机中</li>
+</ul>
+<p>8、<strong>可扩充性好</strong></p>
+<ul>
+<li>当PCI总线驱动能力不足时，可以采用多层结构</li>
+</ul>
+<p>9、<strong>软件兼容性好</strong></p>
+<ul>
+<li>PCI部件可以完全兼容现有的驱动程序和应用程序</li>
+<li>设备驱动程序可被移植到各类平台上</li>
+</ul>
+<p>10、<strong>采用 多路复用技术，减少了总线引脚个数</strong></p>
+<h3 id="5-AGP总线"><a href="#5-AGP总线" class="headerlink" title="5.AGP总线"></a>5.AGP总线</h3><blockquote>
+<p>Accelerated Graphics Port 加速图形端口</p>
+<p>用于处理三维数据，需有更宽广的数据传输带宽，PCI总线成为传输瓶颈</p>
+</blockquote>
+<ul>
+<li><p>基于PCI 2.1，采用点对点通道方式</p>
+</li>
+<li><p>以<strong>66.7MHz</strong>的频率直接与主存联系，以主存作为帧缓冲器，实现了高速存取。</p>
+</li>
+<li><p>最大传输率<strong>266MBps</strong>，数据宽度位<strong>32位</strong>——传统PCI总线带宽的2倍</p>
+</li>
+<li><p>“双激励”(Double Pumping)传输技术：在一个时钟的上、下沿双向传递数据</p>
+<p>传输频率为<strong>66.7MHz×2，即133MHz</strong>，最大传输率<strong>533MBps</strong></p>
+<p>后来版本数据传输速率可达2.1GBps</p>
+</li>
+</ul>
+<h3 id="6-RS-232C总线"><a href="#6-RS-232C总线" class="headerlink" title="6.RS-232C总线"></a>6.RS-232C总线</h3><blockquote>
+<p>RS: Recommended Standard，232标识号，C 修改次数</p>
+<p>RS-232：仪器仪表（飞机、键盘）系统标准（220V等，温度、湿度、压力），可接距离远</p>
+</blockquote>
+<ul>
+<li><p>一种<strong>串行通信总线标准</strong></p>
+</li>
+<li><p>应用于串行二进制交换的<strong>数据终端设备（DTE, Data Terminal Equipment）</strong>（计算机）和<strong>数据通信设备（DCE, Data Communication Equipment）</strong>（调制解调器）之间的标准接口</p>
+</li>
+<li><p>规定的<strong>逻辑电平</strong>与计算机系统中TTL和MOS电平不同</p>
+<p><strong>低电平表示逻辑“1”，并要求低电平为-15~-3V</strong></p>
+<p><strong>高电平表示逻辑“0”，并要求高电平为+3~+15V</strong></p>
+</li>
+</ul>
+<blockquote>
+<p>随着计算机网络发展，现代计算机之间的远距离通信可直接由网卡经网线（8根，双绞线）传输</p>
+</blockquote>
+<h3 id="7-USB总线"><a href="#7-USB总线" class="headerlink" title="7.USB总线"></a>7.USB总线</h3><blockquote>
+<p>Universal Serial Bus 通用串行总线</p>
+<p>1994 七大公司联合开发计算机串行接口总线标准</p>
+<p>1996.1 USB 1.0 通用连接技术</p>
+</blockquote>
+<p><strong>具有真正的即插即用特征</strong></p>
+<ul>
+<li>不关机情况下对外设实行安装和拆卸</li>
+</ul>
+<p><strong>具有很强的连接能力</strong></p>
+<ul>
+<li>使用USB HUB（USB集线器）实现系统扩展，最多可链式连接127个外设到同一系统</li>
+</ul>
+<p><strong>数据传输率</strong>（USB1.0版）</p>
+<ul>
+<li><strong>普通无屏蔽双绞线：1.5Mbps</strong></li>
+<li><strong>带屏蔽双绞线：12Mbps</strong></li>
+<li>USB 2.0版：<strong>480Mbps</strong></li>
+</ul>
+<p><strong>标准统一</strong></p>
+<ul>
+<li>减轻了对目前PC中所有标准接口的需求</li>
+</ul>
+<p><strong>连接电缆轻巧，电源体积缩小</strong></p>
+<ul>
+<li>USB使用4芯电缆。2条用于信号连接，2条用于电源/地（为外设提供+5V直流电源）</li>
+</ul>
+<p><strong>生命力强</strong></p>
+<ul>
+<li>开放性、不具有专利版权的工业标准</li>
+<li>USB规范具有强大生命力</li>
+</ul>
+<h1 id="3-4-总线结构（了解即可）"><a href="#3-4-总线结构（了解即可）" class="headerlink" title="3.4 总线结构（了解即可）"></a>3.4 总线结构（了解即可）</h1><p>（了解即可）</p>
+<p>通常可分为单总线结构和多总线结构</p>
+<h2 id="一、单总线结构"><a href="#一、单总线结构" class="headerlink" title="一、单总线结构"></a>一、单总线结构</h2><p>特点：</p>
+<ul>
+<li><p>效率低</p>
+</li>
+<li><p>结构简单</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212054042.png" alt="image-20220225212054042" style="zoom:67%;" /></p>
+<h2 id="二、多总线结构"><a href="#二、多总线结构" class="headerlink" title="二、多总线结构"></a>二、多总线结构</h2><ol>
+<li><p><strong>双总线结构</strong></p>
+<p>通道控制器</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212127403.png" alt="image-20220225212127403" style="zoom:67%;" /></p>
+</li>
+<li><p><strong>三总线结构</strong></p>
+<ul>
+<li><p>I/O总线（慢）</p>
+</li>
+<li><p>主存总线</p>
+</li>
+<li><p>DMA总线（存储器直接存取）：直接管理主存和外设之间的信息交换</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212154222.png" alt="image-20220225212154222" style="zoom:67%;" /></p>
+</li>
+</ul>
+</li>
+<li><p><strong>三总线结构的又一形式</strong></p>
+<ul>
+<li><p>局部总线：提升CPU和主存速度不匹配</p>
+</li>
+<li><p>系统总线</p>
+</li>
+<li><p>扩展总线</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212215082.png" alt="image-20220225212215082" style="zoom:67%;" /></p>
+</li>
+</ul>
+</li>
+<li><p><strong>四总线结构</strong></p>
+<ul>
+<li><p>局部总线</p>
+</li>
+<li><p>系统总线</p>
+</li>
+<li><p>高速总线</p>
+</li>
+<li><p>扩展总线：将慢速设备划分并管理起来</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212240661.png" alt="image-20220225212240661" style="zoom:67%;" /></p>
+</li>
+</ol>
+<h2 id="三、总线结构距离"><a href="#三、总线结构距离" class="headerlink" title="三、总线结构距离"></a>三、总线结构距离</h2><ol>
+<li><strong>传统微型机总线结构</strong></li>
+</ol>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212312246.png" alt="image-20220225212312246" style="zoom:67%;" /></p>
+<ol>
+<li><strong>VL-BUS局部总线结构</strong></li>
+</ol>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212329275.png" alt="image-20220225212329275" style="zoom:67%;" /></p>
+<ol>
+<li><p><strong>PCI 总线结构</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212351878.png" alt="image-20220225212351878" style="zoom:67%;" /></p>
+</li>
+<li><p><strong>多层 PCI 总线结构</strong></p>
+<p>桥联，连接多级总线</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225212418731.png" alt="image-20220225212418731" style="zoom:67%;" /></p>
+</li>
+</ol>
+<h1 id="3-5-总线控制（重点内容）"><a href="#3-5-总线控制（重点内容）" class="headerlink" title="3.5 总线控制（重点内容）"></a>3.5 总线控制（重点内容）</h1><p>（重点内容）</p>
+<blockquote>
+<p>总线控制器统一管理总线上连接着的多个部件：</p>
+<p>什么时候由哪个部件发送信息、如何给信息传送定时、如何放置信息丢失、如何避免多个部件同时发送、如何规定接收信息的部件</p>
+</blockquote>
+<p>总线控制主要包括</p>
+<ul>
+<li><p><strong>判优控制（仲裁逻辑）</strong>：多个设备可能同时发出占用总线的请求，但总线在同一时刻只能有一个设备占用</p>
+</li>
+<li><p><strong>通信控制</strong>：如何完成通讯过程，保证通讯过程的正确性</p>
+</li>
+</ul>
+<h2 id="一、总线判优控制（要掌握的内容）"><a href="#一、总线判优控制（要掌握的内容）" class="headerlink" title="一、总线判优控制（要掌握的内容）"></a>一、总线判优控制（要掌握的内容）</h2><h3 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1.基本概念"></a>1.基本概念</h3><ul>
+<li><p>主设备（模块）：对总线有<strong>控制权</strong>——送信息：传输出去、准确；读信息：把从设备提供的信息取到主设备</p>
+<p>CPU、DMA</p>
+<p>I/O设备发出控制信号</p>
+<blockquote>
+<p>总线（主模块）——周期（时间段）决定传输的快和慢</p>
+<p>①控制线决定命令性质（由控制信号指出）：$\begin{cases} I \\ O \end{cases}$</p>
+<p>②地址线寻址——找到从模块</p>
+<p>③数据线——内容</p>
+<p>​            $\Downarrow$</p>
+<p>总线规则：从设备“唯一”寻址</p>
+<p>被选中的模块打开三态门（总线驱动器），接通</p>
+<p>其他未选中的三态门关上</p>
+<p>使用三态门还可以起到隔离的作用（对于故障的设备——系统可检测出溢出）</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>从设备（模块）：<strong>响应</strong>主设备发来的总线命令</p>
+<p>存储器、I/O接口地址</p>
+</li>
+<li><p>总线判优控制$\begin{cases} 集中式 \begin{cases} 链式查询 \\ 计数器定时查询 \\ 独立请求方式 \\  \end{cases} \\ 分布式 \\ \end{cases}$​</p>
+<p>集中式（有总线控制器/部件）：一个核内的协调</p>
+<p>分布式：独立的计算机/服务器阵列</p>
+</li>
+</ul>
+<h3 id="2-链式查询方式"><a href="#2-链式查询方式" class="headerlink" title="2.链式查询方式"></a>2.链式查询方式</h3><p>链式查询方式：用于微型计算机、简单的嵌入式系统</p>
+<blockquote>
+<p>CPU/DMA挂在I/O接口上，作为控制器。带“圈”，低电平有效</p>
+<p>请求：高电平有效；回答：低电平有效</p>
+<p>总线控制部件分配</p>
+<p>触发器：BS占用置1，未使用置0</p>
+<p>BG信号未到达的设备处于等待状态</p>
+</blockquote>
+<p>判优方式：<strong>离总线控制器越近的部件，其优先级越高</strong></p>
+<p>优点：①结构简单，只需要3根控制线；②增删设备容易；③可靠性设计容易实现</p>
+<p>缺点：①对电路故障特别敏感（BS、BR、BG都很关键，一条出故障导致电路故障）；②当优先级高的部件频繁请求使用总线时，会使优先级较低的部件长期不能使用总线（<strong>优先级不够灵活</strong>）；③速度慢</p>
+<blockquote>
+<p>控制总线中有3根线用于总线控制（BS总线忙、BR总线请求、BG总线同意）</p>
+<p>总线同意信号BG串行地从一个I/O接口送到下一个I/O接口。如果BG到达的接口<strong>有总线请求</strong>，<strong>BG信号就不再往下传</strong>，意味该接口获得总线使用权，并<strong>建立总线忙BS信号</strong>，表示它占用了总线</p>
+<p>进入总线传输周期</p>
+<p>使用结束</p>
+<p>触发器让BS强行置0，总线释放</p>
+<p>BG已经过的设备不能分得总线控制权，只能等待下一轮循环</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220112112254188.png" alt="image-20220112112254188" style="zoom: 67%;" /></p>
+<h3 id="3-计数器定时查询方式"><a href="#3-计数器定时查询方式" class="headerlink" title="3.计数器定时查询方式"></a>3.计数器定时查询方式</h3><p>判优方式：总线控制部件中有计数器</p>
+<p>$n$​台设备需要$log_2n$​​（向上取整）根控制总线</p>
+<p><strong>特点</strong></p>
+<ul>
+<li>对电路故障不如链式查询方式敏感（但BS、BR的问题仍存在）</li>
+<li>增加了控制线（设备地址）数，控制也较复杂</li>
+</ul>
+<blockquote>
+<p>多了一组设备地址线，少了一根总线同意线BG。</p>
+<p>总线控制部件接到由BR送来的总线请求信号后，在总线未被使用（$BS = 0$）的情况下，总线控制部件中的计数器开始计数，并通过设备地址线，向各设备发送一组地址信号。</p>
+<p>当某个请求占用总线的设备地址与计数值一致时（接收BS应答信号），便获得总线使用权，此时中止计数查询。</p>
+<p>结束使用</p>
+<p>BS总线忙置零，计数器继续计数，在该轮循环中找之后的申请的设备。</p>
+<p>例如，当1使用完，0若申请则只能等下一轮循环才可以使用</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220112112948908.png" alt="image-20220112112948908" style="zoom: 67%;" /></p>
+<h3 id="4-独立请求方式"><a href="#4-独立请求方式" class="headerlink" title="4.独立请求方式"></a>4.独立请求方式</h3><p>任何一个I/O接口都添加了两条线</p>
+<p>$n$​台设备需要$2n$​根控制线</p>
+<p>总线控制器可以给CPU</p>
+<p>各个设备的优先级相同</p>
+<p><strong>特点</strong></p>
+<ul>
+<li>响应速度快，优先次序控制灵活（通过程序改变）</li>
+<li>控制线数量多，总线控制更复杂</li>
+<li>不存在线路敏感的问题（对比前两种）</li>
+</ul>
+<blockquote>
+<p>每台设备均有一对总线请求线$BR_i$​和总线同意线$BG_i$​</p>
+<p>总线控制部件中有排队器，可以根据优先次序确认响应哪一台设备的请求</p>
+<p>总线控制权一般不允许嵌套（ch5，中断方式允许嵌套），不会出现打断</p>
+<p>排队器——硬件（ch5，ch8）</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220112113806812.png" style="zoom: 67%;" /></p>
+<h2 id="二、总线通信控制"><a href="#二、总线通信控制" class="headerlink" title="二、总线通信控制"></a>二、总线通信控制</h2><ul>
+<li><p>目的：解决通信双方<strong>协调配合</strong>问题</p>
+</li>
+<li><p>总线传输周期</p>
+<ul>
+<li><strong>申请分配阶段</strong>：<strong>主模块申请</strong>，总线仲裁决定</li>
+<li><strong>寻址阶段</strong>：主模块向从模块<strong>给出地址</strong>和<strong>命令</strong></li>
+<li><strong>传输阶段</strong>：主模块和从模块经数据总线<strong>交换数据</strong></li>
+<li><strong>结束阶段</strong>：主模块从系统总线<strong>撤销有关信息</strong>，让出总线使用权</li>
+</ul>
+<p>对于CPU，只有两个阶段，传输周期减少，速度变快</p>
+</li>
+<li><p>总线通信的四种方式</p>
+<ul>
+<li><p>同步通信：由<strong>统一时标</strong>控制数据传送</p>
+<blockquote>
+<p>对于CPU，是主频——与内存进行通信</p>
+</blockquote>
+</li>
+<li><p>异步通信：采用<strong>应答方式</strong>，没有公共时钟标准</p>
+<blockquote>
+<p>握手的方式，高速和低速</p>
+</blockquote>
+</li>
+<li><p>半同步通信：<strong>同步、异步结合</strong></p>
+<blockquote>
+<p>有的时候可以采用同一频率工作，有时不能——如，乘法运算（允许增加节拍的整数倍）</p>
+</blockquote>
+</li>
+<li><p>分离式通信：充分<strong>挖掘</strong>系统<strong>总线每个瞬间</strong>的潜力，发挥最大效能</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-目的"><a href="#1-目的" class="headerlink" title="1.目的"></a>1.目的</h3><p>解决通信双方<strong>协调配合</strong>问题</p>
+<h3 id="2-总线传输周期"><a href="#2-总线传输周期" class="headerlink" title="2.总线传输周期"></a>2.总线传输周期</h3><script type="math/tex; mode=display">
+\begin{cases}
+申请分配阶段——主模块申请，总线仲裁决定 \\
+寻址阶段——主模块向从模块给出地址和命令 \\
+传数阶段——主模块和从模块交换数据 \\
+结束阶段——主模块撤销有关信息 \\
+\end{cases}</script><ul>
+<li>申请分配阶段：<strong>主模块申请</strong>，总线仲裁决定</li>
+<li>寻址阶段：主模块向从模块<strong>给出地址</strong>和<strong>命令</strong></li>
+<li>传数阶段：主模块和从模块经数据总线<strong>交换数据</strong></li>
+<li>结束阶段：主模块从系统总线<strong>撤销有关信息</strong>，让出总线使用权</li>
+</ul>
+<p>对于CPU，只有两个阶段，传输周期减少，速度变快</p>
+<h3 id="3-总线通信的四种方式"><a href="#3-总线通信的四种方式" class="headerlink" title="3.总线通信的四种方式"></a>3.总线通信的四种方式</h3><script type="math/tex; mode=display">
+\begin{cases}
+同步通信——由统一时标控制数据传送 \\
+异步通信——采用应答方式，没有公共时钟标准 \\
+半同步通信——同步、异步结合 \\
+分离式通信——充分发掘系统总线每个瞬间的潜力 \\
+\end{cases}</script><h4 id="（1）同步式数据输入"><a href="#（1）同步式数据输入" class="headerlink" title="（1）同步式数据输入"></a>（1）同步式数据输入</h4><p>定宽、定距的时钟控制整个过程。</p>
+<p>固定的时间点给出固定的操作。</p>
+<blockquote>
+<p>$T_1$​​​的上升沿，主设备CPU<strong>给出地址信号</strong>；——如，指令“MOV ACC, (20H)”中的十六进制数(20H)，相应的地址信号变化，调整到对应的地址码上（依照指令）。</p>
+<p>$T_2$​​​上升沿​，CPU<strong>给出读命令信号</strong>；——此时数据总线上可以有数，但不是指定的正确的数，因为还没传数，不是正确地址驱动。</p>
+<p>与地址信号相符合的<strong>输入设备进行一系列内部操作</strong>，且必须<strong>在$T_3$​上升沿到来之前</strong>将CPU所需的<strong>数据送到数据总线</strong>上；——相应地址驱动一直保持（送数据并锁定）</p>
+<p>地址不变，读命令一直有效，数据稳定</p>
+<p>$T_3$​​上升沿，从设备给出数据信号，通过数据总线；——采样点，被采样的数据应稳定保持一段时间。</p>
+<p>CPU在$T_3$​时钟期间内<strong>将数据总线上的信息送到其内部寄存器</strong>中；</p>
+<p>$T_4$​上升沿，<strong>CPU撤销读命令</strong>。数据信号和控制信号撤销，结束后地址信号撤销。</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220228131731765.png" alt="image-20220228131731765" style="zoom:67%;" /></p>
+<blockquote>
+<p>图中：斜坡表示电平发生变化（0$\leftrightarrow$​1）</p>
+<p>$T_4$上升沿的数据应保持一段时间</p>
+<p>$T_1$：主模块发地址</p>
+<p>$T_2$：主模块发读命令</p>
+<p>$T_3$：从模块提供数据</p>
+<p>$T_4$​：主模块撤销读命令，从模块撤销数据</p>
+<p>后面是下一个总线传输周期</p>
+</blockquote>
+<h4 id="（2）同步式数据输出"><a href="#（2）同步式数据输出" class="headerlink" title="（2）同步式数据输出"></a>（2）同步式数据输出</h4><blockquote>
+<p>例如，”MOV (22H) A5H”，$\overline{MEMW}$</p>
+<p>命令慢，等地址和数据</p>
+<p>$T_1$上升沿：地址信号调整，保持稳定、有效</p>
+<p>$T_{1.5}$：数据信号调整到对应位置</p>
+<p>$T_2$：写命令，写，等待命令翻转，控制器控制采样。命令信号应前移，采样时应保持控制命令、地址、数据信号稳定</p>
+<p>$T_4$​​：三态门关闭，<strong>地址先撤掉</strong></p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220228131812640.png" alt="image-20220228131812640" style="zoom:67%;" /></p>
+<blockquote>
+<p>$T_1$​：主模块发地址</p>
+<p>$T_{1.5}$：主模块提供数据</p>
+<p>$T_2$​：主模块发写命令，从模块接到写命令后，必须在规定时间内将数据总线上的数据写到地址总线所指明的单元中</p>
+<p>$T_4$：主模块撤销读命令，从模块撤销数据</p>
+</blockquote>
+<h4 id="（3）异步通信"><a href="#（3）异步通信" class="headerlink" title="（3）异步通信"></a>（3）异步通信</h4><p>采用<strong>应答方式</strong>，即：当主模块发出请求信号时，一直等待从模块反馈回来会打信号后才开始通信。</p>
+<p>异步通信的应答方式分为：<strong>不互锁</strong>、<strong>半互锁</strong>和<strong>全互锁</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220228131835118.png" alt="image-20220228131835118" style="zoom:67%;" /></p>
+<p>①<strong>不互锁</strong></p>
+<blockquote>
+<p><strong>主模块</strong>发出请求信号后，<strong>不必等待接到从模块的回答信号</strong>。经过一段时间，确认从模块已收到请求信号后，撤销其请求信号。</p>
+</blockquote>
+<p>“主设备不负责任”</p>
+<p>优点：简单</p>
+<p>缺点：从设备可能会接收不到请求信号</p>
+<p>②<strong>半互锁</strong></p>
+<blockquote>
+<p><strong>主模块</strong>发出请求信号，<strong>必须待接到从模块的回答信号后再撤销其请求信号</strong>，有互锁关系；</p>
+<p><strong>从模块</strong>在接到请求信号后发出回答信号，<strong>不必等待获知主模块的请求信号已经撤销</strong>。隔一段时间后自动撤销其回答信号，无互锁关系。</p>
+</blockquote>
+<p>“握手少”</p>
+<p>从设备接收请求信号后，不管主设备</p>
+<p>③<strong>全互锁</strong></p>
+<p>双方存在互锁关系</p>
+<blockquote>
+<p><strong>主模块</strong>发出请求信号，<strong>必须待从模块回答后再撤销其请求信号</strong>；</p>
+<p><strong>从模块</strong>发出回答信号，<strong>必须待获知主模块请求信号已经撤销后</strong>，再撤销其回答信号。</p>
+</blockquote>
+<p>优点：可靠</p>
+<h4 id="（4）半同步通信（同步、异步结合）"><a href="#（4）半同步通信（同步、异步结合）" class="headerlink" title="（4）半同步通信（同步、异步结合）"></a>（4）半同步通信（同步、异步结合）</h4><p>（快的主设备等待慢的从设备，直到$\overline{WAIT}$变成高电平）</p>
+<ul>
+<li><p>同步</p>
+<p><strong>发送方</strong>用系统<strong>时钟前沿</strong>发信号</p>
+<p><strong>接收方</strong>用系统<strong>时钟后沿</strong>判断、识别</p>
+</li>
+<li><p>异步</p>
+<p>允许不同速度的模块和谐工作</p>
+<p>增加一条<strong>“等待”响应信号</strong> $\overline{WAIT}$​（低电平有效，节拍的整数倍）​​</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220228132337109.png" alt="image-20220228132337109" style="zoom:67%;" /></p>
+<blockquote>
+<p>以输入数据为例的半同步通信时序：</p>
+<p>$T_1$ 主模块发地址</p>
+<p>$T_2$​ 主模块发命令</p>
+<p>$T_W$​ 当$\overline{WAIT}$​为低电平时，等待一个$T$</p>
+<p>$T_W$​ 当$\overline{WAIT}$​为低电平时，等待一个$T$</p>
+<p>…</p>
+<p>$T_3$ 从模块提供数据</p>
+<p>$T_4$ 从模块撤销数据，主模块撤销命令</p>
+</blockquote>
+<ul>
+<li><p>文字描述</p>
+<ul>
+<li>第一个阶段时钟信号开始：CPU给出地址信号，通过地址总线。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>第二个阶段：读操作，CPU给出读信号。第三个时钟周期开始前，如果从设备不能准备好，需通过$\overline{WAIT}$信号给出低电平，告诉CPU进行等待。CPU检测，若为低电平，则在第三周期到来前，插入时钟周期$T_w$。在下一个时钟周期到来前，主设备依然要检测$\overline{WAIT}$信号是否为低电平。如果$\overline{WAIT}$信号为高电平，则进入第三个阶段。</li>
+</ul>
+<ul>
+<li>第三个阶段：数据准备好进行传输，数据已放在数据总线上，CPU接收数据。</li>
+</ul>
+<ul>
+<li>第四个阶段：读命令信号和数据信号从总线上撤销。第四个时钟周期结束，地址总线上的地址信号也撤销。</li>
+</ul>
+<h4 id="上述三种通信的共同点"><a href="#上述三种通信的共同点" class="headerlink" title="上述三种通信的共同点"></a>上述三种通信的共同点</h4><p>一个总线传输周期（以输入数据为例）</p>
+<ul>
+<li>主模块通过传输总线向从模块发地址、命令：<strong>占用地址、控制总线</strong></li>
+<li>从模块按照命令准备数据：<strong>不占用总线</strong>，总线空闲</li>
+<li>从模块经数据总线向主模块发数据：<strong>占用数据总线</strong></li>
+</ul>
+<p>下一步：把总线空闲的时间利用起来——<u>从模块内部读数据过程并无实质性的信息传输</u>，总线纯属空闲等待。</p>
+<h4 id="（5）分离式通信"><a href="#（5）分离式通信" class="headerlink" title="（5）分离式通信"></a>（5）分离式通信</h4><p><strong>充分挖掘系统总线每个瞬间的潜力</strong>——总线不闲下来</p>
+<p>各模块占用总线使用权都必须提出申请。在准备数据的过程中不占用总线。</p>
+<p>一个总线传输周期：$\begin{cases} 子周期1：主模块申请占用总线，使用完后即放弃总线的使用权 \\ 子周期2：从模块申请占用总线，将各种信息送至总线上  \end{cases}$​</p>
+<p>（主模块可以变成从模块）</p>
+<p><strong>分离式通信特点</strong></p>
+<ul>
+<li>各模块有权申请占用总线</li>
+<li>采用同步方式通信，不等对方回答</li>
+<li>各模块准备数据时，不占用总线</li>
+<li>总线被占用时，无空闲（充分利用总线的带宽）</li>
+</ul>
+<p><strong>充分提高了总线的有效占用</strong></p>
+<p>总线传输时间：总线完成一次完整而可靠传输所需时间</p>
+<p>总线的通信控制：总线传送过程中双方的时间配合方式</p>
+<h1 id="补充题"><a href="#补充题" class="headerlink" title="补充题"></a>补充题</h1><p>3.17 查资料完成：</p>
+<p>①写出EISA（ISA）总线的标准信号定义</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220228190819228.png" alt="image-20220228190819228" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220228190847957.png" alt="image-20220228190847957" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220228190913283.png" alt="image-20220228190913283" style="zoom:67%;" /></p>
+<p>②画出插座的俯视图</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/OIP-C.9x-HCafwPKCdoxJrUF4coQHaFj" alt="See the source image"  /></p>
+<p>③写出$A_1,D_1$的编号</p>
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><ul>
+<li><p>例3.1</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302195533905.png" alt="image-20220302195533905" style="zoom:67%;" /></p>
+</li>
+</ul>
+<blockquote>
+<p>在实际情况中，</p>
+<ul>
+<li><p>增加数据线的宽度会使整个CPU的设计产生变化。存储器从32$\to$64</p>
+</li>
+<li><p>增加总线的时钟频率要求更高的性能，否则会导致计算机不稳定（步调跟不上）</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>例3.2</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302195829192.png" alt="image-20220302195829192" style="zoom:67%;" /></p>
+</li>
+</ul>
+<blockquote>
+<p><strong>异步串行通信的数据传送速率</strong>用<strong>波特率</strong>衡量。</p>
+<p>波特率：单位时间内传送二进制数据的位数，单位：bps（位/秒）</p>
+</blockquote>
+<ul>
+<li><p>例3.3</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302200713658.png" alt="image-20220302200713658" style="zoom:67%;" /></p>
+</li>
+<li><p>例3.4</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302200648866.png" alt="image-20220302200648866" style="zoom:67%;" /></p>
+<blockquote>
+<p>比特率：单位时间内通过信道传输的信息量称为比特传输速率，单位是比特/秒（bit/s）</p>
+</blockquote>
+</li>
+</ul>
+<p>【参考资料】：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/355061904">波特率和比特率</a></p>
+<p><a href="https://blog.csdn.net/wordwarwordwar/article/details/78081156">波特率与比特率的关系</a></p>
+<p><a href="https://blog.csdn.net/ymdq1113/article/details/69677116">波特率与比特率</a></p>
+]]></content>
+      <tags>
+        <tag>computer organization</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数理逻辑：第1节 命题逻辑的基本概念</title>
+    <url>/mathematical_logic/mathematical-logic-ch1/</url>
+    <content><![CDATA[<h1 id="1-1-命题与联结词"><a href="#1-1-命题与联结词" class="headerlink" title="1.1 命题与联结词"></a>1.1 命题与联结词</h1><h2 id="命题与真值"><a href="#命题与真值" class="headerlink" title="命题与真值"></a>命题与真值</h2><ul>
+<li>命题：能<strong>唯一</strong>确定<strong>真假值</strong>的<strong>陈述句</strong></li>
+<li>命题的真值：一个命题的真or假</li>
+<li>真值的取值：真or假</li>
+<li>真命题与假命题：由内容是否符合实际情况决定</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li>感叹句、祈使句、疑问句、<strong>悖论</strong>不是命题</li>
+<li>判断结果不唯一确定的陈述句不是命题（针对真值多种取值的情况）</li>
+</ul>
+<span id="more"></span>
+<h2 id="命题分类"><a href="#命题分类" class="headerlink" title="命题分类"></a>命题分类</h2><ul>
+<li>简单命题（原子命题）：不能分解成更简单的命题（基本单位）</li>
+<li>命题符合：由简单命题通过<strong>联结词</strong>联结而成的命题</li>
+<li>联结词有5类：与（$\land$​​）、或（$\vee$​）、非（$\neg$​）、蕴含（如果…那么（则）…）、等价（当且仅当，$\Leftrightarrow$​​）。$\neg$​为单联结词</li>
+</ul>
+<h2 id="简单命题符号化"><a href="#简单命题符号化" class="headerlink" title="简单命题符号化"></a>简单命题符号化</h2><ul>
+<li>用小写英文字母$p,q,r,…,$$p_i$,$q_i$,$r_i(i\geq1)$表示简单命题</li>
+<li>用”1“表示真，用”0“表示假</li>
+</ul>
+<h2 id="否定、合取、析取联结词"><a href="#否定、合取、析取联结词" class="headerlink" title="否定、合取、析取联结词"></a>否定、合取、析取联结词</h2><ul>
+<li><p><strong>定义1</strong>：设 p为命题，<strong>复合命题</strong>“非p”(或“p的否定”) 称为 p的<strong>否定式</strong>，记作$\neg$​p，符号$\neg$​称作<strong>否定联结词</strong>。 </p>
+<p>规定: $\neg$​p 为真当且仅当<u>p为假</u>。</p>
+</li>
+<li><p><strong>定义2</strong>：设p,q为两个命题，复合命题“p并且q”(或 “p 与 q”)称为 p与q的<strong>合取式</strong>，记作p∧q，∧称作<strong>合取联结词</strong>。</p>
+<p>规定: p∧q为真当且仅当<u>p与q同时为真</u>。</p>
+</li>
+<li><p><strong>定义3</strong>：设p, q为两个命题，复合命题“p或q”称作 p 与 q 的<strong>析取式</strong>，记作p∨q，∨称作<strong>析取联结词</strong>。 </p>
+<p>规定: p∨q为假当且仅当<u>p与q同时为假</u>。</p>
+</li>
+<li><p>关于”或“：$\begin{cases} 相容或：可兼 \qquad（例如：我上街买矿泉水或者买饮料） \\ 排斥或（异或）：不相容或,不可兼 \qquad （例如：某人星期一来或者星期二来） \\ \end{cases}$​</p>
+<blockquote>
+<p>又如：</p>
+<p>ab = 0——a = 0 或 b = 0 </p>
+<p>(a-1)·(a-2) = 0——a = 1 或 a = 2</p>
+</blockquote>
+<p>规定：数学上取<strong>相容或</strong></p>
+<p>排斥或：($\neg$ p $\land$q) $\vee$ (p$\land$$\neg$ q)</p>
+</li>
+</ul>
+<h2 id="蕴含联结词"><a href="#蕴含联结词" class="headerlink" title="蕴含联结词"></a>蕴含联结词</h2><ul>
+<li><p><strong>定义4</strong>：设p, q为两个命题，复合命题”如果p, 则q” 称作p与q的<strong>蕴涵式</strong>，记作p→q， </p>
+<p>并称p是蕴涵式的<strong>前件</strong>， q为蕴涵式的<strong>后件</strong>，→称作<strong>蕴涵联结词</strong>。 </p>
+<p>规定：p→q为假当且仅当<u>p为真q为假</u>。</p>
+<blockquote>
+<p>蕴含举例：</p>
+<p>对任何x，如果x&gt;3，则$x^2$&gt;9 真命题 </p>
+<p>令x=4，如果 4&gt;3，则16&gt;9（前提真，结论真） </p>
+<p>令x=-4，如果 -4&gt;3，则16&gt;9（前提假，结论真）</p>
+<p>令x=-2，如果 -2&gt;3, 则4&gt;9（前提假，结论假）——<strong>整个</strong>命题为真</p>
+<p><strong>对于该蕴含命题（真命题），不存在前提真，结论假的情况</strong></p>
+</blockquote>
+</li>
+<li><p>要证明符合命题：如果p, 则q</p>
+<ul>
+<li>一般情况下，<strong>由前提真，证明结论真</strong></li>
+<li>特殊情况下，<strong>前提为假，没有什么可做的</strong></li>
+</ul>
+<blockquote>
+<p>可以用来证明</p>
+<p>证：空集是任意集合的子集</p>
+<p>任何集合S，$\oslash \subseteq S$​​​ </p>
+<p>由子集的定义</p>
+<p><strong>任何x，若$x \in \oslash$​，则$x \in S$​​​​ </strong>——空证明</p>
+</blockquote>
+</li>
+<li><p>关于蕴含联结词的一些概念</p>
+<ul>
+<li><p>p→q 的逻辑关系：（有p一定有q，没有q一定没有p——逆否关系）——p$\subseteq$​​q</p>
+<ul>
+<li>q为p的必要条件</li>
+<li>p为q的充分条件</li>
+</ul>
+<blockquote>
+<p>p$\rightarrow$​​​q  $\Leftrightarrow$​​  $\neg$​q$\to$$\neg$​p</p>
+<p>p与q等价：$\begin{cases} p \to q \\ \neg p \to \neg q  \end{cases}$</p>
+</blockquote>
+</li>
+<li><p>“如果 p, 则 q” 有很多不同的表述方法：<strong>（需要好好理解）</strong></p>
+<ul>
+<li><p>若p，就q</p>
+</li>
+<li><p>只要p，就q</p>
+</li>
+<li><p><strong>p仅当q</strong></p>
+<blockquote>
+<p>p当且仅当q</p>
+<p>$\begin{cases} p当q——当有q就有p（q为充分条件，写在→前面）\\  p仅当q——仅当q，才p（q为必要条件，写在→后面）/除非q，才p：p→q \\ \end{cases}$ </p>
+</blockquote>
+</li>
+<li><p><strong>只有q，才p</strong></p>
+</li>
+<li><p>除非q，才p</p>
+</li>
+<li><p>除非q，否则非p（双重否定）</p>
+<blockquote>
+<p>除非q，否则p：$\neg p \rightarrow q$​</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>当 p 为假时，p→q 恒为真，称为空证明</p>
+</li>
+<li><p>常出现的错误：不分充分与必要条件</p>
+</li>
+<li><p>在自然语言中，“如果 p , 则 q ” ，p, q具有某种内在联系；</p>
+<p><strong>但在数理逻辑中， p, q可以无任何内在联系</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="等价联结词"><a href="#等价联结词" class="headerlink" title="等价联结词"></a>等价联结词</h2><ul>
+<li><p><strong>定义5</strong>：设 p, q为两个命题，复合命题“p当且仅当q” 称作p与q的<strong>等价式</strong>，记作p$\leftrightarrow$​q，$\leftrightarrow$​称作<strong>等价联结词</strong>。 </p>
+<p>规定: <u>p$\leftrightarrow$​​q为真</u>当且仅当<u>p与q同时为真或同时为假。</u></p>
+<p>​         p$\leftrightarrow$q 的逻辑关系：p与q互为充分必要条件。</p>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>基本联结词：构成一层</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225084811509.png" alt="image-20220225084811509" style="zoom:67%;" /></p>
+<p><strong>注意优先级：括号$&gt;$非$&gt;$与$&gt;$或$&gt;$蕴含$&gt;$等价</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225085015688.png" alt="image-20220225085015688" style="zoom:67%;" /></p>
+<h1 id="1-2-命题公式及其赋值"><a href="#1-2-命题公式及其赋值" class="headerlink" title="1.2 命题公式及其赋值"></a>1.2 命题公式及其赋值</h1><h2 id="命题变项与合式公式"><a href="#命题变项与合式公式" class="headerlink" title="命题变项与合式公式"></a>命题变项与合式公式</h2><ul>
+<li><p><strong>命题常项</strong>（命题常元）：简单命题（相当于常数或常量）</p>
+</li>
+<li><p><strong>命题变项</strong>（命题变元）：可表示任意命题的变元 （相当于变量）——命题符号，无具体指向</p>
+<p>命题变项不是命题。</p>
+<p>常项与变项均用$ p, q, r, …,$ $p_i$ ,$q_i$ , $r_i$ $, …,$ 等表示。</p>
+<p>将命题变项用联结词和圆括弧按一定的逻辑关系联结起来的符号串称为<strong>合式公式</strong>。</p>
+</li>
+</ul>
+<ul>
+<li><p>当使用联结词集{$\neg$, $\land$, $\vee$, →, $\leftrightarrow$}时，合式公式定义如下：</p>
+<p><strong>定义6</strong>（<strong>合式公式</strong>的递归定义）（也称命题公式，简称公式）：</p>
+<p>​    （1）单个命题变项和命题常项是合式公式, 称作<strong>原子命题公式</strong></p>
+<p>​    （2）若A是合式公式，则 ($\neg$​A)也是合式公式</p>
+<p>​    （3）若A, B是合式公式，则(A$\land$B), (A$\vee$B), (A→B),  (A$\leftrightarrow$B)也是合式公式</p>
+<p>​    （4）只有有限次地应用(1)~(3) 形成的符号串是合式公式</p>
+<p>设A是合式公式，B为A的一部分，若B也是合式公式，则称B为A的<strong>子公式</strong>。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225090704496.png" alt="image-20220225090704496" style="zoom:67%;" /></p>
+</li>
+</ul>
+<h2 id="合式公式的层次"><a href="#合式公式的层次" class="headerlink" title="合式公式的层次"></a>合式公式的层次</h2><ul>
+<li><p><strong>定义7</strong>：</p>
+<p>(1) 若公式A是单个命题变项，则称A为<strong>0层公式</strong>。 </p>
+<blockquote>
+<p>如：p, q, r</p>
+</blockquote>
+<p>(2) 称 $A$ 是$ n+1 (n<script type="math/tex">\geq</script>0)$ 层公式是指下面情况之一： </p>
+<p>​    (a) $A=\neg B$，$B$ 是 $n$ 层公式； </p>
+<p>​    (b)$ A=B \land C$，其中$B,C $分别为$ i $层和 $j$ 层公式，且 $n=max(i,j)$​；</p>
+<p>​    (c)$A=B \vee C $, 其中 $B,C $的层次及 $n$ 同(b)； </p>
+<p>​    (d) $A=B \to C$​, 其中$B,C$ 的层次及 $n$ 同(b)； </p>
+<p>​    (e) $A=B \leftrightarrow C$, 其中$B,C$ 的层次及 $n$ 同(b)。 </p>
+<p>(3) 若公式$A$的层次为$k$, 则称$A$为<strong>k层公式</strong>。</p>
+<blockquote>
+<p>例如：</p>
+<p>公式 A = p，B =$\neg$​p，C=$\neg$​p→q，D=$\neg$​(p→q)$\leftrightarrow$​r,  E=(($\neg$​p$\land$​q) →r) $\leftrightarrow$​($\neg$r$\vee$s) </p>
+<p>分别为0层，1层，2层，3层，4层公式。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="公式赋值"><a href="#公式赋值" class="headerlink" title="公式赋值"></a>公式赋值</h2><ul>
+<li><p><strong>定义8</strong>：设$p_1 , p_2 , … , p_n$是出现在公式$A$中的全部命题变项, 给$p_1 , p_2 , … , p_n$各指定一个真值, 称为对$A$的一个赋值或解释。</p>
+<p>若使$A$为$1$, 则称这组值为$A$的成真赋值;  </p>
+<p>若使$A$为$0$, 则称这组值为$A$的成假赋值。</p>
+</li>
+<li><p>几点说明：<strong>（重要）</strong></p>
+<ul>
+<li><p>$A$中仅出现 $p_1 , p_2 , … , p_n，$给$A$赋值$\alpha = \alpha_1\alpha_2…\alpha_n$是指$p_1 =\alpha_1 , p_2 = \alpha_2 , …, p_n = \alpha_n , \alpha_i = 0$或$1$, $\alpha_i$之间不加标点符号。</p>
+<p>按照命题符号的顺序赋值</p>
+</li>
+<li><p>$A$中仅出现$ p, q, r, …, $给$A$赋值$\alpha_1$$\alpha_2\alpha_3…$是指$ p=\alpha_1 , q=\alpha_2 , r=\alpha_3 …$</p>
+</li>
+<li><p>含$n$个命题变项的公式有$2^n$个赋值。</p>
+<blockquote>
+<p>如：</p>
+<p>000, 010, 101, 110是  $\neg (p→q)\leftrightarrow r$的成真赋值 </p>
+<p>001, 011, 100, 111是成假赋值。</p>
+<p>——以上赋值的顺序按照$p, q, r$的顺序给出</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="真值表"><a href="#真值表" class="headerlink" title="真值表"></a>真值表</h2><ul>
+<li><p><strong>定义9</strong>：将命题公式$A$在所有赋值下取值的情况列成表，称作$A$的真值表。</p>
+</li>
+<li><p>构造真值表的步骤</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225091751888.png" alt="image-20220225091751888" style="zoom:67%;" /></p>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301200319538.png" alt="image-20220301200319538" style="zoom: 67%;" /></p>
+<blockquote>
+<p><strong>从表中可以看出哪些为成真赋值，那些为成假赋值</strong></p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301200342849.png" alt="image-20220301200342849" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301200358601.png" alt="image-20220301200358601" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301200413257.png" alt="image-20220301200413257" style="zoom:50%;" /></p>
+<h2 id="公式的类型"><a href="#公式的类型" class="headerlink" title="公式的类型"></a>公式的类型</h2><ul>
+<li><p><strong>定义10</strong>：</p>
+<p>(1) 若$A$在它的任何赋值下均为真，则称$A$为<strong>重言式</strong>或<strong>永真式</strong>；</p>
+<p>(2) 若$A$在它的任何赋值下均为假，则称$A$为<strong>矛盾式</strong>或<strong>永假式</strong>； </p>
+<p>(3) 若$A$不是矛盾式，则称$A$是<strong>可满足式</strong></p>
+<blockquote>
+<p>可满足式包含两种情况</p>
+<p>1.公式的值有时为真，又是为假（非重言式的可满足式）</p>
+<p>2.全部赋值都为真（重言式）</p>
+</blockquote>
+<p>注：重言式是可满足式，但反之不真。</p>
+</li>
+<li><p>真值表的用途：</p>
+<p>（1）求出公式的全部成真赋值与成假赋值；</p>
+<p>（2）判断公式的类型</p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><p>主要内容</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225093212858.png" alt="image-20220225093212858" style="zoom:67%;" /></p>
+</li>
+<li><p>基本要求</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225143205004.png" alt="image-20220225143205004" style="zoom:67%;" /></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mathematical logic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数理逻辑：第2节 命题逻辑等值计算</title>
+    <url>/mathematical-logic/mathematical-logic-ch2/</url>
+    <content><![CDATA[<h1 id="2-1-等值式"><a href="#2-1-等值式" class="headerlink" title="2.1 等值式"></a>2.1 等值式</h1><ul>
+<li><p><strong>定义1</strong>：若<strong>等价式</strong>A $\leftrightarrow$ B是<strong>重言式</strong>，则称A与B等值，记作A $\leftrightarrow$ B，并称A <script type="math/tex">\leftrightarrow</script> B是等值式</p>
+<p>此时A和B真值相同（全0 or 全1）</p>
+</li>
+<li><p>几点说明： </p>
+<ul>
+<li>定义中的符号<script type="math/tex">\leftrightarrow</script>不是联结符（词） </li>
+<li>用<strong>真值表</strong>可检查两个公式是否等值</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>问题：判别下面命题公式是否为重言式(永真式)？ </p>
+<p>(( p∧ $\neg$ q) → r )∧ p ∧ (q → s) ∧ $\neg$ s → r<br>转化为: (( p∧ $\neg$ q) → r )∧ p ∧ (q → s) ∧ $\neg$ s → r <script type="math/tex">\leftrightarrow</script> 1</p>
+</blockquote>
+<span id="more"></span>
+<p>【例1】判断下列各组公式是否等值</p>
+<p>（1）p→(q→r) 与 (p $\land$ q) →r</p>
+<blockquote>
+<p>形式不同，表达含义相同。p，q都是r的前提</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301083009100.png" alt="image-20220301083009100" style="zoom:67%;" /></p>
+<p>（2）p→(q→r) 与 (p→q) →r</p>
+<blockquote>
+<p>含义不同，不等值</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301083123270.png" alt="image-20220301083123270" style="zoom:67%;" /></p>
+<h2 id="基本等值式"><a href="#基本等值式" class="headerlink" title="基本等值式"></a>基本等值式</h2><ul>
+<li><p><strong>双重否定律</strong>：  $\neg$ $\neg$ A <script type="math/tex">\leftrightarrow</script> A</p>
+</li>
+<li><p><strong>幂等律</strong>： A $\vee$ A <script type="math/tex">\leftrightarrow</script> A, $\qquad$ A $\land$ A <script type="math/tex">\leftrightarrow</script> A​ </p>
+<blockquote>
+<p>理解为两个集合的交/并</p>
+</blockquote>
+</li>
+<li><p><strong>交换律</strong>： A $\vee$ B <script type="math/tex">\leftrightarrow</script> B $\vee$ A,$\qquad$  A $\land$ B <script type="math/tex">\leftrightarrow</script> B $\land$ A​ </p>
+</li>
+<li><p><strong>结合律</strong> ： (A $\vee$ B) $\vee$ C <script type="math/tex">\leftrightarrow</script> A $\vee$ (B $\vee$ C), $\qquad$ (A $\land$ B) $\land$ C <script type="math/tex">\leftrightarrow</script> A $\land$ (B $\land$ C)​ </p>
+</li>
+<li><p><strong>分配律</strong> ：A $\vee$ (B $\land$ C) <script type="math/tex">\leftrightarrow</script> (A $\vee$ B) $\land$ (A $\vee$ C),$\qquad$ A $\land$ (B $\vee$ C) <script type="math/tex">\leftrightarrow</script> (A $\land$ B) $\vee$ (A $\land$ C)  </p>
+</li>
+<li><p><strong>德摩根律</strong>： $\neg$ (A $\vee$ B) <script type="math/tex">\leftrightarrow</script>  $\neg$ A $\land$  $\neg$ B, $\qquad$<br>$\neg$ (A $\land$ B) <script type="math/tex">\leftrightarrow</script>  $\neg$ A $\vee$ $\neg$ B​​</p>
+</li>
+<li><p><strong>吸收律</strong>： A $\vee$ (A $\land$ B) <script type="math/tex">\leftrightarrow</script> A, $\qquad$ A $\land$ (A $\vee$ B) <script type="math/tex">\leftrightarrow</script> A</p>
+<blockquote>
+<p>A把比它大的部分吸收</p>
+</blockquote>
+</li>
+<li><p><strong>零律</strong>： A $\vee$ 1 <script type="math/tex">\leftrightarrow</script> 1, $\qquad$  A $\land$ 0 <script type="math/tex">\leftrightarrow</script> 0</p>
+</li>
+<li><p><strong>同一律</strong>： A $\vee$ 0 <script type="math/tex">\leftrightarrow</script> A, $\qquad$ A $\land$ 1 <script type="math/tex">\leftrightarrow</script> A</p>
+</li>
+<li><p><strong>排中律</strong>： A $\vee$ $\neg$ A  <script type="math/tex">\leftrightarrow</script> 1</p>
+</li>
+<li><p><strong>矛盾律</strong>： A $\land$  $\neg$ A <script type="math/tex">\leftrightarrow</script> 0</p>
+<blockquote>
+<p>不可能既真又假</p>
+</blockquote>
+</li>
+<li><p><strong>蕴涵等值式</strong>： $\color{red}${A→B <script type="math/tex">\leftrightarrow</script> $\neg$ A $\vee$ B}</p>
+</li>
+<li><p><strong>等价等值式</strong>：{A <script type="math/tex">\leftrightarrow</script> B <script type="math/tex">\leftrightarrow</script> (A→B) $\land$ (B→A)} </p>
+<blockquote>
+<p>非A或B 与 非B或A</p>
+</blockquote>
+</li>
+<li><p><strong>假言易位</strong>： $\color{red}$ {A→B <script type="math/tex">\leftrightarrow</script> $\neg$ B→$\neg$ A} </p>
+<blockquote>
+<p>B是A的必要条件，A是B的充分条件</p>
+<p><strong>有A则有B</strong> 与 <strong>没有B则没有A</strong> 是同一件事</p>
+</blockquote>
+</li>
+<li><p><strong>等价否定等值式</strong>： $\color{red}$ {A <script type="math/tex">\leftrightarrow</script> B <script type="math/tex">\leftrightarrow</script> $\neg$ A <script type="math/tex">\leftrightarrow</script> $\neg$ B }</p>
+</li>
+<li><p><strong>归谬论</strong>：$\color{red}$ {(A→B) $\land$ (A→$\neg$ B) <script type="math/tex">\leftrightarrow</script> $\neg$ A}</p>
+<blockquote>
+<p>在A为真的前提下，能推出矛盾（B既真又假），则前提A为假——反证法</p>
+</blockquote>
+</li>
+</ul>
+<p>特别提示：必须牢记这16组等值式(24式)，这是继续学习的基础。</p>
+<h2 id="等值演算与置换规则"><a href="#等值演算与置换规则" class="headerlink" title="等值演算与置换规则"></a>等值演算与置换规则</h2><h3 id="1-等值演算"><a href="#1-等值演算" class="headerlink" title="1.等值演算"></a>1.等值演算</h3><p>由已知的等值式推演出新的等值式的过程</p>
+<blockquote>
+<p>每一步都是等值变换（每一步都使用等值式）</p>
+</blockquote>
+<h3 id="2-等值演算的基础"><a href="#2-等值演算的基础" class="headerlink" title="2.等值演算的基础"></a>2.等值演算的基础</h3><ul>
+<li><p>等值关系的性质：<strong>自反性、对称性、传递性</strong></p>
+<blockquote>
+<p>A与A是等值的</p>
+<p>如果A和B等值，则B和A等值</p>
+<p>如果A和B等值，B和C等值，则A和C等值</p>
+</blockquote>
+</li>
+<li><p>基本的等值式</p>
+</li>
+<li><p><strong>置换规则</strong></p>
+</li>
+</ul>
+<h3 id="3-置换规则"><a href="#3-置换规则" class="headerlink" title="3.置换规则"></a>3.置换规则</h3><p>设 $\Phi$(A)​​​​​ 是含公式 A​​​​ 的命题公式，$\Phi$ (B)​​​ 是用公式B​​置换$\Phi$ (A)​ 中所有的 A 后得到的命题公式。 </p>
+<p>若 B <script type="math/tex">\leftrightarrow</script> A​，则 $\Phi$(B) <script type="math/tex">\leftrightarrow</script> $\Phi$(A)。</p>
+<blockquote>
+<p>对公式的一部分做等值变换，变换后的结果仍然是等值的</p>
+</blockquote>
+<h3 id="等值演算的应用举例"><a href="#等值演算的应用举例" class="headerlink" title="等值演算的应用举例"></a>等值演算的应用举例</h3><ul>
+<li>证明两个公式等值</li>
+</ul>
+<p>​        <img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301190541286.png" alt="image-20220301190541286" style="zoom: 50%;" /></p>
+<p><strong>注：用等值演算不能直接证明两个公式不等值</strong></p>
+<ul>
+<li>判断公式类型：<script type="math/tex; mode=display">
+A 为矛盾式当且仅当 A \Leftrightarrow 0 \\
+A 为重言式当且仅当 A \Leftrightarrow 1 \\
+A 为非重言式的可满足式 \Leftrightarrow A既有成真赋值又有成假赋值 \\</script></li>
+</ul>
+<h3 id="证明两个公式不等值"><a href="#证明两个公式不等值" class="headerlink" title="证明两个公式不等值"></a>证明两个公式不等值</h3><ul>
+<li><p>真值表法</p>
+</li>
+<li><p>观察法——举出反例</p>
+</li>
+<li><p>先等值演算化简公式，再观察</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301190743753.png" alt="image-20220301190743753" style="zoom:50%;" /></p>
+</li>
+</ul>
+<h1 id="2-2-析取范式与合取范式"><a href="#2-2-析取范式与合取范式" class="headerlink" title="2.2 析取范式与合取范式"></a>2.2 析取范式与合取范式</h1><p>范式：比较规范的公式形式</p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li><p><strong>文字</strong>：命题变项及其否定的总称</p>
+<blockquote>
+<p>p, $\quad$ $\neg$ q</p>
+</blockquote>
+</li>
+<li><p><strong>简单析取式</strong>：仅由有限个文字构成的析取式</p>
+<blockquote>
+<p>p,$\quad$ $\neg$ q,$\quad$ p$\vee$ $\neg$ q, $\quad$ p$\vee$ q $\vee$ r,…​</p>
+</blockquote>
+</li>
+<li><p><strong>简单合取式</strong>：由有限个文字构成的合取式</p>
+<blockquote>
+<p>p,$\quad$ $\neg$ q,$\quad$ p$\land$ $\neg$ q, $\quad$ p$\land$ q $\land$ r,…</p>
+</blockquote>
+</li>
+<li><p><strong>析取范式</strong>：由有限个<strong>简单合取式</strong>组成的<strong>析取式</strong></p>
+<blockquote>
+<p>p,$\quad$ $\neg$ p $\land$ q,（简单合取式）$\quad$ p$\vee$ $\neg$ q, $\quad$ (p $\land$ $\neg$ q) $\vee$ ($\neg$ p $\land$ q $\land$ $\neg$ r) $\vee$ (q $\land$ r),…​</p>
+</blockquote>
+</li>
+<li><p><strong>合取范式</strong>：由有限个<strong>简单析取式</strong>组成的<strong>合取式</strong></p>
+<blockquote>
+<p>p,$\quad$ $\neg$ p $\vee$ q,（简单析取式）$\quad$ p$\land$ $\neg$ q, $\quad$ (p $\vee$ $\neg$ q) $\land$ ($\neg$ p $\vee$ q $\vee$ r) $\land$ (q $\vee$ r),…</p>
+</blockquote>
+</li>
+<li><p><strong>范式</strong>：析取范式与合取范式的总称</p>
+</li>
+</ol>
+<p>说明</p>
+<ul>
+<li>单个文字既是简单析取式，又是简单合取式</li>
+<li>形如 p $\land$ $\neg$ q $\land$ r, $\neg$ p $\land$ q $\vee$ $\neg$ r 的公式既是析取范式，又是合取范式</li>
+</ul>
+<p><strong>定理1</strong></p>
+<p>（1）一个<strong>简单析取式是重言式</strong>当且仅当<strong>它同时含有某个命题变项和它的否定式</strong></p>
+<blockquote>
+<p>p $\vee$ $\neg$ p $\vee$ r $\vee$ q</p>
+</blockquote>
+<p>（2）一个<strong>简单合取式是矛盾式</strong>当且仅当<strong>它同时含有某个命题变项和它的否定式</strong></p>
+<blockquote>
+<p>p $\land$ $\neg$ p $\land$ q</p>
+</blockquote>
+<p><strong>定理2</strong></p>
+<p>（1）一个<strong>析取范式是矛盾式</strong>当且仅当<strong>它每个简单合取式都是矛盾式</strong></p>
+<blockquote>
+<p>$\triangle$ $\vee$ $\triangle$ $\vee$ $\triangle$</p>
+</blockquote>
+<p>（2）一个<strong>合取范式是重言式</strong>当且仅当<strong>它的每个简单析取式都是重言式</strong></p>
+<blockquote>
+<p>$\triangle$ $\land$ $\triangle$ $\land$ $\triangle$</p>
+</blockquote>
+<p><strong>定理3</strong>（范式存在定理）</p>
+<p>任何命题公式都存在与之等值的析取范式与合取范式</p>
+<blockquote>
+<p>从任何公式出发，都有和它等值的<strong>析取范式</strong>和<strong>合取范式</strong></p>
+</blockquote>
+<h2 id="命题公式的范式"><a href="#命题公式的范式" class="headerlink" title="命题公式的范式"></a>命题公式的范式</h2><h3 id="求公式A的范式的步骤"><a href="#求公式A的范式的步骤" class="headerlink" title="求公式A的范式的步骤"></a>求公式A的范式的步骤</h3><ol>
+<li><p>消去A中的$\to$, <script type="math/tex">\leftrightarrow</script>（若存在）——<strong>（蕴含等价式、等价等值式、假言易位、等价否定等值式、归谬论）</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091705613.png" alt="image-20220301091705613" style="zoom: 50%;" /></p>
+</li>
+<li><p>否定连接词的内移或消去<strong>（德摩根律）</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091721847.png" alt="image-20220301091721847" style="zoom: 50%;" /></p>
+</li>
+<li><p>使用<strong>分配律</strong></p>
+</li>
+</ol>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091734879.png" alt="image-20220301091734879" style="zoom:50%;" /></p>
+<p>范式的不足——不唯一</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192357658.png" alt="image-20220301192357658" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192420027.png" alt="image-20220301192420027" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192436741.png" alt="image-20220301192436741" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192454515.png" alt="image-20220301192454515" style="zoom:50%;" /></p>
+]]></content>
+      <tags>
+        <tag>mathematical logic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数理逻辑：第3节 主析（合）取范式</title>
+    <url>/mathematical_logic/mathematical-logic-ch3/</url>
+    <content><![CDATA[<ul>
+<li>判断命题公式是否为重言式（永真式）？<ul>
+<li>真值表</li>
+<li>等值演算</li>
+<li>主析取范式和主合取范式</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<h1 id="3-1主析取范式与主合取范式"><a href="#3-1主析取范式与主合取范式" class="headerlink" title="3.1主析取范式与主合取范式"></a>3.1主析取范式与主合取范式</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li><p><strong>文字</strong>：命题变项及其否定的总称</p>
+<blockquote>
+<p>$p, \quad \neg q$</p>
+</blockquote>
+</li>
+<li><p><strong>简单析取式</strong>：仅由有限个文字构成的析取式</p>
+<blockquote>
+<p>$p,\quad \neg q,\quad p\vee \neg q, \quad p\vee q \vee r,…$​</p>
+</blockquote>
+</li>
+<li><p><strong>简单合取式</strong>：由有限个文字构成的合取式</p>
+<blockquote>
+<p>$p,\quad \neg q,\quad p\land \neg q, \quad p\land q \land r,…$</p>
+</blockquote>
+</li>
+<li><p><strong>析取范式</strong>：由有限个<strong>简单合取式</strong>组成的<strong>析取式</strong></p>
+<blockquote>
+<p>$p,\quad \neg p \land q,（简单合取式）\quad p\vee \neg q, \quad (p \land \neg q) \vee (\neg p \land q \land \neg r) \vee (q \land r),…$​</p>
+</blockquote>
+</li>
+<li><p><strong>合取范式</strong>：由有限个<strong>简单析取式</strong>组成的<strong>合取式</strong></p>
+<blockquote>
+<p>$p,\quad \neg p \vee q,（简单析取式）\quad p\land \neg q, \quad (p \vee \neg q) \land (\neg p \vee q \vee r) \land (q \vee r),…$</p>
+</blockquote>
+</li>
+<li><p><strong>范式</strong>：析取范式与合取范式的总称</p>
+</li>
+</ol>
+<h2 id="求公式-A-的范式的步骤"><a href="#求公式-A-的范式的步骤" class="headerlink" title="求公式$A$的范式的步骤"></a>求公式$A$的范式的步骤</h2><ol>
+<li><p>消去$A$中的$\to, \leftrightarrow$（若存在）——<strong>（蕴含等价式、等价等值式、假言易位、等价否定等值式、归谬论）</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091705613.png" alt="image-20220301091705613" style="zoom: 50%;" /></p>
+</li>
+<li><p>否定连接词的内移或消去<strong>（德摩根律）</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091721847.png" alt="image-20220301091721847" style="zoom: 50%;" /></p>
+</li>
+<li><p>使用<strong>分配律</strong></p>
+</li>
+</ol>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091734879.png" alt="image-20220301091734879" style="zoom:50%;" /></p>
+<ul>
+<li><p>公式范式的不足——不唯一</p>
+</li>
+<li><p>得到唯一的范式——主范式</p>
+</li>
+</ul>
+<h2 id="极小项与极大项"><a href="#极小项与极大项" class="headerlink" title="极小项与极大项"></a>极小项与极大项</h2><ul>
+<li><p><strong>定义1</strong>：在含有$n$个命题变项的<strong>简单合取式</strong>中，若每个命题变项均以文字的形式在其中出现且仅出现一次， 而且第$i$个文字出现在左起第$i$位上（$1 \leq i \leq n$），称这样的简单合取式为<strong>极小项</strong></p>
+<blockquote>
+<p>极小项——合取越多范围越小，取决于真值最小的文字</p>
+<p>对于$p, q, r$（不缺项，规定了顺序：字母、下标）</p>
+<p>$p \land q \land r$</p>
+</blockquote>
+</li>
+<li><p><strong>定义2</strong>：在含有$n$个命题变项的<strong>简单析取式</strong>中，若每个命题变项均以文字的形式在其中出现且仅出现一次， 而且第$i$个文字出现在左起第$i$位上（$1 \leq i \leq n$），称这样的简单析取式为<strong>极大项</strong></p>
+<blockquote>
+<p>极大项——合取越多范围越大，只要有真值为1的文字，该项的真值为1</p>
+<p>对于$p, q, r$（不缺项，规定了顺序：字母、下标）</p>
+<p>$p \vee q \vee r$</p>
+</blockquote>
+</li>
+<li><p>几点说明</p>
+<ul>
+<li><p>$n$个命题变项有$2^n$个极小项和$2^n$个极大项</p>
+</li>
+<li><p>$2^n$个极小项（极大项）均互不等值</p>
+</li>
+<li><p>用$m_i$表示第$i$个极小项，其中$i$是该极小项<strong>成真赋值</strong><br>的十进制表示</p>
+<blockquote>
+<p>$p \land q \land r$的成真赋值为111，$m_7$</p>
+<p>$\neg p \land q \land r$成真赋值为011，$m_3$</p>
+</blockquote>
+</li>
+<li><p>用$M_i$表示第$i$个极大项，其中$i$是该极大项<strong>成假赋值</strong><br>的十进制表示</p>
+<blockquote>
+<p>$p \vee q \vee r$的成假赋值为000，$M_0$</p>
+<p>$\neg p \vee q \vee r$的成假赋值为100，$M_4$</p>
+</blockquote>
+</li>
+<li><p>$m_i$（$M_i$）称为极小项（极大项）的名称</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>【实例】</p>
+<ul>
+<li>由两个命题变项$p, q$形成的极小项和极大项</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304081627478.png" alt="image-20220304081627478" style="zoom:67%;" /></p>
+<ul>
+<li>由三个命题变项$p,q,r$形成的极小项和极大项</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304081832381.png" alt="image-20220304081832381" style="zoom:67%;" /></p>
+<ul>
+<li><strong>$m_i与M_i的关系：\neg m_i \Leftrightarrow M_i, \neg M_i \Leftrightarrow m_i$</strong></li>
+</ul>
+<h2 id="主析取范式与主合取范式"><a href="#主析取范式与主合取范式" class="headerlink" title="主析取范式与主合取范式"></a>主析取范式与主合取范式</h2><ul>
+<li>主析取范式——由极小项构成的析取范式</li>
+<li>主合取范式——由极大项构成的合取范式</li>
+</ul>
+<blockquote>
+<p>例如，n=3, 命题变项为 p, q, r 时，</p>
+<p>$(\neg p\land \neg q \land r) \vee (\neg p\land q \land r) \Leftrightarrow  m_1 \vee m_3$ ——主析取范式<br>$(p \vee q \vee \neg r) \land (\neg p \vee \neg q \vee \neg r) \Leftrightarrow M_1 \land M_7$——主合取范式</p>
+</blockquote>
+<ul>
+<li><p><strong>定理1</strong>（主范式的存在唯一定理）</p>
+<p>任何命题公式都存在与之等值的主析取范式和主合取范式, 并且是惟一的</p>
+</li>
+</ul>
+<h2 id="求命题公式主范式的步骤"><a href="#求命题公式主范式的步骤" class="headerlink" title="求命题公式主范式的步骤"></a>求命题公式主范式的步骤</h2><h3 id="求公式主析取范式的步骤"><a href="#求公式主析取范式的步骤" class="headerlink" title="求公式主析取范式的步骤"></a>求公式主析取范式的步骤</h3><p><strong>先求出析取范式，再变换成主析取范式</strong></p>
+<p>设公式$A$含命题变项$p_1, p_2,…, p_n$</p>
+<ul>
+<li><p>(1) 求$A$的析取范式$A’=B_1 \vee B_2 \vee … \vee B_s$ , 其中$B_j$是<strong>简单合取式</strong> ，$j=1,2, … ,s$</p>
+</li>
+<li><p>(2) <strong>（每一个简单合取式变为极小项——合取1来补项）</strong></p>
+<p>若某个$B_j$既不含$p_i$, 又不含$\neg p_i$, 则将$B_j$展开成：$B_j \Leftrightarrow B_j \land 1 \Leftrightarrow B_j \land (p_i \vee \neg p_i) \Leftrightarrow (B_j \land p_i) \vee (B_j \land \neg p_i)$</p>
+<p>重复这个过程, 直到<strong>所有简单合取式都是长度为n的极小项</strong>为止</p>
+</li>
+<li><p>(3) <strong>消去重复出现的极小项</strong>, 即用$m_i$代替$m_i \vee m_i$ </p>
+</li>
+<li><p>(4) 将极小项按下标从小到大<strong>排列</strong></p>
+</li>
+</ul>
+<h3 id="求公式主合取范式的步骤"><a href="#求公式主合取范式的步骤" class="headerlink" title="求公式主合取范式的步骤"></a>求公式主合取范式的步骤</h3><p><strong>先求出合取范式，再变换成主合取范式</strong></p>
+<p>设公式$A$含命题变项$p_1, p_2,…, p_n$</p>
+<ul>
+<li><p>(1) 求$A$的合取范式$A’=B_1 \land  B_2 \land … \land B_s$ , 其中$B_j$是<strong>简单析取式</strong> ，$j=1,2, … ,s$</p>
+</li>
+<li><p>(2)<strong>（补项——析取0）</strong></p>
+<p>若某个$B_j$既不含$p_i$, 又不含$\neg p_i$, 则将$B_j$展开成：$B_j \Leftrightarrow B_j \vee 0 \Leftrightarrow B_j \vee (p_i \land \neg p_i) \Leftrightarrow (B_j \vee p_i) \land (B_j \vee \neg p_i)$</p>
+<p>重复这个过程, 直到<strong>所有简单析取式都是长度为n的极大项</strong>为止</p>
+</li>
+<li><p>(3)<strong>消去重复出现的极大项</strong>， 即用$M_i$代替$M_i \land M_i$ </p>
+</li>
+<li><p>(4) 将极大项按下标从小到大<strong>排列</strong></p>
+</li>
+</ul>
+<p>【实例】</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304083543458.png" alt="image-20220304083543458" style="zoom:50%;" /></p>
+<p><strong>我觉得可以使用卡诺图</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">p\qr</th>
+<th style="text-align:center">00</th>
+<th style="text-align:center">01</th>
+<th style="text-align:center">11</th>
+<th style="text-align:center">10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>0</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>1</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>主析取范式：成真赋值为1的项</p>
+<p>主合取范式：成假赋值为0的项</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304083604370.png" alt="image-20220304083604370" style="zoom:50%;" /></p>
+<p><strong>关注主析取范式和主合取范式出现项的下标的关系</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304083622774.png" alt="image-20220304083622774" style="zoom:50%;" /></p>
+<h2 id="由主析（合）取范式确定主合（析）取范式"><a href="#由主析（合）取范式确定主合（析）取范式" class="headerlink" title="由主析（合）取范式确定主合（析）取范式"></a>由主析（合）取范式确定主合（析）取范式</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230604125.png" alt="image-20220303230604125" style="zoom: 50%;" /></p>
+<h2 id="用成真和成假赋值确定主范式"><a href="#用成真和成假赋值确定主范式" class="headerlink" title="用成真和成假赋值确定主范式"></a>用成真和成假赋值确定主范式</h2><p>已知成真赋值，则知道有多少个最小项。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230652029.png" alt="image-20220303230652029" style="zoom: 50%;" /></p>
+<h2 id="主范式的应用"><a href="#主范式的应用" class="headerlink" title="主范式的应用"></a>主范式的应用</h2><h3 id="1-求公式的成真成假赋值"><a href="#1-求公式的成真成假赋值" class="headerlink" title="1.求公式的成真成假赋值"></a>1.求公式的成真成假赋值</h3><p>设公式$A$含$n$个命题变项, $A$的主析取范式有<strong>$s$个极小项</strong>, 则$A$有<strong>$s$个成真赋值</strong>, 它们是极小项下标的二进制表示, <strong>其余$2^n-s$个赋值都是成假赋值</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230838562.png" alt="image-20220303230838562" style="zoom:67%;" /></p>
+<h3 id="2-判断公式的类型"><a href="#2-判断公式的类型" class="headerlink" title="2.判断公式的类型"></a>2.判断公式的类型</h3><p>根据极小项或成真赋值的个数</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230918268.png" alt="image-20220303230918268" style="zoom:67%;" /></p>
+<ul>
+<li>重言式：全部赋值为成真赋值</li>
+<li>矛盾式：全部赋值为成假赋值</li>
+<li>非重言的可满足式：<ul>
+<li>至少一个成真赋值</li>
+<li>至少一个成假赋值</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230949648.png" alt="image-20220303230949648" style="zoom: 50%;" /></p>
+<h3 id="3-判断两个公式是否等值"><a href="#3-判断两个公式是否等值" class="headerlink" title="3.判断两个公式是否等值"></a>3.判断两个公式是否等值</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231031287.png" alt="image-20220303231031287" style="zoom: 50%;" /></p>
+<h3 id="4-解实际问题"><a href="#4-解实际问题" class="headerlink" title="4.解实际问题"></a>4.解实际问题</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231044612.png" alt="image-20220303231044612" style="zoom: 50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231059094.png" alt="image-20220303231059094" style="zoom: 50%;" /></p>
+<h1 id="3-2-n元真值函数"><a href="#3-2-n元真值函数" class="headerlink" title="3.2 n元真值函数"></a>3.2 n元真值函数</h1><ul>
+<li><p><strong>定义3</strong>：称$F:${0,1}$^n \to$ {0,1}为<strong>n元真值函数</strong></p>
+<blockquote>
+<p>例如，3元真值函数$F(x,y,z) = \begin{cases} 0 \\ 1 \\ \end{cases}$</p>
+<ul>
+<li>有3个变量</li>
+<li>每个变量的取值只能是0或1</li>
+<li>每一组符号串的函数值为0或1</li>
+</ul>
+<p>000，001，010，011，100，101，110，111——8个符号串</p>
+<p>000的函数值可能为0 or 1</p>
+</blockquote>
+<p>$F(p_1,p_2,…p_n) = \begin{cases} 0 \\ 1 \end{cases}$</p>
+<ul>
+<li><p>n个命题变量$p_1,p_2,…,p_n$的取值方式有$2^n$种</p>
+</li>
+<li><p>每一组取值对应的函数值可能为0或1，有2种</p>
+</li>
+</ul>
+<p><strong>共$2^{2^n}$个n元真值函数</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231356068.png" alt="image-20220303231356068" style="zoom:67%;" /></p>
+</li>
+</ul>
+<h2 id="1元真值函数"><a href="#1元真值函数" class="headerlink" title="1元真值函数"></a>1元真值函数</h2><ul>
+<li>由1个命题变项p形成的极小项与极大项</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304092048665.png" alt="image-20220304092048665" style="zoom: 67%;" /></p>
+<p>1元真值函数一共有$2^{2^1} = 4$种命题公式</p>
+<blockquote>
+<p>横着看：有4个真值函数——对应$m_0 \vee m_1的四种取值组合——主析取范式$</p>
+<ul>
+<li>第一列：永假式真值表：$\neg m_0 \or \neg m_1$</li>
+<li>第二列：$p$：$\neg m_0 \or m_1$</li>
+<li>第三列：$\neg p$：$m_0  \vee \neg  m_1$</li>
+<li>第四列：永真式：$m_0 \vee m_1$</li>
+</ul>
+<p>竖着看：真值函数的取值$p$</p>
+<ul>
+<li>第一行：$p$</li>
+<li>第二行：$\neg p$</li>
+</ul>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304092346111.png" alt="image-20220304092346111" style="zoom:67%;" /></p>
+<h2 id="2元真值函数"><a href="#2元真值函数" class="headerlink" title="2元真值函数"></a>2元真值函数</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304093005762.png" alt="image-20220304093005762" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304093027553.png" alt="image-20220304093027553" style="zoom:67%;" /></p>
+<h2 id="公式与真值函数"><a href="#公式与真值函数" class="headerlink" title="公式与真值函数"></a>公式与真值函数</h2><ul>
+<li>任何一个含n个命题变项的命题公式$A$都对应惟一的一个n元真值函数$ F $，$ F $恰好为$A$的真值表。</li>
+<li><strong>等值的公式</strong>对应的<strong>真值函数</strong>相同。</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304093448005.png" alt="image-20220304093448005" style="zoom:50%;" /></p>
+<h1 id="3-3-联结词的完备集"><a href="#3-3-联结词的完备集" class="headerlink" title="3.3 联结词的完备集"></a>3.3 联结词的完备集</h1><ul>
+<li><strong>定义4</strong>：设$S$是一个联结词集合，如果任何$n(n \geq 1)$ 元真值函数都可以由仅含$S$中的联结词构成的公式表示，则称$S$是<strong>联结词完备集</strong><ul>
+<li>若$S$是联结词完备集, 则任何命题公式都可由$S$中的联结词表示</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>与能够用或非表示，则它们是完备的</p>
+</blockquote>
+<ul>
+<li><strong>定义5</strong>：</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mathematical logic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数理逻辑：第4节 命题逻辑的推理理论</title>
+    <url>/mathematical_logic/mathematical-logic-ch4/</url>
+    <content><![CDATA[<h1 id="4-1-推理的形式结构"><a href="#4-1-推理的形式结构" class="headerlink" title="4.1 推理的形式结构"></a>4.1 推理的形式结构</h1><h2 id="定义1："><a href="#定义1：" class="headerlink" title="定义1："></a><strong>定义1：</strong></h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225116596.png" alt="image-20220307225116596" style="zoom:67%;" /></p>
+<p><strong>所有的前提都为真且结论为真</strong>或者<strong>有前提为假</strong>——有效结论</p>
+<span id="more"></span>
+<p>说明：</p>
+<p>（2）根据定义1判断——前提的合取为假或者前提的合取为真且结论为真</p>
+<p>（3）考虑前提为假的情况</p>
+<h2 id="定理1："><a href="#定理1：" class="headerlink" title="定理1："></a><strong>定理1：</strong></h2><p>​    <img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225133270.png" alt="image-20220307225133270" style="zoom:67%;" /></p>
+<blockquote>
+<p>证明：</p>
+<p>（$\Rightarrow$）前提为假或者前提的合取为真且结论为真，则该式为重言式</p>
+<p>（$\Leftarrow$）同理</p>
+</blockquote>
+<h2 id="推理的形式结构（小结）"><a href="#推理的形式结构（小结）" class="headerlink" title="推理的形式结构（小结）"></a>推理的形式结构（小结）</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225217321.png" alt="image-20220307225217321" style="zoom:67%;" /></p>
+<h2 id="推理实例"><a href="#推理实例" class="headerlink" title="推理实例"></a>推理实例</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308141355061.png" alt="image-20220308141355061" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308141408459.png" alt="image-20220308141408459" style="zoom:50%;" /></p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225300522.png" alt="image-20220307225300522" style="zoom:67%;" /></p>
+<p>思考：</p>
+<p>（1）数学证明是从前提为真出发，不考虑前提为假的情况</p>
+<h2 id="推理定律——重言蕴含式"><a href="#推理定律——重言蕴含式" class="headerlink" title="推理定律——重言蕴含式"></a>推理定律——重言蕴含式</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225338038.png" alt="image-20220307225338038" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225355037.png" alt="image-20220307225355037" style="zoom:67%;" /></p>
+<blockquote>
+<p>1.A为真，B为真，则A与B为真</p>
+<p>2.A与B为真，则A、B均为真</p>
+<p>3.双重反</p>
+<p>4、5放在一起看——消掉蕴含。蕴含式和前提都为真，则结论真</p>
+<p>6.A、B有一个成立，则析取式成立</p>
+<p>7.矛盾（倒着的T）可以推出任何公式</p>
+<p>8.A和$\neg$A都成立则矛盾</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225409278.png" alt="image-20220307225409278" style="zoom:67%;" /></p>
+<blockquote>
+<p>9.A析取B为真且B为假，则A为真</p>
+<p>10.假定A推出B，B推出C，则A能推出C</p>
+<p>11.A等价于B，B等价于C，则A等价于C</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225518107.png" alt="image-20220307225518107" style="zoom:67%;" /></p>
+<h1 id="4-2-自然推理系统P"><a href="#4-2-自然推理系统P" class="headerlink" title="4.2 自然推理系统P"></a>4.2 自然推理系统P</h1><h2 id="定义2："><a href="#定义2：" class="headerlink" title="定义2："></a><strong>定义2：</strong></h2><p>​    <img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225534809.png" alt="image-20220307225534809" style="zoom:67%;" /></p>
+<blockquote>
+<p>（3）做等值演算</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225552982.png" alt="image-20220307225552982" style="zoom:67%;" /></p>
+<p>线上为前提，线下为结论（线上成立，则线下的结论成立）</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225607270.png" alt="image-20220307225607270" style="zoom:67%;" /></p>
+<blockquote>
+<p>（10）想证明蕴涵式成立：（假定A成立，如果能证明B，则蕴含式成立）。方框为假设框，上推下</p>
+<p>（11）析取引入1，析取引入2</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225620760.png" alt="image-20220307225620760" style="zoom:67%;" /></p>
+<blockquote>
+<p>（15）要证非A成立，则证A推出矛盾</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225634250.png" alt="image-20220307225634250" style="zoom:67%;" /></p>
+<h2 id="在自然推理系统P中构造证明"><a href="#在自然推理系统P中构造证明" class="headerlink" title="在自然推理系统P中构造证明"></a>在自然推理系统P中构造证明</h2><p>设前提$A_1, A_2,…, A_k$，结论$B$及公式序列$C_1, C_2 ,…, C_l$。如果每一个$C_i(1 \leq i \le l)$是某个$A_j$, 或者可由序列中前面的公式应用推理规则得到, 并且$C_l =B$, 则称这个公式序列是由$A_1, A_2,…, A_k$推出B的<strong>证明</strong>。</p>
+<blockquote>
+<p>$C_i$是中间结论，利用中间结论和前提推出最终结论</p>
+</blockquote>
+<h2 id="直接证明法"><a href="#直接证明法" class="headerlink" title="直接证明法"></a>直接证明法</h2><ul>
+<li>命题并符号化</li>
+<li>写出证明的形式结构</li>
+<li>证明</li>
+</ul>
+<h3 id="直接证明法举例"><a href="#直接证明法举例" class="headerlink" title="直接证明法举例"></a>直接证明法举例</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308144910269.png" alt="image-20220308144910269" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308144936758.png" alt="image-20220308144936758" style="zoom:50%;" /></p>
+<h2 id="附加前提证明法"><a href="#附加前提证明法" class="headerlink" title="附加前提证明法"></a>附加前提证明法</h2><p>适用于结论为蕴含式</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308144441591.png" alt="image-20220308144441591" style="zoom:67%;" /></p>
+<h3 id="附加前提证明法举例"><a href="#附加前提证明法举例" class="headerlink" title="附加前提证明法举例"></a>附加前提证明法举例</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308145032290.png" alt="image-20220308145032290" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308145051717.png" alt="image-20220308145051717" style="zoom:50%;" /></p>
+<h2 id="归谬法（反证法）"><a href="#归谬法（反证法）" class="headerlink" title="归谬法（反证法）"></a>归谬法（反证法）</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308144510314.png" alt="image-20220308144510314" style="zoom:67%;" /></p>
+<h3 id="归谬法证明举例"><a href="#归谬法证明举例" class="headerlink" title="归谬法证明举例"></a>归谬法证明举例</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308145122036.png" alt="image-20220308145122036" style="zoom:50%;" /></p>
+]]></content>
+      <tags>
+        <tag>mathematical logic</tag>
+      </tags>
+  </entry>
 </search>
