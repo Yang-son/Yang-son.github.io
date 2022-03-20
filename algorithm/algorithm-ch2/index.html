@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.gingkocyx.top","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="算法效率评价的指标：算法对计算机资源的使用 时间&gt;&gt;内存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法设计与分析：第2章 算法分析基础">
+<meta property="og:url" content="https://www.gingkocyx.top/algorithm/algorithm-ch2/index.html">
+<meta property="og:site_name" content="Gingkocyx">
+<meta property="og:description" content="算法效率评价的指标：算法对计算机资源的使用 时间&gt;&gt;内存">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227163339607.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171256853.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227165538276.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227165601851.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171405514.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171557402.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170231007.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170744849.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170855787.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170911299.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301202430470.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301202505790.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170956453.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171059943.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171113797.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301205626390.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301210324305.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301210412937.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301210518138.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301210552598.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301212808470.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301212841660.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301213658379.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301213722688.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231134023.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231214720.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231230067.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231245912.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231338193.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231416380.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231458494.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231522615.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231537308.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231641596.png">
+<meta property="article:published_time" content="2022-03-20T02:43:23.000Z">
+<meta property="article:modified_time" content="2022-03-20T02:49:27.202Z">
+<meta property="article:author" content="Bob Cheng">
+<meta property="article:tag" content="algorithm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227163339607.png">
+
+<link rel="canonical" href="https://www.gingkocyx.top/algorithm/algorithm-ch2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>算法设计与分析：第2章 算法分析基础 | Gingkocyx</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Gingkocyx</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">BCheng's blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/algorithm/algorithm-ch2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bob Cheng">
+      <meta itemprop="description" content="markdown daily life & study">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gingkocyx">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          算法设计与分析：第2章 算法分析基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-03-20 10:43:23 / 修改时间：10:49:27" itemprop="dateCreated datePublished" datetime="2022-03-20T10:43:23+08:00">2022-03-20</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>12 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>算法效率评价的指标：算法对计算机资源的使用</p>
+<p><strong>时间&gt;&gt;内存</strong></p>
+<span id="more"></span>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227163339607.png" alt="image-20220227163339607" style="zoom:67%;" /></p>
+<ul>
+<li><p>计算机资源的计量方法</p>
+<p>设输入数据/问题规模为n。假设算法要用到</p>
+<ul>
+<li><p>m种元运算；（不再分解，一条指令）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = x+<span class="number">1</span>;</span><br><span class="line">y = y*<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>每种元运算执行的时间为$t_1, t_2, … , t_m$；</p>
+</li>
+<li><p>每种元运算的执行的次数为$e_1, e_2, … e_m$；</p>
+</li>
+<li><p>元运算与问题规模的关系：$\forall e_i(n), 1 \leq i \leq m$</p>
+</li>
+</ul>
+<p>若用$T(n)$表示时间复杂度，则有$T(n) = \sum_{i = 1}^{m} t_i \times e_i(n)$​ </p>
+</li>
+<li><p>元运算的提取和时间复杂度的计算</p>
+<p>【例2-1】编程输出具有下述特点的n×n阶三角矩阵，试分析该算法的时间复杂度</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171256853.png" alt="image-20220227171256853" style="zoom: 50%;" /></p>
+<blockquote>
+<p>只执行一次：</p>
+<p>1.i,j,n,k= 1;</p>
+<p>2.scanf</p>
+<p>3.i = 0;</p>
+<p>4.i &lt; n;</p>
+<p>第一层循环</p>
+<p>1.i &lt; n;</p>
+<p>2.i++;</p>
+<p>3.j = 0;</p>
+<p>4.j &lt; i;</p>
+<p>5.printf(“\n”);</p>
+<p>第二层循环</p>
+<p>1.j &lt; i;</p>
+<p>2.j++;</p>
+<p>3.printf</p>
+<p>4.k++</p>
+</blockquote>
+<p>​        $T(n) = \sum_{i = 0}^{n-1} (5 + \sum_{j = 0}^{i} 3) + 4 \\ = \frac{3}{2}n^2 + \frac{7}{2}n + 4$​​​</p>
+</li>
+</ul>
+<h2 id="一、数学基础"><a href="#一、数学基础" class="headerlink" title="一、数学基础"></a>一、数学基础</h2><h3 id="1-函数渐近的界"><a href="#1-函数渐近的界" class="headerlink" title="1.函数渐近的界"></a>1.函数渐近的界</h3><h4 id="函数渐近的界的概念"><a href="#函数渐近的界的概念" class="headerlink" title="函数渐近的界的概念"></a>函数渐近的界的概念</h4><p>设$T(n)$​是算法A的时间复杂性函数，n是问题规模，$n \geq 0 $​且$n \in Z$​。</p>
+<p>一般来说，当n单调递增且趋于$\infty$时，$T(n)$也将单调递增趋于$\infty$。</p>
+<p>对于$T(n)$，如果存在$T’(n)$，使$n \to \infty$时，有$(T(n)-T’(n))/T(n) \to 0$。</p>
+<p>那么，我们就说$T’(n)$​是$T(n)$​当$n \to \infty$​时的渐近态，或称$T’(n)$​为算法A当$T(n) \to \infty$​​的渐近复杂性。</p>
+<blockquote>
+<p>相似性原理</p>
+<p>突出主体部分——printf，k++</p>
+</blockquote>
+<h4 id="定义2-1（阶的概念）"><a href="#定义2-1（阶的概念）" class="headerlink" title="定义2.1（阶的概念）"></a>定义2.1（阶的概念）</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227165538276.png" alt="image-20220227165538276" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227165601851.png" alt="image-20220227165601851" style="zoom:67%;" /></p>
+<p>【例2-2】设有函数$f(n)=n^2+3n+1$​，当n足够大时，试证明下述内容： </p>
+<p>​    (1) $f(n)=O(n^2)$​和$f(n)=O(n^3)$​成立；</p>
+<p>​    (2)$f(n)=o(n^2)$​不成立</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171405514.png" alt="image-20220227171405514" style="zoom:67%;" /></p>
+<ul>
+<li>适当放缩</li>
+</ul>
+<p>【例2-3】试证明$f(n) = \frac{1}{2}n(n-1)$有$f(n) = \Theta(n^2)$</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171557402.png" alt="image-20220227171557402" style="zoom:67%;" /></p>
+<ul>
+<li>限定一下n的范围。找对应的$c_1,c_2$​，一个满足上界、一个满足下界：$c_2g(n) \leq f(n) \leq c_1g(n)$</li>
+</ul>
+<h4 id="定理2-1（传递性）"><a href="#定理2-1（传递性）" class="headerlink" title="定理2.1（传递性）"></a><strong>定理2.1（传递性）</strong></h4><p>设$f、g、h$是定义域为自然数集合，</p>
+<p>如果$f=O(g)$且$g=O(h)$，那么$f=O(h)$； </p>
+<p>如果$f=Ω(g)$且$g=Ω(h)$，那么$f=Ω(h)$； </p>
+<p>如果$f=Θ(g)$且$g=Θ(h)$，那么$f=Θ(h)$​。</p>
+<blockquote>
+<p>证明：</p>
+</blockquote>
+<h4 id="定理2-2-（同阶）"><a href="#定理2-2-（同阶）" class="headerlink" title="定理2.2 （同阶）"></a>定理2.2 （同阶）</h4><p>假设$f$和$g$是定义域为自然数集合的函数，若对于某个其他的函数$h$，有$f=O(h)$和$g=O(h)$，那么$f+g=O(h)$​。</p>
+<blockquote>
+<p>证明：</p>
+</blockquote>
+<h4 id="常用的渐近函数及其渐近的界"><a href="#常用的渐近函数及其渐近的界" class="headerlink" title="常用的渐近函数及其渐近的界"></a>常用的渐近函数及其渐近的界</h4><ul>
+<li><p>多项式函数、对数函数、不同底a和b的对数</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170231007.png" alt="image-20220227170231007" style="zoom: 67%;" /></p>
+</li>
+</ul>
+<p>对于多项式函数，每一项的上界都是$n^k$</p>
+<p>对于对数函数，两边取以b为底的对数，$log_b{a^{log_bn}} = log_b{n^{log_ba}} = log_ba \times log_bn$​​</p>
+<h4 id="定理2-3-（多项式的阶高于对数）"><a href="#定理2-3-（多项式的阶高于对数）" class="headerlink" title="定理2.3 （多项式的阶高于对数）"></a>定理2.3 （多项式的阶高于对数）</h4><p>对于每一个$b&gt;1$和每一个$a&gt;0$，有$log_bn=o(n^a)$​。</p>
+<p>（多项式函数的阶高于对数函数）</p>
+<h4 id="定理2-4（指数的阶高于多项式）"><a href="#定理2-4（指数的阶高于多项式）" class="headerlink" title="定理2.4（指数的阶高于多项式）"></a>定理2.4（指数的阶高于多项式）</h4><p>对每个$a&gt;1$​和每个$k&gt;0$​，有$n^k=o(a^n)$</p>
+<p>（指数函数的阶高于多项式函数）</p>
+<h3 id="2-利用极限求函数渐近的界"><a href="#2-利用极限求函数渐近的界" class="headerlink" title="2.利用极限求函数渐近的界"></a>2.利用极限求函数渐近的界</h3><h4 id="常用的公式"><a href="#常用的公式" class="headerlink" title="常用的公式"></a>常用的公式</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170744849.png" alt="image-20220227170744849" style="zoom:67%;" /></p>
+<h4 id="定理2-5（紧的界的极限定义）"><a href="#定理2-5（紧的界的极限定义）" class="headerlink" title="定理2.5（紧的界的极限定义）"></a>定理2.5（紧的界的极限定义）</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170855787.png" alt="image-20220227170855787" style="zoom:67%;" /></p>
+<p>两个函数互为紧的界</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170911299.png" alt="image-20220227170911299" style="zoom:67%;" /></p>
+<p>【思考题】：</p>
+<ul>
+<li>证（3）</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301202430470.png" alt="image-20220301202430470" style="zoom:67%;" /></p>
+<ul>
+<li>列出已讲解渐近函数及它们之间阶的高低（运用斯特林、洛必达、2.5）</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301202505790.png" alt="image-20220301202505790" style="zoom:67%;" /></p>
+<h3 id="3-有用的求和级数及其推导方法"><a href="#3-有用的求和级数及其推导方法" class="headerlink" title="3.有用的求和级数及其推导方法"></a>3.有用的求和级数及其推导方法</h3><h4 id="两个基本法则和常见的数列"><a href="#两个基本法则和常见的数列" class="headerlink" title="两个基本法则和常见的数列"></a>两个基本法则和常见的数列</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170956453.png" alt="image-20220227170956453" style="zoom:67%;" /></p>
+<ul>
+<li>调和级数通常使用微积分进行计算</li>
+</ul>
+<p>【例2-6】求和</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171059943.png" alt="image-20220227171059943" style="zoom:67%;" /></p>
+<p>【例2-7】估计$\sum_{k=1}^{n} \frac{1}{k}$​的渐近的界</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171113797.png" alt="image-20220227171113797" style="zoom:67%;" /></p>
+<h3 id="4-基本效率类型"><a href="#4-基本效率类型" class="headerlink" title="4.基本效率类型"></a>4.基本效率类型</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301205626390.png" alt="image-20220301205626390" style="zoom: 80%;" /></p>
+<p>$n^3$：迪杰斯特拉、弗洛伊德算法</p>
+<h2 id="二、算法分析实例"><a href="#二、算法分析实例" class="headerlink" title="二、算法分析实例"></a>二、算法分析实例</h2><h3 id="1-非递归形式算法分析"><a href="#1-非递归形式算法分析" class="headerlink" title="1.非递归形式算法分析"></a>1.非递归形式算法分析</h3><p>分析非递归算法是，可遵循以下步骤：</p>
+<ul>
+<li><p>决定用哪些参数表示输入规模；</p>
+</li>
+<li><p>找出算法的核心操作，它通常位于算法的<strong>最内层循环</strong>中；</p>
+</li>
+<li><p>检查核心操作的<strong>执行次数是否依赖于输入规模</strong>。如果它还依赖于一些其他的特性，则可能需要对最差效率、平均效率以及最优效率分别研究；</p>
+<blockquote>
+<p>快排</p>
+</blockquote>
+</li>
+<li><p>以式（2-1）$T(n) = \sum_{i = 1}^{m} t_i \times e_i(n)$ 的思想为核心，建立一个算法基本操作执行次数的求和表达式；</p>
+</li>
+<li><p>利用求和运算标准公式和法则来建立一个操作次数的闭合公式，或者至少确定它的增长次数。</p>
+</li>
+</ul>
+<p>【例2-9】交换$a$和$b$的值</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301210324305.png" alt="image-20220301210324305" style="zoom:67%;" /></p>
+<p>三种算法：</p>
+<ul>
+<li><p>如上图方法</p>
+</li>
+<li><p>加减减运算符</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = a+b;</span><br><span class="line">b = a-b;</span><br><span class="line">a = a-b;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异或法</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 利用了位异或运算的特性:一个数据对两一个数据位异或两次，该数本身不变。</span></span><br><span class="line"><span class="type">int</span> a = <span class="number">12</span>;</span><br><span class="line"><span class="type">int</span> b = <span class="number">34</span>;</span><br><span class="line"><span class="comment">// 交换两个整数</span></span><br><span class="line">a = a ^ b;		<span class="comment">// a = 12^34</span></span><br><span class="line">b = a ^ b;		<span class="comment">// b = 12 ^ 34^34=12</span></span><br><span class="line">a = a ^ b;		<span class="comment">// a = 12^ 34 ^12 = 34</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引用传参</p>
+</li>
+<li><p>指针传参</p>
+</li>
+</ul>
+<p>【例2-10】求$n!$</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301210412937.png" alt="image-20220301210412937" style="zoom:67%;" /></p>
+<blockquote>
+<p>主体部分：$s = s*i;$</p>
+</blockquote>
+<p>【例2-11】对于任意给定的$n$阶方阵$A$和$B$，求$A×B$的积$C$并且分析它算法执行效率</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301210518138.png" alt="image-20220301210518138" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301210552598.png" alt="image-20220301210552598" style="zoom:67%;" /></p>
+<p>优化算法：</p>
+<ul>
+<li><p>《算法导论》提及的Strassen算法</p>
+<p>参考资料：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/78657463">详解矩阵乘法中的Strassen算法</a></p>
+</li>
+</ul>
+<h4 id="错误印象"><a href="#错误印象" class="headerlink" title="错误印象"></a>错误印象</h4><ul>
+<li><p>循环变量的无规律变化</p>
+<blockquote>
+<p>如，Euclid和斐波那契</p>
+</blockquote>
+</li>
+<li><p>过于复杂而无法求解的求和表达式</p>
+<blockquote>
+<p>有些级数不能求解</p>
+</blockquote>
+</li>
+<li><p>算法分析时固有的难度</p>
+</li>
+</ul>
+<p>【思考题】韩信点兵问题</p>
+<h3 id="2-递归形式算法分析"><a href="#2-递归形式算法分析" class="headerlink" title="2.递归形式算法分析"></a>2.递归形式算法分析</h3><p>分析递归算法时，可遵循以下步骤：</p>
+<ul>
+<li><p>决定用哪些参数作为输入规模的度量标准</p>
+</li>
+<li><p>找出算法的核心操作，它通常是<strong>递推公式</strong></p>
+</li>
+<li><p>检查一下，对于相同规模的不同输入，核心操作的执行次数是否可能不同</p>
+<p><strong>如果有这种可能，则必须对最差效率、平均效率以及最优效率做单独研究</strong></p>
+</li>
+<li><p>对于算法核心操作的执行次数，建立一个递推关系以及相应的边界条件</p>
+</li>
+<li><p>解这个递推式，或者至少<strong>确定它的解的增长次数</strong></p>
+</li>
+</ul>
+<p>【例2-12】求$n!$</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301212808470.png" alt="image-20220301212808470" style="zoom:67%;" /></p>
+<p>时间效率紧的界是n</p>
+<blockquote>
+<p>递归变非递归：</p>
+<p>1.减少重复计算——去重</p>
+<p>2.减少使用栈——效率低。应从模型入手</p>
+</blockquote>
+<p>【例2-13】汉诺塔问题</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301212841660.png" alt="image-20220301212841660" style="zoom:67%;" /></p>
+<ul>
+<li>n为计算规模</li>
+<li>核心操作为移动盘子 </li>
+<li>依据递推公式，两次递推之间，执行一次移动操作，因此有如下推导过程：<br>$T(n) =2T(n-1)+1$</li>
+</ul>
+<blockquote>
+<p>$T(n) =2T(n-1)+1 \\<br>=2[2T(n-2)+1]+1 \\ =2^2T(n-2)+2+1 \\<br>=2^2[2T(n-3)+1]+2+1 \\ = 2^3T(n-3)+2^2+2+1 …… \\<br>=2^{i-1}[2T(n-i)+1]+2^{i-2}+2^{i-3}…+2^0 \\ = 2^iT(n-i)+ 2^{i}-1 …… \\<br>=2^{n-1}T(n-(n-1))+ 2^{n-1}-1 \\ =2^{n-1}T(1)+ 2^{n-1}-1=2^n-1 \$</p>
+</blockquote>
+<p><strong>谨慎使用递归算法，它们的简洁可能会掩盖其低效率的事实</strong></p>
+<p>【例2-14】试分析二路归并排序算法的时间复杂度</p>
+<blockquote>
+<p>二路归并排序：二分 + 合并（简单插入排序）</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301213658379.png" alt="image-20220301213658379" style="zoom:67%;" /></p>
+<p>对于Merge，输入是两个排好序的数组。</p>
+<blockquote>
+<p>计算两个数组的长度</p>
+<p>重构$A$数组，将前半部分存入$B$，后半部分存入$C$</p>
+<p>依次比较$B$和$C$元素大小，按顺序放回$A$</p>
+<p>处理$B$或$C$剩余元素，放回$A$</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301213722688.png" alt="image-20220301213722688" style="zoom:67%;" /></p>
+<p>空间复杂度：上界是$n^2$，下界是$logn \times n$</p>
+<p>【思考题】考虑完全二叉树的先根遍历，找最大值的时间复杂度</p>
+<h3 id="定理2-6（主定理）——重要内容"><a href="#定理2-6（主定理）——重要内容" class="headerlink" title="定理2.6（主定理）——重要内容"></a>定理2.6（主定理）——重要内容</h3><p><strong>定理2.6</strong> 主定理（Master Theorem）设$a \geq 1,b \geq 1$为常数，$f(n)$为函数，$T(n)$为<strong>非负整数</strong>，且$T(n) = aT(n/b) + f(n)$</p>
+<p>则有以下结果：</p>
+<ul>
+<li><p>若$f(n) = O(n^{log_ba-\epsilon}), \epsilon &gt; 0$，那么$T(n) = \Theta(n^{log_ba})$；</p>
+<blockquote>
+<p>必须把$\epsilon$找出来</p>
+</blockquote>
+</li>
+<li><p>若$f(n) = \Theta (n^{log_ba})$，那么$T(n) = \Theta (n^{log_ba} logn)$；</p>
+</li>
+<li><p>若$f(n) = Ω(n^{log_ba+\epsilon}), \epsilon &gt; 0$，且对于常数$c&lt;1$和所有充分大的$n$有$af(n/b) \leq cf(n)$，那么$T(n) = \Theta(f(n))$；</p>
+<blockquote>
+<p>不能使用主定理，可以使用递归式</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231134023.png" alt="image-20220301231134023" style="zoom:67%;" /></p>
+<blockquote>
+<p>必须让$T(n)$中的参数$n$收敛</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231214720.png" alt="image-20220301231214720" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231230067.png" alt="image-20220301231230067" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231245912.png" alt="image-20220301231245912" style="zoom:67%;" /></p>
+<p>【思考题】</p>
+<ul>
+<li>自己证明一次主定理</li>
+<li>用主定理证明归并排序的时间复杂度</li>
+</ul>
+<p>【例2-15】求解递推方程$T(n) = 9T(n/3) + n$</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231338193.png" alt="image-20220301231338193" style="zoom:67%;" /></p>
+<p>【例2-16】求解递推方程$T(n) = T(2n/3) + 1$</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231416380.png" alt="image-20220301231416380" style="zoom:67%;" /></p>
+<p>【例2-17】求解递推方程$T(n) = 3T(n/4) + nlogn$</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231458494.png" alt="image-20220301231458494" style="zoom:67%;" /></p>
+<p>递归树</p>
+<p>表示每一层拥有的计算量</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231522615.png" alt="image-20220301231522615" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231537308.png" alt="image-20220301231537308" style="zoom:67%;" /></p>
+<p>【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设$n = 2^k$：</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231641596.png" alt="image-20220301231641596" style="zoom:67%;" /></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/algorithm/" rel="tag"># algorithm</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/algorithm/algorithm-ch1/" rel="prev" title="算法设计与分析：第1章 算法基础">
+      <i class="fa fa-chevron-left"></i> 算法设计与分析：第1章 算法基础
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80"><span class="nav-text">一、数学基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%87%BD%E6%95%B0%E6%B8%90%E8%BF%91%E7%9A%84%E7%95%8C"><span class="nav-text">1.函数渐近的界</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E6%B8%90%E8%BF%91%E7%9A%84%E7%95%8C%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">函数渐近的界的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%892-1%EF%BC%88%E9%98%B6%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%89"><span class="nav-text">定义2.1（阶的概念）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E7%90%862-1%EF%BC%88%E4%BC%A0%E9%80%92%E6%80%A7%EF%BC%89"><span class="nav-text">定理2.1（传递性）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E7%90%862-2-%EF%BC%88%E5%90%8C%E9%98%B6%EF%BC%89"><span class="nav-text">定理2.2 （同阶）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B8%90%E8%BF%91%E5%87%BD%E6%95%B0%E5%8F%8A%E5%85%B6%E6%B8%90%E8%BF%91%E7%9A%84%E7%95%8C"><span class="nav-text">常用的渐近函数及其渐近的界</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E7%90%862-3-%EF%BC%88%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E9%98%B6%E9%AB%98%E4%BA%8E%E5%AF%B9%E6%95%B0%EF%BC%89"><span class="nav-text">定理2.3 （多项式的阶高于对数）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E7%90%862-4%EF%BC%88%E6%8C%87%E6%95%B0%E7%9A%84%E9%98%B6%E9%AB%98%E4%BA%8E%E5%A4%9A%E9%A1%B9%E5%BC%8F%EF%BC%89"><span class="nav-text">定理2.4（指数的阶高于多项式）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%88%A9%E7%94%A8%E6%9E%81%E9%99%90%E6%B1%82%E5%87%BD%E6%95%B0%E6%B8%90%E8%BF%91%E7%9A%84%E7%95%8C"><span class="nav-text">2.利用极限求函数渐近的界</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E5%85%AC%E5%BC%8F"><span class="nav-text">常用的公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E7%90%862-5%EF%BC%88%E7%B4%A7%E7%9A%84%E7%95%8C%E7%9A%84%E6%9E%81%E9%99%90%E5%AE%9A%E4%B9%89%EF%BC%89"><span class="nav-text">定理2.5（紧的界的极限定义）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9C%89%E7%94%A8%E7%9A%84%E6%B1%82%E5%92%8C%E7%BA%A7%E6%95%B0%E5%8F%8A%E5%85%B6%E6%8E%A8%E5%AF%BC%E6%96%B9%E6%B3%95"><span class="nav-text">3.有用的求和级数及其推导方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E5%9F%BA%E6%9C%AC%E6%B3%95%E5%88%99%E5%92%8C%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E5%88%97"><span class="nav-text">两个基本法则和常见的数列</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%9F%BA%E6%9C%AC%E6%95%88%E7%8E%87%E7%B1%BB%E5%9E%8B"><span class="nav-text">4.基本效率类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B"><span class="nav-text">二、算法分析实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%9D%9E%E9%80%92%E5%BD%92%E5%BD%A2%E5%BC%8F%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90"><span class="nav-text">1.非递归形式算法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E5%8D%B0%E8%B1%A1"><span class="nav-text">错误印象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%80%92%E5%BD%92%E5%BD%A2%E5%BC%8F%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90"><span class="nav-text">2.递归形式算法分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E7%90%862-6%EF%BC%88%E4%B8%BB%E5%AE%9A%E7%90%86%EF%BC%89%E2%80%94%E2%80%94%E9%87%8D%E8%A6%81%E5%86%85%E5%AE%B9"><span class="nav-text">定理2.6（主定理）——重要内容</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bob Cheng</p>
+  <div class="site-description" itemprop="description">markdown daily life & study</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bob Cheng</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
