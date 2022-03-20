@@ -20,30 +20,69 @@
     var CONFIG = {"hostname":"www.gingkocyx.top","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="markdown daily life &amp; study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Gingkocyx">
-<meta property="og:url" content="https://www.gingkocyx.top/index.html">
+  <meta name="description" content="1.简单的迭代运算 迭代（辗转法） 是一种不断用变量的旧值递推新值的过程  分类  精准迭代：杨辉三角、内在移动算法等 近似迭代：二分法和牛顿迭代法   设计方法  确定迭代模型 控制迭代过程    【例3-1】输出如图4-1的杨辉三角形   1234567891011121314151617181920#include &lt;bits&#x2F;stdc++.h&gt;using namespace s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法设计与分析：第3章 迭代法">
+<meta property="og:url" content="https://www.gingkocyx.top/algorithm/algorithm-ch3/index.html">
 <meta property="og:site_name" content="Gingkocyx">
-<meta property="og:description" content="markdown daily life &amp; study">
+<meta property="og:description" content="1.简单的迭代运算 迭代（辗转法） 是一种不断用变量的旧值递推新值的过程  分类  精准迭代：杨辉三角、内在移动算法等 近似迭代：二分法和牛顿迭代法   设计方法  确定迭代模型 控制迭代过程    【例3-1】输出如图4-1的杨辉三角形   1234567891011121314151617181920#include &lt;bits&#x2F;stdc++.h&gt;using namespace s">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307133002224.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307133019008.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307133040216.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307133648577.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307152154641.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307152213540.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307152319822.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307152336508.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307152409287.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309083111599.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309083537051.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309084016286.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309084417861.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309135022824.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309135116475.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309091036849.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309091205962.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309141137838.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220306222435439.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220306222529276.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309092219816.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309092247221.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311175417804.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308201115399.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308201141988.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308201352032.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308201408592.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309094457168.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309143047300.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314081232914.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314081359280.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314081618780.png">
+<meta property="og:image" content="d:/ChengYangX/Study/University/Sophomore/Spring/算法分析与设计/2022/作业/20220314/image-20220314081836833.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220315163201519.png">
+<meta property="og:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220315163709967.png">
+<meta property="article:published_time" content="2022-03-20T02:50:46.000Z">
+<meta property="article:modified_time" content="2022-03-20T02:54:30.673Z">
 <meta property="article:author" content="Bob Cheng">
+<meta property="article:tag" content="algorithm">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307133002224.png">
 
-<link rel="canonical" href="https://www.gingkocyx.top/">
+<link rel="canonical" href="https://www.gingkocyx.top/algorithm/algorithm-ch3/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Gingkocyx</title>
+  <title>算法设计与分析：第3章 迭代法 | Gingkocyx</title>
   
 
 
@@ -173,9 +212,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -191,10 +231,9 @@
       <meta itemprop="name" content="Gingkocyx">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/algorithm/algorithm-ch3/" class="post-title-link" itemprop="url">算法设计与分析：第3章 迭代法</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          算法设计与分析：第3章 迭代法
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -232,7 +271,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="1-简单的迭代运算"><a href="#1-简单的迭代运算" class="headerlink" title="1.简单的迭代运算"></a>1.简单的迭代运算</h2><ul>
+        <h2 id="1-简单的迭代运算"><a href="#1-简单的迭代运算" class="headerlink" title="1.简单的迭代运算"></a>1.简单的迭代运算</h2><ul>
 <li><p>迭代（辗转法）</p>
 <p>是一种不断用变量的旧值递推新值的过程</p>
 </li>
@@ -550,827 +589,34 @@ x_1 + 3x_2 - 2x_3 = 4 \\
 </li>
 </ul>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/algorithm/" rel="tag"># algorithm</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/algorithm/algorithm-ch2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bob Cheng">
-      <meta itemprop="description" content="markdown daily life & study">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gingkocyx">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/algorithm/algorithm-ch2/" class="post-title-link" itemprop="url">算法设计与分析：第2章 算法分析基础</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-03-20 10:43:23 / 修改时间：10:57:12" itemprop="dateCreated datePublished" datetime="2022-03-20T10:43:23+08:00">2022-03-20</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.7k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>12 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>算法效率评价的指标：算法对计算机资源的使用</p>
-<p><strong>时间&gt;&gt;内存</strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/algorithm/algorithm-ch2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/algorithm/algorithm-ch1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bob Cheng">
-      <meta itemprop="description" content="markdown daily life & study">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gingkocyx">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/algorithm/algorithm-ch1/" class="post-title-link" itemprop="url">算法设计与分析：第1章 算法基础</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-03-20 10:26:58 / 修改时间：10:37:47" itemprop="dateCreated datePublished" datetime="2022-03-20T10:26:58+08:00">2022-03-20</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.8k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>19 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/202201072028024.png" alt="image-20220107202845894" style="zoom: 50%;" /></p>
-<p>终极目标：问题求解</p>
-<ul>
-<li>分析问题：已知条件、数据结构、问题划分</li>
-<li>计算模型：技术、工具、手段</li>
-<li>求解策略：技术路线</li>
-<li>编程求解：程序设计</li>
-<li>效率评估：算法评估手段——算法分析工具</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/algorithm/algorithm-ch1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/algorithm/algorithm-ch2/" rel="prev" title="算法设计与分析：第2章 算法分析基础">
+      <i class="fa fa-chevron-left"></i> 算法设计与分析：第2章 算法分析基础
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
   
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-ch4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bob Cheng">
-      <meta itemprop="description" content="markdown daily life & study">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gingkocyx">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/mathematical_logic/mathematical-logic-ch4/" class="post-title-link" itemprop="url">数理逻辑：第4节 命题逻辑的推理理论</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-03-19 20:23:55 / 修改时间：20:26:28" itemprop="dateCreated datePublished" datetime="2022-03-19T20:23:55+08:00">2022-03-19</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>760</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="4-1-推理的形式结构"><a href="#4-1-推理的形式结构" class="headerlink" title="4.1 推理的形式结构"></a>4.1 推理的形式结构</h1><h2 id="定义1："><a href="#定义1：" class="headerlink" title="定义1："></a><strong>定义1：</strong></h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225116596.png" alt="image-20220307225116596" style="zoom:67%;" /></p>
-<p><strong>所有的前提都为真且结论为真</strong>或者<strong>有前提为假</strong>——有效结论</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/mathematical_logic/mathematical-logic-ch4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-ch3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bob Cheng">
-      <meta itemprop="description" content="markdown daily life & study">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gingkocyx">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/mathematical_logic/mathematical-logic-ch3/" class="post-title-link" itemprop="url">数理逻辑：第3节 主析（合）取范式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-03-19 20:13:47 / 修改时间：23:51:51" itemprop="dateCreated datePublished" datetime="2022-03-19T20:13:47+08:00">2022-03-19</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>11 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>判断命题公式是否为重言式（永真式）？<ul>
-<li>真值表</li>
-<li>等值演算</li>
-<li>主析取范式和主合取范式</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/mathematical_logic/mathematical-logic-ch3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/mathematical-logic/mathematical-logic-ch2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bob Cheng">
-      <meta itemprop="description" content="markdown daily life & study">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gingkocyx">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/mathematical-logic/mathematical-logic-ch2/" class="post-title-link" itemprop="url">数理逻辑：第2节 命题逻辑等值计算</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-03-19 19:54:51 / 修改时间：23:41:47" itemprop="dateCreated datePublished" datetime="2022-03-19T19:54:51+08:00">2022-03-19</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>11 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="2-1-等值式"><a href="#2-1-等值式" class="headerlink" title="2.1 等值式"></a>2.1 等值式</h1><ul>
-<li><p><strong>定义1</strong>：若<strong>等价式</strong>A $\Leftrightarrow$ B是<strong>重言式</strong>，则称A与B等值，记作A $\Leftrightarrow$ B，并称A $\Leftrightarrow$ B是等值式</p>
-<p>此时A和B真值相同（全0 or 全1）</p>
-</li>
-<li><p>几点说明： </p>
-<ul>
-<li>定义中的符号$\Leftrightarrow$不是联结符（词） </li>
-<li>用<strong>真值表</strong>可检查两个公式是否等值</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>问题：判别下面命题公式是否为重言式(永真式)？ </p>
-<p>(( p∧ $\neg$ q) → r )∧ p ∧ (q → s) ∧ $\neg$ s → r<br>转化为: (( p∧ $\neg$ q) → r )∧ p ∧ (q → s) ∧ $\neg$ s → r $\Leftrightarrow$ 1</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/mathematical-logic/mathematical-logic-ch2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-ch1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bob Cheng">
-      <meta itemprop="description" content="markdown daily life & study">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gingkocyx">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/mathematical_logic/mathematical-logic-ch1/" class="post-title-link" itemprop="url">数理逻辑：第1节 命题逻辑的基本概念</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-03-19 19:04:13 / 修改时间：23:37:48" itemprop="dateCreated datePublished" datetime="2022-03-19T19:04:13+08:00">2022-03-19</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>12 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="1-1-命题与联结词"><a href="#1-1-命题与联结词" class="headerlink" title="1.1 命题与联结词"></a>1.1 命题与联结词</h1><h2 id="命题与真值"><a href="#命题与真值" class="headerlink" title="命题与真值"></a>命题与真值</h2><ul>
-<li>命题：能<strong>唯一</strong>确定<strong>真假值</strong>的<strong>陈述句</strong></li>
-<li>命题的真值：一个命题的真or假</li>
-<li>真值的取值：真or假</li>
-<li>真命题与假命题：由内容是否符合实际情况决定</li>
-</ul>
-<p>注意：</p>
-<ul>
-<li>感叹句、祈使句、疑问句、<strong>悖论</strong>不是命题</li>
-<li>判断结果不唯一确定的陈述句不是命题（针对真值多种取值的情况）</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/mathematical_logic/mathematical-logic-ch1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-ch0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bob Cheng">
-      <meta itemprop="description" content="markdown daily life & study">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gingkocyx">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/mathematical_logic/mathematical-logic-ch0/" class="post-title-link" itemprop="url">数理逻辑：绪论</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-03-19 18:50:45 / 修改时间：20:31:30" itemprop="dateCreated datePublished" datetime="2022-03-19T18:50:45+08:00">2022-03-19</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>612</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>数理逻辑是用数学的方法研究<strong>推理</strong>，特别是研究数学中的推理</p>
-<p>推理的前提和结论都是命题，命题的真假与<strong>内容是否符合现实</strong>有关。</p>
-<script type="math/tex; mode=display">
-premises 前提 \quad（命题）\\
-\downarrow  \quad reason 推理 \\
-conclusions 结论 \quad （命题）\\</script>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/mathematical_logic/mathematical-logic-ch0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/computer_organization/computer-organization-ch3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bob Cheng">
-      <meta itemprop="description" content="markdown daily life & study">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gingkocyx">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/computer_organization/computer-organization-ch3/" class="post-title-link" itemprop="url">计算机组成原理：第3章 系统总线</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-18 11:39:53" itemprop="dateCreated datePublished" datetime="2022-03-18T11:39:53+08:00">2022-03-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-19 20:01:36" itemprop="dateModified" datetime="2022-03-19T20:01:36+08:00">2022-03-19</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>11k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>36 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="关于本课程"><a href="#关于本课程" class="headerlink" title="关于本课程"></a>关于本课程</h1><p>计算机源头：主频——晶振（1个）</p>
-<p>计组的难点和重点：<strong>运算器、存储器、控制器、中断方式</strong></p>
-<p>计算机系统</p>
-<ul>
-<li>逻辑正确</li>
-<li>时序正确：内存（读、写）、输入输出、中断工作（中断周期）、存储器直接存取周期（DMA周期）</li>
-<li>负载能力</li>
-<li>可靠性：抗干扰、工作环境</li>
-</ul>
-<p>本课程重点是<strong>逻辑和时序，考虑一些负载能力</strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/computer_organization/computer-organization-ch3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/computer_organization/computer-organization-ch1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bob Cheng">
-      <meta itemprop="description" content="markdown daily life & study">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gingkocyx">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/computer_organization/computer-organization-ch1/" class="post-title-link" itemprop="url">计算机组成原理：第1章 计算机系统概论</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-16 19:44:09" itemprop="dateCreated datePublished" datetime="2022-03-16T19:44:09+08:00">2022-03-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-19 20:01:48" itemprop="dateModified" datetime="2022-03-19T20:01:48+08:00">2022-03-19</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>10 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="1-1-计算机系统简介"><a href="#1-1-计算机系统简介" class="headerlink" title="1.1 计算机系统简介"></a>1.1 计算机系统简介</h1><h2 id="一、计算机的软硬件概念"><a href="#一、计算机的软硬件概念" class="headerlink" title="一、计算机的软硬件概念"></a>一、计算机的软硬件概念</h2><h3 id="1-计算机系统"><a href="#1-计算机系统" class="headerlink" title="1.计算机系统"></a>1.计算机系统</h3><script type="math/tex; mode=display">
-计算机系统
-\begin{cases}
-\color{red}{硬件} \quad \color{black}{计算机的实体（主机、外设等）}\\
-\color{red}{软件} \quad \color{black}{由具有各类特殊功能的信息（程序）组成}\\
-\end{cases}</script><script type="math/tex; mode=display">
-软件
-\begin{cases}
-\color{red}{系统软件} \quad \color{black}{用来管理整个计算机系统}\\
-\qquad \qquad \qquad 语言处理程序\\
-\qquad \qquad \qquad 操作系统\\
-\qquad \qquad \qquad 服务性程序\\
-\qquad \qquad \qquad 数据库管理系统\\
-\qquad \qquad \qquad 网络软件\\
-\color{red}{应用软件} \quad \color{black}{按任务需要编制成的各种程序}\\
-\end{cases}</script>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/computer_organization/computer-organization-ch1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
@@ -1422,6 +668,7 @@ conclusions 结论 \quad （命题）\\</script>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%AE%80%E5%8D%95%E7%9A%84%E8%BF%AD%E4%BB%A3%E8%BF%90%E7%AE%97"><span class="nav-text">1.简单的迭代运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%90%E4%BE%8B3-1%E3%80%91%E8%BE%93%E5%87%BA%E5%A6%82%E5%9B%BE4-1%E7%9A%84%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92%E5%BD%A2"><span class="nav-text">【例3-1】输出如图4-1的杨辉三角形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%90%E4%BE%8B3-2%E3%80%91%E7%A9%BF%E8%B6%8A%E6%B2%99%E6%BC%A0%E9%97%AE%E9%A2%98"><span class="nav-text">【例3-2】穿越沙漠问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%90%E4%BE%8B3-3%E3%80%91%E5%86%85%E5%AD%98%E7%A7%BB%E5%8A%A8%E9%97%AE%E9%A2%98"><span class="nav-text">【例3-3】内存移动问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%90%E4%BE%8B3-4%E3%80%91%E7%BC%96%E7%A8%8B%E6%B1%82%E5%BD%93-n-leq-100-%E6%97%B6%EF%BC%8C-n-%E7%9A%84%E5%87%86%E7%A1%AE%E5%80%BC"><span class="nav-text">【例3-4】编程求当$n \leq 100$时，$n!$的准确值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%90%E6%80%9D%E8%80%83%E9%A2%98%E3%80%91%E8%AE%BEa%E5%92%8Cb%E4%B8%A4%E4%B8%AA%E6%95%B0%E4%B8%BA%E5%A4%A7%E6%95%B0%EF%BC%8C%E6%B1%82a-b%E7%9A%84%E5%80%BC"><span class="nav-text">【思考题】设a和b两个数为大数，求a*b的值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%B1%82%E8%A7%A3%E6%96%B9%E7%A8%8B%E7%9A%84%E8%BF%91%E4%BC%BC%E7%AE%97%E6%B3%95"><span class="nav-text">2.求解方程的近似算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B"><span class="nav-text">非线性方程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E6%94%B6%E6%95%9B%E6%80%A7%E5%8F%8A%E6%94%B6%E6%95%9B%E9%80%9F%E5%BA%A6"><span class="nav-text">非线性方程的收敛性及收敛速度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E8%BF%AD%E4%BB%A3%E6%96%B9%E7%A8%8B"><span class="nav-text">建立迭代方程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E3%80%90%E4%BE%8B3-5%E3%80%91%E6%B1%82-9x-2-sinx-1-0-%EF%BC%8C%E5%9C%A8-0-1-%E4%B9%8B%E9%97%B4%E7%9A%84%E8%A7%A3%EF%BC%8C%E8%A6%81%E6%B1%82-9x-2-sinx-1-lt-0-00001"><span class="nav-text">【例3-5】求$9x^2 - sinx -1 &#x3D; 0$，在$(0,1)$之间的解，要求$|9x^2-sinx-1| &lt; 0.00001$</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E6%B3%95"><span class="nav-text">二分法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E6%B8%90%E8%BF%91%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-text">二分法的时间渐近复杂度分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E3%80%90%E4%BE%8B3-6%E3%80%91%E7%94%A8%E4%BA%8C%E5%88%86%E6%B3%95%E6%B1%82-9x-2-sinx-1-0-%EF%BC%8C%E5%9C%A8-0%EF%BC%8C1-%E4%B9%8B%E9%97%B4%E7%9A%84%E8%A7%A3%EF%BC%8C%E8%A6%81%E6%B1%82-x-k-x-k-1-lt-0-00001-%E3%80%82"><span class="nav-text">【例3-6】用二分法求$9x^2-sinx-1&#x3D;0$，在$(0，1)$之间的解，要求$|x_k-x_{k-1}| &lt; 0.00001$。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%9B%E9%A1%BF%E6%B3%95"><span class="nav-text">牛顿法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%89%9B%E9%A1%BF%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-text">牛顿法的时间复杂度分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E3%80%90%E4%BE%8B3-7%E3%80%91%E7%94%A8%E7%89%9B%E9%A1%BF%E6%B3%95%E6%B1%82-9x-2-sinx-1-0-%EF%BC%8C%E5%9C%A8-0-1-%E4%B9%8B%E9%97%B4%E7%9A%84%E8%A7%A3%EF%BC%8C%E8%A6%81%E6%B1%82-x-k-x-k-1-lt-0-00001"><span class="nav-text">【例3-7】用牛顿法求$9x^2-sinx-1&#x3D;0$，在$(0,1)$之间的解，要求$|x_k-x_{k-1}|$&lt;0.00001</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-text">线性代数方程组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Jacobi%E7%AE%97%E6%B3%95"><span class="nav-text">Jacobi算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gauss-Seidel%E7%AE%97%E6%B3%95"><span class="nav-text">Gauss-Seidel算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E3%80%90%E4%BE%8B3-8%E3%80%91%E6%B1%82%E4%B8%8B%E5%88%97%E8%A7%A3%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E8%A7%A3"><span class="nav-text">【例3-8】求下列解线性方程组的解</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

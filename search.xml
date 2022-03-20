@@ -305,269 +305,325 @@ f_{n} = f_{n-1} + f_{n-2} \quad ,n \geq 3 \qquad(5-2) \\
       </tags>
   </entry>
   <entry>
-    <title>算法设计与分析：第2章 算法分析基础</title>
-    <url>/algorithm/algorithm-ch2/</url>
-    <content><![CDATA[<p>算法效率评价的指标：算法对计算机资源的使用</p>
-<p><strong>时间&gt;&gt;内存</strong></p>
-<span id="more"></span>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227163339607.png" alt="image-20220227163339607" style="zoom:67%;" /></p>
+    <title>算法设计与分析：第3章 迭代法</title>
+    <url>/algorithm/algorithm-ch3/</url>
+    <content><![CDATA[<h2 id="1-简单的迭代运算"><a href="#1-简单的迭代运算" class="headerlink" title="1.简单的迭代运算"></a>1.简单的迭代运算</h2><ul>
+<li><p>迭代（辗转法）</p>
+<p>是一种不断用变量的旧值递推新值的过程</p>
+</li>
+<li><p>分类</p>
 <ul>
-<li><p>计算机资源的计量方法</p>
-<p>设输入数据/问题规模为n。假设算法要用到</p>
+<li>精准迭代：杨辉三角、内在移动算法等</li>
+<li>近似迭代：二分法和牛顿迭代法</li>
+</ul>
+</li>
+<li><p>设计方法</p>
 <ul>
-<li><p>m种元运算；（不再分解，一条指令）</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">x = x+<span class="number">1</span>;</span><br><span class="line">y = y*<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>每种元运算执行的时间为$t_1, t_2, … , t_m$；</p>
-</li>
-<li><p>每种元运算的执行的次数为$e_1, e_2, … e_m$；</p>
-</li>
-<li><p>元运算与问题规模的关系：$\forall e_i(n), 1 \leq i \leq m$</p>
+<li>确定迭代模型</li>
+<li>控制迭代过程</li>
+</ul>
 </li>
 </ul>
-<p>若用$T(n)$表示时间复杂度，则有$T(n) = \sum_{i = 1}^{m} t_i \times e_i(n)$​ </p>
-</li>
-<li><p>元运算的提取和时间复杂度的计算</p>
-<p>【例2-1】编程输出具有下述特点的n×n阶三角矩阵，试分析该算法的时间复杂度</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171256853.png" alt="image-20220227171256853" style="zoom: 50%;" /></p>
-<blockquote>
-<p>只执行一次：</p>
-<p>1.i,j,n,k= 1;</p>
-<p>2.scanf</p>
-<p>3.i = 0;</p>
-<p>4.i &lt; n;</p>
-<p>第一层循环</p>
-<p>1.i &lt; n;</p>
-<p>2.i++;</p>
-<p>3.j = 0;</p>
-<p>4.j &lt; i;</p>
-<p>5.printf(“\n”);</p>
-<p>第二层循环</p>
-<p>1.j &lt; i;</p>
-<p>2.j++;</p>
-<p>3.printf</p>
-<p>4.k++</p>
-</blockquote>
-<p>​        $T(n) = \sum_{i = 0}^{n-1} (5 + \sum_{j = 0}^{i} 3) + 4 \\ = \frac{3}{2}n^2 + \frac{7}{2}n + 4$​​​</p>
-</li>
-</ul>
-<h2 id="一、数学基础"><a href="#一、数学基础" class="headerlink" title="一、数学基础"></a>一、数学基础</h2><h3 id="1-函数渐近的界"><a href="#1-函数渐近的界" class="headerlink" title="1.函数渐近的界"></a>1.函数渐近的界</h3><h4 id="函数渐近的界的概念"><a href="#函数渐近的界的概念" class="headerlink" title="函数渐近的界的概念"></a>函数渐近的界的概念</h4><p>设$T(n)$​是算法A的时间复杂性函数，n是问题规模，$n \geq 0 $​且$n \in Z$​。</p>
-<p>一般来说，当n单调递增且趋于$\infty$时，$T(n)$也将单调递增趋于$\infty$。</p>
-<p>对于$T(n)$，如果存在$T’(n)$，使$n \to \infty$时，有$(T(n)-T’(n))/T(n) \to 0$。</p>
-<p>那么，我们就说$T’(n)$​是$T(n)$​当$n \to \infty$​时的渐近态，或称$T’(n)$​为算法A当$T(n) \to \infty$​​的渐近复杂性。</p>
-<blockquote>
-<p>相似性原理</p>
-<p>突出主体部分——printf，k++</p>
-</blockquote>
-<h4 id="定义2-1（阶的概念）"><a href="#定义2-1（阶的概念）" class="headerlink" title="定义2.1（阶的概念）"></a>定义2.1（阶的概念）</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227165538276.png" alt="image-20220227165538276" style="zoom:67%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227165601851.png" alt="image-20220227165601851" style="zoom:67%;" /></p>
-<p>【例2-2】设有函数$f(n)=n^2+3n+1$​，当n足够大时，试证明下述内容： </p>
-<p>​    (1) $f(n)=O(n^2)$​和$f(n)=O(n^3)$​成立；</p>
-<p>​    (2)$f(n)=o(n^2)$​不成立</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171405514.png" alt="image-20220227171405514" style="zoom:67%;" /></p>
+<h3 id="【例3-1】输出如图4-1的杨辉三角形"><a href="#【例3-1】输出如图4-1的杨辉三角形" class="headerlink" title="【例3-1】输出如图4-1的杨辉三角形"></a>【例3-1】输出如图4-1的杨辉三角形</h3><p>  <img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307133002224.png" alt="image-20220307133002224" style="zoom:50%;" /></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 100</span></span><br><span class="line"><span class="type">int</span> ans[MAXN][MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(ans,<span class="number">0</span>,<span class="built_in">sizeof</span>(ans));</span><br><span class="line">	<span class="type">int</span> n; cin &gt;&gt; n;</span><br><span class="line">	ans[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="comment">// 行初和行末的初始化 </span></span><br><span class="line">		ans[i][<span class="number">0</span>] = ans[i][i<span class="number">-1</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 递推公式 </span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; i<span class="number">-1</span>; j++)	ans[i][j] = ans[i<span class="number">-1</span>][j<span class="number">-1</span>] + ans[i<span class="number">-1</span>][j];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= n; i++)</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; i; j++)	<span class="built_in">printf</span>(<span class="string">&quot;%-3d&quot;</span>,ans[i][j]);</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>适当放缩</li>
+<li><p>使用一维数组</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 100</span></span><br><span class="line"><span class="type">int</span> a[<span class="number">100</span>*<span class="number">99</span>/<span class="number">2</span>+<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">1 1</span></span><br><span class="line"><span class="comment">1 2 1</span></span><br><span class="line"><span class="comment">1 3 3 1</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Yanghui</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> begin = <span class="number">0</span>;  <span class="comment">// 计算行初位置</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="comment">// 行首和行尾为1</span></span><br><span class="line">        a[begin+<span class="number">1</span>] = a[begin+i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">2</span>; j &lt; i; j++) &#123;   <span class="comment">// 行中根据公式迭代</span></span><br><span class="line">            a[begin+j] = a[begin-(i)+j] + a[begin-(i<span class="number">-1</span>)+j];</span><br><span class="line">        &#125;</span><br><span class="line">        begin += i; <span class="comment">// 更新下一行的行初位置（本行的行尾）</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 输出</span></span><br><span class="line">    <span class="type">int</span> k = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= i; j++) &#123;</span><br><span class="line">            cout &lt;&lt; a[k++] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">Yanghui</span>(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<p>【例2-3】试证明$f(n) = \frac{1}{2}n(n-1)$有$f(n) = \Theta(n^2)$</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171557402.png" alt="image-20220227171557402" style="zoom:67%;" /></p>
+<h3 id="【例3-2】穿越沙漠问题"><a href="#【例3-2】穿越沙漠问题" class="headerlink" title="【例3-2】穿越沙漠问题"></a>【例3-2】穿越沙漠问题</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307133019008.png" alt="image-20220307133019008" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307133040216.png" alt="image-20220307133040216" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307133648577.png" alt="image-20220307133648577" style="zoom:50%;" /></p>
+<p>【参考资料】<a href="https://blog.csdn.net/weixin_43983838/article/details/88125782">穿越沙漠问题（递推法）</a></p>
+<blockquote>
+<p>储油点地址的确定比较复杂，从出发点考虑问题，很难确保按要求以最少的耗油量穿越沙漠，即很难保证到达终点时，沙漠中的各临时油库和车的储油量都恰好为0。所以我们从终点向起点应用逆推法。<br>过程：</p>
+<p>为了做到耗油最少，那么每次吉普车出发时都应满载，放下一部分油再返回时，油恰好用完，并且把下一个油库建好后这个油库中的油恰好用完。所以每个点的油库中的油都应是吉普车装油量的整数倍(因为出发时满载)，即500n(n为正整数)，并且每个点的 存油量为下一个点的存油量及吉普车为建立下个油库在两点之间往返的油耗之和 (下一个油库建成，前一个油库中的油恰好用完)。</p>
+<p>（1）由题可知，吉普车满载可以走500km。所以，第一段（即离终点最近的一段）长度为500km，并且，第一个加油点station_1（也是离终点最近的）的储油量为500L。<br>（2）那我们来看第二个加油点station_2。<br>它需要储存上一个加油点的储油量 + 车来往的耗油量。为了给station_1送500L油，车至少送两次油（因为中间路程要耗油嘛）。所以，车往返路程共3趟。<br>又考虑最少油耗，我们使这3趟路程耗油500L。那么station_2距station_1为500/3 = 167km，总共储油1000L。<br>（3）同样，我们看station_3。<br>为了给station_2送1000L油，至少送3次嘛，所以往返共5趟。<br>同样考虑耗油最少，那么station_3距station_2为 500/5 = 100km。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> distance; std::cin &gt;&gt; distance;</span><br><span class="line">	<span class="type">int</span> dis = <span class="number">500</span>, oil = <span class="number">500</span>, n = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (dis &lt; distance) &#123;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;第&quot;</span> &lt;&lt; n &lt;&lt; <span class="string">&quot;个加油站：储油量&quot;</span> &lt;&lt; oil &lt;&lt; <span class="string">&quot;L；距离终点&quot;</span> &lt;&lt; dis &lt;&lt; <span class="string">&quot;KM&quot;</span> &lt;&lt; std::endl; </span><br><span class="line">		++n;</span><br><span class="line">		<span class="comment">// 每一趟包含前面的油 </span></span><br><span class="line">		dis = dis + <span class="number">500</span>/(<span class="number">2</span>*n<span class="number">-1</span>);</span><br><span class="line">		oil = oil + <span class="number">500</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	dis = distance - (dis - <span class="number">500</span>/(<span class="number">2</span>*n<span class="number">-1</span>));</span><br><span class="line">	oil = oil - <span class="number">500</span> + dis*(<span class="number">2</span>*n<span class="number">-1</span>);</span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;第&quot;</span> &lt;&lt; n &lt;&lt; <span class="string">&quot;个加油站：储油量&quot;</span> &lt;&lt; oil &lt;&lt; <span class="string">&quot;L；距离起点&quot;</span> &lt;&lt; distance &lt;&lt; <span class="string">&quot;KM&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>限定一下n的范围。找对应的$c_1,c_2$​，一个满足上界、一个满足下界：$c_2g(n) \leq f(n) \leq c_1g(n)$</li>
-</ul>
-<h4 id="定理2-1（传递性）"><a href="#定理2-1（传递性）" class="headerlink" title="定理2.1（传递性）"></a><strong>定理2.1（传递性）</strong></h4><p>设$f、g、h$是定义域为自然数集合，</p>
-<p>如果$f=O(g)$且$g=O(h)$，那么$f=O(h)$； </p>
-<p>如果$f=Ω(g)$且$g=Ω(h)$，那么$f=Ω(h)$； </p>
-<p>如果$f=Θ(g)$且$g=Θ(h)$，那么$f=Θ(h)$​。</p>
-<blockquote>
-<p>证明：</p>
-</blockquote>
-<h4 id="定理2-2-（同阶）"><a href="#定理2-2-（同阶）" class="headerlink" title="定理2.2 （同阶）"></a>定理2.2 （同阶）</h4><p>假设$f$和$g$是定义域为自然数集合的函数，若对于某个其他的函数$h$，有$f=O(h)$和$g=O(h)$，那么$f+g=O(h)$​。</p>
-<blockquote>
-<p>证明：</p>
-</blockquote>
-<h4 id="常用的渐近函数及其渐近的界"><a href="#常用的渐近函数及其渐近的界" class="headerlink" title="常用的渐近函数及其渐近的界"></a>常用的渐近函数及其渐近的界</h4><ul>
-<li><p>多项式函数、对数函数、不同底a和b的对数</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170231007.png" alt="image-20220227170231007" style="zoom: 67%;" /></p>
+<li><p>算法分析：输入为distance</p>
+<p>$n = f(distanc,dis)$</p>
+<p>$ = ln(n+1) + r - \frac{1}{2}(ln(n+1)+r) + \frac{1}{n+1} +\frac{1}{n+2} + … + \frac{1}{n+n} $</p>
+<p>$= \frac{1}{2}ln(n+1) + C$</p>
+<p>$\geq d/a \to ln(n+1) \geq 2(d/a+C)$</p>
+<p>$\to n = e^{d/a-C} + 1$</p>
+<p>==$T(n) = T(a,d) = O(e^{d/a-C}+1) = O(e^{d/a-C})$==</p>
 </li>
 </ul>
-<p>对于多项式函数，每一项的上界都是$n^k$</p>
-<p>对于对数函数，两边取以b为底的对数，$log_b{a^{log_bn}} = log_b{n^{log_ba}} = log_ba \times log_bn$​​</p>
-<h4 id="定理2-3-（多项式的阶高于对数）"><a href="#定理2-3-（多项式的阶高于对数）" class="headerlink" title="定理2.3 （多项式的阶高于对数）"></a>定理2.3 （多项式的阶高于对数）</h4><p>对于每一个$b&gt;1$和每一个$a&gt;0$，有$log_bn=o(n^a)$​。</p>
-<p>（多项式函数的阶高于对数函数）</p>
-<h4 id="定理2-4（指数的阶高于多项式）"><a href="#定理2-4（指数的阶高于多项式）" class="headerlink" title="定理2.4（指数的阶高于多项式）"></a>定理2.4（指数的阶高于多项式）</h4><p>对每个$a&gt;1$​和每个$k&gt;0$​，有$n^k=o(a^n)$</p>
-<p>（指数函数的阶高于多项式函数）</p>
-<h3 id="2-利用极限求函数渐近的界"><a href="#2-利用极限求函数渐近的界" class="headerlink" title="2.利用极限求函数渐近的界"></a>2.利用极限求函数渐近的界</h3><h4 id="常用的公式"><a href="#常用的公式" class="headerlink" title="常用的公式"></a>常用的公式</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170744849.png" alt="image-20220227170744849" style="zoom:67%;" /></p>
-<h4 id="定理2-5（紧的界的极限定义）"><a href="#定理2-5（紧的界的极限定义）" class="headerlink" title="定理2.5（紧的界的极限定义）"></a>定理2.5（紧的界的极限定义）</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170855787.png" alt="image-20220227170855787" style="zoom:67%;" /></p>
-<p>两个函数互为紧的界</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170911299.png" alt="image-20220227170911299" style="zoom:67%;" /></p>
-<p>【思考题】：</p>
+<h3 id="【例3-3】内存移动问题"><a href="#【例3-3】内存移动问题" class="headerlink" title="【例3-3】内存移动问题"></a>【例3-3】内存移动问题</h3><ul>
+<li>问题分析</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307152154641.png" alt="image-20220307152154641" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307152213540.png" alt="image-20220307152213540" style="zoom:50%;" /></p>
+<p>两种方式：</p>
+<p>两个数组</p>
+<p>一个数组，一个辅助变量，移动k次</p>
+<p>优化：减少k——（i+k）%n</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307152319822.png" alt="image-20220307152319822" style="zoom:50%;" /></p>
 <ul>
-<li>证（3）</li>
+<li>计算模型</li>
 </ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301202430470.png" alt="image-20220301202430470" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307152336508.png" alt="image-20220307152336508" style="zoom:50%;" /></p>
 <ul>
-<li>列出已讲解渐近函数及它们之间阶的高低（运用斯特林、洛必达、2.5）</li>
+<li><p>算法描述与分析</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307152409287.png" alt="image-20220307152409287" style="zoom:50%;" /></p>
+</li>
 </ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301202505790.png" alt="image-20220301202505790" style="zoom:67%;" /></p>
-<h3 id="3-有用的求和级数及其推导方法"><a href="#3-有用的求和级数及其推导方法" class="headerlink" title="3.有用的求和级数及其推导方法"></a>3.有用的求和级数及其推导方法</h3><h4 id="两个基本法则和常见的数列"><a href="#两个基本法则和常见的数列" class="headerlink" title="两个基本法则和常见的数列"></a>两个基本法则和常见的数列</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170956453.png" alt="image-20220227170956453" style="zoom:67%;" /></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (y) &#123;</span><br><span class="line">		<span class="type">int</span> r = x % y;	x = y;	y = r;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">memory_move</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k, <span class="type">int</span> a[])</span> </span>&#123;</span><br><span class="line">	<span class="comment">// n和k的最大公约数，移动的轮数 </span></span><br><span class="line">	<span class="type">int</span> Q = <span class="built_in">gcd</span>(n,k);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; Q; i++) &#123;</span><br><span class="line">		<span class="type">int</span> t = a[i], m = i;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n/Q; j++) &#123;</span><br><span class="line">			m = (m + k) % n;</span><br><span class="line">			<span class="comment">// 交换a[m]和t </span></span><br><span class="line">			std::<span class="built_in">swap</span>(t,a[m]); </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> a[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">	<span class="built_in">memory_move</span>(<span class="number">5</span>,<span class="number">2</span>,a);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) std::cout &lt;&lt; a[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">	std::cout &lt;&lt; std::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>调和级数通常使用微积分进行计算</li>
+<li>改进：运算最后一次：j = n/q-1——末尾元素位置对应移动轮数</li>
 </ul>
-<p>【例2-6】求和</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171059943.png" alt="image-20220227171059943" style="zoom:67%;" /></p>
-<p>【例2-7】估计$\sum_{k=1}^{n} \frac{1}{k}$​的渐近的界</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171113797.png" alt="image-20220227171113797" style="zoom:67%;" /></p>
-<h3 id="4-基本效率类型"><a href="#4-基本效率类型" class="headerlink" title="4.基本效率类型"></a>4.基本效率类型</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301205626390.png" alt="image-20220301205626390" style="zoom: 80%;" /></p>
-<p>$n^3$：迪杰斯特拉、弗洛伊德算法</p>
-<h2 id="二、算法分析实例"><a href="#二、算法分析实例" class="headerlink" title="二、算法分析实例"></a>二、算法分析实例</h2><h3 id="1-非递归形式算法分析"><a href="#1-非递归形式算法分析" class="headerlink" title="1.非递归形式算法分析"></a>1.非递归形式算法分析</h3><p>分析非递归算法是，可遵循以下步骤：</p>
+<h3 id="【例3-4】编程求当-n-leq-100-时，-n-的准确值"><a href="#【例3-4】编程求当-n-leq-100-时，-n-的准确值" class="headerlink" title="【例3-4】编程求当$n \leq 100$时，$n!$的准确值"></a>【例3-4】编程求当$n \leq 100$时，$n!$的准确值</h3><ul>
+<li>问题分析</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309083111599.png" alt="image-20220309083111599" style="zoom:67%;" />        </p>
 <ul>
-<li><p>决定用哪些参数表示输入规模；</p>
-</li>
-<li><p>找出算法的核心操作，它通常位于算法的<strong>最内层循环</strong>中；</p>
-</li>
-<li><p>检查核心操作的<strong>执行次数是否依赖于输入规模</strong>。如果它还依赖于一些其他的特性，则可能需要对最差效率、平均效率以及最优效率分别研究；</p>
-<blockquote>
-<p>快排</p>
-</blockquote>
-</li>
-<li><p>以式（2-1）$T(n) = \sum_{i = 1}^{m} t_i \times e_i(n)$ 的思想为核心，建立一个算法基本操作执行次数的求和表达式；</p>
-</li>
-<li><p>利用求和运算标准公式和法则来建立一个操作次数的闭合公式，或者至少确定它的增长次数。</p>
-</li>
-</ul>
-<p>【例2-9】交换$a$和$b$的值</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301210324305.png" alt="image-20220301210324305" style="zoom:67%;" /></p>
-<p>三种算法：</p>
+<li><p>竖式乘法原理</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309083537051.png" alt="image-20220309083537051" style="zoom:67%;" /></p>
 <ul>
-<li><p>如上图方法</p>
+<li>需要注意对0的处理——整数需要添加0</li>
+</ul>
 </li>
-<li><p>加减减运算符</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a = a+b;</span><br><span class="line">b = a-b;</span><br><span class="line">a = a-b;</span><br></pre></td></tr></table></figure>
+<li><p>计算模型</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309084016286.png" alt="image-20220309084016286" style="zoom: 67%;" /></p>
 </li>
-<li><p>异或法</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 利用了位异或运算的特性:一个数据对两一个数据位异或两次，该数本身不变。</span></span><br><span class="line"><span class="type">int</span> a = <span class="number">12</span>;</span><br><span class="line"><span class="type">int</span> b = <span class="number">34</span>;</span><br><span class="line"><span class="comment">// 交换两个整数</span></span><br><span class="line">a = a ^ b;		<span class="comment">// a = 12^34</span></span><br><span class="line">b = a ^ b;		<span class="comment">// b = 12 ^ 34^34=12</span></span><br><span class="line">a = a ^ b;		<span class="comment">// a = 12^ 34 ^12 = 34</span></span><br></pre></td></tr></table></figure>
+<li><p>算法设计与描述</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309084417861.png" alt="image-20220309084417861" style="zoom:67%;" /></p>
 </li>
-<li><p>引用传参</p>
-</li>
-<li><p>指针传参</p>
+<li><p>算法实现</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 100</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Q 1000000</span></span><br><span class="line"><span class="type">int</span> a[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算补0个数</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">length</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> a = x, b = Q;</span><br><span class="line">    <span class="type">int</span> ca = <span class="number">0</span>, cb = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (a || b) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a) &#123;</span><br><span class="line">            ++ca; a /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (b) &#123;</span><br><span class="line">            ++cb; b /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cb - ca - <span class="number">1</span>; <span class="comment">// 注意-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Bigdigital</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="built_in">sizeof</span>(a)); <span class="type">int</span> len = <span class="number">1</span>, j;</span><br><span class="line">    a[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="type">int</span> d = <span class="number">0</span>; <span class="comment">// 向高位的进位</span></span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">1</span>; j &lt;= len; j++) &#123;</span><br><span class="line">            <span class="type">int</span> b = a[j]*i + d; <span class="comment">// 计算该单元的计算结果</span></span><br><span class="line">            a[j] = b % Q;  <span class="comment">// 更新单元数据</span></span><br><span class="line">            d = b / Q;   <span class="comment">// 更新进位</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (d != <span class="number">0</span>) &#123;   <span class="comment">// 存在高位进位，开辟下一个单元</span></span><br><span class="line">            ++len;	a[j] = d;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 输出</span></span><br><span class="line">    cout &lt;&lt; a[len];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = len<span class="number">-1</span>; i &gt;= <span class="number">1</span>; i--) &#123;</span><br><span class="line">        <span class="type">int</span> L = <span class="built_in">length</span>(a[i]);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; L; k++) cout &lt;&lt; <span class="string">&quot;0&quot;</span>;</span><br><span class="line">        cout &lt;&lt; a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n; cin &gt;&gt; n;</span><br><span class="line">    <span class="built_in">Bigdigital</span>(n);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>【例2-10】求$n!$</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301210412937.png" alt="image-20220301210412937" style="zoom:67%;" /></p>
-<blockquote>
-<p>主体部分：$s = s*i;$</p>
+<h3 id="【思考题】设a和b两个数为大数，求a-b的值"><a href="#【思考题】设a和b两个数为大数，求a-b的值" class="headerlink" title="【思考题】设a和b两个数为大数，求a*b的值"></a>【思考题】设a和b两个数为大数，求a*b的值</h3><ul>
+<li><p>问题分析：</p>
+<p>将问题分为两步：①表示a和b两个大数；②完成大数乘法运算</p>
+</li>
+<li><p>算法设计与分析</p>
+<p>$a：a[1], a[2], … , a[size_a]$</p>
+<p>$b：b[1], b[2], … , b[size_b]$</p>
+<p>$c：a[1]\times b[1], a[1]\times b[2] + a[2]\times b[1] + d, … $</p>
+</li>
+<li><p>算法实现</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 1000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Q 10000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Qbit 4</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Bigdigital</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> num[MAXN];</span><br><span class="line">    <span class="type">int</span> length;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Bigdigital</span>() &#123;</span><br><span class="line">        <span class="built_in">memset</span>(num,<span class="number">0</span>,<span class="built_in">sizeof</span>(num));</span><br><span class="line">        length = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Bigdigital</span>(string s) &#123;</span><br><span class="line">        <span class="comment">// cout &lt;&lt; s.size() &lt;&lt; endl;</span></span><br><span class="line">        <span class="comment">// cout &lt;&lt; s &lt;&lt; endl;</span></span><br><span class="line">        <span class="built_in">memset</span>(num,<span class="number">0</span>,<span class="built_in">sizeof</span>(num));</span><br><span class="line">        stringstream ss; <span class="type">int</span> val, index = <span class="number">0</span>; string temp = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">if</span> (s.<span class="built_in">size</span>() % Qbit) &#123;  <span class="comment">// 考虑最高位不满Qbit位的情况</span></span><br><span class="line">            length = s.<span class="built_in">size</span>()/Qbit+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; s.<span class="built_in">size</span>() % Qbit ; k++) &#123;</span><br><span class="line">                temp += s[index++];</span><br><span class="line">            &#125;</span><br><span class="line">            ss &lt;&lt; temp; ss &gt;&gt; val;  num[length] = val;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = length<span class="number">-1</span>; i &gt;= <span class="number">1</span>; i--) &#123;</span><br><span class="line">                stringstream sss;</span><br><span class="line">                temp = <span class="string">&quot;&quot;</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= Qbit; j++) &#123;</span><br><span class="line">                    temp += s[index++];</span><br><span class="line">                &#125;</span><br><span class="line">                sss &lt;&lt; temp; sss &gt;&gt; val; num[i] = val;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;    <span class="comment">// 最高位的位数恰好为Qbit位</span></span><br><span class="line">            length = s.<span class="built_in">size</span>() / Qbit;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = length; i &gt;= <span class="number">1</span>; i--) &#123;</span><br><span class="line">                stringstream sss;</span><br><span class="line">                temp = <span class="string">&quot;&quot;</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= Qbit; j++) &#123;</span><br><span class="line">                    temp += s[index++];</span><br><span class="line">                &#125;</span><br><span class="line">                sss &lt;&lt; temp; sss &gt;&gt; val; num[i] = val;</span><br><span class="line">                cout &lt;&lt; i &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; num[i] &lt;&lt; endl;</span><br><span class="line">            &#125;</span><br><span class="line">           </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 计算补0个数</span></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">zerolength</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>, number = x;</span><br><span class="line">        <span class="keyword">while</span> (number) &#123;</span><br><span class="line">            ++ans; number /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Qbit-ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 输出大数结果</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        cout &lt;&lt; num[length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = length<span class="number">-1</span>; i &gt;= <span class="number">1</span>; i--) &#123;</span><br><span class="line">            <span class="type">int</span> zl = <span class="built_in">zerolength</span>(num[i]);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; zl; ++j) cout &lt;&lt; <span class="string">&quot;0&quot;</span>;</span><br><span class="line">            cout &lt;&lt; num[i];</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">        <span class="comment">// cout &lt;&lt; length &lt;&lt; endl;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">Bigdigital <span class="title">Cal</span><span class="params">(Bigdigital a, Bigdigital b)</span> </span>&#123;</span><br><span class="line">    Bigdigital c; c.length = <span class="number">1</span>; <span class="comment">// 初始化结果c</span></span><br><span class="line">    <span class="type">int</span> d = <span class="number">0</span>;  <span class="comment">// 进位</span></span><br><span class="line">    <span class="comment">// 竖式乘法原理</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= b.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= a.length; j++) &#123;</span><br><span class="line">            </span><br><span class="line">            c.num[i+j<span class="number">-1</span>] += b.num[i]*a.num[j];</span><br><span class="line">            c.length = <span class="built_in">max</span>(c.length,i+j<span class="number">-1</span>);</span><br><span class="line">            <span class="comment">// cout &lt;&lt; i+j-1 &lt;&lt; &quot; &quot; &lt;&lt; b.num[i] &lt;&lt; &quot; &quot; &lt;&lt; a.num[j] &lt;&lt; &quot; &quot; &lt;&lt; c.num[i+j-1] &lt;&lt; &quot; &quot; &lt;&lt; c.length &lt;&lt; endl;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 处理进位</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= c.length; i++) &#123;</span><br><span class="line">        <span class="type">int</span> temp = c.num[i]+d;</span><br><span class="line">        c.num[i] = temp % Q;</span><br><span class="line">        d = temp / Q;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (d != <span class="number">0</span>) &#123;</span><br><span class="line">        c.length++;</span><br><span class="line">        c.num[c.length] = d;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">Bigdigital <span class="title">a</span><span class="params">(<span class="string">&quot;1234567890&quot;</span>)</span></span>;</span><br><span class="line">    <span class="function">Bigdigital <span class="title">b</span><span class="params">(<span class="string">&quot;9999999990&quot;</span>)</span></span>;</span><br><span class="line">    a.<span class="built_in">show</span>();</span><br><span class="line">    b.<span class="built_in">show</span>();</span><br><span class="line">    Bigdigital c = <span class="built_in">Cal</span>(a,b);</span><br><span class="line">    c.<span class="built_in">show</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309135022824.png" alt="image-20220309135022824"></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309135116475.png" alt="image-20220309135116475" style="zoom:67%;" /></p>
+<h2 id="2-求解方程的近似算法"><a href="#2-求解方程的近似算法" class="headerlink" title="2.求解方程的近似算法"></a>2.求解方程的近似算法</h2><h3 id="非线性方程"><a href="#非线性方程" class="headerlink" title="非线性方程"></a>非线性方程</h3><blockquote>
+<p>问：两个$n \times n$矩阵运算迭代次数的极限是多少？</p>
+<p>——$O(n^{2.3})$但是每一次运算的复杂度较高</p>
 </blockquote>
-<p>【例2-11】对于任意给定的$n$阶方阵$A$和$B$，求$A×B$的积$C$并且分析它算法执行效率</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301210518138.png" alt="image-20220301210518138" style="zoom:67%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301210552598.png" alt="image-20220301210552598" style="zoom:67%;" /></p>
-<p>优化算法：</p>
+<h4 id="非线性方程的收敛性及收敛速度"><a href="#非线性方程的收敛性及收敛速度" class="headerlink" title="非线性方程的收敛性及收敛速度"></a>非线性方程的收敛性及收敛速度</h4><ul>
+<li><p><strong>定义3.1</strong> 设$x_k$是方程$f(x)=0$的根，若存在$x_k$的一个邻域$\Delta$，当初值以属于$\Delta$时，迭代收敛，则称该迭代过程具有局部收敛性。</p>
+<blockquote>
+<p>注：局部不收敛不意味着无解。确定好邻域避免发散</p>
+</blockquote>
+</li>
+<li><p><strong>定义3.2</strong> 设$\epsilon_k = x^* - x_k$为第k个迭代的迭代误差，若$\lim_{k \to \infty} \frac{|\epsilon_{k+1}|}{| \epsilon_k |^p} = c \neq 0$。则称迭代是p阶收敛的。称c为渐近误差函数。</p>
+<blockquote>
+<p>阶很重要，越迭代，阶越小</p>
+<p>阶与误差有关，误差与计算效率有关</p>
+</blockquote>
+</li>
+<li><p><strong>定义3.3</strong> 称$EI = p^{\frac{1}{\theta}}$为效率指数，其中，$\theta$表示每次迭代的计算量，p表示迭代的收敛阶。</p>
+</li>
+<li><p><strong>定理3.1</strong>  若当$x \in [a,b]$时，$\phi(x) \in [a,b]$，且$\phi(x)$满足$|\phi’(x)| \leq L &lt; 1$，$x \in [a,b]$。则迭代收敛于唯一的根。</p>
+<blockquote>
+<p>构造求解方程的方程式</p>
+<p>由$f(x)$构造迭代方程，向解靠近</p>
+<p>需要迭代方程收敛</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="建立迭代方程"><a href="#建立迭代方程" class="headerlink" title="建立迭代方程"></a>建立迭代方程</h4><ul>
+<li>选取适当的初值$x_0$；</li>
+<li>建立迭代方程，将方程$f(x) = 0$转换成$x = \phi(x)$的等价形式； </li>
+<li>运用迭代方程$x = \phi(x)$，反复计算，如$x_1 = \phi(x_0)$，$x_2 = \phi(x_1), … , x_n = \phi(x_{n-1})$。得到x的序列，若该数列收敛，则最终可以得到满足一定精度$\epsilon$的解，即有$|x_n - x_{n-1}| &lt; \epsilon$。有时候也会用$f(x_{n}) \leq \epsilon$ 或$f(x_n) = 0$来判断。</li>
+</ul>
+<h5 id="【例3-5】求-9x-2-sinx-1-0-，在-0-1-之间的解，要求-9x-2-sinx-1-lt-0-00001"><a href="#【例3-5】求-9x-2-sinx-1-0-，在-0-1-之间的解，要求-9x-2-sinx-1-lt-0-00001" class="headerlink" title="【例3-5】求$9x^2 - sinx -1 = 0$，在$(0,1)$之间的解，要求$|9x^2-sinx-1| &lt; 0.00001$"></a>【例3-5】求$9x^2 - sinx -1 = 0$，在$(0,1)$之间的解，要求$|9x^2-sinx-1| &lt; 0.00001$</h5><ul>
+<li><p>问题分析</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309091036849.png" alt="image-20220309091036849" style="zoom:50%;" /></p>
+</li>
+<li><p>计算模型</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309091205962.png" alt="image-20220309091205962" style="zoom: 50%;" /></p>
+<blockquote>
+<p>效率衡量：达到相同精度的迭代次数</p>
+</blockquote>
 <ul>
-<li><p>《算法导论》提及的Strassen算法</p>
-<p>参考资料：<a href="https://zhuanlan.zhihu.com/p/78657463">详解矩阵乘法中的Strassen算法</a></p>
-</li>
-</ul>
-<h4 id="错误印象"><a href="#错误印象" class="headerlink" title="错误印象"></a>错误印象</h4><ul>
-<li><p>循环变量的无规律变化</p>
-<blockquote>
-<p>如，Euclid和斐波那契</p>
-</blockquote>
-</li>
-<li><p>过于复杂而无法求解的求和表达式</p>
-<blockquote>
-<p>有些级数不能求解</p>
-</blockquote>
-</li>
-<li><p>算法分析时固有的难度</p>
-</li>
-</ul>
-<p>【思考题】韩信点兵问题</p>
-<h3 id="2-递归形式算法分析"><a href="#2-递归形式算法分析" class="headerlink" title="2.递归形式算法分析"></a>2.递归形式算法分析</h3><p>分析递归算法时，可遵循以下步骤：</p>
+<li><p>算法实现</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 迭代方程：x = (sinx+1)^(1/2)/3</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">equation</span><span class="params">(<span class="type">double</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> x1 = x, x0 = <span class="number">0.0</span>;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">fabs</span>(x1-x0) &gt; <span class="number">0.00001</span>) &#123;</span><br><span class="line">       ++cnt;</span><br><span class="line">       x0 = x1;</span><br><span class="line">       x1 = <span class="built_in">sqrt</span>(<span class="built_in">sin</span>(x0)+<span class="number">1</span>)/<span class="number">3.0</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    cout.<span class="built_in">precision</span>(<span class="number">10</span>);</span><br><span class="line">    cout &lt;&lt; cnt &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> x0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">equation</span>(<span class="number">0.4</span>) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">equation</span>(<span class="number">0.5</span>) &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>决定用哪些参数作为输入规模的度量标准</p>
-</li>
-<li><p>找出算法的核心操作，它通常是<strong>递推公式</strong></p>
-</li>
-<li><p>检查一下，对于相同规模的不同输入，核心操作的执行次数是否可能不同</p>
-<p><strong>如果有这种可能，则必须对最差效率、平均效率以及最优效率做单独研究</strong></p>
-</li>
-<li><p>对于算法核心操作的执行次数，建立一个递推关系以及相应的边界条件</p>
-</li>
-<li><p>解这个递推式，或者至少<strong>确定它的解的增长次数</strong></p>
+<li><p>运行截图</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309141137838.png" alt="image-20220309141137838"></p>
 </li>
 </ul>
-<p>【例2-12】求$n!$</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301212808470.png" alt="image-20220301212808470" style="zoom:67%;" /></p>
-<p>时间效率紧的界是n</p>
+</li>
+</ul>
+<h4 id="二分法"><a href="#二分法" class="headerlink" title="二分法"></a>二分法</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220306222435439.png" alt="image-20220306222435439" style="zoom:67%;" /></p>
+<h5 id="二分法的时间渐近复杂度分析"><a href="#二分法的时间渐近复杂度分析" class="headerlink" title="二分法的时间渐近复杂度分析"></a>二分法的时间渐近复杂度分析</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220306222529276.png" alt="image-20220306222529276" style="zoom:67%;" /></p>
 <blockquote>
-<p>递归变非递归：</p>
-<p>1.减少重复计算——去重</p>
-<p>2.减少使用栈——效率低。应从模型入手</p>
+<p>效率衡量：达到运算精度需要的迭代次数，与计算出来的k相比较</p>
 </blockquote>
-<p>【例2-13】汉诺塔问题</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301212841660.png" alt="image-20220301212841660" style="zoom:67%;" /></p>
+<h5 id="【例3-6】用二分法求-9x-2-sinx-1-0-，在-0，1-之间的解，要求-x-k-x-k-1-lt-0-00001-。"><a href="#【例3-6】用二分法求-9x-2-sinx-1-0-，在-0，1-之间的解，要求-x-k-x-k-1-lt-0-00001-。" class="headerlink" title="【例3-6】用二分法求$9x^2-sinx-1=0$，在$(0，1)$之间的解，要求$|x_k-x_{k-1}| &lt; 0.00001$。"></a>【例3-6】用二分法求$9x^2-sinx-1=0$，在$(0，1)$之间的解，要求$|x_k-x_{k-1}| &lt; 0.00001$。</h5><ul>
+<li><p>计算模型</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309092219816.png" alt="image-20220309092219816" style="zoom:50%;" /></p>
+</li>
+<li><p>算法设计与描述</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309092247221.png" alt="image-20220309092247221" style="zoom:67%;" /></p>
+<blockquote>
+<p>二分法没有迭代法效率高</p>
+</blockquote>
+</li>
+<li><p>算法实现</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">F</span><span class="params">(<span class="type">double</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> ans = <span class="number">9</span>*<span class="built_in">pow</span>(x,<span class="number">2</span>) - <span class="built_in">sin</span>(x) - <span class="number">1.0</span>;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">equation</span><span class="params">(<span class="type">double</span> x1, <span class="type">double</span> x2)</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> f1 = <span class="built_in">F</span>(x1), f2 = <span class="built_in">F</span>(x2), f = <span class="number">1.0</span>, x = x1, x3 = x2;</span><br><span class="line">    <span class="type">int</span> cnt;</span><br><span class="line">    <span class="keyword">if</span> (f1 * f2 &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="built_in">fabs</span>(x-x3) &gt; <span class="number">0.00001</span>) &#123;</span><br><span class="line">            x = (x1 + x2)/<span class="number">2.0</span>;</span><br><span class="line">            f = <span class="built_in">F</span>(x);</span><br><span class="line">            <span class="keyword">if</span> (f == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">if</span> (f * f1 &gt; <span class="number">0</span>) &#123;   <span class="comment">// 向后半区[x,x2]二分</span></span><br><span class="line">                x3 = x1; x1 = x;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;    <span class="comment">// 向前半区[x1,x]二分</span></span><br><span class="line">                x3 = x2; x2 = x;</span><br><span class="line">            &#125;</span><br><span class="line">            ++cnt;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; cnt &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout.<span class="built_in">precision</span>(<span class="number">30</span>);</span><br><span class="line">    cout &lt;&lt; <span class="built_in">equation</span>(<span class="number">0.0</span>,<span class="number">0.4</span>) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">equation</span>(<span class="number">0.0</span>,<span class="number">0.5</span>) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>n为计算规模</li>
-<li>核心操作为移动盘子 </li>
-<li>依据递推公式，两次递推之间，执行一次移动操作，因此有如下推导过程：<br>$T(n) =2T(n-1)+1$</li>
+<li><p>运行截图</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311175417804.png" alt="image-20220311175417804"  /></p>
+</li>
 </ul>
+</li>
+</ul>
+<h4 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h4><p>$f(x) = f(x_0) + f’(x_0)(x-x_0)$</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308201115399.png" alt="image-20220308201115399" style="zoom:67%;" /></p>
+<p>牛顿法需要进行判断收敛</p>
+<h5 id="牛顿法的时间复杂度分析"><a href="#牛顿法的时间复杂度分析" class="headerlink" title="牛顿法的时间复杂度分析"></a>牛顿法的时间复杂度分析</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308201141988.png" alt="image-20220308201141988" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308201352032.png" alt="image-20220308201352032" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308201408592.png" alt="image-20220308201408592" style="zoom:67%;" /></p>
+<h5 id="【例3-7】用牛顿法求-9x-2-sinx-1-0-，在-0-1-之间的解，要求-x-k-x-k-1-lt-0-00001"><a href="#【例3-7】用牛顿法求-9x-2-sinx-1-0-，在-0-1-之间的解，要求-x-k-x-k-1-lt-0-00001" class="headerlink" title="【例3-7】用牛顿法求$9x^2-sinx-1=0$，在$(0,1)$之间的解，要求$|x_k-x_{k-1}|$&lt;0.00001"></a>【例3-7】用牛顿法求$9x^2-sinx-1=0$，在$(0,1)$之间的解，要求$|x_k-x_{k-1}|$&lt;0.00001</h5><ul>
+<li>计算模型</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309094457168.png" alt="image-20220309094457168" style="zoom:50%;" /></p>
 <blockquote>
-<p>$T(n) =2T(n-1)+1 \\<br>=2[2T(n-2)+1]+1 \\ =2^2T(n-2)+2+1 \\<br>=2^2[2T(n-3)+1]+2+1 \\ = 2^3T(n-3)+2^2+2+1 …… \\<br>=2^{i-1}[2T(n-i)+1]+2^{i-2}+2^{i-3}…+2^0 \\ = 2^iT(n-i)+ 2^{i}-1 …… \\<br>=2^{n-1}T(n-(n-1))+ 2^{n-1}-1 \\ =2^{n-1}T(1)+ 2^{n-1}-1=2^n-1 \$</p>
+<p>取常数和导数的区别：导数为爬山法</p>
 </blockquote>
-<p><strong>谨慎使用递归算法，它们的简洁可能会掩盖其低效率的事实</strong></p>
-<p>【例2-14】试分析二路归并排序算法的时间复杂度</p>
-<blockquote>
-<p>二路归并排序：二分 + 合并（简单插入排序）</p>
-</blockquote>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301213658379.png" alt="image-20220301213658379" style="zoom:67%;" /></p>
-<p>对于Merge，输入是两个排好序的数组。</p>
-<blockquote>
-<p>计算两个数组的长度</p>
-<p>重构$A$数组，将前半部分存入$B$，后半部分存入$C$</p>
-<p>依次比较$B$和$C$元素大小，按顺序放回$A$</p>
-<p>处理$B$或$C$剩余元素，放回$A$</p>
-</blockquote>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301213722688.png" alt="image-20220301213722688" style="zoom:67%;" /></p>
-<p>空间复杂度：上界是$n^2$，下界是$logn \times n$</p>
-<p>【思考题】考虑完全二叉树的先根遍历，找最大值的时间复杂度</p>
-<h3 id="定理2-6（主定理）——重要内容"><a href="#定理2-6（主定理）——重要内容" class="headerlink" title="定理2.6（主定理）——重要内容"></a>定理2.6（主定理）——重要内容</h3><p><strong>定理2.6</strong> 主定理（Master Theorem）设$a \geq 1,b \geq 1$为常数，$f(n)$为函数，$T(n)$为<strong>非负整数</strong>，且$T(n) = aT(n/b) + f(n)$</p>
-<p>则有以下结果：</p>
 <ul>
-<li><p>若$f(n) = O(n^{log_ba-\epsilon}), \epsilon &gt; 0$，那么$T(n) = \Theta(n^{log_ba})$；</p>
-<blockquote>
-<p>必须把$\epsilon$找出来</p>
-</blockquote>
-</li>
-<li><p>若$f(n) = \Theta (n^{log_ba})$，那么$T(n) = \Theta (n^{log_ba} logn)$；</p>
-</li>
-<li><p>若$f(n) = Ω(n^{log_ba+\epsilon}), \epsilon &gt; 0$，且对于常数$c&lt;1$和所有充分大的$n$有$af(n/b) \leq cf(n)$，那么$T(n) = \Theta(f(n))$；</p>
-<blockquote>
-<p>不能使用主定理，可以使用递归式</p>
-</blockquote>
+<li><p>算法实现</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">equation</span><span class="params">(<span class="type">double</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="type">double</span> x1 = x, x2 = x1 - (<span class="number">9</span>*x1*x1 - <span class="built_in">sin</span>(x1) - <span class="number">1</span>) / (<span class="number">18</span>*x1 - <span class="built_in">cos</span>(x1));</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">fabs</span>(x1-x2) &gt; <span class="number">0.00001</span>) &#123;</span><br><span class="line">        x1 = x2;</span><br><span class="line">        x2 = x1 - (<span class="number">9</span>*x1*x1 - <span class="built_in">sin</span>(x1) - <span class="number">1</span>) / (<span class="number">18</span>*x1 - <span class="built_in">cos</span>(x1)); </span><br><span class="line">        ++cnt;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; cnt &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> x2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout.<span class="built_in">precision</span>(<span class="number">8</span>);</span><br><span class="line">    cout &lt;&lt; <span class="built_in">equation</span>(<span class="number">0.4</span>) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">equation</span>(<span class="number">0.5</span>) &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行截图</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309143047300.png" alt="image-20220309143047300"></p>
 </li>
 </ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231134023.png" alt="image-20220301231134023" style="zoom:67%;" /></p>
+<p>【思考题】用牛顿法求$x^3-cosx-1=0$，在$(0,1)$之间的解，要求$|x_k-x_{k-1}| &lt; 0.00001。$</p>
+<ul>
+<li>计算模型</li>
+</ul>
 <blockquote>
-<p>必须让$T(n)$中的参数$n$收敛</p>
+<p>$f(x) = x^3-cosx-1$</p>
+<p>$f’(x) = 3x^2 + sinx$</p>
+<p>得$x_2 = x_1 - \frac{x_1^3-cosx_1-1}{3x_1^2 + sinx_1} \quad (|x_1-x_2| &gt; 0.00001)$</p>
 </blockquote>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231214720.png" alt="image-20220301231214720" style="zoom:67%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231230067.png" alt="image-20220301231230067" style="zoom:67%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231245912.png" alt="image-20220301231245912" style="zoom:67%;" /></p>
+<ul>
+<li>算法描述</li>
+</ul>
+<blockquote>
+<p>equation(x) {</p>
+<p>​    $x_1$ $\leftarrow$ x;     $x_2$ $\leftarrow$  $x_1 - \frac{x_1^3-cosx_1-1}{3x_1^2 + sinx_1}$</p>
+<p>​    while($|x_1-x_2| &gt; 0.00001$) {</p>
+<p>​        $x_1$ $\leftarrow$ $x_2$;     $x_2$ $\leftarrow$  $x_1 - \frac{x_1^3-cosx_1-1}{3x_1^2 + sinx_1}$</p>
+<p>​    }</p>
+<p>​    return $ x_2$;</p>
+<p>}</p>
+</blockquote>
+<ul>
+<li>算法实现</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">equation</span><span class="params">(<span class="type">double</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="type">double</span> x1 = x, x2 = x1 - (x1*x1*x1 - <span class="built_in">cos</span>(x1) - <span class="number">1</span>) / (<span class="number">3</span>*x1*x1 + <span class="built_in">sin</span>(x1));</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">fabs</span>(x1-x2) &gt; <span class="number">0.00001</span>) &#123;</span><br><span class="line">        x1 = x2;</span><br><span class="line">        x2 = x1 - (x1*x1*x1 - <span class="built_in">cos</span>(x1) - <span class="number">1</span>) / (<span class="number">3</span>*x1*x1 + <span class="built_in">sin</span>(x1));</span><br><span class="line">        ++cnt;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; cnt &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> x2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout.<span class="built_in">precision</span>(<span class="number">8</span>);</span><br><span class="line">    cout &lt;&lt; <span class="built_in">equation</span>(<span class="number">0.2</span>) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">equation</span>(<span class="number">0.5</span>) &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：在(0,1)之间无解</p>
+<h3 id="线性代数方程组"><a href="#线性代数方程组" class="headerlink" title="线性代数方程组"></a>线性代数方程组</h3><p>设线性代数方程组具有如下特征</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + ... + a_{1n}x_n = b_1 \\
+a_{21}x_1 + a_{22}x_2 + ... + a_{2n}x_n = b_2 \\
+\qquad \qquad \qquad...... \\
+a_{n1}x_1 + a_{n2}x_2 + ... + a_{nn}x_n = b_n \\
+\end{cases}</script><ul>
+<li>算法框架<ul>
+<li>设置线性代数方程组的初值为$X = {x_1, … , x_{n-1}, x_n}$；</li>
+<li>构造迭代方程$x_i = g_i(X)$，($i = 1,…,n-1,n$)及精度求解方法；</li>
+<li>达到迭代次数或精度结束迭代。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Jacobi算法"><a href="#Jacobi算法" class="headerlink" title="Jacobi算法"></a>Jacobi算法</h4><script type="math/tex; mode=display">
+\begin{cases}
+x_1^{(k+1)} = \frac{1}{a_{11}} (b_1 - a_{12}x_2^{(k)} - ... - a_{1n}x_n^{(k)}) \\
+x_2^{(k+1)} = \frac{1}{a_{22}} (b_2 - a_{21}x_1^{(k)} - ... - a_{2n}x_n^{(k)}) \\
+x_1^{(k+1)} = \frac{1}{a_{nn}} (b_n - a_{n1}x_1^{(k)} - a_{n2}x_2^{(k)} - ... ) \\
+
+\end{cases}</script><ul>
+<li>缺点：没有运用运算得到的结果，收敛速度慢</li>
+</ul>
+<h4 id="Gauss-Seidel算法"><a href="#Gauss-Seidel算法" class="headerlink" title="Gauss-Seidel算法"></a>Gauss-Seidel算法</h4><script type="math/tex; mode=display">
+\begin{cases}
+x_1^{(k+1)} = \frac{1}{a_{11}} (b_1 - a_{12}x_2^{(k)} - ... - a_{1n}x_n^{(k)}) \\
+x_2^{(k+1)} = \frac{1}{a_{22}} (b_2 - a_{21}x_1^{(k+1)} - ... - x_n^{(k)}) \\
+x_1^{(k+1)} = \frac{1}{a_{nn}} (b_n - a_{n1}x_1^{(k+1)} - a_{n2}x_2^{(k+1)} - ... ) \\
+
+
+\end{cases}</script><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314081232914.png" alt="image-20220314081232914" style="zoom:67%;" /></p>
+<h5 id="【例3-8】求下列解线性方程组的解"><a href="#【例3-8】求下列解线性方程组的解" class="headerlink" title="【例3-8】求下列解线性方程组的解"></a>【例3-8】求下列解线性方程组的解</h5><p>$\begin{cases} 8x_1-3x_2+2x_3=20 \\ 4x_1+11x_2-x_3=33 \\ 6x_1+3x_2+12x_3=36 \\ \end{cases}$</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314081359280.png" alt="image-20220314081359280" style="zoom:50%;" /></p>
+<ul>
+<li><p>算法设计与描述</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314081618780.png" alt="image-20220314081618780" style="zoom: 67%;" /></p>
+</li>
+<li><p>算法实现（未完待续）</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Jacobi</span><span class="params">(<span class="type">double</span> x[], <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> i = k;</span><br><span class="line">    <span class="type">double</span> x11, x12, x13;</span><br><span class="line">    <span class="keyword">while</span> (i) &#123;</span><br><span class="line">        x11 = (<span class="number">20</span>+<span class="number">3</span>*x[<span class="number">1</span>]<span class="number">-2</span>*x[<span class="number">2</span>])/<span class="number">8</span>;</span><br><span class="line">        x12 = (<span class="number">33</span><span class="number">-4</span>*x[<span class="number">0</span>]+x[<span class="number">2</span>])/<span class="number">11</span>;</span><br><span class="line">        x13 = (<span class="number">36</span><span class="number">-6</span>*x[<span class="number">0</span>]<span class="number">-3</span>*x[<span class="number">1</span>])/<span class="number">12</span>;</span><br><span class="line">        x[<span class="number">0</span>] = x11; x[<span class="number">1</span>] = x12; x[<span class="number">2</span>] = x13;</span><br><span class="line">        --i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Gauss</span><span class="params">(<span class="type">double</span> x[], <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> i = k;</span><br><span class="line">    <span class="keyword">while</span> (i) &#123;</span><br><span class="line">        x[<span class="number">0</span>] = (<span class="number">20</span> + <span class="number">3</span>*x[<span class="number">1</span>] - <span class="number">2</span>*x[<span class="number">2</span>])/<span class="number">8</span>;</span><br><span class="line">        x[<span class="number">1</span>] = (<span class="number">33</span> - <span class="number">4</span>*x[<span class="number">0</span>] + x[<span class="number">2</span>])/<span class="number">11</span>;</span><br><span class="line">        x[<span class="number">2</span>] = (<span class="number">36</span> - <span class="number">6</span>*x[<span class="number">0</span>] - <span class="number">3</span>*x[<span class="number">1</span>])/<span class="number">12</span>;</span><br><span class="line">        --i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">J_result</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> ans[] = &#123;<span class="number">0.0</span>,<span class="number">0.0</span>,<span class="number">0.0</span>&#125;;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;k = &quot;</span> &lt;&lt; n &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">Jacobi</span>(ans,n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">        cout &lt;&lt; ans[i] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">G_result</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> ans[] = &#123;<span class="number">0.0</span>,<span class="number">0.0</span>,<span class="number">0.0</span>&#125;;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;k = &quot;</span> &lt;&lt; n &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">Gauss</span>(ans,n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">        cout &lt;&lt; ans[i] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">J_result</span>(<span class="number">12</span>);</span><br><span class="line">    <span class="built_in">J_result</span>(<span class="number">16</span>);</span><br><span class="line">    <span class="built_in">G_result</span>(<span class="number">12</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>还有一种超松弛算法</p>
+</li>
+</ul>
+<p>【思考题】求下列线性方程组的解</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+2x_1 - x_2 + x_3 = 0 \\ 
+3x_1 + 2x_2 - 5x_3 = 1 \\
+x_1 + 3x_2 - 2x_3 = 4 \\
+\end{cases}</script><ul>
+<li><p>算法实现</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Jacobi</span><span class="params">(<span class="type">double</span> x[], <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> i = k; <span class="type">double</span> x11, x12, x13;</span><br><span class="line">    <span class="keyword">while</span> (i) &#123;</span><br><span class="line">        x11 = (<span class="number">0</span> + x[<span class="number">1</span>] - x[<span class="number">2</span>]) / <span class="number">2.0</span>;</span><br><span class="line">        x12 = (<span class="number">1</span> - <span class="number">3</span>*x[<span class="number">0</span>] + <span class="number">5</span>*x[<span class="number">2</span>]) / <span class="number">2.0</span>;</span><br><span class="line">        x13 = (<span class="number">4</span> - x[<span class="number">0</span>] - <span class="number">3</span>*x[<span class="number">1</span>]) / (<span class="number">-2</span>);</span><br><span class="line">        x[<span class="number">0</span>] = x11; x[<span class="number">1</span>] = x12; x[<span class="number">2</span>] = x13;</span><br><span class="line">        i = i<span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Gauss</span><span class="params">(<span class="type">double</span> x[], <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> i = k;</span><br><span class="line">    <span class="keyword">while</span> (i) &#123;</span><br><span class="line">        x[<span class="number">0</span>] = (<span class="number">0</span> + x[<span class="number">1</span>] - x[<span class="number">2</span>]) / <span class="number">2</span>;</span><br><span class="line">        x[<span class="number">1</span>] = (<span class="number">1</span> - <span class="number">3</span>*x[<span class="number">0</span>] + <span class="number">5</span>*x[<span class="number">2</span>]) / <span class="number">2</span>;</span><br><span class="line">        x[<span class="number">2</span>] = (<span class="number">4</span> - x[<span class="number">0</span>] - <span class="number">3</span>*x[<span class="number">1</span>]) / (<span class="number">-2</span>);</span><br><span class="line">        i -= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> ans[] = &#123;<span class="number">0.46</span>,<span class="number">1.67</span>,<span class="number">0.75</span>&#125;;</span><br><span class="line">    <span class="built_in">Jacobi</span>(ans,<span class="number">2</span>);</span><br><span class="line">    <span class="comment">// Gauss(ans,10);</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">        cout &lt;&lt; ans[i] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>【思考题】</p>
+<p><img src="D:\ChengYangX\Study\University\Sophomore\Spring\算法分析与设计\2022\作业\20220314\image-20220314081836833.png" alt="image-20220314081836833" style="zoom: 50%;" /></p>
 <ul>
-<li>自己证明一次主定理</li>
-<li>用主定理证明归并排序的时间复杂度</li>
+<li><p>对于第一个线性方程组，是发散的。</p>
+<p>直接使用Jacobi或者Gauss-Seidel迭代法不能解这个方程组</p>
+<p>（随着迭代次数的增加，迭代结果发散）</p>
+<blockquote>
+<p>解：$x_1=0.4643,x_2=1.6786,x_3=0.7500$</p>
+</blockquote>
+</li>
+<li><p>对于第二个方程组，是收敛的。</p>
+<p>可以直接使用Jacobi或者Gauss-Seidel迭代法</p>
+<p><strong>Jacobi</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Jacobi</span><span class="params">(<span class="type">double</span> ans[])</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> x11, x12, x13;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        x11 = (<span class="number">-12</span> - <span class="number">2</span>*ans[<span class="number">1</span>] - ans[<span class="number">2</span>]) / <span class="number">5</span>;</span><br><span class="line">        x12 = (<span class="number">20</span> + ans[<span class="number">0</span>] - <span class="number">2</span>*ans[<span class="number">2</span>]) / <span class="number">4</span>;</span><br><span class="line">        x13 = (<span class="number">3</span> - <span class="number">2</span>*ans[<span class="number">0</span>] + <span class="number">3</span>*ans[<span class="number">1</span>]) / <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">fabs</span>(x11-ans[<span class="number">0</span>]) &lt; <span class="number">1e-4</span> &amp;&amp; <span class="built_in">fabs</span>(x12-ans[<span class="number">1</span>]) &lt; <span class="number">1e-4</span> &amp;&amp; <span class="built_in">fabs</span>(x13-ans[<span class="number">2</span>]) &lt; <span class="number">1e-4</span>) <span class="keyword">break</span>;</span><br><span class="line">        ans[<span class="number">0</span>] = x11; ans[<span class="number">1</span>] = x12; ans[<span class="number">2</span>] = x13;</span><br><span class="line">        cnt++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) cout &lt;&lt; ans[i] &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; endl &lt;&lt; cnt &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>运行截图</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220315163201519.png" alt="image-20220315163201519"></p>
+<blockquote>
+<p>雅可比迭代结果：$x_1 = -4,x_2 = 3, x_3 = 2$。迭代次数为17次</p>
+</blockquote>
+</li>
 </ul>
-<p>【例2-15】求解递推方程$T(n) = 9T(n/3) + n$</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231338193.png" alt="image-20220301231338193" style="zoom:67%;" /></p>
-<p>【例2-16】求解递推方程$T(n) = T(2n/3) + 1$</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231416380.png" alt="image-20220301231416380" style="zoom:67%;" /></p>
-<p>【例2-17】求解递推方程$T(n) = 3T(n/4) + nlogn$</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231458494.png" alt="image-20220301231458494" style="zoom:67%;" /></p>
-<p>递归树</p>
-<p>表示每一层拥有的计算量</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231522615.png" alt="image-20220301231522615" style="zoom:67%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231537308.png" alt="image-20220301231537308" style="zoom:67%;" /></p>
-<p>【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设$n = 2^k$：</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231641596.png" alt="image-20220301231641596" style="zoom:67%;" /></p>
+<p><strong>Gauss</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Gauss</span><span class="params">(<span class="type">double</span> ans[])</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>; <span class="type">double</span> x0 = <span class="number">0.0</span>, x1 = <span class="number">0.0</span>, x2 = <span class="number">0.0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        x0 = ans[<span class="number">0</span>], x1 = ans[<span class="number">1</span>], x2 = ans[<span class="number">2</span>];</span><br><span class="line">        ans[<span class="number">0</span>] = (<span class="number">-12</span> - <span class="number">2</span>*ans[<span class="number">1</span>] - ans[<span class="number">2</span>]) / <span class="number">5</span>;</span><br><span class="line">        ans[<span class="number">1</span>] = (<span class="number">20</span> + ans[<span class="number">0</span>] - <span class="number">2</span>*ans[<span class="number">2</span>]) / <span class="number">4</span>;</span><br><span class="line">        ans[<span class="number">2</span>] = (<span class="number">3</span> - <span class="number">2</span>*ans[<span class="number">0</span>] + <span class="number">3</span>*ans[<span class="number">1</span>]) / <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">fabs</span>(x0-ans[<span class="number">0</span>]) &lt; <span class="number">1e-4</span> &amp;&amp; <span class="built_in">fabs</span>(x1-ans[<span class="number">1</span>]) &lt; <span class="number">1e-4</span> &amp;&amp; <span class="built_in">fabs</span>(x2-ans[<span class="number">2</span>]) &lt; <span class="number">1e-4</span>) <span class="keyword">break</span>;</span><br><span class="line">        cnt++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) cout &lt;&lt; ans[i] &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; endl &lt;&lt; cnt &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>运行截图</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220315163709967.png" alt="image-20220315163709967" style="zoom: 80%;" /></p>
+<blockquote>
+<p>高斯赛德尔迭代结果：$x_1 = -4,x_2 = 3, x_3 = 2$。迭代次数为7次</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <tags>
         <tag>algorithm</tag>
@@ -775,6 +831,340 @@ f_{n} = f_{n-1} + f_{n-2} \quad ,n \geq 3 \qquad(5-2) \\
       <tags>
         <tag>computer organization</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>算法设计与分析：第2章 算法分析基础</title>
+    <url>/algorithm/algorithm-ch2/</url>
+    <content><![CDATA[<p>算法效率评价的指标：算法对计算机资源的使用</p>
+<p><strong>时间&gt;&gt;内存</strong></p>
+<span id="more"></span>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227163339607.png" alt="image-20220227163339607" style="zoom:67%;" /></p>
+<ul>
+<li><p>计算机资源的计量方法</p>
+<p>设输入数据/问题规模为n。假设算法要用到</p>
+<ul>
+<li><p>m种元运算；（不再分解，一条指令）</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">x = x+<span class="number">1</span>;</span><br><span class="line">y = y*<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>每种元运算执行的时间为$t_1, t_2, … , t_m$；</p>
+</li>
+<li><p>每种元运算的执行的次数为$e_1, e_2, … e_m$；</p>
+</li>
+<li><p>元运算与问题规模的关系：$\forall e_i(n), 1 \leq i \leq m$</p>
+</li>
+</ul>
+<p>若用$T(n)$表示时间复杂度，则有$T(n) = \sum_{i = 1}^{m} t_i \times e_i(n)$​ </p>
+</li>
+<li><p>元运算的提取和时间复杂度的计算</p>
+<p>【例2-1】编程输出具有下述特点的n×n阶三角矩阵，试分析该算法的时间复杂度</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171256853.png" alt="image-20220227171256853" style="zoom: 50%;" /></p>
+<blockquote>
+<p>只执行一次：</p>
+<p>1.i,j,n,k= 1;</p>
+<p>2.scanf</p>
+<p>3.i = 0;</p>
+<p>4.i &lt; n;</p>
+<p>第一层循环</p>
+<p>1.i &lt; n;</p>
+<p>2.i++;</p>
+<p>3.j = 0;</p>
+<p>4.j &lt; i;</p>
+<p>5.printf(“\n”);</p>
+<p>第二层循环</p>
+<p>1.j &lt; i;</p>
+<p>2.j++;</p>
+<p>3.printf</p>
+<p>4.k++</p>
+</blockquote>
+<p>​        $T(n) = \sum_{i = 0}^{n-1} (5 + \sum_{j = 0}^{i} 3) + 4 \\ = \frac{3}{2}n^2 + \frac{7}{2}n + 4$​​​</p>
+</li>
+</ul>
+<h2 id="一、数学基础"><a href="#一、数学基础" class="headerlink" title="一、数学基础"></a>一、数学基础</h2><h3 id="1-函数渐近的界"><a href="#1-函数渐近的界" class="headerlink" title="1.函数渐近的界"></a>1.函数渐近的界</h3><h4 id="函数渐近的界的概念"><a href="#函数渐近的界的概念" class="headerlink" title="函数渐近的界的概念"></a>函数渐近的界的概念</h4><p>设$T(n)$​是算法A的时间复杂性函数，n是问题规模，$n \geq 0 $​且$n \in Z$​。</p>
+<p>一般来说，当n单调递增且趋于$\infty$时，$T(n)$也将单调递增趋于$\infty$。</p>
+<p>对于$T(n)$，如果存在$T’(n)$，使$n \to \infty$时，有$(T(n)-T’(n))/T(n) \to 0$。</p>
+<p>那么，我们就说$T’(n)$​是$T(n)$​当$n \to \infty$​时的渐近态，或称$T’(n)$​为算法A当$T(n) \to \infty$​​的渐近复杂性。</p>
+<blockquote>
+<p>相似性原理</p>
+<p>突出主体部分——printf，k++</p>
+</blockquote>
+<h4 id="定义2-1（阶的概念）"><a href="#定义2-1（阶的概念）" class="headerlink" title="定义2.1（阶的概念）"></a>定义2.1（阶的概念）</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227165538276.png" alt="image-20220227165538276" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227165601851.png" alt="image-20220227165601851" style="zoom:67%;" /></p>
+<h5 id="【例2-2】设有函数-f-n-n-2-3n-1-​，当n足够大时，试证明下述内容："><a href="#【例2-2】设有函数-f-n-n-2-3n-1-​，当n足够大时，试证明下述内容：" class="headerlink" title="【例2-2】设有函数$f(n)=n^2+3n+1$​，当n足够大时，试证明下述内容："></a>【例2-2】设有函数$f(n)=n^2+3n+1$​，当n足够大时，试证明下述内容：</h5><p>​    (1) $f(n)=O(n^2)$​和$f(n)=O(n^3)$​成立；</p>
+<p>​    (2)$f(n)=o(n^2)$​不成立</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171405514.png" alt="image-20220227171405514" style="zoom:67%;" /></p>
+<ul>
+<li>适当放缩</li>
+</ul>
+<h5 id="【例2-3】试证明-f-n-frac-1-2-n-n-1-有-f-n-Theta-n-2"><a href="#【例2-3】试证明-f-n-frac-1-2-n-n-1-有-f-n-Theta-n-2" class="headerlink" title="【例2-3】试证明$f(n) = \frac{1}{2}n(n-1)$有$f(n) = \Theta(n^2)$"></a>【例2-3】试证明$f(n) = \frac{1}{2}n(n-1)$有$f(n) = \Theta(n^2)$</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171557402.png" alt="image-20220227171557402" style="zoom:67%;" /></p>
+<ul>
+<li>限定一下n的范围。找对应的$c_1,c_2$​，一个满足上界、一个满足下界：$c_2g(n) \leq f(n) \leq c_1g(n)$</li>
+</ul>
+<h4 id="定理2-1（传递性）"><a href="#定理2-1（传递性）" class="headerlink" title="定理2.1（传递性）"></a><strong>定理2.1（传递性）</strong></h4><p>设$f、g、h$是定义域为自然数集合，</p>
+<p>如果$f=O(g)$且$g=O(h)$，那么$f=O(h)$； </p>
+<p>如果$f=Ω(g)$且$g=Ω(h)$，那么$f=Ω(h)$； </p>
+<p>如果$f=Θ(g)$且$g=Θ(h)$，那么$f=Θ(h)$​。</p>
+<blockquote>
+<p>证明：</p>
+</blockquote>
+<h4 id="定理2-2-（同阶）"><a href="#定理2-2-（同阶）" class="headerlink" title="定理2.2 （同阶）"></a>定理2.2 （同阶）</h4><p>假设$f$和$g$是定义域为自然数集合的函数，若对于某个其他的函数$h$，有$f=O(h)$和$g=O(h)$，那么$f+g=O(h)$​。</p>
+<blockquote>
+<p>证明：</p>
+</blockquote>
+<h4 id="常用的渐近函数及其渐近的界"><a href="#常用的渐近函数及其渐近的界" class="headerlink" title="常用的渐近函数及其渐近的界"></a>常用的渐近函数及其渐近的界</h4><ul>
+<li><p>多项式函数、对数函数、不同底a和b的对数</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170231007.png" alt="image-20220227170231007" style="zoom: 67%;" /></p>
+</li>
+</ul>
+<p>对于多项式函数，每一项的上界都是$n^k$</p>
+<p>对于对数函数，两边取以b为底的对数，$log_b{a^{log_bn}} = log_b{n^{log_ba}} = log_ba \times log_bn$​​</p>
+<h4 id="定理2-3-（多项式的阶高于对数）"><a href="#定理2-3-（多项式的阶高于对数）" class="headerlink" title="定理2.3 （多项式的阶高于对数）"></a>定理2.3 （多项式的阶高于对数）</h4><p>对于每一个$b&gt;1$和每一个$a&gt;0$，有$log_bn=o(n^a)$​。</p>
+<p>（多项式函数的阶高于对数函数）</p>
+<h4 id="定理2-4（指数的阶高于多项式）"><a href="#定理2-4（指数的阶高于多项式）" class="headerlink" title="定理2.4（指数的阶高于多项式）"></a>定理2.4（指数的阶高于多项式）</h4><p>对每个$a&gt;1$​和每个$k&gt;0$​，有$n^k=o(a^n)$</p>
+<p>（指数函数的阶高于多项式函数）</p>
+<h3 id="2-利用极限求函数渐近的界"><a href="#2-利用极限求函数渐近的界" class="headerlink" title="2.利用极限求函数渐近的界"></a>2.利用极限求函数渐近的界</h3><h4 id="常用的公式"><a href="#常用的公式" class="headerlink" title="常用的公式"></a>常用的公式</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170744849.png" alt="image-20220227170744849" style="zoom:67%;" /></p>
+<h4 id="定理2-5（紧的界的极限定义）"><a href="#定理2-5（紧的界的极限定义）" class="headerlink" title="定理2.5（紧的界的极限定义）"></a>定理2.5（紧的界的极限定义）</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170855787.png" alt="image-20220227170855787" style="zoom:67%;" /></p>
+<p>两个函数互为紧的界</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170911299.png" alt="image-20220227170911299" style="zoom:67%;" /></p>
+<p>【思考题】：</p>
+<ul>
+<li>证（3）</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301202430470.png" alt="image-20220301202430470" style="zoom:67%;" /></p>
+<ul>
+<li>列出已讲解渐近函数及它们之间阶的高低（运用斯特林、洛必达、2.5）</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301202505790.png" alt="image-20220301202505790" style="zoom:67%;" /></p>
+<h3 id="3-有用的求和级数及其推导方法"><a href="#3-有用的求和级数及其推导方法" class="headerlink" title="3.有用的求和级数及其推导方法"></a>3.有用的求和级数及其推导方法</h3><h4 id="两个基本法则和常见的数列"><a href="#两个基本法则和常见的数列" class="headerlink" title="两个基本法则和常见的数列"></a>两个基本法则和常见的数列</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227170956453.png" alt="image-20220227170956453" style="zoom:67%;" /></p>
+<ul>
+<li>调和级数通常使用微积分进行计算</li>
+</ul>
+<h5 id="【例2-6】求和"><a href="#【例2-6】求和" class="headerlink" title="【例2-6】求和"></a>【例2-6】求和</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171059943.png" alt="image-20220227171059943" style="zoom:67%;" /></p>
+<h5 id="【例2-7】估计-sum-k-1-n-frac-1-k-​的渐近的界"><a href="#【例2-7】估计-sum-k-1-n-frac-1-k-​的渐近的界" class="headerlink" title="【例2-7】估计$\sum_{k=1}^{n} \frac{1}{k}$​的渐近的界"></a>【例2-7】估计$\sum_{k=1}^{n} \frac{1}{k}$​的渐近的界</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227171113797.png" alt="image-20220227171113797" style="zoom:67%;" /></p>
+<h3 id="4-基本效率类型"><a href="#4-基本效率类型" class="headerlink" title="4.基本效率类型"></a>4.基本效率类型</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301205626390.png" alt="image-20220301205626390" style="zoom: 80%;" /></p>
+<p>$n^3$：迪杰斯特拉、弗洛伊德算法</p>
+<h2 id="二、算法分析实例"><a href="#二、算法分析实例" class="headerlink" title="二、算法分析实例"></a>二、算法分析实例</h2><h3 id="1-非递归形式算法分析"><a href="#1-非递归形式算法分析" class="headerlink" title="1.非递归形式算法分析"></a>1.非递归形式算法分析</h3><p>分析非递归算法是，可遵循以下步骤：</p>
+<ul>
+<li><p>决定用哪些参数表示输入规模；</p>
+</li>
+<li><p>找出算法的核心操作，它通常位于算法的<strong>最内层循环</strong>中；</p>
+</li>
+<li><p>检查核心操作的<strong>执行次数是否依赖于输入规模</strong>。如果它还依赖于一些其他的特性，则可能需要对最差效率、平均效率以及最优效率分别研究；</p>
+<blockquote>
+<p>快排</p>
+</blockquote>
+</li>
+<li><p>以式（2-1）$T(n) = \sum_{i = 1}^{m} t_i \times e_i(n)$ 的思想为核心，建立一个算法基本操作执行次数的求和表达式；</p>
+</li>
+<li><p>利用求和运算标准公式和法则来建立一个操作次数的闭合公式，或者至少确定它的增长次数。</p>
+</li>
+</ul>
+<p>【例2-9】交换$a$和$b$的值</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301210324305.png" alt="image-20220301210324305" style="zoom:67%;" /></p>
+<p>三种算法：</p>
+<ul>
+<li><p>如上图方法</p>
+</li>
+<li><p>加减减运算符</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a = a+b;</span><br><span class="line">b = a-b;</span><br><span class="line">a = a-b;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异或法</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 利用了位异或运算的特性:一个数据对两一个数据位异或两次，该数本身不变。</span></span><br><span class="line"><span class="type">int</span> a = <span class="number">12</span>;</span><br><span class="line"><span class="type">int</span> b = <span class="number">34</span>;</span><br><span class="line"><span class="comment">// 交换两个整数</span></span><br><span class="line">a = a ^ b;		<span class="comment">// a = 12^34</span></span><br><span class="line">b = a ^ b;		<span class="comment">// b = 12 ^ 34^34=12</span></span><br><span class="line">a = a ^ b;		<span class="comment">// a = 12^ 34 ^12 = 34</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引用传参</p>
+</li>
+<li><p>指针传参</p>
+</li>
+</ul>
+<h5 id="【例2-10】求-n"><a href="#【例2-10】求-n" class="headerlink" title="【例2-10】求$n!$"></a>【例2-10】求$n!$</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301210412937.png" alt="image-20220301210412937" style="zoom:67%;" /></p>
+<blockquote>
+<p>主体部分：$s = s*i;$</p>
+</blockquote>
+<h5 id="【例2-11】对于任意给定的-n-阶方阵-A-和-B-，求-A×B-的积-C-并且分析它算法执行效率"><a href="#【例2-11】对于任意给定的-n-阶方阵-A-和-B-，求-A×B-的积-C-并且分析它算法执行效率" class="headerlink" title="【例2-11】对于任意给定的$n$阶方阵$A$和$B$，求$A×B$的积$C$并且分析它算法执行效率"></a>【例2-11】对于任意给定的$n$阶方阵$A$和$B$，求$A×B$的积$C$并且分析它算法执行效率</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301210518138.png" alt="image-20220301210518138" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301210552598.png" alt="image-20220301210552598" style="zoom:67%;" /></p>
+<p>优化算法：</p>
+<ul>
+<li><p>《算法导论》提及的Strassen算法</p>
+<p>参考资料：<a href="https://zhuanlan.zhihu.com/p/78657463">详解矩阵乘法中的Strassen算法</a></p>
+</li>
+</ul>
+<h4 id="错误印象"><a href="#错误印象" class="headerlink" title="错误印象"></a>错误印象</h4><ul>
+<li><p>循环变量的无规律变化</p>
+<blockquote>
+<p>如，Euclid和斐波那契</p>
+</blockquote>
+</li>
+<li><p>过于复杂而无法求解的求和表达式</p>
+<blockquote>
+<p>有些级数不能求解</p>
+</blockquote>
+</li>
+<li><p>算法分析时固有的难度</p>
+</li>
+</ul>
+<p>【思考题】韩信点兵问题</p>
+<h3 id="2-递归形式算法分析"><a href="#2-递归形式算法分析" class="headerlink" title="2.递归形式算法分析"></a>2.递归形式算法分析</h3><p>分析递归算法时，可遵循以下步骤：</p>
+<ul>
+<li><p>决定用哪些参数作为输入规模的度量标准</p>
+</li>
+<li><p>找出算法的核心操作，它通常是<strong>递推公式</strong></p>
+</li>
+<li><p>检查一下，对于相同规模的不同输入，核心操作的执行次数是否可能不同</p>
+<p><strong>如果有这种可能，则必须对最差效率、平均效率以及最优效率做单独研究</strong></p>
+</li>
+<li><p>对于算法核心操作的执行次数，建立一个递推关系以及相应的边界条件</p>
+</li>
+<li><p>解这个递推式，或者至少<strong>确定它的解的增长次数</strong></p>
+</li>
+</ul>
+<h5 id="【例2-12】求-n"><a href="#【例2-12】求-n" class="headerlink" title="【例2-12】求$n!$"></a>【例2-12】求$n!$</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301212808470.png" alt="image-20220301212808470" style="zoom:67%;" /></p>
+<p>时间效率紧的界是n</p>
+<blockquote>
+<p>递归变非递归：</p>
+<p>1.减少重复计算——去重</p>
+<p>2.减少使用栈——效率低。应从模型入手</p>
+</blockquote>
+<h5 id="【例2-13】汉诺塔问题"><a href="#【例2-13】汉诺塔问题" class="headerlink" title="【例2-13】汉诺塔问题"></a>【例2-13】汉诺塔问题</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301212841660.png" alt="image-20220301212841660" style="zoom:67%;" /></p>
+<ul>
+<li>n为计算规模</li>
+<li>核心操作为移动盘子 </li>
+<li>依据递推公式，两次递推之间，执行一次移动操作，因此有如下推导过程：<br>$T(n) =2T(n-1)+1$</li>
+</ul>
+<blockquote>
+<p>$T(n) =2T(n-1)+1 \\<br>=2[2T(n-2)+1]+1 \\ =2^2T(n-2)+2+1 \\<br>=2^2[2T(n-3)+1]+2+1 \\ = 2^3T(n-3)+2^2+2+1 …… \\<br>=2^{i-1}[2T(n-i)+1]+2^{i-2}+2^{i-3}…+2^0 \\ = 2^iT(n-i)+ 2^{i}-1 …… \\<br>=2^{n-1}T(n-(n-1))+ 2^{n-1}-1 \\ =2^{n-1}T(1)+ 2^{n-1}-1=2^n-1 \$</p>
+</blockquote>
+<p><strong>谨慎使用递归算法，它们的简洁可能会掩盖其低效率的事实</strong></p>
+<h5 id="【例2-14】试分析二路归并排序算法的时间复杂度"><a href="#【例2-14】试分析二路归并排序算法的时间复杂度" class="headerlink" title="【例2-14】试分析二路归并排序算法的时间复杂度"></a>【例2-14】试分析二路归并排序算法的时间复杂度</h5><blockquote>
+<p>二路归并排序：二分 + 合并（简单插入排序）</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301213658379.png" alt="image-20220301213658379" style="zoom:67%;" /></p>
+<p>对于Merge，输入是两个排好序的数组。</p>
+<blockquote>
+<p>计算两个数组的长度</p>
+<p>重构$A$数组，将前半部分存入$B$，后半部分存入$C$</p>
+<p>依次比较$B$和$C$元素大小，按顺序放回$A$</p>
+<p>处理$B$或$C$剩余元素，放回$A$</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301213722688.png" alt="image-20220301213722688" style="zoom:67%;" /></p>
+<p>空间复杂度：上界是$n^2$，下界是$logn \times n$</p>
+<p>【思考题】考虑完全二叉树的先根遍历，找最大值的时间复杂度</p>
+<h3 id="定理2-6（主定理）——重要内容"><a href="#定理2-6（主定理）——重要内容" class="headerlink" title="定理2.6（主定理）——重要内容"></a>定理2.6（主定理）——重要内容</h3><p><strong>定理2.6</strong> 主定理（Master Theorem）设$a \geq 1,b \geq 1$为常数，$f(n)$为函数，$T(n)$为<strong>非负整数</strong>，且$T(n) = aT(n/b) + f(n)$</p>
+<p>则有以下结果：</p>
+<ul>
+<li><p>若$f(n) = O(n^{log_ba-\epsilon}), \epsilon &gt; 0$，那么$T(n) = \Theta(n^{log_ba})$；</p>
+<blockquote>
+<p>必须把$\epsilon$找出来</p>
+</blockquote>
+</li>
+<li><p>若$f(n) = \Theta (n^{log_ba})$，那么$T(n) = \Theta (n^{log_ba} logn)$；</p>
+</li>
+<li><p>若$f(n) = Ω(n^{log_ba+\epsilon}), \epsilon &gt; 0$，且对于常数$c&lt;1$和所有充分大的$n$有$af(n/b) \leq cf(n)$，那么$T(n) = \Theta(f(n))$；</p>
+<blockquote>
+<p>不能使用主定理，可以使用递归式</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231134023.png" alt="image-20220301231134023" style="zoom:67%;" /></p>
+<blockquote>
+<p>必须让$T(n)$中的参数$n$收敛</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231214720.png" alt="image-20220301231214720" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231230067.png" alt="image-20220301231230067" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231245912.png" alt="image-20220301231245912" style="zoom:67%;" /></p>
+<p>【思考题】</p>
+<ul>
+<li>自己证明一次主定理</li>
+<li>用主定理证明归并排序的时间复杂度</li>
+</ul>
+<h5 id="【例2-15】求解递推方程-T-n-9T-n-3-n"><a href="#【例2-15】求解递推方程-T-n-9T-n-3-n" class="headerlink" title="【例2-15】求解递推方程$T(n) = 9T(n/3) + n$"></a>【例2-15】求解递推方程$T(n) = 9T(n/3) + n$</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231338193.png" alt="image-20220301231338193" style="zoom:67%;" /></p>
+<h5 id="【例2-16】求解递推方程-T-n-T-2n-3-1"><a href="#【例2-16】求解递推方程-T-n-T-2n-3-1" class="headerlink" title="【例2-16】求解递推方程$T(n) = T(2n/3) + 1$"></a>【例2-16】求解递推方程$T(n) = T(2n/3) + 1$</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231416380.png" alt="image-20220301231416380" style="zoom:67%;" /></p>
+<h5 id="【例2-17】求解递推方程-T-n-3T-n-4-nlogn"><a href="#【例2-17】求解递推方程-T-n-3T-n-4-nlogn" class="headerlink" title="【例2-17】求解递推方程$T(n) = 3T(n/4) + nlogn$"></a>【例2-17】求解递推方程$T(n) = 3T(n/4) + nlogn$</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231458494.png" alt="image-20220301231458494" style="zoom:67%;" /></p>
+<p>递归树</p>
+<p>表示每一层拥有的计算量</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231522615.png" alt="image-20220301231522615" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231537308.png" alt="image-20220301231537308" style="zoom:67%;" /></p>
+<h5 id="【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设-n-2-k-："><a href="#【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设-n-2-k-：" class="headerlink" title="【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设$n = 2^k$："></a>【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设$n = 2^k$：</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231641596.png" alt="image-20220301231641596" style="zoom:67%;" /></p>
+]]></content>
+      <tags>
+        <tag>algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数理逻辑：绪论</title>
+    <url>/mathematical_logic/mathematical-logic-ch0/</url>
+    <content><![CDATA[<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>数理逻辑是用数学的方法研究<strong>推理</strong>，特别是研究数学中的推理</p>
+<p>推理的前提和结论都是命题，命题的真假与<strong>内容是否符合现实</strong>有关。</p>
+<script type="math/tex; mode=display">
+premises 前提 \quad（命题）\\
+\downarrow  \quad reason 推理 \\
+conclusions 结论 \quad （命题）\\</script><span id="more"></span>
+<ol>
+<li><p>正确的推理：从”正确的前提“能得到”正确的结论“的推理。</p>
+<p>推理正确——可推导关系，属于<code>演绎逻辑</code>（与之相对的是<code>归纳逻辑</code>）</p>
+<p>正确的前提：前提为真</p>
+<p>正确的结论：结论为真</p>
+</li>
+<li><p>推理正确与否<strong>与前提和结论中命题是否为真命题没有关系</strong>。</p>
+<p><strong>推理的正确性与命题的逻辑形式有关</strong></p>
+<p><strong>命题内容决定命题的真假</strong></p>
+<script type="math/tex; mode=display">
+命题：
+\begin{cases}
+内容 \\
+逻辑形式（抽象） \\
+\end{cases}</script><blockquote>
+<p>所有中学生打网球（前提）</p>
+<p>王军不打网球（前提）</p>
+<p>王军不是中学生（结论）</p>
+<p>——推理正确，不是所有命题都为真命题</p>
+</blockquote>
+<p>上述推理的逻辑形式为：</p>
+<blockquote>
+<p>S中所有元有R性质（前提）</p>
+<p>a没有R性质（前提）</p>
+<p>a不是S中的元（结论）</p>
+</blockquote>
+</li>
+<li><p>数理逻辑中，用自然语言陈述命题会带来不方便</p>
+</li>
+<li><p>数理逻辑的研究语言为：对象语言、元语言</p>
+<ul>
+<li>对象语言：被研究对象的语言。<strong>形式语言</strong>，用符号构成的公式来代替自然语言中的命题，<strong>没有二义性</strong><ul>
+<li>语义：符号，公式的含义</li>
+<li>语法：由符号构成的公式的形状和语法结构</li>
+</ul>
+</li>
+<li>元语言：辅助描述对象语言。自然语言</li>
+</ul>
+</li>
+<li><p>数理逻辑产生的动机：将一切推理的正确性化归于计算的通用代数</p>
+<ul>
+<li>建立一种普遍适用的精确的科学语言</li>
+<li>建立一种推理的演算</li>
+</ul>
+</li>
+<li><p>预备知识：</p>
+<ul>
+<li><p>集合</p>
+<p>集合S上的（n元）关系R</p>
+<p>外延</p>
+</li>
+<li><p>归纳定义和归纳证明</p>
+</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>mathematical logic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/undefined/hello-world/</url>
+    <content><![CDATA[<p>你好，Hexo！你好，世界！</p>
+<p>欢迎来到我的博客</p>
+<p>我将持续记录日常学习、生活的点点滴滴</p>
+]]></content>
   </entry>
   <entry>
     <title>计算机组成原理：第3章 系统总线</title>
@@ -1525,84 +1915,6 @@ f_{n} = f_{n-1} + f_{n-2} \quad ,n \geq 3 \qquad(5-2) \\
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/undefined/hello-world/</url>
-    <content><![CDATA[<p>你好，Hexo！你好，世界！</p>
-<p>欢迎来到我的博客</p>
-<p>我将持续记录日常学习、生活的点点滴滴</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>数理逻辑：绪论</title>
-    <url>/mathematical_logic/mathematical-logic-ch0/</url>
-    <content><![CDATA[<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>数理逻辑是用数学的方法研究<strong>推理</strong>，特别是研究数学中的推理</p>
-<p>推理的前提和结论都是命题，命题的真假与<strong>内容是否符合现实</strong>有关。</p>
-<script type="math/tex; mode=display">
-premises 前提 \quad（命题）\\
-\downarrow  \quad reason 推理 \\
-conclusions 结论 \quad （命题）\\</script><span id="more"></span>
-<ol>
-<li><p>正确的推理：从”正确的前提“能得到”正确的结论“的推理。</p>
-<p>推理正确——可推导关系，属于<code>演绎逻辑</code>（与之相对的是<code>归纳逻辑</code>）</p>
-<p>正确的前提：前提为真</p>
-<p>正确的结论：结论为真</p>
-</li>
-<li><p>推理正确与否<strong>与前提和结论中命题是否为真命题没有关系</strong>。</p>
-<p><strong>推理的正确性与命题的逻辑形式有关</strong></p>
-<p><strong>命题内容决定命题的真假</strong></p>
-<script type="math/tex; mode=display">
-命题：
-\begin{cases}
-内容 \\
-逻辑形式（抽象） \\
-\end{cases}</script><blockquote>
-<p>所有中学生打网球（前提）</p>
-<p>王军不打网球（前提）</p>
-<p>王军不是中学生（结论）</p>
-<p>——推理正确，不是所有命题都为真命题</p>
-</blockquote>
-<p>上述推理的逻辑形式为：</p>
-<blockquote>
-<p>S中所有元有R性质（前提）</p>
-<p>a没有R性质（前提）</p>
-<p>a不是S中的元（结论）</p>
-</blockquote>
-</li>
-<li><p>数理逻辑中，用自然语言陈述命题会带来不方便</p>
-</li>
-<li><p>数理逻辑的研究语言为：对象语言、元语言</p>
-<ul>
-<li>对象语言：被研究对象的语言。<strong>形式语言</strong>，用符号构成的公式来代替自然语言中的命题，<strong>没有二义性</strong><ul>
-<li>语义：符号，公式的含义</li>
-<li>语法：由符号构成的公式的形状和语法结构</li>
-</ul>
-</li>
-<li>元语言：辅助描述对象语言。自然语言</li>
-</ul>
-</li>
-<li><p>数理逻辑产生的动机：将一切推理的正确性化归于计算的通用代数</p>
-<ul>
-<li>建立一种普遍适用的精确的科学语言</li>
-<li>建立一种推理的演算</li>
-</ul>
-</li>
-<li><p>预备知识：</p>
-<ul>
-<li><p>集合</p>
-<p>集合S上的（n元）关系R</p>
-<p>外延</p>
-</li>
-<li><p>归纳定义和归纳证明</p>
-</li>
-</ul>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>mathematical logic</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数理逻辑：第1节 命题逻辑的基本概念</title>
     <url>/mathematical_logic/mathematical-logic-ch1/</url>
     <content><![CDATA[<h1 id="1-1-命题与联结词"><a href="#1-1-命题与联结词" class="headerlink" title="1.1 命题与联结词"></a>1.1 命题与联结词</h1><h2 id="命题与真值"><a href="#命题与真值" class="headerlink" title="命题与真值"></a>命题与真值</h2><ul>
@@ -1828,279 +2140,6 @@ conclusions 结论 \quad （命题）\\</script><span id="more"></span>
 <li><p>基本要求</p>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225143205004.png" alt="image-20220225143205004" style="zoom:67%;" /></p>
 </li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mathematical logic</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数理逻辑：第3节 主析（合）取范式</title>
-    <url>/mathematical_logic/mathematical-logic-ch3/</url>
-    <content><![CDATA[<ul>
-<li>判断命题公式是否为重言式（永真式）？<ul>
-<li>真值表</li>
-<li>等值演算</li>
-<li>主析取范式和主合取范式</li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-<h1 id="3-1主析取范式与主合取范式"><a href="#3-1主析取范式与主合取范式" class="headerlink" title="3.1主析取范式与主合取范式"></a>3.1主析取范式与主合取范式</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
-<li><p><strong>文字</strong>：命题变项及其否定的总称</p>
-<blockquote>
-<p>$p, \quad \neg q$</p>
-</blockquote>
-</li>
-<li><p><strong>简单析取式</strong>：仅由有限个文字构成的析取式</p>
-<blockquote>
-<p>$p,\quad \neg q,\quad p\vee \neg q, \quad p\vee q \vee r,…$​</p>
-</blockquote>
-</li>
-<li><p><strong>简单合取式</strong>：由有限个文字构成的合取式</p>
-<blockquote>
-<p>$p,\quad \neg q,\quad p\land \neg q, \quad p\land q \land r,…$</p>
-</blockquote>
-</li>
-<li><p><strong>析取范式</strong>：由有限个<strong>简单合取式</strong>组成的<strong>析取式</strong></p>
-<blockquote>
-<p>$p,\quad \neg p \land q,（简单合取式）\quad p\vee \neg q, \quad (p \land \neg q) \vee (\neg p \land q \land \neg r) \vee (q \land r),…$​</p>
-</blockquote>
-</li>
-<li><p><strong>合取范式</strong>：由有限个<strong>简单析取式</strong>组成的<strong>合取式</strong></p>
-<blockquote>
-<p>$p,\quad \neg p \vee q,（简单析取式）\quad p\land \neg q, \quad (p \vee \neg q) \land (\neg p \vee q \vee r) \land (q \vee r),…$</p>
-</blockquote>
-</li>
-<li><p><strong>范式</strong>：析取范式与合取范式的总称</p>
-</li>
-</ol>
-<h2 id="求公式-A-的范式的步骤"><a href="#求公式-A-的范式的步骤" class="headerlink" title="求公式$A$的范式的步骤"></a>求公式$A$的范式的步骤</h2><ol>
-<li><p>消去$A$中的$\to, \leftrightarrow$（若存在）——<strong>（蕴含等价式、等价等值式、假言易位、等价否定等值式、归谬论）</strong></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091705613.png" alt="image-20220301091705613" style="zoom: 50%;" /></p>
-</li>
-<li><p>否定连接词的内移或消去<strong>（德摩根律）</strong></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091721847.png" alt="image-20220301091721847" style="zoom: 50%;" /></p>
-</li>
-<li><p>使用<strong>分配律</strong></p>
-</li>
-</ol>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091734879.png" alt="image-20220301091734879" style="zoom:50%;" /></p>
-<ul>
-<li><p>公式范式的不足——不唯一</p>
-</li>
-<li><p>得到唯一的范式——主范式</p>
-</li>
-</ul>
-<h2 id="极小项与极大项"><a href="#极小项与极大项" class="headerlink" title="极小项与极大项"></a>极小项与极大项</h2><ul>
-<li><p><strong>定义1</strong>：在含有$n$个命题变项的<strong>简单合取式</strong>中，若每个命题变项均以文字的形式在其中出现且仅出现一次， 而且第$i$个文字出现在左起第$i$位上（$1 \leq i \leq n$），称这样的简单合取式为<strong>极小项</strong></p>
-<blockquote>
-<p>极小项——合取越多范围越小，取决于真值最小的文字</p>
-<p>对于$p, q, r$（不缺项，规定了顺序：字母、下标）</p>
-<p>$p \land q \land r$</p>
-</blockquote>
-</li>
-<li><p><strong>定义2</strong>：在含有$n$个命题变项的<strong>简单析取式</strong>中，若每个命题变项均以文字的形式在其中出现且仅出现一次， 而且第$i$个文字出现在左起第$i$位上（$1 \leq i \leq n$），称这样的简单析取式为<strong>极大项</strong></p>
-<blockquote>
-<p>极大项——合取越多范围越大，只要有真值为1的文字，该项的真值为1</p>
-<p>对于$p, q, r$（不缺项，规定了顺序：字母、下标）</p>
-<p>$p \vee q \vee r$</p>
-</blockquote>
-</li>
-<li><p>几点说明</p>
-<ul>
-<li><p>$n$个命题变项有$2^n$个极小项和$2^n$个极大项</p>
-</li>
-<li><p>$2^n$个极小项（极大项）均互不等值</p>
-</li>
-<li><p>用$m_i$表示第$i$个极小项，其中$i$是该极小项<strong>成真赋值</strong><br>的十进制表示</p>
-<blockquote>
-<p>$p \land q \land r$的成真赋值为111，$m_7$</p>
-<p>$\neg p \land q \land r$成真赋值为011，$m_3$</p>
-</blockquote>
-</li>
-<li><p>用$M_i$表示第$i$个极大项，其中$i$是该极大项<strong>成假赋值</strong><br>的十进制表示</p>
-<blockquote>
-<p>$p \vee q \vee r$的成假赋值为000，$M_0$</p>
-<p>$\neg p \vee q \vee r$的成假赋值为100，$M_4$</p>
-</blockquote>
-</li>
-<li><p>$m_i$（$M_i$）称为极小项（极大项）的名称</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>【实例】</p>
-<ul>
-<li>由两个命题变项$p, q$形成的极小项和极大项</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304081627478.png" alt="image-20220304081627478" style="zoom:67%;" /></p>
-<ul>
-<li>由三个命题变项$p,q,r$形成的极小项和极大项</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304081832381.png" alt="image-20220304081832381" style="zoom:67%;" /></p>
-<ul>
-<li><strong>$m_i与M_i的关系：\neg m_i \Leftrightarrow M_i, \neg M_i \Leftrightarrow m_i$</strong></li>
-</ul>
-<h2 id="主析取范式与主合取范式"><a href="#主析取范式与主合取范式" class="headerlink" title="主析取范式与主合取范式"></a>主析取范式与主合取范式</h2><ul>
-<li>主析取范式——由极小项构成的析取范式</li>
-<li>主合取范式——由极大项构成的合取范式</li>
-</ul>
-<blockquote>
-<p>例如，n=3, 命题变项为 p, q, r 时，</p>
-<p>$(\neg p\land \neg q \land r) \vee (\neg p\land q \land r) \Leftrightarrow  m_1 \vee m_3$ ——主析取范式<br>$(p \vee q \vee \neg r) \land (\neg p \vee \neg q \vee \neg r) \Leftrightarrow M_1 \land M_7$——主合取范式</p>
-</blockquote>
-<ul>
-<li><p><strong>定理1</strong>（主范式的存在唯一定理）</p>
-<p>任何命题公式都存在与之等值的主析取范式和主合取范式, 并且是惟一的</p>
-</li>
-</ul>
-<h2 id="求命题公式主范式的步骤"><a href="#求命题公式主范式的步骤" class="headerlink" title="求命题公式主范式的步骤"></a>求命题公式主范式的步骤</h2><h3 id="1-求公式主析取范式的步骤"><a href="#1-求公式主析取范式的步骤" class="headerlink" title="1.求公式主析取范式的步骤"></a>1.求公式主析取范式的步骤</h3><p><strong>先求出析取范式，再变换成主析取范式</strong></p>
-<p>设公式$A$含命题变项$p_1, p_2,…, p_n$</p>
-<ul>
-<li><p>(1) 求$A$的析取范式$A’=B_1 \vee B_2 \vee … \vee B_s$ , 其中$B_j$是<strong>简单合取式</strong> ，$j=1,2, … ,s$</p>
-</li>
-<li><p>(2) <strong>（每一个简单合取式变为极小项——合取1来补项）</strong></p>
-<p>若某个$B_j$既不含$p_i$, 又不含$\neg p_i$, 则将$B_j$展开成：$B_j \Leftrightarrow B_j \land 1 \Leftrightarrow B_j \land (p_i \vee \neg p_i) \Leftrightarrow (B_j \land p_i) \vee (B_j \land \neg p_i)$</p>
-<p>重复这个过程, 直到<strong>所有简单合取式都是长度为n的极小项</strong>为止</p>
-</li>
-<li><p>(3) <strong>消去重复出现的极小项</strong>, 即用$m_i$代替$m_i \vee m_i$ </p>
-</li>
-<li><p>(4) 将极小项按下标从小到大<strong>排列</strong></p>
-</li>
-</ul>
-<h3 id="2-求公式主合取范式的步骤"><a href="#2-求公式主合取范式的步骤" class="headerlink" title="2.求公式主合取范式的步骤"></a>2.求公式主合取范式的步骤</h3><p><strong>先求出合取范式，再变换成主合取范式</strong></p>
-<p>设公式$A$含命题变项$p_1, p_2,…, p_n$</p>
-<ul>
-<li><p>(1) 求$A$的合取范式$A’=B_1 \land  B_2 \land … \land B_s$ , 其中$B_j$是<strong>简单析取式</strong> ，$j=1,2, … ,s$</p>
-</li>
-<li><p>(2)<strong>（补项——析取0）</strong></p>
-<p>若某个$B_j$既不含$p_i$, 又不含$\neg p_i$, 则将$B_j$展开成：$B_j \Leftrightarrow B_j \vee 0 \Leftrightarrow B_j \vee (p_i \land \neg p_i) \Leftrightarrow (B_j \vee p_i) \land (B_j \vee \neg p_i)$</p>
-<p>重复这个过程, 直到<strong>所有简单析取式都是长度为n的极大项</strong>为止</p>
-</li>
-<li><p>(3)<strong>消去重复出现的极大项</strong>， 即用$M_i$代替$M_i \land M_i$ </p>
-</li>
-<li><p>(4) 将极大项按下标从小到大<strong>排列</strong></p>
-</li>
-</ul>
-<p>【实例】</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304083543458.png" alt="image-20220304083543458" style="zoom:50%;" /></p>
-<p><strong>我觉得可以使用卡诺图</strong></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">p\qr</th>
-<th style="text-align:center">00</th>
-<th style="text-align:center">01</th>
-<th style="text-align:center">11</th>
-<th style="text-align:center">10</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><strong>0</strong></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>1</strong></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>主析取范式：成真赋值为1的项</p>
-<p>主合取范式：成假赋值为0的项</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304083604370.png" alt="image-20220304083604370" style="zoom:50%;" /></p>
-<p><strong>关注主析取范式和主合取范式出现项的下标的关系</strong></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304083622774.png" alt="image-20220304083622774" style="zoom:50%;" /></p>
-<h2 id="由主析（合）取范式确定主合（析）取范式"><a href="#由主析（合）取范式确定主合（析）取范式" class="headerlink" title="由主析（合）取范式确定主合（析）取范式"></a>由主析（合）取范式确定主合（析）取范式</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230604125.png" alt="image-20220303230604125" style="zoom: 50%;" /></p>
-<h2 id="用成真和成假赋值确定主范式"><a href="#用成真和成假赋值确定主范式" class="headerlink" title="用成真和成假赋值确定主范式"></a>用成真和成假赋值确定主范式</h2><p>已知成真赋值，则知道有多少个最小项。</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230652029.png" alt="image-20220303230652029" style="zoom: 50%;" /></p>
-<h2 id="主范式的应用"><a href="#主范式的应用" class="headerlink" title="主范式的应用"></a>主范式的应用</h2><h3 id="1-求公式的成真成假赋值"><a href="#1-求公式的成真成假赋值" class="headerlink" title="(1)求公式的成真成假赋值"></a>(1)求公式的成真成假赋值</h3><p>设公式$A$含$n$个命题变项, $A$的主析取范式有<strong>$s$个极小项</strong>, 则$A$有<strong>$s$个成真赋值</strong>, 它们是极小项下标的二进制表示, <strong>其余$2^n-s$个赋值都是成假赋值</strong></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230838562.png" alt="image-20220303230838562" style="zoom:67%;" /></p>
-<h3 id="2-判断公式的类型"><a href="#2-判断公式的类型" class="headerlink" title="(2)判断公式的类型"></a>(2)判断公式的类型</h3><p>根据极小项或成真赋值的个数</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230918268.png" alt="image-20220303230918268" style="zoom:67%;" /></p>
-<ul>
-<li>重言式：全部赋值为成真赋值</li>
-<li>矛盾式：全部赋值为成假赋值</li>
-<li>非重言的可满足式：<ul>
-<li>至少一个成真赋值</li>
-<li>至少一个成假赋值</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230949648.png" alt="image-20220303230949648" style="zoom: 50%;" /></p>
-<h3 id="3-判断两个公式是否等值"><a href="#3-判断两个公式是否等值" class="headerlink" title="3.判断两个公式是否等值"></a>3.判断两个公式是否等值</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231031287.png" alt="image-20220303231031287" style="zoom: 50%;" /></p>
-<h3 id="4-解实际问题"><a href="#4-解实际问题" class="headerlink" title="4.解实际问题"></a>4.解实际问题</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231044612.png" alt="image-20220303231044612" style="zoom: 50%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231059094.png" alt="image-20220303231059094" style="zoom: 50%;" /></p>
-<h1 id="3-2-n元真值函数"><a href="#3-2-n元真值函数" class="headerlink" title="3.2 n元真值函数"></a>3.2 n元真值函数</h1><ul>
-<li><p><strong>定义3</strong>：称$F:${0,1}$^n \to$ {0,1}为<strong>n元真值函数</strong></p>
-<blockquote>
-<p>例如，3元真值函数$F(x,y,z) = \begin{cases} 0 \\ 1 \\ \end{cases}$</p>
-<ul>
-<li>有3个变量</li>
-<li>每个变量的取值只能是0或1</li>
-<li>每一组符号串的函数值为0或1</li>
-</ul>
-<p>000，001，010，011，100，101，110，111——8个符号串</p>
-<p>000的函数值可能为0 or 1</p>
-</blockquote>
-<p>$F(p_1,p_2,…p_n) = \begin{cases} 0 \\ 1 \end{cases}$</p>
-<ul>
-<li><p>n个命题变量$p_1,p_2,…,p_n$的取值方式有$2^n$种</p>
-</li>
-<li><p>每一组取值对应的函数值可能为0或1，有2种</p>
-</li>
-</ul>
-<p><strong>共$2^{2^n}$个n元真值函数</strong></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231356068.png" alt="image-20220303231356068" style="zoom:67%;" /></p>
-</li>
-</ul>
-<h2 id="1元真值函数"><a href="#1元真值函数" class="headerlink" title="1元真值函数"></a>1元真值函数</h2><ul>
-<li>由1个命题变项p形成的极小项与极大项</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304092048665.png" alt="image-20220304092048665" style="zoom: 67%;" /></p>
-<p>1元真值函数一共有$2^{2^1} = 4$种命题公式</p>
-<blockquote>
-<p>横着看：有4个真值函数——对应$m_0 \vee m_1的四种取值组合——主析取范式$</p>
-<ul>
-<li>第一列：永假式真值表：$\neg m_0 \vee \neg m_1$</li>
-<li>第二列：$p$：$\neg m_0 \vee m_1$</li>
-<li>第三列：$\neg p$：$m_0  \vee \neg  m_1$</li>
-<li>第四列：永真式：$m_0 \vee m_1$</li>
-</ul>
-<p>竖着看：真值函数的取值$p$</p>
-<ul>
-<li>第一行：$p$</li>
-<li>第二行：$\neg p$</li>
-</ul>
-</blockquote>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304092346111.png" alt="image-20220304092346111" style="zoom:67%;" /></p>
-<h2 id="2元真值函数"><a href="#2元真值函数" class="headerlink" title="2元真值函数"></a>2元真值函数</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304093005762.png" alt="image-20220304093005762" style="zoom:67%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304093027553.png" alt="image-20220304093027553" style="zoom:67%;" /></p>
-<h2 id="公式与真值函数"><a href="#公式与真值函数" class="headerlink" title="公式与真值函数"></a>公式与真值函数</h2><ul>
-<li>任何一个含n个命题变项的命题公式$A$都对应惟一的一个n元真值函数$ F $，$ F $恰好为$A$的真值表。</li>
-<li><strong>等值的公式</strong>对应的<strong>真值函数</strong>相同。</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304093448005.png" alt="image-20220304093448005" style="zoom:50%;" /></p>
-<h1 id="3-3-联结词的完备集"><a href="#3-3-联结词的完备集" class="headerlink" title="3.3 联结词的完备集"></a>3.3 联结词的完备集</h1><ul>
-<li><strong>定义4</strong>：设$S$是一个联结词集合，如果任何$n(n \geq 1)$ 元真值函数都可以由仅含$S$中的联结词构成的公式表示，则称$S$是<strong>联结词完备集</strong><ul>
-<li>若$S$是联结词完备集, 则任何命题公式都可由$S$中的联结词表示</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>与能够用或非表示，则它们是完备的</p>
-</blockquote>
-<ul>
-<li><strong>定义5</strong>：</li>
 </ul>
 ]]></content>
       <tags>
@@ -2384,6 +2423,279 @@ A 为非重言式的可满足式 \Leftrightarrow A既有成真赋值又有成假
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308145051717.png" alt="image-20220308145051717" style="zoom:50%;" /></p>
 <h2 id="归谬法（反证法）"><a href="#归谬法（反证法）" class="headerlink" title="归谬法（反证法）"></a>归谬法（反证法）</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308144510314.png" alt="image-20220308144510314" style="zoom:67%;" /></p>
 <h3 id="归谬法证明举例"><a href="#归谬法证明举例" class="headerlink" title="归谬法证明举例"></a>归谬法证明举例</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308145122036.png" alt="image-20220308145122036" style="zoom:50%;" /></p>
+]]></content>
+      <tags>
+        <tag>mathematical logic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数理逻辑：第3节 主析（合）取范式</title>
+    <url>/mathematical_logic/mathematical-logic-ch3/</url>
+    <content><![CDATA[<ul>
+<li>判断命题公式是否为重言式（永真式）？<ul>
+<li>真值表</li>
+<li>等值演算</li>
+<li>主析取范式和主合取范式</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<h1 id="3-1主析取范式与主合取范式"><a href="#3-1主析取范式与主合取范式" class="headerlink" title="3.1主析取范式与主合取范式"></a>3.1主析取范式与主合取范式</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li><p><strong>文字</strong>：命题变项及其否定的总称</p>
+<blockquote>
+<p>$p, \quad \neg q$</p>
+</blockquote>
+</li>
+<li><p><strong>简单析取式</strong>：仅由有限个文字构成的析取式</p>
+<blockquote>
+<p>$p,\quad \neg q,\quad p\vee \neg q, \quad p\vee q \vee r,…$​</p>
+</blockquote>
+</li>
+<li><p><strong>简单合取式</strong>：由有限个文字构成的合取式</p>
+<blockquote>
+<p>$p,\quad \neg q,\quad p\land \neg q, \quad p\land q \land r,…$</p>
+</blockquote>
+</li>
+<li><p><strong>析取范式</strong>：由有限个<strong>简单合取式</strong>组成的<strong>析取式</strong></p>
+<blockquote>
+<p>$p,\quad \neg p \land q,（简单合取式）\quad p\vee \neg q, \quad (p \land \neg q) \vee (\neg p \land q \land \neg r) \vee (q \land r),…$​</p>
+</blockquote>
+</li>
+<li><p><strong>合取范式</strong>：由有限个<strong>简单析取式</strong>组成的<strong>合取式</strong></p>
+<blockquote>
+<p>$p,\quad \neg p \vee q,（简单析取式）\quad p\land \neg q, \quad (p \vee \neg q) \land (\neg p \vee q \vee r) \land (q \vee r),…$</p>
+</blockquote>
+</li>
+<li><p><strong>范式</strong>：析取范式与合取范式的总称</p>
+</li>
+</ol>
+<h2 id="求公式-A-的范式的步骤"><a href="#求公式-A-的范式的步骤" class="headerlink" title="求公式$A$的范式的步骤"></a>求公式$A$的范式的步骤</h2><ol>
+<li><p>消去$A$中的$\to, \leftrightarrow$（若存在）——<strong>（蕴含等价式、等价等值式、假言易位、等价否定等值式、归谬论）</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091705613.png" alt="image-20220301091705613" style="zoom: 50%;" /></p>
+</li>
+<li><p>否定连接词的内移或消去<strong>（德摩根律）</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091721847.png" alt="image-20220301091721847" style="zoom: 50%;" /></p>
+</li>
+<li><p>使用<strong>分配律</strong></p>
+</li>
+</ol>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091734879.png" alt="image-20220301091734879" style="zoom:50%;" /></p>
+<ul>
+<li><p>公式范式的不足——不唯一</p>
+</li>
+<li><p>得到唯一的范式——主范式</p>
+</li>
+</ul>
+<h2 id="极小项与极大项"><a href="#极小项与极大项" class="headerlink" title="极小项与极大项"></a>极小项与极大项</h2><ul>
+<li><p><strong>定义1</strong>：在含有$n$个命题变项的<strong>简单合取式</strong>中，若每个命题变项均以文字的形式在其中出现且仅出现一次， 而且第$i$个文字出现在左起第$i$位上（$1 \leq i \leq n$），称这样的简单合取式为<strong>极小项</strong></p>
+<blockquote>
+<p>极小项——合取越多范围越小，取决于真值最小的文字</p>
+<p>对于$p, q, r$（不缺项，规定了顺序：字母、下标）</p>
+<p>$p \land q \land r$</p>
+</blockquote>
+</li>
+<li><p><strong>定义2</strong>：在含有$n$个命题变项的<strong>简单析取式</strong>中，若每个命题变项均以文字的形式在其中出现且仅出现一次， 而且第$i$个文字出现在左起第$i$位上（$1 \leq i \leq n$），称这样的简单析取式为<strong>极大项</strong></p>
+<blockquote>
+<p>极大项——合取越多范围越大，只要有真值为1的文字，该项的真值为1</p>
+<p>对于$p, q, r$（不缺项，规定了顺序：字母、下标）</p>
+<p>$p \vee q \vee r$</p>
+</blockquote>
+</li>
+<li><p>几点说明</p>
+<ul>
+<li><p>$n$个命题变项有$2^n$个极小项和$2^n$个极大项</p>
+</li>
+<li><p>$2^n$个极小项（极大项）均互不等值</p>
+</li>
+<li><p>用$m_i$表示第$i$个极小项，其中$i$是该极小项<strong>成真赋值</strong><br>的十进制表示</p>
+<blockquote>
+<p>$p \land q \land r$的成真赋值为111，$m_7$</p>
+<p>$\neg p \land q \land r$成真赋值为011，$m_3$</p>
+</blockquote>
+</li>
+<li><p>用$M_i$表示第$i$个极大项，其中$i$是该极大项<strong>成假赋值</strong><br>的十进制表示</p>
+<blockquote>
+<p>$p \vee q \vee r$的成假赋值为000，$M_0$</p>
+<p>$\neg p \vee q \vee r$的成假赋值为100，$M_4$</p>
+</blockquote>
+</li>
+<li><p>$m_i$（$M_i$）称为极小项（极大项）的名称</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>【实例】</p>
+<ul>
+<li>由两个命题变项$p, q$形成的极小项和极大项</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304081627478.png" alt="image-20220304081627478" style="zoom:67%;" /></p>
+<ul>
+<li>由三个命题变项$p,q,r$形成的极小项和极大项</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304081832381.png" alt="image-20220304081832381" style="zoom:67%;" /></p>
+<ul>
+<li><strong>$m_i与M_i的关系：\neg m_i \Leftrightarrow M_i, \neg M_i \Leftrightarrow m_i$</strong></li>
+</ul>
+<h2 id="主析取范式与主合取范式"><a href="#主析取范式与主合取范式" class="headerlink" title="主析取范式与主合取范式"></a>主析取范式与主合取范式</h2><ul>
+<li>主析取范式——由极小项构成的析取范式</li>
+<li>主合取范式——由极大项构成的合取范式</li>
+</ul>
+<blockquote>
+<p>例如，n=3, 命题变项为 p, q, r 时，</p>
+<p>$(\neg p\land \neg q \land r) \vee (\neg p\land q \land r) \Leftrightarrow  m_1 \vee m_3$ ——主析取范式<br>$(p \vee q \vee \neg r) \land (\neg p \vee \neg q \vee \neg r) \Leftrightarrow M_1 \land M_7$——主合取范式</p>
+</blockquote>
+<ul>
+<li><p><strong>定理1</strong>（主范式的存在唯一定理）</p>
+<p>任何命题公式都存在与之等值的主析取范式和主合取范式, 并且是惟一的</p>
+</li>
+</ul>
+<h2 id="求命题公式主范式的步骤"><a href="#求命题公式主范式的步骤" class="headerlink" title="求命题公式主范式的步骤"></a>求命题公式主范式的步骤</h2><h3 id="1-求公式主析取范式的步骤"><a href="#1-求公式主析取范式的步骤" class="headerlink" title="1.求公式主析取范式的步骤"></a>1.求公式主析取范式的步骤</h3><p><strong>先求出析取范式，再变换成主析取范式</strong></p>
+<p>设公式$A$含命题变项$p_1, p_2,…, p_n$</p>
+<ul>
+<li><p>(1) 求$A$的析取范式$A’=B_1 \vee B_2 \vee … \vee B_s$ , 其中$B_j$是<strong>简单合取式</strong> ，$j=1,2, … ,s$</p>
+</li>
+<li><p>(2) <strong>（每一个简单合取式变为极小项——合取1来补项）</strong></p>
+<p>若某个$B_j$既不含$p_i$, 又不含$\neg p_i$, 则将$B_j$展开成：$B_j \Leftrightarrow B_j \land 1 \Leftrightarrow B_j \land (p_i \vee \neg p_i) \Leftrightarrow (B_j \land p_i) \vee (B_j \land \neg p_i)$</p>
+<p>重复这个过程, 直到<strong>所有简单合取式都是长度为n的极小项</strong>为止</p>
+</li>
+<li><p>(3) <strong>消去重复出现的极小项</strong>, 即用$m_i$代替$m_i \vee m_i$ </p>
+</li>
+<li><p>(4) 将极小项按下标从小到大<strong>排列</strong></p>
+</li>
+</ul>
+<h3 id="2-求公式主合取范式的步骤"><a href="#2-求公式主合取范式的步骤" class="headerlink" title="2.求公式主合取范式的步骤"></a>2.求公式主合取范式的步骤</h3><p><strong>先求出合取范式，再变换成主合取范式</strong></p>
+<p>设公式$A$含命题变项$p_1, p_2,…, p_n$</p>
+<ul>
+<li><p>(1) 求$A$的合取范式$A’=B_1 \land  B_2 \land … \land B_s$ , 其中$B_j$是<strong>简单析取式</strong> ，$j=1,2, … ,s$</p>
+</li>
+<li><p>(2)<strong>（补项——析取0）</strong></p>
+<p>若某个$B_j$既不含$p_i$, 又不含$\neg p_i$, 则将$B_j$展开成：$B_j \Leftrightarrow B_j \vee 0 \Leftrightarrow B_j \vee (p_i \land \neg p_i) \Leftrightarrow (B_j \vee p_i) \land (B_j \vee \neg p_i)$</p>
+<p>重复这个过程, 直到<strong>所有简单析取式都是长度为n的极大项</strong>为止</p>
+</li>
+<li><p>(3)<strong>消去重复出现的极大项</strong>， 即用$M_i$代替$M_i \land M_i$ </p>
+</li>
+<li><p>(4) 将极大项按下标从小到大<strong>排列</strong></p>
+</li>
+</ul>
+<p>【实例】</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304083543458.png" alt="image-20220304083543458" style="zoom:50%;" /></p>
+<p><strong>我觉得可以使用卡诺图</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">p\qr</th>
+<th style="text-align:center">00</th>
+<th style="text-align:center">01</th>
+<th style="text-align:center">11</th>
+<th style="text-align:center">10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>0</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>1</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>主析取范式：成真赋值为1的项</p>
+<p>主合取范式：成假赋值为0的项</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304083604370.png" alt="image-20220304083604370" style="zoom:50%;" /></p>
+<p><strong>关注主析取范式和主合取范式出现项的下标的关系</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304083622774.png" alt="image-20220304083622774" style="zoom:50%;" /></p>
+<h2 id="由主析（合）取范式确定主合（析）取范式"><a href="#由主析（合）取范式确定主合（析）取范式" class="headerlink" title="由主析（合）取范式确定主合（析）取范式"></a>由主析（合）取范式确定主合（析）取范式</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230604125.png" alt="image-20220303230604125" style="zoom: 50%;" /></p>
+<h2 id="用成真和成假赋值确定主范式"><a href="#用成真和成假赋值确定主范式" class="headerlink" title="用成真和成假赋值确定主范式"></a>用成真和成假赋值确定主范式</h2><p>已知成真赋值，则知道有多少个最小项。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230652029.png" alt="image-20220303230652029" style="zoom: 50%;" /></p>
+<h2 id="主范式的应用"><a href="#主范式的应用" class="headerlink" title="主范式的应用"></a>主范式的应用</h2><h3 id="1-求公式的成真成假赋值"><a href="#1-求公式的成真成假赋值" class="headerlink" title="(1)求公式的成真成假赋值"></a>(1)求公式的成真成假赋值</h3><p>设公式$A$含$n$个命题变项, $A$的主析取范式有<strong>$s$个极小项</strong>, 则$A$有<strong>$s$个成真赋值</strong>, 它们是极小项下标的二进制表示, <strong>其余$2^n-s$个赋值都是成假赋值</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230838562.png" alt="image-20220303230838562" style="zoom:67%;" /></p>
+<h3 id="2-判断公式的类型"><a href="#2-判断公式的类型" class="headerlink" title="(2)判断公式的类型"></a>(2)判断公式的类型</h3><p>根据极小项或成真赋值的个数</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230918268.png" alt="image-20220303230918268" style="zoom:67%;" /></p>
+<ul>
+<li>重言式：全部赋值为成真赋值</li>
+<li>矛盾式：全部赋值为成假赋值</li>
+<li>非重言的可满足式：<ul>
+<li>至少一个成真赋值</li>
+<li>至少一个成假赋值</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230949648.png" alt="image-20220303230949648" style="zoom: 50%;" /></p>
+<h3 id="3-判断两个公式是否等值"><a href="#3-判断两个公式是否等值" class="headerlink" title="3.判断两个公式是否等值"></a>3.判断两个公式是否等值</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231031287.png" alt="image-20220303231031287" style="zoom: 50%;" /></p>
+<h3 id="4-解实际问题"><a href="#4-解实际问题" class="headerlink" title="4.解实际问题"></a>4.解实际问题</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231044612.png" alt="image-20220303231044612" style="zoom: 50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231059094.png" alt="image-20220303231059094" style="zoom: 50%;" /></p>
+<h1 id="3-2-n元真值函数"><a href="#3-2-n元真值函数" class="headerlink" title="3.2 n元真值函数"></a>3.2 n元真值函数</h1><ul>
+<li><p><strong>定义3</strong>：称$F:${0,1}$^n \to$ {0,1}为<strong>n元真值函数</strong></p>
+<blockquote>
+<p>例如，3元真值函数$F(x,y,z) = \begin{cases} 0 \\ 1 \\ \end{cases}$</p>
+<ul>
+<li>有3个变量</li>
+<li>每个变量的取值只能是0或1</li>
+<li>每一组符号串的函数值为0或1</li>
+</ul>
+<p>000，001，010，011，100，101，110，111——8个符号串</p>
+<p>000的函数值可能为0 or 1</p>
+</blockquote>
+<p>$F(p_1,p_2,…p_n) = \begin{cases} 0 \\ 1 \end{cases}$</p>
+<ul>
+<li><p>n个命题变量$p_1,p_2,…,p_n$的取值方式有$2^n$种</p>
+</li>
+<li><p>每一组取值对应的函数值可能为0或1，有2种</p>
+</li>
+</ul>
+<p><strong>共$2^{2^n}$个n元真值函数</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231356068.png" alt="image-20220303231356068" style="zoom:67%;" /></p>
+</li>
+</ul>
+<h2 id="1元真值函数"><a href="#1元真值函数" class="headerlink" title="1元真值函数"></a>1元真值函数</h2><ul>
+<li>由1个命题变项p形成的极小项与极大项</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304092048665.png" alt="image-20220304092048665" style="zoom: 67%;" /></p>
+<p>1元真值函数一共有$2^{2^1} = 4$种命题公式</p>
+<blockquote>
+<p>横着看：有4个真值函数——对应$m_0 \vee m_1的四种取值组合——主析取范式$</p>
+<ul>
+<li>第一列：永假式真值表：$\neg m_0 \vee \neg m_1$</li>
+<li>第二列：$p$：$\neg m_0 \vee m_1$</li>
+<li>第三列：$\neg p$：$m_0  \vee \neg  m_1$</li>
+<li>第四列：永真式：$m_0 \vee m_1$</li>
+</ul>
+<p>竖着看：真值函数的取值$p$</p>
+<ul>
+<li>第一行：$p$</li>
+<li>第二行：$\neg p$</li>
+</ul>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304092346111.png" alt="image-20220304092346111" style="zoom:67%;" /></p>
+<h2 id="2元真值函数"><a href="#2元真值函数" class="headerlink" title="2元真值函数"></a>2元真值函数</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304093005762.png" alt="image-20220304093005762" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304093027553.png" alt="image-20220304093027553" style="zoom:67%;" /></p>
+<h2 id="公式与真值函数"><a href="#公式与真值函数" class="headerlink" title="公式与真值函数"></a>公式与真值函数</h2><ul>
+<li>任何一个含n个命题变项的命题公式$A$都对应惟一的一个n元真值函数$ F $，$ F $恰好为$A$的真值表。</li>
+<li><strong>等值的公式</strong>对应的<strong>真值函数</strong>相同。</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304093448005.png" alt="image-20220304093448005" style="zoom:50%;" /></p>
+<h1 id="3-3-联结词的完备集"><a href="#3-3-联结词的完备集" class="headerlink" title="3.3 联结词的完备集"></a>3.3 联结词的完备集</h1><ul>
+<li><strong>定义4</strong>：设$S$是一个联结词集合，如果任何$n(n \geq 1)$ 元真值函数都可以由仅含$S$中的联结词构成的公式表示，则称$S$是<strong>联结词完备集</strong><ul>
+<li>若$S$是联结词完备集, 则任何命题公式都可由$S$中的联结词表示</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>与能够用或非表示，则它们是完备的</p>
+</blockquote>
+<ul>
+<li><strong>定义5</strong>：</li>
+</ul>
 ]]></content>
       <tags>
         <tag>mathematical logic</tag>
