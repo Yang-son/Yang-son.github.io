@@ -561,278 +561,6 @@ f_{n} = f_{n-1} + f_{n-2} \quad ,n \geq 3 \qquad(5-2) \\
       </tags>
   </entry>
   <entry>
-    <title>算法设计与分析：第4章 蛮力法</title>
-    <url>/algorithm/algorithm-ch4/</url>
-    <content><![CDATA[<p><strong>蛮力法（brute force）</strong>：直接基于问题的描述和所涉及的概念定义的进行算法设计，简单而直接。</p>
-<p>使用蛮力法：</p>
-<ol>
-<li>所能解决的问题跨越的领域非常广泛；</li>
-<li>对于一些重要的问题，运用蛮力策略可以设计出具备一定实用价值的算法，而且不用限制实例的规模；</li>
-<li>当要解决的问题实例不多并且可以接受蛮力法的运算速度时，蛮力法的设计代价通常较为低廉；</li>
-<li>蛮力算法可以作为衡量其它算法的准绳，服务于研究或教学</li>
-</ol>
-<span id="more"></span>
-<blockquote>
-<p>蛮力法中：</p>
-<p>顺序查找的时间复杂度为$O(n)$</p>
-<p>BF 算法的时间复杂度为$O(n*m)$</p>
-<p>KMP算法的时间复杂度为$O(n)$</p>
-<p>选择和冒炮排序的时间复杂性$O(n*n)$                     </p>
-<p>0/1背包问题的时间复杂性$O(2^n)$</p>
-<p>任务分配问题的时间复杂性$O(n!)$</p>
-<p>哈密顿回路的时间复杂性$O(n!)$</p>
-<p>TSP问题的时间复杂性$O(n!)$</p>
-</blockquote>
-<h2 id="4-1-枚举法"><a href="#4-1-枚举法" class="headerlink" title="4.1 枚举法"></a>4.1 枚举法</h2><p>枚举法的<strong>算法框架</strong>可表示如下：</p>
-<ul>
-<li>(1) 依据问题，设定枚举范围；</li>
-<li>(2) 找出约束条件，建立计算模型；</li>
-<li>(3) 利用计算模型在枚举范围内搜索可能的解。</li>
-</ul>
-<blockquote>
-<p>枚举范围的设定将决定算法效率</p>
-</blockquote>
-<h4 id="【例4-1】统计链环数字对"><a href="#【例4-1】统计链环数字对" class="headerlink" title="【例4-1】统计链环数字对"></a>【例4-1】统计链环数字对</h4><p>输入$n$个数字(在$0$与$9$之间)，然后统计出这组数中相邻两个数字组成的链环数字对出现的次数。如：$n=20$,输入为：0 1 5 9 8 7 2 2 2 3 2 7 8 7 8 7 9 6 5 9，则输出为$(7,8)=2, (8,7)=3,(7,2)=1,(2,7)=1,(2,2)=2,(2,3)=1,(3,2)=1$</p>
-<ul>
-<li><p>问题分析</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311194123070.png" alt="image-20220311194123070" style="zoom: 67%;" /></p>
-</li>
-<li><p>计算模型</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311194254404.png" alt="image-20220311194254404" style="zoom: 67%;" /></p>
-</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311194334117.png" alt="image-20220311194334117" style="zoom: 67%;" /></p>
-<ul>
-<li><p>算法设计与描述</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311194406005.png" alt="image-20220311194406005" style="zoom: 80%;" /></p>
-</li>
-<li><p>算法实现</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 10</span></span><br><span class="line"><span class="type">int</span> ans[N][N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n, x1, x2; cin &gt;&gt; n;</span><br><span class="line">    <span class="built_in">memset</span>(ans, <span class="number">0</span>, <span class="built_in">sizeof</span>(ans));</span><br><span class="line">    <span class="comment">// 统计</span></span><br><span class="line">    cin &gt;&gt; x1;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; x2; ans[x1][x2]++;</span><br><span class="line">        x1 = x2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 输出</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = i; j &lt; N; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ans[i][j] &amp;&amp; ans[j][i]) &#123;</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;pair(&quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot;,&quot;</span> &lt;&lt; j &lt;&lt; <span class="string">&quot;):&quot;</span> &lt;&lt; <span class="built_in">min</span>(ans[i][j],ans[j][i]) &lt;&lt; endl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">20</span></span><br><span class="line"><span class="comment">0 1 5 9 8 7 2 2 2 3 2 7 8 7 8 7 9 6 5 9</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>运行截图</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314083452362.png" alt="image-20220314083452362" style="zoom: 80%;" /></p>
-</li>
-</ul>
-</li>
-<li><p>算法分析</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311194438312.png" alt="image-20220311194438312"  /></p>
-</li>
-</ul>
-<h4 id="【例4-2】解数字谜："><a href="#【例4-2】解数字谜：" class="headerlink" title="【例4-2】解数字谜："></a>【例4-2】解数字谜：</h4><script type="math/tex; mode=display">
-\begin{array}{r}
-ABCAB \\
-\times \qquad \qquad A \\
-\hline 
-DDDDDD
-
-\end{array}</script><ul>
-<li><p>问题分析</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311194931735.png" alt="image-20220311194931735" style="zoom: 67%;" /></p>
-</li>
-<li><p>计算模型</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311194959093.png" alt="image-20220311194959093" style="zoom: 80%;" /></p>
-</li>
-<li><p>算法设计</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311195030778.png" alt="image-20220311195030778" style="zoom: 80%;" /></p>
-</li>
-<li><p>算法实现</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fun1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> a, ans; <span class="type">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">30000</span>; i &lt;= <span class="number">99999</span>; i++) &#123;  <span class="comment">// 从30000-99999进行枚举</span></span><br><span class="line">        <span class="keyword">if</span> (i/<span class="number">10000</span> == (i/<span class="number">10</span>)%<span class="number">10</span>) &#123;</span><br><span class="line">            a = i/<span class="number">10000</span>;</span><br><span class="line">            ans = a*i;</span><br><span class="line">            <span class="keyword">if</span> (ans % <span class="number">111111</span> == <span class="number">0</span>)  cout &lt;&lt; i &lt;&lt; <span class="string">&quot; * &quot;</span> &lt;&lt; a &lt;&lt; <span class="string">&quot; = &quot;</span> &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fun2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">3</span>; i &lt;= <span class="number">9</span>; i++) &#123;  <span class="comment">// 枚举a</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">9</span>; j++) &#123;  <span class="comment">// 枚举b</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt;= <span class="number">9</span>; k++) &#123;  <span class="comment">// 枚举c</span></span><br><span class="line">                ans = i*<span class="number">10010</span> + j*<span class="number">1001</span> + k*<span class="number">100</span>;</span><br><span class="line">                <span class="keyword">if</span> (ans * i % <span class="number">111111</span> == <span class="number">0</span>)  cout &lt;&lt; ans &lt;&lt; <span class="string">&quot; * &quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot; = &quot;</span> &lt;&lt; ans*i &lt;&lt; endl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fun3</span><span class="params">()</span> </span>&#123;   <span class="comment">// 除法枚举</span></span><br><span class="line">    <span class="type">int</span> a, f[<span class="number">5</span>], sum, ans;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> d = <span class="number">1</span>; d &lt;= <span class="number">9</span>; d++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (a = <span class="number">3</span>; a &lt;= <span class="number">9</span>; a++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (d*<span class="number">111111</span> % a == <span class="number">0</span> &amp;&amp; d*<span class="number">111111</span> / a &lt; <span class="number">1e5</span>) &#123;</span><br><span class="line">                ans = sum = d*<span class="number">111111</span> / a; <span class="type">int</span> index = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span> (sum) &#123;</span><br><span class="line">                    f[index++] = sum % <span class="number">10</span>;</span><br><span class="line">                    sum /= <span class="number">10</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (f[<span class="number">0</span>] == f[<span class="number">3</span>] &amp;&amp; f[<span class="number">1</span>] == a &amp;&amp; f[<span class="number">4</span>] == a) cout &lt;&lt; ans &lt;&lt; <span class="string">&quot; * &quot;</span> &lt;&lt; a &lt;&lt; <span class="string">&quot; = &quot;</span> &lt;&lt; d*<span class="number">111111</span> &lt;&lt; endl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">fun1</span>();</span><br><span class="line">    <span class="built_in">fun2</span>();</span><br><span class="line">    <span class="built_in">fun3</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>【思考题】</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314084531244.png" alt="img" style="zoom:50%;" /></p>
-<ul>
-<li><p>算法模型</p>
-<ul>
-<li><p>通过列举Z、L、T三个人的一条预测，建立学生-名次的二维矩阵。</p>
-<p>每个人的预测都有两条，一共有$2^3 = 8$种预测结果。</p>
-</li>
-<li><p>接下来考虑题目的限制条件来筛选预测结果：①每个人说对了一半；②没有并列名次</p>
-</li>
-<li><p>因此需要枚举这8种情况，通过3重for循环语句，获得每一种预测结果。</p>
-<p>筛选时出现对<strong>同一个学生</strong>的预测或者预测的<strong>成绩相同</strong>时，该种预测结果肯定是错误的，<strong>应当排除</strong>。</p>
-</li>
-<li><p>对于正确的预测，4个人有3个人都对应着正确的结果。那么一定会<strong>有一个人没有给出名次</strong>。可以通过计算获得这个没有被预测出名次的学生和他的名次。</p>
-</li>
-</ul>
-</li>
-<li><p>算法实现</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; stu;	<span class="comment">// 姓名-名次的数对</span></span><br><span class="line">stu res[<span class="number">4</span>][<span class="number">3</span>];	<span class="comment">// 存放Z、L、T的预测结果</span></span><br><span class="line"><span class="type">bool</span> flag[<span class="number">5</span>][<span class="number">5</span>];	<span class="comment">// 学生-名次二维矩阵</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">3</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">2</span>; j++) &#123;</span><br><span class="line">            cin &gt;&gt; res[i][j].first &gt;&gt; res[i][j].second;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(flag, <span class="literal">false</span>, <span class="built_in">sizeof</span>(flag));</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">2</span>; i++) &#123;  <span class="comment">// Z的预测</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">2</span>; j++) &#123;  <span class="comment">// L的预测</span></span><br><span class="line">            <span class="comment">// 预测相同的人或者相同的名次，直接跳过</span></span><br><span class="line">            <span class="keyword">if</span> (res[<span class="number">1</span>][i].first == res[<span class="number">2</span>][j].first || res[<span class="number">1</span>][i].second == res[<span class="number">2</span>][j].second) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">1</span>; k &lt;= <span class="number">2</span>; k++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (res[<span class="number">3</span>][k].first == res[<span class="number">2</span>][j].first ||</span><br><span class="line">                    res[<span class="number">3</span>][k].second == res[<span class="number">2</span>][j].second) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span> (res[<span class="number">3</span>][k].first == res[<span class="number">1</span>][i].first </span><br><span class="line">                    || res[<span class="number">3</span>][k].second == res[<span class="number">1</span>][i].second) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="type">int</span> name = <span class="number">1</span>+<span class="number">2</span>+<span class="number">3</span>+<span class="number">4</span>, rank = <span class="number">1</span>+<span class="number">2</span>+<span class="number">3</span>+<span class="number">4</span>;</span><br><span class="line">                flag[res[<span class="number">1</span>][i].first][res[<span class="number">1</span>][i].second] = <span class="literal">true</span>;</span><br><span class="line">                flag[res[<span class="number">2</span>][j].first][res[<span class="number">2</span>][j].second] = <span class="literal">true</span>;</span><br><span class="line">                flag[res[<span class="number">3</span>][k].first][res[<span class="number">3</span>][k].second] = <span class="literal">true</span>;</span><br><span class="line">                name -= (res[<span class="number">1</span>][i].first + res[<span class="number">2</span>][j].first + res[<span class="number">3</span>][k].first);</span><br><span class="line">                rank -= (res[<span class="number">1</span>][i].second+ res[<span class="number">2</span>][j].second + res[<span class="number">3</span>][k].second);</span><br><span class="line">                flag[name][rank] = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> a = <span class="number">1</span>; a &lt;= <span class="number">4</span>; a++) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> b = <span class="number">1</span>; b &lt;= <span class="number">4</span>; b++) &#123;</span><br><span class="line">                        <span class="built_in">printf</span>(<span class="string">&quot;%2d&quot;</span>,flag[a][b]);</span><br><span class="line">                    &#125;</span><br><span class="line">                    cout &lt;&lt; endl;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1 1 2 3</span></span><br><span class="line"><span class="comment">3 1 4 4</span></span><br><span class="line"><span class="comment">4 2 1 3</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>算法分析</p>
-<p>时间复杂度主要来源有两个：输入Z、L、T的预测结果+对预测结果的枚举与结果的输出</p>
-<script type="math/tex; mode=display">
-T(n) = \sum_{i = 1}^{3} \sum_{j = 1}^{2}c_1 + \sum_{i = 1}^{2} \sum_{j = 1}^{2} \sum_{k = 1}^{2}(c_2+\sum_{a = 1}^{4} \sum_{b = 1}^{4}1)</script><p>显然，时间复杂度与$n$无关，$T(n) = \Theta(1)$，为常数级。</p>
-</li>
-<li><p>算法测试</p>
-<ul>
-<li><p>运行结果</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314134334608.png" alt="image-20220314134334608" style="zoom: 80%;" /></p>
-<p>|        |  1   |  2   |  3   |  4   |<br>| :——: | :—: | :—: | :—: | :—: |<br>| <strong>甲</strong> |  0   |  0   |  0   |  1   |<br>| <strong>乙</strong> |  0   |  0   |  1   |  0   |<br>| <strong>丙</strong> |  1   |  0   |  0   |  0   |<br>| <strong>丁</strong> |  0   |  1   |  0   |  0   |</p>
-<p>从结果来看，<strong>第一名：丙；第二名：丁；第三名：乙；第四名：甲</strong></p>
-</li>
-<li><p>测试枚举的每一种情况</p>
-<ul>
-<li>测试代码</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">memset</span>(flag, <span class="literal">false</span>, <span class="built_in">sizeof</span>(flag));</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">2</span>; i++) &#123;  <span class="comment">// Z的预测</span></span><br><span class="line">    flag[res[<span class="number">1</span>][i].first][res[<span class="number">1</span>][i].second] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">2</span>; j++) &#123;  <span class="comment">// L的预测</span></span><br><span class="line">        flag[res[<span class="number">2</span>][j].first][res[<span class="number">2</span>][j].second] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">1</span>; k &lt;= <span class="number">2</span>; k++) &#123;  <span class="comment">// T的预测</span></span><br><span class="line">            flag[res[<span class="number">3</span>][k].first][res[<span class="number">3</span>][k].second] = <span class="literal">true</span>;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;#Case&quot;</span> &lt;&lt; k+(j<span class="number">-1</span>)*<span class="number">2</span>+(i<span class="number">-1</span>)*<span class="number">4</span> &lt;&lt; <span class="string">&quot;:&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> a = <span class="number">1</span>; a &lt;= <span class="number">4</span>; a++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> b = <span class="number">1</span>; b &lt;= <span class="number">4</span>; b++) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;%2d&quot;</span>,flag[a][b]);</span><br><span class="line">                &#125;</span><br><span class="line">                cout &lt;&lt; endl;</span><br><span class="line">            &#125;</span><br><span class="line">            cout &lt;&lt; endl;</span><br><span class="line">            flag[res[<span class="number">3</span>][k].first][res[<span class="number">3</span>][k].second] = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        flag[res[<span class="number">2</span>][j].first][res[<span class="number">2</span>][j].second] = <span class="literal">false</span>;</span><br><span class="line">    &#125;  </span><br><span class="line">    flag[res[<span class="number">1</span>][i].first][res[<span class="number">1</span>][i].second] = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>运行截图</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314134935416.png" alt="image-20220314134935416" style="zoom: 80%;" /></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="【例4-3】输出玫瑰矩阵"><a href="#【例4-3】输出玫瑰矩阵" class="headerlink" title="【例4-3】输出玫瑰矩阵"></a>【例4-3】输出玫瑰矩阵</h4><p>其为n*n的方阵，特征如下所示：</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311195234487.png" alt="image-20220311195234487" style="zoom: 80%;" /></p>
-<ul>
-<li><p>问题分析</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314090302815.png" alt="image-20220314090302815" style="zoom: 80%;" /></p>
-</li>
-<li><p>计算模型</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314090959231.png" alt="image-20220314090959231" style="zoom: 80%;" /></p>
-</li>
-<li><p>算法设计与描述</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314091040317.png" alt="image-20220314091040317"  /></p>
-</li>
-<li><p>算法实现</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 100</span></span><br><span class="line"><span class="type">int</span> ans[MAXN][MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n; cin &gt;&gt; n;</span><br><span class="line">    <span class="built_in">memset</span>(ans,<span class="number">0</span>,<span class="built_in">sizeof</span>(ans));</span><br><span class="line">    <span class="type">int</span> num = <span class="number">0</span>, dir = <span class="number">0</span>;   <span class="comment">// 方向：0下，1右，2上，3左</span></span><br><span class="line">    <span class="type">int</span> row = <span class="number">-1</span>, column = <span class="number">0</span>;    <span class="comment">// 行、列</span></span><br><span class="line">    <span class="keyword">while</span> (num &lt; n*n) &#123;</span><br><span class="line">        <span class="keyword">switch</span> (dir) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">                ans[++row][column] = ++num;</span><br><span class="line">                <span class="keyword">if</span> (row == n<span class="number">-1</span> || ans[row+<span class="number">1</span>][column] != <span class="number">0</span>) dir = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                ans[row][++column] = ++num;</span><br><span class="line">                <span class="keyword">if</span> (column == n<span class="number">-1</span> || ans[row][column+<span class="number">1</span>] != <span class="number">0</span>) dir = <span class="number">2</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">                ans[--row][column] = ++num;</span><br><span class="line">                <span class="keyword">if</span> (row == <span class="number">0</span> || ans[row<span class="number">-1</span>][column] != <span class="number">0</span>) dir = <span class="number">3</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">                ans[row][--column] = ++num;</span><br><span class="line">                <span class="keyword">if</span> (column == <span class="number">0</span> || ans[row][column<span class="number">-1</span>] != <span class="number">0</span>) dir = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%3d&quot;</span>,ans[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>运行截图</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311214128075.png" alt="image-20220311214128075"></p>
-</li>
-</ul>
-</li>
-<li><p>算法分析</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314091337680.png" alt="image-20220314091337680"  /></p>
-</li>
-</ul>
-<p>【思考题】</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314091535619.png" alt="img" style="zoom:80%;" /></p>
-<p><strong>算法实现</strong></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 101</span></span><br><span class="line"><span class="type">int</span> ans[MAXN][MAXN];</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> x[<span class="number">4</span>] = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">-1</span>&#125;;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> y[<span class="number">4</span>] = &#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">-1</span>,<span class="number">0</span>&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n, num = <span class="number">1</span>, i = <span class="number">0</span>, j = <span class="number">0</span>, t = <span class="number">0</span>, nx, ny; cin &gt;&gt; n;</span><br><span class="line">    <span class="built_in">memset</span>(ans, <span class="number">0</span>, <span class="built_in">sizeof</span>(ans));</span><br><span class="line">    <span class="keyword">while</span> (num &lt;= n*n) &#123;</span><br><span class="line">        ans[i][j] = num++;  nx = i+x[t]; ny = j+y[t];	<span class="comment">// 推算下个位置</span></span><br><span class="line">        <span class="keyword">if</span> (ans[nx][ny] != <span class="number">0</span> || nx &lt; <span class="number">0</span> || nx == n || ny &lt; <span class="number">0</span> || ny == n) &#123;	<span class="comment">// 到达边界，更换方向</span></span><br><span class="line">            t = (t+<span class="number">1</span>) % <span class="number">4</span>; nx = i+x[t]; ny = j+y[t];	<span class="comment">// 更新下一个位置</span></span><br><span class="line">        &#125;</span><br><span class="line">        i = nx; j = ny;	<span class="comment">// 赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++) <span class="built_in">printf</span>(<span class="string">&quot;%3d&quot;</span>,ans[i][j]);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行截图</p>
-<p>$n = 4$</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314142645062.png" alt="image-20220314142645062"  /></p>
-<p>$n = 5$</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314142724351.png" alt="image-20220314142724351"  /></p>
-<h2 id="4-2-穷举查找"><a href="#4-2-穷举查找" class="headerlink" title="4.2 穷举查找"></a>4.2 穷举查找</h2><p>有一些求最优解的问题经过抽象，可以转换为组合优化问题，使用蛮力法来求解是一种简单的方法，称之为穷举查找（exhaustive search）</p>
-<h4 id="【例4-4】旅行商问题-traveling-salesman-problem，TSP"><a href="#【例4-4】旅行商问题-traveling-salesman-problem，TSP" class="headerlink" title="【例4-4】旅行商问题(traveling salesman problem，TSP)"></a>【例4-4】旅行商问题(traveling salesman problem，TSP)</h4><p> 有一个旅行商由某市出发，经过所有给定的n个城市后，再回到出发的城市。除了出发的城市外，其它城市只经过一回。这样的回路可能有多个，求其中路径成本最小的回路。</p>
-<ul>
-<li><p>问题分析</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314092046576.png" alt="image-20220314092046576" style="zoom: 80%;" /></p>
-</li>
-<li><p>计算模型</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314092431991.png" alt="image-20220314092431991" style="zoom: 80%;" /></p>
-</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314092517797.png" alt="image-20220314092517797" style="zoom: 50%;" /></p>
-<script type="math/tex; mode=display">
-\begin{cases}
-最优值：最大值 \\
-最优解：路径
-\end{cases}</script><ul>
-<li><p>算法设计与描述</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314092813381.png" alt="image-20220314092813381" style="zoom:40%;" /></p>
-</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314093454052.png" alt="image-20220314093454052" style="zoom:40%;" /></p>
-<blockquote>
-<p>注意：交换产生全排，交换后要回归</p>
-</blockquote>
-<script type="math/tex; mode=display">
-推导：\\
-T(n) = \sum_{i = 0}^{n-1}T(i+1) + C \\
-=</script><p>【思考题】</p>
-<p><img src="D:\ChengYangX\Study\University\Sophomore\Spring\算法分析与设计\2022\作业\20220314\image-20220314093626544.png" alt="image-20220314093626544" style="zoom: 50%;" /></p>
-<h4 id="【例4-5】背包问题"><a href="#【例4-5】背包问题" class="headerlink" title="【例4-5】背包问题"></a>【例4-5】背包问题</h4><p>给定$n$个重量为$w_1, w_2,…w_n$，价值为$v_1, v_2,…v_n$的物品和一个承重为$W$的背包，求将这些物品中的某些装入背包中，在不超出重量$W$的情况下，价值最高的装法。</p>
-<p><strong>问题分析</strong></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314093855273.png" alt="image-20220314093855273" style="zoom: 80%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314094239604.png" alt="image-20220314094239604" style="zoom:40%;" /></p>
-<p><strong>计算模型</strong></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314094352274.png" alt="image-20220314094352274" style="zoom: 50%;" /></p>
-<p><strong>算法实现</strong></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 1000</span></span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> sum_v = <span class="number">0</span>, sum_w = <span class="number">0</span>, W = <span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> r[MAXN] = &#123;<span class="number">0</span>&#125;, ans;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">item</span> &#123;</span><br><span class="line">    <span class="type">int</span> v, w;</span><br><span class="line">    <span class="type">int</span> flag;</span><br><span class="line">&#125;a[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 记录当前被选择的物品——当前最优子集合</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">record</span><span class="params">(<span class="type">int</span> sum_v)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> count = <span class="number">0</span>;  <span class="comment">// 被选择的物品的个数</span></span><br><span class="line">    r[<span class="number">0</span>] = sum_v;   <span class="comment">// r是最优子集合</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i].flag) &#123;    <span class="comment">// 第i个物品被选中</span></span><br><span class="line">            count++;</span><br><span class="line">            r[count] = i;   <span class="comment">// 表示第count个被选择的物品是i</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">knaps</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 超重终止条件</span></span><br><span class="line">    <span class="keyword">if</span> (sum_w &gt; W) <span class="keyword">return</span>;</span><br><span class="line">    <span class="comment">// 记录较优解，最终留下的为最优解</span></span><br><span class="line">    <span class="keyword">if</span> (sum_v &gt; r[<span class="number">0</span>]) &#123;</span><br><span class="line">        cout &lt;&lt; r[<span class="number">0</span>] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">        ans = <span class="built_in">record</span>(sum_v);</span><br><span class="line">        cout &lt;&lt; sum_v &lt;&lt;  <span class="string">&quot; &quot;</span> &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = x; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="comment">// 加上第i件物品</span></span><br><span class="line">        sum_v += a[i].v;</span><br><span class="line">        sum_w += a[i].w;</span><br><span class="line">        a[i].flag = <span class="number">1</span>;	<span class="comment">// 表明物品被装载</span></span><br><span class="line">        <span class="built_in">knaps</span>(i+<span class="number">1</span>); <span class="comment">// 递归处理下一个物品</span></span><br><span class="line">        <span class="comment">// 减去第i件物品</span></span><br><span class="line">        sum_v -= a[i].v;</span><br><span class="line">        sum_w -= a[i].w;</span><br><span class="line">        a[i].flag = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; W;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; a[i].w &gt;&gt; a[i].v;</span><br><span class="line">        a[i].flag = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">knaps</span>(<span class="number">0</span>);</span><br><span class="line">    cout &lt;&lt; r[<span class="number">0</span>] &lt;&lt; endl;</span><br><span class="line">    <span class="comment">// cout &lt;&lt; ans &lt;&lt; endl;</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        cout &lt;&lt; r[i] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行截图</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220315193217592.png" alt="image-20220315193217592" style="zoom:80%;" /></p>
-<p>【参考资料】<a href="https://zhuanlan.zhihu.com/p/345364527">咱就把0-1背包问题讲个通透！</a></p>
-<p>算法分析</p>
-<p>时间复杂度：按照组合问题分</p>
-<h2 id="4-3-图的搜索"><a href="#4-3-图的搜索" class="headerlink" title="4.3 图的搜索"></a>4.3 图的搜索</h2><ul>
-<li><p>深度优先查找</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316081952841.png" alt="image-20220316081952841" style="zoom: 80%;" /></p>
-</li>
-<li><p>广度优先查找</p>
-</li>
-</ul>
-<h3 id="（1）DFS"><a href="#（1）DFS" class="headerlink" title="（1）DFS"></a>（1）DFS</h3><ul>
-<li><p>算法设计与分析</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316082046492.png" alt="image-20220316082046492"  /></p>
-</li>
-</ul>
-<blockquote>
-<p>注：使用邻接表，时间复杂度为$O(n+e)$，使用邻接矩阵则时间复杂度为$O(n^2)$</p>
-</blockquote>
-<h4 id="【例4-6】迷宫问题"><a href="#【例4-6】迷宫问题" class="headerlink" title="【例4-6】迷宫问题"></a>【例4-6】迷宫问题</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316082913156.png" alt="image-20220316082913156" style="zoom:80%;" /></p>
-<blockquote>
-<p>加入最外层围墙简化边界判断</p>
-</blockquote>
-<ul>
-<li><p>问题分析</p>
-<ul>
-<li>迷宫存储</li>
-<li>移动</li>
-</ul>
-</li>
-<li><p>计算模型</p>
-<p>（1）存储</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316083217729.png" alt="image-20220316083217729" style="zoom:67%;" /></p>
-</li>
-<li><p>算法设计与描述</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316083401573.png" alt="image-20220316083401573" style="zoom:80%;" /></p>
-</li>
-<li><p>算法分析</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316083448041.png" alt="image-20220316083448041" style="zoom: 80%;" /></p>
-</li>
-</ul>
-<h3 id="（2）BFS"><a href="#（2）BFS" class="headerlink" title="（2）BFS"></a>（2）BFS</h3><ul>
-<li><p>算法设计与分析</p>
-<p>先让顶点入队并置访问标志，判断队列是否为空。队头出队，遍历所有顶点观察是否已被访问。若未被访问则入队</p>
-</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316083744651.png" alt="image-20220316083744651" style="zoom:67%;" /></p>
-<p>【思考题】</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316083801855.png" alt="image-20220316083801855" style="zoom:67%;" /></p>
-<p>【三壶问题】</p>
-<ul>
-<li><p>算法实现</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN[<span class="number">3</span>] = &#123;<span class="number">3</span>,<span class="number">5</span>,<span class="number">8</span>&#125;;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">State</span> &#123;</span><br><span class="line">    <span class="type">int</span> val[<span class="number">3</span>]; <span class="comment">// 分别表示三个容器</span></span><br><span class="line">    State *pre; <span class="comment">// 保留前驱</span></span><br><span class="line">    <span class="built_in">State</span>(<span class="type">int</span> v0, <span class="type">int</span> v1, <span class="type">int</span> v2) &#123;  <span class="comment">// 构造函数</span></span><br><span class="line">        val[<span class="number">0</span>] = v0; val[<span class="number">1</span>] = v1; val[<span class="number">2</span>] = v2;</span><br><span class="line">        pre = <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">queue&lt;State*&gt; q;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 倒水，从start转移到end</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">transfer</span><span class="params">(State *state, <span class="type">int</span> start, <span class="type">int</span> end)</span> </span>&#123;   </span><br><span class="line">    <span class="comment">// 能够装水的大小（start的储水量和end能装水的量的最小值）</span></span><br><span class="line">    <span class="type">int</span> water = <span class="built_in">min</span>(state-&gt;val[start], (MAXN[end]-state-&gt;val[end]));</span><br><span class="line">    <span class="keyword">if</span> (water == <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;   <span class="comment">// 容器之间不装水，没有变化</span></span><br><span class="line">    <span class="comment">// 转移水量</span></span><br><span class="line">    state-&gt;val[start] -= water;</span><br><span class="line">    state-&gt;val[end] += water;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">BFS</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    State *init = <span class="keyword">new</span> <span class="built_in">State</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">8</span>); <span class="comment">// 初始化起始状态</span></span><br><span class="line">    q.<span class="built_in">push</span>(init);   <span class="comment">// 入队</span></span><br><span class="line">    <span class="type">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        State *node = q.<span class="built_in">front</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;   <span class="comment">// 检查是否出现结果</span></span><br><span class="line">            <span class="keyword">if</span> (node-&gt;val[i] == <span class="number">4</span>) &#123;    <span class="comment">// BFS找到结果</span></span><br><span class="line">                <span class="keyword">for</span> (State* p = node; p != <span class="literal">nullptr</span>; p = p-&gt;pre) &#123;   <span class="comment">// 顺着前驱链表获得前驱状态</span></span><br><span class="line">                    cout &lt;&lt; p-&gt;val[<span class="number">0</span>] &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; p-&gt;val[<span class="number">1</span>] &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; p-&gt;val[<span class="number">2</span>] &lt;&lt; endl;</span><br><span class="line">                &#125;</span><br><span class="line">                flag = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (flag) <span class="keyword">break</span>;    <span class="comment">// 出现结果，停止大循环（出口）</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;   <span class="comment">// BFS</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == j) <span class="keyword">continue</span>;   <span class="comment">// 排除自己给自己装水的情况</span></span><br><span class="line">                State *newnode = <span class="keyword">new</span> <span class="built_in">State</span>(node-&gt;val[<span class="number">0</span>], node-&gt;val[<span class="number">1</span>], node-&gt;val[<span class="number">2</span>]);   <span class="comment">// 继承上一状态</span></span><br><span class="line">                <span class="built_in">transfer</span>(newnode,i,j);  <span class="comment">// 装水</span></span><br><span class="line">                newnode-&gt;pre = node;    <span class="comment">// 设置前驱</span></span><br><span class="line">                q.<span class="built_in">push</span>(newnode);    <span class="comment">// 入队</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">        q.<span class="built_in">pop</span>();    <span class="comment">// 出队</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">BFS</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>运行截图</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316140140233.png" alt="image-20220316140140233" style="zoom:80%;" /></p>
-<p>由于按照前驱查找，倒序输出结果。</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>【广度优先迷宫求解】</p>
-<ul>
-<li><p>算法实现</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 10</span></span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; pos;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span> &#123;</span><br><span class="line">    pos axis;</span><br><span class="line">    node *pre;</span><br><span class="line">    <span class="built_in">node</span>(<span class="type">int</span> x, <span class="type">int</span> y) &#123;</span><br><span class="line">        axis = <span class="built_in">make_pair</span>(x,y);</span><br><span class="line">        pre = <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">queue&lt;node*&gt; Q;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 上、下、左、右</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> fx[] = &#123;<span class="number">-1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> fy[] = &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">-1</span>,<span class="number">1</span>&#125;;</span><br><span class="line"><span class="type">int</span> maze[MAXN][MAXN] = </span><br><span class="line">&#123;</span><br><span class="line">    <span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> nextx, nexty;</span><br><span class="line">node *ans = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">mazesearch_bfs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Q.<span class="built_in">push</span>(<span class="keyword">new</span> <span class="built_in">node</span>(<span class="number">1</span>,<span class="number">1</span>));</span><br><span class="line">    <span class="keyword">while</span> (!Q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        node *n = Q.<span class="built_in">front</span>();</span><br><span class="line">        <span class="keyword">if</span> (n-&gt;axis.first == <span class="number">8</span> &amp;&amp; n-&gt;axis.second == <span class="number">8</span>) &#123;</span><br><span class="line">            ans = n;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">            nextx = n-&gt;axis.first + fx[i];</span><br><span class="line">            nexty = n-&gt;axis.second + fy[i];</span><br><span class="line">            <span class="keyword">if</span> (maze[nextx][nexty] == <span class="number">0</span>) &#123;</span><br><span class="line">                node *newnode = <span class="keyword">new</span> <span class="built_in">node</span>(nextx, nexty);</span><br><span class="line">                newnode-&gt;pre = n;</span><br><span class="line">                Q.<span class="built_in">push</span>(newnode);</span><br><span class="line">                maze[nextx][nexty] = <span class="number">3</span>; <span class="comment">// 已访问</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Q.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">mazesearch_bfs</span>();</span><br><span class="line">    <span class="keyword">while</span> (ans != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">        cout &lt;&lt; ans-&gt;axis.first &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; ans-&gt;axis.second &lt;&lt; endl;</span><br><span class="line">        ans = ans-&gt;pre;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>运行截图</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220317082233380.png" alt="image-20220317082233380" style="zoom: 80%;" /></p>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>算法设计与分析：第3章 迭代法</title>
     <url>/algorithm/algorithm-ch3/</url>
     <content><![CDATA[<h2 id="3-1-简单的迭代运算"><a href="#3-1-简单的迭代运算" class="headerlink" title="3.1 简单的迭代运算"></a>3.1 简单的迭代运算</h2><ul>
@@ -1159,202 +887,275 @@ x_1 + 3x_2 - 2x_3 = 4 \\
       </tags>
   </entry>
   <entry>
-    <title>计算机组成原理：第1章 计算机系统概论</title>
-    <url>/computer_organization/computer-organization-ch1/</url>
-    <content><![CDATA[<h1 id="1-1-计算机系统简介"><a href="#1-1-计算机系统简介" class="headerlink" title="1.1 计算机系统简介"></a>1.1 计算机系统简介</h1><h2 id="一、计算机的软硬件概念"><a href="#一、计算机的软硬件概念" class="headerlink" title="一、计算机的软硬件概念"></a>一、计算机的软硬件概念</h2><h3 id="1-计算机系统"><a href="#1-计算机系统" class="headerlink" title="1.计算机系统"></a>1.计算机系统</h3><script type="math/tex; mode=display">
-计算机系统
-\begin{cases}
-\color{red}{硬件} \quad \color{black}{计算机的实体（主机、外设等）}\\
-\color{red}{软件} \quad \color{black}{由具有各类特殊功能的信息（程序）组成}\\
-\end{cases}</script><script type="math/tex; mode=display">
-软件
-\begin{cases}
-\color{red}{系统软件} \quad \color{black}{用来管理整个计算机系统}\\
-\qquad \qquad \qquad 语言处理程序\\
-\qquad \qquad \qquad 操作系统\\
-\qquad \qquad \qquad 服务性程序\\
-\qquad \qquad \qquad 数据库管理系统\\
-\qquad \qquad \qquad 网络软件\\
-\color{red}{应用软件} \quad \color{black}{按任务需要编制成的各种程序}\\
-\end{cases}</script><span id="more"></span>
-<h3 id="2-计算机的解题过程"><a href="#2-计算机的解题过程" class="headerlink" title="2.计算机的解题过程"></a>2.计算机的解题过程</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202042609.png" alt="image-20220221202042609" style="zoom: 67%;" /></p>
-<h2 id="二、计算机系统的层次结构"><a href="#二、计算机系统的层次结构" class="headerlink" title="二、计算机系统的层次结构"></a>二、计算机系统的层次结构</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202241077.png" alt="image-20220221202241077" style="zoom:67%;" /></p>
-<p>实际机器$M_1$和微程序机器$M_0$构成硬件。</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202406326.png" alt="image-20220221202406326" style="zoom:67%;" /></p>
-<h2 id="三、计算机体系结构和计算机组成"><a href="#三、计算机体系结构和计算机组成" class="headerlink" title="三、计算机体系结构和计算机组成"></a>三、计算机体系结构和计算机组成</h2><p>相关资料：<a href="https://blog.csdn.net/xifengw/article/details/99717216">微机原理、计算机组成原理与计算机体系结构之间的关系</a></p>
-<ul>
-<li><p>体系结构关注：计算机有哪些功能？</p>
-</li>
-<li><p>组成原理关注：计算机的功能如何实现？</p>
-</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202446815.png" alt="image-20220221202446815" style="zoom:67%;" /></p>
-<h1 id="1-2-计算机系统组成"><a href="#1-2-计算机系统组成" class="headerlink" title="1.2 计算机系统组成"></a>1.2 计算机系统组成</h1><h2 id="一、冯·诺依曼计算机的特点"><a href="#一、冯·诺依曼计算机的特点" class="headerlink" title="一、冯·诺依曼计算机的特点"></a>一、冯·诺依曼计算机的特点</h2><ol>
-<li>计算机由五大部件组成：<strong>存储器、运算器、控制器、输入设备、输出设备</strong></li>
-<li>指令和数据以同等地位存于<code>存储器</code>，可按地址寻访</li>
-<li>指令和数据用二进制表示</li>
-<li>指令由<code>操作码</code>和<code>地址码</code>组成——具体内容详见ch7</li>
-<li>存储程序：指令在存储器内按顺序存放。指令通常<strong>按顺序执行</strong>，在特定条件下可根据运算结果或设定的条件改变执行顺序</li>
-<li>以<code>运算器</code>为中心：I/O设备与存储器间的数据传送通过运算器完成</li>
-</ol>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221203119436.png" alt="image-20220221203119436" style="zoom:67%;" /></p>
-<p>注：</p>
+    <title>算法设计与分析：第4章 蛮力法</title>
+    <url>/algorithm/algorithm-ch4/</url>
+    <content><![CDATA[<p><strong>蛮力法（brute force）</strong>：直接基于问题的描述和所涉及的概念定义的进行算法设计，简单而直接。</p>
+<p>使用蛮力法：</p>
 <ol>
-<li>运算器：<strong>算术运算和逻辑运算</strong>。将中间结果暂存在运算器内</li>
-<li>存储器：存放数据和程序</li>
-<li>控制器：控制、<strong>指挥</strong>程序和数据的输入、运行以及处理运算结果</li>
-<li>输入设备（键鼠）：转化为机器能够识别的信息形式</li>
-<li>输出设备（打印机输出、显示器输出）：将运算结果转化为人们熟悉的信息形式</li>
+<li>所能解决的问题跨越的领域非常广泛；</li>
+<li>对于一些重要的问题，运用蛮力策略可以设计出具备一定实用价值的算法，而且不用限制实例的规模；</li>
+<li>当要解决的问题实例不多并且可以接受蛮力法的运算速度时，蛮力法的设计代价通常较为低廉；</li>
+<li>蛮力算法可以作为衡量其它算法的准绳，服务于研究或教学</li>
 </ol>
-<h2 id="二、计算机硬件框图"><a href="#二、计算机硬件框图" class="headerlink" title="二、计算机硬件框图"></a>二、计算机硬件框图</h2><h3 id="1-以存储器为中心的计算机硬件框图"><a href="#1-以存储器为中心的计算机硬件框图" class="headerlink" title="1.以存储器为中心的计算机硬件框图"></a>1.以存储器为中心的计算机硬件框图</h3><script type="math/tex; mode=display">
-\rightarrow \quad 控制线 \\
-\dashrightarrow \quad 反馈线 \\
-\Rightarrow \quad 数据线 \\</script><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221203951631.png" alt="image-20220221203951631" style="zoom:67%;" /></p>
-<h3 id="2-现代计算机硬件框图"><a href="#2-现代计算机硬件框图" class="headerlink" title="2.现代计算机硬件框图"></a>2.现代计算机硬件框图</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221204027723.png" alt="image-20220221204027723" style="zoom:67%;" /></p>
+<span id="more"></span>
+<blockquote>
+<p>蛮力法中：</p>
+<p>顺序查找的时间复杂度为$O(n)$</p>
+<p>BF 算法的时间复杂度为$O(n*m)$</p>
+<p>KMP算法的时间复杂度为$O(n)$</p>
+<p>选择和冒炮排序的时间复杂性$O(n*n)$                     </p>
+<p>0/1背包问题的时间复杂性$O(2^n)$</p>
+<p>任务分配问题的时间复杂性$O(n!)$</p>
+<p>哈密顿回路的时间复杂性$O(n!)$</p>
+<p>TSP问题的时间复杂性$O(n!)$</p>
+</blockquote>
+<h2 id="4-1-枚举法"><a href="#4-1-枚举法" class="headerlink" title="4.1 枚举法"></a>4.1 枚举法</h2><p>枚举法的<strong>算法框架</strong>可表示如下：</p>
 <ul>
-<li>CPU（中央处理器）：Central Processing Unit。计算机核心部件，由<strong>运算器</strong>和<strong>控制器</strong>组成</li>
-<li>ALU（算逻部件/算术逻辑单元）：Arithmetic &amp; Logical Unit。运算器核心部件，<strong>进行逻辑运算和算术运算</strong></li>
-<li>CU（控制单元）：Control Unit。控制器核心部件，产生微操作命令序列。<strong>用来解释存储器中的指令，发出各种操作命令来执行指令</strong></li>
-<li>I/O设备：Input/Output Equipment。</li>
+<li>(1) 依据问题，设定枚举范围；</li>
+<li>(2) 找出约束条件，建立计算模型；</li>
+<li>(3) 利用计算模型在枚举范围内搜索可能的解。</li>
 </ul>
-<h2 id="三、计算机的工作步骤"><a href="#三、计算机的工作步骤" class="headerlink" title="三、计算机的工作步骤"></a>三、计算机的工作步骤</h2><h3 id="1-上机前的准备"><a href="#1-上机前的准备" class="headerlink" title="1.上机前的准备"></a>1.上机前的准备</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205318632.png" alt="image-20220221205318632" style="zoom:67%;" /></p>
-<h4 id="编程举例"><a href="#编程举例" class="headerlink" title="编程举例"></a>编程举例</h4><ul>
-<li>运算：取被操作数、运算操作、暂存中间结果</li>
-<li>存储器：存储运算结果</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205352807.png" alt="image-20220221205352807" style="zoom:67%;" /></p>
-<h4 id="指令格式举例"><a href="#指令格式举例" class="headerlink" title="指令格式举例"></a>指令格式举例</h4><p>详见ch7。寻址、特征位、不同格式</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205704580.png" alt="img" style="zoom:67%;" /></p>
-<p>注：打印机的打印操作需要多条指令</p>
-<p>参考资料：<a href="https://blog.csdn.net/weixin_34112181/article/details/89566814">打印机主流的指令类型（ESC命令集+CPCL命令集+TSPL命令集）</a></p>
-<h4 id="计算-ax-2-bx-c-程序清单"><a href="#计算-ax-2-bx-c-程序清单" class="headerlink" title="计算$ax^2+bx+c$程序清单"></a>计算$ax^2+bx+c$程序清单</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210015842.png" alt="image-20220221210015842" style="zoom:67%;" /></p>
-<h3 id="2-计算机的解题过程-1"><a href="#2-计算机的解题过程-1" class="headerlink" title="2.计算机的解题过程"></a>2.计算机的解题过程</h3><h4 id="（1）存储器的基本组成"><a href="#（1）存储器的基本组成" class="headerlink" title="（1）存储器的基本组成"></a>（1）存储器的基本组成</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210124089.png" alt="image-20220221210124089" style="zoom:67%;" /></p>
+<blockquote>
+<p>枚举范围的设定将决定算法效率</p>
+</blockquote>
+<h4 id="【例4-1】统计链环数字对"><a href="#【例4-1】统计链环数字对" class="headerlink" title="【例4-1】统计链环数字对"></a>【例4-1】统计链环数字对</h4><p>输入$n$个数字(在$0$与$9$之间)，然后统计出这组数中相邻两个数字组成的链环数字对出现的次数。如：$n=20$,输入为：0 1 5 9 8 7 2 2 2 3 2 7 8 7 8 7 9 6 5 9，则输出为$(7,8)=2, (8,7)=3,(7,2)=1,(2,7)=1,(2,2)=2,(2,3)=1,(3,2)=1$</p>
 <ul>
-<li>MAR（存储器地址寄存器）：Memory Address Register</li>
-<li>MDR（主存数据寄存器）：Memory Data Register </li>
-<li>数据总线、读写控制</li>
+<li><p>问题分析</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311194123070.png" alt="image-20220311194123070" style="zoom: 67%;" /></p>
+</li>
+<li><p>计算模型</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311194254404.png" alt="image-20220311194254404" style="zoom: 67%;" /></p>
+</li>
 </ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210629442.png" alt="image-20220221210629442" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311194334117.png" alt="image-20220311194334117" style="zoom: 67%;" /></p>
+<ul>
+<li><p>算法设计与描述</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311194406005.png" alt="image-20220311194406005" style="zoom: 80%;" /></p>
+</li>
+<li><p>算法实现</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 10</span></span><br><span class="line"><span class="type">int</span> ans[N][N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n, x1, x2; cin &gt;&gt; n;</span><br><span class="line">    <span class="built_in">memset</span>(ans, <span class="number">0</span>, <span class="built_in">sizeof</span>(ans));</span><br><span class="line">    <span class="comment">// 统计</span></span><br><span class="line">    cin &gt;&gt; x1;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; x2; ans[x1][x2]++;</span><br><span class="line">        x1 = x2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 输出</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = i; j &lt; N; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ans[i][j] &amp;&amp; ans[j][i]) &#123;</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;pair(&quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot;,&quot;</span> &lt;&lt; j &lt;&lt; <span class="string">&quot;):&quot;</span> &lt;&lt; <span class="built_in">min</span>(ans[i][j],ans[j][i]) &lt;&lt; endl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">20</span></span><br><span class="line"><span class="comment">0 1 5 9 8 7 2 2 2 3 2 7 8 7 8 7 9 6 5 9</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>运行截图</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314083452362.png" alt="image-20220314083452362" style="zoom: 80%;" /></p>
+</li>
+</ul>
+</li>
+<li><p>算法分析</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311194438312.png" alt="image-20220311194438312"  /></p>
+</li>
+</ul>
+<h4 id="【例4-2】解数字谜："><a href="#【例4-2】解数字谜：" class="headerlink" title="【例4-2】解数字谜："></a>【例4-2】解数字谜：</h4><script type="math/tex; mode=display">
+\begin{array}{r}
+ABCAB \\
+\times \qquad \qquad A \\
+\hline 
+DDDDDD
+
+\end{array}</script><ul>
+<li><p>问题分析</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311194931735.png" alt="image-20220311194931735" style="zoom: 67%;" /></p>
+</li>
+<li><p>计算模型</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311194959093.png" alt="image-20220311194959093" style="zoom: 80%;" /></p>
+</li>
+<li><p>算法设计</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311195030778.png" alt="image-20220311195030778" style="zoom: 80%;" /></p>
+</li>
+<li><p>算法实现</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fun1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> a, ans; <span class="type">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">30000</span>; i &lt;= <span class="number">99999</span>; i++) &#123;  <span class="comment">// 从30000-99999进行枚举</span></span><br><span class="line">        <span class="keyword">if</span> (i/<span class="number">10000</span> == (i/<span class="number">10</span>)%<span class="number">10</span>) &#123;</span><br><span class="line">            a = i/<span class="number">10000</span>;</span><br><span class="line">            ans = a*i;</span><br><span class="line">            <span class="keyword">if</span> (ans % <span class="number">111111</span> == <span class="number">0</span>)  cout &lt;&lt; i &lt;&lt; <span class="string">&quot; * &quot;</span> &lt;&lt; a &lt;&lt; <span class="string">&quot; = &quot;</span> &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fun2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">3</span>; i &lt;= <span class="number">9</span>; i++) &#123;  <span class="comment">// 枚举a</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">9</span>; j++) &#123;  <span class="comment">// 枚举b</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt;= <span class="number">9</span>; k++) &#123;  <span class="comment">// 枚举c</span></span><br><span class="line">                ans = i*<span class="number">10010</span> + j*<span class="number">1001</span> + k*<span class="number">100</span>;</span><br><span class="line">                <span class="keyword">if</span> (ans * i % <span class="number">111111</span> == <span class="number">0</span>)  cout &lt;&lt; ans &lt;&lt; <span class="string">&quot; * &quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot; = &quot;</span> &lt;&lt; ans*i &lt;&lt; endl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fun3</span><span class="params">()</span> </span>&#123;   <span class="comment">// 除法枚举</span></span><br><span class="line">    <span class="type">int</span> a, f[<span class="number">5</span>], sum, ans;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> d = <span class="number">1</span>; d &lt;= <span class="number">9</span>; d++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (a = <span class="number">3</span>; a &lt;= <span class="number">9</span>; a++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (d*<span class="number">111111</span> % a == <span class="number">0</span> &amp;&amp; d*<span class="number">111111</span> / a &lt; <span class="number">1e5</span>) &#123;</span><br><span class="line">                ans = sum = d*<span class="number">111111</span> / a; <span class="type">int</span> index = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span> (sum) &#123;</span><br><span class="line">                    f[index++] = sum % <span class="number">10</span>;</span><br><span class="line">                    sum /= <span class="number">10</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (f[<span class="number">0</span>] == f[<span class="number">3</span>] &amp;&amp; f[<span class="number">1</span>] == a &amp;&amp; f[<span class="number">4</span>] == a) cout &lt;&lt; ans &lt;&lt; <span class="string">&quot; * &quot;</span> &lt;&lt; a &lt;&lt; <span class="string">&quot; = &quot;</span> &lt;&lt; d*<span class="number">111111</span> &lt;&lt; endl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">fun1</span>();</span><br><span class="line">    <span class="built_in">fun2</span>();</span><br><span class="line">    <span class="built_in">fun3</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>【思考题】</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314084531244.png" alt="img" style="zoom:50%;" /></p>
+<ul>
+<li><p>算法模型</p>
+<ul>
+<li><p>通过列举Z、L、T三个人的一条预测，建立学生-名次的二维矩阵。</p>
+<p>每个人的预测都有两条，一共有$2^3 = 8$种预测结果。</p>
+</li>
+<li><p>接下来考虑题目的限制条件来筛选预测结果：①每个人说对了一半；②没有并列名次</p>
+</li>
+<li><p>因此需要枚举这8种情况，通过3重for循环语句，获得每一种预测结果。</p>
+<p>筛选时出现对<strong>同一个学生</strong>的预测或者预测的<strong>成绩相同</strong>时，该种预测结果肯定是错误的，<strong>应当排除</strong>。</p>
+</li>
+<li><p>对于正确的预测，4个人有3个人都对应着正确的结果。那么一定会<strong>有一个人没有给出名次</strong>。可以通过计算获得这个没有被预测出名次的学生和他的名次。</p>
+</li>
+</ul>
+</li>
+<li><p>算法实现</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; stu;	<span class="comment">// 姓名-名次的数对</span></span><br><span class="line">stu res[<span class="number">4</span>][<span class="number">3</span>];	<span class="comment">// 存放Z、L、T的预测结果</span></span><br><span class="line"><span class="type">bool</span> flag[<span class="number">5</span>][<span class="number">5</span>];	<span class="comment">// 学生-名次二维矩阵</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">3</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">2</span>; j++) &#123;</span><br><span class="line">            cin &gt;&gt; res[i][j].first &gt;&gt; res[i][j].second;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(flag, <span class="literal">false</span>, <span class="built_in">sizeof</span>(flag));</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">2</span>; i++) &#123;  <span class="comment">// Z的预测</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">2</span>; j++) &#123;  <span class="comment">// L的预测</span></span><br><span class="line">            <span class="comment">// 预测相同的人或者相同的名次，直接跳过</span></span><br><span class="line">            <span class="keyword">if</span> (res[<span class="number">1</span>][i].first == res[<span class="number">2</span>][j].first || res[<span class="number">1</span>][i].second == res[<span class="number">2</span>][j].second) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">1</span>; k &lt;= <span class="number">2</span>; k++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (res[<span class="number">3</span>][k].first == res[<span class="number">2</span>][j].first ||</span><br><span class="line">                    res[<span class="number">3</span>][k].second == res[<span class="number">2</span>][j].second) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span> (res[<span class="number">3</span>][k].first == res[<span class="number">1</span>][i].first </span><br><span class="line">                    || res[<span class="number">3</span>][k].second == res[<span class="number">1</span>][i].second) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="type">int</span> name = <span class="number">1</span>+<span class="number">2</span>+<span class="number">3</span>+<span class="number">4</span>, rank = <span class="number">1</span>+<span class="number">2</span>+<span class="number">3</span>+<span class="number">4</span>;</span><br><span class="line">                flag[res[<span class="number">1</span>][i].first][res[<span class="number">1</span>][i].second] = <span class="literal">true</span>;</span><br><span class="line">                flag[res[<span class="number">2</span>][j].first][res[<span class="number">2</span>][j].second] = <span class="literal">true</span>;</span><br><span class="line">                flag[res[<span class="number">3</span>][k].first][res[<span class="number">3</span>][k].second] = <span class="literal">true</span>;</span><br><span class="line">                name -= (res[<span class="number">1</span>][i].first + res[<span class="number">2</span>][j].first + res[<span class="number">3</span>][k].first);</span><br><span class="line">                rank -= (res[<span class="number">1</span>][i].second+ res[<span class="number">2</span>][j].second + res[<span class="number">3</span>][k].second);</span><br><span class="line">                flag[name][rank] = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> a = <span class="number">1</span>; a &lt;= <span class="number">4</span>; a++) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> b = <span class="number">1</span>; b &lt;= <span class="number">4</span>; b++) &#123;</span><br><span class="line">                        <span class="built_in">printf</span>(<span class="string">&quot;%2d&quot;</span>,flag[a][b]);</span><br><span class="line">                    &#125;</span><br><span class="line">                    cout &lt;&lt; endl;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1 1 2 3</span></span><br><span class="line"><span class="comment">3 1 4 4</span></span><br><span class="line"><span class="comment">4 2 1 3</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>算法分析</p>
+<p>时间复杂度主要来源有两个：输入Z、L、T的预测结果+对预测结果的枚举与结果的输出</p>
 <script type="math/tex; mode=display">
-计算过程： \\
-由MAR = 4位，存储单元的个数 = 2^4 = 16 \\
-由MDR = 8位，存储字长 = 8 \\</script><h4 id="（2）运算器的基本组成及操作过程"><a href="#（2）运算器的基本组成及操作过程" class="headerlink" title="（2）运算器的基本组成及操作过程"></a>（2）运算器的基本组成及操作过程</h4><p>规定动作的处理</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210828885.png" alt="image-20220221210828885" style="zoom:67%;" /></p>
+T(n) = \sum_{i = 1}^{3} \sum_{j = 1}^{2}c_1 + \sum_{i = 1}^{2} \sum_{j = 1}^{2} \sum_{k = 1}^{2}(c_2+\sum_{a = 1}^{4} \sum_{b = 1}^{4}1)</script><p>显然，时间复杂度与$n$无关，$T(n) = \Theta(1)$，为常数级。</p>
+</li>
+<li><p>算法测试</p>
 <ul>
-<li><p>ACC（累加器）：Accumulator。一种<strong>寄存器</strong>，能<strong>存放运算前被操作数</strong>，也能<strong>储存计算产生的中间结果</strong>。</p>
+<li><p>运行结果</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314134334608.png" alt="image-20220314134334608" style="zoom: 80%;" /></p>
+<p>|        |  1   |  2   |  3   |  4   |<br>| :——: | :—: | :—: | :—: | :—: |<br>| <strong>甲</strong> |  0   |  0   |  0   |  1   |<br>| <strong>乙</strong> |  0   |  0   |  1   |  0   |<br>| <strong>丙</strong> |  1   |  0   |  0   |  0   |<br>| <strong>丁</strong> |  0   |  1   |  0   |  0   |</p>
+<p>从结果来看，<strong>第一名：丙；第二名：丁；第三名：乙；第四名：甲</strong></p>
+</li>
+<li><p>测试枚举的每一种情况</p>
+<ul>
+<li>测试代码</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">memset</span>(flag, <span class="literal">false</span>, <span class="built_in">sizeof</span>(flag));</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">2</span>; i++) &#123;  <span class="comment">// Z的预测</span></span><br><span class="line">    flag[res[<span class="number">1</span>][i].first][res[<span class="number">1</span>][i].second] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">2</span>; j++) &#123;  <span class="comment">// L的预测</span></span><br><span class="line">        flag[res[<span class="number">2</span>][j].first][res[<span class="number">2</span>][j].second] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">1</span>; k &lt;= <span class="number">2</span>; k++) &#123;  <span class="comment">// T的预测</span></span><br><span class="line">            flag[res[<span class="number">3</span>][k].first][res[<span class="number">3</span>][k].second] = <span class="literal">true</span>;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;#Case&quot;</span> &lt;&lt; k+(j<span class="number">-1</span>)*<span class="number">2</span>+(i<span class="number">-1</span>)*<span class="number">4</span> &lt;&lt; <span class="string">&quot;:&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> a = <span class="number">1</span>; a &lt;= <span class="number">4</span>; a++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> b = <span class="number">1</span>; b &lt;= <span class="number">4</span>; b++) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;%2d&quot;</span>,flag[a][b]);</span><br><span class="line">                &#125;</span><br><span class="line">                cout &lt;&lt; endl;</span><br><span class="line">            &#125;</span><br><span class="line">            cout &lt;&lt; endl;</span><br><span class="line">            flag[res[<span class="number">3</span>][k].first][res[<span class="number">3</span>][k].second] = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        flag[res[<span class="number">2</span>][j].first][res[<span class="number">2</span>][j].second] = <span class="literal">false</span>;</span><br><span class="line">    &#125;  </span><br><span class="line">    flag[res[<span class="number">1</span>][i].first][res[<span class="number">1</span>][i].second] = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行截图</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314134935416.png" alt="image-20220314134935416" style="zoom: 80%;" /></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="【例4-3】输出玫瑰矩阵"><a href="#【例4-3】输出玫瑰矩阵" class="headerlink" title="【例4-3】输出玫瑰矩阵"></a>【例4-3】输出玫瑰矩阵</h4><p>其为n*n的方阵，特征如下所示：</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311195234487.png" alt="image-20220311195234487" style="zoom: 80%;" /></p>
+<ul>
+<li><p>问题分析</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314090302815.png" alt="image-20220314090302815" style="zoom: 80%;" /></p>
+</li>
+<li><p>计算模型</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314090959231.png" alt="image-20220314090959231" style="zoom: 80%;" /></p>
+</li>
+<li><p>算法设计与描述</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314091040317.png" alt="image-20220314091040317"  /></p>
+</li>
+<li><p>算法实现</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 100</span></span><br><span class="line"><span class="type">int</span> ans[MAXN][MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n; cin &gt;&gt; n;</span><br><span class="line">    <span class="built_in">memset</span>(ans,<span class="number">0</span>,<span class="built_in">sizeof</span>(ans));</span><br><span class="line">    <span class="type">int</span> num = <span class="number">0</span>, dir = <span class="number">0</span>;   <span class="comment">// 方向：0下，1右，2上，3左</span></span><br><span class="line">    <span class="type">int</span> row = <span class="number">-1</span>, column = <span class="number">0</span>;    <span class="comment">// 行、列</span></span><br><span class="line">    <span class="keyword">while</span> (num &lt; n*n) &#123;</span><br><span class="line">        <span class="keyword">switch</span> (dir) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">                ans[++row][column] = ++num;</span><br><span class="line">                <span class="keyword">if</span> (row == n<span class="number">-1</span> || ans[row+<span class="number">1</span>][column] != <span class="number">0</span>) dir = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                ans[row][++column] = ++num;</span><br><span class="line">                <span class="keyword">if</span> (column == n<span class="number">-1</span> || ans[row][column+<span class="number">1</span>] != <span class="number">0</span>) dir = <span class="number">2</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">                ans[--row][column] = ++num;</span><br><span class="line">                <span class="keyword">if</span> (row == <span class="number">0</span> || ans[row<span class="number">-1</span>][column] != <span class="number">0</span>) dir = <span class="number">3</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">                ans[row][--column] = ++num;</span><br><span class="line">                <span class="keyword">if</span> (column == <span class="number">0</span> || ans[row][column<span class="number">-1</span>] != <span class="number">0</span>) dir = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%3d&quot;</span>,ans[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>运行截图</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220311214128075.png" alt="image-20220311214128075"></p>
+</li>
+</ul>
+</li>
+<li><p>算法分析</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314091337680.png" alt="image-20220314091337680"  /></p>
+</li>
+</ul>
+<p>【思考题】</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314091535619.png" alt="img" style="zoom:80%;" /></p>
+<p><strong>算法实现</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 101</span></span><br><span class="line"><span class="type">int</span> ans[MAXN][MAXN];</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> x[<span class="number">4</span>] = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">-1</span>&#125;;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> y[<span class="number">4</span>] = &#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">-1</span>,<span class="number">0</span>&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n, num = <span class="number">1</span>, i = <span class="number">0</span>, j = <span class="number">0</span>, t = <span class="number">0</span>, nx, ny; cin &gt;&gt; n;</span><br><span class="line">    <span class="built_in">memset</span>(ans, <span class="number">0</span>, <span class="built_in">sizeof</span>(ans));</span><br><span class="line">    <span class="keyword">while</span> (num &lt;= n*n) &#123;</span><br><span class="line">        ans[i][j] = num++;  nx = i+x[t]; ny = j+y[t];	<span class="comment">// 推算下个位置</span></span><br><span class="line">        <span class="keyword">if</span> (ans[nx][ny] != <span class="number">0</span> || nx &lt; <span class="number">0</span> || nx == n || ny &lt; <span class="number">0</span> || ny == n) &#123;	<span class="comment">// 到达边界，更换方向</span></span><br><span class="line">            t = (t+<span class="number">1</span>) % <span class="number">4</span>; nx = i+x[t]; ny = j+y[t];	<span class="comment">// 更新下一个位置</span></span><br><span class="line">        &#125;</span><br><span class="line">        i = nx; j = ny;	<span class="comment">// 赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++) <span class="built_in">printf</span>(<span class="string">&quot;%3d&quot;</span>,ans[i][j]);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图</p>
+<p>$n = 4$</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314142645062.png" alt="image-20220314142645062"  /></p>
+<p>$n = 5$</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314142724351.png" alt="image-20220314142724351"  /></p>
+<h2 id="4-2-穷举查找"><a href="#4-2-穷举查找" class="headerlink" title="4.2 穷举查找"></a>4.2 穷举查找</h2><p>有一些求最优解的问题经过抽象，可以转换为组合优化问题，使用蛮力法来求解是一种简单的方法，称之为穷举查找（exhaustive search）</p>
+<h4 id="【例4-4】旅行商问题-traveling-salesman-problem，TSP"><a href="#【例4-4】旅行商问题-traveling-salesman-problem，TSP" class="headerlink" title="【例4-4】旅行商问题(traveling salesman problem，TSP)"></a>【例4-4】旅行商问题(traveling salesman problem，TSP)</h4><p> 有一个旅行商由某市出发，经过所有给定的n个城市后，再回到出发的城市。除了出发的城市外，其它城市只经过一回。这样的回路可能有多个，求其中路径成本最小的回路。</p>
+<ul>
+<li><p>问题分析</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314092046576.png" alt="image-20220314092046576" style="zoom: 80%;" /></p>
+</li>
+<li><p>计算模型</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314092431991.png" alt="image-20220314092431991" style="zoom: 80%;" /></p>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314092517797.png" alt="image-20220314092517797" style="zoom: 50%;" /></p>
+<script type="math/tex; mode=display">
+\begin{cases}
+最优值：最大值 \\
+最优解：路径
+\end{cases}</script><ul>
+<li><p>算法设计与描述</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314092813381.png" alt="image-20220314092813381" style="zoom:40%;" /></p>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314093454052.png" alt="image-20220314093454052" style="zoom:40%;" /></p>
 <blockquote>
-<p>如果没有像累加器这样的寄存器，那么在每次计算 (加法，乘法，移位等等) 后就必须要把结果写回到<a href="https://baike.baidu.com/item/内存">内存</a>，也许马上就得读回来。然而存取主存的速度是比从<a href="https://baike.baidu.com/item/算术逻辑单元">算术逻辑单元</a>(ALU)到有直接路径的累加器存取更慢。</p>
+<p>注意：交换产生全排，交换后要回归</p>
 </blockquote>
+<script type="math/tex; mode=display">
+推导：\\
+T(n) = \sum_{i = 0}^{n-1}T(i+1) + C \\
+=</script><p>【思考题】</p>
+<p><img src="D:\ChengYangX\Study\University\Sophomore\Spring\算法分析与设计\2022\作业\20220314\image-20220314093626544.png" alt="image-20220314093626544" style="zoom: 50%;" /></p>
+<h4 id="【例4-5】背包问题"><a href="#【例4-5】背包问题" class="headerlink" title="【例4-5】背包问题"></a>【例4-5】背包问题</h4><p>给定$n$个重量为$w_1, w_2,…w_n$，价值为$v_1, v_2,…v_n$的物品和一个承重为$W$的背包，求将这些物品中的某些装入背包中，在不超出重量$W$的情况下，价值最高的装法。</p>
+<p><strong>问题分析</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314093855273.png" alt="image-20220314093855273" style="zoom: 80%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314094239604.png" alt="image-20220314094239604" style="zoom:40%;" /></p>
+<p><strong>计算模型</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220314094352274.png" alt="image-20220314094352274" style="zoom: 50%;" /></p>
+<p><strong>算法实现</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 1000</span></span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> sum_v = <span class="number">0</span>, sum_w = <span class="number">0</span>, W = <span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> r[MAXN] = &#123;<span class="number">0</span>&#125;, ans;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">item</span> &#123;</span><br><span class="line">    <span class="type">int</span> v, w;</span><br><span class="line">    <span class="type">int</span> flag;</span><br><span class="line">&#125;a[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 记录当前被选择的物品——当前最优子集合</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">record</span><span class="params">(<span class="type">int</span> sum_v)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> count = <span class="number">0</span>;  <span class="comment">// 被选择的物品的个数</span></span><br><span class="line">    r[<span class="number">0</span>] = sum_v;   <span class="comment">// r是最优子集合</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i].flag) &#123;    <span class="comment">// 第i个物品被选中</span></span><br><span class="line">            count++;</span><br><span class="line">            r[count] = i;   <span class="comment">// 表示第count个被选择的物品是i</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">knaps</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 超重终止条件</span></span><br><span class="line">    <span class="keyword">if</span> (sum_w &gt; W) <span class="keyword">return</span>;</span><br><span class="line">    <span class="comment">// 记录较优解，最终留下的为最优解</span></span><br><span class="line">    <span class="keyword">if</span> (sum_v &gt; r[<span class="number">0</span>]) &#123;</span><br><span class="line">        cout &lt;&lt; r[<span class="number">0</span>] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">        ans = <span class="built_in">record</span>(sum_v);</span><br><span class="line">        cout &lt;&lt; sum_v &lt;&lt;  <span class="string">&quot; &quot;</span> &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = x; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="comment">// 加上第i件物品</span></span><br><span class="line">        sum_v += a[i].v;</span><br><span class="line">        sum_w += a[i].w;</span><br><span class="line">        a[i].flag = <span class="number">1</span>;	<span class="comment">// 表明物品被装载</span></span><br><span class="line">        <span class="built_in">knaps</span>(i+<span class="number">1</span>); <span class="comment">// 递归处理下一个物品</span></span><br><span class="line">        <span class="comment">// 减去第i件物品</span></span><br><span class="line">        sum_v -= a[i].v;</span><br><span class="line">        sum_w -= a[i].w;</span><br><span class="line">        a[i].flag = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; W;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; a[i].w &gt;&gt; a[i].v;</span><br><span class="line">        a[i].flag = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">knaps</span>(<span class="number">0</span>);</span><br><span class="line">    cout &lt;&lt; r[<span class="number">0</span>] &lt;&lt; endl;</span><br><span class="line">    <span class="comment">// cout &lt;&lt; ans &lt;&lt; endl;</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        cout &lt;&lt; r[i] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220315193217592.png" alt="image-20220315193217592" style="zoom:80%;" /></p>
+<p>【参考资料】<a href="https://zhuanlan.zhihu.com/p/345364527">咱就把0-1背包问题讲个通透！</a></p>
+<p>算法分析</p>
+<p>时间复杂度：按照组合问题分</p>
+<h2 id="4-3-图的搜索"><a href="#4-3-图的搜索" class="headerlink" title="4.3 图的搜索"></a>4.3 图的搜索</h2><ul>
+<li><p>深度优先查找</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316081952841.png" alt="image-20220316081952841" style="zoom: 80%;" /></p>
 </li>
-<li><p>MQ（乘商寄存器）：Multiple-Quotient Register。负责数据的乘法与除法运算并可<strong>保存运算结果</strong>，是运算器的基本组成部分。<strong>也可保存运算结果的低位</strong></p>
+<li><p>广度优先查找</p>
 </li>
 </ul>
-<p>注：上图缺少了F寄存器（状态/标志寄存器）</p>
-<ul>
-<li><p>FR（标志寄存器）：Flags Register</p>
-<p>具有<strong>条件标志：进位、奇偶、辅助进位、零、符号、溢出标志</strong>，<strong>控制标记：跟踪、中断、方向标记</strong></p>
+<h3 id="（1）DFS"><a href="#（1）DFS" class="headerlink" title="（1）DFS"></a>（1）DFS</h3><ul>
+<li><p>算法设计与分析</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316082046492.png" alt="image-20220316082046492"  /></p>
 </li>
 </ul>
-<p>参考资料：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/256470714">标志寄存器</a></p>
-<p><a href="https://baike.baidu.com/item/%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8/5757541#:~:text=%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%88%E7%A7%B0%20%E7%A8%8B%E5%BA%8F%E7%8A%B6%E6%80%81%E5%AD%97%20%EF%BC%88%E5%A4%96%E8%AF%AD%E7%BC%A9%E5%86%99%EF%BC%9APSW%E3%80%81%E5%A4%96%E8%AF%AD%E5%85%A8%E7%A7%B0%EF%BC%9AProgram,Status%20Word%EF%BC%89%E3%80%82%20%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA16%E4%BD%8D%E7%9A%84%E5%AD%98%E6%94%BE%E6%9D%A1%E4%BB%B6%E6%A0%87%E5%BF%97%E3%80%81%E6%8E%A7%E5%88%B6%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8C%E4%B8%BB%E8%A6%81%E7%94%A8%E4%BA%8E%E5%8F%8D%E6%98%A0%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8CALU%E8%BF%90%E7%AE%97%E7%BB%93%E6%9E%9C%E7%9A%84%E6%9F%90%E4%BA%9B%E7%89%B9%E5%BE%81%E5%8F%8A%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4%E7%9A%84%E6%89%A7%E8%A1%8C%E3%80%82">标志寄存器-百度百科</a></p>
-<h5 id="①加法操作过程"><a href="#①加法操作过程" class="headerlink" title="①加法操作过程"></a>①加法操作过程</h5><p>[ACC]看作被加数。</p>
-<p>从主存中取M地址号单元内的加数[M]，送至X寄存器中。</p>
-<p>将被加数[ACC]与加数[X]相加，结果（和）保留在ACC中。</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221211851184.png" alt="image-20220221211851184" style="zoom:67%;" /></p>
-<h5 id="②减法操作过程"><a href="#②减法操作过程" class="headerlink" title="②减法操作过程"></a>②减法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221211932915.png" alt="image-20220221211932915" style="zoom:67%;" /></p>
-<h5 id="③乘法操作过程"><a href="#③乘法操作过程" class="headerlink" title="③乘法操作过程"></a>③乘法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212003668.png" alt="image-20220221212003668" style="zoom:67%;" /></p>
-<h5 id="④除法操作过程"><a href="#④除法操作过程" class="headerlink" title="④除法操作过程"></a>④除法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212038827.png" alt="image-20220221212038827" style="zoom:67%;" /></p>
-<h4 id="（3）控制器的基本组成"><a href="#（3）控制器的基本组成" class="headerlink" title="（3）控制器的基本组成"></a>（3）控制器的基本组成</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212108592.png" alt="image-20220221212108592" style="zoom:67%;" /></p>
-<ul>
-<li>PC（程序计数器）：Program Counter。存放<strong>欲执行的指令的地址</strong>，并可自动<strong>生成下一条指令地址</strong></li>
-<li>IR（指令寄存器）：Instruction Register。存放当前<strong>正在执行的指令</strong></li>
-<li>CU（控制单元）：Control Unit。控制器核心部件，产生微操作命令序列。<strong>用来解释存储器中的指令，发出各种操作命令来执行指令</strong></li>
-</ul>
-<h4 id="（4）主机完成一条指令的过程"><a href="#（4）主机完成一条指令的过程" class="headerlink" title="（4）主机完成一条指令的过程"></a>（4）主机完成一条指令的过程</h4><h5 id="以取数指令为例"><a href="#以取数指令为例" class="headerlink" title="以取数指令为例"></a>以取数指令为例</h5><ol>
-<li>程序计数器获得指令地址的初始值，</li>
-<li>MAR从存储体中获得指令地址对应的指令，通过地址总线送到MAR</li>
-<li>进入读取周期，把指令送至MDR</li>
-<li>通过数据总线送达指令至IR</li>
-<li>开始执行周期：进入CU，分析指令</li>
-<li>开始执行指令，指令寄存器进入MAR，给出数据地址</li>
-<li>通过MAR读取数据地址</li>
-<li>读周期，读取数据</li>
-<li>送达CPU的ACC中，修改PC</li>
-</ol>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223212632134.png" alt="img" style="zoom: 50%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212204068.png" alt="image-20220221212204068" style="zoom:67%;" /></p>
-<h5 id="以存数指令为例"><a href="#以存数指令为例" class="headerlink" title="以存数指令为例"></a>以存数指令为例</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212232671.png" alt="image-20220221212232671" style="zoom:67%;" /></p>
-<p>ch4详细讨论</p>
-<p>一个CPU（运算器+控制器） + 存储器 + I/O系统 + 总线</p>
-<p>完成指令</p>
-<h4 id="（5）程序的运行过程"><a href="#（5）程序的运行过程" class="headerlink" title="（5）程序的运行过程"></a>（5）程序的运行过程</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223162855834.png" alt="image-20220223162855834" style="zoom:67%;" /></p>
-<ul>
-<li>PC地址加法器</li>
-</ul>
-<h1 id="1-3-计算机硬件的主要技术指标"><a href="#1-3-计算机硬件的主要技术指标" class="headerlink" title="1.3 计算机硬件的主要技术指标"></a>1.3 计算机硬件的主要技术指标</h1><h3 id="1-机器字长"><a href="#1-机器字长" class="headerlink" title="1.机器字长"></a>1.机器字长</h3><p>机器字长：CPU <strong>一次</strong>能处理数据的<strong>位数</strong>。与CPU中的<strong>寄存器位数</strong>有关</p>
-<ul>
-<li><p>影响精度</p>
 <blockquote>
-<p>字长越长，数的表示范围越大，精度越高</p>
+<p>注：使用邻接表，时间复杂度为$O(n+e)$，使用邻接矩阵则时间复杂度为$O(n^2)$</p>
 </blockquote>
-</li>
-<li><p>影响运算速度</p>
+<h4 id="【例4-6】迷宫问题"><a href="#【例4-6】迷宫问题" class="headerlink" title="【例4-6】迷宫问题"></a>【例4-6】迷宫问题</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316082913156.png" alt="image-20220316082913156" style="zoom:80%;" /></p>
 <blockquote>
-<p>若：CPU字长较短，又要运算位数较多的数据，需要经过多次运算才能完成，影响机器的运算速度</p>
+<p>加入最外层围墙简化边界判断</p>
 </blockquote>
-</li>
-<li><p>影响硬件的造价</p>
-<blockquote>
-<p>直接影响加法器（或ALU）、数据总线以及存储字长的位数</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="2-运算速度"><a href="#2-运算速度" class="headerlink" title="2.运算速度"></a>2.运算速度</h3><ul>
-<li><p>主频：计算机工作统一步调，时钟周期的倒数</p>
-<p>晶振产生波形，与工作频率相同</p>
-</li>
-<li><p>（测试的方法）吉布森法</p>
-</li>
-<li><p>MIPS（每秒钟执行百万条指令）：Million Instructions Per Second</p>
-</li>
-</ul>
 <ul>
-<li><p>CPI （执行一条指令所需时钟周期数）：Clock Cycle Per Instruction</p>
-<p>一条指令对应波形的节拍数</p>
-</li>
-<li><p>FLOPS（每秒浮点运算次数）：Floating-point Operations Per Second</p>
-<p>浮点数的加法和乘法速度不同</p>
-</li>
-</ul>
-<h3 id="3-存储容量"><a href="#3-存储容量" class="headerlink" title="3.存储容量"></a>3.存储容量</h3><p>存放二进制信息的总位数</p>
-<p><strong>主存容量</strong>：主存中存放二进制代码的总位数。、</p>
-<p><strong>MAR的位数反映存储单元的个数（$2^N$​​），MDR的位数反映存储字长（$M$​）</strong></p>
+<li><p>问题分析</p>
 <ul>
-<li><p>存储单元个数$\times$​存储字长</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223163918172.png" alt="image-20220223163918172"></p>
+<li>迷宫存储</li>
+<li>移动</li>
+</ul>
 </li>
-<li><p>字节数——1个字节被定义为8位二进制代码</p>
+<li><p>计算模型</p>
+<p>（1）存储</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316083217729.png" alt="image-20220316083217729" style="zoom:67%;" /></p>
+</li>
+<li><p>算法设计与描述</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316083401573.png" alt="image-20220316083401573" style="zoom:80%;" /></p>
+</li>
+<li><p>算法分析</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316083448041.png" alt="image-20220316083448041" style="zoom: 80%;" /></p>
 </li>
 </ul>
-<p><strong>辅存容量</strong>——字节数</p>
-<p>80GB，1GB = $2^{30}$B</p>
-<h1 id="课后习题"><a href="#课后习题" class="headerlink" title="课后习题"></a>课后习题</h1><p>1、冯·诺伊曼计算机的特点（5条）</p>
-<p>2、计算机如何区分存储器内的指令和数据</p>
+<h3 id="（2）BFS"><a href="#（2）BFS" class="headerlink" title="（2）BFS"></a>（2）BFS</h3><ul>
+<li><p>算法设计与分析</p>
+<p>先让顶点入队并置访问标志，判断队列是否为空。队头出队，遍历所有顶点观察是否已被访问。若未被访问则入队</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316083744651.png" alt="image-20220316083744651" style="zoom:67%;" /></p>
+<p>【思考题】</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316083801855.png" alt="image-20220316083801855" style="zoom:67%;" /></p>
+<p>【三壶问题】</p>
 <ul>
-<li><p>通过<strong>不同的时间段</strong>来区分指令和数据</p>
-<p><u>取指令阶段</u>——指令；</p>
-<p><u>执行指令阶段</u>——数据。</p>
-</li>
-<li><p>通过<strong>地址来源</strong>区分</p>
-<p><u>PC（程序计数器）</u>提供的存储地址取出——指令；</p>
-<p><u>指令地址码</u>提供的存储地址取出——数据。</p>
+<li><p>算法实现</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN[<span class="number">3</span>] = &#123;<span class="number">3</span>,<span class="number">5</span>,<span class="number">8</span>&#125;;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">State</span> &#123;</span><br><span class="line">    <span class="type">int</span> val[<span class="number">3</span>]; <span class="comment">// 分别表示三个容器</span></span><br><span class="line">    State *pre; <span class="comment">// 保留前驱</span></span><br><span class="line">    <span class="built_in">State</span>(<span class="type">int</span> v0, <span class="type">int</span> v1, <span class="type">int</span> v2) &#123;  <span class="comment">// 构造函数</span></span><br><span class="line">        val[<span class="number">0</span>] = v0; val[<span class="number">1</span>] = v1; val[<span class="number">2</span>] = v2;</span><br><span class="line">        pre = <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">queue&lt;State*&gt; q;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 倒水，从start转移到end</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">transfer</span><span class="params">(State *state, <span class="type">int</span> start, <span class="type">int</span> end)</span> </span>&#123;   </span><br><span class="line">    <span class="comment">// 能够装水的大小（start的储水量和end能装水的量的最小值）</span></span><br><span class="line">    <span class="type">int</span> water = <span class="built_in">min</span>(state-&gt;val[start], (MAXN[end]-state-&gt;val[end]));</span><br><span class="line">    <span class="keyword">if</span> (water == <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;   <span class="comment">// 容器之间不装水，没有变化</span></span><br><span class="line">    <span class="comment">// 转移水量</span></span><br><span class="line">    state-&gt;val[start] -= water;</span><br><span class="line">    state-&gt;val[end] += water;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">BFS</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    State *init = <span class="keyword">new</span> <span class="built_in">State</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">8</span>); <span class="comment">// 初始化起始状态</span></span><br><span class="line">    q.<span class="built_in">push</span>(init);   <span class="comment">// 入队</span></span><br><span class="line">    <span class="type">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        State *node = q.<span class="built_in">front</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;   <span class="comment">// 检查是否出现结果</span></span><br><span class="line">            <span class="keyword">if</span> (node-&gt;val[i] == <span class="number">4</span>) &#123;    <span class="comment">// BFS找到结果</span></span><br><span class="line">                <span class="keyword">for</span> (State* p = node; p != <span class="literal">nullptr</span>; p = p-&gt;pre) &#123;   <span class="comment">// 顺着前驱链表获得前驱状态</span></span><br><span class="line">                    cout &lt;&lt; p-&gt;val[<span class="number">0</span>] &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; p-&gt;val[<span class="number">1</span>] &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; p-&gt;val[<span class="number">2</span>] &lt;&lt; endl;</span><br><span class="line">                &#125;</span><br><span class="line">                flag = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (flag) <span class="keyword">break</span>;    <span class="comment">// 出现结果，停止大循环（出口）</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;   <span class="comment">// BFS</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == j) <span class="keyword">continue</span>;   <span class="comment">// 排除自己给自己装水的情况</span></span><br><span class="line">                State *newnode = <span class="keyword">new</span> <span class="built_in">State</span>(node-&gt;val[<span class="number">0</span>], node-&gt;val[<span class="number">1</span>], node-&gt;val[<span class="number">2</span>]);   <span class="comment">// 继承上一状态</span></span><br><span class="line">                <span class="built_in">transfer</span>(newnode,i,j);  <span class="comment">// 装水</span></span><br><span class="line">                newnode-&gt;pre = node;    <span class="comment">// 设置前驱</span></span><br><span class="line">                q.<span class="built_in">push</span>(newnode);    <span class="comment">// 入队</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">        q.<span class="built_in">pop</span>();    <span class="comment">// 出队</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">BFS</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>运行截图</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316140140233.png" alt="image-20220316140140233" style="zoom:80%;" /></p>
+<p>由于按照前驱查找，倒序输出结果。</p>
 </li>
 </ul>
-<p>3、计算机硬件组成框图，各部件作用，计算机硬件主要及技术指标</p>
+</li>
+</ul>
+<p>【广度优先迷宫求解】</p>
+<ul>
+<li><p>算法实现</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 10</span></span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; pos;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span> &#123;</span><br><span class="line">    pos axis;</span><br><span class="line">    node *pre;</span><br><span class="line">    <span class="built_in">node</span>(<span class="type">int</span> x, <span class="type">int</span> y) &#123;</span><br><span class="line">        axis = <span class="built_in">make_pair</span>(x,y);</span><br><span class="line">        pre = <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">queue&lt;node*&gt; Q;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 上、下、左、右</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> fx[] = &#123;<span class="number">-1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> fy[] = &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">-1</span>,<span class="number">1</span>&#125;;</span><br><span class="line"><span class="type">int</span> maze[MAXN][MAXN] = </span><br><span class="line">&#123;</span><br><span class="line">    <span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> nextx, nexty;</span><br><span class="line">node *ans = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">mazesearch_bfs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Q.<span class="built_in">push</span>(<span class="keyword">new</span> <span class="built_in">node</span>(<span class="number">1</span>,<span class="number">1</span>));</span><br><span class="line">    <span class="keyword">while</span> (!Q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        node *n = Q.<span class="built_in">front</span>();</span><br><span class="line">        <span class="keyword">if</span> (n-&gt;axis.first == <span class="number">8</span> &amp;&amp; n-&gt;axis.second == <span class="number">8</span>) &#123;</span><br><span class="line">            ans = n;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">            nextx = n-&gt;axis.first + fx[i];</span><br><span class="line">            nexty = n-&gt;axis.second + fy[i];</span><br><span class="line">            <span class="keyword">if</span> (maze[nextx][nexty] == <span class="number">0</span>) &#123;</span><br><span class="line">                node *newnode = <span class="keyword">new</span> <span class="built_in">node</span>(nextx, nexty);</span><br><span class="line">                newnode-&gt;pre = n;</span><br><span class="line">                Q.<span class="built_in">push</span>(newnode);</span><br><span class="line">                maze[nextx][nexty] = <span class="number">3</span>; <span class="comment">// 已访问</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Q.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">mazesearch_bfs</span>();</span><br><span class="line">    <span class="keyword">while</span> (ans != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">        cout &lt;&lt; ans-&gt;axis.first &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; ans-&gt;axis.second &lt;&lt; endl;</span><br><span class="line">        ans = ans-&gt;pre;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>运行截图</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220317082233380.png" alt="image-20220317082233380" style="zoom: 80%;" /></p>
+</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <tags>
-        <tag>computer organization</tag>
+        <tag>algorithm</tag>
       </tags>
   </entry>
   <entry>
@@ -2114,6 +1915,275 @@ x_1 + 3x_2 - 2x_3 = 4 \\
 ]]></content>
   </entry>
   <entry>
+    <title>计算机组成原理：第1章 计算机系统概论</title>
+    <url>/computer_organization/computer-organization-ch1/</url>
+    <content><![CDATA[<h1 id="1-1-计算机系统简介"><a href="#1-1-计算机系统简介" class="headerlink" title="1.1 计算机系统简介"></a>1.1 计算机系统简介</h1><h2 id="一、计算机的软硬件概念"><a href="#一、计算机的软硬件概念" class="headerlink" title="一、计算机的软硬件概念"></a>一、计算机的软硬件概念</h2><h3 id="1-计算机系统"><a href="#1-计算机系统" class="headerlink" title="1.计算机系统"></a>1.计算机系统</h3><script type="math/tex; mode=display">
+计算机系统
+\begin{cases}
+\color{red}{硬件} \quad \color{black}{计算机的实体（主机、外设等）}\\
+\color{red}{软件} \quad \color{black}{由具有各类特殊功能的信息（程序）组成}\\
+\end{cases}</script><script type="math/tex; mode=display">
+软件
+\begin{cases}
+\color{red}{系统软件} \quad \color{black}{用来管理整个计算机系统}\\
+\qquad \qquad \qquad 语言处理程序\\
+\qquad \qquad \qquad 操作系统\\
+\qquad \qquad \qquad 服务性程序\\
+\qquad \qquad \qquad 数据库管理系统\\
+\qquad \qquad \qquad 网络软件\\
+\color{red}{应用软件} \quad \color{black}{按任务需要编制成的各种程序}\\
+\end{cases}</script><span id="more"></span>
+<h3 id="2-计算机的解题过程"><a href="#2-计算机的解题过程" class="headerlink" title="2.计算机的解题过程"></a>2.计算机的解题过程</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202042609.png" alt="image-20220221202042609" style="zoom: 67%;" /></p>
+<h2 id="二、计算机系统的层次结构"><a href="#二、计算机系统的层次结构" class="headerlink" title="二、计算机系统的层次结构"></a>二、计算机系统的层次结构</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202241077.png" alt="image-20220221202241077" style="zoom:67%;" /></p>
+<p>实际机器$M_1$和微程序机器$M_0$构成硬件。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202406326.png" alt="image-20220221202406326" style="zoom:67%;" /></p>
+<h2 id="三、计算机体系结构和计算机组成"><a href="#三、计算机体系结构和计算机组成" class="headerlink" title="三、计算机体系结构和计算机组成"></a>三、计算机体系结构和计算机组成</h2><p>相关资料：<a href="https://blog.csdn.net/xifengw/article/details/99717216">微机原理、计算机组成原理与计算机体系结构之间的关系</a></p>
+<ul>
+<li><p>体系结构关注：计算机有哪些功能？</p>
+</li>
+<li><p>组成原理关注：计算机的功能如何实现？</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202446815.png" alt="image-20220221202446815" style="zoom:67%;" /></p>
+<h1 id="1-2-计算机系统组成"><a href="#1-2-计算机系统组成" class="headerlink" title="1.2 计算机系统组成"></a>1.2 计算机系统组成</h1><h2 id="一、冯·诺依曼计算机的特点"><a href="#一、冯·诺依曼计算机的特点" class="headerlink" title="一、冯·诺依曼计算机的特点"></a>一、冯·诺依曼计算机的特点</h2><ol>
+<li>计算机由五大部件组成：<strong>存储器、运算器、控制器、输入设备、输出设备</strong></li>
+<li>指令和数据以同等地位存于<code>存储器</code>，可按地址寻访</li>
+<li>指令和数据用二进制表示</li>
+<li>指令由<code>操作码</code>和<code>地址码</code>组成——具体内容详见ch7</li>
+<li>存储程序：指令在存储器内按顺序存放。指令通常<strong>按顺序执行</strong>，在特定条件下可根据运算结果或设定的条件改变执行顺序</li>
+<li>以<code>运算器</code>为中心：I/O设备与存储器间的数据传送通过运算器完成</li>
+</ol>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221203119436.png" alt="image-20220221203119436" style="zoom:67%;" /></p>
+<p>注：</p>
+<ol>
+<li>运算器：<strong>算术运算和逻辑运算</strong>。将中间结果暂存在运算器内</li>
+<li>存储器：存放数据和程序</li>
+<li>控制器：控制、<strong>指挥</strong>程序和数据的输入、运行以及处理运算结果</li>
+<li>输入设备（键鼠）：转化为机器能够识别的信息形式</li>
+<li>输出设备（打印机输出、显示器输出）：将运算结果转化为人们熟悉的信息形式</li>
+</ol>
+<h2 id="二、计算机硬件框图"><a href="#二、计算机硬件框图" class="headerlink" title="二、计算机硬件框图"></a>二、计算机硬件框图</h2><h3 id="1-以存储器为中心的计算机硬件框图"><a href="#1-以存储器为中心的计算机硬件框图" class="headerlink" title="1.以存储器为中心的计算机硬件框图"></a>1.以存储器为中心的计算机硬件框图</h3><script type="math/tex; mode=display">
+\rightarrow \quad 控制线 \\
+\dashrightarrow \quad 反馈线 \\
+\Rightarrow \quad 数据线 \\</script><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221203951631.png" alt="image-20220221203951631" style="zoom:67%;" /></p>
+<h3 id="2-现代计算机硬件框图"><a href="#2-现代计算机硬件框图" class="headerlink" title="2.现代计算机硬件框图"></a>2.现代计算机硬件框图</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221204027723.png" alt="image-20220221204027723" style="zoom:67%;" /></p>
+<ul>
+<li>CPU（中央处理器）：Central Processing Unit。计算机核心部件，由<strong>运算器</strong>和<strong>控制器</strong>组成</li>
+<li>ALU（算逻部件/算术逻辑单元）：Arithmetic &amp; Logical Unit。运算器核心部件，<strong>进行逻辑运算和算术运算</strong></li>
+<li>CU（控制单元）：Control Unit。控制器核心部件，产生微操作命令序列。<strong>用来解释存储器中的指令，发出各种操作命令来执行指令</strong></li>
+<li>I/O设备：Input/Output Equipment。</li>
+</ul>
+<h2 id="三、计算机的工作步骤"><a href="#三、计算机的工作步骤" class="headerlink" title="三、计算机的工作步骤"></a>三、计算机的工作步骤</h2><h3 id="1-上机前的准备"><a href="#1-上机前的准备" class="headerlink" title="1.上机前的准备"></a>1.上机前的准备</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205318632.png" alt="image-20220221205318632" style="zoom:67%;" /></p>
+<h4 id="编程举例"><a href="#编程举例" class="headerlink" title="编程举例"></a>编程举例</h4><ul>
+<li>运算：取被操作数、运算操作、暂存中间结果</li>
+<li>存储器：存储运算结果</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205352807.png" alt="image-20220221205352807" style="zoom:67%;" /></p>
+<h4 id="指令格式举例"><a href="#指令格式举例" class="headerlink" title="指令格式举例"></a>指令格式举例</h4><p>详见ch7。寻址、特征位、不同格式</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205704580.png" alt="img" style="zoom:67%;" /></p>
+<p>注：打印机的打印操作需要多条指令</p>
+<p>参考资料：<a href="https://blog.csdn.net/weixin_34112181/article/details/89566814">打印机主流的指令类型（ESC命令集+CPCL命令集+TSPL命令集）</a></p>
+<h4 id="计算-ax-2-bx-c-程序清单"><a href="#计算-ax-2-bx-c-程序清单" class="headerlink" title="计算$ax^2+bx+c$程序清单"></a>计算$ax^2+bx+c$程序清单</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210015842.png" alt="image-20220221210015842" style="zoom:67%;" /></p>
+<h3 id="2-计算机的解题过程-1"><a href="#2-计算机的解题过程-1" class="headerlink" title="2.计算机的解题过程"></a>2.计算机的解题过程</h3><h4 id="（1）存储器的基本组成"><a href="#（1）存储器的基本组成" class="headerlink" title="（1）存储器的基本组成"></a>（1）存储器的基本组成</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210124089.png" alt="image-20220221210124089" style="zoom:67%;" /></p>
+<ul>
+<li>MAR（存储器地址寄存器）：Memory Address Register</li>
+<li>MDR（主存数据寄存器）：Memory Data Register </li>
+<li>数据总线、读写控制</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210629442.png" alt="image-20220221210629442" style="zoom:67%;" /></p>
+<script type="math/tex; mode=display">
+计算过程： \\
+由MAR = 4位，存储单元的个数 = 2^4 = 16 \\
+由MDR = 8位，存储字长 = 8 \\</script><h4 id="（2）运算器的基本组成及操作过程"><a href="#（2）运算器的基本组成及操作过程" class="headerlink" title="（2）运算器的基本组成及操作过程"></a>（2）运算器的基本组成及操作过程</h4><p>规定动作的处理</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210828885.png" alt="image-20220221210828885" style="zoom:67%;" /></p>
+<ul>
+<li><p>ACC（累加器）：Accumulator。一种<strong>寄存器</strong>，能<strong>存放运算前被操作数</strong>，也能<strong>储存计算产生的中间结果</strong>。</p>
+<blockquote>
+<p>如果没有像累加器这样的寄存器，那么在每次计算 (加法，乘法，移位等等) 后就必须要把结果写回到<a href="https://baike.baidu.com/item/内存">内存</a>，也许马上就得读回来。然而存取主存的速度是比从<a href="https://baike.baidu.com/item/算术逻辑单元">算术逻辑单元</a>(ALU)到有直接路径的累加器存取更慢。</p>
+</blockquote>
+</li>
+<li><p>MQ（乘商寄存器）：Multiple-Quotient Register。负责数据的乘法与除法运算并可<strong>保存运算结果</strong>，是运算器的基本组成部分。<strong>也可保存运算结果的低位</strong></p>
+</li>
+</ul>
+<p>注：上图缺少了F寄存器（状态/标志寄存器）</p>
+<ul>
+<li><p>FR（标志寄存器）：Flags Register</p>
+<p>具有<strong>条件标志：进位、奇偶、辅助进位、零、符号、溢出标志</strong>，<strong>控制标记：跟踪、中断、方向标记</strong></p>
+</li>
+</ul>
+<p>参考资料：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/256470714">标志寄存器</a></p>
+<p><a href="https://baike.baidu.com/item/%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8/5757541#:~:text=%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%88%E7%A7%B0%20%E7%A8%8B%E5%BA%8F%E7%8A%B6%E6%80%81%E5%AD%97%20%EF%BC%88%E5%A4%96%E8%AF%AD%E7%BC%A9%E5%86%99%EF%BC%9APSW%E3%80%81%E5%A4%96%E8%AF%AD%E5%85%A8%E7%A7%B0%EF%BC%9AProgram,Status%20Word%EF%BC%89%E3%80%82%20%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA16%E4%BD%8D%E7%9A%84%E5%AD%98%E6%94%BE%E6%9D%A1%E4%BB%B6%E6%A0%87%E5%BF%97%E3%80%81%E6%8E%A7%E5%88%B6%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8C%E4%B8%BB%E8%A6%81%E7%94%A8%E4%BA%8E%E5%8F%8D%E6%98%A0%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8CALU%E8%BF%90%E7%AE%97%E7%BB%93%E6%9E%9C%E7%9A%84%E6%9F%90%E4%BA%9B%E7%89%B9%E5%BE%81%E5%8F%8A%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4%E7%9A%84%E6%89%A7%E8%A1%8C%E3%80%82">标志寄存器-百度百科</a></p>
+<h5 id="①加法操作过程"><a href="#①加法操作过程" class="headerlink" title="①加法操作过程"></a>①加法操作过程</h5><p>[ACC]看作被加数。</p>
+<p>从主存中取M地址号单元内的加数[M]，送至X寄存器中。</p>
+<p>将被加数[ACC]与加数[X]相加，结果（和）保留在ACC中。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221211851184.png" alt="image-20220221211851184" style="zoom:67%;" /></p>
+<h5 id="②减法操作过程"><a href="#②减法操作过程" class="headerlink" title="②减法操作过程"></a>②减法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221211932915.png" alt="image-20220221211932915" style="zoom:67%;" /></p>
+<h5 id="③乘法操作过程"><a href="#③乘法操作过程" class="headerlink" title="③乘法操作过程"></a>③乘法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212003668.png" alt="image-20220221212003668" style="zoom:67%;" /></p>
+<h5 id="④除法操作过程"><a href="#④除法操作过程" class="headerlink" title="④除法操作过程"></a>④除法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212038827.png" alt="image-20220221212038827" style="zoom:67%;" /></p>
+<h4 id="（3）控制器的基本组成"><a href="#（3）控制器的基本组成" class="headerlink" title="（3）控制器的基本组成"></a>（3）控制器的基本组成</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212108592.png" alt="image-20220221212108592" style="zoom:67%;" /></p>
+<ul>
+<li>PC（程序计数器）：Program Counter。存放<strong>欲执行的指令的地址</strong>，并可自动<strong>生成下一条指令地址</strong></li>
+<li>IR（指令寄存器）：Instruction Register。存放当前<strong>正在执行的指令</strong></li>
+<li>CU（控制单元）：Control Unit。控制器核心部件，产生微操作命令序列。<strong>用来解释存储器中的指令，发出各种操作命令来执行指令</strong></li>
+</ul>
+<h4 id="（4）主机完成一条指令的过程"><a href="#（4）主机完成一条指令的过程" class="headerlink" title="（4）主机完成一条指令的过程"></a>（4）主机完成一条指令的过程</h4><h5 id="以取数指令为例"><a href="#以取数指令为例" class="headerlink" title="以取数指令为例"></a>以取数指令为例</h5><ol>
+<li>程序计数器获得指令地址的初始值，</li>
+<li>MAR从存储体中获得指令地址对应的指令，通过地址总线送到MAR</li>
+<li>进入读取周期，把指令送至MDR</li>
+<li>通过数据总线送达指令至IR</li>
+<li>开始执行周期：进入CU，分析指令</li>
+<li>开始执行指令，指令寄存器进入MAR，给出数据地址</li>
+<li>通过MAR读取数据地址</li>
+<li>读周期，读取数据</li>
+<li>送达CPU的ACC中，修改PC</li>
+</ol>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223212632134.png" alt="img" style="zoom: 50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212204068.png" alt="image-20220221212204068" style="zoom:67%;" /></p>
+<h5 id="以存数指令为例"><a href="#以存数指令为例" class="headerlink" title="以存数指令为例"></a>以存数指令为例</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212232671.png" alt="image-20220221212232671" style="zoom:67%;" /></p>
+<p>ch4详细讨论</p>
+<p>一个CPU（运算器+控制器） + 存储器 + I/O系统 + 总线</p>
+<p>完成指令</p>
+<h4 id="（5）程序的运行过程"><a href="#（5）程序的运行过程" class="headerlink" title="（5）程序的运行过程"></a>（5）程序的运行过程</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223162855834.png" alt="image-20220223162855834" style="zoom:67%;" /></p>
+<ul>
+<li>PC地址加法器</li>
+</ul>
+<h1 id="1-3-计算机硬件的主要技术指标"><a href="#1-3-计算机硬件的主要技术指标" class="headerlink" title="1.3 计算机硬件的主要技术指标"></a>1.3 计算机硬件的主要技术指标</h1><h3 id="1-机器字长"><a href="#1-机器字长" class="headerlink" title="1.机器字长"></a>1.机器字长</h3><p>机器字长：CPU <strong>一次</strong>能处理数据的<strong>位数</strong>。与CPU中的<strong>寄存器位数</strong>有关</p>
+<ul>
+<li><p>影响精度</p>
+<blockquote>
+<p>字长越长，数的表示范围越大，精度越高</p>
+</blockquote>
+</li>
+<li><p>影响运算速度</p>
+<blockquote>
+<p>若：CPU字长较短，又要运算位数较多的数据，需要经过多次运算才能完成，影响机器的运算速度</p>
+</blockquote>
+</li>
+<li><p>影响硬件的造价</p>
+<blockquote>
+<p>直接影响加法器（或ALU）、数据总线以及存储字长的位数</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-运算速度"><a href="#2-运算速度" class="headerlink" title="2.运算速度"></a>2.运算速度</h3><ul>
+<li><p>主频：计算机工作统一步调，时钟周期的倒数</p>
+<p>晶振产生波形，与工作频率相同</p>
+</li>
+<li><p>（测试的方法）吉布森法</p>
+</li>
+<li><p>MIPS（每秒钟执行百万条指令）：Million Instructions Per Second</p>
+</li>
+</ul>
+<ul>
+<li><p>CPI （执行一条指令所需时钟周期数）：Clock Cycle Per Instruction</p>
+<p>一条指令对应波形的节拍数</p>
+</li>
+<li><p>FLOPS（每秒浮点运算次数）：Floating-point Operations Per Second</p>
+<p>浮点数的加法和乘法速度不同</p>
+</li>
+</ul>
+<h3 id="3-存储容量"><a href="#3-存储容量" class="headerlink" title="3.存储容量"></a>3.存储容量</h3><p>存放二进制信息的总位数</p>
+<p><strong>主存容量</strong>：主存中存放二进制代码的总位数。、</p>
+<p><strong>MAR的位数反映存储单元的个数（$2^N$​​），MDR的位数反映存储字长（$M$​）</strong></p>
+<ul>
+<li><p>存储单元个数$\times$​存储字长</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223163918172.png" alt="image-20220223163918172"></p>
+</li>
+<li><p>字节数——1个字节被定义为8位二进制代码</p>
+</li>
+</ul>
+<p><strong>辅存容量</strong>——字节数</p>
+<p>80GB，1GB = $2^{30}$B</p>
+<h1 id="课后习题"><a href="#课后习题" class="headerlink" title="课后习题"></a>课后习题</h1><p>1、冯·诺伊曼计算机的特点（5条）</p>
+<p>2、计算机如何区分存储器内的指令和数据</p>
+<ul>
+<li><p>通过<strong>不同的时间段</strong>来区分指令和数据</p>
+<p><u>取指令阶段</u>——指令；</p>
+<p><u>执行指令阶段</u>——数据。</p>
+</li>
+<li><p>通过<strong>地址来源</strong>区分</p>
+<p><u>PC（程序计数器）</u>提供的存储地址取出——指令；</p>
+<p><u>指令地址码</u>提供的存储地址取出——数据。</p>
+</li>
+</ul>
+<p>3、计算机硬件组成框图，各部件作用，计算机硬件主要及技术指标</p>
+]]></content>
+      <tags>
+        <tag>computer organization</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数理逻辑：绪论</title>
+    <url>/mathematical_logic/mathematical-logic-ch0/</url>
+    <content><![CDATA[<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>数理逻辑是用数学的方法研究<strong>推理</strong>，特别是研究数学中的推理</p>
+<p>推理的前提和结论都是命题，命题的真假与<strong>内容是否符合现实</strong>有关。</p>
+<script type="math/tex; mode=display">
+premises 前提 \quad（命题）\\
+\downarrow  \quad reason 推理 \\
+conclusions 结论 \quad （命题）\\</script><span id="more"></span>
+<ol>
+<li><p>正确的推理：从”正确的前提“能得到”正确的结论“的推理。</p>
+<p>推理正确——可推导关系，属于<code>演绎逻辑</code>（与之相对的是<code>归纳逻辑</code>）</p>
+<p>正确的前提：前提为真</p>
+<p>正确的结论：结论为真</p>
+</li>
+<li><p>推理正确与否<strong>与前提和结论中命题是否为真命题没有关系</strong>。</p>
+<p><strong>推理的正确性与命题的逻辑形式有关</strong></p>
+<p><strong>命题内容决定命题的真假</strong></p>
+<script type="math/tex; mode=display">
+命题：
+\begin{cases}
+内容 \\
+逻辑形式（抽象） \\
+\end{cases}</script><blockquote>
+<p>所有中学生打网球（前提）</p>
+<p>王军不打网球（前提）</p>
+<p>王军不是中学生（结论）</p>
+<p>——推理正确，不是所有命题都为真命题</p>
+</blockquote>
+<p>上述推理的逻辑形式为：</p>
+<blockquote>
+<p>S中所有元有R性质（前提）</p>
+<p>a没有R性质（前提）</p>
+<p>a不是S中的元（结论）</p>
+</blockquote>
+</li>
+<li><p>数理逻辑中，用自然语言陈述命题会带来不方便</p>
+</li>
+<li><p>数理逻辑的研究语言为：对象语言、元语言</p>
+<ul>
+<li>对象语言：被研究对象的语言。<strong>形式语言</strong>，用符号构成的公式来代替自然语言中的命题，<strong>没有二义性</strong><ul>
+<li>语义：符号，公式的含义</li>
+<li>语法：由符号构成的公式的形状和语法结构</li>
+</ul>
+</li>
+<li>元语言：辅助描述对象语言。自然语言</li>
+</ul>
+</li>
+<li><p>数理逻辑产生的动机：将一切推理的正确性化归于计算的通用代数</p>
+<ul>
+<li>建立一种普遍适用的精确的科学语言</li>
+<li>建立一种推理的演算</li>
+</ul>
+</li>
+<li><p>预备知识：</p>
+<ul>
+<li><p>集合</p>
+<p>集合S上的（n元）关系R</p>
+<p>外延</p>
+</li>
+<li><p>归纳定义和归纳证明</p>
+</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>mathematical logic</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>数理逻辑：第1节 命题逻辑的基本概念</title>
     <url>/mathematical_logic/mathematical-logic-ch1/</url>
     <content><![CDATA[<h1 id="1-1-命题与联结词"><a href="#1-1-命题与联结词" class="headerlink" title="1.1 命题与联结词"></a>1.1 命题与联结词</h1><h2 id="命题与真值"><a href="#命题与真值" class="headerlink" title="命题与真值"></a>命题与真值</h2><ul>
@@ -2346,76 +2416,6 @@ x_1 + 3x_2 - 2x_3 = 4 \\
       </tags>
   </entry>
   <entry>
-    <title>数理逻辑：绪论</title>
-    <url>/mathematical_logic/mathematical-logic-ch0/</url>
-    <content><![CDATA[<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>数理逻辑是用数学的方法研究<strong>推理</strong>，特别是研究数学中的推理</p>
-<p>推理的前提和结论都是命题，命题的真假与<strong>内容是否符合现实</strong>有关。</p>
-<script type="math/tex; mode=display">
-premises 前提 \quad（命题）\\
-\downarrow  \quad reason 推理 \\
-conclusions 结论 \quad （命题）\\</script><span id="more"></span>
-<ol>
-<li><p>正确的推理：从”正确的前提“能得到”正确的结论“的推理。</p>
-<p>推理正确——可推导关系，属于<code>演绎逻辑</code>（与之相对的是<code>归纳逻辑</code>）</p>
-<p>正确的前提：前提为真</p>
-<p>正确的结论：结论为真</p>
-</li>
-<li><p>推理正确与否<strong>与前提和结论中命题是否为真命题没有关系</strong>。</p>
-<p><strong>推理的正确性与命题的逻辑形式有关</strong></p>
-<p><strong>命题内容决定命题的真假</strong></p>
-<script type="math/tex; mode=display">
-命题：
-\begin{cases}
-内容 \\
-逻辑形式（抽象） \\
-\end{cases}</script><blockquote>
-<p>所有中学生打网球（前提）</p>
-<p>王军不打网球（前提）</p>
-<p>王军不是中学生（结论）</p>
-<p>——推理正确，不是所有命题都为真命题</p>
-</blockquote>
-<p>上述推理的逻辑形式为：</p>
-<blockquote>
-<p>S中所有元有R性质（前提）</p>
-<p>a没有R性质（前提）</p>
-<p>a不是S中的元（结论）</p>
-</blockquote>
-</li>
-<li><p>数理逻辑中，用自然语言陈述命题会带来不方便</p>
-</li>
-<li><p>数理逻辑的研究语言为：对象语言、元语言</p>
-<ul>
-<li>对象语言：被研究对象的语言。<strong>形式语言</strong>，用符号构成的公式来代替自然语言中的命题，<strong>没有二义性</strong><ul>
-<li>语义：符号，公式的含义</li>
-<li>语法：由符号构成的公式的形状和语法结构</li>
-</ul>
-</li>
-<li>元语言：辅助描述对象语言。自然语言</li>
-</ul>
-</li>
-<li><p>数理逻辑产生的动机：将一切推理的正确性化归于计算的通用代数</p>
-<ul>
-<li>建立一种普遍适用的精确的科学语言</li>
-<li>建立一种推理的演算</li>
-</ul>
-</li>
-<li><p>预备知识：</p>
-<ul>
-<li><p>集合</p>
-<p>集合S上的（n元）关系R</p>
-<p>外延</p>
-</li>
-<li><p>归纳定义和归纳证明</p>
-</li>
-</ul>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>mathematical logic</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数理逻辑：第2节 命题逻辑等值计算</title>
     <url>/mathematical-logic/mathematical-logic-ch2/</url>
     <content><![CDATA[<h1 id="2-1-等值式"><a href="#2-1-等值式" class="headerlink" title="2.1 等值式"></a>2.1 等值式</h1><ul>
@@ -2615,6 +2615,83 @@ A 为非重言式的可满足式 \Leftrightarrow A既有成真赋值又有成假
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192420027.png" alt="image-20220301192420027" style="zoom:50%;" /></p>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192436741.png" alt="image-20220301192436741" style="zoom:50%;" /></p>
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192454515.png" alt="image-20220301192454515" style="zoom:50%;" /></p>
+]]></content>
+      <tags>
+        <tag>mathematical logic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数理逻辑：第4节 命题逻辑的推理理论</title>
+    <url>/mathematical_logic/mathematical-logic-ch4/</url>
+    <content><![CDATA[<h1 id="4-1-推理的形式结构"><a href="#4-1-推理的形式结构" class="headerlink" title="4.1 推理的形式结构"></a>4.1 推理的形式结构</h1><h2 id="定义1："><a href="#定义1：" class="headerlink" title="定义1："></a><strong>定义1：</strong></h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225116596.png" alt="image-20220307225116596" style="zoom:67%;" /></p>
+<p><strong>所有的前提都为真且结论为真</strong>或者<strong>有前提为假</strong>——有效结论</p>
+<span id="more"></span>
+<p>说明：</p>
+<p>（2）根据定义1判断——前提的合取为假或者前提的合取为真且结论为真</p>
+<p>（3）考虑前提为假的情况</p>
+<h2 id="定理1："><a href="#定理1：" class="headerlink" title="定理1："></a><strong>定理1：</strong></h2><p>​    <img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225133270.png" alt="image-20220307225133270" style="zoom:67%;" /></p>
+<blockquote>
+<p>证明：</p>
+<p>（$\Rightarrow$）前提为假或者前提的合取为真且结论为真，则该式为重言式</p>
+<p>（$\Leftarrow$）同理</p>
+</blockquote>
+<h2 id="推理的形式结构（小结）"><a href="#推理的形式结构（小结）" class="headerlink" title="推理的形式结构（小结）"></a>推理的形式结构（小结）</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225217321.png" alt="image-20220307225217321" style="zoom:67%;" /></p>
+<h2 id="推理实例"><a href="#推理实例" class="headerlink" title="推理实例"></a>推理实例</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308141355061.png" alt="image-20220308141355061" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308141408459.png" alt="image-20220308141408459" style="zoom:50%;" /></p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225300522.png" alt="image-20220307225300522" style="zoom:67%;" /></p>
+<p>思考：</p>
+<p>（1）数学证明是从前提为真出发，不考虑前提为假的情况</p>
+<h2 id="推理定律——重言蕴含式"><a href="#推理定律——重言蕴含式" class="headerlink" title="推理定律——重言蕴含式"></a>推理定律——重言蕴含式</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225338038.png" alt="image-20220307225338038" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225355037.png" alt="image-20220307225355037" style="zoom:67%;" /></p>
+<blockquote>
+<p>1.A为真，B为真，则A与B为真</p>
+<p>2.A与B为真，则A、B均为真</p>
+<p>3.双重反</p>
+<p>4、5放在一起看——消掉蕴含。蕴含式和前提都为真，则结论真</p>
+<p>6.A、B有一个成立，则析取式成立</p>
+<p>7.矛盾（倒着的T）可以推出任何公式</p>
+<p>8.A和$\neg$A都成立则矛盾</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225409278.png" alt="image-20220307225409278" style="zoom:67%;" /></p>
+<blockquote>
+<p>9.A析取B为真且B为假，则A为真</p>
+<p>10.假定A推出B，B推出C，则A能推出C</p>
+<p>11.A等价于B，B等价于C，则A等价于C</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225518107.png" alt="image-20220307225518107" style="zoom:67%;" /></p>
+<h1 id="4-2-自然推理系统P"><a href="#4-2-自然推理系统P" class="headerlink" title="4.2 自然推理系统P"></a>4.2 自然推理系统P</h1><h2 id="定义2："><a href="#定义2：" class="headerlink" title="定义2："></a><strong>定义2：</strong></h2><p>​    <img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225534809.png" alt="image-20220307225534809" style="zoom:67%;" /></p>
+<blockquote>
+<p>（3）做等值演算</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225552982.png" alt="image-20220307225552982" style="zoom:67%;" /></p>
+<p>线上为前提，线下为结论（线上成立，则线下的结论成立）</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225607270.png" alt="image-20220307225607270" style="zoom:67%;" /></p>
+<blockquote>
+<p>（10）想证明蕴涵式成立：（假定A成立，如果能证明B，则蕴含式成立）。方框为假设框，上推下</p>
+<p>（11）析取引入1，析取引入2</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225620760.png" alt="image-20220307225620760" style="zoom:67%;" /></p>
+<blockquote>
+<p>（15）要证非A成立，则证A推出矛盾</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225634250.png" alt="image-20220307225634250" style="zoom:67%;" /></p>
+<h2 id="在自然推理系统P中构造证明"><a href="#在自然推理系统P中构造证明" class="headerlink" title="在自然推理系统P中构造证明"></a>在自然推理系统P中构造证明</h2><p>设前提$A_1, A_2,…, A_k$，结论$B$及公式序列$C_1, C_2 ,…, C_l$。如果每一个$C_i(1 \leq i \le l)$是某个$A_j$, 或者可由序列中前面的公式应用推理规则得到, 并且$C_l =B$, 则称这个公式序列是由$A_1, A_2,…, A_k$推出B的<strong>证明</strong>。</p>
+<blockquote>
+<p>$C_i$是中间结论，利用中间结论和前提推出最终结论</p>
+</blockquote>
+<h2 id="直接证明法"><a href="#直接证明法" class="headerlink" title="直接证明法"></a>直接证明法</h2><ul>
+<li>命题并符号化</li>
+<li>写出证明的形式结构</li>
+<li>证明</li>
+</ul>
+<h3 id="直接证明法举例"><a href="#直接证明法举例" class="headerlink" title="直接证明法举例"></a>直接证明法举例</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308144910269.png" alt="image-20220308144910269" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308144936758.png" alt="image-20220308144936758" style="zoom:50%;" /></p>
+<h2 id="附加前提证明法"><a href="#附加前提证明法" class="headerlink" title="附加前提证明法"></a>附加前提证明法</h2><p>适用于结论为蕴含式</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308144441591.png" alt="image-20220308144441591" style="zoom:67%;" /></p>
+<h3 id="附加前提证明法举例"><a href="#附加前提证明法举例" class="headerlink" title="附加前提证明法举例"></a>附加前提证明法举例</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308145032290.png" alt="image-20220308145032290" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308145051717.png" alt="image-20220308145051717" style="zoom:50%;" /></p>
+<h2 id="归谬法（反证法）"><a href="#归谬法（反证法）" class="headerlink" title="归谬法（反证法）"></a>归谬法（反证法）</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308144510314.png" alt="image-20220308144510314" style="zoom:67%;" /></p>
+<h3 id="归谬法证明举例"><a href="#归谬法证明举例" class="headerlink" title="归谬法证明举例"></a>归谬法证明举例</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308145122036.png" alt="image-20220308145122036" style="zoom:50%;" /></p>
 ]]></content>
       <tags>
         <tag>mathematical logic</tag>
@@ -2888,83 +2965,6 @@ A 为非重言式的可满足式 \Leftrightarrow A既有成真赋值又有成假
 <ul>
 <li><strong>定义5</strong>：</li>
 </ul>
-]]></content>
-      <tags>
-        <tag>mathematical logic</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数理逻辑：第4节 命题逻辑的推理理论</title>
-    <url>/mathematical_logic/mathematical-logic-ch4/</url>
-    <content><![CDATA[<h1 id="4-1-推理的形式结构"><a href="#4-1-推理的形式结构" class="headerlink" title="4.1 推理的形式结构"></a>4.1 推理的形式结构</h1><h2 id="定义1："><a href="#定义1：" class="headerlink" title="定义1："></a><strong>定义1：</strong></h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225116596.png" alt="image-20220307225116596" style="zoom:67%;" /></p>
-<p><strong>所有的前提都为真且结论为真</strong>或者<strong>有前提为假</strong>——有效结论</p>
-<span id="more"></span>
-<p>说明：</p>
-<p>（2）根据定义1判断——前提的合取为假或者前提的合取为真且结论为真</p>
-<p>（3）考虑前提为假的情况</p>
-<h2 id="定理1："><a href="#定理1：" class="headerlink" title="定理1："></a><strong>定理1：</strong></h2><p>​    <img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225133270.png" alt="image-20220307225133270" style="zoom:67%;" /></p>
-<blockquote>
-<p>证明：</p>
-<p>（$\Rightarrow$）前提为假或者前提的合取为真且结论为真，则该式为重言式</p>
-<p>（$\Leftarrow$）同理</p>
-</blockquote>
-<h2 id="推理的形式结构（小结）"><a href="#推理的形式结构（小结）" class="headerlink" title="推理的形式结构（小结）"></a>推理的形式结构（小结）</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225217321.png" alt="image-20220307225217321" style="zoom:67%;" /></p>
-<h2 id="推理实例"><a href="#推理实例" class="headerlink" title="推理实例"></a>推理实例</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308141355061.png" alt="image-20220308141355061" style="zoom:50%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308141408459.png" alt="image-20220308141408459" style="zoom:50%;" /></p>
-<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225300522.png" alt="image-20220307225300522" style="zoom:67%;" /></p>
-<p>思考：</p>
-<p>（1）数学证明是从前提为真出发，不考虑前提为假的情况</p>
-<h2 id="推理定律——重言蕴含式"><a href="#推理定律——重言蕴含式" class="headerlink" title="推理定律——重言蕴含式"></a>推理定律——重言蕴含式</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225338038.png" alt="image-20220307225338038" style="zoom:67%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225355037.png" alt="image-20220307225355037" style="zoom:67%;" /></p>
-<blockquote>
-<p>1.A为真，B为真，则A与B为真</p>
-<p>2.A与B为真，则A、B均为真</p>
-<p>3.双重反</p>
-<p>4、5放在一起看——消掉蕴含。蕴含式和前提都为真，则结论真</p>
-<p>6.A、B有一个成立，则析取式成立</p>
-<p>7.矛盾（倒着的T）可以推出任何公式</p>
-<p>8.A和$\neg$A都成立则矛盾</p>
-</blockquote>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225409278.png" alt="image-20220307225409278" style="zoom:67%;" /></p>
-<blockquote>
-<p>9.A析取B为真且B为假，则A为真</p>
-<p>10.假定A推出B，B推出C，则A能推出C</p>
-<p>11.A等价于B，B等价于C，则A等价于C</p>
-</blockquote>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225518107.png" alt="image-20220307225518107" style="zoom:67%;" /></p>
-<h1 id="4-2-自然推理系统P"><a href="#4-2-自然推理系统P" class="headerlink" title="4.2 自然推理系统P"></a>4.2 自然推理系统P</h1><h2 id="定义2："><a href="#定义2：" class="headerlink" title="定义2："></a><strong>定义2：</strong></h2><p>​    <img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225534809.png" alt="image-20220307225534809" style="zoom:67%;" /></p>
-<blockquote>
-<p>（3）做等值演算</p>
-</blockquote>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225552982.png" alt="image-20220307225552982" style="zoom:67%;" /></p>
-<p>线上为前提，线下为结论（线上成立，则线下的结论成立）</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225607270.png" alt="image-20220307225607270" style="zoom:67%;" /></p>
-<blockquote>
-<p>（10）想证明蕴涵式成立：（假定A成立，如果能证明B，则蕴含式成立）。方框为假设框，上推下</p>
-<p>（11）析取引入1，析取引入2</p>
-</blockquote>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225620760.png" alt="image-20220307225620760" style="zoom:67%;" /></p>
-<blockquote>
-<p>（15）要证非A成立，则证A推出矛盾</p>
-</blockquote>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307225634250.png" alt="image-20220307225634250" style="zoom:67%;" /></p>
-<h2 id="在自然推理系统P中构造证明"><a href="#在自然推理系统P中构造证明" class="headerlink" title="在自然推理系统P中构造证明"></a>在自然推理系统P中构造证明</h2><p>设前提$A_1, A_2,…, A_k$，结论$B$及公式序列$C_1, C_2 ,…, C_l$。如果每一个$C_i(1 \leq i \le l)$是某个$A_j$, 或者可由序列中前面的公式应用推理规则得到, 并且$C_l =B$, 则称这个公式序列是由$A_1, A_2,…, A_k$推出B的<strong>证明</strong>。</p>
-<blockquote>
-<p>$C_i$是中间结论，利用中间结论和前提推出最终结论</p>
-</blockquote>
-<h2 id="直接证明法"><a href="#直接证明法" class="headerlink" title="直接证明法"></a>直接证明法</h2><ul>
-<li>命题并符号化</li>
-<li>写出证明的形式结构</li>
-<li>证明</li>
-</ul>
-<h3 id="直接证明法举例"><a href="#直接证明法举例" class="headerlink" title="直接证明法举例"></a>直接证明法举例</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308144910269.png" alt="image-20220308144910269" style="zoom:50%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308144936758.png" alt="image-20220308144936758" style="zoom:50%;" /></p>
-<h2 id="附加前提证明法"><a href="#附加前提证明法" class="headerlink" title="附加前提证明法"></a>附加前提证明法</h2><p>适用于结论为蕴含式</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308144441591.png" alt="image-20220308144441591" style="zoom:67%;" /></p>
-<h3 id="附加前提证明法举例"><a href="#附加前提证明法举例" class="headerlink" title="附加前提证明法举例"></a>附加前提证明法举例</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308145032290.png" alt="image-20220308145032290" style="zoom:50%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308145051717.png" alt="image-20220308145051717" style="zoom:50%;" /></p>
-<h2 id="归谬法（反证法）"><a href="#归谬法（反证法）" class="headerlink" title="归谬法（反证法）"></a>归谬法（反证法）</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308144510314.png" alt="image-20220308144510314" style="zoom:67%;" /></p>
-<h3 id="归谬法证明举例"><a href="#归谬法证明举例" class="headerlink" title="归谬法证明举例"></a>归谬法证明举例</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308145122036.png" alt="image-20220308145122036" style="zoom:50%;" /></p>
 ]]></content>
       <tags>
         <tag>mathematical logic</tag>
