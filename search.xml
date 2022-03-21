@@ -1,310 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>算法设计与分析：第1章 算法基础</title>
-    <url>/algorithm/algorithm-ch1/</url>
-    <content><![CDATA[<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/202201072028024.png" alt="image-20220107202845894" style="zoom: 50%;" /></p>
-<p>终极目标：问题求解</p>
-<ul>
-<li>分析问题：已知条件、数据结构、问题划分</li>
-<li>计算模型：技术、工具、手段</li>
-<li>求解策略：技术路线</li>
-<li>编程求解：程序设计</li>
-<li>效率评估：算法评估手段——算法分析工具</li>
-</ul>
-<span id="more"></span>
-<h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><ul>
-<li>算法的基本概念</li>
-<li>算法的描述方法</li>
-<li>算法的设计过程</li>
-<li>算法设计工具</li>
-<li>基本的数据结构</li>
-</ul>
-<h2 id="算法的基本概念"><a href="#算法的基本概念" class="headerlink" title="算法的基本概念"></a>算法的基本概念</h2><p>算法：对解题方案准确而完整的描述</p>
-<p>【例1-1】求任意两个非负整数最大公约数（greatest common divisor, gcd）</p>
-<ul>
-<li><p>问题分析</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221185238540.png" alt="image-20220221185238540" style="zoom: 67%;" /></p>
-</li>
-<li><p>计算模型</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221185310925.png" alt="image-20220221185310925" style="zoom: 67%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221185340266.png" alt="image-20220221185340266" style="zoom: 67%;" /></p>
-<ul>
-<li>欧几里德算法正确性的解释<script type="math/tex; mode=display">
-设gcd(a,b) = d, 则d|a \and d|b \newline
-a = m \times b + r \to d|r
-\and a \geq b > r \\</script></li>
-</ul>
-</li>
-<li><p>算法设计与描述</p>
-<ul>
-<li>自然语言描述——脱离语言限制，提取出核心部分，$\color{red} {注意关注自然语言的二义性，要准确、清晰}$</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221185823296.png" alt="image-20220221185823296" style="zoom: 67%;" /></p>
-</li>
-<li><p>算法分析——效率</p>
-<ul>
-<li><p>错误的分析方式——通过实例来证明，不具有普遍性</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221185922706.png" alt="image-20220221185922706" style="zoom: 67%;" /></p>
-</li>
-<li><p>正确的分析方式——使用数学证明</p>
-<ul>
-<li><p>穷举法</p>
-<p><strong>注：考虑a、b互质的最坏情况，获得穷举法的算法运算数量级</strong></p>
-<p>$f(b) = p_i \times \sum_{i = 0}^{b - 1} (b-i)$</p>
-<p>$f(b) = \frac{b+1}{2}$</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221190212104.png" alt="image-20220221190212104" style="zoom: 67%;" /></p>
-</li>
-<li><p>欧几里德算法——渐进法</p>
-<p><strong>注：渐进法即构造出一个可计算、趋近于欧式算法的模型，利用不等式得到数量级</strong></p>
-<p>考虑到欧式算法中的第三项与前两项存在$\color{blue} {u_{k} = u_{k+1} + u_{k+2} \times m}$​的关系，</p>
-<p>将斐波那契数列$\color{blue}{f_{k+2} = f_{k+1} + f_{k}}$的倒序与其进行比较。</p>
-<p>最后发现$F_{n-1} \leq f(b) &lt; F_{n}$，并且$F_{n} \div F_{n-1} \approx 0.618$，得到结论。</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221190518385.png" style="zoom: 67%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221191800171.png" alt="image-20220221191800171" style="zoom: 67%;" /></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>算法实现</p>
-<ul>
-<li><p>课件上的代码（有些问题）</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221193047193.png" alt="image-20220221193047193" style="zoom:80%;" /></p>
-</li>
-<li><p>更正</p>
-</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">例1-1 求任意两个非负整数最大公约数（greatest common divisor, gcd）</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="comment">// 穷举法 </span></span><br><span class="line"><span class="type">void</span> <span class="title function_">gcd_enum</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">int</span> a, b;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;a,&amp;b);</span><br><span class="line">	<span class="comment">// 判断为0的情况</span></span><br><span class="line">	<span class="keyword">if</span> (a == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,b); <span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,a); <span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> r = a;</span><br><span class="line">	<span class="keyword">if</span> (b &lt; a) &#123;</span><br><span class="line">		r = b;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (<span class="number">0</span> != a%r || <span class="number">0</span> != b%r) &#123;</span><br><span class="line">		r = r<span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 欧几里德算法（辗转相除法） </span></span><br><span class="line"><span class="type">void</span> <span class="title function_">gcd_euclid</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">int</span> a, b;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;a,&amp;b);</span><br><span class="line">	<span class="comment">// 判断为0的情况</span></span><br><span class="line">	<span class="keyword">if</span> (a == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,b); <span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,a); <span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">// 辗转相除</span></span><br><span class="line">	<span class="type">int</span> r = a%b;</span><br><span class="line">	<span class="keyword">while</span> (r) &#123;</span><br><span class="line">		a = b; b = r; r = a%b;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">	gcd_enum();</span><br><span class="line">	gcd_euclid();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="算法的描述方法"><a href="#算法的描述方法" class="headerlink" title="算法的描述方法"></a>算法的描述方法</h2><ul>
-<li><p>自然语言描述</p>
-</li>
-<li><p>程序流程图</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221191901115.png" alt="image-20220221191901115" style="zoom:80%;" /></p>
-</li>
-<li><p>NS流程图</p>
-<p><a href="https://zhuanlan.zhihu.com/p/360968980">怎么将流程图转化为N-S图（盒图）？</a></p>
-<blockquote>
-<p>随着结构化程序设计方法的出现，美国学者Ike Nassi和Ben Shneiderman于1973年提出了一种新的流程图形式，NS流程图完全去掉了流程线，算法的每一步都用一个矩形框来描述，把一个个矩形框按执行的次序连接起来就是一个完整的算法描述。</p>
-</blockquote>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221192424910.png" alt="image-20220221192424910" style="zoom:80%;" /></p>
-</li>
-<li><p>伪代码</p>
-</li>
-<li><p>程序设计语言</p>
-</li>
-</ul>
-<h2 id="算法设计的过程"><a href="#算法设计的过程" class="headerlink" title="算法设计的过程"></a>算法设计的过程</h2><ol>
-<li>问题分析<ul>
-<li>信息整理</li>
-<li>数据结构抽象</li>
-</ul>
-</li>
-<li>算法策略/建立<strong>计算模型</strong></li>
-<li>算法设计与描述</li>
-<li>算法分析【评价——算法选择】</li>
-<li>算法实现</li>
-<li>测试</li>
-<li>结果整理与文档编制</li>
-</ol>
-<p>【例1-2】<strong>交通指挥灯问题</strong>。一个具有五条通路的交叉路口， 当允许某些通路上的车辆在交叉路口通行时，必须对其他通路 上的车辆加以限制，不许同时在交叉路口通行，以免发生碰撞， 求最少用几盏灯来指挥。</p>
-<ul>
-<li><p>问题分析</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221193622198.png" alt="image-20220221193622198" style="zoom:80%;" /></p>
-<p>​    CE是单行道，A、D、B构成的是双行道</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221193640315.png" alt="image-20220221193640315" style="zoom:67%;" /></p>
-<p>将每一条道路抽象成一个结点，线路发生冲突的道路（结点）连线</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221193848066.png" alt="image-20220221193848066" style="zoom:80%;" /></p>
-<p><strong>问题转化为：顶点染色问题，相邻的顶点不同色。</strong><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221193907765.png" alt="image-20220221193907765" style="zoom:80%;" /></p>
-</li>
-<li><p>模型建立</p>
-<p>采用<code>无向图</code>来存储结点及其之间的关系，建立邻接矩阵。</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221194041665.png" alt="image-20220221194041665" style="zoom:80%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221194213253.png" alt="image-20220221194213253" style="zoom:80%;" /></p>
-</li>
-</ul>
-<ul>
-<li><p>算法设计与描述</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221194358162.png" alt="image-20220221194358162" style="zoom:80%;" /><br>例1-2 交通指挥灯问题 BFS</p>
-<p>参考资料：<a href="https://blog.csdn.net/gyuan_/article/details/114654579">https://blog.csdn.net/gyuan_/article/details/114654579</a> </p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span> </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 顶点类型定义</span></span><br><span class="line"><span class="comment">// 定义13个顶点 </span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">	<span class="comment">// 路线名称和顶点颜色 </span></span><br><span class="line">	<span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">	<span class="type">int</span> color;</span><br><span class="line">&#125; vertex[<span class="number">13</span>];</span><br><span class="line"><span class="comment">// 邻接矩阵，1表示两个顶点不能通行 </span></span><br><span class="line"><span class="type">int</span> e[<span class="number">13</span>][<span class="number">13</span>]&#123;</span><br><span class="line">	<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 初始化各结点名称</span></span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">0</span>].name, <span class="string">&quot;AB&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">1</span>].name, <span class="string">&quot;AC&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">2</span>].name, <span class="string">&quot;AD&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">3</span>].name, <span class="string">&quot;BA&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">4</span>].name, <span class="string">&quot;BC&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">5</span>].name, <span class="string">&quot;BD&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">6</span>].name, <span class="string">&quot;DA&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">7</span>].name, <span class="string">&quot;DB&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">8</span>].name, <span class="string">&quot;DC&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">9</span>].name, <span class="string">&quot;EA&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">10</span>].name, <span class="string">&quot;EB&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">11</span>].name, <span class="string">&quot;EC&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">12</span>].name, <span class="string">&quot;ED&quot;</span>);</span><br><span class="line">    <span class="comment">// 初始化各个结点的颜色</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">13</span>; i++) &#123;</span><br><span class="line">		vertex[i].color = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="type">int</span> cnt_color = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">13</span>; i++) &#123;</span><br><span class="line">		<span class="type">int</span> flag = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (vertex[i].color == <span class="number">0</span>) &#123;</span><br><span class="line">			vertex[i].color = cnt_color;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;第%d种颜色：%s&quot;</span>,cnt_color,vertex[i].name);</span><br><span class="line">			<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; <span class="number">13</span>; j++) &#123;</span><br><span class="line">				<span class="comment">// 不相邻且没有着色结点j </span></span><br><span class="line">				<span class="keyword">if</span> (e[i][j] == <span class="number">0</span> &amp;&amp; vertex[j].color == <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="keyword">for</span> (<span class="type">int</span> h = <span class="number">0</span>; h &lt; <span class="number">13</span>; h++) &#123;</span><br><span class="line">						<span class="comment">// 考察与j相邻的顶点的颜色</span></span><br><span class="line">                        <span class="comment">// 若相邻顶点与j同色，不能染色</span></span><br><span class="line">						<span class="keyword">if</span> (e[j][h] == <span class="number">1</span> &amp;&amp; vertex[h].color == cnt_color) &#123;</span><br><span class="line">							<span class="comment">// 若有，则j不能着色 </span></span><br><span class="line">							flag = <span class="number">0</span>;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="comment">// 没有相邻且涂同一颜色的结点，可以给j着色 </span></span><br><span class="line">					<span class="keyword">if</span> (flag == <span class="number">1</span>) &#123;</span><br><span class="line">						vertex[j].color = cnt_color;	<span class="comment">// 着色</span></span><br><span class="line">						<span class="built_in">printf</span>(<span class="string">&quot; %s&quot;</span>,vertex[j].name);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">// 用一种颜色能涂都涂完，贪心 </span></span><br><span class="line">			cnt_color++;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;总共%d种颜色\n&quot;</span>,cnt_color<span class="number">-1</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>  优化：</p>
-<ul>
-<li>当所有顶点都着色，退出最外层循环。不必循环13次（设置cnt_v统计已着色顶点个数）</li>
-</ul>
-<ul>
-<li><p>算法分析</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221200332576.png" alt="image-20220221200332576" style="zoom:80%;" /></p>
-<p>注：本题答案不唯一</p>
-</li>
-</ul>
-<p>思考题：</p>
-<ul>
-<li><p>算法设计过程包含几个步骤？</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223082210018.png" alt="image-20220223082210018" style="zoom: 80%;" /></p>
-<ul>
-<li>算法分析还需要考虑运算（乘除、积分、微分）</li>
-<li>测试技巧：考虑覆盖率（例1-1，Euclid和穷举法比较不能使用某个实例评价算法效率）<ul>
-<li>两个相似的算法类比</li>
-</ul>
-</li>
-<li>不要信息丢失、挖掘隐含信息、抽象出数据结构</li>
-</ul>
-</li>
-<li><p>哪几个步骤必须？</p>
-</li>
-<li><p>交通指挥灯问题的算法分析的分析主要对象是什么？</p>
-</li>
-<li><p>交通指挥灯问题的结果是否唯一？</p>
-<p>——顶点划分。</p>
-</li>
-<li><p>拓展：仿照1-2完成中国地图着色</p>
-<ul>
-<li>思路：每个省份抽象为一个结点，相邻的结点（省份）不同色</li>
-<li>进一步深究：丰富语义——考虑地域风俗、饮食特色</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227112209868.png" alt="image-20220227112209868" style="zoom:67%;" /></p>
-</li>
-</ul>
-<h2 id="算法设计工具"><a href="#算法设计工具" class="headerlink" title="算法设计工具"></a>算法设计工具</h2><h3 id="1-循环设计"><a href="#1-循环设计" class="headerlink" title="1.循环设计"></a>1.循环设计</h3><h4 id="（1）设计思维"><a href="#（1）设计思维" class="headerlink" title="（1）设计思维"></a>（1）设计思维</h4><ul>
-<li><p>自底向上——<strong>合并</strong></p>
-<p>解决子问题，合并子问题的解，得到大问题的解。</p>
-</li>
-<li><p>自顶向下——<strong>分解</strong></p>
-<p>大问题分解为小问题，找到每个问题的关键，解决小问题。</p>
-</li>
-</ul>
-<p>思考：数据结构中学过的例子</p>
-<p>归并排序：先拆分，再合并</p>
-<p>自底向上：冒泡排序</p>
-<p>自顶向下：二分查找、快排</p>
-<h4 id="（2）挖掘内在规律构建计算模型"><a href="#（2）挖掘内在规律构建计算模型" class="headerlink" title="（2）挖掘内在规律构建计算模型"></a>（2）挖掘内在规律构建计算模型</h4><p>挖掘问题的内在规律，进行抽象并构建计算模型</p>
-<p>【例1-3】设计算法，输出一个n×n的三角矩阵，如图所示规律。</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220222211604373.png" alt="image-20220222211604373" style="zoom: 50%;" /></p>
-<ul>
-<li><p>问题分析</p>
-<ul>
-<li><p>找相似问题：建立下标和摆放值的映射关系</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223084020198.png" alt="image-20220223084020198" style="zoom:67%;" /></p>
-<p>九宫格、旋转矩阵</p>
-</li>
-<li><p>引入中间变量——斜行</p>
-<p>——转化为直角坐标系，$F(i_m) = j_m + L_k$​（对应第k斜行）​​</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223084416612.png" alt="image-20220223084416612" style="zoom:67%;" /></p>
-</li>
-</ul>
-</li>
-<li><p>计算模型</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223084744264.png" alt="image-20220223084744264" style="zoom: 67%;" /></p>
-</li>
-<li><p>算法设计与描述</p>
-<p>外层循环为斜行，内层循环一次完成一个斜行，外层循环结束摆放完成</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223084854470.png" alt="image-20220223084854470" style="zoom:67%;" /></p>
-</li>
-<li><p>算法分析</p>
-<p>$f(n) = \sum_{L=0}^{n-1} \sum_{j=0}^{n-L-1} 1 = n+(n-1)+…+1 = \frac{n(n-1)}{2}$​</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223085012327.png" alt="image-20220223085012327" style="zoom:67%;" /></p>
-</li>
-<li><p>算法实现</p>
-</li>
-</ul>
-<h4 id="（3）改进计算模型提高运算效率"><a href="#（3）改进计算模型提高运算效率" class="headerlink" title="（3）改进计算模型提高运算效率"></a>（3）改进计算模型提高运算效率</h4><p>【例1-4】求1/1!-1/3!+1/5!-1/7!+…+$(-1)^{n+1}$/(2n-1)!</p>
-<ul>
-<li><p>问题分析</p>
-<p>求sin的泰勒公式值</p>
-<p>迭代方法是在累乘的基础上实现累加</p>
-</li>
-<li><p>计算模型</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223090030433.png" alt="image-20220223090030433" style="zoom:67%;" /></p>
-<p>由（4-1），外层循环累加，内层循环累乘</p>
-<p>由（4-2），相邻两项具有规律：利用相邻两项$T_n$​和$T_{n-1}$​的关系避免内层n重循环，减少复杂度</p>
-</li>
-<li><p>算法设计与描述</p>
-<p>体现两重循环：外层循环为n次</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223090517951.png" alt="image-20220223090517951" style="zoom: 67%;" /></p>
-</li>
-<li><p>算法分析</p>
-</li>
-</ul>
-<h3 id="2-递归设计"><a href="#2-递归设计" class="headerlink" title="2.递归设计"></a>2.递归设计</h3><ul>
-<li>定义：一个过程或函数在定义中直接或间接调用自身的一种方法</li>
-<li>设计关键：找出递归关系(方程)和递归终止(边界)条件。递 归关系就是使问题向边界条件转化的规则</li>
-<li>递归设计的步骤：<ul>
-<li>分析问题找到递归关系：找出大规模问题与小规模问题 的关系，以便通过递归使问题规模变小——能用递归用递归，让递归收敛</li>
-<li>设置终止条件控制递归：通过停止条件的设置，找出可解的最小规模问题。</li>
-<li>设计函数确定数据传递方式</li>
-</ul>
-</li>
-</ul>
-<p>思考：</p>
-<ul>
-<li><p>递归的效率高or低？</p>
-<p>——循环比递归更好</p>
-</li>
-</ul>
-<p>【例1】运用递归方式设计求解斐波那契数列的第n项的值</p>
-<ul>
-<li><p>计算模型</p>
-<script type="math/tex; mode=display">
-\begin{cases}
-f_1 = f_2 = 1 \qquad (5-1) \\ 
-f_{n} = f_{n-1} + f_{n-2} \quad ,n \geq 3 \qquad(5-2) \\
-\end{cases}</script></li>
-<li><p>算法分析</p>
-<p>第n项对应n次运算</p>
-</li>
-<li><p>算法实现</p>
-</li>
-</ul>
-<h3 id="3-循环与递归的比较"><a href="#3-循环与递归的比较" class="headerlink" title="3.循环与递归的比较"></a>3.循环与递归的比较</h3><p>【例1-5】任意给定十进制数：</p>
-<p>(1)从低位到高位逐位输出各位数字;</p>
-<p>(2) 从高位到低位逐位输出各位数字。</p>
-<ul>
-<li><p>算法实现</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223092001323.png" alt="image-20220223092001323" style="zoom:80%;" /></p>
-<ul>
-<li>从低位向高位输出：循环和递归的效率相同</li>
-<li>从高位向低位输出：递归比循环的功能强大得多（类比树的遍历）</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>思考：递归和循环的优缺点</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223092831064.png" alt="image-20220223092831064" style="zoom:67%;" /></p>
-</li>
-<li><p>递归法求斐波那契数列</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line">			<span class="built_in">f</span>(<span class="number">9</span>)</span><br><span class="line">	<span class="built_in">f</span>(<span class="number">9</span>-<span class="number">1</span>)			<span class="built_in">f</span>(<span class="number">9</span>-<span class="number">2</span>)</span><br><span class="line"><span class="built_in">f</span>(<span class="number">8</span>-<span class="number">1</span>)	<span class="built_in">f</span>(<span class="number">8</span>-<span class="number">2</span>)	<span class="built_in">f</span>(<span class="number">7</span>-<span class="number">1</span>)	<span class="built_in">f</span>(<span class="number">7</span>-<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>【例1-6】求从n个自然数(1,2,3,…, n)中取出r个数的所有组合。</p>
-<h2 id="基本的数据结构"><a href="#基本的数据结构" class="headerlink" title="基本的数据结构"></a>基本的数据结构</h2><h3 id="（1）线性数据结构"><a href="#（1）线性数据结构" class="headerlink" title="（1）线性数据结构"></a>（1）线性数据结构</h3><p>线性表、栈（LIFO）、队列（FIFO）</p>
-<h3 id="（2）树"><a href="#（2）树" class="headerlink" title="（2）树"></a>（2）树</h3><p>只有一个双亲结点</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223093104142.png" alt="image-20220223093104142" style="zoom:67%;" /></p>
-<p>二叉树使用层数计算效率</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">BiTNode</span> &#123;</span><br><span class="line">	TElemtype data;</span><br><span class="line">	Struct BiTNode *lchild, *rchild;</span><br><span class="line">&#125; BiTNode, *BiTree；</span><br></pre></td></tr></table></figure>
-<h3 id="（3）图"><a href="#（3）图" class="headerlink" title="（3）图"></a>（3）图</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223093530012.png" alt="image-20220223093530012" style="zoom:67%;" /></p>
-<p>关注：入度、出度</p>
-<h4 id="表示方法"><a href="#表示方法" class="headerlink" title="表示方法"></a>表示方法</h4><ul>
-<li>邻接矩阵</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223093621870.png" alt="image-20220223093621870" style="zoom:67%;" /></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VNode</span> &#123;</span><br><span class="line">	elementtype vertex;</span><br><span class="line">&#125;VNode, v[<span class="number">4</span>];</span><br><span class="line">weight vr[<span class="number">4</span>][<span class="number">4</span>]= &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>,</span><br><span class="line">                    <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>,</span><br><span class="line">                    <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>,</span><br><span class="line">                    <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span> &#125;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>邻接表</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223093730037.png" alt="image-20220223093730037" style="zoom:67%;" /></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">V:</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VNode</span> &#123;</span><br><span class="line">    vertextype data;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">adjvex</span> *firstedge;</span><br><span class="line">&#125;VNode, v[n];</span><br><span class="line"></span><br><span class="line">VR:</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">adjvex</span> &#123;</span><br><span class="line">    <span class="type">int</span> seqNo;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">adjvex</span> *next;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>评价算法看模型</p>
-]]></content>
-      <tags>
-        <tag>algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>算法设计与分析：第2章 算法分析基础</title>
     <url>/algorithm/algorithm-ch2/</url>
     <content><![CDATA[<p>算法效率评价的指标：算法对计算机资源的使用</p>
@@ -887,6 +583,310 @@ x_1 + 3x_2 - 2x_3 = 4 \\
       </tags>
   </entry>
   <entry>
+    <title>算法设计与分析：第1章 算法基础</title>
+    <url>/algorithm/algorithm-ch1/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/202201072028024.png" alt="image-20220107202845894" style="zoom: 50%;" /></p>
+<p>终极目标：问题求解</p>
+<ul>
+<li>分析问题：已知条件、数据结构、问题划分</li>
+<li>计算模型：技术、工具、手段</li>
+<li>求解策略：技术路线</li>
+<li>编程求解：程序设计</li>
+<li>效率评估：算法评估手段——算法分析工具</li>
+</ul>
+<span id="more"></span>
+<h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><ul>
+<li>算法的基本概念</li>
+<li>算法的描述方法</li>
+<li>算法的设计过程</li>
+<li>算法设计工具</li>
+<li>基本的数据结构</li>
+</ul>
+<h2 id="算法的基本概念"><a href="#算法的基本概念" class="headerlink" title="算法的基本概念"></a>算法的基本概念</h2><p>算法：对解题方案准确而完整的描述</p>
+<p>【例1-1】求任意两个非负整数最大公约数（greatest common divisor, gcd）</p>
+<ul>
+<li><p>问题分析</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221185238540.png" alt="image-20220221185238540" style="zoom: 67%;" /></p>
+</li>
+<li><p>计算模型</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221185310925.png" alt="image-20220221185310925" style="zoom: 67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221185340266.png" alt="image-20220221185340266" style="zoom: 67%;" /></p>
+<ul>
+<li>欧几里德算法正确性的解释<script type="math/tex; mode=display">
+设gcd(a,b) = d, 则d|a \and d|b \newline
+a = m \times b + r \to d|r
+\and a \geq b > r \\</script></li>
+</ul>
+</li>
+<li><p>算法设计与描述</p>
+<ul>
+<li>自然语言描述——脱离语言限制，提取出核心部分，$\color{red} {注意关注自然语言的二义性，要准确、清晰}$</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221185823296.png" alt="image-20220221185823296" style="zoom: 67%;" /></p>
+</li>
+<li><p>算法分析——效率</p>
+<ul>
+<li><p>错误的分析方式——通过实例来证明，不具有普遍性</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221185922706.png" alt="image-20220221185922706" style="zoom: 67%;" /></p>
+</li>
+<li><p>正确的分析方式——使用数学证明</p>
+<ul>
+<li><p>穷举法</p>
+<p><strong>注：考虑a、b互质的最坏情况，获得穷举法的算法运算数量级</strong></p>
+<p>$f(b) = p_i \times \sum_{i = 0}^{b - 1} (b-i)$</p>
+<p>$f(b) = \frac{b+1}{2}$</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221190212104.png" alt="image-20220221190212104" style="zoom: 67%;" /></p>
+</li>
+<li><p>欧几里德算法——渐进法</p>
+<p><strong>注：渐进法即构造出一个可计算、趋近于欧式算法的模型，利用不等式得到数量级</strong></p>
+<p>考虑到欧式算法中的第三项与前两项存在$\color{blue} {u_{k} = u_{k+1} + u_{k+2} \times m}$​的关系，</p>
+<p>将斐波那契数列$\color{blue}{f_{k+2} = f_{k+1} + f_{k}}$的倒序与其进行比较。</p>
+<p>最后发现$F_{n-1} \leq f(b) &lt; F_{n}$，并且$F_{n} \div F_{n-1} \approx 0.618$，得到结论。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221190518385.png" style="zoom: 67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221191800171.png" alt="image-20220221191800171" style="zoom: 67%;" /></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>算法实现</p>
+<ul>
+<li><p>课件上的代码（有些问题）</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221193047193.png" alt="image-20220221193047193" style="zoom:80%;" /></p>
+</li>
+<li><p>更正</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">例1-1 求任意两个非负整数最大公约数（greatest common divisor, gcd）</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="comment">// 穷举法 </span></span><br><span class="line"><span class="type">void</span> <span class="title function_">gcd_enum</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">int</span> a, b;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;a,&amp;b);</span><br><span class="line">	<span class="comment">// 判断为0的情况</span></span><br><span class="line">	<span class="keyword">if</span> (a == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,b); <span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,a); <span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> r = a;</span><br><span class="line">	<span class="keyword">if</span> (b &lt; a) &#123;</span><br><span class="line">		r = b;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (<span class="number">0</span> != a%r || <span class="number">0</span> != b%r) &#123;</span><br><span class="line">		r = r<span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 欧几里德算法（辗转相除法） </span></span><br><span class="line"><span class="type">void</span> <span class="title function_">gcd_euclid</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">int</span> a, b;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;a,&amp;b);</span><br><span class="line">	<span class="comment">// 判断为0的情况</span></span><br><span class="line">	<span class="keyword">if</span> (a == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,b); <span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,a); <span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">// 辗转相除</span></span><br><span class="line">	<span class="type">int</span> r = a%b;</span><br><span class="line">	<span class="keyword">while</span> (r) &#123;</span><br><span class="line">		a = b; b = r; r = a%b;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">	gcd_enum();</span><br><span class="line">	gcd_euclid();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="算法的描述方法"><a href="#算法的描述方法" class="headerlink" title="算法的描述方法"></a>算法的描述方法</h2><ul>
+<li><p>自然语言描述</p>
+</li>
+<li><p>程序流程图</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221191901115.png" alt="image-20220221191901115" style="zoom:80%;" /></p>
+</li>
+<li><p>NS流程图</p>
+<p><a href="https://zhuanlan.zhihu.com/p/360968980">怎么将流程图转化为N-S图（盒图）？</a></p>
+<blockquote>
+<p>随着结构化程序设计方法的出现，美国学者Ike Nassi和Ben Shneiderman于1973年提出了一种新的流程图形式，NS流程图完全去掉了流程线，算法的每一步都用一个矩形框来描述，把一个个矩形框按执行的次序连接起来就是一个完整的算法描述。</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221192424910.png" alt="image-20220221192424910" style="zoom:80%;" /></p>
+</li>
+<li><p>伪代码</p>
+</li>
+<li><p>程序设计语言</p>
+</li>
+</ul>
+<h2 id="算法设计的过程"><a href="#算法设计的过程" class="headerlink" title="算法设计的过程"></a>算法设计的过程</h2><ol>
+<li>问题分析<ul>
+<li>信息整理</li>
+<li>数据结构抽象</li>
+</ul>
+</li>
+<li>算法策略/建立<strong>计算模型</strong></li>
+<li>算法设计与描述</li>
+<li>算法分析【评价——算法选择】</li>
+<li>算法实现</li>
+<li>测试</li>
+<li>结果整理与文档编制</li>
+</ol>
+<p>【例1-2】<strong>交通指挥灯问题</strong>。一个具有五条通路的交叉路口， 当允许某些通路上的车辆在交叉路口通行时，必须对其他通路 上的车辆加以限制，不许同时在交叉路口通行，以免发生碰撞， 求最少用几盏灯来指挥。</p>
+<ul>
+<li><p>问题分析</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221193622198.png" alt="image-20220221193622198" style="zoom:80%;" /></p>
+<p>​    CE是单行道，A、D、B构成的是双行道</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221193640315.png" alt="image-20220221193640315" style="zoom:67%;" /></p>
+<p>将每一条道路抽象成一个结点，线路发生冲突的道路（结点）连线</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221193848066.png" alt="image-20220221193848066" style="zoom:80%;" /></p>
+<p><strong>问题转化为：顶点染色问题，相邻的顶点不同色。</strong><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221193907765.png" alt="image-20220221193907765" style="zoom:80%;" /></p>
+</li>
+<li><p>模型建立</p>
+<p>采用<code>无向图</code>来存储结点及其之间的关系，建立邻接矩阵。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221194041665.png" alt="image-20220221194041665" style="zoom:80%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221194213253.png" alt="image-20220221194213253" style="zoom:80%;" /></p>
+</li>
+</ul>
+<ul>
+<li><p>算法设计与描述</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221194358162.png" alt="image-20220221194358162" style="zoom:80%;" /><br>例1-2 交通指挥灯问题 BFS</p>
+<p>参考资料：<a href="https://blog.csdn.net/gyuan_/article/details/114654579">https://blog.csdn.net/gyuan_/article/details/114654579</a> </p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span> </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 顶点类型定义</span></span><br><span class="line"><span class="comment">// 定义13个顶点 </span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">	<span class="comment">// 路线名称和顶点颜色 </span></span><br><span class="line">	<span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">	<span class="type">int</span> color;</span><br><span class="line">&#125; vertex[<span class="number">13</span>];</span><br><span class="line"><span class="comment">// 邻接矩阵，1表示两个顶点不能通行 </span></span><br><span class="line"><span class="type">int</span> e[<span class="number">13</span>][<span class="number">13</span>]&#123;</span><br><span class="line">	<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,</span><br><span class="line">	<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 初始化各结点名称</span></span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">0</span>].name, <span class="string">&quot;AB&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">1</span>].name, <span class="string">&quot;AC&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">2</span>].name, <span class="string">&quot;AD&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">3</span>].name, <span class="string">&quot;BA&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">4</span>].name, <span class="string">&quot;BC&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">5</span>].name, <span class="string">&quot;BD&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">6</span>].name, <span class="string">&quot;DA&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">7</span>].name, <span class="string">&quot;DB&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">8</span>].name, <span class="string">&quot;DC&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">9</span>].name, <span class="string">&quot;EA&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">10</span>].name, <span class="string">&quot;EB&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">11</span>].name, <span class="string">&quot;EC&quot;</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(vertex[<span class="number">12</span>].name, <span class="string">&quot;ED&quot;</span>);</span><br><span class="line">    <span class="comment">// 初始化各个结点的颜色</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">13</span>; i++) &#123;</span><br><span class="line">		vertex[i].color = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="type">int</span> cnt_color = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">13</span>; i++) &#123;</span><br><span class="line">		<span class="type">int</span> flag = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (vertex[i].color == <span class="number">0</span>) &#123;</span><br><span class="line">			vertex[i].color = cnt_color;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;第%d种颜色：%s&quot;</span>,cnt_color,vertex[i].name);</span><br><span class="line">			<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; <span class="number">13</span>; j++) &#123;</span><br><span class="line">				<span class="comment">// 不相邻且没有着色结点j </span></span><br><span class="line">				<span class="keyword">if</span> (e[i][j] == <span class="number">0</span> &amp;&amp; vertex[j].color == <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="keyword">for</span> (<span class="type">int</span> h = <span class="number">0</span>; h &lt; <span class="number">13</span>; h++) &#123;</span><br><span class="line">						<span class="comment">// 考察与j相邻的顶点的颜色</span></span><br><span class="line">                        <span class="comment">// 若相邻顶点与j同色，不能染色</span></span><br><span class="line">						<span class="keyword">if</span> (e[j][h] == <span class="number">1</span> &amp;&amp; vertex[h].color == cnt_color) &#123;</span><br><span class="line">							<span class="comment">// 若有，则j不能着色 </span></span><br><span class="line">							flag = <span class="number">0</span>;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="comment">// 没有相邻且涂同一颜色的结点，可以给j着色 </span></span><br><span class="line">					<span class="keyword">if</span> (flag == <span class="number">1</span>) &#123;</span><br><span class="line">						vertex[j].color = cnt_color;	<span class="comment">// 着色</span></span><br><span class="line">						<span class="built_in">printf</span>(<span class="string">&quot; %s&quot;</span>,vertex[j].name);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">// 用一种颜色能涂都涂完，贪心 </span></span><br><span class="line">			cnt_color++;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;总共%d种颜色\n&quot;</span>,cnt_color<span class="number">-1</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>  优化：</p>
+<ul>
+<li>当所有顶点都着色，退出最外层循环。不必循环13次（设置cnt_v统计已着色顶点个数）</li>
+</ul>
+<ul>
+<li><p>算法分析</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221200332576.png" alt="image-20220221200332576" style="zoom:80%;" /></p>
+<p>注：本题答案不唯一</p>
+</li>
+</ul>
+<p>思考题：</p>
+<ul>
+<li><p>算法设计过程包含几个步骤？</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223082210018.png" alt="image-20220223082210018" style="zoom: 80%;" /></p>
+<ul>
+<li>算法分析还需要考虑运算（乘除、积分、微分）</li>
+<li>测试技巧：考虑覆盖率（例1-1，Euclid和穷举法比较不能使用某个实例评价算法效率）<ul>
+<li>两个相似的算法类比</li>
+</ul>
+</li>
+<li>不要信息丢失、挖掘隐含信息、抽象出数据结构</li>
+</ul>
+</li>
+<li><p>哪几个步骤必须？</p>
+</li>
+<li><p>交通指挥灯问题的算法分析的分析主要对象是什么？</p>
+</li>
+<li><p>交通指挥灯问题的结果是否唯一？</p>
+<p>——顶点划分。</p>
+</li>
+<li><p>拓展：仿照1-2完成中国地图着色</p>
+<ul>
+<li>思路：每个省份抽象为一个结点，相邻的结点（省份）不同色</li>
+<li>进一步深究：丰富语义——考虑地域风俗、饮食特色</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220227112209868.png" alt="image-20220227112209868" style="zoom:67%;" /></p>
+</li>
+</ul>
+<h2 id="算法设计工具"><a href="#算法设计工具" class="headerlink" title="算法设计工具"></a>算法设计工具</h2><h3 id="1-循环设计"><a href="#1-循环设计" class="headerlink" title="1.循环设计"></a>1.循环设计</h3><h4 id="（1）设计思维"><a href="#（1）设计思维" class="headerlink" title="（1）设计思维"></a>（1）设计思维</h4><ul>
+<li><p>自底向上——<strong>合并</strong></p>
+<p>解决子问题，合并子问题的解，得到大问题的解。</p>
+</li>
+<li><p>自顶向下——<strong>分解</strong></p>
+<p>大问题分解为小问题，找到每个问题的关键，解决小问题。</p>
+</li>
+</ul>
+<p>思考：数据结构中学过的例子</p>
+<p>归并排序：先拆分，再合并</p>
+<p>自底向上：冒泡排序</p>
+<p>自顶向下：二分查找、快排</p>
+<h4 id="（2）挖掘内在规律构建计算模型"><a href="#（2）挖掘内在规律构建计算模型" class="headerlink" title="（2）挖掘内在规律构建计算模型"></a>（2）挖掘内在规律构建计算模型</h4><p>挖掘问题的内在规律，进行抽象并构建计算模型</p>
+<p>【例1-3】设计算法，输出一个n×n的三角矩阵，如图所示规律。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220222211604373.png" alt="image-20220222211604373" style="zoom: 50%;" /></p>
+<ul>
+<li><p>问题分析</p>
+<ul>
+<li><p>找相似问题：建立下标和摆放值的映射关系</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223084020198.png" alt="image-20220223084020198" style="zoom:67%;" /></p>
+<p>九宫格、旋转矩阵</p>
+</li>
+<li><p>引入中间变量——斜行</p>
+<p>——转化为直角坐标系，$F(i_m) = j_m + L_k$​（对应第k斜行）​​</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223084416612.png" alt="image-20220223084416612" style="zoom:67%;" /></p>
+</li>
+</ul>
+</li>
+<li><p>计算模型</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223084744264.png" alt="image-20220223084744264" style="zoom: 67%;" /></p>
+</li>
+<li><p>算法设计与描述</p>
+<p>外层循环为斜行，内层循环一次完成一个斜行，外层循环结束摆放完成</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223084854470.png" alt="image-20220223084854470" style="zoom:67%;" /></p>
+</li>
+<li><p>算法分析</p>
+<p>$f(n) = \sum_{L=0}^{n-1} \sum_{j=0}^{n-L-1} 1 = n+(n-1)+…+1 = \frac{n(n-1)}{2}$​</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223085012327.png" alt="image-20220223085012327" style="zoom:67%;" /></p>
+</li>
+<li><p>算法实现</p>
+</li>
+</ul>
+<h4 id="（3）改进计算模型提高运算效率"><a href="#（3）改进计算模型提高运算效率" class="headerlink" title="（3）改进计算模型提高运算效率"></a>（3）改进计算模型提高运算效率</h4><p>【例1-4】求1/1!-1/3!+1/5!-1/7!+…+$(-1)^{n+1}$/(2n-1)!</p>
+<ul>
+<li><p>问题分析</p>
+<p>求sin的泰勒公式值</p>
+<p>迭代方法是在累乘的基础上实现累加</p>
+</li>
+<li><p>计算模型</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223090030433.png" alt="image-20220223090030433" style="zoom:67%;" /></p>
+<p>由（4-1），外层循环累加，内层循环累乘</p>
+<p>由（4-2），相邻两项具有规律：利用相邻两项$T_n$​和$T_{n-1}$​的关系避免内层n重循环，减少复杂度</p>
+</li>
+<li><p>算法设计与描述</p>
+<p>体现两重循环：外层循环为n次</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223090517951.png" alt="image-20220223090517951" style="zoom: 67%;" /></p>
+</li>
+<li><p>算法分析</p>
+</li>
+</ul>
+<h3 id="2-递归设计"><a href="#2-递归设计" class="headerlink" title="2.递归设计"></a>2.递归设计</h3><ul>
+<li>定义：一个过程或函数在定义中直接或间接调用自身的一种方法</li>
+<li>设计关键：找出递归关系(方程)和递归终止(边界)条件。递 归关系就是使问题向边界条件转化的规则</li>
+<li>递归设计的步骤：<ul>
+<li>分析问题找到递归关系：找出大规模问题与小规模问题 的关系，以便通过递归使问题规模变小——能用递归用递归，让递归收敛</li>
+<li>设置终止条件控制递归：通过停止条件的设置，找出可解的最小规模问题。</li>
+<li>设计函数确定数据传递方式</li>
+</ul>
+</li>
+</ul>
+<p>思考：</p>
+<ul>
+<li><p>递归的效率高or低？</p>
+<p>——循环比递归更好</p>
+</li>
+</ul>
+<p>【例1】运用递归方式设计求解斐波那契数列的第n项的值</p>
+<ul>
+<li><p>计算模型</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+f_1 = f_2 = 1 \qquad (5-1) \\ 
+f_{n} = f_{n-1} + f_{n-2} \quad ,n \geq 3 \qquad(5-2) \\
+\end{cases}</script></li>
+<li><p>算法分析</p>
+<p>第n项对应n次运算</p>
+</li>
+<li><p>算法实现</p>
+</li>
+</ul>
+<h3 id="3-循环与递归的比较"><a href="#3-循环与递归的比较" class="headerlink" title="3.循环与递归的比较"></a>3.循环与递归的比较</h3><p>【例1-5】任意给定十进制数：</p>
+<p>(1)从低位到高位逐位输出各位数字;</p>
+<p>(2) 从高位到低位逐位输出各位数字。</p>
+<ul>
+<li><p>算法实现</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223092001323.png" alt="image-20220223092001323" style="zoom:80%;" /></p>
+<ul>
+<li>从低位向高位输出：循环和递归的效率相同</li>
+<li>从高位向低位输出：递归比循环的功能强大得多（类比树的遍历）</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>思考：递归和循环的优缺点</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223092831064.png" alt="image-20220223092831064" style="zoom:67%;" /></p>
+</li>
+<li><p>递归法求斐波那契数列</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line">			<span class="built_in">f</span>(<span class="number">9</span>)</span><br><span class="line">	<span class="built_in">f</span>(<span class="number">9</span>-<span class="number">1</span>)			<span class="built_in">f</span>(<span class="number">9</span>-<span class="number">2</span>)</span><br><span class="line"><span class="built_in">f</span>(<span class="number">8</span>-<span class="number">1</span>)	<span class="built_in">f</span>(<span class="number">8</span>-<span class="number">2</span>)	<span class="built_in">f</span>(<span class="number">7</span>-<span class="number">1</span>)	<span class="built_in">f</span>(<span class="number">7</span>-<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>【例1-6】求从n个自然数(1,2,3,…, n)中取出r个数的所有组合。</p>
+<h2 id="基本的数据结构"><a href="#基本的数据结构" class="headerlink" title="基本的数据结构"></a>基本的数据结构</h2><h3 id="（1）线性数据结构"><a href="#（1）线性数据结构" class="headerlink" title="（1）线性数据结构"></a>（1）线性数据结构</h3><p>线性表、栈（LIFO）、队列（FIFO）</p>
+<h3 id="（2）树"><a href="#（2）树" class="headerlink" title="（2）树"></a>（2）树</h3><p>只有一个双亲结点</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223093104142.png" alt="image-20220223093104142" style="zoom:67%;" /></p>
+<p>二叉树使用层数计算效率</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">BiTNode</span> &#123;</span><br><span class="line">	TElemtype data;</span><br><span class="line">	Struct BiTNode *lchild, *rchild;</span><br><span class="line">&#125; BiTNode, *BiTree；</span><br></pre></td></tr></table></figure>
+<h3 id="（3）图"><a href="#（3）图" class="headerlink" title="（3）图"></a>（3）图</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223093530012.png" alt="image-20220223093530012" style="zoom:67%;" /></p>
+<p>关注：入度、出度</p>
+<h4 id="表示方法"><a href="#表示方法" class="headerlink" title="表示方法"></a>表示方法</h4><ul>
+<li>邻接矩阵</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223093621870.png" alt="image-20220223093621870" style="zoom:67%;" /></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VNode</span> &#123;</span><br><span class="line">	elementtype vertex;</span><br><span class="line">&#125;VNode, v[<span class="number">4</span>];</span><br><span class="line">weight vr[<span class="number">4</span>][<span class="number">4</span>]= &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>,</span><br><span class="line">                    <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>,</span><br><span class="line">                    <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>,</span><br><span class="line">                    <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span> &#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>邻接表</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223093730037.png" alt="image-20220223093730037" style="zoom:67%;" /></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">V:</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VNode</span> &#123;</span><br><span class="line">    vertextype data;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">adjvex</span> *firstedge;</span><br><span class="line">&#125;VNode, v[n];</span><br><span class="line"></span><br><span class="line">VR:</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">adjvex</span> &#123;</span><br><span class="line">    <span class="type">int</span> seqNo;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">adjvex</span> *next;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>评价算法看模型</p>
+]]></content>
+      <tags>
+        <tag>algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>算法设计与分析：第4章 蛮力法</title>
     <url>/algorithm/algorithm-ch4/</url>
     <content><![CDATA[<p><strong>蛮力法（brute force）</strong>：直接基于问题的描述和所涉及的概念定义的进行算法设计，简单而直接。</p>
@@ -1156,6 +1156,283 @@ T(n) = \sum_{i = 0}^{n-1}T(i+1) + C \\
 ]]></content>
       <tags>
         <tag>algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机组成原理：第1章 计算机系统概论</title>
+    <url>/computer_organization/computer-organization-ch1/</url>
+    <content><![CDATA[<h1 id="1-1-计算机系统简介"><a href="#1-1-计算机系统简介" class="headerlink" title="1.1 计算机系统简介"></a>1.1 计算机系统简介</h1><h2 id="一、计算机的软硬件概念"><a href="#一、计算机的软硬件概念" class="headerlink" title="一、计算机的软硬件概念"></a>一、计算机的软硬件概念</h2><h3 id="1-计算机系统"><a href="#1-计算机系统" class="headerlink" title="1.计算机系统"></a>1.计算机系统</h3><script type="math/tex; mode=display">
+计算机系统
+\begin{cases}
+\color{red}{硬件} \quad \color{black}{计算机的实体（主机、外设等）}\\
+\color{red}{软件} \quad \color{black}{由具有各类特殊功能的信息（程序）组成}\\
+\end{cases}</script><script type="math/tex; mode=display">
+软件
+\begin{cases}
+\color{red}{系统软件} \quad \color{black}{用来管理整个计算机系统}\\
+\qquad \qquad \qquad 语言处理程序\\
+\qquad \qquad \qquad 操作系统\\
+\qquad \qquad \qquad 服务性程序\\
+\qquad \qquad \qquad 数据库管理系统\\
+\qquad \qquad \qquad 网络软件\\
+\color{red}{应用软件} \quad \color{black}{按任务需要编制成的各种程序}\\
+\end{cases}</script><span id="more"></span>
+<h3 id="2-计算机的解题过程"><a href="#2-计算机的解题过程" class="headerlink" title="2.计算机的解题过程"></a>2.计算机的解题过程</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202042609.png" alt="image-20220221202042609" style="zoom: 67%;" /></p>
+<h2 id="二、计算机系统的层次结构"><a href="#二、计算机系统的层次结构" class="headerlink" title="二、计算机系统的层次结构"></a>二、计算机系统的层次结构</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202241077.png" alt="image-20220221202241077" style="zoom:67%;" /></p>
+<p>实际机器$M_1$和微程序机器$M_0$构成硬件。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202406326.png" alt="image-20220221202406326" style="zoom:67%;" /></p>
+<h2 id="三、计算机体系结构和计算机组成"><a href="#三、计算机体系结构和计算机组成" class="headerlink" title="三、计算机体系结构和计算机组成"></a>三、计算机体系结构和计算机组成</h2><p>相关资料：<a href="https://blog.csdn.net/xifengw/article/details/99717216">微机原理、计算机组成原理与计算机体系结构之间的关系</a></p>
+<ul>
+<li><p>体系结构关注：计算机有哪些功能？</p>
+</li>
+<li><p>组成原理关注：计算机的功能如何实现？</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202446815.png" alt="image-20220221202446815" style="zoom:67%;" /></p>
+<h1 id="1-2-计算机系统组成"><a href="#1-2-计算机系统组成" class="headerlink" title="1.2 计算机系统组成"></a>1.2 计算机系统组成</h1><h2 id="一、冯·诺依曼计算机的特点"><a href="#一、冯·诺依曼计算机的特点" class="headerlink" title="一、冯·诺依曼计算机的特点"></a>一、冯·诺依曼计算机的特点</h2><ol>
+<li>计算机由五大部件组成：<strong>存储器、运算器、控制器、输入设备、输出设备</strong></li>
+<li>指令和数据以同等地位存于<code>存储器</code>，可按地址寻访</li>
+<li>指令和数据用二进制表示</li>
+<li>指令由<code>操作码</code>和<code>地址码</code>组成——具体内容详见ch7</li>
+<li>存储程序：指令在存储器内按顺序存放。指令通常<strong>按顺序执行</strong>，在特定条件下可根据运算结果或设定的条件改变执行顺序</li>
+<li>以<code>运算器</code>为中心：I/O设备与存储器间的数据传送通过运算器完成</li>
+</ol>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221203119436.png" alt="image-20220221203119436" style="zoom:67%;" /></p>
+<p>注：</p>
+<ol>
+<li>运算器：<strong>算术运算和逻辑运算</strong>。将中间结果暂存在运算器内</li>
+<li>存储器：存放数据和程序</li>
+<li>控制器：控制、<strong>指挥</strong>程序和数据的输入、运行以及处理运算结果</li>
+<li>输入设备（键鼠）：转化为机器能够识别的信息形式</li>
+<li>输出设备（打印机输出、显示器输出）：将运算结果转化为人们熟悉的信息形式</li>
+</ol>
+<h2 id="二、计算机硬件框图"><a href="#二、计算机硬件框图" class="headerlink" title="二、计算机硬件框图"></a>二、计算机硬件框图</h2><h3 id="1-以存储器为中心的计算机硬件框图"><a href="#1-以存储器为中心的计算机硬件框图" class="headerlink" title="1.以存储器为中心的计算机硬件框图"></a>1.以存储器为中心的计算机硬件框图</h3><script type="math/tex; mode=display">
+\rightarrow \quad 控制线 \\
+\dashrightarrow \quad 反馈线 \\
+\Rightarrow \quad 数据线 \\</script><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221203951631.png" alt="image-20220221203951631" style="zoom:67%;" /></p>
+<h3 id="2-现代计算机硬件框图"><a href="#2-现代计算机硬件框图" class="headerlink" title="2.现代计算机硬件框图"></a>2.现代计算机硬件框图</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221204027723.png" alt="image-20220221204027723" style="zoom:67%;" /></p>
+<ul>
+<li>CPU（中央处理器）：Central Processing Unit。计算机核心部件，由<strong>运算器</strong>和<strong>控制器</strong>组成</li>
+<li>ALU（算逻部件/算术逻辑单元）：Arithmetic &amp; Logical Unit。运算器核心部件，<strong>进行逻辑运算和算术运算</strong></li>
+<li>CU（控制单元）：Control Unit。控制器核心部件，产生微操作命令序列。<strong>用来解释存储器中的指令，发出各种操作命令来执行指令</strong></li>
+<li>I/O设备：Input/Output Equipment。</li>
+</ul>
+<h2 id="三、计算机的工作步骤"><a href="#三、计算机的工作步骤" class="headerlink" title="三、计算机的工作步骤"></a>三、计算机的工作步骤</h2><h3 id="1-上机前的准备"><a href="#1-上机前的准备" class="headerlink" title="1.上机前的准备"></a>1.上机前的准备</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205318632.png" alt="image-20220221205318632" style="zoom:67%;" /></p>
+<h4 id="编程举例"><a href="#编程举例" class="headerlink" title="编程举例"></a>编程举例</h4><ul>
+<li>运算：取被操作数、运算操作、暂存中间结果</li>
+<li>存储器：存储运算结果</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205352807.png" alt="image-20220221205352807" style="zoom:67%;" /></p>
+<h4 id="指令格式举例"><a href="#指令格式举例" class="headerlink" title="指令格式举例"></a>指令格式举例</h4><p>详见ch7。寻址、特征位、不同格式</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205704580.png" alt="img" style="zoom:67%;" /></p>
+<p>注：打印机的打印操作需要多条指令</p>
+<p>参考资料：<a href="https://blog.csdn.net/weixin_34112181/article/details/89566814">打印机主流的指令类型（ESC命令集+CPCL命令集+TSPL命令集）</a></p>
+<h4 id="计算-ax-2-bx-c-程序清单"><a href="#计算-ax-2-bx-c-程序清单" class="headerlink" title="计算$ax^2+bx+c$程序清单"></a>计算$ax^2+bx+c$程序清单</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210015842.png" alt="image-20220221210015842" style="zoom:67%;" /></p>
+<h3 id="2-计算机的解题过程-1"><a href="#2-计算机的解题过程-1" class="headerlink" title="2.计算机的解题过程"></a>2.计算机的解题过程</h3><h4 id="（1）存储器的基本组成"><a href="#（1）存储器的基本组成" class="headerlink" title="（1）存储器的基本组成"></a>（1）存储器的基本组成</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210124089.png" alt="image-20220221210124089" style="zoom:67%;" /></p>
+<ul>
+<li>MAR（存储器地址寄存器）：Memory Address Register</li>
+<li>MDR（主存数据寄存器）：Memory Data Register </li>
+<li>数据总线、读写控制</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210629442.png" alt="image-20220221210629442" style="zoom:67%;" /></p>
+<script type="math/tex; mode=display">
+计算过程： \\
+由MAR = 4位，存储单元的个数 = 2^4 = 16 \\
+由MDR = 8位，存储字长 = 8 \\</script><h4 id="（2）运算器的基本组成及操作过程"><a href="#（2）运算器的基本组成及操作过程" class="headerlink" title="（2）运算器的基本组成及操作过程"></a>（2）运算器的基本组成及操作过程</h4><p>规定动作的处理</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210828885.png" alt="image-20220221210828885" style="zoom:67%;" /></p>
+<ul>
+<li><p>ACC（累加器）：Accumulator。一种<strong>寄存器</strong>，能<strong>存放运算前被操作数</strong>，也能<strong>储存计算产生的中间结果</strong>。</p>
+<blockquote>
+<p>如果没有像累加器这样的寄存器，那么在每次计算 (加法，乘法，移位等等) 后就必须要把结果写回到<a href="https://baike.baidu.com/item/内存">内存</a>，也许马上就得读回来。然而存取主存的速度是比从<a href="https://baike.baidu.com/item/算术逻辑单元">算术逻辑单元</a>(ALU)到有直接路径的累加器存取更慢。</p>
+</blockquote>
+</li>
+<li><p>MQ（乘商寄存器）：Multiple-Quotient Register。负责数据的乘法与除法运算并可<strong>保存运算结果</strong>，是运算器的基本组成部分。<strong>也可保存运算结果的低位</strong></p>
+</li>
+</ul>
+<p>注：上图缺少了F寄存器（状态/标志寄存器）</p>
+<ul>
+<li><p>FR（标志寄存器）：Flags Register</p>
+<p>具有<strong>条件标志：进位、奇偶、辅助进位、零、符号、溢出标志</strong>，<strong>控制标记：跟踪、中断、方向标记</strong></p>
+</li>
+</ul>
+<p>参考资料：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/256470714">标志寄存器</a></p>
+<p><a href="https://baike.baidu.com/item/%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8/5757541#:~:text=%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%88%E7%A7%B0%20%E7%A8%8B%E5%BA%8F%E7%8A%B6%E6%80%81%E5%AD%97%20%EF%BC%88%E5%A4%96%E8%AF%AD%E7%BC%A9%E5%86%99%EF%BC%9APSW%E3%80%81%E5%A4%96%E8%AF%AD%E5%85%A8%E7%A7%B0%EF%BC%9AProgram,Status%20Word%EF%BC%89%E3%80%82%20%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA16%E4%BD%8D%E7%9A%84%E5%AD%98%E6%94%BE%E6%9D%A1%E4%BB%B6%E6%A0%87%E5%BF%97%E3%80%81%E6%8E%A7%E5%88%B6%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8C%E4%B8%BB%E8%A6%81%E7%94%A8%E4%BA%8E%E5%8F%8D%E6%98%A0%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8CALU%E8%BF%90%E7%AE%97%E7%BB%93%E6%9E%9C%E7%9A%84%E6%9F%90%E4%BA%9B%E7%89%B9%E5%BE%81%E5%8F%8A%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4%E7%9A%84%E6%89%A7%E8%A1%8C%E3%80%82">标志寄存器-百度百科</a></p>
+<h5 id="①加法操作过程"><a href="#①加法操作过程" class="headerlink" title="①加法操作过程"></a>①加法操作过程</h5><p>[ACC]看作被加数。</p>
+<p>从主存中取M地址号单元内的加数[M]，送至X寄存器中。</p>
+<p>将被加数[ACC]与加数[X]相加，结果（和）保留在ACC中。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221211851184.png" alt="image-20220221211851184" style="zoom:67%;" /></p>
+<h5 id="②减法操作过程"><a href="#②减法操作过程" class="headerlink" title="②减法操作过程"></a>②减法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221211932915.png" alt="image-20220221211932915" style="zoom:67%;" /></p>
+<h5 id="③乘法操作过程"><a href="#③乘法操作过程" class="headerlink" title="③乘法操作过程"></a>③乘法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212003668.png" alt="image-20220221212003668" style="zoom:67%;" /></p>
+<h5 id="④除法操作过程"><a href="#④除法操作过程" class="headerlink" title="④除法操作过程"></a>④除法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212038827.png" alt="image-20220221212038827" style="zoom:67%;" /></p>
+<h4 id="（3）控制器的基本组成"><a href="#（3）控制器的基本组成" class="headerlink" title="（3）控制器的基本组成"></a>（3）控制器的基本组成</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212108592.png" alt="image-20220221212108592" style="zoom:67%;" /></p>
+<ul>
+<li>PC（程序计数器）：Program Counter。存放<strong>欲执行的指令的地址</strong>，并可自动<strong>生成下一条指令地址</strong></li>
+<li>IR（指令寄存器）：Instruction Register。存放当前<strong>正在执行的指令</strong></li>
+<li>CU（控制单元）：Control Unit。控制器核心部件，产生微操作命令序列。<strong>用来解释存储器中的指令，发出各种操作命令来执行指令</strong></li>
+</ul>
+<h4 id="（4）主机完成一条指令的过程"><a href="#（4）主机完成一条指令的过程" class="headerlink" title="（4）主机完成一条指令的过程"></a>（4）主机完成一条指令的过程</h4><h5 id="以取数指令为例"><a href="#以取数指令为例" class="headerlink" title="以取数指令为例"></a>以取数指令为例</h5><ol>
+<li>程序计数器获得指令地址的初始值，</li>
+<li>MAR从存储体中获得指令地址对应的指令，通过地址总线送到MAR</li>
+<li>进入读取周期，把指令送至MDR</li>
+<li>通过数据总线送达指令至IR</li>
+<li>开始执行周期：进入CU，分析指令</li>
+<li>开始执行指令，指令寄存器进入MAR，给出数据地址</li>
+<li>通过MAR读取数据地址</li>
+<li>读周期，读取数据</li>
+<li>送达CPU的ACC中，修改PC</li>
+</ol>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223212632134.png" alt="img" style="zoom: 50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212204068.png" alt="image-20220221212204068" style="zoom:67%;" /></p>
+<h5 id="以存数指令为例"><a href="#以存数指令为例" class="headerlink" title="以存数指令为例"></a>以存数指令为例</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212232671.png" alt="image-20220221212232671" style="zoom:67%;" /></p>
+<p>ch4详细讨论</p>
+<p>一个CPU（运算器+控制器） + 存储器 + I/O系统 + 总线</p>
+<p>完成指令</p>
+<h4 id="（5）程序的运行过程"><a href="#（5）程序的运行过程" class="headerlink" title="（5）程序的运行过程"></a>（5）程序的运行过程</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223162855834.png" alt="image-20220223162855834" style="zoom:67%;" /></p>
+<ul>
+<li>PC地址加法器</li>
+</ul>
+<h1 id="1-3-计算机硬件的主要技术指标"><a href="#1-3-计算机硬件的主要技术指标" class="headerlink" title="1.3 计算机硬件的主要技术指标"></a>1.3 计算机硬件的主要技术指标</h1><h3 id="1-机器字长"><a href="#1-机器字长" class="headerlink" title="1.机器字长"></a>1.机器字长</h3><p>机器字长：CPU <strong>一次</strong>能处理数据的<strong>位数</strong>。与CPU中的<strong>寄存器位数</strong>有关</p>
+<ul>
+<li><p>影响精度</p>
+<blockquote>
+<p>字长越长，数的表示范围越大，精度越高</p>
+</blockquote>
+</li>
+<li><p>影响运算速度</p>
+<blockquote>
+<p>若：CPU字长较短，又要运算位数较多的数据，需要经过多次运算才能完成，影响机器的运算速度</p>
+</blockquote>
+</li>
+<li><p>影响硬件的造价</p>
+<blockquote>
+<p>直接影响加法器（或ALU）、数据总线以及存储字长的位数</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-运算速度"><a href="#2-运算速度" class="headerlink" title="2.运算速度"></a>2.运算速度</h3><ul>
+<li><p>主频：计算机工作统一步调，时钟周期的倒数</p>
+<p>晶振产生波形，与工作频率相同</p>
+</li>
+<li><p>（测试的方法）吉布森法</p>
+</li>
+<li><p>MIPS（每秒钟执行百万条指令）：Million Instructions Per Second</p>
+</li>
+</ul>
+<ul>
+<li><p>CPI （执行一条指令所需时钟周期数）：Clock Cycle Per Instruction</p>
+<p>一条指令对应波形的节拍数</p>
+</li>
+<li><p>FLOPS（每秒浮点运算次数）：Floating-point Operations Per Second</p>
+<p>浮点数的加法和乘法速度不同</p>
+</li>
+</ul>
+<h3 id="3-存储容量"><a href="#3-存储容量" class="headerlink" title="3.存储容量"></a>3.存储容量</h3><p>存放二进制信息的总位数</p>
+<p><strong>主存容量</strong>：主存中存放二进制代码的总位数。、</p>
+<p><strong>MAR的位数反映存储单元的个数（$2^N$​​），MDR的位数反映存储字长（$M$​）</strong></p>
+<ul>
+<li><p>存储单元个数$\times$​存储字长</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223163918172.png" alt="image-20220223163918172"></p>
+</li>
+<li><p>字节数——1个字节被定义为8位二进制代码</p>
+</li>
+</ul>
+<p><strong>辅存容量</strong>——字节数</p>
+<p>80GB，1GB = $2^{30}$B</p>
+<h1 id="课后习题"><a href="#课后习题" class="headerlink" title="课后习题"></a>课后习题</h1><p>1、冯·诺伊曼计算机的特点（5条）</p>
+<p>2、计算机如何区分存储器内的指令和数据</p>
+<ul>
+<li><p>通过<strong>不同的时间段</strong>来区分指令和数据</p>
+<p><u>取指令阶段</u>——指令；</p>
+<p><u>执行指令阶段</u>——数据。</p>
+</li>
+<li><p>通过<strong>地址来源</strong>区分</p>
+<p><u>PC（程序计数器）</u>提供的存储地址取出——指令；</p>
+<p><u>指令地址码</u>提供的存储地址取出——数据。</p>
+</li>
+</ul>
+<p>3、计算机硬件组成框图，各部件作用，计算机硬件主要及技术指标</p>
+]]></content>
+      <tags>
+        <tag>computer organization</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/undefined/hello-world/</url>
+    <content><![CDATA[<p>你好，Hexo！你好，世界！</p>
+<p>欢迎来到我的博客</p>
+<p>我将持续记录日常学习、生活的点点滴滴</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>数理逻辑：绪论</title>
+    <url>/mathematical_logic/mathematical-logic-ch0/</url>
+    <content><![CDATA[<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>数理逻辑是用数学的方法研究<strong>推理</strong>，特别是研究数学中的推理</p>
+<p>推理的前提和结论都是命题，命题的真假与<strong>内容是否符合现实</strong>有关。</p>
+<script type="math/tex; mode=display">
+premises 前提 \quad（命题）\\
+\downarrow  \quad reason 推理 \\
+conclusions 结论 \quad （命题）\\</script><span id="more"></span>
+<ol>
+<li><p>正确的推理：从”正确的前提“能得到”正确的结论“的推理。</p>
+<p>推理正确——可推导关系，属于<code>演绎逻辑</code>（与之相对的是<code>归纳逻辑</code>）</p>
+<p>正确的前提：前提为真</p>
+<p>正确的结论：结论为真</p>
+</li>
+<li><p>推理正确与否<strong>与前提和结论中命题是否为真命题没有关系</strong>。</p>
+<p><strong>推理的正确性与命题的逻辑形式有关</strong></p>
+<p><strong>命题内容决定命题的真假</strong></p>
+<script type="math/tex; mode=display">
+命题：
+\begin{cases}
+内容 \\
+逻辑形式（抽象） \\
+\end{cases}</script><blockquote>
+<p>所有中学生打网球（前提）</p>
+<p>王军不打网球（前提）</p>
+<p>王军不是中学生（结论）</p>
+<p>——推理正确，不是所有命题都为真命题</p>
+</blockquote>
+<p>上述推理的逻辑形式为：</p>
+<blockquote>
+<p>S中所有元有R性质（前提）</p>
+<p>a没有R性质（前提）</p>
+<p>a不是S中的元（结论）</p>
+</blockquote>
+</li>
+<li><p>数理逻辑中，用自然语言陈述命题会带来不方便</p>
+</li>
+<li><p>数理逻辑的研究语言为：对象语言、元语言</p>
+<ul>
+<li>对象语言：被研究对象的语言。<strong>形式语言</strong>，用符号构成的公式来代替自然语言中的命题，<strong>没有二义性</strong><ul>
+<li>语义：符号，公式的含义</li>
+<li>语法：由符号构成的公式的形状和语法结构</li>
+</ul>
+</li>
+<li>元语言：辅助描述对象语言。自然语言</li>
+</ul>
+</li>
+<li><p>数理逻辑产生的动机：将一切推理的正确性化归于计算的通用代数</p>
+<ul>
+<li>建立一种普遍适用的精确的科学语言</li>
+<li>建立一种推理的演算</li>
+</ul>
+</li>
+<li><p>预备知识：</p>
+<ul>
+<li><p>集合</p>
+<p>集合S上的（n元）关系R</p>
+<p>外延</p>
+</li>
+<li><p>归纳定义和归纳证明</p>
+</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>mathematical logic</tag>
       </tags>
   </entry>
   <entry>
@@ -1907,283 +2184,6 @@ T(n) = \sum_{i = 0}^{n-1}T(i+1) + C \\
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/undefined/hello-world/</url>
-    <content><![CDATA[<p>你好，Hexo！你好，世界！</p>
-<p>欢迎来到我的博客</p>
-<p>我将持续记录日常学习、生活的点点滴滴</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>计算机组成原理：第1章 计算机系统概论</title>
-    <url>/computer_organization/computer-organization-ch1/</url>
-    <content><![CDATA[<h1 id="1-1-计算机系统简介"><a href="#1-1-计算机系统简介" class="headerlink" title="1.1 计算机系统简介"></a>1.1 计算机系统简介</h1><h2 id="一、计算机的软硬件概念"><a href="#一、计算机的软硬件概念" class="headerlink" title="一、计算机的软硬件概念"></a>一、计算机的软硬件概念</h2><h3 id="1-计算机系统"><a href="#1-计算机系统" class="headerlink" title="1.计算机系统"></a>1.计算机系统</h3><script type="math/tex; mode=display">
-计算机系统
-\begin{cases}
-\color{red}{硬件} \quad \color{black}{计算机的实体（主机、外设等）}\\
-\color{red}{软件} \quad \color{black}{由具有各类特殊功能的信息（程序）组成}\\
-\end{cases}</script><script type="math/tex; mode=display">
-软件
-\begin{cases}
-\color{red}{系统软件} \quad \color{black}{用来管理整个计算机系统}\\
-\qquad \qquad \qquad 语言处理程序\\
-\qquad \qquad \qquad 操作系统\\
-\qquad \qquad \qquad 服务性程序\\
-\qquad \qquad \qquad 数据库管理系统\\
-\qquad \qquad \qquad 网络软件\\
-\color{red}{应用软件} \quad \color{black}{按任务需要编制成的各种程序}\\
-\end{cases}</script><span id="more"></span>
-<h3 id="2-计算机的解题过程"><a href="#2-计算机的解题过程" class="headerlink" title="2.计算机的解题过程"></a>2.计算机的解题过程</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202042609.png" alt="image-20220221202042609" style="zoom: 67%;" /></p>
-<h2 id="二、计算机系统的层次结构"><a href="#二、计算机系统的层次结构" class="headerlink" title="二、计算机系统的层次结构"></a>二、计算机系统的层次结构</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202241077.png" alt="image-20220221202241077" style="zoom:67%;" /></p>
-<p>实际机器$M_1$和微程序机器$M_0$构成硬件。</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202406326.png" alt="image-20220221202406326" style="zoom:67%;" /></p>
-<h2 id="三、计算机体系结构和计算机组成"><a href="#三、计算机体系结构和计算机组成" class="headerlink" title="三、计算机体系结构和计算机组成"></a>三、计算机体系结构和计算机组成</h2><p>相关资料：<a href="https://blog.csdn.net/xifengw/article/details/99717216">微机原理、计算机组成原理与计算机体系结构之间的关系</a></p>
-<ul>
-<li><p>体系结构关注：计算机有哪些功能？</p>
-</li>
-<li><p>组成原理关注：计算机的功能如何实现？</p>
-</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221202446815.png" alt="image-20220221202446815" style="zoom:67%;" /></p>
-<h1 id="1-2-计算机系统组成"><a href="#1-2-计算机系统组成" class="headerlink" title="1.2 计算机系统组成"></a>1.2 计算机系统组成</h1><h2 id="一、冯·诺依曼计算机的特点"><a href="#一、冯·诺依曼计算机的特点" class="headerlink" title="一、冯·诺依曼计算机的特点"></a>一、冯·诺依曼计算机的特点</h2><ol>
-<li>计算机由五大部件组成：<strong>存储器、运算器、控制器、输入设备、输出设备</strong></li>
-<li>指令和数据以同等地位存于<code>存储器</code>，可按地址寻访</li>
-<li>指令和数据用二进制表示</li>
-<li>指令由<code>操作码</code>和<code>地址码</code>组成——具体内容详见ch7</li>
-<li>存储程序：指令在存储器内按顺序存放。指令通常<strong>按顺序执行</strong>，在特定条件下可根据运算结果或设定的条件改变执行顺序</li>
-<li>以<code>运算器</code>为中心：I/O设备与存储器间的数据传送通过运算器完成</li>
-</ol>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221203119436.png" alt="image-20220221203119436" style="zoom:67%;" /></p>
-<p>注：</p>
-<ol>
-<li>运算器：<strong>算术运算和逻辑运算</strong>。将中间结果暂存在运算器内</li>
-<li>存储器：存放数据和程序</li>
-<li>控制器：控制、<strong>指挥</strong>程序和数据的输入、运行以及处理运算结果</li>
-<li>输入设备（键鼠）：转化为机器能够识别的信息形式</li>
-<li>输出设备（打印机输出、显示器输出）：将运算结果转化为人们熟悉的信息形式</li>
-</ol>
-<h2 id="二、计算机硬件框图"><a href="#二、计算机硬件框图" class="headerlink" title="二、计算机硬件框图"></a>二、计算机硬件框图</h2><h3 id="1-以存储器为中心的计算机硬件框图"><a href="#1-以存储器为中心的计算机硬件框图" class="headerlink" title="1.以存储器为中心的计算机硬件框图"></a>1.以存储器为中心的计算机硬件框图</h3><script type="math/tex; mode=display">
-\rightarrow \quad 控制线 \\
-\dashrightarrow \quad 反馈线 \\
-\Rightarrow \quad 数据线 \\</script><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221203951631.png" alt="image-20220221203951631" style="zoom:67%;" /></p>
-<h3 id="2-现代计算机硬件框图"><a href="#2-现代计算机硬件框图" class="headerlink" title="2.现代计算机硬件框图"></a>2.现代计算机硬件框图</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221204027723.png" alt="image-20220221204027723" style="zoom:67%;" /></p>
-<ul>
-<li>CPU（中央处理器）：Central Processing Unit。计算机核心部件，由<strong>运算器</strong>和<strong>控制器</strong>组成</li>
-<li>ALU（算逻部件/算术逻辑单元）：Arithmetic &amp; Logical Unit。运算器核心部件，<strong>进行逻辑运算和算术运算</strong></li>
-<li>CU（控制单元）：Control Unit。控制器核心部件，产生微操作命令序列。<strong>用来解释存储器中的指令，发出各种操作命令来执行指令</strong></li>
-<li>I/O设备：Input/Output Equipment。</li>
-</ul>
-<h2 id="三、计算机的工作步骤"><a href="#三、计算机的工作步骤" class="headerlink" title="三、计算机的工作步骤"></a>三、计算机的工作步骤</h2><h3 id="1-上机前的准备"><a href="#1-上机前的准备" class="headerlink" title="1.上机前的准备"></a>1.上机前的准备</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205318632.png" alt="image-20220221205318632" style="zoom:67%;" /></p>
-<h4 id="编程举例"><a href="#编程举例" class="headerlink" title="编程举例"></a>编程举例</h4><ul>
-<li>运算：取被操作数、运算操作、暂存中间结果</li>
-<li>存储器：存储运算结果</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205352807.png" alt="image-20220221205352807" style="zoom:67%;" /></p>
-<h4 id="指令格式举例"><a href="#指令格式举例" class="headerlink" title="指令格式举例"></a>指令格式举例</h4><p>详见ch7。寻址、特征位、不同格式</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221205704580.png" alt="img" style="zoom:67%;" /></p>
-<p>注：打印机的打印操作需要多条指令</p>
-<p>参考资料：<a href="https://blog.csdn.net/weixin_34112181/article/details/89566814">打印机主流的指令类型（ESC命令集+CPCL命令集+TSPL命令集）</a></p>
-<h4 id="计算-ax-2-bx-c-程序清单"><a href="#计算-ax-2-bx-c-程序清单" class="headerlink" title="计算$ax^2+bx+c$程序清单"></a>计算$ax^2+bx+c$程序清单</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210015842.png" alt="image-20220221210015842" style="zoom:67%;" /></p>
-<h3 id="2-计算机的解题过程-1"><a href="#2-计算机的解题过程-1" class="headerlink" title="2.计算机的解题过程"></a>2.计算机的解题过程</h3><h4 id="（1）存储器的基本组成"><a href="#（1）存储器的基本组成" class="headerlink" title="（1）存储器的基本组成"></a>（1）存储器的基本组成</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210124089.png" alt="image-20220221210124089" style="zoom:67%;" /></p>
-<ul>
-<li>MAR（存储器地址寄存器）：Memory Address Register</li>
-<li>MDR（主存数据寄存器）：Memory Data Register </li>
-<li>数据总线、读写控制</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210629442.png" alt="image-20220221210629442" style="zoom:67%;" /></p>
-<script type="math/tex; mode=display">
-计算过程： \\
-由MAR = 4位，存储单元的个数 = 2^4 = 16 \\
-由MDR = 8位，存储字长 = 8 \\</script><h4 id="（2）运算器的基本组成及操作过程"><a href="#（2）运算器的基本组成及操作过程" class="headerlink" title="（2）运算器的基本组成及操作过程"></a>（2）运算器的基本组成及操作过程</h4><p>规定动作的处理</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221210828885.png" alt="image-20220221210828885" style="zoom:67%;" /></p>
-<ul>
-<li><p>ACC（累加器）：Accumulator。一种<strong>寄存器</strong>，能<strong>存放运算前被操作数</strong>，也能<strong>储存计算产生的中间结果</strong>。</p>
-<blockquote>
-<p>如果没有像累加器这样的寄存器，那么在每次计算 (加法，乘法，移位等等) 后就必须要把结果写回到<a href="https://baike.baidu.com/item/内存">内存</a>，也许马上就得读回来。然而存取主存的速度是比从<a href="https://baike.baidu.com/item/算术逻辑单元">算术逻辑单元</a>(ALU)到有直接路径的累加器存取更慢。</p>
-</blockquote>
-</li>
-<li><p>MQ（乘商寄存器）：Multiple-Quotient Register。负责数据的乘法与除法运算并可<strong>保存运算结果</strong>，是运算器的基本组成部分。<strong>也可保存运算结果的低位</strong></p>
-</li>
-</ul>
-<p>注：上图缺少了F寄存器（状态/标志寄存器）</p>
-<ul>
-<li><p>FR（标志寄存器）：Flags Register</p>
-<p>具有<strong>条件标志：进位、奇偶、辅助进位、零、符号、溢出标志</strong>，<strong>控制标记：跟踪、中断、方向标记</strong></p>
-</li>
-</ul>
-<p>参考资料：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/256470714">标志寄存器</a></p>
-<p><a href="https://baike.baidu.com/item/%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8/5757541#:~:text=%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%88%E7%A7%B0%20%E7%A8%8B%E5%BA%8F%E7%8A%B6%E6%80%81%E5%AD%97%20%EF%BC%88%E5%A4%96%E8%AF%AD%E7%BC%A9%E5%86%99%EF%BC%9APSW%E3%80%81%E5%A4%96%E8%AF%AD%E5%85%A8%E7%A7%B0%EF%BC%9AProgram,Status%20Word%EF%BC%89%E3%80%82%20%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA16%E4%BD%8D%E7%9A%84%E5%AD%98%E6%94%BE%E6%9D%A1%E4%BB%B6%E6%A0%87%E5%BF%97%E3%80%81%E6%8E%A7%E5%88%B6%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8C%E4%B8%BB%E8%A6%81%E7%94%A8%E4%BA%8E%E5%8F%8D%E6%98%A0%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8CALU%E8%BF%90%E7%AE%97%E7%BB%93%E6%9E%9C%E7%9A%84%E6%9F%90%E4%BA%9B%E7%89%B9%E5%BE%81%E5%8F%8A%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4%E7%9A%84%E6%89%A7%E8%A1%8C%E3%80%82">标志寄存器-百度百科</a></p>
-<h5 id="①加法操作过程"><a href="#①加法操作过程" class="headerlink" title="①加法操作过程"></a>①加法操作过程</h5><p>[ACC]看作被加数。</p>
-<p>从主存中取M地址号单元内的加数[M]，送至X寄存器中。</p>
-<p>将被加数[ACC]与加数[X]相加，结果（和）保留在ACC中。</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221211851184.png" alt="image-20220221211851184" style="zoom:67%;" /></p>
-<h5 id="②减法操作过程"><a href="#②减法操作过程" class="headerlink" title="②减法操作过程"></a>②减法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221211932915.png" alt="image-20220221211932915" style="zoom:67%;" /></p>
-<h5 id="③乘法操作过程"><a href="#③乘法操作过程" class="headerlink" title="③乘法操作过程"></a>③乘法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212003668.png" alt="image-20220221212003668" style="zoom:67%;" /></p>
-<h5 id="④除法操作过程"><a href="#④除法操作过程" class="headerlink" title="④除法操作过程"></a>④除法操作过程</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212038827.png" alt="image-20220221212038827" style="zoom:67%;" /></p>
-<h4 id="（3）控制器的基本组成"><a href="#（3）控制器的基本组成" class="headerlink" title="（3）控制器的基本组成"></a>（3）控制器的基本组成</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212108592.png" alt="image-20220221212108592" style="zoom:67%;" /></p>
-<ul>
-<li>PC（程序计数器）：Program Counter。存放<strong>欲执行的指令的地址</strong>，并可自动<strong>生成下一条指令地址</strong></li>
-<li>IR（指令寄存器）：Instruction Register。存放当前<strong>正在执行的指令</strong></li>
-<li>CU（控制单元）：Control Unit。控制器核心部件，产生微操作命令序列。<strong>用来解释存储器中的指令，发出各种操作命令来执行指令</strong></li>
-</ul>
-<h4 id="（4）主机完成一条指令的过程"><a href="#（4）主机完成一条指令的过程" class="headerlink" title="（4）主机完成一条指令的过程"></a>（4）主机完成一条指令的过程</h4><h5 id="以取数指令为例"><a href="#以取数指令为例" class="headerlink" title="以取数指令为例"></a>以取数指令为例</h5><ol>
-<li>程序计数器获得指令地址的初始值，</li>
-<li>MAR从存储体中获得指令地址对应的指令，通过地址总线送到MAR</li>
-<li>进入读取周期，把指令送至MDR</li>
-<li>通过数据总线送达指令至IR</li>
-<li>开始执行周期：进入CU，分析指令</li>
-<li>开始执行指令，指令寄存器进入MAR，给出数据地址</li>
-<li>通过MAR读取数据地址</li>
-<li>读周期，读取数据</li>
-<li>送达CPU的ACC中，修改PC</li>
-</ol>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223212632134.png" alt="img" style="zoom: 50%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212204068.png" alt="image-20220221212204068" style="zoom:67%;" /></p>
-<h5 id="以存数指令为例"><a href="#以存数指令为例" class="headerlink" title="以存数指令为例"></a>以存数指令为例</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220221212232671.png" alt="image-20220221212232671" style="zoom:67%;" /></p>
-<p>ch4详细讨论</p>
-<p>一个CPU（运算器+控制器） + 存储器 + I/O系统 + 总线</p>
-<p>完成指令</p>
-<h4 id="（5）程序的运行过程"><a href="#（5）程序的运行过程" class="headerlink" title="（5）程序的运行过程"></a>（5）程序的运行过程</h4><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223162855834.png" alt="image-20220223162855834" style="zoom:67%;" /></p>
-<ul>
-<li>PC地址加法器</li>
-</ul>
-<h1 id="1-3-计算机硬件的主要技术指标"><a href="#1-3-计算机硬件的主要技术指标" class="headerlink" title="1.3 计算机硬件的主要技术指标"></a>1.3 计算机硬件的主要技术指标</h1><h3 id="1-机器字长"><a href="#1-机器字长" class="headerlink" title="1.机器字长"></a>1.机器字长</h3><p>机器字长：CPU <strong>一次</strong>能处理数据的<strong>位数</strong>。与CPU中的<strong>寄存器位数</strong>有关</p>
-<ul>
-<li><p>影响精度</p>
-<blockquote>
-<p>字长越长，数的表示范围越大，精度越高</p>
-</blockquote>
-</li>
-<li><p>影响运算速度</p>
-<blockquote>
-<p>若：CPU字长较短，又要运算位数较多的数据，需要经过多次运算才能完成，影响机器的运算速度</p>
-</blockquote>
-</li>
-<li><p>影响硬件的造价</p>
-<blockquote>
-<p>直接影响加法器（或ALU）、数据总线以及存储字长的位数</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="2-运算速度"><a href="#2-运算速度" class="headerlink" title="2.运算速度"></a>2.运算速度</h3><ul>
-<li><p>主频：计算机工作统一步调，时钟周期的倒数</p>
-<p>晶振产生波形，与工作频率相同</p>
-</li>
-<li><p>（测试的方法）吉布森法</p>
-</li>
-<li><p>MIPS（每秒钟执行百万条指令）：Million Instructions Per Second</p>
-</li>
-</ul>
-<ul>
-<li><p>CPI （执行一条指令所需时钟周期数）：Clock Cycle Per Instruction</p>
-<p>一条指令对应波形的节拍数</p>
-</li>
-<li><p>FLOPS（每秒浮点运算次数）：Floating-point Operations Per Second</p>
-<p>浮点数的加法和乘法速度不同</p>
-</li>
-</ul>
-<h3 id="3-存储容量"><a href="#3-存储容量" class="headerlink" title="3.存储容量"></a>3.存储容量</h3><p>存放二进制信息的总位数</p>
-<p><strong>主存容量</strong>：主存中存放二进制代码的总位数。、</p>
-<p><strong>MAR的位数反映存储单元的个数（$2^N$​​），MDR的位数反映存储字长（$M$​）</strong></p>
-<ul>
-<li><p>存储单元个数$\times$​存储字长</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220223163918172.png" alt="image-20220223163918172"></p>
-</li>
-<li><p>字节数——1个字节被定义为8位二进制代码</p>
-</li>
-</ul>
-<p><strong>辅存容量</strong>——字节数</p>
-<p>80GB，1GB = $2^{30}$B</p>
-<h1 id="课后习题"><a href="#课后习题" class="headerlink" title="课后习题"></a>课后习题</h1><p>1、冯·诺伊曼计算机的特点（5条）</p>
-<p>2、计算机如何区分存储器内的指令和数据</p>
-<ul>
-<li><p>通过<strong>不同的时间段</strong>来区分指令和数据</p>
-<p><u>取指令阶段</u>——指令；</p>
-<p><u>执行指令阶段</u>——数据。</p>
-</li>
-<li><p>通过<strong>地址来源</strong>区分</p>
-<p><u>PC（程序计数器）</u>提供的存储地址取出——指令；</p>
-<p><u>指令地址码</u>提供的存储地址取出——数据。</p>
-</li>
-</ul>
-<p>3、计算机硬件组成框图，各部件作用，计算机硬件主要及技术指标</p>
-]]></content>
-      <tags>
-        <tag>computer organization</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数理逻辑：绪论</title>
-    <url>/mathematical_logic/mathematical-logic-ch0/</url>
-    <content><![CDATA[<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>数理逻辑是用数学的方法研究<strong>推理</strong>，特别是研究数学中的推理</p>
-<p>推理的前提和结论都是命题，命题的真假与<strong>内容是否符合现实</strong>有关。</p>
-<script type="math/tex; mode=display">
-premises 前提 \quad（命题）\\
-\downarrow  \quad reason 推理 \\
-conclusions 结论 \quad （命题）\\</script><span id="more"></span>
-<ol>
-<li><p>正确的推理：从”正确的前提“能得到”正确的结论“的推理。</p>
-<p>推理正确——可推导关系，属于<code>演绎逻辑</code>（与之相对的是<code>归纳逻辑</code>）</p>
-<p>正确的前提：前提为真</p>
-<p>正确的结论：结论为真</p>
-</li>
-<li><p>推理正确与否<strong>与前提和结论中命题是否为真命题没有关系</strong>。</p>
-<p><strong>推理的正确性与命题的逻辑形式有关</strong></p>
-<p><strong>命题内容决定命题的真假</strong></p>
-<script type="math/tex; mode=display">
-命题：
-\begin{cases}
-内容 \\
-逻辑形式（抽象） \\
-\end{cases}</script><blockquote>
-<p>所有中学生打网球（前提）</p>
-<p>王军不打网球（前提）</p>
-<p>王军不是中学生（结论）</p>
-<p>——推理正确，不是所有命题都为真命题</p>
-</blockquote>
-<p>上述推理的逻辑形式为：</p>
-<blockquote>
-<p>S中所有元有R性质（前提）</p>
-<p>a没有R性质（前提）</p>
-<p>a不是S中的元（结论）</p>
-</blockquote>
-</li>
-<li><p>数理逻辑中，用自然语言陈述命题会带来不方便</p>
-</li>
-<li><p>数理逻辑的研究语言为：对象语言、元语言</p>
-<ul>
-<li>对象语言：被研究对象的语言。<strong>形式语言</strong>，用符号构成的公式来代替自然语言中的命题，<strong>没有二义性</strong><ul>
-<li>语义：符号，公式的含义</li>
-<li>语法：由符号构成的公式的形状和语法结构</li>
-</ul>
-</li>
-<li>元语言：辅助描述对象语言。自然语言</li>
-</ul>
-</li>
-<li><p>数理逻辑产生的动机：将一切推理的正确性化归于计算的通用代数</p>
-<ul>
-<li>建立一种普遍适用的精确的科学语言</li>
-<li>建立一种推理的演算</li>
-</ul>
-</li>
-<li><p>预备知识：</p>
-<ul>
-<li><p>集合</p>
-<p>集合S上的（n元）关系R</p>
-<p>外延</p>
-</li>
-<li><p>归纳定义和归纳证明</p>
-</li>
-</ul>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>mathematical logic</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数理逻辑：第1节 命题逻辑的基本概念</title>
     <url>/mathematical_logic/mathematical-logic-ch1/</url>
     <content><![CDATA[<h1 id="1-1-命题与联结词"><a href="#1-1-命题与联结词" class="headerlink" title="1.1 命题与联结词"></a>1.1 命题与联结词</h1><h2 id="命题与真值"><a href="#命题与真值" class="headerlink" title="命题与真值"></a>命题与真值</h2><ul>
@@ -2695,6 +2695,997 @@ A 为非重言式的可满足式 \Leftrightarrow A既有成真赋值又有成假
 ]]></content>
       <tags>
         <tag>mathematical logic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机组成原理：第4章 存储器</title>
+    <url>/computer_organization/computer-organization-ch4/</url>
+    <content><![CDATA[<p>需要掌握功能特性（外特性）</p>
+<p>内存：使用什么芯片计算机可以直接访问 $\begin{cases} RAM \\ ROM \\ \end{cases}$</p>
+<p>随机访问</p>
+<p>存储器设计：</p>
+<ul>
+<li>设计-容量（按规定）</li>
+<li>调试、证明</li>
+<li>速度提高</li>
+<li>可靠性4.1 概述</li>
+</ul>
+<p>【问题】</p>
+<ol>
+<li>存储器可分为哪些类型？</li>
+<li>现代存储器的层次结构，为什么要分层？</li>
+</ol>
+<span id="more"></span>
+<h2 id="4-1-概述"><a href="#4-1-概述" class="headerlink" title="4.1 概述"></a>4.1 概述</h2><h3 id="一、存储器分类"><a href="#一、存储器分类" class="headerlink" title="一、存储器分类"></a>一、存储器分类</h3><h4 id="1-按存储介质分类"><a href="#1-按存储介质分类" class="headerlink" title="1.按存储介质分类"></a>1.按存储介质分类</h4><ul>
+<li><p>半导体存储器（内存条芯片、U盘）——<strong>易失</strong></p>
+<blockquote>
+<p>TTL（集成度低，功耗高，高速）、MOS（主要）</p>
+</blockquote>
+</li>
+<li><p>磁表面存储器（磁盘、磁带）——不易失</p>
+<blockquote>
+<p>基片表面磁层，分成若干个同心圆（磁道），分成若干个扇区（几百几K）</p>
+</blockquote>
+</li>
+<li><p>磁芯存储器——不易失</p>
+<blockquote>
+<p>（1948，王安）</p>
+<p>磁芯里面有导线，在电流作用下磁化，用于保存两个状态。硬磁材料、环状元件。</p>
+</blockquote>
+</li>
+<li><p>光盘存储器——激光、磁光材料</p>
+</li>
+</ul>
+<h4 id="2-按存取方式分类"><a href="#2-按存取方式分类" class="headerlink" title="2.按存取方式分类"></a>2.按存取方式分类</h4><ul>
+<li><p>存取时间与物理地址无关（<strong>随机访问</strong>）</p>
+<ul>
+<li><p>随机存储器（$RAM$, Random Access Memory）：在程序执行过程中<strong>可读/可写</strong></p>
+<blockquote>
+<p>存储器的任何一个存储单元的内容都可以随机存取，而且存取时间与存储单元的物理位置无关</p>
+<p>计算机系统的主存采用这种随机存储器</p>
+</blockquote>
+<p>$根据存储信息原理不同\begin{cases} 静态RAM（SRAM,static RAM）：以触发器原理寄存信息 ——Cache \\ 动态RAM（DRAM, dynamic RAM）：以电容充放电原理寄存信息——主存 \end{cases}$</p>
+</li>
+<li><p>只读存储器（$ROM$, Read Only Memory）：在程序执行过程中<strong>只读</strong></p>
+<blockquote>
+<p>能对其存储的内容读出，而不能对其重新写入的存储器。</p>
+<p>一旦存储了原始信息后，在程序执行过程中，只能将内部信息读出，而不能随意重新写入新的信息去改变原始信息。</p>
+<p>通常存放固定不变的程序、常数和汉字字库，甚至用于操作系统的固化。——BIOS，基本操作系统，初始化程序、检测程序（故障检测）</p>
+</blockquote>
+<p>它与随机存储器可共同作为主存的一部分，统一构成主存的地址域。</p>
+<p>$\begin{cases} 掩膜型只读存储器（MROM, \quad Masked \quad ROM）\\ 可编程只读存储器（PROM, \quad Programmable \quad ROM）—— 烧录一次\\ 可擦除可编程只读存储器（EPROM,\quad Erasable \quad Programmable \quad ROM）——使用紫外线照射可以擦除。可擦写10000次以上 \\ 用电可擦除可编程只读存储器（EEPROM,\quad Electrically \quad Erasable \quad Programmable \quad ROM）  —— 可再现（计算机攻击、病毒）\end{cases}$</p>
+<p>闪速存储器（Flash Memory）：具有EEPROM的特点，而速度比EEPROM快得多</p>
+</li>
+</ul>
+</li>
+<li><p>存取时间与物理地址有关（串行访问）</p>
+<ul>
+<li><p>顺序存取存储器——磁带</p>
+<blockquote>
+<p>无论信息处在哪个位置，读/写必须从其介质的始端开始按顺序寻找</p>
+</blockquote>
+</li>
+<li><p>直接存取存储器——磁盘</p>
+<blockquote>
+<p>属于部分串行访问的存储器</p>
+<p>在对磁盘读/写时，首先直接指出该存储器中的某个小区域（<strong>磁道</strong>），然后再按顺序寻访，直到找到位置</p>
+<p>前段是直接访问，后段是串行访问</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-按在计算机中的作用分类"><a href="#3-按在计算机中的作用分类" class="headerlink" title="3.按在计算机中的作用分类"></a>3.按在计算机中的作用分类</h4><ul>
+<li><strong>主存储器</strong>（主存）：可以和CPU直接交换信息</li>
+<li><strong>辅助存储器</strong>（辅存）：主存的后援存储器，用来存放当前暂时不用的程序和数据，不能与CPU直接交换信息</li>
+<li><strong>缓冲存储器</strong>（缓存）：用在两个速度不同的部件之中</li>
+</ul>
+<blockquote>
+<p>CPU与主存之间可设置一个高速缓存（Cache），起到缓冲作用——SRAM，存取速度快、价格更昂贵、集成度较低</p>
+<p>DRAM一般用于主存储器</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220113103102291.png" alt="image-20220113103102291" style="zoom: 67%;" /></p>
+<h3 id="二、存储器的层次结构"><a href="#二、存储器的层次结构" class="headerlink" title="二、存储器的层次结构"></a>二、存储器的层次结构</h3><h4 id="1-存储器三个主要特性的关系"><a href="#1-存储器三个主要特性的关系" class="headerlink" title="1.存储器三个主要特性的关系"></a>1.存储器三个主要特性的关系</h4><p>速度、容量、价格/位</p>
+<blockquote>
+<p>寄存器分组成堆，彼此之间不产生冲突</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302132012588.png" alt="image-20220302132012588" style="zoom:67%;" /></p>
+<h4 id="2-缓存-主存层次和主存-辅存层次（存储体系）"><a href="#2-缓存-主存层次和主存-辅存层次（存储体系）" class="headerlink" title="2.缓存-主存层次和主存-辅存层次（存储体系）"></a>2.缓存-主存层次和主存-辅存层次（存储体系）</h4><p>程序的局部性原理</p>
+<ul>
+<li><p>缓存-主存层次</p>
+<ul>
+<li><p>主要解决<strong>CPU和主存速度不匹配</strong>的问题。</p>
+</li>
+<li><p>缓存速度比主存高。将CPU近期要用的信息<strong>调入缓存</strong>，CPU便可以直接从缓存中获取信息，从而提高访存的速度。</p>
+</li>
+<li><p><strong>缓存容量小</strong>，需要不断将主存的内容调入缓存，使缓存中原来的信息被替换掉</p>
+</li>
+<li>主存和缓存的数据调动是<strong>硬件自动完成</strong>的，对程序员透明</li>
+<li>使用了缓存的速度，容量和价位接近于主存</li>
+</ul>
+</li>
+<li><p>主存-辅存层次</p>
+<ul>
+<li>主要解决<strong>存储系统容量</strong>的问题</li>
+<li>辅存的速度比主存低，而且不能和CPU直接交换信息。但<strong>容量比主存大得多，可以存放大量暂时没有用到的信息</strong>。当CPU需要用这些信息时，再<strong>将辅存的内容调到主存</strong>，供CPU直接访问</li>
+<li>主存和辅存之间的数据调动是由<strong>硬件和操作系统共同完成</strong>的——I/O线</li>
+<li>使用了主存的速度，容量和价位接近于辅存</li>
+</ul>
+</li>
+<li><p>主存-辅存层次逐渐形成了虚拟存储系统</p>
+<p>（计算机体系结构、操作系统）</p>
+<ul>
+<li>程序员<strong>编程的地址范围</strong>与<strong>虚拟存储器的地址空间</strong>相对应</li>
+</ul>
+<blockquote>
+<p>指令地址码——虚地址（虚存地址、虚拟地址）或逻辑地址</p>
+<p>主存的实际地址——物理地址或实地址</p>
+</blockquote>
+<p>物理地址是程序在执行过程中能够真正访问的地址</p>
+<p>对于程序员，可用的地址空间远远大于主存空间，使程序员以为自己占有一个容量极大的主存，实际这个主存不存在</p>
+<p>当虚地址的内容在主存时，机器可以立即使用；虚地址内容不在主存，必须先将此虚地址的内容传递到主存的合适单元后再为机器所用</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302132029038.png" alt="image-20220302132029038" style="zoom:67%;" /></p>
+<h2 id="4-2-主存储器"><a href="#4-2-主存储器" class="headerlink" title="4.2 主存储器"></a>4.2 主存储器</h2><h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><h4 id="1-主存的基本组成"><a href="#1-主存的基本组成" class="headerlink" title="1.主存的基本组成"></a>1.主存的基本组成</h4><p>根据MAR中的地址访问某个存储单元时，还需经过地址译码、驱动等电路，才能找到所需访问的单元。</p>
+<p>读出时，需经过读出放大器，才能将被选中单元的存储字送到MDR；</p>
+<p>写入时，MDR中的数据也必须经过写入电路才能真正写入到被选中的单元中。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302132102239.png" alt="image-20220302132102239" style="zoom:67%;" /></p>
+<blockquote>
+<p>对于控制电路而言，读和写命令的优先级相同，因此不会出现两个信号都使能的情况。</p>
+<p>在设计上，同一时刻最多有一个信号有效（低电平）。都为低电平为无效状态</p>
+</blockquote>
+<h4 id="2-主存和CPU的联系"><a href="#2-主存和CPU的联系" class="headerlink" title="2.主存和CPU的联系"></a>2.主存和CPU的联系</h4><p>通过三种类型的信号进行联系</p>
+<blockquote>
+<p>当要从存储器读出某一信息字时，</p>
+<ul>
+<li><p>首先由CPU将该字的地址送到MAR，经地址总线送至主存，然后发出读命令。</p>
+</li>
+<li><p>主存接到读命令后，得知需将该地址单元的内容读出，便完成读操作，将该单元的内容读到数据总线上</p>
+</li>
+</ul>
+<p>当存储器要向主存存入一个信息字时，</p>
+<ul>
+<li><p>首先CPU将该字所在主存单元的地址经MAR送到地址总线，并将信息字送入MDR，然后向主存发出写命令。</p>
+</li>
+<li><p>主存接到写命令后，便将数据线上的信息写入到对应地址线指出的内存单元中。</p>
+</li>
+</ul>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302132141452.png" alt="image-20220302132141452" style="zoom:67%;" /></p>
+<h4 id="3-主存中存储单元地址的分配"><a href="#3-主存中存储单元地址的分配" class="headerlink" title="3.主存中存储单元地址的分配"></a>3.主存中存储单元地址的分配</h4><p>图中，纵为字地址，横为字节地址。</p>
+<p>无论计算机的字长怎么变化，只会影响按字寻址的长度，不会影响存储空间的大小</p>
+<p>大端法和小端法</p>
+<ul>
+<li><p>大端法：<strong>高位字节</strong>地址为字地址</p>
+<blockquote>
+<p>左图中的12对应的字节地址（大端地址）为字地址</p>
+</blockquote>
+</li>
+<li><p>小端法：<strong>低位字节</strong>地址为字地址</p>
+<blockquote>
+<p>右图中的78对应的字节地址（小端地址）为字地址</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220113105727882.png" alt="image-20220113105727882" style="zoom: 67%;" /></p>
+<blockquote>
+<p>$24$根地址线，按<strong>字节</strong>寻址：$2^24 = 16MB$</p>
+<p>字长为$16$位，按<strong>字</strong>寻址：$8MW$</p>
+<p>字长为$32$位，按<strong>字</strong>寻址：$4MW$</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302132213779.png" alt="image-20220302132213779" style="zoom:67%;" /></p>
+<p>如何区分“按字节寻址”和“按字寻址”？</p>
+<p>【参考资料】：<a href="https://blog.csdn.net/qq_25297587/article/details/89818719">按字寻址和按字节寻址</a></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302152419968.png" alt="image-20220302152419968" style="zoom:67%;" /></p>
+<h4 id="4-主存的技术指标"><a href="#4-主存的技术指标" class="headerlink" title="4.主存的技术指标"></a>4.主存的技术指标</h4><p><strong>存储容量</strong>：主存<strong>存放二进制代码的总位数</strong></p>
+<p><strong>存储速度</strong>：</p>
+<ul>
+<li><p>存取时间（$Memory$ $Access$ $ Time$）：存储器的<strong>访问时间</strong>$\begin{cases} 读出时间 \\ 写入时间 \\ \end{cases}$</p>
+<ul>
+<li>读出时间——给出地址信号到数据线上稳定的输出</li>
+<li>写入时间——给出地址信号到数据写入到给定的地址单元中</li>
+</ul>
+</li>
+<li><p>存取周期（$Memory$  $Cycle$  $Time$）：<strong>连续两次独立的存储器操作</strong>。（读或写）所需的<strong>最小间隔时间</strong></p>
+<p>​    $\begin{cases} 读周期 \\ 写周期 \\ \end{cases}$</p>
+<blockquote>
+<p>现代MOS型存储器的存取周期可达100ns，双极型TTL存储器的存取周期接近于10ns</p>
+</blockquote>
+<ul>
+<li>存取时间比存取周期短</li>
+</ul>
+<p>【参考资料】：<a href="https://blog.csdn.net/qq_40627648/article/details/83626288">计算机组成原理补充——三种刷新方式，存取周期＞存取时间的原因</a>）</p>
+</li>
+</ul>
+<p><strong>存储器的带宽</strong>：<strong>位/秒</strong></p>
+<p>与存取周期密切相关。表示单位时间内存储区存取的信息量</p>
+<blockquote>
+<p>如，存取周期$500ns$，每个存取周期可访问$16$位，则带宽为$32M位/秒$</p>
+</blockquote>
+<h5 id="提高存储器带宽的措施"><a href="#提高存储器带宽的措施" class="headerlink" title="提高存储器带宽的措施"></a>提高存储器带宽的措施</h5><ul>
+<li>缩短存取周期</li>
+<li>增加存储字长，使每个存取周期可读/写更多的二进制位数</li>
+<li>增加存储体</li>
+</ul>
+<h3 id="二、半导体存储芯片简介"><a href="#二、半导体存储芯片简介" class="headerlink" title="二、半导体存储芯片简介"></a>二、半导体存储芯片简介</h3><p>内存在存储器中唯一 $\begin{cases} 地址：一般是CPU低位地址寻找芯片内的位置 \\ 片选：对应CPU的地址译码。芯片之间  \end{cases}$</p>
+<p>数据：单元内容</p>
+<p>读写控制</p>
+<p>电压VCC和接地GND</p>
+<h4 id="1-半导体存储芯片的基本结构"><a href="#1-半导体存储芯片的基本结构" class="headerlink" title="1.半导体存储芯片的基本结构"></a>1.半导体存储芯片的基本结构</h4><blockquote>
+<p>地址线涉及空间分配，在内存的什么地方</p>
+</blockquote>
+<p>包括存储矩阵（01代码）、译码驱动（地址线）、读写电路（数据线）</p>
+<p>还有芯片选择线（判断）、读写控制线</p>
+<p>片选线：$\overline{CS}（selected）、\overline{CE}（enabled）$</p>
+<p>读/写控制线：$\overline{WE}$（低电平时进行写操作，高电平读）、$\overline{OE}$（允许读）、$\overline{WE}$（允许写）</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302132953214.png" alt="image-20220302132953214" style="zoom:67%;" /></p>
+<h5 id="存储芯片片选线的作用"><a href="#存储芯片片选线的作用" class="headerlink" title="存储芯片片选线的作用"></a>存储芯片片选线的作用</h5><p>可以让某一个或某一些芯片同时作用</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302133219996.png" alt="image-20220302133219996" style="zoom:67%;" /></p>
+<h4 id="2-半导体存储芯片的译码驱动方式"><a href="#2-半导体存储芯片的译码驱动方式" class="headerlink" title="2.半导体存储芯片的译码驱动方式"></a>2.半导体存储芯片的译码驱动方式</h4><h5 id="（1）线选法"><a href="#（1）线选法" class="headerlink" title="（1）线选法"></a>（1）线选法</h5><p>$4$位地址，决定$2^4 = 16$根地址线上的$8$位数据</p>
+<blockquote>
+<p>用一根字选择线（字线），直接选中一个存储单元的各位（如一个字节）</p>
+<p>结构较简单，但只适于容量不大的存储芯片</p>
+<p>如当$A_3A_2A_1A_0$为1111时，则第15根字线被选中，对应最后一行的8位代码可直接读出或写入</p>
+</blockquote>
+<p>地址线从一个方向送过来，控制一行的芯片——译码器</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302133315990.png" alt="image-20220302133315990" style="zoom:67%;" /></p>
+<h5 id="（2）重合法"><a href="#（2）重合法" class="headerlink" title="（2）重合法"></a>（2）重合法</h5><p>$X、Y$各$5$根地址线，构成了$2^5 \times 2^5 = 32 \times 32$的矩阵。每个地址对应$1$位的数据</p>
+<blockquote>
+<p>被选单元是由X、Y两个方向的地址决定的</p>
+<p>例如，当地址线全0时，译码输出$X_0$和$Y_0$有效，矩阵中的第0行、第0列共同选中的那位即被选中</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302133343084.png" alt="image-20220302133343084" style="zoom:67%;" /></p>
+<h3 id="三、随机存取存储器（RAM）"><a href="#三、随机存取存储器（RAM）" class="headerlink" title="三、随机存取存储器（RAM）"></a>三、随机存取存储器（RAM）</h3><h4 id="1-静态RAM（SRAM）"><a href="#1-静态RAM（SRAM）" class="headerlink" title="1.静态RAM（SRAM）"></a>1.静态RAM（SRAM）</h4><h5 id="（1）静态RAM基本电路"><a href="#（1）静态RAM基本电路" class="headerlink" title="（1）静态RAM基本电路"></a>（1）静态RAM基本电路</h5><p>存储器中用于寄存“0”和“1”代码的电路，下图是一个由6个MOS管组成的基本单元电路</p>
+<blockquote>
+<p>$T_1$-$T_4$是一个由MOS管组成的触发器的基本电路，$T_5$、$T_6$犹如一个开关，受行地址选择信号控制。$T_1$-$T_6$共同构成一个基本单元电路。</p>
+<p>$T_7$、$T_8$受列地址选择控制，分别与位线$A’$和$A$相连。不属于基本电路内的部件，芯片内同一列的各个基本电路所共有。</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302133441283.png" alt="image-20220302133441283" style="zoom:67%;" /></p>
+<h6 id="①静态RAM基本电路的读操作"><a href="#①静态RAM基本电路的读操作" class="headerlink" title="①静态RAM基本电路的读操作"></a>①静态RAM基本电路的读操作</h6><blockquote>
+<p>给出行选和列选信号 $\to$ 读选择有效 $\to$ 读放</p>
+</blockquote>
+<p>假设触发器已有“1”信号，即A点高电平。</p>
+<ul>
+<li>当需要读出时，只要使行、列地址选择信号均有效，$T_5$、$T_6$、$T_7$、$T_8$均导通，</li>
+<li>A点高电平通过$T_6$后，再由位线通过$T_8$作为读放大器的输入信号，</li>
+<li>在读选择有效时，将“1”信号读出</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302133518910.png" alt="image-20220302133518910" style="zoom:67%;" /></p>
+<p>静态RAM是用触发器原理存储信息，因此即使信息读出后，它仍保持其原状态，不需要再生。但电源掉电后，原存信息丢失，属于<strong>易失性半导体存储器</strong></p>
+<h6 id="②静态RAM基本电路的写操作"><a href="#②静态RAM基本电路的写操作" class="headerlink" title="②静态RAM基本电路的写操作"></a>②静态RAM基本电路的写操作</h6><blockquote>
+<p>行地址选择信号有效，列地址选择信号有效 （低电平）$\to $ 写选择信号有效 $\to$ 数据经过$D_{IN}$通过写放大器进入$A’$和$A$</p>
+<p>由于两个写放大器相反，保证信号不同。</p>
+</blockquote>
+<ul>
+<li>写入时不论触发器原状态如何，只要将写入代码送至$D_{IN}$端，</li>
+<li>在写选择有效时，经两个写放大器，使两端输出相反电平，</li>
+<li>这样，就欲把写入的信息写入到该基本单元电路中。</li>
+</ul>
+<blockquote>
+<p>如欲写入“1“，即$D_{IN}$ = 1，经两个写放大器使位线$A$为高电平，位线$A’$为低电平，结果使$A$点为高，$A’$点为低，即写入了”1“信息。</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220302133548297.png" alt="image-20220302133548297" style="zoom:67%;" /></p>
+<h5 id="（2）静态RAM芯片举例"><a href="#（2）静态RAM芯片举例" class="headerlink" title="（2）静态RAM芯片举例"></a>（2）静态RAM芯片举例</h5><h6 id="①Intel-2114外特性"><a href="#①Intel-2114外特性" class="headerlink" title="①Intel 2114外特性"></a>①Intel 2114外特性</h6><p>$\overline{WE}$复用，低电平为写，高电平为读</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307105355921.png" alt="image-20220307105355921" style="zoom: 67%;" /></p>
+<h6 id="②Intel-2114-RAM矩阵（64-times-64）读"><a href="#②Intel-2114-RAM矩阵（64-times-64）读" class="headerlink" title="②Intel 2114 RAM矩阵（64 $\times$ 64）读"></a>②Intel 2114 RAM矩阵（64 $\times$ 64）读</h6><h6 id="③Intel-2114-RAM矩阵（64-times-64）写"><a href="#③Intel-2114-RAM矩阵（64-times-64）写" class="headerlink" title="③Intel 2114 RAM矩阵（64 $\times$ 64）写"></a>③Intel 2114 RAM矩阵（64 $\times$ 64）写</h6><h5 id="（3）静态RAM读时序"><a href="#（3）静态RAM读时序" class="headerlink" title="（3）静态RAM读时序"></a>（3）静态RAM读时序</h5><p>在整个读周期中，$\overline{WE}$始终为高电平。</p>
+<p><strong>读周期</strong>$t_{RC}$是指<strong>对芯片进行两次连续读操作的最小间隔时间</strong></p>
+<p><strong>读时间</strong>$t_A$表示<strong>从地址有效到数据稳定所需的时间</strong>，显然读时间小于读周期</p>
+<p>图中$t_{CO}$是从片选有效到数据稳定的时间</p>
+<blockquote>
+<p>只有当地址有效经$t_A$后，且当片选有效经$t_{CO}$后，数据才能稳定输出，二者必须同时具备</p>
+<p>根据$t_A$和$t_{CO}$的值，便可知当地址有效后经$t_A$-$t_{CO}$时间必须给出片选有效信号，否则信号不能出现在数据线上</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307105611033.png" alt="image-20220307105611033" style="zoom:67%;" /></p>
+<p>注意：<strong>从片选失效到输出高阻需一段时间$t_{OTD}$，故地址失效后，数据线上的有效数据有一段维持时间$t_{OTA}$，以保证所读的数据可靠</strong></p>
+<h5 id="（4）静态RAM写时序"><a href="#（4）静态RAM写时序" class="headerlink" title="（4）静态RAM写时序"></a>（4）静态RAM写时序</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307105635863.png" alt="image-20220307105635863" style="zoom:67%;" /></p>
+<p>写周期$t_{WC}$是对芯片进行连续两次写操作的最小间隔时间</p>
+<p>写周期包括滞后时间$t_{AW}$、写入时间$t_w$和写恢复时间$t_{WR}$</p>
+<blockquote>
+<p>在有效数据出现前，RAM的数据线上存在着前一时刻的数据$D_{OUT}$，故在地址线发生变化后，$\overline{CS}$、$\overline{WE}$均需滞后$t_{AW}$再有效，以避免将无效数据写入RAM的错误。</p>
+<p>但写允许$\overline{WE}$失效后，地址必须保持一段时间，称为写恢复时间。</p>
+<p>此外，RAM数据线上的有效数据（即CPU送至RAM的写入数据$D_{IN}$）必须在$\overline{CS}$、$\overline{WE}$失效前的$t_{DW}$时刻出现，并延续一段时间$t_{DH}$（此刻地址线仍有效，$t_{WR} &gt; t_{DH}$），以保证数据可靠写入。（采样点）</p>
+</blockquote>
+<p>SRAM总结：触发器原理。写入数据后一直保持，直至下次写入</p>
+<h4 id="2-动态RAM（DRAM）——了解内容"><a href="#2-动态RAM（DRAM）——了解内容" class="headerlink" title="2.动态RAM（DRAM）——了解内容"></a>2.动态RAM（DRAM）——了解内容</h4><p>【问题】</p>
+<ul>
+<li>保存0和1的原理是什么？——电容（保存电荷——保存信息，有电1）</li>
+<li>基本单元电路的构成是什么？</li>
+<li>对单元电路如何读出和写入？</li>
+<li>典型芯片的结构是什么样子？</li>
+<li>动态RAM芯片如何进行读出和写入操作？</li>
+<li>动态RAM为什么要刷新，刷新方法？</li>
+</ul>
+<h5 id="（1）动态RAM基本单元电路"><a href="#（1）动态RAM基本单元电路" class="headerlink" title="（1）动态RAM基本单元电路"></a>（1）动态RAM基本单元电路</h5><p>电容记录0和1。带有电荷电路特点：电荷2ms内维持，之后变化归零。因此需要再生（刷新）电路</p>
+<p>SRAM则是4个三极管，利用触发器原理</p>
+<ul>
+<li>$C_s$表示与电荷带电有关<ul>
+<li>读出相反，写入相同</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307105749956.png" alt="image-20220307105749956" style="zoom:67%;" /></p>
+<h5 id="（2）动态RAM芯片举例"><a href="#（2）动态RAM芯片举例" class="headerlink" title="（2）动态RAM芯片举例"></a>（2）动态RAM芯片举例</h5><h6 id="①三管动态RAM芯片（Intel-1103）读"><a href="#①三管动态RAM芯片（Intel-1103）读" class="headerlink" title="①三管动态RAM芯片（Intel 1103）读"></a>①三管动态RAM芯片（Intel 1103）读</h6><h6 id="②三管动态RAM芯片（Intel-1103）写"><a href="#②三管动态RAM芯片（Intel-1103）写" class="headerlink" title="②三管动态RAM芯片（Intel 1103）写"></a>②三管动态RAM芯片（Intel 1103）写</h6><h6 id="③单管动态RAM-4116（16K-times-1位）外特性"><a href="#③单管动态RAM-4116（16K-times-1位）外特性" class="headerlink" title="③单管动态RAM 4116（16K $\times$ 1位）外特性"></a>③单管动态RAM 4116（16K $\times$ 1位）外特性</h6><h6 id="④4116（16K-times-1位）芯片读原理"><a href="#④4116（16K-times-1位）芯片读原理" class="headerlink" title="④4116（16K $\times$ 1位）芯片读原理"></a>④4116（16K $\times$ 1位）芯片读原理</h6><h6 id="⑤4116（16K-times-1位）芯片写原理"><a href="#⑤4116（16K-times-1位）芯片写原理" class="headerlink" title="⑤4116（16K $\times$ 1位）芯片写原理"></a>⑤4116（16K $\times$ 1位）芯片写原理</h6><h5 id="（3）动态RAM时序"><a href="#（3）动态RAM时序" class="headerlink" title="（3）动态RAM时序"></a>（3）动态RAM时序</h5><p><strong>行、列地址分开传送</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">读时序</th>
+<th style="text-align:center">写时序</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">行地址$\overline{RAS}$有效</td>
+<td style="text-align:center">行地址$\overline{RAS}$有效</td>
+</tr>
+<tr>
+<td style="text-align:center">写允许$\overline{WE}$有效（高）</td>
+<td style="text-align:center">写允许$\overline{WE}$有效（低）</td>
+</tr>
+<tr>
+<td style="text-align:center">列地址$\overline{CAS}$有效</td>
+<td style="text-align:center">数据$\overline{D_{IN}}$有效</td>
+</tr>
+<tr>
+<td style="text-align:center">数据$\overline{D_{OUT}}$有效</td>
+<td style="text-align:center">列地址$\overline{CAS}$有效</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="（4）动态RAM刷新"><a href="#（4）动态RAM刷新" class="headerlink" title="（4）动态RAM刷新"></a>（4）动态RAM刷新</h5><p><strong>刷新与行地址有关</strong></p>
+<h6 id="①集中刷新（存取周期为0-5μs）：专时专用"><a href="#①集中刷新（存取周期为0-5μs）：专时专用" class="headerlink" title="①集中刷新（存取周期为0.5μs）：专时专用"></a>①集中刷新（存取周期为0.5μs）：专时专用</h6><ul>
+<li>“死区”、“死时间率”</li>
+</ul>
+<p>以128$\times$128矩阵为例</p>
+<h6 id="②分散刷新（存取周期为1μs）：频繁刷新"><a href="#②分散刷新（存取周期为1μs）：频繁刷新" class="headerlink" title="②分散刷新（存取周期为1μs）：频繁刷新"></a>②分散刷新（存取周期为1μs）：频繁刷新</h6><ul>
+<li>无“死区”</li>
+</ul>
+<p>以128$\times$128矩阵为例</p>
+<h6 id="③异步刷新（分散刷新与集中刷新相结合）"><a href="#③异步刷新（分散刷新与集中刷新相结合）" class="headerlink" title="③异步刷新（分散刷新与集中刷新相结合）"></a>③异步刷新（分散刷新与集中刷新相结合）</h6><ul>
+<li>每行每隔2ms刷新一次</li>
+<li>每一段为集中刷新，整体来看是分散刷新</li>
+</ul>
+<h4 id="3-动态RAM和静态RAM的比较（重点）"><a href="#3-动态RAM和静态RAM的比较（重点）" class="headerlink" title="3.动态RAM和静态RAM的比较（重点）"></a>3.动态RAM和静态RAM的比较（重点）</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">DRAM（主存）</th>
+<th style="text-align:center">SRAM（缓存）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>存储原理</strong></td>
+<td style="text-align:center">电容</td>
+<td style="text-align:center">触发器</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>集成度</strong></td>
+<td style="text-align:center">高</td>
+<td style="text-align:center">低</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>芯片引脚</strong></td>
+<td style="text-align:center">少</td>
+<td style="text-align:center">多</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>功耗</strong></td>
+<td style="text-align:center">小</td>
+<td style="text-align:center">大</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>价格</strong></td>
+<td style="text-align:center">低</td>
+<td style="text-align:center">高</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>速度</strong></td>
+<td style="text-align:center">慢</td>
+<td style="text-align:center">快</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>刷新</strong></td>
+<td style="text-align:center">有</td>
+<td style="text-align:center">无</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="四、只读存储器（ROM）——了解内容"><a href="#四、只读存储器（ROM）——了解内容" class="headerlink" title="四、只读存储器（ROM）——了解内容"></a>四、只读存储器（ROM）——了解内容</h3><h4 id="1-掩膜ROM（MROM"><a href="#1-掩膜ROM（MROM" class="headerlink" title="1.掩膜ROM（MROM)"></a>1.掩膜ROM（MROM)</h4><ul>
+<li>行列选择器交叉处有MOS管为“1”</li>
+<li>行列选择器交叉处无MOS管为“0”</li>
+</ul>
+<h4 id="2-PROM（一次性编程）"><a href="#2-PROM（一次性编程）" class="headerlink" title="2.PROM（一次性编程）"></a>2.PROM（一次性编程）</h4><p>优点：程序完成后保持稳定的状态</p>
+<p>但是若修改需要更换芯片</p>
+<ul>
+<li>熔丝断为“0”</li>
+<li>熔丝未断为“1”</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220125100716032.png" alt="image-20220125100716032" style="zoom:80%;" /></p>
+<h4 id="3-EPROM（多次性编程）"><a href="#3-EPROM（多次性编程）" class="headerlink" title="3.EPROM（多次性编程）"></a>3.EPROM（多次性编程）</h4><h5 id="（1）N型沟道浮动栅MOS电路"><a href="#（1）N型沟道浮动栅MOS电路" class="headerlink" title="（1）N型沟道浮动栅MOS电路"></a>（1）N型沟道浮动栅MOS电路</h5><p>浮动栅使用<strong>紫外线</strong>照射5-10分钟进行擦除，需要芯片脱离CPU/系统，离线到EPROM编程器照射</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220125100850329.png" alt="image-20220125100850329" style="zoom:80%;" /></p>
+<h5 id="（2）2716-EPROM的逻辑图和引脚图"><a href="#（2）2716-EPROM的逻辑图和引脚图" class="headerlink" title="（2）2716 EPROM的逻辑图和引脚图"></a>（2）2716 EPROM的逻辑图和引脚图</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220307165247384.png" alt="image-20220307165247384" style="zoom:67%;" /></p>
+<h4 id="4-EEPROM（多次性编程）"><a href="#4-EEPROM（多次性编程）" class="headerlink" title="4.EEPROM（多次性编程）"></a>4.EEPROM（多次性编程）</h4><ul>
+<li>电可擦写</li>
+<li>局部擦写</li>
+<li>全部擦写</li>
+</ul>
+<h4 id="5-Flash-Memory（闪速型存储器）"><a href="#5-Flash-Memory（闪速型存储器）" class="headerlink" title="5.Flash Memory（闪速型存储器）"></a>5.Flash Memory（闪速型存储器）</h4><ul>
+<li>EPROM——价格便宜、集成度高</li>
+<li>EEPROM——电可擦洗重写</li>
+<li>比EEPROM快，具备RAM功能</li>
+</ul>
+<h3 id="五、存储器与CPU的连接（重点和难点）"><a href="#五、存储器与CPU的连接（重点和难点）" class="headerlink" title="五、存储器与CPU的连接（重点和难点）"></a>五、存储器与CPU的连接（重点和难点）</h3><p>（本节的重点和难点）</p>
+<h4 id="1-存储器容量的扩展"><a href="#1-存储器容量的扩展" class="headerlink" title="1.存储器容量的扩展"></a>1.存储器容量的扩展</h4><p>包括<strong>位扩展、字扩展、字位扩展</strong></p>
+<ul>
+<li>位扩展（增加存储字长）</li>
+<li>字扩展（增加存储字的数量）</li>
+<li>字、位扩展</li>
+</ul>
+<h5 id="（1）位扩展"><a href="#（1）位扩展" class="headerlink" title="（1）位扩展"></a>（1）位扩展</h5><p>【例】用2片1K×4位存储芯片组成1K×8位的存储器</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316160517155.png" alt="image-20220316160517155" style="zoom:50%;" /></p>
+<h5 id="（2）字扩展"><a href="#（2）字扩展" class="headerlink" title="（2）字扩展"></a>（2）字扩展</h5><p>增加存储单元的个数</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316160533664.png" alt="image-20220316160533664" style="zoom:50%;" /></p>
+<h5 id="（3）字、位扩展"><a href="#（3）字、位扩展" class="headerlink" title="（3）字、位扩展"></a>（3）字、位扩展</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316160558820.png" alt="image-20220316160558820" style="zoom:50%;" /></p>
+<h4 id="2-存储器与CPU连接"><a href="#2-存储器与CPU连接" class="headerlink" title="2.存储器与CPU连接"></a>2.存储器与CPU连接</h4><ol>
+<li><p>地址线的连接</p>
+</li>
+<li><p>数据线的连接</p>
+</li>
+<li><p>读/写命令线的连接——控制</p>
+<p>需要地址、数据、控制总线</p>
+</li>
+<li><p>片选线的连接</p>
+<p>地址线</p>
+</li>
+<li><p>合理选择存储芯片——芯片的性质（可读可写/只读）</p>
+<ul>
+<li>配置文件使用ROM</li>
+<li>可读可写使用RAM</li>
+</ul>
+</li>
+<li><p>其他：时序（性能选择，如主频总线和CPU不同）、负载、干扰</p>
+</li>
+</ol>
+<h4 id="【例4-1】（P94）"><a href="#【例4-1】（P94）" class="headerlink" title="【例4-1】（P94）"></a>【例4-1】（P94）</h4><blockquote>
+<p>给出内存的一部分，开始的地址和截止的地址，未告知空间大小——需要自己查</p>
+<p>给出系统的性质（系统程序/工作区和用户程序）</p>
+</blockquote>
+<p>系统程序——ROM；用户程序/程序工作区——RAM</p>
+<ul>
+<li><p>地址</p>
+<p><strong>不变的地址为片选地址，变化的为片内地址</strong></p>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309160958497.png" alt="image-20220309160958497" style="zoom:50%;" /></p>
+<p>只读存储器用于系统工作区，随机存储区用于程序工作区</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309161157269.png" alt="image-20220309161157269" style="zoom:50%;" /></p>
+<p>芯片地址要和CPU地址一一对应，剩余地址进行片选</p>
+<blockquote>
+<p>$A_{13}, A_{12},A_{11}用于片选$</p>
+<p>注意输入端不悬空</p>
+<p>$\overline{MREQ}$和$\overline{WR}$协作，控制读操作和写操作</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309161451439.png" alt="image-20220309161451439" style="zoom:50%;" /></p>
+<blockquote>
+<p>设计时注意：<br>①元件/芯片要命名</p>
+<p>②每条信号线也要标识信号的名称</p>
+<p>③厂家名、类型——考试可以免</p>
+<p>④达到线-线一一对应</p>
+</blockquote>
+<h4 id="【例4-2】（P95）"><a href="#【例4-2】（P95）" class="headerlink" title="【例4-2】（P95）"></a>【例4-2】（P95）</h4><blockquote>
+<p>地址线必须全用——保证唯一性</p>
+<p>尽量CPU地址线和芯片的地址线一一对应</p>
+</blockquote>
+<ul>
+<li><p>最小8K地址</p>
+<p>前3位全0</p>
+<p>需要13根地址线——$A_0-A_{12}$</p>
+</li>
+<li><p>相邻16K地址</p>
+<p>需要14根地址线——两个8K</p>
+</li>
+<li><p>最大4K地址</p>
+</li>
+</ul>
+<blockquote>
+<p>注意：</p>
+<p>①实质上，CPU和芯片的信号线都接到总线上</p>
+<p>②作为设计草图，信号线可以省略标注（<strong>画三个点，不可省</strong>）——学会简化</p>
+<p>③标好芯片名称</p>
+</blockquote>
+<h4 id="【例4-3】"><a href="#【例4-3】" class="headerlink" title="【例4-3】"></a>【例4-3】</h4><p>某计算机地址为$A_{15}-A_{0}$，共16条。数据$D_{7}-D_{0}$，用$\overline{MEMR}$和$\overline{MEMW}$作为控制信号。用8K×8RAM及8K×8ROM芯片设计一个存储器系统。</p>
+<p>其中：最小8K地址为系统程序区，其他为用户程序区</p>
+<p>回答：①存储器需多少个芯片以及类型；②写出系统每个芯片的地址空间分配；③画出CPU和存储器原理图；④叙述说明存储器工作的正常和异常的测试程序；⑤若变成16位/32位计算机，该如何设计？</p>
+<blockquote>
+<p>RAM和ROM测试</p>
+<p>【参考资料】<a href="https://blog.csdn.net/u012252959/article/details/107955566#:~:text=%E6%B5%8B%E8%AF%95RAM%E7%9A%84%E6%96%B9%E6%B3%95,%E5%B9%B6%E4%B8%8E%E6%A0%A1%E9%AA%8C%E5%92%8C%E6%AF%94%E8%BE%83%E3%80%82">ROM和RAM测试总结</a></p>
+<p>测试RAM的方法是写读各个内存单元，检查是否能够正确写入；测试ROM的方法是累加各存储单元数值并与校验和比较。</p>
+<p>ROM</p>
+<p>留一个单元——</p>
+<p>驱动和隔离</p>
+<p>使用三态门</p>
+</blockquote>
+<h4 id="存储器设计总结"><a href="#存储器设计总结" class="headerlink" title="存储器设计总结"></a>存储器设计总结</h4><ul>
+<li>芯片选择：系统程序ROM存储器，用户程序/系统工作RAM</li>
+<li>地址空间的确定</li>
+<li>存储器的数据线与芯片的数据线对应相连（别忘了驱动和隔离——工程设计，考试不要求）</li>
+<li>控制线（芯片）端——CPU与存储器控制线相连<ul>
+<li>写控（$\overline{OE}$）</li>
+<li>读控（）</li>
+<li>驱动</li>
+</ul>
+</li>
+<li>芯片的地址线与CPU地址线对应相连<ul>
+<li>保证芯片地址在内存的唯一性</li>
+<li>CPU（$A_0…A_i$）——芯片</li>
+<li>总线的片选线时该芯片的总线地址（去掉片内地址的所有的唯一译码得来）</li>
+</ul>
+</li>
+</ul>
+<h4 id="译码方法总结"><a href="#译码方法总结" class="headerlink" title="译码方法总结"></a>译码方法总结</h4><ul>
+<li>少变多<ul>
+<li>1$\to$2：反相器</li>
+<li>2$\to$4：74LS139</li>
+<li>3$\to$8：74LS138</li>
+<li>4$\to$16：74LS164</li>
+</ul>
+</li>
+<li>多变少——地址译码<ul>
+<li>适当添加反相器</li>
+<li>控制端：使用读控、写控相与</li>
+</ul>
+</li>
+</ul>
+<p>补充题：1.例1和例2仿照例3重新完成 2.双CPU共享存储器</p>
+<h3 id="六、存储器的校验——可靠性、容错性"><a href="#六、存储器的校验——可靠性、容错性" class="headerlink" title="六、存储器的校验——可靠性、容错性"></a>六、存储器的校验——可靠性、容错性</h3><p>目的：使存储器（自身）具有检测错误、纠正错误的能力。</p>
+<p>容错设计的常见方法有四种：</p>
+<blockquote>
+<p>A、硬件冗余方法</p>
+<p>B、软件冗余方法</p>
+<p>C、时间冗余方法</p>
+<p>D、信息冗余方法</p>
+</blockquote>
+<h4 id="硬件冗余"><a href="#硬件冗余" class="headerlink" title="硬件冗余"></a>硬件冗余</h4><p>是通过<strong>外加硬件的方式来达到系统容错的目的方式</strong>。是系统级的容错技术。技术常采用，它是用两倍、三倍的元件重复，从而增加了系统的可靠性。如：二模冗余、三模冗余等方式实现。 </p>
+<ul>
+<li><p>二模冗余</p>
+<p>采用结果比较原则：结果相同，取其一； </p>
+<p>结果不同，重新执行或每个模块进行自检，查出错误模块为止。</p>
+</li>
+<li><p>三模冗余：按照“三中取二”原则进行。</p>
+</li>
+</ul>
+<h4 id="软件冗余"><a href="#软件冗余" class="headerlink" title="软件冗余"></a>软件冗余</h4><p>软件冗余技术：指开发容错软件的适宜环境和系统方法；<br>其主要目的是<strong>提供足够的冗余信息与算法程序，使系统在实际运行过程中，能够及时发现程序错误，采取补救措施</strong>，保证整个计算的正确性。<br>软件冗余包含多种技术和方法。<br>(研究生开设一门—-容错技术讲解)</p>
+<h4 id="时间冗余"><a href="#时间冗余" class="headerlink" title="时间冗余"></a>时间冗余</h4><p>基本思想是：<strong>在一定时间内，重复执行指令或者一段程序来消除故障的影响</strong>，以达到容错的效果，它是用消耗时间来换取容错性的目 的，时间冗余的典型应用是程序卷回。</p>
+<ul>
+<li>两种方法：指令复执、程序卷回</li>
+</ul>
+<h4 id="信息冗余"><a href="#信息冗余" class="headerlink" title="信息冗余"></a>信息冗余</h4><p>通过在数据中，附加冗余的信息位，来达到故障检测和容错的目的。</p>
+<p>常用的信息冗余技术：奇偶校验码、汉明码、循环码等。</p>
+<p>存储器的检测及纠错功能，采用的是汉明码技术。</p>
+<h4 id="存储器的汉明码校验原理"><a href="#存储器的汉明码校验原理" class="headerlink" title="存储器的汉明码校验原理"></a>存储器的汉明码校验原理</h4><p>题型：生成汉明码、汉明码纠错</p>
+<h5 id="1-编码的最小距离"><a href="#1-编码的最小距离" class="headerlink" title="1.编码的最小距离"></a>1.编码的最小距离</h5><ul>
+<li><p>编码的检测能力和纠错能力和什么有关？——任意二组合法代码之间<strong>二进制位的最小差异数</strong></p>
+</li>
+<li><p>编码的最小距离</p>
+<p>任意两组合法代码之间的<strong>二进制位数</strong>的<strong>最小差异编码的纠错、检错能力与编码的最小距离有关</strong></p>
+<script type="math/tex; mode=display">
+L-1 = D+C \quad (D \geq C)</script><p>（L——编码的最小距离，L=3）</p>
+<p>（D——检测错误的位数，具有一位纠错能力）</p>
+<p>（C——纠正错误的位数）</p>
+<blockquote>
+<p>BCD码、ASCII码是没有检测及纠错能力的编码</p>
+<p><strong>汉明码是具有一位纠错能力的编码</strong></p>
+</blockquote>
+</li>
+<li><p>汉明码</p>
+<p>具有一位纠错能力的编码</p>
+<p>采用奇偶校验</p>
+<p>采用分组校验</p>
+<p>汉明码的分组是一种非划分方式</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220125105813576.png" alt="image-20220125105813576" style="zoom: 50%;" /></p>
+</li>
+</ul>
+<h5 id="2-汉明码的组成"><a href="#2-汉明码的组成" class="headerlink" title="2.汉明码的组成"></a>2.汉明码的组成</h5><ul>
+<li><p>三要素</p>
+<script type="math/tex; mode=display">
+2^{k}-1 \geq n+k \\</script><p>多少位检测位、检测位的位置、检测位的取值</p>
+<p><code>信息位n位，校验位k位</code></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220128105943809.png" alt="image-20220128105943809" style="zoom: 67%;" /></p>
+</li>
+</ul>
+<blockquote>
+<p>各检测位$C_i$所承担的检测小组为：</p>
+<p>$C_1$检测的$g_1$小组包含第1，3，5，7，9，11，…</p>
+<p>$C_2$检测的$g_2$小组包含第2，3，6，7，10，11，…</p>
+<p>$C_4$检测的$g_3$小组包含第4，5，6，7，12，13，…</p>
+<p>$C_8$检测的$g_4$小组包含第8，9，10，11，12，13，14，15，24，…</p>
+<p>$g_i$小组独占第$2^{i-1}$位</p>
+<p>$g_i$和$g_j$小组共同占第$2^{i-1}+2^{j-1}$位</p>
+<p>$g_i、g_j$和$g_l$小组共同占第$2^{i-1}+2^{j-1}+2^{l-1}$位</p>
+</blockquote>
+<p>【例4-4】求0101按“偶校验”配置的汉明码</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309121524680.png" alt="image-20220309121524680" style="zoom:50%;" /></p>
+<p>【练习1】按配偶原则配置0011的汉明码</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309121612964.png" alt="image-20220309121612964" style="zoom:50%;" /></p>
+<h5 id="3-汉明码的纠错过程"><a href="#3-汉明码的纠错过程" class="headerlink" title="3.汉明码的纠错过程"></a>3.汉明码的纠错过程</h5><ul>
+<li><p><strong>偶校验</strong>：异或的结果为0则不出错，为1则出错</p>
+</li>
+<li><p><strong>奇校验</strong>：与偶校验相反</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309132525822.png" alt="image-20220309132525822" style="zoom:50%;" /></p>
+<p>【例4.5】已知接收到的汉明码为0100111（按配偶原则配置）试问要求传送的信息是什么？</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309132622850.png" alt="image-20220309132622850" style="zoom:50%;" /></p>
+<p>【练习2】写出按偶校验配置的汉明码0101101的纠错过程</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316163138252.png" alt="image-20220316163138252" style="zoom:50%;" /></p>
+<blockquote>
+<p>出错的是第4位（校验码），不需要纠错</p>
+</blockquote>
+<p>【练习3】按配奇原则配置0011的汉明码</p>
+<ul>
+<li><p>答：配奇的汉明码为</p>
+<blockquote>
+<p>$1 \ 2 \ 3 \ 4 \ 5 \ 6 \ 7$</p>
+<p>$c_1 \ c_2 \ 0 \  0 \ c_4 \ 1 \ 1$</p>
+<p>$c_1 = 3 \oplus 5 \oplus 7 = 1$  </p>
+</blockquote>
+</li>
+</ul>
+<h5 id="4-汉明码应用"><a href="#4-汉明码应用" class="headerlink" title="4.汉明码应用"></a>4.汉明码应用</h5><p>按照汉明码的特点，在设计计算机存储器时，要明确存储器的性能指标：检测错误个数、纠正错误个数；</p>
+<blockquote>
+<p>例如：哈工大设计的“神舟”飞船的容错计算机中，它的存储器字长为16位、采用校验位为6位，所以，选用 SN54LS630实现”1位纠错、2位报警”功能。</p>
+</blockquote>
+<h3 id="七、提高访存速度的措施"><a href="#七、提高访存速度的措施" class="headerlink" title="七、提高访存速度的措施"></a>七、提高访存速度的措施</h3><blockquote>
+<p>CPU速度每年提升52%，但内存的速度提升很慢。CPU得不到指令，进行空载（等待）。需要解决存储墙的问题。</p>
+</blockquote>
+<p>【解决方式】</p>
+<ul>
+<li>采用高速器件（带宽大、延迟小）</li>
+<li>采用层次结构Cache-主存</li>
+<li>调整主存的结构</li>
+</ul>
+<h4 id="1-单体多字系统"><a href="#1-单体多字系统" class="headerlink" title="1.单体多字系统"></a>1.单体多字系统</h4><p>CPU每次访问内存都可以访问四个数据寄存器，可以增加存储器的带宽。</p>
+<p>【问题】：</p>
+<ul>
+<li>造成给定的存储字长被错误修改</li>
+<li>如果取得指令不是连续存储</li>
+</ul>
+<p>【原因】：位置连续</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220128114909794.png" alt="image-20220128114909794" style="zoom: 80%;" /></p>
+<p>原理：由于程序、数据在内存中是顺序存放，一个地址，一个存取周期内可取出4×W位。<br>要求：存储器的各个存储器体的数据能够寄存及顺序读出等硬件支持。 遇到转移指令、数据非顺序<br>时失效。</p>
+<h4 id="2-多体并行系统"><a href="#2-多体并行系统" class="headerlink" title="2.多体并行系统"></a>2.多体并行系统</h4><ul>
+<li><p>存储器模块组成：各个模块各自都有独立的：MAR、 MDR、地址译码、驱动电路、读写控制；</p>
+</li>
+<li><p>特点： 每个存储器模块有相同的容量和存储速度； 各个存储器模块可以并行工作，又可以交叉工作；</p>
+</li>
+<li><p>并行工作：即同时可以访问N个存储器模块，同时启动、同时读出、完全并行的工作；（注意：同时读出的N个存储字，在总线上需要顺序、分时传出）；</p>
+</li>
+</ul>
+<h5 id="（1）高位交叉，顺序编址存储器"><a href="#（1）高位交叉，顺序编址存储器" class="headerlink" title="（1）高位交叉，顺序编址存储器"></a>（1）高位交叉，顺序编址存储器</h5><blockquote>
+<p>高位译码决定体地址，低位译码决定体内的地址</p>
+</blockquote>
+<p>【问题】具有并行基础，但会造成某一个存储体十分繁忙，其余闲置</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220128115133016.png" alt="image-20220128115133016" style="zoom: 67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316165850524.png" alt="image-20220316165850524" style="zoom: 50%;" /></p>
+<p>适合存储器的扩展，不适合带宽的提升</p>
+<ul>
+<li>高位交叉编址多体存储器工作原理：只要合理安排及调度，可以实现不同请求源，与不同存储体进行访问，实现并行工作；</li>
+</ul>
+<ul>
+<li><p>优点：一个体内地址是连续的，有利于扩充；</p>
+</li>
+<li><p>缺点：相邻指令或数据是在连续存放在一个存储体内。<strong>不利于程序并行</strong></p>
+<blockquote>
+<p>一个体内运行——串行</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="（2）低位交叉并行多体存储器（各个体轮流编址）"><a href="#（2）低位交叉并行多体存储器（各个体轮流编址）" class="headerlink" title="（2）低位交叉并行多体存储器（各个体轮流编址）"></a>（2）低位交叉并行多体存储器（各个体轮流编址）</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220128115441608.png" alt="image-20220128115441608" style="zoom: 67%;" /></p>
+<blockquote>
+<p>低位不同——体号。高位——体内地址</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316171050903.png" alt="image-20220316171050903" style="zoom:50%;" /></p>
+<blockquote>
+<p>地址译码需要加上三态门进行驱动和隔离</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316171111134.png" alt="image-20220316171111134" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220128115417652.png" alt="image-20220128115417652" style="zoom: 67%;" /></p>
+<blockquote>
+<p>注：带宽：数据传输率</p>
+<p>每个存储体完成数据传输（总线传输周期），则下一个存储体开始传输</p>
+<p>对于每个存储体，访存周期不变</p>
+</blockquote>
+<ul>
+<li>特点：在一个存储器周期结束之后，每隔1/4周期，CPU即可获得一个结果。</li>
+<li>优点：相邻各个存储体内地址是连续的，有利于并行—流水线计算机相邻各个存储体内地址是连续的，单独每个体的地址是间隔的。</li>
+</ul>
+<blockquote>
+<p><strong>题型</strong></p>
+<p>对于低位交叉的存储器，连续读取n个字所需要的时间$t_1$为：$t_1 = T + (n-1) \tau$ </p>
+<p>其中，$T$为存取周期，$\tau$为总线传输周期</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220316171737021.png" alt="image-20220316171737021" style="zoom:50%;" /></p>
+<h5 id="（3）存储器控制部件（存控）"><a href="#（3）存储器控制部件（存控）" class="headerlink" title="（3）存储器控制部件（存控）"></a>（3）存储器控制部件（存控）</h5><blockquote>
+<p>在多体交叉并行存储器的设计中，不仅要考虑存储器自身的并行性支撑：单独MAR、MDR、译码驱动、读控制、写控制、数据寄存器等；</p>
+<p>如何确定存储器与CPU、外存、I/O设备、I/O处理机等，不同信息交换源之间的关系；<br>因此，在某一时刻，如何进行<strong>优先级排队</strong>，<strong>选出</strong>优先级高的请求源，<strong>与存储器进行信息交换</strong>；这个功能及任务<strong>由存储器的控制器（存控）来实现</strong>。</p>
+</blockquote>
+<p>存储器控制部件（存控）组成：</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220309133933651.png" alt="image-20220309133933651" style="zoom: 67%;" /></p>
+<p><strong>（1）排队器（硬件）</strong></p>
+<p>（详见ch8，中断优先级排队器的设计）</p>
+<p><strong>确定</strong>同一时刻访问存储器的请求源；按照<strong>优先级</strong>原则进行。</p>
+<ul>
+<li><p>对易发生代码丢失的请求源，安排最高优先级；</p>
+<blockquote>
+<p>如，某些外设信息最易丢失</p>
+</blockquote>
+</li>
+<li><p>严重影响CPU工作的请求源，安排次级优先级，否则导致CPU工作异常；</p>
+<blockquote>
+<p>如，写数高于读数；读数高于读指令</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>（2）存控标志触发器$C_m$</strong></p>
+<p>用来<strong>接收排队器输出信号</strong>，一旦响应某个请求源，标记 $C_m$ 被置“1”，以便<strong>启动节拍发生器工作</strong>。</p>
+<p><strong>（3）节拍发生器</strong></p>
+<p><strong>产生固定节拍</strong>，与机器<strong>主脉冲同步</strong>，使控制线路按一定时序发出控制信号；</p>
+<p><strong>（4）控制线路</strong></p>
+<p>将排队器输出的信号，与<strong>节拍器发生器提供的信号配合</strong>，向存储器各个部件发出各种控制信号，用于实现对总线控制，以及完成存储器的读/写操作，并向请求源发出回答信号，表示存储器已经响应了它的请求；</p>
+<h4 id="3-高性能存储芯片（了解内容）"><a href="#3-高性能存储芯片（了解内容）" class="headerlink" title="3.高性能存储芯片（了解内容）"></a>3.高性能存储芯片（了解内容）</h4><p>按照摩尔定律：存储器容量每3年两番的规律，使DRAM的性能得到提高。</p>
+<p><strong>（1）SDRAM（同步DRAM）</strong></p>
+<p>在系统时钟的控制下进行读出和写入</p>
+<p><strong>CPU无须等待</strong></p>
+<p><strong>（2）RDRAM</strong></p>
+<p>由<code>Rambus</code>开发，主要解决<strong>存储器带宽</strong>的问题</p>
+<p><strong>（3）带Cache的DRAM</strong></p>
+<p>在DRAM的芯片内集成了一个由<strong>SRAM</strong>组成的<strong>Cache</strong>，有利于<strong>猝发式读取</strong></p>
+<blockquote>
+<p>一次读取几个存储字长（给出首地址就能完成剩余的读写操作，不需要再给出地址）</p>
+</blockquote>
+<h2 id="4-3-高速缓冲存储器"><a href="#4-3-高速缓冲存储器" class="headerlink" title="4.3 高速缓冲存储器"></a>4.3 高速缓冲存储器</h2><p>Cache是用SRAM制成的</p>
+<h3 id="一、概述-1"><a href="#一、概述-1" class="headerlink" title="一、概述"></a>一、概述</h3><h4 id="1-为什么用Cache"><a href="#1-为什么用Cache" class="headerlink" title="1.为什么用Cache"></a>1.为什么用Cache</h4><blockquote>
+<p>CPU 优先级低于易失性外设的请求源；出现CPU“空等”现象</p>
+<p>CPU 和主存（DRAM）的速度差异发展快，且速度差越来越大；</p>
+</blockquote>
+<p>——避免CPU“空等”现象</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220321165237238.png" alt="image-20220321165237238" style="zoom: 67%;" /></p>
+<h5 id="程序访问的局部性原理"><a href="#程序访问的局部性原理" class="headerlink" title="程序访问的局部性原理"></a>程序访问的局部性原理</h5><p>CPU在访问内存时，在一定时间，是<strong>局部地址区域的访问</strong>，指令和数据中内存中的地址是<strong>连续存放</strong>的，是<strong>相对的簇聚</strong>的。</p>
+<blockquote>
+<p>如：子程序、循环出现、一些常数等</p>
+</blockquote>
+<ul>
+<li>时间的局部性：在不久的将来还会使用</li>
+<li>空间的局部性：相邻的指令或数据还会使用</li>
+</ul>
+<blockquote>
+<p>主存和Cache之间的数据传送单位不是一个字，而是几个字组成的子块</p>
+<p>不适合离散情况</p>
+</blockquote>
+<h4 id="2-Cache的工作原理——注意Cache的命中率"><a href="#2-Cache的工作原理——注意Cache的命中率" class="headerlink" title="2.Cache的工作原理——注意Cache的命中率"></a>2.Cache的工作原理——注意Cache的命中率</h4><p><strong>（1）主存和缓存的编址</strong></p>
+<blockquote>
+<p>都分为块号和块内地址</p>
+<p>主存和缓存的块的长度均为b位</p>
+<p>主存有$2^m-1$块，缓存有$2^c-1$块</p>
+<p>实际过程中，$M$ &gt;&gt; $C$</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220321165142799.png" alt="image-20220321165142799" style="zoom:80%;" /></p>
+<p><strong>主存和缓存按块存储，块的大小相同</strong></p>
+<p><strong>（2）命中与未命中</strong></p>
+<blockquote>
+<p>缓存有C块，主存共有M块，M &gt;&gt; C</p>
+</blockquote>
+<p>命中与否取决于<strong>主存块是否调入缓存</strong>，用<code>标记记录</code>与某缓存块建立了对应关系的<code>主存块号</code></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220321165312839.png" alt="image-20220321165312839" style="zoom:67%;" /></p>
+<p><strong>（3）Cache的命中率</strong></p>
+<p>——CPU欲访问的信息在Cache中的比率</p>
+<p>命中率与<strong>Cache的容量与块长</strong>有关</p>
+<p>一般每块可取4~8个字</p>
+<p><strong>块长取一个存取周期内从主存调出的信息长度</strong></p>
+<blockquote>
+<p>例如，</p>
+<p>CRAY_1：16体交叉，块长取16个存储字</p>
+<p>IBM 370/168：4体交叉，块长取4个存储字（64位 × 4 = 256位）</p>
+</blockquote>
+<p><strong>（4）Cache-主存系统的效率</strong></p>
+<p>效率<strong>e</strong>与<strong>命中率</strong>有关</p>
+<script type="math/tex; mode=display">
+e = \frac{访问Cache的时间}{平均访问时间} \times 100 \%</script><p>平均访问时间：访问t的时间 * 访问t的概率</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220321165345089.png" alt="image-20220321165345089" style="zoom:80%;" /></p>
+<h4 id="3-Cache的基本结构"><a href="#3-Cache的基本结构" class="headerlink" title="3.Cache的基本结构"></a>3.Cache的基本结构</h4><blockquote>
+<p>添加Cache后，计算机的读取写入速度提升。</p>
+<p>①<strong>CPU需要给出地址</strong>，分为两部分：块内地址（不需要识别，主存和Cache同）、块号（块外地址的值）；</p>
+<p>②送入<strong>主存Cache地址映射变换机构</strong>。硬件设计时要在3种方式之一（追求指标：快速）。里面是组合逻辑电路，<strong>比较主存和Cache的块号</strong>；</p>
+<p>③如果块号相同，则命中，进入<strong>Cache存储体</strong>内读取数据，<strong>与数据总线</strong>进行信息交换；</p>
+<p>④如果没有命中，则<strong>判断是否可以装入</strong>（Cache是否有空闲空间，与映射方式有关）。如果可以装入，则访问主存装入Cache；不能装入则进入<strong>Cache替换机构</strong>。</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220321165049480.png" alt="image-20220321165049480" style="zoom: 80%;" /></p>
+<ul>
+<li><p>CPU完成的部件：</p>
+<ul>
+<li><p>Cache存储体：一定是RAM。</p>
+</li>
+<li><p>地址映射变换机构。是否命中是比较器。</p>
+</li>
+<li><p>Cache替换机构：是硬件，把某一个叶判断是否需要写入内存</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Cache工作时间一定要小于读取时间（读周期、写周期）</p>
+</blockquote>
+<h4 id="4-Cache的读写操作"><a href="#4-Cache的读写操作" class="headerlink" title="4.Cache的读写操作"></a>4.Cache的读写操作</h4><ul>
+<li><p><strong>Cache读操作</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220321165015269.png" alt="image-20220321165015269" style="zoom:67%;" /></p>
+<blockquote>
+<p><strong>过程</strong>：</p>
+<ol>
+<li><p>CPU发送地址，同时到达Cache和主存。</p>
+</li>
+<li><p>比较是否命中（Cache的内容是否在主存中）：</p>
+<ul>
+<li><p>命中：直接访问Cache取出信息送到CPU</p>
+</li>
+<li><p>没有命中：判断Cache是否满：</p>
+<ul>
+<li>Cache满：替换算法，腾出空位（替换算法与映射方式有关）</li>
+<li>Cache没满：将新主存块调入Cache中</li>
+</ul>
+</li>
+</ul>
+<p>访问主存，取出信息送到CPU</p>
+</li>
+<li><p>结束Cache的读操作</p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p><strong>Cache写操作</strong>——Cache和主存的一致性</p>
+<ol>
+<li><p>写直达法（Write-through）</p>
+<p>数据既写入Cache又写入主存</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220321164735646.png" alt="image-20220321164735646" style="zoom: 80%;" /></p>
+</li>
+<li><p>写回法（Write-back）</p>
+<blockquote>
+<p>速度更快，但需要注意把Cache的信息写回主存</p>
+</blockquote>
+<p>出现主存和Cache映射的数据不一致，Cache的信息是有效的。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220321164735646.png" style="zoom:80%;" /></p>
+<p><strong>写操作的时间就是访问Cache的时间</strong>。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220321164840004.png" alt="image-20220321164840004" style="zoom:80%;" /></p>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="5-Cache的改进"><a href="#5-Cache的改进" class="headerlink" title="5.Cache的改进"></a>5.Cache的改进</h4><p><strong>（1）增加Cache的级数</strong></p>
+<ul>
+<li>片载（片内）Cache</li>
+<li>片外 Cache</li>
+</ul>
+<p><strong>（2）统一缓存和分立缓存</strong></p>
+<blockquote>
+<p>统一缓存：指令和数据都存放在同一缓存内的Cache</p>
+<p>分立缓存：指令和数据分别存放在两个缓存中，一个称为指令Cache，一个称为数据Cache</p>
+</blockquote>
+<ul>
+<li><p><strong>指令Cache</strong>和<strong>数据Cache</strong>——与主存结构有关</p>
+</li>
+<li><p>与指令执行的控制方式有关，是否流水（ch8）</p>
+<blockquote>
+<p>并行加工指令：提速，但产生资源的竞争、冲突</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>例如，</p>
+<p>Pentium：8K指令Cache，8K数据Cache</p>
+<p>PowerPC620：32K指令Cache，32K数据Cache</p>
+</blockquote>
+<h3 id="二、Cache-主存的地址映射"><a href="#二、Cache-主存的地址映射" class="headerlink" title="二、Cache-主存的地址映射"></a>二、Cache-主存的地址映射</h3><h4 id="1-直接映射"><a href="#1-直接映射" class="headerlink" title="1.直接映射"></a>1.直接映射</h4><blockquote>
+<p>主存块只能装载/映射到指定的缓存块</p>
+<p>下图中每个主存块只与一个缓存块相对应。</p>
+<p>映射关系式：$i = j \ \ mod \  \ C$ 或 $i = \ j \ \ mod \ \ 2^C$</p>
+<p>（$i$为缓存块号，$j$为主存块号，$C$为缓存块号）</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220321165743565.png" alt="image-20220321165743565" style="zoom:67%;" /></p>
+<ul>
+<li><strong>每个缓存块i</strong>可以和<strong>若干个主存块</strong>对应</li>
+<li><strong>每一个主存块j</strong>只能和<strong>一个缓存块</strong>对应</li>
+</ul>
+<blockquote>
+<p>Cache存储体的字块是一对多的关系</p>
+<p>主存块是一对一的关系</p>
+<p>t位地址全相同——匹配成功，命中</p>
+</blockquote>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li><strong>不够灵活</strong>。即使缓存内还空着许多位置也不能占用，使缓存的存储空间得不到充分利用。</li>
+<li>重复访问对应同一缓存位置的不同主存块，就要不停地进行替换，从而<strong>降低命中率</strong></li>
+</ul>
+<p><strong>总结</strong>：速度快，效率低</p>
+<h4 id="2-全相联映射"><a href="#2-全相联映射" class="headerlink" title="2.全相联映射"></a>2.全相联映射</h4><blockquote>
+<p>任何一个主存块可以调用任何一个空闲的缓存块</p>
+<p>主存子块标记从$t$位增加到$t+c$位，使得Cache“标记”的位数增多，而且访问Cache时<strong>主存子块标记需要和Cache的全部“标记”位进行比较</strong>，才能判断出所访问的主存地址是否已在Cache内</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220321165944751.png" alt="image-20220321165944751" style="zoom:80%;" /></p>
+<ul>
+<li><strong>主存中的任一块</strong>可以映射到<strong>缓存的任一块</strong></li>
+</ul>
+<blockquote>
+<p>缺点：识别字段由t变为t+c，除了主存子块标记判断的位数增多，延长匹配的时间</p>
+<p><strong>解决方法</strong>（书P153）相联存储器</p>
+</blockquote>
+<p><strong>总结</strong>：效率最高，比较时间长，硬件复杂</p>
+<h4 id="3-组相联映射"><a href="#3-组相联映射" class="headerlink" title="3.组相联映射"></a>3.组相联映射</h4><blockquote>
+<p>直接映射和组相联映射的结合</p>
+<p>Cache分为若干组，每一组又分为若干块（2, 4, 8, 16, … ）</p>
+<p>主存储器中的区数 = Cache中的组数</p>
+</blockquote>
+<script type="math/tex; mode=display">
+i = j \mod Q</script><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220321170055398.png" alt="image-20220321170055398" style="zoom:80%;" /></p>
+<ul>
+<li><strong>某一主存块j</strong>按<strong>模Q</strong>映射到缓存的<strong>第i组的任一块</strong></li>
+</ul>
+<blockquote>
+<p>比直接映射方式的主存子块标记位数多，比全相联映射方式的标记位数少</p>
+<p>组间为直接映射，组内为全相联映射</p>
+</blockquote>
+<h3 id="三、替换算法"><a href="#三、替换算法" class="headerlink" title="三、替换算法"></a>三、替换算法</h3><ol>
+<li><p>先进先出（FIFO）算法</p>
+<p>选择最早调入Cache的字块进行替换。</p>
+</li>
+<li><p>近期最小使用（LRU）算法</p>
+<p>Least Recently Used</p>
+<p>较好地利用访存局部性原理，替换出近期用得最少的字块</p>
+<blockquote>
+<p><strong>全相联映射</strong></p>
+<p>每个主存块可以调用任何空闲的缓存块，能够确定哪个字块近期使用最少</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220130103055884.png" alt="image-20220130103055884" style="zoom: 80%;" /></p>
+<p><strong>小结</strong></p>
+<ul>
+<li>直接：<strong>某一</strong>主存块<strong>只能固定</strong>映射到<strong>某一</strong>缓存块——不灵活</li>
+<li>全相联：<strong>某一</strong>主存块<strong>能</strong>映射到<strong>任一</strong>缓存块——成本高</li>
+<li>组相联：<strong>某一</strong>主存块只能映射到<strong>某一</strong>缓存<strong>组</strong>中的<strong>任一块</strong></li>
+</ul>
+<h2 id="4-4-辅助存储器（了解内容）"><a href="#4-4-辅助存储器（了解内容）" class="headerlink" title="4.4 辅助存储器（了解内容）"></a>4.4 辅助存储器（了解内容）</h2><p>（考试不要求）</p>
+<h3 id="一、概述-2"><a href="#一、概述-2" class="headerlink" title="一、概述"></a>一、概述</h3><ol>
+<li><p>特点：不直接与CPU交换信息</p>
+</li>
+<li><p>磁表面存储器的技术指标</p>
+<ul>
+<li><p>记录密度：道密度Dt，位密度Db</p>
+</li>
+<li><p>存储容量：$C = n \times k \times s$​ </p>
+</li>
+<li><p>平均寻址时间：寻道时间+等待时间</p>
+<script type="math/tex; mode=display">
+ 辅存的速度
+\begin{cases}
+寻址时间\\
+磁头读写时间
+\end{cases}</script></li>
+<li><p>数据传输率</p>
+</li>
+</ul>
+</li>
+</ol>
+<script type="math/tex; mode=display">
+     D_r = D_b \times V</script><ul>
+<li>误码率：出错信息位数与读出信息的总位数之比</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>computer organization</tag>
       </tags>
   </entry>
   <entry>
