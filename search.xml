@@ -300,6 +300,10 @@ f_{n} = f_{n-1} + f_{n-2} \quad ,n \geq 3 \qquad(5-2) \\
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">V:</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VNode</span> &#123;</span><br><span class="line">    vertextype data;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">adjvex</span> *firstedge;</span><br><span class="line">&#125;VNode, v[n];</span><br><span class="line"></span><br><span class="line">VR:</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">adjvex</span> &#123;</span><br><span class="line">    <span class="type">int</span> seqNo;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">adjvex</span> *next;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>评价算法看模型</p>
 ]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>算法设计与分析</category>
+      </categories>
       <tags>
         <tag>algorithm</tag>
       </tags>
@@ -556,6 +560,10 @@ f_{n} = f_{n-1} + f_{n-2} \quad ,n \geq 3 \qquad(5-2) \\
 <p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231537308.png" alt="image-20220301231537308" style="zoom:67%;" /></p>
 <h5 id="【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设-n-2-k-："><a href="#【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设-n-2-k-：" class="headerlink" title="【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设$n = 2^k$："></a>【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设$n = 2^k$：</h5><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301231641596.png" alt="image-20220301231641596" style="zoom:67%;" /></p>
 ]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>算法设计与分析</category>
+      </categories>
       <tags>
         <tag>algorithm</tag>
       </tags>
@@ -828,6 +836,10 @@ T(n) = \sum_{i = 0}^{n-1}T(i+1) + C \\
 </li>
 </ul>
 ]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>算法设计与分析</category>
+      </categories>
       <tags>
         <tag>algorithm</tag>
       </tags>
@@ -1154,9 +1166,21 @@ x_1 + 3x_2 - 2x_3 = 4 \\
 </li>
 </ul>
 ]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>算法设计与分析</category>
+      </categories>
       <tags>
         <tag>algorithm</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/undefined/hello-world/</url>
+    <content><![CDATA[<p>你好，Hexo！你好，世界！</p>
+<p>欢迎来到我的博客</p>
+<p>我将持续记录日常学习、生活的点点滴滴</p>
+]]></content>
   </entry>
   <entry>
     <title>计算机组成原理：第1章 计算机系统概论</title>
@@ -1353,8 +1377,808 @@ x_1 + 3x_2 - 2x_3 = 4 \\
 </ul>
 <p>3、计算机硬件组成框图，各部件作用，计算机硬件主要及技术指标</p>
 ]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>计算机组成原理</category>
+      </categories>
       <tags>
         <tag>computer organization</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数理逻辑：绪论</title>
+    <url>/mathematical_logic/mathematical-logic-ch0/</url>
+    <content><![CDATA[<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>数理逻辑是用数学的方法研究<strong>推理</strong>，特别是研究数学中的推理</p>
+<p>推理的前提和结论都是命题，命题的真假与<strong>内容是否符合现实</strong>有关。</p>
+<script type="math/tex; mode=display">
+premises 前提 \quad（命题）\\
+\downarrow  \quad reason 推理 \\
+conclusions 结论 \quad （命题）\\</script><span id="more"></span>
+<ol>
+<li><p>正确的推理：从”正确的前提“能得到”正确的结论“的推理。</p>
+<p>推理正确——可推导关系，属于<code>演绎逻辑</code>（与之相对的是<code>归纳逻辑</code>）</p>
+<p>正确的前提：前提为真</p>
+<p>正确的结论：结论为真</p>
+</li>
+<li><p>推理正确与否<strong>与前提和结论中命题是否为真命题没有关系</strong>。</p>
+<p><strong>推理的正确性与命题的逻辑形式有关</strong></p>
+<p><strong>命题内容决定命题的真假</strong></p>
+<script type="math/tex; mode=display">
+命题：
+\begin{cases}
+内容 \\
+逻辑形式（抽象） \\
+\end{cases}</script><blockquote>
+<p>所有中学生打网球（前提）</p>
+<p>王军不打网球（前提）</p>
+<p>王军不是中学生（结论）</p>
+<p>——推理正确，不是所有命题都为真命题</p>
+</blockquote>
+<p>上述推理的逻辑形式为：</p>
+<blockquote>
+<p>S中所有元有R性质（前提）</p>
+<p>a没有R性质（前提）</p>
+<p>a不是S中的元（结论）</p>
+</blockquote>
+</li>
+<li><p>数理逻辑中，用自然语言陈述命题会带来不方便</p>
+</li>
+<li><p>数理逻辑的研究语言为：对象语言、元语言</p>
+<ul>
+<li>对象语言：被研究对象的语言。<strong>形式语言</strong>，用符号构成的公式来代替自然语言中的命题，<strong>没有二义性</strong><ul>
+<li>语义：符号，公式的含义</li>
+<li>语法：由符号构成的公式的形状和语法结构</li>
+</ul>
+</li>
+<li>元语言：辅助描述对象语言。自然语言</li>
+</ul>
+</li>
+<li><p>数理逻辑产生的动机：将一切推理的正确性化归于计算的通用代数</p>
+<ul>
+<li>建立一种普遍适用的精确的科学语言</li>
+<li>建立一种推理的演算</li>
+</ul>
+</li>
+<li><p>预备知识：</p>
+<ul>
+<li><p>集合</p>
+<p>集合S上的（n元）关系R</p>
+<p>外延</p>
+</li>
+<li><p>归纳定义和归纳证明</p>
+</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>数理逻辑</category>
+      </categories>
+      <tags>
+        <tag>mathematical logic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数理逻辑：第2节 命题逻辑等值计算</title>
+    <url>/mathematical-logic/mathematical-logic-ch2/</url>
+    <content><![CDATA[<h1 id="2-1-等值式"><a href="#2-1-等值式" class="headerlink" title="2.1 等值式"></a>2.1 等值式</h1><ul>
+<li><p><strong>定义1</strong>：若<strong>等价式</strong>A $\Leftrightarrow$ B是<strong>重言式</strong>，则称A与B等值，记作A $\Leftrightarrow$ B，并称A $\Leftrightarrow$ B是等值式</p>
+<p>此时A和B真值相同（全0 or 全1）</p>
+</li>
+<li><p>几点说明： </p>
+<ul>
+<li>定义中的符号$\Leftrightarrow$不是联结符（词） </li>
+<li>用<strong>真值表</strong>可检查两个公式是否等值</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>问题：判别下面命题公式是否为重言式(永真式)？ </p>
+<p>(( p∧ $\neg$ q) → r )∧ p ∧ (q → s) ∧ $\neg$ s → r<br>转化为: (( p∧ $\neg$ q) → r )∧ p ∧ (q → s) ∧ $\neg$ s → r $\Leftrightarrow$ 1</p>
+</blockquote>
+<span id="more"></span>
+<p>【例1】判断下列各组公式是否等值</p>
+<p>（1）p→(q→r) 与 (p $\land$ q) →r</p>
+<blockquote>
+<p>形式不同，表达含义相同。p，q都是r的前提</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301083009100.png" alt="image-20220301083009100" style="zoom:67%;" /></p>
+<p>（2）p→(q→r) 与 (p→q) →r</p>
+<blockquote>
+<p>含义不同，不等值</p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301083123270.png" alt="image-20220301083123270" style="zoom:67%;" /></p>
+<h2 id="基本等值式"><a href="#基本等值式" class="headerlink" title="基本等值式"></a>基本等值式</h2><ul>
+<li><p><strong>双重否定律</strong>：  $\neg$ $\neg$ A $\Leftrightarrow$ A</p>
+</li>
+<li><p><strong>幂等律</strong>： A $\vee$ A $\Leftrightarrow$ A, $\qquad$ A $\land$ A $\Leftrightarrow$ A​ </p>
+<blockquote>
+<p>理解为两个集合的交/并</p>
+</blockquote>
+</li>
+<li><p><strong>交换律</strong>： A $\vee$ B $\Leftrightarrow$ B $\vee$ A,$\qquad$  A $\land$ B $\Leftrightarrow$ B $\land$ A​ </p>
+</li>
+<li><p><strong>结合律</strong> ： (A $\vee$ B) $\vee$ C $\Leftrightarrow$ A $\vee$ (B $\vee$ C), $\qquad$ (A $\land$ B) $\land$ C $\Leftrightarrow$ A $\land$ (B $\land$ C)​ </p>
+</li>
+<li><p><strong>分配律</strong> ：A $\vee$ (B $\land$ C) $\Leftrightarrow$ (A $\vee$ B) $\land$ (A $\vee$ C),$\qquad$ A $\land$ (B $\vee$ C) $\Leftrightarrow$ (A $\land$ B) $\vee$ (A $\land$ C)  </p>
+</li>
+<li><p><strong>德摩根律</strong>： $\neg$ (A $\vee$ B) $\Leftrightarrow$  $\neg$ A $\land$  $\neg$ B, $\qquad$<br>$\neg$ (A $\land$ B) $\Leftrightarrow$  $\neg$ A $\vee$ $\neg$ B​​</p>
+</li>
+<li><p><strong>吸收律</strong>： A $\vee$ (A $\land$ B) $\Leftrightarrow$ A, $\qquad$ A $\land$ (A $\vee$ B) $\Leftrightarrow$ A</p>
+<blockquote>
+<p>A把比它大的部分吸收</p>
+</blockquote>
+</li>
+<li><p><strong>零律</strong>： A $\vee$ 1 $\Leftrightarrow$ 1, $\qquad$  A $\land$ 0 $\Leftrightarrow$ 0</p>
+</li>
+<li><p><strong>同一律</strong>： A $\vee$ 0 $\Leftrightarrow$ A, $\qquad$ A $\land$ 1 $\Leftrightarrow$ A</p>
+</li>
+<li><p><strong>排中律</strong>： A $\vee$ $\neg$ A  $\Leftrightarrow$ 1</p>
+</li>
+<li><p><strong>矛盾律</strong>： A $\land$  $\neg$ A $\Leftrightarrow$ 0</p>
+<blockquote>
+<p>不可能既真又假</p>
+</blockquote>
+</li>
+<li><p><strong>蕴涵等值式</strong>： A→B $\Leftrightarrow$ $\neg$ A $\vee$ B</p>
+</li>
+<li><p><strong>等价等值式</strong>：A $\leftrightarrow$ B $\Leftrightarrow$ (A→B) $\land$ (B→A)</p>
+<blockquote>
+<p>非A或B 与 非B或A</p>
+</blockquote>
+</li>
+<li><p><strong>假言易位</strong>： $\color{red}$ A→B $\Leftrightarrow$ $\neg$ B→$\neg$ A</p>
+<blockquote>
+<p>B是A的必要条件，A是B的充分条件</p>
+<p><strong>有A则有B</strong> 与 <strong>没有B则没有A</strong> 是同一件事</p>
+</blockquote>
+</li>
+<li><p><strong>等价否定等值式</strong>：A $\leftrightarrow$ B $\Leftrightarrow$ $\neg$ A $\leftrightarrow$ $\neg$ B </p>
+</li>
+<li><p><strong>归谬论</strong>： (A→B) $\land$ (A→$\neg$ B) $\Leftrightarrow$ $\neg$ A</p>
+<blockquote>
+<p>在A为真的前提下，能推出矛盾（B既真又假），则前提A为假——反证法</p>
+</blockquote>
+</li>
+</ul>
+<p>特别提示：必须牢记这16组等值式(24式)，这是继续学习的基础。</p>
+<h2 id="等值演算与置换规则"><a href="#等值演算与置换规则" class="headerlink" title="等值演算与置换规则"></a>等值演算与置换规则</h2><h3 id="1-等值演算"><a href="#1-等值演算" class="headerlink" title="1.等值演算"></a>1.等值演算</h3><p>由已知的等值式推演出新的等值式的过程</p>
+<blockquote>
+<p>每一步都是等值变换（每一步都使用等值式）</p>
+</blockquote>
+<h3 id="2-等值演算的基础"><a href="#2-等值演算的基础" class="headerlink" title="2.等值演算的基础"></a>2.等值演算的基础</h3><ul>
+<li><p>等值关系的性质：<strong>自反性、对称性、传递性</strong></p>
+<blockquote>
+<p>A与A是等值的</p>
+<p>如果A和B等值，则B和A等值</p>
+<p>如果A和B等值，B和C等值，则A和C等值</p>
+</blockquote>
+</li>
+<li><p>基本的等值式</p>
+</li>
+<li><p><strong>置换规则</strong></p>
+</li>
+</ul>
+<h3 id="3-置换规则"><a href="#3-置换规则" class="headerlink" title="3.置换规则"></a>3.置换规则</h3><p>设 $\Phi$(A)​​​​​ 是含公式 A​​​​ 的命题公式，$\Phi$ (B)​​​ 是用公式B​​置换$\Phi$ (A)​ 中所有的 A 后得到的命题公式。 </p>
+<p>若 B $\Leftrightarrow$ A，则 $\Phi$(B) $\Leftrightarrow$ $\Phi$(A)。</p>
+<blockquote>
+<p>对公式的一部分做等值变换，变换后的结果仍然是等值的</p>
+</blockquote>
+<h3 id="等值演算的应用举例"><a href="#等值演算的应用举例" class="headerlink" title="等值演算的应用举例"></a>等值演算的应用举例</h3><ul>
+<li>证明两个公式等值</li>
+</ul>
+<p>​        <img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301190541286.png" alt="image-20220301190541286" style="zoom: 50%;" /></p>
+<p><strong>注：用等值演算不能直接证明两个公式不等值</strong></p>
+<ul>
+<li>判断公式类型：<script type="math/tex; mode=display">
+A 为矛盾式当且仅当 A \Leftrightarrow 0 \\
+A 为重言式当且仅当 A \Leftrightarrow 1 \\
+A 为非重言式的可满足式 \Leftrightarrow A既有成真赋值又有成假赋值 \\</script></li>
+</ul>
+<h3 id="证明两个公式不等值"><a href="#证明两个公式不等值" class="headerlink" title="证明两个公式不等值"></a>证明两个公式不等值</h3><ul>
+<li><p>真值表法</p>
+</li>
+<li><p>观察法——举出反例</p>
+</li>
+<li><p>先等值演算化简公式，再观察</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301190743753.png" alt="image-20220301190743753" style="zoom:50%;" /></p>
+</li>
+</ul>
+<h1 id="2-2-析取范式与合取范式"><a href="#2-2-析取范式与合取范式" class="headerlink" title="2.2 析取范式与合取范式"></a>2.2 析取范式与合取范式</h1><p>范式：比较规范的公式形式</p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li><p><strong>文字</strong>：命题变项及其否定的总称</p>
+<blockquote>
+<p>p, $\quad$ $\neg$ q</p>
+</blockquote>
+</li>
+<li><p><strong>简单析取式</strong>：仅由有限个文字构成的析取式</p>
+<blockquote>
+<p>p,$\quad$ $\neg$ q,$\quad$ p$\vee$ $\neg$ q, $\quad$ p$\vee$ q $\vee$ r,…​</p>
+</blockquote>
+</li>
+<li><p><strong>简单合取式</strong>：由有限个文字构成的合取式</p>
+<blockquote>
+<p>p,$\quad$ $\neg$ q,$\quad$ p$\land$ $\neg$ q, $\quad$ p$\land$ q $\land$ r,…</p>
+</blockquote>
+</li>
+<li><p><strong>析取范式</strong>：由有限个<strong>简单合取式</strong>组成的<strong>析取式</strong></p>
+<blockquote>
+<p>p,$\quad$ $\neg$ p $\land$ q,（简单合取式）$\quad$ p$\vee$ $\neg$ q, $\quad$ (p $\land$ $\neg$ q) $\vee$ ($\neg$ p $\land$ q $\land$ $\neg$ r) $\vee$ (q $\land$ r),…​</p>
+</blockquote>
+</li>
+<li><p><strong>合取范式</strong>：由有限个<strong>简单析取式</strong>组成的<strong>合取式</strong></p>
+<blockquote>
+<p>p,$\quad$ $\neg$ p $\vee$ q,（简单析取式）$\quad$ p$\land$ $\neg$ q, $\quad$ (p $\vee$ $\neg$ q) $\land$ ($\neg$ p $\vee$ q $\vee$ r) $\land$ (q $\vee$ r),…</p>
+</blockquote>
+</li>
+<li><p><strong>范式</strong>：析取范式与合取范式的总称</p>
+</li>
+</ol>
+<p>说明</p>
+<ul>
+<li>单个文字既是简单析取式，又是简单合取式</li>
+<li>形如 p $\land$ $\neg$ q $\land$ r, $\neg$ p $\land$ q $\vee$ $\neg$ r 的公式既是析取范式，又是合取范式</li>
+</ul>
+<p><strong>定理1</strong></p>
+<p>（1）一个<strong>简单析取式是重言式</strong>当且仅当<strong>它同时含有某个命题变项和它的否定式</strong></p>
+<blockquote>
+<p>p $\vee$ $\neg$ p $\vee$ r $\vee$ q</p>
+</blockquote>
+<p>（2）一个<strong>简单合取式是矛盾式</strong>当且仅当<strong>它同时含有某个命题变项和它的否定式</strong></p>
+<blockquote>
+<p>p $\land$ $\neg$ p $\land$ q</p>
+</blockquote>
+<p><strong>定理2</strong></p>
+<p>（1）一个<strong>析取范式是矛盾式</strong>当且仅当<strong>它每个简单合取式都是矛盾式</strong></p>
+<blockquote>
+<p>$\triangle$ $\vee$ $\triangle$ $\vee$ $\triangle$</p>
+</blockquote>
+<p>（2）一个<strong>合取范式是重言式</strong>当且仅当<strong>它的每个简单析取式都是重言式</strong></p>
+<blockquote>
+<p>$\triangle$ $\land$ $\triangle$ $\land$ $\triangle$</p>
+</blockquote>
+<p><strong>定理3</strong>（范式存在定理）</p>
+<p>任何命题公式都存在与之等值的析取范式与合取范式</p>
+<blockquote>
+<p>从任何公式出发，都有和它等值的<strong>析取范式</strong>和<strong>合取范式</strong></p>
+</blockquote>
+<h2 id="命题公式的范式"><a href="#命题公式的范式" class="headerlink" title="命题公式的范式"></a>命题公式的范式</h2><h3 id="求公式A的范式的步骤"><a href="#求公式A的范式的步骤" class="headerlink" title="求公式A的范式的步骤"></a>求公式A的范式的步骤</h3><ol>
+<li><p>消去A中的$\to$, $\leftrightarrow$（若存在）——<strong>（蕴含等价式、等价等值式、假言易位、等价否定等值式、归谬论）</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091705613.png" alt="image-20220301091705613" style="zoom: 50%;" /></p>
+</li>
+<li><p>否定连接词的内移或消去<strong>（德摩根律）</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091721847.png" alt="image-20220301091721847" style="zoom: 50%;" /></p>
+</li>
+<li><p>使用<strong>分配律</strong></p>
+</li>
+</ol>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091734879.png" alt="image-20220301091734879" style="zoom:50%;" /></p>
+<p>范式的不足——不唯一</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192357658.png" alt="image-20220301192357658" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192420027.png" alt="image-20220301192420027" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192436741.png" alt="image-20220301192436741" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192454515.png" alt="image-20220301192454515" style="zoom:50%;" /></p>
+]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>数理逻辑</category>
+      </categories>
+      <tags>
+        <tag>mathematical logic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数理逻辑：第1节 命题逻辑的基本概念</title>
+    <url>/mathematical_logic/mathematical-logic-ch1/</url>
+    <content><![CDATA[<h1 id="1-1-命题与联结词"><a href="#1-1-命题与联结词" class="headerlink" title="1.1 命题与联结词"></a>1.1 命题与联结词</h1><h2 id="命题与真值"><a href="#命题与真值" class="headerlink" title="命题与真值"></a>命题与真值</h2><ul>
+<li>命题：能<strong>唯一</strong>确定<strong>真假值</strong>的<strong>陈述句</strong></li>
+<li>命题的真值：一个命题的真or假</li>
+<li>真值的取值：真or假</li>
+<li>真命题与假命题：由内容是否符合实际情况决定</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li>感叹句、祈使句、疑问句、<strong>悖论</strong>不是命题</li>
+<li>判断结果不唯一确定的陈述句不是命题（针对真值多种取值的情况）</li>
+</ul>
+<span id="more"></span>
+<h2 id="命题分类"><a href="#命题分类" class="headerlink" title="命题分类"></a>命题分类</h2><ul>
+<li>简单命题（原子命题）：不能分解成更简单的命题（基本单位）</li>
+<li>命题符合：由简单命题通过<strong>联结词</strong>联结而成的命题</li>
+<li>联结词有5类：与（$\land$​​）、或（$\vee$​）、非（$\neg$​）、蕴含（如果…那么（则）…）、等价（当且仅当，$\Leftrightarrow$​​）。$\neg$​为单联结词</li>
+</ul>
+<h2 id="简单命题符号化"><a href="#简单命题符号化" class="headerlink" title="简单命题符号化"></a>简单命题符号化</h2><ul>
+<li>用小写英文字母$p,q,r,…,$$p_i$,$q_i$,$r_i(i\geq1)$表示简单命题</li>
+<li>用”1“表示真，用”0“表示假</li>
+</ul>
+<h2 id="否定、合取、析取联结词"><a href="#否定、合取、析取联结词" class="headerlink" title="否定、合取、析取联结词"></a>否定、合取、析取联结词</h2><ul>
+<li><p><strong>定义1</strong>：设 p为命题，<strong>复合命题</strong>“非p”(或“p的否定”) 称为 p的<strong>否定式</strong>，记作$\neg$​p，符号$\neg$​称作<strong>否定联结词</strong>。 </p>
+<p>规定: $\neg$​p 为真当且仅当<u>p为假</u>。</p>
+</li>
+<li><p><strong>定义2</strong>：设p,q为两个命题，复合命题“p并且q”(或 “p 与 q”)称为 p与q的<strong>合取式</strong>，记作p∧q，∧称作<strong>合取联结词</strong>。</p>
+<p>规定: p∧q为真当且仅当<u>p与q同时为真</u>。</p>
+</li>
+<li><p><strong>定义3</strong>：设p, q为两个命题，复合命题“p或q”称作 p 与 q 的<strong>析取式</strong>，记作p∨q，∨称作<strong>析取联结词</strong>。 </p>
+<p>规定: p∨q为假当且仅当<u>p与q同时为假</u>。</p>
+</li>
+<li><p>关于”或“：$\begin{cases} 相容或：可兼 \qquad（例如：我上街买矿泉水或者买饮料） \\ 排斥或（异或）：不相容或,不可兼 \qquad （例如：某人星期一来或者星期二来） \\ \end{cases}$​</p>
+<blockquote>
+<p>又如：</p>
+<p>ab = 0——a = 0 或 b = 0 </p>
+<p>(a-1)·(a-2) = 0——a = 1 或 a = 2</p>
+</blockquote>
+<p>规定：数学上取<strong>相容或</strong></p>
+<p>排斥或：($\neg$ p $\land$q) $\vee$ (p$\land$$\neg$ q)</p>
+</li>
+</ul>
+<h2 id="蕴含联结词"><a href="#蕴含联结词" class="headerlink" title="蕴含联结词"></a>蕴含联结词</h2><ul>
+<li><p><strong>定义4</strong>：设p, q为两个命题，复合命题”如果p, 则q” 称作p与q的<strong>蕴涵式</strong>，记作p→q， </p>
+<p>并称p是蕴涵式的<strong>前件</strong>， q为蕴涵式的<strong>后件</strong>，→称作<strong>蕴涵联结词</strong>。 </p>
+<p>规定：p→q为假当且仅当<u>p为真q为假</u>。</p>
+<blockquote>
+<p>蕴含举例：</p>
+<p>对任何x，如果x&gt;3，则$x^2$&gt;9 真命题 </p>
+<p>令x=4，如果 4&gt;3，则16&gt;9（前提真，结论真） </p>
+<p>令x=-4，如果 -4&gt;3，则16&gt;9（前提假，结论真）</p>
+<p>令x=-2，如果 -2&gt;3, 则4&gt;9（前提假，结论假）——<strong>整个</strong>命题为真</p>
+<p><strong>对于该蕴含命题（真命题），不存在前提真，结论假的情况</strong></p>
+</blockquote>
+</li>
+<li><p>要证明符合命题：如果p, 则q</p>
+<ul>
+<li>一般情况下，<strong>由前提真，证明结论真</strong></li>
+<li>特殊情况下，<strong>前提为假，没有什么可做的</strong></li>
+</ul>
+<blockquote>
+<p>可以用来证明</p>
+<p>证：空集是任意集合的子集</p>
+<p>任何集合S，$\oslash \subseteq S$​​​ </p>
+<p>由子集的定义</p>
+<p><strong>任何x，若$x \in \oslash$​，则$x \in S$​​​​ </strong>——空证明</p>
+</blockquote>
+</li>
+<li><p>关于蕴含联结词的一些概念</p>
+<ul>
+<li><p>p→q 的逻辑关系：（有p一定有q，没有q一定没有p——逆否关系）——p$\subseteq$​​q</p>
+<ul>
+<li>q为p的必要条件</li>
+<li>p为q的充分条件</li>
+</ul>
+<blockquote>
+<p>p$\rightarrow$​​​q  $\Leftrightarrow$​​  $\neg$​q$\to$$\neg$​p</p>
+<p>p与q等价：$\begin{cases} p \to q \\ \neg p \to \neg q  \end{cases}$</p>
+</blockquote>
+</li>
+<li><p>“如果 p, 则 q” 有很多不同的表述方法：<strong>（需要好好理解）</strong></p>
+<ul>
+<li><p>若p，就q</p>
+</li>
+<li><p>只要p，就q</p>
+</li>
+<li><p><strong>p仅当q</strong></p>
+<blockquote>
+<p>p当且仅当q</p>
+<p>$\begin{cases} p当q——当有q就有p（q为充分条件，写在→前面）\\  p仅当q——仅当q，才p（q为必要条件，写在→后面）/除非q，才p：p→q \\ \end{cases}$ </p>
+</blockquote>
+</li>
+<li><p><strong>只有q，才p</strong></p>
+</li>
+<li><p>除非q，才p</p>
+</li>
+<li><p>除非q，否则非p（双重否定）</p>
+<blockquote>
+<p>除非q，否则p：$\neg p \rightarrow q$​</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>当 p 为假时，p→q 恒为真，称为空证明</p>
+</li>
+<li><p>常出现的错误：不分充分与必要条件</p>
+</li>
+<li><p>在自然语言中，“如果 p , 则 q ” ，p, q具有某种内在联系；</p>
+<p><strong>但在数理逻辑中， p, q可以无任何内在联系</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="等价联结词"><a href="#等价联结词" class="headerlink" title="等价联结词"></a>等价联结词</h2><ul>
+<li><p><strong>定义5</strong>：设 p, q为两个命题，复合命题“p当且仅当q” 称作p与q的<strong>等价式</strong>，记作p$\leftrightarrow$​q，$\leftrightarrow$​称作<strong>等价联结词</strong>。 </p>
+<p>规定: <u>p$\leftrightarrow$​​q为真</u>当且仅当<u>p与q同时为真或同时为假。</u></p>
+<p>​         p$\leftrightarrow$q 的逻辑关系：p与q互为充分必要条件。</p>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>基本联结词：构成一层</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225084811509.png" alt="image-20220225084811509" style="zoom:67%;" /></p>
+<p><strong>注意优先级：括号$&gt;$非$&gt;$与$&gt;$或$&gt;$蕴含$&gt;$等价</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225085015688.png" alt="image-20220225085015688" style="zoom:67%;" /></p>
+<h1 id="1-2-命题公式及其赋值"><a href="#1-2-命题公式及其赋值" class="headerlink" title="1.2 命题公式及其赋值"></a>1.2 命题公式及其赋值</h1><h2 id="命题变项与合式公式"><a href="#命题变项与合式公式" class="headerlink" title="命题变项与合式公式"></a>命题变项与合式公式</h2><ul>
+<li><p><strong>命题常项</strong>（命题常元）：简单命题（相当于常数或常量）</p>
+</li>
+<li><p><strong>命题变项</strong>（命题变元）：可表示任意命题的变元 （相当于变量）——命题符号，无具体指向</p>
+<p>命题变项不是命题。</p>
+<p>常项与变项均用$ p, q, r, …,$ $p_i$ ,$q_i$ , $r_i$ $, …,$ 等表示。</p>
+<p>将命题变项用联结词和圆括弧按一定的逻辑关系联结起来的符号串称为<strong>合式公式</strong>。</p>
+</li>
+</ul>
+<ul>
+<li><p>当使用联结词集{$\neg$, $\land$, $\vee$, →, $\leftrightarrow$}时，合式公式定义如下：</p>
+<p><strong>定义6</strong>（<strong>合式公式</strong>的递归定义）（也称命题公式，简称公式）：</p>
+<p>​    （1）单个命题变项和命题常项是合式公式, 称作<strong>原子命题公式</strong></p>
+<p>​    （2）若A是合式公式，则 ($\neg$​A)也是合式公式</p>
+<p>​    （3）若A, B是合式公式，则(A$\land$B), (A$\vee$B), (A→B),  (A$\leftrightarrow$B)也是合式公式</p>
+<p>​    （4）只有有限次地应用(1)~(3) 形成的符号串是合式公式</p>
+<p>设A是合式公式，B为A的一部分，若B也是合式公式，则称B为A的<strong>子公式</strong>。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225090704496.png" alt="image-20220225090704496" style="zoom:67%;" /></p>
+</li>
+</ul>
+<h2 id="合式公式的层次"><a href="#合式公式的层次" class="headerlink" title="合式公式的层次"></a>合式公式的层次</h2><ul>
+<li><p><strong>定义7</strong>：</p>
+<p>(1) 若公式A是单个命题变项，则称A为<strong>0层公式</strong>。 </p>
+<blockquote>
+<p>如：p, q, r</p>
+</blockquote>
+<p>(2) 称 $A$ 是$n+1 \ (n \geq 0)$ 层公式是指下面情况之一： </p>
+<p>​    (a) $A=\neg B$，$B$ 是 $n$ 层公式； </p>
+<p>​    (b)$ A=B \land C$，其中$B,C $分别为$ i $层和 $j$ 层公式，且 $n=max(i,j)$​；</p>
+<p>​    (c)$A=B \vee C $, 其中 $B,C $的层次及 $n$ 同(b)； </p>
+<p>​    (d) $A=B \to C$​, 其中$B,C$ 的层次及 $n$ 同(b)； </p>
+<p>​    (e) $A=B \leftrightarrow C$, 其中$B,C$ 的层次及 $n$ 同(b)。 </p>
+<p>(3) 若公式$A$的层次为$k$, 则称$A$为<strong>k层公式</strong>。</p>
+<blockquote>
+<p>例如：</p>
+<p>公式 A = p，B =$\neg$​p，C=$\neg$​p→q，D=$\neg$​(p→q)$\leftrightarrow$​r,  E=(($\neg$​p$\land$​q) →r) $\leftrightarrow$​($\neg$r$\vee$s) </p>
+<p>分别为0层，1层，2层，3层，4层公式。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="公式赋值"><a href="#公式赋值" class="headerlink" title="公式赋值"></a>公式赋值</h2><ul>
+<li><p><strong>定义8</strong>：设$p_1 , p_2 , … , p_n$是出现在公式$A$中的全部命题变项, 给$p_1 , p_2 , … , p_n$各指定一个真值, 称为对$A$的一个赋值或解释。</p>
+<p>若使$A$为$1$, 则称这组值为$A$的成真赋值;  </p>
+<p>若使$A$为$0$, 则称这组值为$A$的成假赋值。</p>
+</li>
+<li><p>几点说明：<strong>（重要）</strong></p>
+<ul>
+<li><p>$A$中仅出现 $p_1 , p_2 , … , p_n，$给$A$赋值$\alpha = \alpha_1\alpha_2…\alpha_n$是指$p_1 =\alpha_1 , p_2 = \alpha_2 , …, p_n = \alpha_n , \alpha_i = 0$或$1$, $\alpha_i$之间不加标点符号。</p>
+<p>按照命题符号的顺序赋值</p>
+</li>
+<li><p>$A$中仅出现$ p, q, r, …, $给$A$赋值$\alpha_1$$\alpha_2\alpha_3…$是指$ p=\alpha_1 , q=\alpha_2 , r=\alpha_3 …$</p>
+</li>
+<li><p>含$n$个命题变项的公式有$2^n$个赋值。</p>
+<blockquote>
+<p>如：</p>
+<p>000, 010, 101, 110是  $\neg (p→q)\leftrightarrow r$的成真赋值 </p>
+<p>001, 011, 100, 111是成假赋值。</p>
+<p>——以上赋值的顺序按照$p, q, r$的顺序给出</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="真值表"><a href="#真值表" class="headerlink" title="真值表"></a>真值表</h2><ul>
+<li><p><strong>定义9</strong>：将命题公式$A$在所有赋值下取值的情况列成表，称作$A$的真值表。</p>
+</li>
+<li><p>构造真值表的步骤</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225091751888.png" alt="image-20220225091751888" style="zoom:67%;" /></p>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301200319538.png" alt="image-20220301200319538" style="zoom: 67%;" /></p>
+<blockquote>
+<p><strong>从表中可以看出哪些为成真赋值，那些为成假赋值</strong></p>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301200342849.png" alt="image-20220301200342849" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301200358601.png" alt="image-20220301200358601" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301200413257.png" alt="image-20220301200413257" style="zoom:50%;" /></p>
+<h2 id="公式的类型"><a href="#公式的类型" class="headerlink" title="公式的类型"></a>公式的类型</h2><ul>
+<li><p><strong>定义10</strong>：</p>
+<p>(1) 若$A$在它的任何赋值下均为真，则称$A$为<strong>重言式</strong>或<strong>永真式</strong>；</p>
+<p>(2) 若$A$在它的任何赋值下均为假，则称$A$为<strong>矛盾式</strong>或<strong>永假式</strong>； </p>
+<p>(3) 若$A$不是矛盾式，则称$A$是<strong>可满足式</strong></p>
+<blockquote>
+<p>可满足式包含两种情况</p>
+<p>1.公式的值有时为真，又是为假（非重言式的可满足式）</p>
+<p>2.全部赋值都为真（重言式）</p>
+</blockquote>
+<p>注：重言式是可满足式，但反之不真。</p>
+</li>
+<li><p>真值表的用途：</p>
+<p>（1）求出公式的全部成真赋值与成假赋值；</p>
+<p>（2）判断公式的类型</p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><p>主要内容</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225093212858.png" alt="image-20220225093212858" style="zoom:67%;" /></p>
+</li>
+<li><p>基本要求</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225143205004.png" alt="image-20220225143205004" style="zoom:67%;" /></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>数理逻辑</category>
+      </categories>
+      <tags>
+        <tag>mathematical logic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数理逻辑：第3节 主析（合）取范式</title>
+    <url>/mathematical_logic/mathematical-logic-ch3/</url>
+    <content><![CDATA[<ul>
+<li>判断命题公式是否为重言式（永真式）？<ul>
+<li>真值表</li>
+<li>等值演算</li>
+<li>主析取范式和主合取范式</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<h1 id="3-1主析取范式与主合取范式"><a href="#3-1主析取范式与主合取范式" class="headerlink" title="3.1主析取范式与主合取范式"></a>3.1主析取范式与主合取范式</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li><p><strong>文字</strong>：命题变项及其否定的总称</p>
+<blockquote>
+<p>$p, \quad \neg q$</p>
+</blockquote>
+</li>
+<li><p><strong>简单析取式</strong>：仅由有限个文字构成的析取式</p>
+<blockquote>
+<p>$p,\quad \neg q,\quad p\vee \neg q, \quad p\vee q \vee r,…$​</p>
+</blockquote>
+</li>
+<li><p><strong>简单合取式</strong>：由有限个文字构成的合取式</p>
+<blockquote>
+<p>$p,\quad \neg q,\quad p\land \neg q, \quad p\land q \land r,…$</p>
+</blockquote>
+</li>
+<li><p><strong>析取范式</strong>：由有限个<strong>简单合取式</strong>组成的<strong>析取式</strong></p>
+<blockquote>
+<p>$p,\quad \neg p \land q,（简单合取式）\quad p\vee \neg q, \quad (p \land \neg q) \vee (\neg p \land q \land \neg r) \vee (q \land r),…$​</p>
+</blockquote>
+</li>
+<li><p><strong>合取范式</strong>：由有限个<strong>简单析取式</strong>组成的<strong>合取式</strong></p>
+<blockquote>
+<p>$p,\quad \neg p \vee q,（简单析取式）\quad p\land \neg q, \quad (p \vee \neg q) \land (\neg p \vee q \vee r) \land (q \vee r),…$</p>
+</blockquote>
+</li>
+<li><p><strong>范式</strong>：析取范式与合取范式的总称</p>
+</li>
+</ol>
+<h2 id="求公式-A-的范式的步骤"><a href="#求公式-A-的范式的步骤" class="headerlink" title="求公式$A$的范式的步骤"></a>求公式$A$的范式的步骤</h2><ol>
+<li><p>消去$A$中的$\to, \leftrightarrow$（若存在）——<strong>（蕴含等价式、等价等值式、假言易位、等价否定等值式、归谬论）</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091705613.png" alt="image-20220301091705613" style="zoom: 50%;" /></p>
+</li>
+<li><p>否定连接词的内移或消去<strong>（德摩根律）</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091721847.png" alt="image-20220301091721847" style="zoom: 50%;" /></p>
+</li>
+<li><p>使用<strong>分配律</strong></p>
+</li>
+</ol>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091734879.png" alt="image-20220301091734879" style="zoom:50%;" /></p>
+<ul>
+<li><p>公式范式的不足——不唯一</p>
+</li>
+<li><p>得到唯一的范式——主范式</p>
+</li>
+</ul>
+<h2 id="极小项与极大项"><a href="#极小项与极大项" class="headerlink" title="极小项与极大项"></a>极小项与极大项</h2><ul>
+<li><p><strong>定义1</strong>：在含有$n$个命题变项的<strong>简单合取式</strong>中，若每个命题变项均以文字的形式在其中出现且仅出现一次， 而且第$i$个文字出现在左起第$i$位上（$1 \leq i \leq n$），称这样的简单合取式为<strong>极小项</strong></p>
+<blockquote>
+<p>极小项——合取越多范围越小，取决于真值最小的文字</p>
+<p>对于$p, q, r$（不缺项，规定了顺序：字母、下标）</p>
+<p>$p \land q \land r$</p>
+</blockquote>
+</li>
+<li><p><strong>定义2</strong>：在含有$n$个命题变项的<strong>简单析取式</strong>中，若每个命题变项均以文字的形式在其中出现且仅出现一次， 而且第$i$个文字出现在左起第$i$位上（$1 \leq i \leq n$），称这样的简单析取式为<strong>极大项</strong></p>
+<blockquote>
+<p>极大项——合取越多范围越大，只要有真值为1的文字，该项的真值为1</p>
+<p>对于$p, q, r$（不缺项，规定了顺序：字母、下标）</p>
+<p>$p \vee q \vee r$</p>
+</blockquote>
+</li>
+<li><p>几点说明</p>
+<ul>
+<li><p>$n$个命题变项有$2^n$个极小项和$2^n$个极大项</p>
+</li>
+<li><p>$2^n$个极小项（极大项）均互不等值</p>
+</li>
+<li><p>用$m_i$表示第$i$个极小项，其中$i$是该极小项<strong>成真赋值</strong><br>的十进制表示</p>
+<blockquote>
+<p>$p \land q \land r$的成真赋值为111，$m_7$</p>
+<p>$\neg p \land q \land r$成真赋值为011，$m_3$</p>
+</blockquote>
+</li>
+<li><p>用$M_i$表示第$i$个极大项，其中$i$是该极大项<strong>成假赋值</strong><br>的十进制表示</p>
+<blockquote>
+<p>$p \vee q \vee r$的成假赋值为000，$M_0$</p>
+<p>$\neg p \vee q \vee r$的成假赋值为100，$M_4$</p>
+</blockquote>
+</li>
+<li><p>$m_i$（$M_i$）称为极小项（极大项）的名称</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>【实例】</p>
+<ul>
+<li>由两个命题变项$p, q$形成的极小项和极大项</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304081627478.png" alt="image-20220304081627478" style="zoom:67%;" /></p>
+<ul>
+<li>由三个命题变项$p,q,r$形成的极小项和极大项</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304081832381.png" alt="image-20220304081832381" style="zoom:67%;" /></p>
+<ul>
+<li><strong>$m_i与M_i的关系：\neg m_i \Leftrightarrow M_i, \neg M_i \Leftrightarrow m_i$</strong></li>
+</ul>
+<h2 id="主析取范式与主合取范式"><a href="#主析取范式与主合取范式" class="headerlink" title="主析取范式与主合取范式"></a>主析取范式与主合取范式</h2><ul>
+<li>主析取范式——由极小项构成的析取范式</li>
+<li>主合取范式——由极大项构成的合取范式</li>
+</ul>
+<blockquote>
+<p>例如，n=3, 命题变项为 p, q, r 时，</p>
+<p>$(\neg p\land \neg q \land r) \vee (\neg p\land q \land r) \Leftrightarrow  m_1 \vee m_3$ ——主析取范式<br>$(p \vee q \vee \neg r) \land (\neg p \vee \neg q \vee \neg r) \Leftrightarrow M_1 \land M_7$——主合取范式</p>
+</blockquote>
+<ul>
+<li><p><strong>定理1</strong>（主范式的存在唯一定理）</p>
+<p>任何命题公式都存在与之等值的主析取范式和主合取范式, 并且是惟一的</p>
+</li>
+</ul>
+<h2 id="求命题公式主范式的步骤"><a href="#求命题公式主范式的步骤" class="headerlink" title="求命题公式主范式的步骤"></a>求命题公式主范式的步骤</h2><h3 id="1-求公式主析取范式的步骤"><a href="#1-求公式主析取范式的步骤" class="headerlink" title="1.求公式主析取范式的步骤"></a>1.求公式主析取范式的步骤</h3><p><strong>先求出析取范式，再变换成主析取范式</strong></p>
+<p>设公式$A$含命题变项$p_1, p_2,…, p_n$</p>
+<ul>
+<li><p>(1) 求$A$的析取范式$A’=B_1 \vee B_2 \vee … \vee B_s$ , 其中$B_j$是<strong>简单合取式</strong> ，$j=1,2, … ,s$</p>
+</li>
+<li><p>(2) <strong>（每一个简单合取式变为极小项——合取1来补项）</strong></p>
+<p>若某个$B_j$既不含$p_i$, 又不含$\neg p_i$, 则将$B_j$展开成：$B_j \Leftrightarrow B_j \land 1 \Leftrightarrow B_j \land (p_i \vee \neg p_i) \Leftrightarrow (B_j \land p_i) \vee (B_j \land \neg p_i)$</p>
+<p>重复这个过程, 直到<strong>所有简单合取式都是长度为n的极小项</strong>为止</p>
+</li>
+<li><p>(3) <strong>消去重复出现的极小项</strong>, 即用$m_i$代替$m_i \vee m_i$ </p>
+</li>
+<li><p>(4) 将极小项按下标从小到大<strong>排列</strong></p>
+</li>
+</ul>
+<h3 id="2-求公式主合取范式的步骤"><a href="#2-求公式主合取范式的步骤" class="headerlink" title="2.求公式主合取范式的步骤"></a>2.求公式主合取范式的步骤</h3><p><strong>先求出合取范式，再变换成主合取范式</strong></p>
+<p>设公式$A$含命题变项$p_1, p_2,…, p_n$</p>
+<ul>
+<li><p>(1) 求$A$的合取范式$A’=B_1 \land  B_2 \land … \land B_s$ , 其中$B_j$是<strong>简单析取式</strong> ，$j=1,2, … ,s$</p>
+</li>
+<li><p>(2)<strong>（补项——析取0）</strong></p>
+<p>若某个$B_j$既不含$p_i$, 又不含$\neg p_i$, 则将$B_j$展开成：$B_j \Leftrightarrow B_j \vee 0 \Leftrightarrow B_j \vee (p_i \land \neg p_i) \Leftrightarrow (B_j \vee p_i) \land (B_j \vee \neg p_i)$</p>
+<p>重复这个过程, 直到<strong>所有简单析取式都是长度为n的极大项</strong>为止</p>
+</li>
+<li><p>(3)<strong>消去重复出现的极大项</strong>， 即用$M_i$代替$M_i \land M_i$ </p>
+</li>
+<li><p>(4) 将极大项按下标从小到大<strong>排列</strong></p>
+</li>
+</ul>
+<p>【实例】</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304083543458.png" alt="image-20220304083543458" style="zoom:50%;" /></p>
+<p><strong>我觉得可以使用卡诺图</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">p\qr</th>
+<th style="text-align:center">00</th>
+<th style="text-align:center">01</th>
+<th style="text-align:center">11</th>
+<th style="text-align:center">10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>0</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>1</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>主析取范式：成真赋值为1的项</p>
+<p>主合取范式：成假赋值为0的项</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304083604370.png" alt="image-20220304083604370" style="zoom:50%;" /></p>
+<p><strong>关注主析取范式和主合取范式出现项的下标的关系</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304083622774.png" alt="image-20220304083622774" style="zoom:50%;" /></p>
+<h2 id="由主析（合）取范式确定主合（析）取范式"><a href="#由主析（合）取范式确定主合（析）取范式" class="headerlink" title="由主析（合）取范式确定主合（析）取范式"></a>由主析（合）取范式确定主合（析）取范式</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230604125.png" alt="image-20220303230604125" style="zoom: 50%;" /></p>
+<h2 id="用成真和成假赋值确定主范式"><a href="#用成真和成假赋值确定主范式" class="headerlink" title="用成真和成假赋值确定主范式"></a>用成真和成假赋值确定主范式</h2><p>已知成真赋值，则知道有多少个最小项。</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230652029.png" alt="image-20220303230652029" style="zoom: 50%;" /></p>
+<h2 id="主范式的应用"><a href="#主范式的应用" class="headerlink" title="主范式的应用"></a>主范式的应用</h2><h3 id="1-求公式的成真成假赋值"><a href="#1-求公式的成真成假赋值" class="headerlink" title="(1)求公式的成真成假赋值"></a>(1)求公式的成真成假赋值</h3><p>设公式$A$含$n$个命题变项, $A$的主析取范式有<strong>$s$个极小项</strong>, 则$A$有<strong>$s$个成真赋值</strong>, 它们是极小项下标的二进制表示, <strong>其余$2^n-s$个赋值都是成假赋值</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230838562.png" alt="image-20220303230838562" style="zoom:67%;" /></p>
+<h3 id="2-判断公式的类型"><a href="#2-判断公式的类型" class="headerlink" title="(2)判断公式的类型"></a>(2)判断公式的类型</h3><p>根据极小项或成真赋值的个数</p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230918268.png" alt="image-20220303230918268" style="zoom:67%;" /></p>
+<ul>
+<li>重言式：全部赋值为成真赋值</li>
+<li>矛盾式：全部赋值为成假赋值</li>
+<li>非重言的可满足式：<ul>
+<li>至少一个成真赋值</li>
+<li>至少一个成假赋值</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230949648.png" alt="image-20220303230949648" style="zoom: 50%;" /></p>
+<h3 id="3-判断两个公式是否等值"><a href="#3-判断两个公式是否等值" class="headerlink" title="3.判断两个公式是否等值"></a>3.判断两个公式是否等值</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231031287.png" alt="image-20220303231031287" style="zoom: 50%;" /></p>
+<h3 id="4-解实际问题"><a href="#4-解实际问题" class="headerlink" title="4.解实际问题"></a>4.解实际问题</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231044612.png" alt="image-20220303231044612" style="zoom: 50%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231059094.png" alt="image-20220303231059094" style="zoom: 50%;" /></p>
+<h1 id="3-2-n元真值函数"><a href="#3-2-n元真值函数" class="headerlink" title="3.2 n元真值函数"></a>3.2 n元真值函数</h1><ul>
+<li><p><strong>定义3</strong>：称$F:${0,1}$^n \to$ {0,1}为<strong>n元真值函数</strong></p>
+<blockquote>
+<p>例如，3元真值函数$F(x,y,z) = \begin{cases} 0 \\ 1 \\ \end{cases}$</p>
+<ul>
+<li>有3个变量</li>
+<li>每个变量的取值只能是0或1</li>
+<li>每一组符号串的函数值为0或1</li>
+</ul>
+<p>000，001，010，011，100，101，110，111——8个符号串</p>
+<p>000的函数值可能为0 or 1</p>
+</blockquote>
+<p>$F(p_1,p_2,…p_n) = \begin{cases} 0 \\ 1 \end{cases}$</p>
+<ul>
+<li><p>n个命题变量$p_1,p_2,…,p_n$的取值方式有$2^n$种</p>
+</li>
+<li><p>每一组取值对应的函数值可能为0或1，有2种</p>
+</li>
+</ul>
+<p><strong>共$2^{2^n}$个n元真值函数</strong></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231356068.png" alt="image-20220303231356068" style="zoom:67%;" /></p>
+</li>
+</ul>
+<h2 id="1元真值函数"><a href="#1元真值函数" class="headerlink" title="1元真值函数"></a>1元真值函数</h2><ul>
+<li>由1个命题变项p形成的极小项与极大项</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304092048665.png" alt="image-20220304092048665" style="zoom: 67%;" /></p>
+<p>1元真值函数一共有$2^{2^1} = 4$种命题公式</p>
+<blockquote>
+<p>横着看：有4个真值函数——对应$m_0 \vee m_1的四种取值组合——主析取范式$</p>
+<ul>
+<li>第一列：永假式真值表：$\neg m_0 \vee \neg m_1$</li>
+<li>第二列：$p$：$\neg m_0 \vee m_1$</li>
+<li>第三列：$\neg p$：$m_0  \vee \neg  m_1$</li>
+<li>第四列：永真式：$m_0 \vee m_1$</li>
+</ul>
+<p>竖着看：真值函数的取值$p$</p>
+<ul>
+<li>第一行：$p$</li>
+<li>第二行：$\neg p$</li>
+</ul>
+</blockquote>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304092346111.png" alt="image-20220304092346111" style="zoom:67%;" /></p>
+<h2 id="2元真值函数"><a href="#2元真值函数" class="headerlink" title="2元真值函数"></a>2元真值函数</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304093005762.png" alt="image-20220304093005762" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304093027553.png" alt="image-20220304093027553" style="zoom:67%;" /></p>
+<h2 id="公式与真值函数"><a href="#公式与真值函数" class="headerlink" title="公式与真值函数"></a>公式与真值函数</h2><ul>
+<li>任何一个含n个命题变项的命题公式$A$都对应惟一的一个n元真值函数$ F $，$ F $恰好为$A$的真值表。</li>
+<li><strong>等值的公式</strong>对应的<strong>真值函数</strong>相同。</li>
+</ul>
+<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304093448005.png" alt="image-20220304093448005" style="zoom:50%;" /></p>
+<h1 id="3-3-联结词的完备集"><a href="#3-3-联结词的完备集" class="headerlink" title="3.3 联结词的完备集"></a>3.3 联结词的完备集</h1><ul>
+<li><strong>定义4</strong>：设$S$是一个联结词集合，如果任何$n(n \geq 1)$ 元真值函数都可以由仅含$S$中的联结词构成的公式表示，则称$S$是<strong>联结词完备集</strong><ul>
+<li>若$S$是联结词完备集, 则任何命题公式都可由$S$中的联结词表示</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>与能够用或非表示，则它们是完备的</p>
+</blockquote>
+<ul>
+<li><strong>定义5</strong>：</li>
+</ul>
+]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>数理逻辑</category>
+      </categories>
+      <tags>
+        <tag>mathematical logic</tag>
       </tags>
   </entry>
   <entry>
@@ -2101,23 +2925,20 @@ x_1 + 3x_2 - 2x_3 = 4 \\
 <p><a href="https://blog.csdn.net/wordwarwordwar/article/details/78081156">波特率与比特率的关系</a></p>
 <p><a href="https://blog.csdn.net/ymdq1113/article/details/69677116">波特率与比特率</a></p>
 ]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>计算机组成原理</category>
+      </categories>
       <tags>
         <tag>computer organization</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/undefined/hello-world/</url>
-    <content><![CDATA[<p>你好，Hexo！你好，世界！</p>
-<p>欢迎来到我的博客</p>
-<p>我将持续记录日常学习、生活的点点滴滴</p>
-]]></content>
   </entry>
   <entry>
     <title>计算机组成原理：第4章 存储器</title>
     <url>/computer_organization/computer-organization-ch4/</url>
     <content><![CDATA[<p>需要掌握功能特性（外特性）</p>
 <p>内存：使用什么芯片计算机可以直接访问 $\begin{cases} RAM \\ ROM \\ \end{cases}$</p>
+<span id="more"></span>
 <p>随机访问</p>
 <p>存储器设计：</p>
 <ul>
@@ -2131,7 +2952,6 @@ x_1 + 3x_2 - 2x_3 = 4 \\
 <li>存储器可分为哪些类型？</li>
 <li>现代存储器的层次结构，为什么要分层？</li>
 </ol>
-<span id="more"></span>
 <h2 id="4-1-概述"><a href="#4-1-概述" class="headerlink" title="4.1 概述"></a>4.1 概述</h2><h3 id="一、存储器分类"><a href="#一、存储器分类" class="headerlink" title="一、存储器分类"></a>一、存储器分类</h3><h4 id="1-按存储介质分类"><a href="#1-按存储介质分类" class="headerlink" title="1.按存储介质分类"></a>1.按存储介质分类</h4><ul>
 <li><p>半导体存储器（内存条芯片、U盘）——<strong>易失</strong></p>
 <blockquote>
@@ -3105,788 +3925,12 @@ i = j \mod Q</script><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/maste
 <li>误码率：出错信息位数与读出信息的总位数之比</li>
 </ul>
 ]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>计算机组成原理</category>
+      </categories>
       <tags>
         <tag>computer organization</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数理逻辑：绪论</title>
-    <url>/mathematical_logic/mathematical-logic-ch0/</url>
-    <content><![CDATA[<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>数理逻辑是用数学的方法研究<strong>推理</strong>，特别是研究数学中的推理</p>
-<p>推理的前提和结论都是命题，命题的真假与<strong>内容是否符合现实</strong>有关。</p>
-<script type="math/tex; mode=display">
-premises 前提 \quad（命题）\\
-\downarrow  \quad reason 推理 \\
-conclusions 结论 \quad （命题）\\</script><span id="more"></span>
-<ol>
-<li><p>正确的推理：从”正确的前提“能得到”正确的结论“的推理。</p>
-<p>推理正确——可推导关系，属于<code>演绎逻辑</code>（与之相对的是<code>归纳逻辑</code>）</p>
-<p>正确的前提：前提为真</p>
-<p>正确的结论：结论为真</p>
-</li>
-<li><p>推理正确与否<strong>与前提和结论中命题是否为真命题没有关系</strong>。</p>
-<p><strong>推理的正确性与命题的逻辑形式有关</strong></p>
-<p><strong>命题内容决定命题的真假</strong></p>
-<script type="math/tex; mode=display">
-命题：
-\begin{cases}
-内容 \\
-逻辑形式（抽象） \\
-\end{cases}</script><blockquote>
-<p>所有中学生打网球（前提）</p>
-<p>王军不打网球（前提）</p>
-<p>王军不是中学生（结论）</p>
-<p>——推理正确，不是所有命题都为真命题</p>
-</blockquote>
-<p>上述推理的逻辑形式为：</p>
-<blockquote>
-<p>S中所有元有R性质（前提）</p>
-<p>a没有R性质（前提）</p>
-<p>a不是S中的元（结论）</p>
-</blockquote>
-</li>
-<li><p>数理逻辑中，用自然语言陈述命题会带来不方便</p>
-</li>
-<li><p>数理逻辑的研究语言为：对象语言、元语言</p>
-<ul>
-<li>对象语言：被研究对象的语言。<strong>形式语言</strong>，用符号构成的公式来代替自然语言中的命题，<strong>没有二义性</strong><ul>
-<li>语义：符号，公式的含义</li>
-<li>语法：由符号构成的公式的形状和语法结构</li>
-</ul>
-</li>
-<li>元语言：辅助描述对象语言。自然语言</li>
-</ul>
-</li>
-<li><p>数理逻辑产生的动机：将一切推理的正确性化归于计算的通用代数</p>
-<ul>
-<li>建立一种普遍适用的精确的科学语言</li>
-<li>建立一种推理的演算</li>
-</ul>
-</li>
-<li><p>预备知识：</p>
-<ul>
-<li><p>集合</p>
-<p>集合S上的（n元）关系R</p>
-<p>外延</p>
-</li>
-<li><p>归纳定义和归纳证明</p>
-</li>
-</ul>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>mathematical logic</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数理逻辑：第2节 命题逻辑等值计算</title>
-    <url>/mathematical-logic/mathematical-logic-ch2/</url>
-    <content><![CDATA[<h1 id="2-1-等值式"><a href="#2-1-等值式" class="headerlink" title="2.1 等值式"></a>2.1 等值式</h1><ul>
-<li><p><strong>定义1</strong>：若<strong>等价式</strong>A $\Leftrightarrow$ B是<strong>重言式</strong>，则称A与B等值，记作A $\Leftrightarrow$ B，并称A $\Leftrightarrow$ B是等值式</p>
-<p>此时A和B真值相同（全0 or 全1）</p>
-</li>
-<li><p>几点说明： </p>
-<ul>
-<li>定义中的符号$\Leftrightarrow$不是联结符（词） </li>
-<li>用<strong>真值表</strong>可检查两个公式是否等值</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>问题：判别下面命题公式是否为重言式(永真式)？ </p>
-<p>(( p∧ $\neg$ q) → r )∧ p ∧ (q → s) ∧ $\neg$ s → r<br>转化为: (( p∧ $\neg$ q) → r )∧ p ∧ (q → s) ∧ $\neg$ s → r $\Leftrightarrow$ 1</p>
-</blockquote>
-<span id="more"></span>
-<p>【例1】判断下列各组公式是否等值</p>
-<p>（1）p→(q→r) 与 (p $\land$ q) →r</p>
-<blockquote>
-<p>形式不同，表达含义相同。p，q都是r的前提</p>
-</blockquote>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301083009100.png" alt="image-20220301083009100" style="zoom:67%;" /></p>
-<p>（2）p→(q→r) 与 (p→q) →r</p>
-<blockquote>
-<p>含义不同，不等值</p>
-</blockquote>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301083123270.png" alt="image-20220301083123270" style="zoom:67%;" /></p>
-<h2 id="基本等值式"><a href="#基本等值式" class="headerlink" title="基本等值式"></a>基本等值式</h2><ul>
-<li><p><strong>双重否定律</strong>：  $\neg$ $\neg$ A $\Leftrightarrow$ A</p>
-</li>
-<li><p><strong>幂等律</strong>： A $\vee$ A $\Leftrightarrow$ A, $\qquad$ A $\land$ A $\Leftrightarrow$ A​ </p>
-<blockquote>
-<p>理解为两个集合的交/并</p>
-</blockquote>
-</li>
-<li><p><strong>交换律</strong>： A $\vee$ B $\Leftrightarrow$ B $\vee$ A,$\qquad$  A $\land$ B $\Leftrightarrow$ B $\land$ A​ </p>
-</li>
-<li><p><strong>结合律</strong> ： (A $\vee$ B) $\vee$ C $\Leftrightarrow$ A $\vee$ (B $\vee$ C), $\qquad$ (A $\land$ B) $\land$ C $\Leftrightarrow$ A $\land$ (B $\land$ C)​ </p>
-</li>
-<li><p><strong>分配律</strong> ：A $\vee$ (B $\land$ C) $\Leftrightarrow$ (A $\vee$ B) $\land$ (A $\vee$ C),$\qquad$ A $\land$ (B $\vee$ C) $\Leftrightarrow$ (A $\land$ B) $\vee$ (A $\land$ C)  </p>
-</li>
-<li><p><strong>德摩根律</strong>： $\neg$ (A $\vee$ B) $\Leftrightarrow$  $\neg$ A $\land$  $\neg$ B, $\qquad$<br>$\neg$ (A $\land$ B) $\Leftrightarrow$  $\neg$ A $\vee$ $\neg$ B​​</p>
-</li>
-<li><p><strong>吸收律</strong>： A $\vee$ (A $\land$ B) $\Leftrightarrow$ A, $\qquad$ A $\land$ (A $\vee$ B) $\Leftrightarrow$ A</p>
-<blockquote>
-<p>A把比它大的部分吸收</p>
-</blockquote>
-</li>
-<li><p><strong>零律</strong>： A $\vee$ 1 $\Leftrightarrow$ 1, $\qquad$  A $\land$ 0 $\Leftrightarrow$ 0</p>
-</li>
-<li><p><strong>同一律</strong>： A $\vee$ 0 $\Leftrightarrow$ A, $\qquad$ A $\land$ 1 $\Leftrightarrow$ A</p>
-</li>
-<li><p><strong>排中律</strong>： A $\vee$ $\neg$ A  $\Leftrightarrow$ 1</p>
-</li>
-<li><p><strong>矛盾律</strong>： A $\land$  $\neg$ A $\Leftrightarrow$ 0</p>
-<blockquote>
-<p>不可能既真又假</p>
-</blockquote>
-</li>
-<li><p><strong>蕴涵等值式</strong>： A→B $\Leftrightarrow$ $\neg$ A $\vee$ B</p>
-</li>
-<li><p><strong>等价等值式</strong>：A $\leftrightarrow$ B $\Leftrightarrow$ (A→B) $\land$ (B→A)</p>
-<blockquote>
-<p>非A或B 与 非B或A</p>
-</blockquote>
-</li>
-<li><p><strong>假言易位</strong>： $\color{red}$ A→B $\Leftrightarrow$ $\neg$ B→$\neg$ A</p>
-<blockquote>
-<p>B是A的必要条件，A是B的充分条件</p>
-<p><strong>有A则有B</strong> 与 <strong>没有B则没有A</strong> 是同一件事</p>
-</blockquote>
-</li>
-<li><p><strong>等价否定等值式</strong>：A $\leftrightarrow$ B $\Leftrightarrow$ $\neg$ A $\leftrightarrow$ $\neg$ B </p>
-</li>
-<li><p><strong>归谬论</strong>： (A→B) $\land$ (A→$\neg$ B) $\Leftrightarrow$ $\neg$ A</p>
-<blockquote>
-<p>在A为真的前提下，能推出矛盾（B既真又假），则前提A为假——反证法</p>
-</blockquote>
-</li>
-</ul>
-<p>特别提示：必须牢记这16组等值式(24式)，这是继续学习的基础。</p>
-<h2 id="等值演算与置换规则"><a href="#等值演算与置换规则" class="headerlink" title="等值演算与置换规则"></a>等值演算与置换规则</h2><h3 id="1-等值演算"><a href="#1-等值演算" class="headerlink" title="1.等值演算"></a>1.等值演算</h3><p>由已知的等值式推演出新的等值式的过程</p>
-<blockquote>
-<p>每一步都是等值变换（每一步都使用等值式）</p>
-</blockquote>
-<h3 id="2-等值演算的基础"><a href="#2-等值演算的基础" class="headerlink" title="2.等值演算的基础"></a>2.等值演算的基础</h3><ul>
-<li><p>等值关系的性质：<strong>自反性、对称性、传递性</strong></p>
-<blockquote>
-<p>A与A是等值的</p>
-<p>如果A和B等值，则B和A等值</p>
-<p>如果A和B等值，B和C等值，则A和C等值</p>
-</blockquote>
-</li>
-<li><p>基本的等值式</p>
-</li>
-<li><p><strong>置换规则</strong></p>
-</li>
-</ul>
-<h3 id="3-置换规则"><a href="#3-置换规则" class="headerlink" title="3.置换规则"></a>3.置换规则</h3><p>设 $\Phi$(A)​​​​​ 是含公式 A​​​​ 的命题公式，$\Phi$ (B)​​​ 是用公式B​​置换$\Phi$ (A)​ 中所有的 A 后得到的命题公式。 </p>
-<p>若 B $\Leftrightarrow$ A，则 $\Phi$(B) $\Leftrightarrow$ $\Phi$(A)。</p>
-<blockquote>
-<p>对公式的一部分做等值变换，变换后的结果仍然是等值的</p>
-</blockquote>
-<h3 id="等值演算的应用举例"><a href="#等值演算的应用举例" class="headerlink" title="等值演算的应用举例"></a>等值演算的应用举例</h3><ul>
-<li>证明两个公式等值</li>
-</ul>
-<p>​        <img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301190541286.png" alt="image-20220301190541286" style="zoom: 50%;" /></p>
-<p><strong>注：用等值演算不能直接证明两个公式不等值</strong></p>
-<ul>
-<li>判断公式类型：<script type="math/tex; mode=display">
-A 为矛盾式当且仅当 A \Leftrightarrow 0 \\
-A 为重言式当且仅当 A \Leftrightarrow 1 \\
-A 为非重言式的可满足式 \Leftrightarrow A既有成真赋值又有成假赋值 \\</script></li>
-</ul>
-<h3 id="证明两个公式不等值"><a href="#证明两个公式不等值" class="headerlink" title="证明两个公式不等值"></a>证明两个公式不等值</h3><ul>
-<li><p>真值表法</p>
-</li>
-<li><p>观察法——举出反例</p>
-</li>
-<li><p>先等值演算化简公式，再观察</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301190743753.png" alt="image-20220301190743753" style="zoom:50%;" /></p>
-</li>
-</ul>
-<h1 id="2-2-析取范式与合取范式"><a href="#2-2-析取范式与合取范式" class="headerlink" title="2.2 析取范式与合取范式"></a>2.2 析取范式与合取范式</h1><p>范式：比较规范的公式形式</p>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
-<li><p><strong>文字</strong>：命题变项及其否定的总称</p>
-<blockquote>
-<p>p, $\quad$ $\neg$ q</p>
-</blockquote>
-</li>
-<li><p><strong>简单析取式</strong>：仅由有限个文字构成的析取式</p>
-<blockquote>
-<p>p,$\quad$ $\neg$ q,$\quad$ p$\vee$ $\neg$ q, $\quad$ p$\vee$ q $\vee$ r,…​</p>
-</blockquote>
-</li>
-<li><p><strong>简单合取式</strong>：由有限个文字构成的合取式</p>
-<blockquote>
-<p>p,$\quad$ $\neg$ q,$\quad$ p$\land$ $\neg$ q, $\quad$ p$\land$ q $\land$ r,…</p>
-</blockquote>
-</li>
-<li><p><strong>析取范式</strong>：由有限个<strong>简单合取式</strong>组成的<strong>析取式</strong></p>
-<blockquote>
-<p>p,$\quad$ $\neg$ p $\land$ q,（简单合取式）$\quad$ p$\vee$ $\neg$ q, $\quad$ (p $\land$ $\neg$ q) $\vee$ ($\neg$ p $\land$ q $\land$ $\neg$ r) $\vee$ (q $\land$ r),…​</p>
-</blockquote>
-</li>
-<li><p><strong>合取范式</strong>：由有限个<strong>简单析取式</strong>组成的<strong>合取式</strong></p>
-<blockquote>
-<p>p,$\quad$ $\neg$ p $\vee$ q,（简单析取式）$\quad$ p$\land$ $\neg$ q, $\quad$ (p $\vee$ $\neg$ q) $\land$ ($\neg$ p $\vee$ q $\vee$ r) $\land$ (q $\vee$ r),…</p>
-</blockquote>
-</li>
-<li><p><strong>范式</strong>：析取范式与合取范式的总称</p>
-</li>
-</ol>
-<p>说明</p>
-<ul>
-<li>单个文字既是简单析取式，又是简单合取式</li>
-<li>形如 p $\land$ $\neg$ q $\land$ r, $\neg$ p $\land$ q $\vee$ $\neg$ r 的公式既是析取范式，又是合取范式</li>
-</ul>
-<p><strong>定理1</strong></p>
-<p>（1）一个<strong>简单析取式是重言式</strong>当且仅当<strong>它同时含有某个命题变项和它的否定式</strong></p>
-<blockquote>
-<p>p $\vee$ $\neg$ p $\vee$ r $\vee$ q</p>
-</blockquote>
-<p>（2）一个<strong>简单合取式是矛盾式</strong>当且仅当<strong>它同时含有某个命题变项和它的否定式</strong></p>
-<blockquote>
-<p>p $\land$ $\neg$ p $\land$ q</p>
-</blockquote>
-<p><strong>定理2</strong></p>
-<p>（1）一个<strong>析取范式是矛盾式</strong>当且仅当<strong>它每个简单合取式都是矛盾式</strong></p>
-<blockquote>
-<p>$\triangle$ $\vee$ $\triangle$ $\vee$ $\triangle$</p>
-</blockquote>
-<p>（2）一个<strong>合取范式是重言式</strong>当且仅当<strong>它的每个简单析取式都是重言式</strong></p>
-<blockquote>
-<p>$\triangle$ $\land$ $\triangle$ $\land$ $\triangle$</p>
-</blockquote>
-<p><strong>定理3</strong>（范式存在定理）</p>
-<p>任何命题公式都存在与之等值的析取范式与合取范式</p>
-<blockquote>
-<p>从任何公式出发，都有和它等值的<strong>析取范式</strong>和<strong>合取范式</strong></p>
-</blockquote>
-<h2 id="命题公式的范式"><a href="#命题公式的范式" class="headerlink" title="命题公式的范式"></a>命题公式的范式</h2><h3 id="求公式A的范式的步骤"><a href="#求公式A的范式的步骤" class="headerlink" title="求公式A的范式的步骤"></a>求公式A的范式的步骤</h3><ol>
-<li><p>消去A中的$\to$, $\leftrightarrow$（若存在）——<strong>（蕴含等价式、等价等值式、假言易位、等价否定等值式、归谬论）</strong></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091705613.png" alt="image-20220301091705613" style="zoom: 50%;" /></p>
-</li>
-<li><p>否定连接词的内移或消去<strong>（德摩根律）</strong></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091721847.png" alt="image-20220301091721847" style="zoom: 50%;" /></p>
-</li>
-<li><p>使用<strong>分配律</strong></p>
-</li>
-</ol>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091734879.png" alt="image-20220301091734879" style="zoom:50%;" /></p>
-<p>范式的不足——不唯一</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192357658.png" alt="image-20220301192357658" style="zoom:50%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192420027.png" alt="image-20220301192420027" style="zoom:50%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192436741.png" alt="image-20220301192436741" style="zoom:50%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301192454515.png" alt="image-20220301192454515" style="zoom:50%;" /></p>
-]]></content>
-      <tags>
-        <tag>mathematical logic</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数理逻辑：第1节 命题逻辑的基本概念</title>
-    <url>/mathematical_logic/mathematical-logic-ch1/</url>
-    <content><![CDATA[<h1 id="1-1-命题与联结词"><a href="#1-1-命题与联结词" class="headerlink" title="1.1 命题与联结词"></a>1.1 命题与联结词</h1><h2 id="命题与真值"><a href="#命题与真值" class="headerlink" title="命题与真值"></a>命题与真值</h2><ul>
-<li>命题：能<strong>唯一</strong>确定<strong>真假值</strong>的<strong>陈述句</strong></li>
-<li>命题的真值：一个命题的真or假</li>
-<li>真值的取值：真or假</li>
-<li>真命题与假命题：由内容是否符合实际情况决定</li>
-</ul>
-<p>注意：</p>
-<ul>
-<li>感叹句、祈使句、疑问句、<strong>悖论</strong>不是命题</li>
-<li>判断结果不唯一确定的陈述句不是命题（针对真值多种取值的情况）</li>
-</ul>
-<span id="more"></span>
-<h2 id="命题分类"><a href="#命题分类" class="headerlink" title="命题分类"></a>命题分类</h2><ul>
-<li>简单命题（原子命题）：不能分解成更简单的命题（基本单位）</li>
-<li>命题符合：由简单命题通过<strong>联结词</strong>联结而成的命题</li>
-<li>联结词有5类：与（$\land$​​）、或（$\vee$​）、非（$\neg$​）、蕴含（如果…那么（则）…）、等价（当且仅当，$\Leftrightarrow$​​）。$\neg$​为单联结词</li>
-</ul>
-<h2 id="简单命题符号化"><a href="#简单命题符号化" class="headerlink" title="简单命题符号化"></a>简单命题符号化</h2><ul>
-<li>用小写英文字母$p,q,r,…,$$p_i$,$q_i$,$r_i(i\geq1)$表示简单命题</li>
-<li>用”1“表示真，用”0“表示假</li>
-</ul>
-<h2 id="否定、合取、析取联结词"><a href="#否定、合取、析取联结词" class="headerlink" title="否定、合取、析取联结词"></a>否定、合取、析取联结词</h2><ul>
-<li><p><strong>定义1</strong>：设 p为命题，<strong>复合命题</strong>“非p”(或“p的否定”) 称为 p的<strong>否定式</strong>，记作$\neg$​p，符号$\neg$​称作<strong>否定联结词</strong>。 </p>
-<p>规定: $\neg$​p 为真当且仅当<u>p为假</u>。</p>
-</li>
-<li><p><strong>定义2</strong>：设p,q为两个命题，复合命题“p并且q”(或 “p 与 q”)称为 p与q的<strong>合取式</strong>，记作p∧q，∧称作<strong>合取联结词</strong>。</p>
-<p>规定: p∧q为真当且仅当<u>p与q同时为真</u>。</p>
-</li>
-<li><p><strong>定义3</strong>：设p, q为两个命题，复合命题“p或q”称作 p 与 q 的<strong>析取式</strong>，记作p∨q，∨称作<strong>析取联结词</strong>。 </p>
-<p>规定: p∨q为假当且仅当<u>p与q同时为假</u>。</p>
-</li>
-<li><p>关于”或“：$\begin{cases} 相容或：可兼 \qquad（例如：我上街买矿泉水或者买饮料） \\ 排斥或（异或）：不相容或,不可兼 \qquad （例如：某人星期一来或者星期二来） \\ \end{cases}$​</p>
-<blockquote>
-<p>又如：</p>
-<p>ab = 0——a = 0 或 b = 0 </p>
-<p>(a-1)·(a-2) = 0——a = 1 或 a = 2</p>
-</blockquote>
-<p>规定：数学上取<strong>相容或</strong></p>
-<p>排斥或：($\neg$ p $\land$q) $\vee$ (p$\land$$\neg$ q)</p>
-</li>
-</ul>
-<h2 id="蕴含联结词"><a href="#蕴含联结词" class="headerlink" title="蕴含联结词"></a>蕴含联结词</h2><ul>
-<li><p><strong>定义4</strong>：设p, q为两个命题，复合命题”如果p, 则q” 称作p与q的<strong>蕴涵式</strong>，记作p→q， </p>
-<p>并称p是蕴涵式的<strong>前件</strong>， q为蕴涵式的<strong>后件</strong>，→称作<strong>蕴涵联结词</strong>。 </p>
-<p>规定：p→q为假当且仅当<u>p为真q为假</u>。</p>
-<blockquote>
-<p>蕴含举例：</p>
-<p>对任何x，如果x&gt;3，则$x^2$&gt;9 真命题 </p>
-<p>令x=4，如果 4&gt;3，则16&gt;9（前提真，结论真） </p>
-<p>令x=-4，如果 -4&gt;3，则16&gt;9（前提假，结论真）</p>
-<p>令x=-2，如果 -2&gt;3, 则4&gt;9（前提假，结论假）——<strong>整个</strong>命题为真</p>
-<p><strong>对于该蕴含命题（真命题），不存在前提真，结论假的情况</strong></p>
-</blockquote>
-</li>
-<li><p>要证明符合命题：如果p, 则q</p>
-<ul>
-<li>一般情况下，<strong>由前提真，证明结论真</strong></li>
-<li>特殊情况下，<strong>前提为假，没有什么可做的</strong></li>
-</ul>
-<blockquote>
-<p>可以用来证明</p>
-<p>证：空集是任意集合的子集</p>
-<p>任何集合S，$\oslash \subseteq S$​​​ </p>
-<p>由子集的定义</p>
-<p><strong>任何x，若$x \in \oslash$​，则$x \in S$​​​​ </strong>——空证明</p>
-</blockquote>
-</li>
-<li><p>关于蕴含联结词的一些概念</p>
-<ul>
-<li><p>p→q 的逻辑关系：（有p一定有q，没有q一定没有p——逆否关系）——p$\subseteq$​​q</p>
-<ul>
-<li>q为p的必要条件</li>
-<li>p为q的充分条件</li>
-</ul>
-<blockquote>
-<p>p$\rightarrow$​​​q  $\Leftrightarrow$​​  $\neg$​q$\to$$\neg$​p</p>
-<p>p与q等价：$\begin{cases} p \to q \\ \neg p \to \neg q  \end{cases}$</p>
-</blockquote>
-</li>
-<li><p>“如果 p, 则 q” 有很多不同的表述方法：<strong>（需要好好理解）</strong></p>
-<ul>
-<li><p>若p，就q</p>
-</li>
-<li><p>只要p，就q</p>
-</li>
-<li><p><strong>p仅当q</strong></p>
-<blockquote>
-<p>p当且仅当q</p>
-<p>$\begin{cases} p当q——当有q就有p（q为充分条件，写在→前面）\\  p仅当q——仅当q，才p（q为必要条件，写在→后面）/除非q，才p：p→q \\ \end{cases}$ </p>
-</blockquote>
-</li>
-<li><p><strong>只有q，才p</strong></p>
-</li>
-<li><p>除非q，才p</p>
-</li>
-<li><p>除非q，否则非p（双重否定）</p>
-<blockquote>
-<p>除非q，否则p：$\neg p \rightarrow q$​</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>当 p 为假时，p→q 恒为真，称为空证明</p>
-</li>
-<li><p>常出现的错误：不分充分与必要条件</p>
-</li>
-<li><p>在自然语言中，“如果 p , 则 q ” ，p, q具有某种内在联系；</p>
-<p><strong>但在数理逻辑中， p, q可以无任何内在联系</strong></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="等价联结词"><a href="#等价联结词" class="headerlink" title="等价联结词"></a>等价联结词</h2><ul>
-<li><p><strong>定义5</strong>：设 p, q为两个命题，复合命题“p当且仅当q” 称作p与q的<strong>等价式</strong>，记作p$\leftrightarrow$​q，$\leftrightarrow$​称作<strong>等价联结词</strong>。 </p>
-<p>规定: <u>p$\leftrightarrow$​​q为真</u>当且仅当<u>p与q同时为真或同时为假。</u></p>
-<p>​         p$\leftrightarrow$q 的逻辑关系：p与q互为充分必要条件。</p>
-</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>基本联结词：构成一层</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225084811509.png" alt="image-20220225084811509" style="zoom:67%;" /></p>
-<p><strong>注意优先级：括号$&gt;$非$&gt;$与$&gt;$或$&gt;$蕴含$&gt;$等价</strong></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225085015688.png" alt="image-20220225085015688" style="zoom:67%;" /></p>
-<h1 id="1-2-命题公式及其赋值"><a href="#1-2-命题公式及其赋值" class="headerlink" title="1.2 命题公式及其赋值"></a>1.2 命题公式及其赋值</h1><h2 id="命题变项与合式公式"><a href="#命题变项与合式公式" class="headerlink" title="命题变项与合式公式"></a>命题变项与合式公式</h2><ul>
-<li><p><strong>命题常项</strong>（命题常元）：简单命题（相当于常数或常量）</p>
-</li>
-<li><p><strong>命题变项</strong>（命题变元）：可表示任意命题的变元 （相当于变量）——命题符号，无具体指向</p>
-<p>命题变项不是命题。</p>
-<p>常项与变项均用$ p, q, r, …,$ $p_i$ ,$q_i$ , $r_i$ $, …,$ 等表示。</p>
-<p>将命题变项用联结词和圆括弧按一定的逻辑关系联结起来的符号串称为<strong>合式公式</strong>。</p>
-</li>
-</ul>
-<ul>
-<li><p>当使用联结词集{$\neg$, $\land$, $\vee$, →, $\leftrightarrow$}时，合式公式定义如下：</p>
-<p><strong>定义6</strong>（<strong>合式公式</strong>的递归定义）（也称命题公式，简称公式）：</p>
-<p>​    （1）单个命题变项和命题常项是合式公式, 称作<strong>原子命题公式</strong></p>
-<p>​    （2）若A是合式公式，则 ($\neg$​A)也是合式公式</p>
-<p>​    （3）若A, B是合式公式，则(A$\land$B), (A$\vee$B), (A→B),  (A$\leftrightarrow$B)也是合式公式</p>
-<p>​    （4）只有有限次地应用(1)~(3) 形成的符号串是合式公式</p>
-<p>设A是合式公式，B为A的一部分，若B也是合式公式，则称B为A的<strong>子公式</strong>。</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225090704496.png" alt="image-20220225090704496" style="zoom:67%;" /></p>
-</li>
-</ul>
-<h2 id="合式公式的层次"><a href="#合式公式的层次" class="headerlink" title="合式公式的层次"></a>合式公式的层次</h2><ul>
-<li><p><strong>定义7</strong>：</p>
-<p>(1) 若公式A是单个命题变项，则称A为<strong>0层公式</strong>。 </p>
-<blockquote>
-<p>如：p, q, r</p>
-</blockquote>
-<p>(2) 称 $A$ 是$n+1 \ (n \geq 0)$ 层公式是指下面情况之一： </p>
-<p>​    (a) $A=\neg B$，$B$ 是 $n$ 层公式； </p>
-<p>​    (b)$ A=B \land C$，其中$B,C $分别为$ i $层和 $j$ 层公式，且 $n=max(i,j)$​；</p>
-<p>​    (c)$A=B \vee C $, 其中 $B,C $的层次及 $n$ 同(b)； </p>
-<p>​    (d) $A=B \to C$​, 其中$B,C$ 的层次及 $n$ 同(b)； </p>
-<p>​    (e) $A=B \leftrightarrow C$, 其中$B,C$ 的层次及 $n$ 同(b)。 </p>
-<p>(3) 若公式$A$的层次为$k$, 则称$A$为<strong>k层公式</strong>。</p>
-<blockquote>
-<p>例如：</p>
-<p>公式 A = p，B =$\neg$​p，C=$\neg$​p→q，D=$\neg$​(p→q)$\leftrightarrow$​r,  E=(($\neg$​p$\land$​q) →r) $\leftrightarrow$​($\neg$r$\vee$s) </p>
-<p>分别为0层，1层，2层，3层，4层公式。</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="公式赋值"><a href="#公式赋值" class="headerlink" title="公式赋值"></a>公式赋值</h2><ul>
-<li><p><strong>定义8</strong>：设$p_1 , p_2 , … , p_n$是出现在公式$A$中的全部命题变项, 给$p_1 , p_2 , … , p_n$各指定一个真值, 称为对$A$的一个赋值或解释。</p>
-<p>若使$A$为$1$, 则称这组值为$A$的成真赋值;  </p>
-<p>若使$A$为$0$, 则称这组值为$A$的成假赋值。</p>
-</li>
-<li><p>几点说明：<strong>（重要）</strong></p>
-<ul>
-<li><p>$A$中仅出现 $p_1 , p_2 , … , p_n，$给$A$赋值$\alpha = \alpha_1\alpha_2…\alpha_n$是指$p_1 =\alpha_1 , p_2 = \alpha_2 , …, p_n = \alpha_n , \alpha_i = 0$或$1$, $\alpha_i$之间不加标点符号。</p>
-<p>按照命题符号的顺序赋值</p>
-</li>
-<li><p>$A$中仅出现$ p, q, r, …, $给$A$赋值$\alpha_1$$\alpha_2\alpha_3…$是指$ p=\alpha_1 , q=\alpha_2 , r=\alpha_3 …$</p>
-</li>
-<li><p>含$n$个命题变项的公式有$2^n$个赋值。</p>
-<blockquote>
-<p>如：</p>
-<p>000, 010, 101, 110是  $\neg (p→q)\leftrightarrow r$的成真赋值 </p>
-<p>001, 011, 100, 111是成假赋值。</p>
-<p>——以上赋值的顺序按照$p, q, r$的顺序给出</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="真值表"><a href="#真值表" class="headerlink" title="真值表"></a>真值表</h2><ul>
-<li><p><strong>定义9</strong>：将命题公式$A$在所有赋值下取值的情况列成表，称作$A$的真值表。</p>
-</li>
-<li><p>构造真值表的步骤</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225091751888.png" alt="image-20220225091751888" style="zoom:67%;" /></p>
-</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301200319538.png" alt="image-20220301200319538" style="zoom: 67%;" /></p>
-<blockquote>
-<p><strong>从表中可以看出哪些为成真赋值，那些为成假赋值</strong></p>
-</blockquote>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301200342849.png" alt="image-20220301200342849" style="zoom:50%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301200358601.png" alt="image-20220301200358601" style="zoom:50%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301200413257.png" alt="image-20220301200413257" style="zoom:50%;" /></p>
-<h2 id="公式的类型"><a href="#公式的类型" class="headerlink" title="公式的类型"></a>公式的类型</h2><ul>
-<li><p><strong>定义10</strong>：</p>
-<p>(1) 若$A$在它的任何赋值下均为真，则称$A$为<strong>重言式</strong>或<strong>永真式</strong>；</p>
-<p>(2) 若$A$在它的任何赋值下均为假，则称$A$为<strong>矛盾式</strong>或<strong>永假式</strong>； </p>
-<p>(3) 若$A$不是矛盾式，则称$A$是<strong>可满足式</strong></p>
-<blockquote>
-<p>可满足式包含两种情况</p>
-<p>1.公式的值有时为真，又是为假（非重言式的可满足式）</p>
-<p>2.全部赋值都为真（重言式）</p>
-</blockquote>
-<p>注：重言式是可满足式，但反之不真。</p>
-</li>
-<li><p>真值表的用途：</p>
-<p>（1）求出公式的全部成真赋值与成假赋值；</p>
-<p>（2）判断公式的类型</p>
-</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li><p>主要内容</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225093212858.png" alt="image-20220225093212858" style="zoom:67%;" /></p>
-</li>
-<li><p>基本要求</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220225143205004.png" alt="image-20220225143205004" style="zoom:67%;" /></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mathematical logic</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数理逻辑：第3节 主析（合）取范式</title>
-    <url>/mathematical_logic/mathematical-logic-ch3/</url>
-    <content><![CDATA[<ul>
-<li>判断命题公式是否为重言式（永真式）？<ul>
-<li>真值表</li>
-<li>等值演算</li>
-<li>主析取范式和主合取范式</li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-<h1 id="3-1主析取范式与主合取范式"><a href="#3-1主析取范式与主合取范式" class="headerlink" title="3.1主析取范式与主合取范式"></a>3.1主析取范式与主合取范式</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
-<li><p><strong>文字</strong>：命题变项及其否定的总称</p>
-<blockquote>
-<p>$p, \quad \neg q$</p>
-</blockquote>
-</li>
-<li><p><strong>简单析取式</strong>：仅由有限个文字构成的析取式</p>
-<blockquote>
-<p>$p,\quad \neg q,\quad p\vee \neg q, \quad p\vee q \vee r,…$​</p>
-</blockquote>
-</li>
-<li><p><strong>简单合取式</strong>：由有限个文字构成的合取式</p>
-<blockquote>
-<p>$p,\quad \neg q,\quad p\land \neg q, \quad p\land q \land r,…$</p>
-</blockquote>
-</li>
-<li><p><strong>析取范式</strong>：由有限个<strong>简单合取式</strong>组成的<strong>析取式</strong></p>
-<blockquote>
-<p>$p,\quad \neg p \land q,（简单合取式）\quad p\vee \neg q, \quad (p \land \neg q) \vee (\neg p \land q \land \neg r) \vee (q \land r),…$​</p>
-</blockquote>
-</li>
-<li><p><strong>合取范式</strong>：由有限个<strong>简单析取式</strong>组成的<strong>合取式</strong></p>
-<blockquote>
-<p>$p,\quad \neg p \vee q,（简单析取式）\quad p\land \neg q, \quad (p \vee \neg q) \land (\neg p \vee q \vee r) \land (q \vee r),…$</p>
-</blockquote>
-</li>
-<li><p><strong>范式</strong>：析取范式与合取范式的总称</p>
-</li>
-</ol>
-<h2 id="求公式-A-的范式的步骤"><a href="#求公式-A-的范式的步骤" class="headerlink" title="求公式$A$的范式的步骤"></a>求公式$A$的范式的步骤</h2><ol>
-<li><p>消去$A$中的$\to, \leftrightarrow$（若存在）——<strong>（蕴含等价式、等价等值式、假言易位、等价否定等值式、归谬论）</strong></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091705613.png" alt="image-20220301091705613" style="zoom: 50%;" /></p>
-</li>
-<li><p>否定连接词的内移或消去<strong>（德摩根律）</strong></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091721847.png" alt="image-20220301091721847" style="zoom: 50%;" /></p>
-</li>
-<li><p>使用<strong>分配律</strong></p>
-</li>
-</ol>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220301091734879.png" alt="image-20220301091734879" style="zoom:50%;" /></p>
-<ul>
-<li><p>公式范式的不足——不唯一</p>
-</li>
-<li><p>得到唯一的范式——主范式</p>
-</li>
-</ul>
-<h2 id="极小项与极大项"><a href="#极小项与极大项" class="headerlink" title="极小项与极大项"></a>极小项与极大项</h2><ul>
-<li><p><strong>定义1</strong>：在含有$n$个命题变项的<strong>简单合取式</strong>中，若每个命题变项均以文字的形式在其中出现且仅出现一次， 而且第$i$个文字出现在左起第$i$位上（$1 \leq i \leq n$），称这样的简单合取式为<strong>极小项</strong></p>
-<blockquote>
-<p>极小项——合取越多范围越小，取决于真值最小的文字</p>
-<p>对于$p, q, r$（不缺项，规定了顺序：字母、下标）</p>
-<p>$p \land q \land r$</p>
-</blockquote>
-</li>
-<li><p><strong>定义2</strong>：在含有$n$个命题变项的<strong>简单析取式</strong>中，若每个命题变项均以文字的形式在其中出现且仅出现一次， 而且第$i$个文字出现在左起第$i$位上（$1 \leq i \leq n$），称这样的简单析取式为<strong>极大项</strong></p>
-<blockquote>
-<p>极大项——合取越多范围越大，只要有真值为1的文字，该项的真值为1</p>
-<p>对于$p, q, r$（不缺项，规定了顺序：字母、下标）</p>
-<p>$p \vee q \vee r$</p>
-</blockquote>
-</li>
-<li><p>几点说明</p>
-<ul>
-<li><p>$n$个命题变项有$2^n$个极小项和$2^n$个极大项</p>
-</li>
-<li><p>$2^n$个极小项（极大项）均互不等值</p>
-</li>
-<li><p>用$m_i$表示第$i$个极小项，其中$i$是该极小项<strong>成真赋值</strong><br>的十进制表示</p>
-<blockquote>
-<p>$p \land q \land r$的成真赋值为111，$m_7$</p>
-<p>$\neg p \land q \land r$成真赋值为011，$m_3$</p>
-</blockquote>
-</li>
-<li><p>用$M_i$表示第$i$个极大项，其中$i$是该极大项<strong>成假赋值</strong><br>的十进制表示</p>
-<blockquote>
-<p>$p \vee q \vee r$的成假赋值为000，$M_0$</p>
-<p>$\neg p \vee q \vee r$的成假赋值为100，$M_4$</p>
-</blockquote>
-</li>
-<li><p>$m_i$（$M_i$）称为极小项（极大项）的名称</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>【实例】</p>
-<ul>
-<li>由两个命题变项$p, q$形成的极小项和极大项</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304081627478.png" alt="image-20220304081627478" style="zoom:67%;" /></p>
-<ul>
-<li>由三个命题变项$p,q,r$形成的极小项和极大项</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304081832381.png" alt="image-20220304081832381" style="zoom:67%;" /></p>
-<ul>
-<li><strong>$m_i与M_i的关系：\neg m_i \Leftrightarrow M_i, \neg M_i \Leftrightarrow m_i$</strong></li>
-</ul>
-<h2 id="主析取范式与主合取范式"><a href="#主析取范式与主合取范式" class="headerlink" title="主析取范式与主合取范式"></a>主析取范式与主合取范式</h2><ul>
-<li>主析取范式——由极小项构成的析取范式</li>
-<li>主合取范式——由极大项构成的合取范式</li>
-</ul>
-<blockquote>
-<p>例如，n=3, 命题变项为 p, q, r 时，</p>
-<p>$(\neg p\land \neg q \land r) \vee (\neg p\land q \land r) \Leftrightarrow  m_1 \vee m_3$ ——主析取范式<br>$(p \vee q \vee \neg r) \land (\neg p \vee \neg q \vee \neg r) \Leftrightarrow M_1 \land M_7$——主合取范式</p>
-</blockquote>
-<ul>
-<li><p><strong>定理1</strong>（主范式的存在唯一定理）</p>
-<p>任何命题公式都存在与之等值的主析取范式和主合取范式, 并且是惟一的</p>
-</li>
-</ul>
-<h2 id="求命题公式主范式的步骤"><a href="#求命题公式主范式的步骤" class="headerlink" title="求命题公式主范式的步骤"></a>求命题公式主范式的步骤</h2><h3 id="1-求公式主析取范式的步骤"><a href="#1-求公式主析取范式的步骤" class="headerlink" title="1.求公式主析取范式的步骤"></a>1.求公式主析取范式的步骤</h3><p><strong>先求出析取范式，再变换成主析取范式</strong></p>
-<p>设公式$A$含命题变项$p_1, p_2,…, p_n$</p>
-<ul>
-<li><p>(1) 求$A$的析取范式$A’=B_1 \vee B_2 \vee … \vee B_s$ , 其中$B_j$是<strong>简单合取式</strong> ，$j=1,2, … ,s$</p>
-</li>
-<li><p>(2) <strong>（每一个简单合取式变为极小项——合取1来补项）</strong></p>
-<p>若某个$B_j$既不含$p_i$, 又不含$\neg p_i$, 则将$B_j$展开成：$B_j \Leftrightarrow B_j \land 1 \Leftrightarrow B_j \land (p_i \vee \neg p_i) \Leftrightarrow (B_j \land p_i) \vee (B_j \land \neg p_i)$</p>
-<p>重复这个过程, 直到<strong>所有简单合取式都是长度为n的极小项</strong>为止</p>
-</li>
-<li><p>(3) <strong>消去重复出现的极小项</strong>, 即用$m_i$代替$m_i \vee m_i$ </p>
-</li>
-<li><p>(4) 将极小项按下标从小到大<strong>排列</strong></p>
-</li>
-</ul>
-<h3 id="2-求公式主合取范式的步骤"><a href="#2-求公式主合取范式的步骤" class="headerlink" title="2.求公式主合取范式的步骤"></a>2.求公式主合取范式的步骤</h3><p><strong>先求出合取范式，再变换成主合取范式</strong></p>
-<p>设公式$A$含命题变项$p_1, p_2,…, p_n$</p>
-<ul>
-<li><p>(1) 求$A$的合取范式$A’=B_1 \land  B_2 \land … \land B_s$ , 其中$B_j$是<strong>简单析取式</strong> ，$j=1,2, … ,s$</p>
-</li>
-<li><p>(2)<strong>（补项——析取0）</strong></p>
-<p>若某个$B_j$既不含$p_i$, 又不含$\neg p_i$, 则将$B_j$展开成：$B_j \Leftrightarrow B_j \vee 0 \Leftrightarrow B_j \vee (p_i \land \neg p_i) \Leftrightarrow (B_j \vee p_i) \land (B_j \vee \neg p_i)$</p>
-<p>重复这个过程, 直到<strong>所有简单析取式都是长度为n的极大项</strong>为止</p>
-</li>
-<li><p>(3)<strong>消去重复出现的极大项</strong>， 即用$M_i$代替$M_i \land M_i$ </p>
-</li>
-<li><p>(4) 将极大项按下标从小到大<strong>排列</strong></p>
-</li>
-</ul>
-<p>【实例】</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304083543458.png" alt="image-20220304083543458" style="zoom:50%;" /></p>
-<p><strong>我觉得可以使用卡诺图</strong></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">p\qr</th>
-<th style="text-align:center">00</th>
-<th style="text-align:center">01</th>
-<th style="text-align:center">11</th>
-<th style="text-align:center">10</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><strong>0</strong></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>1</strong></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>主析取范式：成真赋值为1的项</p>
-<p>主合取范式：成假赋值为0的项</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304083604370.png" alt="image-20220304083604370" style="zoom:50%;" /></p>
-<p><strong>关注主析取范式和主合取范式出现项的下标的关系</strong></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304083622774.png" alt="image-20220304083622774" style="zoom:50%;" /></p>
-<h2 id="由主析（合）取范式确定主合（析）取范式"><a href="#由主析（合）取范式确定主合（析）取范式" class="headerlink" title="由主析（合）取范式确定主合（析）取范式"></a>由主析（合）取范式确定主合（析）取范式</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230604125.png" alt="image-20220303230604125" style="zoom: 50%;" /></p>
-<h2 id="用成真和成假赋值确定主范式"><a href="#用成真和成假赋值确定主范式" class="headerlink" title="用成真和成假赋值确定主范式"></a>用成真和成假赋值确定主范式</h2><p>已知成真赋值，则知道有多少个最小项。</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230652029.png" alt="image-20220303230652029" style="zoom: 50%;" /></p>
-<h2 id="主范式的应用"><a href="#主范式的应用" class="headerlink" title="主范式的应用"></a>主范式的应用</h2><h3 id="1-求公式的成真成假赋值"><a href="#1-求公式的成真成假赋值" class="headerlink" title="(1)求公式的成真成假赋值"></a>(1)求公式的成真成假赋值</h3><p>设公式$A$含$n$个命题变项, $A$的主析取范式有<strong>$s$个极小项</strong>, 则$A$有<strong>$s$个成真赋值</strong>, 它们是极小项下标的二进制表示, <strong>其余$2^n-s$个赋值都是成假赋值</strong></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230838562.png" alt="image-20220303230838562" style="zoom:67%;" /></p>
-<h3 id="2-判断公式的类型"><a href="#2-判断公式的类型" class="headerlink" title="(2)判断公式的类型"></a>(2)判断公式的类型</h3><p>根据极小项或成真赋值的个数</p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230918268.png" alt="image-20220303230918268" style="zoom:67%;" /></p>
-<ul>
-<li>重言式：全部赋值为成真赋值</li>
-<li>矛盾式：全部赋值为成假赋值</li>
-<li>非重言的可满足式：<ul>
-<li>至少一个成真赋值</li>
-<li>至少一个成假赋值</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303230949648.png" alt="image-20220303230949648" style="zoom: 50%;" /></p>
-<h3 id="3-判断两个公式是否等值"><a href="#3-判断两个公式是否等值" class="headerlink" title="3.判断两个公式是否等值"></a>3.判断两个公式是否等值</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231031287.png" alt="image-20220303231031287" style="zoom: 50%;" /></p>
-<h3 id="4-解实际问题"><a href="#4-解实际问题" class="headerlink" title="4.解实际问题"></a>4.解实际问题</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231044612.png" alt="image-20220303231044612" style="zoom: 50%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231059094.png" alt="image-20220303231059094" style="zoom: 50%;" /></p>
-<h1 id="3-2-n元真值函数"><a href="#3-2-n元真值函数" class="headerlink" title="3.2 n元真值函数"></a>3.2 n元真值函数</h1><ul>
-<li><p><strong>定义3</strong>：称$F:${0,1}$^n \to$ {0,1}为<strong>n元真值函数</strong></p>
-<blockquote>
-<p>例如，3元真值函数$F(x,y,z) = \begin{cases} 0 \\ 1 \\ \end{cases}$</p>
-<ul>
-<li>有3个变量</li>
-<li>每个变量的取值只能是0或1</li>
-<li>每一组符号串的函数值为0或1</li>
-</ul>
-<p>000，001，010，011，100，101，110，111——8个符号串</p>
-<p>000的函数值可能为0 or 1</p>
-</blockquote>
-<p>$F(p_1,p_2,…p_n) = \begin{cases} 0 \\ 1 \end{cases}$</p>
-<ul>
-<li><p>n个命题变量$p_1,p_2,…,p_n$的取值方式有$2^n$种</p>
-</li>
-<li><p>每一组取值对应的函数值可能为0或1，有2种</p>
-</li>
-</ul>
-<p><strong>共$2^{2^n}$个n元真值函数</strong></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220303231356068.png" alt="image-20220303231356068" style="zoom:67%;" /></p>
-</li>
-</ul>
-<h2 id="1元真值函数"><a href="#1元真值函数" class="headerlink" title="1元真值函数"></a>1元真值函数</h2><ul>
-<li>由1个命题变项p形成的极小项与极大项</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304092048665.png" alt="image-20220304092048665" style="zoom: 67%;" /></p>
-<p>1元真值函数一共有$2^{2^1} = 4$种命题公式</p>
-<blockquote>
-<p>横着看：有4个真值函数——对应$m_0 \vee m_1的四种取值组合——主析取范式$</p>
-<ul>
-<li>第一列：永假式真值表：$\neg m_0 \vee \neg m_1$</li>
-<li>第二列：$p$：$\neg m_0 \vee m_1$</li>
-<li>第三列：$\neg p$：$m_0  \vee \neg  m_1$</li>
-<li>第四列：永真式：$m_0 \vee m_1$</li>
-</ul>
-<p>竖着看：真值函数的取值$p$</p>
-<ul>
-<li>第一行：$p$</li>
-<li>第二行：$\neg p$</li>
-</ul>
-</blockquote>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304092346111.png" alt="image-20220304092346111" style="zoom:67%;" /></p>
-<h2 id="2元真值函数"><a href="#2元真值函数" class="headerlink" title="2元真值函数"></a>2元真值函数</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304093005762.png" alt="image-20220304093005762" style="zoom:67%;" /></p>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304093027553.png" alt="image-20220304093027553" style="zoom:67%;" /></p>
-<h2 id="公式与真值函数"><a href="#公式与真值函数" class="headerlink" title="公式与真值函数"></a>公式与真值函数</h2><ul>
-<li>任何一个含n个命题变项的命题公式$A$都对应惟一的一个n元真值函数$ F $，$ F $恰好为$A$的真值表。</li>
-<li><strong>等值的公式</strong>对应的<strong>真值函数</strong>相同。</li>
-</ul>
-<p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220304093448005.png" alt="image-20220304093448005" style="zoom:50%;" /></p>
-<h1 id="3-3-联结词的完备集"><a href="#3-3-联结词的完备集" class="headerlink" title="3.3 联结词的完备集"></a>3.3 联结词的完备集</h1><ul>
-<li><strong>定义4</strong>：设$S$是一个联结词集合，如果任何$n(n \geq 1)$ 元真值函数都可以由仅含$S$中的联结词构成的公式表示，则称$S$是<strong>联结词完备集</strong><ul>
-<li>若$S$是联结词完备集, 则任何命题公式都可由$S$中的联结词表示</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>与能够用或非表示，则它们是完备的</p>
-</blockquote>
-<ul>
-<li><strong>定义5</strong>：</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mathematical logic</tag>
       </tags>
   </entry>
   <entry>
@@ -3962,6 +4006,10 @@ A 为非重言式的可满足式 \Leftrightarrow A既有成真赋值又有成假
 <h2 id="归谬法（反证法）"><a href="#归谬法（反证法）" class="headerlink" title="归谬法（反证法）"></a>归谬法（反证法）</h2><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308144510314.png" alt="image-20220308144510314" style="zoom:67%;" /></p>
 <h3 id="归谬法证明举例"><a href="#归谬法证明举例" class="headerlink" title="归谬法证明举例"></a>归谬法证明举例</h3><p><img src="https://gitee.com/gingkocyx/my-pic01/raw/master/image-20220308145122036.png" alt="image-20220308145122036" style="zoom:50%;" /></p>
 ]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>数理逻辑</category>
+      </categories>
       <tags>
         <tag>mathematical logic</tag>
       </tags>
