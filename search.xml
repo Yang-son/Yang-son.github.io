@@ -312,6 +312,276 @@ f_{n} = f_{n-1} + f_{n-2} \quad ,n \geq 3 \qquad(5-2) \\
       </tags>
   </entry>
   <entry>
+    <title>算法设计与分析：第2章 算法分析基础</title>
+    <url>/algorithm/algorithm-ch2/</url>
+    <content><![CDATA[<p>算法效率评价的指标：算法对计算机资源的使用</p>
+<p><strong>时间&gt;&gt;内存</strong></p>
+<span id="more"></span>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227163339607.png" alt="image-20220227163339607" style="zoom:67%;" /></p>
+<ul>
+<li><p>计算机资源的计量方法</p>
+<p>设输入数据/问题规模为n。假设算法要用到</p>
+<ul>
+<li><p>m种元运算；（不再分解，一条指令）</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">x = x+<span class="number">1</span>;</span><br><span class="line">y = y*<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>每种元运算执行的时间为$t_1, t_2, … , t_m$；</p>
+</li>
+<li><p>每种元运算的执行的次数为$e_1, e_2, … e_m$；</p>
+</li>
+<li><p>元运算与问题规模的关系：$\forall e_i(n), 1 \leq i \leq m$</p>
+</li>
+</ul>
+<p>若用$T(n)$表示时间复杂度，则有$T(n) = \sum_{i = 1}^{m} t_i \times e_i(n)$​ </p>
+</li>
+<li><p>元运算的提取和时间复杂度的计算</p>
+<p>【例2-1】编程输出具有下述特点的n×n阶三角矩阵，试分析该算法的时间复杂度</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227171256853.png" alt="image-20220227171256853" style="zoom: 50%;" /></p>
+<blockquote>
+<p>只执行一次：</p>
+<p>1.i,j,n,k= 1;</p>
+<p>2.scanf</p>
+<p>3.i = 0;</p>
+<p>4.i &lt; n;</p>
+<p>第一层循环</p>
+<p>1.i &lt; n;</p>
+<p>2.i++;</p>
+<p>3.j = 0;</p>
+<p>4.j &lt; i;</p>
+<p>5.printf(“\n”);</p>
+<p>第二层循环</p>
+<p>1.j &lt; i;</p>
+<p>2.j++;</p>
+<p>3.printf</p>
+<p>4.k++</p>
+</blockquote>
+<p>​        $T(n) = \sum_{i = 0}^{n-1} (5 + \sum_{j = 0}^{i} 3) + 4 \\ = \frac{3}{2}n^2 + \frac{7}{2}n + 4$​​​</p>
+</li>
+</ul>
+<h2 id="一、数学基础"><a href="#一、数学基础" class="headerlink" title="一、数学基础"></a>一、数学基础</h2><h3 id="1-函数渐近的界"><a href="#1-函数渐近的界" class="headerlink" title="1.函数渐近的界"></a>1.函数渐近的界</h3><h4 id="函数渐近的界的概念"><a href="#函数渐近的界的概念" class="headerlink" title="函数渐近的界的概念"></a>函数渐近的界的概念</h4><p>设$T(n)$​是算法A的时间复杂性函数，n是问题规模，$n \geq 0 $​且$n \in Z$​。</p>
+<p>一般来说，当n单调递增且趋于$\infty$时，$T(n)$也将单调递增趋于$\infty$。</p>
+<p>对于$T(n)$，如果存在$T’(n)$，使$n \to \infty$时，有$(T(n)-T’(n))/T(n) \to 0$。</p>
+<p>那么，我们就说$T’(n)$​是$T(n)$​当$n \to \infty$​时的渐近态，或称$T’(n)$​为算法A当$T(n) \to \infty$​​的渐近复杂性。</p>
+<blockquote>
+<p>相似性原理</p>
+<p>突出主体部分——printf，k++</p>
+</blockquote>
+<h4 id="定义2-1（阶的概念）"><a href="#定义2-1（阶的概念）" class="headerlink" title="定义2.1（阶的概念）"></a>定义2.1（阶的概念）</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227165538276.png" alt="image-20220227165538276" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227165601851.png" alt="image-20220227165601851" style="zoom:67%;" /></p>
+<h5 id="【例2-2】设有函数-f-n-n-2-3n-1-​，当n足够大时，试证明下述内容："><a href="#【例2-2】设有函数-f-n-n-2-3n-1-​，当n足够大时，试证明下述内容：" class="headerlink" title="【例2-2】设有函数$f(n)=n^2+3n+1$​，当n足够大时，试证明下述内容："></a>【例2-2】设有函数$f(n)=n^2+3n+1$​，当n足够大时，试证明下述内容：</h5><p>​    (1) $f(n)=O(n^2)$​和$f(n)=O(n^3)$​成立；</p>
+<p>​    (2)$f(n)=o(n^2)$​不成立</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227171405514.png" alt="image-20220227171405514" style="zoom:67%;" /></p>
+<ul>
+<li>适当放缩</li>
+</ul>
+<h5 id="【例2-3】试证明-f-n-frac-1-2-n-n-1-有-f-n-Theta-n-2"><a href="#【例2-3】试证明-f-n-frac-1-2-n-n-1-有-f-n-Theta-n-2" class="headerlink" title="【例2-3】试证明$f(n) = \frac{1}{2}n(n-1)$有$f(n) = \Theta(n^2)$"></a>【例2-3】试证明$f(n) = \frac{1}{2}n(n-1)$有$f(n) = \Theta(n^2)$</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227171557402.png" alt="image-20220227171557402" style="zoom:67%;" /></p>
+<ul>
+<li>限定一下n的范围。找对应的$c_1,c_2$​，一个满足上界、一个满足下界：$c_2g(n) \leq f(n) \leq c_1g(n)$</li>
+</ul>
+<h4 id="定理2-1（传递性）"><a href="#定理2-1（传递性）" class="headerlink" title="定理2.1（传递性）"></a><strong>定理2.1（传递性）</strong></h4><p>设$f、g、h$是定义域为自然数集合，</p>
+<p>如果$f=O(g)$且$g=O(h)$，那么$f=O(h)$； </p>
+<p>如果$f=Ω(g)$且$g=Ω(h)$，那么$f=Ω(h)$； </p>
+<p>如果$f=Θ(g)$且$g=Θ(h)$，那么$f=Θ(h)$​。</p>
+<blockquote>
+<p>证明：</p>
+<p>只需要证明第一条，第二条同理。前两条可直接推出第三条</p>
+<p>按照定义展开，找到合适的$n_0$。取$n_0 = max\{n_1, n_2 \}$</p>
+<p>可以直接推出</p>
+</blockquote>
+<h4 id="定理2-2-（同阶合并）"><a href="#定理2-2-（同阶合并）" class="headerlink" title="定理2.2 （同阶合并）"></a>定理2.2 （同阶合并）</h4><p>假设$f$和$g$是定义域为自然数集合的函数，若对于某个其他的函数$h$，有$f=O(h)$和$g=O(h)$，那么$f+g=O(h)$​。</p>
+<blockquote>
+<p>证明：</p>
+<p>证明思路与2.1相同，按照定义，找到合适的$n_0$</p>
+</blockquote>
+<h4 id="常用的渐近函数及其渐近的界"><a href="#常用的渐近函数及其渐近的界" class="headerlink" title="常用的渐近函数及其渐近的界"></a>常用的渐近函数及其渐近的界</h4><ul>
+<li><p>多项式函数、对数函数、不同底a和b的对数</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227170231007.png" alt="image-20220227170231007" style="zoom: 67%;" /></p>
+</li>
+</ul>
+<p>对于多项式函数，每一项的上界都是$n^k$</p>
+<p>对于对数函数，<strong>两边取以b为底的对数</strong>，$log_b{a^{log_bn}} = log_b{n^{log_ba}} = log_ba \times log_bn$​​</p>
+<h4 id="定理2-3-（多项式的阶高于对数）"><a href="#定理2-3-（多项式的阶高于对数）" class="headerlink" title="定理2.3 （多项式的阶高于对数）"></a>定理2.3 （多项式的阶高于对数）</h4><p>对于每一个$b&gt;1$和每一个$a&gt;0$，有$log_bn=o(n^a)$​。</p>
+<p>（多项式函数的阶高于对数函数）</p>
+<h4 id="定理2-4（指数的阶高于多项式）"><a href="#定理2-4（指数的阶高于多项式）" class="headerlink" title="定理2.4（指数的阶高于多项式）"></a>定理2.4（指数的阶高于多项式）</h4><p>对每个$a&gt;1$​和每个$k&gt;0$​，有$n^k=o(a^n)$</p>
+<p>（指数函数的阶高于多项式函数）</p>
+<h3 id="2-利用极限求函数渐近的界"><a href="#2-利用极限求函数渐近的界" class="headerlink" title="2.利用极限求函数渐近的界"></a>2.利用极限求函数渐近的界</h3><h4 id="常用的公式"><a href="#常用的公式" class="headerlink" title="常用的公式"></a>常用的公式</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227170744849.png" alt="image-20220227170744849" style="zoom:67%;" /></p>
+<h4 id="定理2-5（紧的界的极限定义）"><a href="#定理2-5（紧的界的极限定义）" class="headerlink" title="定理2.5（紧的界的极限定义）"></a>定理2.5（紧的界的极限定义）</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227170855787.png" alt="image-20220227170855787" style="zoom:67%;" /></p>
+<p>两个函数互为紧的界</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227170911299.png" alt="image-20220227170911299" style="zoom:67%;" /></p>
+<p>【思考题】：</p>
+<ul>
+<li>证（3）</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301202430470.png" alt="image-20220301202430470" style="zoom:67%;" /></p>
+<ul>
+<li>列出已讲解渐近函数及它们之间阶的高低（运用斯特林、洛必达、2.5）</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301202505790.png" alt="image-20220301202505790" style="zoom:67%;" /></p>
+<h3 id="3-有用的求和级数及其推导方法"><a href="#3-有用的求和级数及其推导方法" class="headerlink" title="3.有用的求和级数及其推导方法"></a>3.有用的求和级数及其推导方法</h3><h4 id="两个基本法则和常见的数列"><a href="#两个基本法则和常见的数列" class="headerlink" title="两个基本法则和常见的数列"></a>两个基本法则和常见的数列</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227170956453.png" alt="image-20220227170956453" style="zoom:67%;" /></p>
+<ul>
+<li>调和级数通常使用微积分进行计算</li>
+</ul>
+<h5 id="【例2-6】求和"><a href="#【例2-6】求和" class="headerlink" title="【例2-6】求和"></a>【例2-6】求和</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227171059943.png" alt="image-20220227171059943" style="zoom:67%;" /></p>
+<h5 id="【例2-7】估计-sum-k-1-n-frac-1-k-​的渐近的界"><a href="#【例2-7】估计-sum-k-1-n-frac-1-k-​的渐近的界" class="headerlink" title="【例2-7】估计$\sum_{k=1}^{n} \frac{1}{k}$​的渐近的界"></a>【例2-7】估计$\sum_{k=1}^{n} \frac{1}{k}$​的渐近的界</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227171113797.png" alt="image-20220227171113797" style="zoom:67%;" /></p>
+<h3 id="4-基本效率类型"><a href="#4-基本效率类型" class="headerlink" title="4.基本效率类型"></a>4.基本效率类型</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301205626390.png" alt="image-20220301205626390" style="zoom: 80%;" /></p>
+<p>$n^3$：迪杰斯特拉、弗洛伊德算法</p>
+<h2 id="二、算法分析实例"><a href="#二、算法分析实例" class="headerlink" title="二、算法分析实例"></a>二、算法分析实例</h2><h3 id="1-非递归形式算法分析"><a href="#1-非递归形式算法分析" class="headerlink" title="1.非递归形式算法分析"></a>1.非递归形式算法分析</h3><p>分析非递归算法是，可遵循以下步骤：</p>
+<ul>
+<li><p>决定用哪些参数表示输入规模；</p>
+</li>
+<li><p>找出算法的核心操作，它通常位于算法的<strong>最内层循环</strong>中；</p>
+</li>
+<li><p>检查核心操作的<strong>执行次数是否依赖于输入规模</strong>。如果它还依赖于一些其他的特性，则可能需要对最差效率、平均效率以及最优效率分别研究；</p>
+<blockquote>
+<p>快排</p>
+</blockquote>
+</li>
+<li><p>以式（2-1）$T(n) = \sum_{i = 1}^{m} t_i \times e_i(n)$ 的思想为核心，建立一个算法基本操作执行次数的求和表达式；</p>
+</li>
+<li><p>利用求和运算标准公式和法则来建立一个操作次数的闭合公式，或者至少确定它的增长次数。</p>
+</li>
+</ul>
+<p>【例2-9】交换$a$和$b$的值</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301210324305.png" alt="image-20220301210324305" style="zoom:67%;" /></p>
+<p>三种算法：</p>
+<ul>
+<li><p>如上图方法</p>
+</li>
+<li><p>加减减运算符</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a = a+b;</span><br><span class="line">b = a-b;</span><br><span class="line">a = a-b;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异或法</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 利用了位异或运算的特性:一个数据对两一个数据位异或两次，该数本身不变。</span></span><br><span class="line"><span class="type">int</span> a = <span class="number">12</span>;</span><br><span class="line"><span class="type">int</span> b = <span class="number">34</span>;</span><br><span class="line"><span class="comment">// 交换两个整数</span></span><br><span class="line">a = a ^ b;		<span class="comment">// a = 12^34</span></span><br><span class="line">b = a ^ b;		<span class="comment">// b = 12 ^ 34^34=12</span></span><br><span class="line">a = a ^ b;		<span class="comment">// a = 12^ 34 ^12 = 34</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引用传参</p>
+</li>
+<li><p>指针传参</p>
+</li>
+</ul>
+<h5 id="【例2-10】求-n"><a href="#【例2-10】求-n" class="headerlink" title="【例2-10】求$n!$"></a>【例2-10】求$n!$</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301210412937.png" alt="image-20220301210412937" style="zoom:67%;" /></p>
+<blockquote>
+<p>主体部分：$s = s*i;$</p>
+</blockquote>
+<h5 id="【例2-11】对于任意给定的-n-阶方阵-A-和-B-，求-A×B-的积-C-并且分析它算法执行效率"><a href="#【例2-11】对于任意给定的-n-阶方阵-A-和-B-，求-A×B-的积-C-并且分析它算法执行效率" class="headerlink" title="【例2-11】对于任意给定的$n$阶方阵$A$和$B$，求$A×B$的积$C$并且分析它算法执行效率"></a>【例2-11】对于任意给定的$n$阶方阵$A$和$B$，求$A×B$的积$C$并且分析它算法执行效率</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301210518138.png" alt="image-20220301210518138" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301210552598.png" alt="image-20220301210552598" style="zoom:67%;" /></p>
+<p>优化算法：</p>
+<ul>
+<li><p>《算法导论》提及的Strassen算法</p>
+<p>参考资料：<a href="https://zhuanlan.zhihu.com/p/78657463">详解矩阵乘法中的Strassen算法</a></p>
+</li>
+</ul>
+<h4 id="错误印象"><a href="#错误印象" class="headerlink" title="错误印象"></a>错误印象</h4><ul>
+<li><p>循环变量的无规律变化</p>
+<blockquote>
+<p>如，Euclid和斐波那契</p>
+</blockquote>
+</li>
+<li><p>过于复杂而无法求解的求和表达式</p>
+<blockquote>
+<p>有些级数不能求解</p>
+</blockquote>
+</li>
+<li><p>算法分析时固有的难度</p>
+</li>
+</ul>
+<p>【思考题】韩信点兵问题</p>
+<h3 id="2-递归形式算法分析"><a href="#2-递归形式算法分析" class="headerlink" title="2.递归形式算法分析"></a>2.递归形式算法分析</h3><p>分析递归算法时，可遵循以下步骤：</p>
+<ul>
+<li><p>决定用哪些参数作为输入规模的度量标准</p>
+</li>
+<li><p>找出算法的核心操作，它通常是<strong>递推公式</strong></p>
+</li>
+<li><p>检查一下，对于相同规模的不同输入，核心操作的执行次数是否可能不同</p>
+<p><strong>如果有这种可能，则必须对最差效率、平均效率以及最优效率做单独研究</strong></p>
+</li>
+<li><p>对于算法核心操作的执行次数，建立一个递推关系以及相应的边界条件</p>
+</li>
+<li><p>解这个递推式，或者至少<strong>确定它的解的增长次数</strong></p>
+</li>
+</ul>
+<h5 id="【例2-12】求-n"><a href="#【例2-12】求-n" class="headerlink" title="【例2-12】求$n!$"></a>【例2-12】求$n!$</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301212808470.png" alt="image-20220301212808470" style="zoom:67%;" /></p>
+<p>时间效率紧的界是n</p>
+<blockquote>
+<p>递归变非递归：</p>
+<p>1.减少重复计算——去重</p>
+<p>2.减少使用栈——效率低。应从模型入手</p>
+</blockquote>
+<h5 id="【例2-13】汉诺塔问题"><a href="#【例2-13】汉诺塔问题" class="headerlink" title="【例2-13】汉诺塔问题"></a>【例2-13】汉诺塔问题</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301212841660.png" alt="image-20220301212841660" style="zoom:67%;" /></p>
+<ul>
+<li>n为计算规模</li>
+<li>核心操作为移动盘子 </li>
+<li>依据递推公式，两次递推之间，执行一次移动操作，因此有如下推导过程：<br>$T(n) =2T(n-1)+1$</li>
+</ul>
+<blockquote>
+<p>$T(n) =2T(n-1)+1 \\<br>=2[2T(n-2)+1]+1 \\ =2^2T(n-2)+2+1 \\<br>=2^2[2T(n-3)+1]+2+1 \\ = 2^3T(n-3)+2^2+2+1 …… \\<br>=2^{i-1}[2T(n-i)+1]+2^{i-2}+2^{i-3}…+2^0 \\ = 2^iT(n-i)+ 2^{i}-1 …… \\<br>=2^{n-1}T(n-(n-1))+ 2^{n-1}-1 \\ =2^{n-1}T(1)+ 2^{n-1}-1=2^n-1 \$</p>
+</blockquote>
+<p><strong>谨慎使用递归算法，它们的简洁可能会掩盖其低效率的事实</strong></p>
+<h5 id="【例2-14】试分析二路归并排序算法的时间复杂度"><a href="#【例2-14】试分析二路归并排序算法的时间复杂度" class="headerlink" title="【例2-14】试分析二路归并排序算法的时间复杂度"></a>【例2-14】试分析二路归并排序算法的时间复杂度</h5><blockquote>
+<p>二路归并排序：二分 + 合并（简单插入排序）</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301213658379.png" alt="image-20220301213658379" style="zoom:67%;" /></p>
+<p>对于Merge，输入是两个排好序的数组。</p>
+<blockquote>
+<p>计算两个数组的长度</p>
+<p>重构$A$数组，将前半部分存入$B$，后半部分存入$C$</p>
+<p>依次比较$B$和$C$元素大小，按顺序放回$A$</p>
+<p>处理$B$或$C$剩余元素，放回$A$</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301213722688.png" alt="image-20220301213722688" style="zoom:67%;" /></p>
+<p>空间复杂度：上界是$n^2$，下界是$logn \times n$</p>
+<p>【思考题】考虑完全二叉树的先根遍历，找最大值的时间复杂度</p>
+<h3 id="定理2-6（主定理）——重要内容"><a href="#定理2-6（主定理）——重要内容" class="headerlink" title="定理2.6（主定理）——重要内容"></a>定理2.6（主定理）——重要内容</h3><p><strong>定理2.6</strong> 主定理（Master Theorem）设$a \geq 1,b \geq 1$为常数，$f(n)$为函数，$T(n)$为<strong>非负整数</strong>，且$T(n) = aT(n/b) + f(n)$</p>
+<p>则有以下结果：</p>
+<ul>
+<li><p>若$f(n) = O(n^{log_ba-\epsilon}), \epsilon &gt; 0$，那么$T(n) = \Theta(n^{log_ba})$；</p>
+<blockquote>
+<p>必须把$\epsilon$找出来</p>
+</blockquote>
+</li>
+<li><p>若$f(n) = \Theta (n^{log_ba})$，那么$T(n) = \Theta (n^{log_ba} logn)$；</p>
+</li>
+<li><p>若$f(n) = Ω(n^{log_ba+\epsilon}), \epsilon &gt; 0$，且对于常数$c&lt;1$和所有充分大的$n$有$af(n/b) \leq cf(n)$，那么$T(n) = \Theta(f(n))$；</p>
+<blockquote>
+<p>不能使用主定理，可以使用递归式</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231134023.png" alt="image-20220301231134023" style="zoom:67%;" /></p>
+<blockquote>
+<p>必须让$T(n)$中的参数$n$收敛</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231214720.png" alt="image-20220301231214720" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231230067.png" alt="image-20220301231230067" style="zoom:67%;" /></p>
+<blockquote>
+<p>（3）的整体证明思路：$T(n) = O(f(n)) \and T(n) = \Omega(f(n))$</p>
+<p>①显然有：$T(n) \geq f(n)$</p>
+<p>②需要证明$T(n) \leq \Theta(f(n))$。利用条件$af(n/b) \leq cf(n)$进行放缩</p>
+<p>最后需要用上$f(n)$的阶比$c_1n^{log_ba}$高的条件，使用定理2.2进行合并</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231245912.png" alt="image-20220301231245912" style="zoom:67%;" /></p>
+<p>【思考题】</p>
+<ul>
+<li>自己证明一次主定理</li>
+<li>用主定理证明归并排序的时间复杂度</li>
+</ul>
+<h5 id="【例2-15】求解递推方程-T-n-9T-n-3-n"><a href="#【例2-15】求解递推方程-T-n-9T-n-3-n" class="headerlink" title="【例2-15】求解递推方程$T(n) = 9T(n/3) + n$"></a>【例2-15】求解递推方程$T(n) = 9T(n/3) + n$</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231338193.png" alt="image-20220301231338193" style="zoom:67%;" /></p>
+<h5 id="【例2-16】求解递推方程-T-n-T-2n-3-1"><a href="#【例2-16】求解递推方程-T-n-T-2n-3-1" class="headerlink" title="【例2-16】求解递推方程$T(n) = T(2n/3) + 1$"></a>【例2-16】求解递推方程$T(n) = T(2n/3) + 1$</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231416380.png" alt="image-20220301231416380" style="zoom:67%;" /></p>
+<h5 id="【例2-17】求解递推方程-T-n-3T-n-4-nlogn"><a href="#【例2-17】求解递推方程-T-n-3T-n-4-nlogn" class="headerlink" title="【例2-17】求解递推方程$T(n) = 3T(n/4) + nlogn$"></a>【例2-17】求解递推方程$T(n) = 3T(n/4) + nlogn$</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231458494.png" alt="image-20220301231458494" style="zoom:67%;" /></p>
+<p>递归树</p>
+<p>表示每一层拥有的计算量</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231522615.png" alt="image-20220301231522615" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231537308.png" alt="image-20220301231537308" style="zoom:67%;" /></p>
+<h5 id="【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设-n-2-k-："><a href="#【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设-n-2-k-：" class="headerlink" title="【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设$n = 2^k$："></a>【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设$n = 2^k$：</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231641596.png" alt="image-20220301231641596" style="zoom:67%;" /></p>
+]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>算法设计与分析</category>
+      </categories>
+      <tags>
+        <tag>algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>算法设计与分析：第3章 迭代法</title>
     <url>/algorithm/algorithm-ch3/</url>
     <content><![CDATA[<h2 id="3-1-简单的迭代运算"><a href="#3-1-简单的迭代运算" class="headerlink" title="3.1 简单的迭代运算"></a>3.1 简单的迭代运算</h2><ul>
@@ -642,276 +912,6 @@ x_1 + 3x_2 - 2x_3 = 4 \\
       </tags>
   </entry>
   <entry>
-    <title>算法设计与分析：第2章 算法分析基础</title>
-    <url>/algorithm/algorithm-ch2/</url>
-    <content><![CDATA[<p>算法效率评价的指标：算法对计算机资源的使用</p>
-<p><strong>时间&gt;&gt;内存</strong></p>
-<span id="more"></span>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227163339607.png" alt="image-20220227163339607" style="zoom:67%;" /></p>
-<ul>
-<li><p>计算机资源的计量方法</p>
-<p>设输入数据/问题规模为n。假设算法要用到</p>
-<ul>
-<li><p>m种元运算；（不再分解，一条指令）</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">x = x+<span class="number">1</span>;</span><br><span class="line">y = y*<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>每种元运算执行的时间为$t_1, t_2, … , t_m$；</p>
-</li>
-<li><p>每种元运算的执行的次数为$e_1, e_2, … e_m$；</p>
-</li>
-<li><p>元运算与问题规模的关系：$\forall e_i(n), 1 \leq i \leq m$</p>
-</li>
-</ul>
-<p>若用$T(n)$表示时间复杂度，则有$T(n) = \sum_{i = 1}^{m} t_i \times e_i(n)$​ </p>
-</li>
-<li><p>元运算的提取和时间复杂度的计算</p>
-<p>【例2-1】编程输出具有下述特点的n×n阶三角矩阵，试分析该算法的时间复杂度</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227171256853.png" alt="image-20220227171256853" style="zoom: 50%;" /></p>
-<blockquote>
-<p>只执行一次：</p>
-<p>1.i,j,n,k= 1;</p>
-<p>2.scanf</p>
-<p>3.i = 0;</p>
-<p>4.i &lt; n;</p>
-<p>第一层循环</p>
-<p>1.i &lt; n;</p>
-<p>2.i++;</p>
-<p>3.j = 0;</p>
-<p>4.j &lt; i;</p>
-<p>5.printf(“\n”);</p>
-<p>第二层循环</p>
-<p>1.j &lt; i;</p>
-<p>2.j++;</p>
-<p>3.printf</p>
-<p>4.k++</p>
-</blockquote>
-<p>​        $T(n) = \sum_{i = 0}^{n-1} (5 + \sum_{j = 0}^{i} 3) + 4 \\ = \frac{3}{2}n^2 + \frac{7}{2}n + 4$​​​</p>
-</li>
-</ul>
-<h2 id="一、数学基础"><a href="#一、数学基础" class="headerlink" title="一、数学基础"></a>一、数学基础</h2><h3 id="1-函数渐近的界"><a href="#1-函数渐近的界" class="headerlink" title="1.函数渐近的界"></a>1.函数渐近的界</h3><h4 id="函数渐近的界的概念"><a href="#函数渐近的界的概念" class="headerlink" title="函数渐近的界的概念"></a>函数渐近的界的概念</h4><p>设$T(n)$​是算法A的时间复杂性函数，n是问题规模，$n \geq 0 $​且$n \in Z$​。</p>
-<p>一般来说，当n单调递增且趋于$\infty$时，$T(n)$也将单调递增趋于$\infty$。</p>
-<p>对于$T(n)$，如果存在$T’(n)$，使$n \to \infty$时，有$(T(n)-T’(n))/T(n) \to 0$。</p>
-<p>那么，我们就说$T’(n)$​是$T(n)$​当$n \to \infty$​时的渐近态，或称$T’(n)$​为算法A当$T(n) \to \infty$​​的渐近复杂性。</p>
-<blockquote>
-<p>相似性原理</p>
-<p>突出主体部分——printf，k++</p>
-</blockquote>
-<h4 id="定义2-1（阶的概念）"><a href="#定义2-1（阶的概念）" class="headerlink" title="定义2.1（阶的概念）"></a>定义2.1（阶的概念）</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227165538276.png" alt="image-20220227165538276" style="zoom:67%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227165601851.png" alt="image-20220227165601851" style="zoom:67%;" /></p>
-<h5 id="【例2-2】设有函数-f-n-n-2-3n-1-​，当n足够大时，试证明下述内容："><a href="#【例2-2】设有函数-f-n-n-2-3n-1-​，当n足够大时，试证明下述内容：" class="headerlink" title="【例2-2】设有函数$f(n)=n^2+3n+1$​，当n足够大时，试证明下述内容："></a>【例2-2】设有函数$f(n)=n^2+3n+1$​，当n足够大时，试证明下述内容：</h5><p>​    (1) $f(n)=O(n^2)$​和$f(n)=O(n^3)$​成立；</p>
-<p>​    (2)$f(n)=o(n^2)$​不成立</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227171405514.png" alt="image-20220227171405514" style="zoom:67%;" /></p>
-<ul>
-<li>适当放缩</li>
-</ul>
-<h5 id="【例2-3】试证明-f-n-frac-1-2-n-n-1-有-f-n-Theta-n-2"><a href="#【例2-3】试证明-f-n-frac-1-2-n-n-1-有-f-n-Theta-n-2" class="headerlink" title="【例2-3】试证明$f(n) = \frac{1}{2}n(n-1)$有$f(n) = \Theta(n^2)$"></a>【例2-3】试证明$f(n) = \frac{1}{2}n(n-1)$有$f(n) = \Theta(n^2)$</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227171557402.png" alt="image-20220227171557402" style="zoom:67%;" /></p>
-<ul>
-<li>限定一下n的范围。找对应的$c_1,c_2$​，一个满足上界、一个满足下界：$c_2g(n) \leq f(n) \leq c_1g(n)$</li>
-</ul>
-<h4 id="定理2-1（传递性）"><a href="#定理2-1（传递性）" class="headerlink" title="定理2.1（传递性）"></a><strong>定理2.1（传递性）</strong></h4><p>设$f、g、h$是定义域为自然数集合，</p>
-<p>如果$f=O(g)$且$g=O(h)$，那么$f=O(h)$； </p>
-<p>如果$f=Ω(g)$且$g=Ω(h)$，那么$f=Ω(h)$； </p>
-<p>如果$f=Θ(g)$且$g=Θ(h)$，那么$f=Θ(h)$​。</p>
-<blockquote>
-<p>证明：</p>
-<p>只需要证明第一条，第二条同理。前两条可直接推出第三条</p>
-<p>按照定义展开，找到合适的$n_0$。取$n_0 = max\{n_1, n_2 \}$</p>
-<p>可以直接推出</p>
-</blockquote>
-<h4 id="定理2-2-（同阶合并）"><a href="#定理2-2-（同阶合并）" class="headerlink" title="定理2.2 （同阶合并）"></a>定理2.2 （同阶合并）</h4><p>假设$f$和$g$是定义域为自然数集合的函数，若对于某个其他的函数$h$，有$f=O(h)$和$g=O(h)$，那么$f+g=O(h)$​。</p>
-<blockquote>
-<p>证明：</p>
-<p>证明思路与2.1相同，按照定义，找到合适的$n_0$</p>
-</blockquote>
-<h4 id="常用的渐近函数及其渐近的界"><a href="#常用的渐近函数及其渐近的界" class="headerlink" title="常用的渐近函数及其渐近的界"></a>常用的渐近函数及其渐近的界</h4><ul>
-<li><p>多项式函数、对数函数、不同底a和b的对数</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227170231007.png" alt="image-20220227170231007" style="zoom: 67%;" /></p>
-</li>
-</ul>
-<p>对于多项式函数，每一项的上界都是$n^k$</p>
-<p>对于对数函数，<strong>两边取以b为底的对数</strong>，$log_b{a^{log_bn}} = log_b{n^{log_ba}} = log_ba \times log_bn$​​</p>
-<h4 id="定理2-3-（多项式的阶高于对数）"><a href="#定理2-3-（多项式的阶高于对数）" class="headerlink" title="定理2.3 （多项式的阶高于对数）"></a>定理2.3 （多项式的阶高于对数）</h4><p>对于每一个$b&gt;1$和每一个$a&gt;0$，有$log_bn=o(n^a)$​。</p>
-<p>（多项式函数的阶高于对数函数）</p>
-<h4 id="定理2-4（指数的阶高于多项式）"><a href="#定理2-4（指数的阶高于多项式）" class="headerlink" title="定理2.4（指数的阶高于多项式）"></a>定理2.4（指数的阶高于多项式）</h4><p>对每个$a&gt;1$​和每个$k&gt;0$​，有$n^k=o(a^n)$</p>
-<p>（指数函数的阶高于多项式函数）</p>
-<h3 id="2-利用极限求函数渐近的界"><a href="#2-利用极限求函数渐近的界" class="headerlink" title="2.利用极限求函数渐近的界"></a>2.利用极限求函数渐近的界</h3><h4 id="常用的公式"><a href="#常用的公式" class="headerlink" title="常用的公式"></a>常用的公式</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227170744849.png" alt="image-20220227170744849" style="zoom:67%;" /></p>
-<h4 id="定理2-5（紧的界的极限定义）"><a href="#定理2-5（紧的界的极限定义）" class="headerlink" title="定理2.5（紧的界的极限定义）"></a>定理2.5（紧的界的极限定义）</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227170855787.png" alt="image-20220227170855787" style="zoom:67%;" /></p>
-<p>两个函数互为紧的界</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227170911299.png" alt="image-20220227170911299" style="zoom:67%;" /></p>
-<p>【思考题】：</p>
-<ul>
-<li>证（3）</li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301202430470.png" alt="image-20220301202430470" style="zoom:67%;" /></p>
-<ul>
-<li>列出已讲解渐近函数及它们之间阶的高低（运用斯特林、洛必达、2.5）</li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301202505790.png" alt="image-20220301202505790" style="zoom:67%;" /></p>
-<h3 id="3-有用的求和级数及其推导方法"><a href="#3-有用的求和级数及其推导方法" class="headerlink" title="3.有用的求和级数及其推导方法"></a>3.有用的求和级数及其推导方法</h3><h4 id="两个基本法则和常见的数列"><a href="#两个基本法则和常见的数列" class="headerlink" title="两个基本法则和常见的数列"></a>两个基本法则和常见的数列</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227170956453.png" alt="image-20220227170956453" style="zoom:67%;" /></p>
-<ul>
-<li>调和级数通常使用微积分进行计算</li>
-</ul>
-<h5 id="【例2-6】求和"><a href="#【例2-6】求和" class="headerlink" title="【例2-6】求和"></a>【例2-6】求和</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227171059943.png" alt="image-20220227171059943" style="zoom:67%;" /></p>
-<h5 id="【例2-7】估计-sum-k-1-n-frac-1-k-​的渐近的界"><a href="#【例2-7】估计-sum-k-1-n-frac-1-k-​的渐近的界" class="headerlink" title="【例2-7】估计$\sum_{k=1}^{n} \frac{1}{k}$​的渐近的界"></a>【例2-7】估计$\sum_{k=1}^{n} \frac{1}{k}$​的渐近的界</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227171113797.png" alt="image-20220227171113797" style="zoom:67%;" /></p>
-<h3 id="4-基本效率类型"><a href="#4-基本效率类型" class="headerlink" title="4.基本效率类型"></a>4.基本效率类型</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301205626390.png" alt="image-20220301205626390" style="zoom: 80%;" /></p>
-<p>$n^3$：迪杰斯特拉、弗洛伊德算法</p>
-<h2 id="二、算法分析实例"><a href="#二、算法分析实例" class="headerlink" title="二、算法分析实例"></a>二、算法分析实例</h2><h3 id="1-非递归形式算法分析"><a href="#1-非递归形式算法分析" class="headerlink" title="1.非递归形式算法分析"></a>1.非递归形式算法分析</h3><p>分析非递归算法是，可遵循以下步骤：</p>
-<ul>
-<li><p>决定用哪些参数表示输入规模；</p>
-</li>
-<li><p>找出算法的核心操作，它通常位于算法的<strong>最内层循环</strong>中；</p>
-</li>
-<li><p>检查核心操作的<strong>执行次数是否依赖于输入规模</strong>。如果它还依赖于一些其他的特性，则可能需要对最差效率、平均效率以及最优效率分别研究；</p>
-<blockquote>
-<p>快排</p>
-</blockquote>
-</li>
-<li><p>以式（2-1）$T(n) = \sum_{i = 1}^{m} t_i \times e_i(n)$ 的思想为核心，建立一个算法基本操作执行次数的求和表达式；</p>
-</li>
-<li><p>利用求和运算标准公式和法则来建立一个操作次数的闭合公式，或者至少确定它的增长次数。</p>
-</li>
-</ul>
-<p>【例2-9】交换$a$和$b$的值</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301210324305.png" alt="image-20220301210324305" style="zoom:67%;" /></p>
-<p>三种算法：</p>
-<ul>
-<li><p>如上图方法</p>
-</li>
-<li><p>加减减运算符</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a = a+b;</span><br><span class="line">b = a-b;</span><br><span class="line">a = a-b;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>异或法</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 利用了位异或运算的特性:一个数据对两一个数据位异或两次，该数本身不变。</span></span><br><span class="line"><span class="type">int</span> a = <span class="number">12</span>;</span><br><span class="line"><span class="type">int</span> b = <span class="number">34</span>;</span><br><span class="line"><span class="comment">// 交换两个整数</span></span><br><span class="line">a = a ^ b;		<span class="comment">// a = 12^34</span></span><br><span class="line">b = a ^ b;		<span class="comment">// b = 12 ^ 34^34=12</span></span><br><span class="line">a = a ^ b;		<span class="comment">// a = 12^ 34 ^12 = 34</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>引用传参</p>
-</li>
-<li><p>指针传参</p>
-</li>
-</ul>
-<h5 id="【例2-10】求-n"><a href="#【例2-10】求-n" class="headerlink" title="【例2-10】求$n!$"></a>【例2-10】求$n!$</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301210412937.png" alt="image-20220301210412937" style="zoom:67%;" /></p>
-<blockquote>
-<p>主体部分：$s = s*i;$</p>
-</blockquote>
-<h5 id="【例2-11】对于任意给定的-n-阶方阵-A-和-B-，求-A×B-的积-C-并且分析它算法执行效率"><a href="#【例2-11】对于任意给定的-n-阶方阵-A-和-B-，求-A×B-的积-C-并且分析它算法执行效率" class="headerlink" title="【例2-11】对于任意给定的$n$阶方阵$A$和$B$，求$A×B$的积$C$并且分析它算法执行效率"></a>【例2-11】对于任意给定的$n$阶方阵$A$和$B$，求$A×B$的积$C$并且分析它算法执行效率</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301210518138.png" alt="image-20220301210518138" style="zoom:67%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301210552598.png" alt="image-20220301210552598" style="zoom:67%;" /></p>
-<p>优化算法：</p>
-<ul>
-<li><p>《算法导论》提及的Strassen算法</p>
-<p>参考资料：<a href="https://zhuanlan.zhihu.com/p/78657463">详解矩阵乘法中的Strassen算法</a></p>
-</li>
-</ul>
-<h4 id="错误印象"><a href="#错误印象" class="headerlink" title="错误印象"></a>错误印象</h4><ul>
-<li><p>循环变量的无规律变化</p>
-<blockquote>
-<p>如，Euclid和斐波那契</p>
-</blockquote>
-</li>
-<li><p>过于复杂而无法求解的求和表达式</p>
-<blockquote>
-<p>有些级数不能求解</p>
-</blockquote>
-</li>
-<li><p>算法分析时固有的难度</p>
-</li>
-</ul>
-<p>【思考题】韩信点兵问题</p>
-<h3 id="2-递归形式算法分析"><a href="#2-递归形式算法分析" class="headerlink" title="2.递归形式算法分析"></a>2.递归形式算法分析</h3><p>分析递归算法时，可遵循以下步骤：</p>
-<ul>
-<li><p>决定用哪些参数作为输入规模的度量标准</p>
-</li>
-<li><p>找出算法的核心操作，它通常是<strong>递推公式</strong></p>
-</li>
-<li><p>检查一下，对于相同规模的不同输入，核心操作的执行次数是否可能不同</p>
-<p><strong>如果有这种可能，则必须对最差效率、平均效率以及最优效率做单独研究</strong></p>
-</li>
-<li><p>对于算法核心操作的执行次数，建立一个递推关系以及相应的边界条件</p>
-</li>
-<li><p>解这个递推式，或者至少<strong>确定它的解的增长次数</strong></p>
-</li>
-</ul>
-<h5 id="【例2-12】求-n"><a href="#【例2-12】求-n" class="headerlink" title="【例2-12】求$n!$"></a>【例2-12】求$n!$</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301212808470.png" alt="image-20220301212808470" style="zoom:67%;" /></p>
-<p>时间效率紧的界是n</p>
-<blockquote>
-<p>递归变非递归：</p>
-<p>1.减少重复计算——去重</p>
-<p>2.减少使用栈——效率低。应从模型入手</p>
-</blockquote>
-<h5 id="【例2-13】汉诺塔问题"><a href="#【例2-13】汉诺塔问题" class="headerlink" title="【例2-13】汉诺塔问题"></a>【例2-13】汉诺塔问题</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301212841660.png" alt="image-20220301212841660" style="zoom:67%;" /></p>
-<ul>
-<li>n为计算规模</li>
-<li>核心操作为移动盘子 </li>
-<li>依据递推公式，两次递推之间，执行一次移动操作，因此有如下推导过程：<br>$T(n) =2T(n-1)+1$</li>
-</ul>
-<blockquote>
-<p>$T(n) =2T(n-1)+1 \\<br>=2[2T(n-2)+1]+1 \\ =2^2T(n-2)+2+1 \\<br>=2^2[2T(n-3)+1]+2+1 \\ = 2^3T(n-3)+2^2+2+1 …… \\<br>=2^{i-1}[2T(n-i)+1]+2^{i-2}+2^{i-3}…+2^0 \\ = 2^iT(n-i)+ 2^{i}-1 …… \\<br>=2^{n-1}T(n-(n-1))+ 2^{n-1}-1 \\ =2^{n-1}T(1)+ 2^{n-1}-1=2^n-1 \$</p>
-</blockquote>
-<p><strong>谨慎使用递归算法，它们的简洁可能会掩盖其低效率的事实</strong></p>
-<h5 id="【例2-14】试分析二路归并排序算法的时间复杂度"><a href="#【例2-14】试分析二路归并排序算法的时间复杂度" class="headerlink" title="【例2-14】试分析二路归并排序算法的时间复杂度"></a>【例2-14】试分析二路归并排序算法的时间复杂度</h5><blockquote>
-<p>二路归并排序：二分 + 合并（简单插入排序）</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301213658379.png" alt="image-20220301213658379" style="zoom:67%;" /></p>
-<p>对于Merge，输入是两个排好序的数组。</p>
-<blockquote>
-<p>计算两个数组的长度</p>
-<p>重构$A$数组，将前半部分存入$B$，后半部分存入$C$</p>
-<p>依次比较$B$和$C$元素大小，按顺序放回$A$</p>
-<p>处理$B$或$C$剩余元素，放回$A$</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301213722688.png" alt="image-20220301213722688" style="zoom:67%;" /></p>
-<p>空间复杂度：上界是$n^2$，下界是$logn \times n$</p>
-<p>【思考题】考虑完全二叉树的先根遍历，找最大值的时间复杂度</p>
-<h3 id="定理2-6（主定理）——重要内容"><a href="#定理2-6（主定理）——重要内容" class="headerlink" title="定理2.6（主定理）——重要内容"></a>定理2.6（主定理）——重要内容</h3><p><strong>定理2.6</strong> 主定理（Master Theorem）设$a \geq 1,b \geq 1$为常数，$f(n)$为函数，$T(n)$为<strong>非负整数</strong>，且$T(n) = aT(n/b) + f(n)$</p>
-<p>则有以下结果：</p>
-<ul>
-<li><p>若$f(n) = O(n^{log_ba-\epsilon}), \epsilon &gt; 0$，那么$T(n) = \Theta(n^{log_ba})$；</p>
-<blockquote>
-<p>必须把$\epsilon$找出来</p>
-</blockquote>
-</li>
-<li><p>若$f(n) = \Theta (n^{log_ba})$，那么$T(n) = \Theta (n^{log_ba} logn)$；</p>
-</li>
-<li><p>若$f(n) = Ω(n^{log_ba+\epsilon}), \epsilon &gt; 0$，且对于常数$c&lt;1$和所有充分大的$n$有$af(n/b) \leq cf(n)$，那么$T(n) = \Theta(f(n))$；</p>
-<blockquote>
-<p>不能使用主定理，可以使用递归式</p>
-</blockquote>
-</li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231134023.png" alt="image-20220301231134023" style="zoom:67%;" /></p>
-<blockquote>
-<p>必须让$T(n)$中的参数$n$收敛</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231214720.png" alt="image-20220301231214720" style="zoom:67%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231230067.png" alt="image-20220301231230067" style="zoom:67%;" /></p>
-<blockquote>
-<p>（3）的整体证明思路：$T(n) = O(f(n)) \and T(n) = \Omega(f(n))$</p>
-<p>①显然有：$T(n) \geq f(n)$</p>
-<p>②需要证明$T(n) \leq \Theta(f(n))$。利用条件$af(n/b) \leq cf(n)$进行放缩</p>
-<p>最后需要用上$f(n)$的阶比$c_1n^{log_ba}$高的条件，使用定理2.2进行合并</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231245912.png" alt="image-20220301231245912" style="zoom:67%;" /></p>
-<p>【思考题】</p>
-<ul>
-<li>自己证明一次主定理</li>
-<li>用主定理证明归并排序的时间复杂度</li>
-</ul>
-<h5 id="【例2-15】求解递推方程-T-n-9T-n-3-n"><a href="#【例2-15】求解递推方程-T-n-9T-n-3-n" class="headerlink" title="【例2-15】求解递推方程$T(n) = 9T(n/3) + n$"></a>【例2-15】求解递推方程$T(n) = 9T(n/3) + n$</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231338193.png" alt="image-20220301231338193" style="zoom:67%;" /></p>
-<h5 id="【例2-16】求解递推方程-T-n-T-2n-3-1"><a href="#【例2-16】求解递推方程-T-n-T-2n-3-1" class="headerlink" title="【例2-16】求解递推方程$T(n) = T(2n/3) + 1$"></a>【例2-16】求解递推方程$T(n) = T(2n/3) + 1$</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231416380.png" alt="image-20220301231416380" style="zoom:67%;" /></p>
-<h5 id="【例2-17】求解递推方程-T-n-3T-n-4-nlogn"><a href="#【例2-17】求解递推方程-T-n-3T-n-4-nlogn" class="headerlink" title="【例2-17】求解递推方程$T(n) = 3T(n/4) + nlogn$"></a>【例2-17】求解递推方程$T(n) = 3T(n/4) + nlogn$</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231458494.png" alt="image-20220301231458494" style="zoom:67%;" /></p>
-<p>递归树</p>
-<p>表示每一层拥有的计算量</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231522615.png" alt="image-20220301231522615" style="zoom:67%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231537308.png" alt="image-20220301231537308" style="zoom:67%;" /></p>
-<h5 id="【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设-n-2-k-："><a href="#【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设-n-2-k-：" class="headerlink" title="【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设$n = 2^k$："></a>【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设$n = 2^k$：</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231641596.png" alt="image-20220301231641596" style="zoom:67%;" /></p>
-]]></content>
-      <categories>
-        <category>2022 Spring</category>
-        <category>算法设计与分析</category>
-      </categories>
-      <tags>
-        <tag>algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>算法设计与分析：第4章 蛮力法</title>
     <url>/algorithm/algorithm-ch4/</url>
     <content><![CDATA[<p><strong>蛮力法（brute force）</strong>：直接基于问题的描述和所涉及的概念定义的进行算法设计，简单而直接。</p>
@@ -1203,209 +1203,6 @@ T(n) = \sum_{i = 0}^{n-1}T(i+1) + C \\
       </tags>
   </entry>
   <entry>
-    <title>计算机组成原理：第1章 计算机系统概论</title>
-    <url>/computer_organization/computer-organization-ch1/</url>
-    <content><![CDATA[<h1 id="1-1-计算机系统简介"><a href="#1-1-计算机系统简介" class="headerlink" title="1.1 计算机系统简介"></a>1.1 计算机系统简介</h1><h2 id="一、计算机的软硬件概念"><a href="#一、计算机的软硬件概念" class="headerlink" title="一、计算机的软硬件概念"></a>一、计算机的软硬件概念</h2><h3 id="1-计算机系统"><a href="#1-计算机系统" class="headerlink" title="1.计算机系统"></a>1.计算机系统</h3><script type="math/tex; mode=display">
-计算机系统
-\begin{cases}
-\color{red}{硬件} \quad \color{black}{计算机的实体（主机、外设等）}\\
-\color{red}{软件} \quad \color{black}{由具有各类特殊功能的信息（程序）组成}\\
-\end{cases}</script><script type="math/tex; mode=display">
-软件
-\begin{cases}
-\color{red}{系统软件} \quad \color{black}{用来管理整个计算机系统}\\
-\qquad \qquad \qquad 语言处理程序\\
-\qquad \qquad \qquad 操作系统\\
-\qquad \qquad \qquad 服务性程序\\
-\qquad \qquad \qquad 数据库管理系统\\
-\qquad \qquad \qquad 网络软件\\
-\color{red}{应用软件} \quad \color{black}{按任务需要编制成的各种程序}\\
-\end{cases}</script><span id="more"></span>
-<h3 id="2-计算机的解题过程"><a href="#2-计算机的解题过程" class="headerlink" title="2.计算机的解题过程"></a>2.计算机的解题过程</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221202042609.png" alt="image-20220221202042609" style="zoom: 67%;" /></p>
-<h2 id="二、计算机系统的层次结构"><a href="#二、计算机系统的层次结构" class="headerlink" title="二、计算机系统的层次结构"></a>二、计算机系统的层次结构</h2><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221202241077.png" alt="image-20220221202241077" style="zoom:67%;" /></p>
-<p>实际机器$M_1$和微程序机器$M_0$构成硬件。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221202406326.png" alt="image-20220221202406326" style="zoom:67%;" /></p>
-<h2 id="三、计算机体系结构和计算机组成"><a href="#三、计算机体系结构和计算机组成" class="headerlink" title="三、计算机体系结构和计算机组成"></a>三、计算机体系结构和计算机组成</h2><p>相关资料：<a href="https://blog.csdn.net/xifengw/article/details/99717216">微机原理、计算机组成原理与计算机体系结构之间的关系</a></p>
-<ul>
-<li><p>体系结构关注：计算机有哪些功能？</p>
-</li>
-<li><p>组成原理关注：计算机的功能如何实现？</p>
-</li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221202446815.png" alt="image-20220221202446815" style="zoom:67%;" /></p>
-<h1 id="1-2-计算机系统组成"><a href="#1-2-计算机系统组成" class="headerlink" title="1.2 计算机系统组成"></a>1.2 计算机系统组成</h1><h2 id="一、冯·诺依曼计算机的特点"><a href="#一、冯·诺依曼计算机的特点" class="headerlink" title="一、冯·诺依曼计算机的特点"></a>一、冯·诺依曼计算机的特点</h2><ol>
-<li>计算机由五大部件组成：<strong>存储器、运算器、控制器、输入设备、输出设备</strong></li>
-<li>指令和数据以同等地位存于<code>存储器</code>，可按地址寻访</li>
-<li>指令和数据用二进制表示</li>
-<li>指令由<code>操作码</code>和<code>地址码</code>组成——具体内容详见ch7</li>
-<li>存储程序：指令在存储器内按顺序存放。指令通常<strong>按顺序执行</strong>，在特定条件下可根据运算结果或设定的条件改变执行顺序</li>
-<li>以<code>运算器</code>为中心：I/O设备与存储器间的数据传送通过运算器完成</li>
-</ol>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221203119436.png" alt="image-20220221203119436" style="zoom:67%;" /></p>
-<p>注：</p>
-<ol>
-<li>运算器：<strong>算术运算和逻辑运算</strong>。将中间结果暂存在运算器内</li>
-<li>存储器：存放数据和程序</li>
-<li>控制器：控制、<strong>指挥</strong>程序和数据的输入、运行以及处理运算结果</li>
-<li>输入设备（键鼠）：转化为机器能够识别的信息形式</li>
-<li>输出设备（打印机输出、显示器输出）：将运算结果转化为人们熟悉的信息形式</li>
-</ol>
-<h2 id="二、计算机硬件框图"><a href="#二、计算机硬件框图" class="headerlink" title="二、计算机硬件框图"></a>二、计算机硬件框图</h2><h3 id="1-以存储器为中心的计算机硬件框图"><a href="#1-以存储器为中心的计算机硬件框图" class="headerlink" title="1.以存储器为中心的计算机硬件框图"></a>1.以存储器为中心的计算机硬件框图</h3><script type="math/tex; mode=display">
-\rightarrow \quad 控制线 \\
-\dashrightarrow \quad 反馈线 \\
-\Rightarrow \quad 数据线 \\</script><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221203951631.png" alt="image-20220221203951631" style="zoom:67%;" /></p>
-<h3 id="2-现代计算机硬件框图"><a href="#2-现代计算机硬件框图" class="headerlink" title="2.现代计算机硬件框图"></a>2.现代计算机硬件框图</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221204027723.png" alt="image-20220221204027723" style="zoom:67%;" /></p>
-<ul>
-<li>CPU（中央处理器）：Central Processing Unit。计算机核心部件，由<strong>运算器</strong>和<strong>控制器</strong>组成</li>
-<li>ALU（算逻部件/算术逻辑单元）：Arithmetic &amp; Logical Unit。运算器核心部件，<strong>进行逻辑运算和算术运算</strong></li>
-<li>CU（控制单元）：Control Unit。控制器核心部件，产生微操作命令序列。<strong>用来解释存储器中的指令，发出各种操作命令来执行指令</strong></li>
-<li>I/O设备：Input/Output Equipment。</li>
-</ul>
-<h2 id="三、计算机的工作步骤"><a href="#三、计算机的工作步骤" class="headerlink" title="三、计算机的工作步骤"></a>三、计算机的工作步骤</h2><h3 id="1-上机前的准备"><a href="#1-上机前的准备" class="headerlink" title="1.上机前的准备"></a>1.上机前的准备</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221205318632.png" alt="image-20220221205318632" style="zoom:67%;" /></p>
-<h4 id="编程举例"><a href="#编程举例" class="headerlink" title="编程举例"></a>编程举例</h4><ul>
-<li>运算：取被操作数、运算操作、暂存中间结果</li>
-<li>存储器：存储运算结果</li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221205352807.png" alt="image-20220221205352807" style="zoom:67%;" /></p>
-<h4 id="指令格式举例"><a href="#指令格式举例" class="headerlink" title="指令格式举例"></a>指令格式举例</h4><p>详见ch7。寻址、特征位、不同格式</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221205704580.png" alt="img" style="zoom:67%;" /></p>
-<p>注：打印机的打印操作需要多条指令</p>
-<p>参考资料：<a href="https://blog.csdn.net/weixin_34112181/article/details/89566814">打印机主流的指令类型（ESC命令集+CPCL命令集+TSPL命令集）</a></p>
-<h4 id="计算-ax-2-bx-c-程序清单"><a href="#计算-ax-2-bx-c-程序清单" class="headerlink" title="计算$ax^2+bx+c$程序清单"></a>计算$ax^2+bx+c$程序清单</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221210015842.png" alt="image-20220221210015842" style="zoom:67%;" /></p>
-<h3 id="2-计算机的解题过程-1"><a href="#2-计算机的解题过程-1" class="headerlink" title="2.计算机的解题过程"></a>2.计算机的解题过程</h3><h4 id="（1）存储器的基本组成"><a href="#（1）存储器的基本组成" class="headerlink" title="（1）存储器的基本组成"></a>（1）存储器的基本组成</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221210124089.png" alt="image-20220221210124089" style="zoom:67%;" /></p>
-<ul>
-<li>MAR（存储器地址寄存器）：Memory Address Register</li>
-<li>MDR（主存数据寄存器）：Memory Data Register </li>
-<li>数据总线、读写控制</li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221210629442.png" alt="image-20220221210629442" style="zoom:67%;" /></p>
-<script type="math/tex; mode=display">
-计算过程： \\
-由MAR = 4位，存储单元的个数 = 2^4 = 16 \\
-由MDR = 8位，存储字长 = 8 \\</script><h4 id="（2）运算器的基本组成及操作过程"><a href="#（2）运算器的基本组成及操作过程" class="headerlink" title="（2）运算器的基本组成及操作过程"></a>（2）运算器的基本组成及操作过程</h4><p>规定动作的处理</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221210828885.png" alt="image-20220221210828885" style="zoom:67%;" /></p>
-<ul>
-<li><p>ACC（累加器）：Accumulator。一种<strong>寄存器</strong>，能<strong>存放运算前被操作数</strong>，也能<strong>储存计算产生的中间结果</strong>。</p>
-<blockquote>
-<p>如果没有像累加器这样的寄存器，那么在每次计算 (加法，乘法，移位等等) 后就必须要把结果写回到<a href="https://baike.baidu.com/item/内存">内存</a>，也许马上就得读回来。然而存取主存的速度是比从<a href="https://baike.baidu.com/item/算术逻辑单元">算术逻辑单元</a>(ALU)到有直接路径的累加器存取更慢。</p>
-</blockquote>
-</li>
-<li><p>MQ（乘商寄存器）：Multiple-Quotient Register。负责数据的乘法与除法运算并可<strong>保存运算结果</strong>，是运算器的基本组成部分。<strong>也可保存运算结果的低位</strong></p>
-</li>
-</ul>
-<p>注：上图缺少了F寄存器（状态/标志寄存器）</p>
-<ul>
-<li><p>FR（标志寄存器）：Flags Register</p>
-<p>具有<strong>条件标志：进位、奇偶、辅助进位、零、符号、溢出标志</strong>，<strong>控制标记：跟踪、中断、方向标记</strong></p>
-</li>
-</ul>
-<p>参考资料：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/256470714">标志寄存器</a></p>
-<p><a href="https://baike.baidu.com/item/%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8/5757541#:~:text=%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%88%E7%A7%B0%20%E7%A8%8B%E5%BA%8F%E7%8A%B6%E6%80%81%E5%AD%97%20%EF%BC%88%E5%A4%96%E8%AF%AD%E7%BC%A9%E5%86%99%EF%BC%9APSW%E3%80%81%E5%A4%96%E8%AF%AD%E5%85%A8%E7%A7%B0%EF%BC%9AProgram,Status%20Word%EF%BC%89%E3%80%82%20%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA16%E4%BD%8D%E7%9A%84%E5%AD%98%E6%94%BE%E6%9D%A1%E4%BB%B6%E6%A0%87%E5%BF%97%E3%80%81%E6%8E%A7%E5%88%B6%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8C%E4%B8%BB%E8%A6%81%E7%94%A8%E4%BA%8E%E5%8F%8D%E6%98%A0%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8CALU%E8%BF%90%E7%AE%97%E7%BB%93%E6%9E%9C%E7%9A%84%E6%9F%90%E4%BA%9B%E7%89%B9%E5%BE%81%E5%8F%8A%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4%E7%9A%84%E6%89%A7%E8%A1%8C%E3%80%82">标志寄存器-百度百科</a></p>
-<h5 id="①加法操作过程"><a href="#①加法操作过程" class="headerlink" title="①加法操作过程"></a>①加法操作过程</h5><p>[ACC]看作被加数。</p>
-<p>从主存中取M地址号单元内的加数[M]，送至X寄存器中。</p>
-<p>将被加数[ACC]与加数[X]相加，结果（和）保留在ACC中。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221211851184.png" alt="image-20220221211851184" style="zoom:67%;" /></p>
-<h5 id="②减法操作过程"><a href="#②减法操作过程" class="headerlink" title="②减法操作过程"></a>②减法操作过程</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221211932915.png" alt="image-20220221211932915" style="zoom:67%;" /></p>
-<h5 id="③乘法操作过程"><a href="#③乘法操作过程" class="headerlink" title="③乘法操作过程"></a>③乘法操作过程</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221212003668.png" alt="image-20220221212003668" style="zoom:67%;" /></p>
-<h5 id="④除法操作过程"><a href="#④除法操作过程" class="headerlink" title="④除法操作过程"></a>④除法操作过程</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221212038827.png" alt="image-20220221212038827" style="zoom:67%;" /></p>
-<h4 id="（3）控制器的基本组成"><a href="#（3）控制器的基本组成" class="headerlink" title="（3）控制器的基本组成"></a>（3）控制器的基本组成</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221212108592.png" alt="image-20220221212108592" style="zoom:67%;" /></p>
-<ul>
-<li>PC（程序计数器）：Program Counter。存放<strong>欲执行的指令的地址</strong>，并可自动<strong>生成下一条指令地址</strong></li>
-<li>IR（指令寄存器）：Instruction Register。存放当前<strong>正在执行的指令</strong></li>
-<li>CU（控制单元）：Control Unit。控制器核心部件，产生微操作命令序列。<strong>用来解释存储器中的指令，发出各种操作命令来执行指令</strong></li>
-</ul>
-<h4 id="（4）主机完成一条指令的过程"><a href="#（4）主机完成一条指令的过程" class="headerlink" title="（4）主机完成一条指令的过程"></a>（4）主机完成一条指令的过程</h4><h5 id="以取数指令为例"><a href="#以取数指令为例" class="headerlink" title="以取数指令为例"></a>以取数指令为例</h5><ol>
-<li>程序计数器获得指令地址的初始值，</li>
-<li>MAR从存储体中获得指令地址对应的指令，通过地址总线送到MAR</li>
-<li>进入读取周期，把指令送至MDR</li>
-<li>通过数据总线送达指令至IR</li>
-<li>开始执行周期：进入CU，分析指令</li>
-<li>开始执行指令，指令寄存器进入MAR，给出数据地址</li>
-<li>通过MAR读取数据地址</li>
-<li>读周期，读取数据</li>
-<li>送达CPU的ACC中，修改PC</li>
-</ol>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220223212632134.png" alt="img" style="zoom: 50%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221212204068.png" alt="image-20220221212204068" style="zoom:67%;" /></p>
-<h5 id="以存数指令为例"><a href="#以存数指令为例" class="headerlink" title="以存数指令为例"></a>以存数指令为例</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221212232671.png" alt="image-20220221212232671" style="zoom:67%;" /></p>
-<p>ch4详细讨论</p>
-<p>一个CPU（运算器+控制器） + 存储器 + I/O系统 + 总线</p>
-<p>完成指令</p>
-<h4 id="（5）程序的运行过程"><a href="#（5）程序的运行过程" class="headerlink" title="（5）程序的运行过程"></a>（5）程序的运行过程</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220223162855834.png" alt="image-20220223162855834" style="zoom:67%;" /></p>
-<ul>
-<li>PC地址加法器</li>
-</ul>
-<h1 id="1-3-计算机硬件的主要技术指标"><a href="#1-3-计算机硬件的主要技术指标" class="headerlink" title="1.3 计算机硬件的主要技术指标"></a>1.3 计算机硬件的主要技术指标</h1><h3 id="1-机器字长"><a href="#1-机器字长" class="headerlink" title="1.机器字长"></a>1.机器字长</h3><p>机器字长：CPU <strong>一次</strong>能处理数据的<strong>位数</strong>。与CPU中的<strong>寄存器位数</strong>有关</p>
-<ul>
-<li><p>影响精度</p>
-<blockquote>
-<p>字长越长，数的表示范围越大，精度越高</p>
-</blockquote>
-</li>
-<li><p>影响运算速度</p>
-<blockquote>
-<p>若：CPU字长较短，又要运算位数较多的数据，需要经过多次运算才能完成，影响机器的运算速度</p>
-</blockquote>
-</li>
-<li><p>影响硬件的造价</p>
-<blockquote>
-<p>直接影响加法器（或ALU）、数据总线以及存储字长的位数</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="2-运算速度"><a href="#2-运算速度" class="headerlink" title="2.运算速度"></a>2.运算速度</h3><ul>
-<li><p>主频：计算机工作统一步调，时钟周期的倒数</p>
-<p>晶振产生波形，与工作频率相同</p>
-</li>
-<li><p>（测试的方法）吉布森法</p>
-</li>
-<li><p>MIPS（每秒钟执行百万条指令）：Million Instructions Per Second</p>
-</li>
-</ul>
-<ul>
-<li><p>CPI （执行一条指令所需时钟周期数）：Clock Cycle Per Instruction</p>
-<p>一条指令对应波形的节拍数</p>
-</li>
-<li><p>FLOPS（每秒浮点运算次数）：Floating-point Operations Per Second</p>
-<p>浮点数的加法和乘法速度不同</p>
-</li>
-</ul>
-<h3 id="3-存储容量"><a href="#3-存储容量" class="headerlink" title="3.存储容量"></a>3.存储容量</h3><p>存放二进制信息的总位数</p>
-<p><strong>主存容量</strong>：主存中存放二进制代码的总位数。、</p>
-<p><strong>MAR的位数反映存储单元的个数（$2^N$​​），MDR的位数反映存储字长（$M$​）</strong></p>
-<ol>
-<li><p>存储单元个数$\times$​存储字长</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220223163918172.png" alt="image-20220223163918172"></p>
-</li>
-<li><p>字节数——1个字节被定义为8位二进制代码</p>
-</li>
-</ol>
-<p><strong>辅存容量</strong>——字节数</p>
-<p>80GB，1GB = $2^{30}$B</p>
-<h2 id="课后习题"><a href="#课后习题" class="headerlink" title="课后习题"></a>课后习题</h2><p>1、冯·诺伊曼计算机的特点（5条）</p>
-<p>2、计算机如何区分存储器内的指令和数据</p>
-<ul>
-<li><p>通过<strong>不同的时间段</strong>来区分指令和数据</p>
-<p><u>取指令阶段</u>——指令；</p>
-<p><u>执行指令阶段</u>——数据。</p>
-</li>
-<li><p>通过<strong>地址来源</strong>区分</p>
-<p><u>PC（程序计数器）</u>提供的存储地址取出——指令；</p>
-<p><u>指令地址码</u>提供的存储地址取出——数据。</p>
-</li>
-</ul>
-<p>3、计算机硬件组成框图，各部件作用，计算机硬件主要及技术指标</p>
-]]></content>
-      <categories>
-        <category>2022 Spring</category>
-        <category>计算机组成原理</category>
-      </categories>
-      <tags>
-        <tag>computer organization</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>算法设计与分析：第5章 分治法</title>
     <url>/algorithm/algorithm-ch5/</url>
     <content><![CDATA[<h2 id="5-1-分治法的设计技术"><a href="#5-1-分治法的设计技术" class="headerlink" title="5.1 分治法的设计技术"></a>5.1 分治法的设计技术</h2><ul>
@@ -1679,530 +1476,618 @@ T(n) = 2T(n/2) + \Theta(n)</script><p>由主定理，可以得到：$T(n) = \The
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/undefined/hello-world/</url>
-    <content><![CDATA[<p>你好，Hexo！你好，世界！</p>
-<p>欢迎来到我的博客</p>
-<p>我将持续记录日常学习、生活的点点滴滴</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>数理逻辑：第1节 命题逻辑的基本概念</title>
-    <url>/mathematical_logic/mathematical-logic-ch1/</url>
-    <content><![CDATA[<h1 id="1-1-命题与联结词"><a href="#1-1-命题与联结词" class="headerlink" title="1.1 命题与联结词"></a>1.1 命题与联结词</h1><h2 id="命题与真值"><a href="#命题与真值" class="headerlink" title="命题与真值"></a>命题与真值</h2><ul>
-<li>命题：能<strong>唯一</strong>确定<strong>真假值</strong>的<strong>陈述句</strong></li>
-<li>命题的真值：一个命题的真or假</li>
-<li>真值的取值：真or假</li>
-<li>真命题与假命题：由内容是否符合实际情况决定</li>
-</ul>
-<p>注意：</p>
-<ul>
-<li>感叹句、祈使句、疑问句、<strong>悖论</strong>不是命题</li>
-<li>判断结果不唯一确定的陈述句不是命题（针对真值多种取值的情况）</li>
-</ul>
-<span id="more"></span>
-<h2 id="命题分类"><a href="#命题分类" class="headerlink" title="命题分类"></a>命题分类</h2><ul>
-<li>简单命题（原子命题）：不能分解成更简单的命题（基本单位）</li>
-<li>命题符合：由简单命题通过<strong>联结词</strong>联结而成的命题</li>
-<li>联结词有5类：与（$\land$​​）、或（$\vee$​）、非（$\neg$​）、蕴含（如果…那么（则）…）、等价（当且仅当，$\Leftrightarrow$​​）。$\neg$​为单联结词</li>
-</ul>
-<h2 id="简单命题符号化"><a href="#简单命题符号化" class="headerlink" title="简单命题符号化"></a>简单命题符号化</h2><ul>
-<li>用小写英文字母$p,q,r,…,$$p_i$,$q_i$,$r_i(i\geq1)$表示简单命题</li>
-<li>用”1“表示真，用”0“表示假</li>
-</ul>
-<h2 id="否定、合取、析取联结词"><a href="#否定、合取、析取联结词" class="headerlink" title="否定、合取、析取联结词"></a>否定、合取、析取联结词</h2><ul>
-<li><p><strong>定义1</strong>：设 p为命题，<strong>复合命题</strong>“非p”(或“p的否定”) 称为 p的<strong>否定式</strong>，记作$\neg$​p，符号$\neg$​称作<strong>否定联结词</strong>。 </p>
-<p>规定: $\neg$​p 为真当且仅当<u>p为假</u>。</p>
-</li>
-<li><p><strong>定义2</strong>：设p,q为两个命题，复合命题“p并且q”(或 “p 与 q”)称为 p与q的<strong>合取式</strong>，记作p∧q，∧称作<strong>合取联结词</strong>。</p>
-<p>规定: p∧q为真当且仅当<u>p与q同时为真</u>。</p>
-</li>
-<li><p><strong>定义3</strong>：设p, q为两个命题，复合命题“p或q”称作 p 与 q 的<strong>析取式</strong>，记作p∨q，∨称作<strong>析取联结词</strong>。 </p>
-<p>规定: p∨q为假当且仅当<u>p与q同时为假</u>。</p>
-</li>
-<li><p>关于”或“：$\begin{cases} 相容或：可兼 \qquad（例如：我上街买矿泉水或者买饮料） \\ 排斥或（异或）：不相容或,不可兼 \qquad （例如：某人星期一来或者星期二来） \\ \end{cases}$​</p>
-<blockquote>
-<p>又如：</p>
-<p>ab = 0——a = 0 或 b = 0 </p>
-<p>(a-1)·(a-2) = 0——a = 1 或 a = 2</p>
-</blockquote>
-<p>规定：数学上取<strong>相容或</strong></p>
-<p>排斥或：($\neg$ p $\land$q) $\vee$ (p$\land$$\neg$ q)</p>
-</li>
-</ul>
-<h2 id="蕴含联结词"><a href="#蕴含联结词" class="headerlink" title="蕴含联结词"></a>蕴含联结词</h2><ul>
-<li><p><strong>定义4</strong>：设p, q为两个命题，复合命题”如果p, 则q” 称作p与q的<strong>蕴涵式</strong>，记作p→q， </p>
-<p>并称p是蕴涵式的<strong>前件</strong>， q为蕴涵式的<strong>后件</strong>，→称作<strong>蕴涵联结词</strong>。 </p>
-<p>规定：p→q为假当且仅当<u>p为真q为假</u>。</p>
-<blockquote>
-<p>蕴含举例：</p>
-<p>对任何x，如果x&gt;3，则$x^2$&gt;9 真命题 </p>
-<p>令x=4，如果 4&gt;3，则16&gt;9（前提真，结论真） </p>
-<p>令x=-4，如果 -4&gt;3，则16&gt;9（前提假，结论真）</p>
-<p>令x=-2，如果 -2&gt;3, 则4&gt;9（前提假，结论假）——<strong>整个</strong>命题为真</p>
-<p><strong>对于该蕴含命题（真命题），不存在前提真，结论假的情况</strong></p>
-</blockquote>
-</li>
-<li><p>要证明符合命题：如果p, 则q</p>
-<ul>
-<li>一般情况下，<strong>由前提真，证明结论真</strong></li>
-<li>特殊情况下，<strong>前提为假，没有什么可做的</strong></li>
-</ul>
-<blockquote>
-<p>可以用来证明</p>
-<p>证：空集是任意集合的子集</p>
-<p>任何集合S，$\oslash \subseteq S$​​​ </p>
-<p>由子集的定义</p>
-<p><strong>任何x，若$x \in \oslash$​，则$x \in S$​​​​ </strong>——空证明</p>
-</blockquote>
-</li>
-<li><p>关于蕴含联结词的一些概念</p>
-<ul>
-<li><p>p→q 的逻辑关系：（有p一定有q，没有q一定没有p——逆否关系）——p$\subseteq$​​q</p>
-<ul>
-<li>q为p的必要条件</li>
-<li>p为q的充分条件</li>
-</ul>
-<blockquote>
-<p>p$\rightarrow$​​​q  $\Leftrightarrow$​​  $\neg$​q$\to$$\neg$​p</p>
-<p>p与q等价：$\begin{cases} p \to q \\ \neg p \to \neg q  \end{cases}$</p>
-</blockquote>
-</li>
-<li><p>“如果 p, 则 q” 有很多不同的表述方法：<strong>（需要好好理解）</strong></p>
-<ul>
-<li><p>若p，就q</p>
-</li>
-<li><p>只要p，就q</p>
-</li>
-<li><p><strong>p仅当q</strong></p>
-<blockquote>
-<p>p当且仅当q</p>
-<p>$\begin{cases} p当q——当有q就有p（q为充分条件，写在→前面）\\  p仅当q——仅当q，才p（q为必要条件，写在→后面）/除非q，才p：p→q \\ \end{cases}$ </p>
-</blockquote>
-</li>
-<li><p><strong>只有q，才p</strong></p>
-</li>
-<li><p>除非q，才p</p>
-</li>
-<li><p>除非q，否则非p（双重否定）</p>
-<blockquote>
-<p>除非q，否则p：$\neg p \rightarrow q$​</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>当 p 为假时，p→q 恒为真，称为空证明</p>
-</li>
-<li><p>常出现的错误：不分充分与必要条件</p>
-</li>
-<li><p>在自然语言中，“如果 p , 则 q ” ，p, q具有某种内在联系；</p>
-<p><strong>但在数理逻辑中， p, q可以无任何内在联系</strong></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="等价联结词"><a href="#等价联结词" class="headerlink" title="等价联结词"></a>等价联结词</h2><ul>
-<li><p><strong>定义5</strong>：设 p, q为两个命题，复合命题“p当且仅当q” 称作p与q的<strong>等价式</strong>，记作p$\leftrightarrow$​q，$\leftrightarrow$​称作<strong>等价联结词</strong>。 </p>
-<p>规定: <u>p$\leftrightarrow$​​q为真</u>当且仅当<u>p与q同时为真或同时为假。</u></p>
-<p>​         p$\leftrightarrow$q 的逻辑关系：p与q互为充分必要条件。</p>
-</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>基本联结词：构成一层</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220225084811509.png" alt="image-20220225084811509" style="zoom:67%;" /></p>
-<p><strong>注意优先级：括号$&gt;$非$&gt;$与$&gt;$或$&gt;$蕴含$&gt;$等价</strong></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220225085015688.png" alt="image-20220225085015688" style="zoom:67%;" /></p>
-<h1 id="1-2-命题公式及其赋值"><a href="#1-2-命题公式及其赋值" class="headerlink" title="1.2 命题公式及其赋值"></a>1.2 命题公式及其赋值</h1><h2 id="命题变项与合式公式"><a href="#命题变项与合式公式" class="headerlink" title="命题变项与合式公式"></a>命题变项与合式公式</h2><ul>
-<li><p><strong>命题常项</strong>（命题常元）：简单命题（相当于常数或常量）</p>
-</li>
-<li><p><strong>命题变项</strong>（命题变元）：可表示任意命题的变元 （相当于变量）——命题符号，无具体指向</p>
-<p>命题变项不是命题。</p>
-<p>常项与变项均用$ p, q, r, …,$ $p_i$ ,$q_i$ , $r_i$ $, …,$ 等表示。</p>
-<p>将命题变项用联结词和圆括弧按一定的逻辑关系联结起来的符号串称为<strong>合式公式</strong>。</p>
-</li>
-</ul>
-<ul>
-<li><p>当使用联结词集{$\neg$, $\land$, $\vee$, →, $\leftrightarrow$}时，合式公式定义如下：</p>
-<p><strong>定义6</strong>（<strong>合式公式</strong>的递归定义）（也称命题公式，简称公式）：</p>
-<p>​    （1）单个命题变项和命题常项是合式公式, 称作<strong>原子命题公式</strong></p>
-<p>​    （2）若A是合式公式，则 ($\neg$​A)也是合式公式</p>
-<p>​    （3）若A, B是合式公式，则(A$\land$B), (A$\vee$B), (A→B),  (A$\leftrightarrow$B)也是合式公式</p>
-<p>​    （4）只有有限次地应用(1)~(3) 形成的符号串是合式公式</p>
-<p>设A是合式公式，B为A的一部分，若B也是合式公式，则称B为A的<strong>子公式</strong>。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220225090704496.png" alt="image-20220225090704496" style="zoom:67%;" /></p>
-</li>
-</ul>
-<h2 id="合式公式的层次"><a href="#合式公式的层次" class="headerlink" title="合式公式的层次"></a>合式公式的层次</h2><ul>
-<li><p><strong>定义7</strong>：</p>
-<p>(1) 若公式A是单个命题变项，则称A为<strong>0层公式</strong>。 </p>
-<blockquote>
-<p>如：p, q, r</p>
-</blockquote>
-<p>(2) 称 $A$ 是$n+1 \ (n \geq 0)$ 层公式是指下面情况之一： </p>
-<p>​    (a) $A=\neg B$，$B$ 是 $n$ 层公式； </p>
-<p>​    (b)$ A=B \land C$，其中$B,C $分别为$ i $层和 $j$ 层公式，且 $n=max(i,j)$​；</p>
-<p>​    (c)$A=B \vee C $, 其中 $B,C $的层次及 $n$ 同(b)； </p>
-<p>​    (d) $A=B \to C$​, 其中$B,C$ 的层次及 $n$ 同(b)； </p>
-<p>​    (e) $A=B \leftrightarrow C$, 其中$B,C$ 的层次及 $n$ 同(b)。 </p>
-<p>(3) 若公式$A$的层次为$k$, 则称$A$为<strong>k层公式</strong>。</p>
-<blockquote>
-<p>例如：</p>
-<p>公式 A = p，B =$\neg$​p，C=$\neg$​p→q，D=$\neg$​(p→q)$\leftrightarrow$​r,  E=(($\neg$​p$\land$​q) →r) $\leftrightarrow$​($\neg$r$\vee$s) </p>
-<p>分别为0层，1层，2层，3层，4层公式。</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="公式赋值"><a href="#公式赋值" class="headerlink" title="公式赋值"></a>公式赋值</h2><ul>
-<li><p><strong>定义8</strong>：设$p_1 , p_2 , … , p_n$是出现在公式$A$中的全部命题变项, 给$p_1 , p_2 , … , p_n$各指定一个真值, 称为对$A$的一个赋值或解释。</p>
-<p>若使$A$为$1$, 则称这组值为$A$的成真赋值;  </p>
-<p>若使$A$为$0$, 则称这组值为$A$的成假赋值。</p>
-</li>
-<li><p>几点说明：<strong>（重要）</strong></p>
-<ul>
-<li><p>$A$中仅出现 $p_1 , p_2 , … , p_n，$给$A$赋值$\alpha = \alpha_1\alpha_2…\alpha_n$是指$p_1 =\alpha_1 , p_2 = \alpha_2 , …, p_n = \alpha_n , \alpha_i = 0$或$1$, $\alpha_i$之间不加标点符号。</p>
-<p>按照命题符号的顺序赋值</p>
-</li>
-<li><p>$A$中仅出现$ p, q, r, …, $给$A$赋值$\alpha_1$$\alpha_2\alpha_3…$是指$ p=\alpha_1 , q=\alpha_2 , r=\alpha_3 …$</p>
-</li>
-<li><p>含$n$个命题变项的公式有$2^n$个赋值。</p>
-<blockquote>
-<p>如：</p>
-<p>000, 010, 101, 110是  $\neg (p→q)\leftrightarrow r$的成真赋值 </p>
-<p>001, 011, 100, 111是成假赋值。</p>
-<p>——以上赋值的顺序按照$p, q, r$的顺序给出</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="真值表"><a href="#真值表" class="headerlink" title="真值表"></a>真值表</h2><ul>
-<li><p><strong>定义9</strong>：将命题公式$A$在所有赋值下取值的情况列成表，称作$A$的真值表。</p>
-</li>
-<li><p>构造真值表的步骤</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220225091751888.png" alt="image-20220225091751888" style="zoom:67%;" /></p>
-</li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301200319538.png" alt="image-20220301200319538" style="zoom: 67%;" /></p>
-<blockquote>
-<p><strong>从表中可以看出哪些为成真赋值，那些为成假赋值</strong></p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301200342849.png" alt="image-20220301200342849" style="zoom:50%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301200358601.png" alt="image-20220301200358601" style="zoom:50%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301200413257.png" alt="image-20220301200413257" style="zoom:50%;" /></p>
-<h2 id="公式的类型"><a href="#公式的类型" class="headerlink" title="公式的类型"></a>公式的类型</h2><ul>
-<li><p><strong>定义10</strong>：</p>
-<p>(1) 若$A$在它的任何赋值下均为真，则称$A$为<strong>重言式</strong>或<strong>永真式</strong>；</p>
-<p>(2) 若$A$在它的任何赋值下均为假，则称$A$为<strong>矛盾式</strong>或<strong>永假式</strong>； </p>
-<p>(3) 若$A$不是矛盾式，则称$A$是<strong>可满足式</strong></p>
-<blockquote>
-<p>可满足式包含两种情况</p>
-<p>1.公式的值有时为真，又是为假（非重言式的可满足式）</p>
-<p>2.全部赋值都为真（重言式）</p>
-</blockquote>
-<p>注：重言式是可满足式，但反之不真。</p>
-</li>
-<li><p>真值表的用途：</p>
-<p>（1）求出公式的全部成真赋值与成假赋值；</p>
-<p>（2）判断公式的类型</p>
-</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li><p>主要内容</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220225093212858.png" alt="image-20220225093212858" style="zoom:67%;" /></p>
-</li>
-<li><p>基本要求</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220225143205004.png" alt="image-20220225143205004" style="zoom:67%;" /></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>2022 Spring</category>
-        <category>数理逻辑</category>
-      </categories>
-      <tags>
-        <tag>mathematical logic</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数理逻辑：绪论</title>
-    <url>/mathematical_logic/mathematical-logic-ch0/</url>
-    <content><![CDATA[<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>数理逻辑是用数学的方法研究<strong>推理</strong>，特别是研究数学中的推理</p>
-<p>推理的前提和结论都是命题，命题的真假与<strong>内容是否符合现实</strong>有关。</p>
-<script type="math/tex; mode=display">
-premises 前提 \quad（命题）\\
-\downarrow  \quad reason 推理 \\
-conclusions 结论 \quad （命题）\\</script><span id="more"></span>
-<ol>
-<li><p>正确的推理：从”正确的前提“能得到”正确的结论“的推理。</p>
-<p>推理正确——可推导关系，属于<code>演绎逻辑</code>（与之相对的是<code>归纳逻辑</code>）</p>
-<p>正确的前提：前提为真</p>
-<p>正确的结论：结论为真</p>
-</li>
-<li><p>推理正确与否<strong>与前提和结论中命题是否为真命题没有关系</strong>。</p>
-<p><strong>推理的正确性与命题的逻辑形式有关</strong></p>
-<p><strong>命题内容决定命题的真假</strong></p>
-<script type="math/tex; mode=display">
-命题：
+    <title>计算机组成原理：第1章 计算机系统概论</title>
+    <url>/computer_organization/computer-organization-ch1/</url>
+    <content><![CDATA[<h1 id="1-1-计算机系统简介"><a href="#1-1-计算机系统简介" class="headerlink" title="1.1 计算机系统简介"></a>1.1 计算机系统简介</h1><h2 id="一、计算机的软硬件概念"><a href="#一、计算机的软硬件概念" class="headerlink" title="一、计算机的软硬件概念"></a>一、计算机的软硬件概念</h2><h3 id="1-计算机系统"><a href="#1-计算机系统" class="headerlink" title="1.计算机系统"></a>1.计算机系统</h3><script type="math/tex; mode=display">
+计算机系统
 \begin{cases}
-内容 \\
-逻辑形式（抽象） \\
-\end{cases}</script><blockquote>
-<p>所有中学生打网球（前提）</p>
-<p>王军不打网球（前提）</p>
-<p>王军不是中学生（结论）</p>
-<p>——推理正确，不是所有命题都为真命题</p>
-</blockquote>
-<p>上述推理的逻辑形式为：</p>
+\color{red}{硬件} \quad \color{black}{计算机的实体（主机、外设等）}\\
+\color{red}{软件} \quad \color{black}{由具有各类特殊功能的信息（程序）组成}\\
+\end{cases}</script><script type="math/tex; mode=display">
+软件
+\begin{cases}
+\color{red}{系统软件} \quad \color{black}{用来管理整个计算机系统}\\
+\qquad \qquad \qquad 语言处理程序\\
+\qquad \qquad \qquad 操作系统\\
+\qquad \qquad \qquad 服务性程序\\
+\qquad \qquad \qquad 数据库管理系统\\
+\qquad \qquad \qquad 网络软件\\
+\color{red}{应用软件} \quad \color{black}{按任务需要编制成的各种程序}\\
+\end{cases}</script><span id="more"></span>
+<h3 id="2-计算机的解题过程"><a href="#2-计算机的解题过程" class="headerlink" title="2.计算机的解题过程"></a>2.计算机的解题过程</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221202042609.png" alt="image-20220221202042609" style="zoom: 67%;" /></p>
+<h2 id="二、计算机系统的层次结构"><a href="#二、计算机系统的层次结构" class="headerlink" title="二、计算机系统的层次结构"></a>二、计算机系统的层次结构</h2><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221202241077.png" alt="image-20220221202241077" style="zoom:67%;" /></p>
+<p>实际机器$M_1$和微程序机器$M_0$构成硬件。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221202406326.png" alt="image-20220221202406326" style="zoom:67%;" /></p>
+<h2 id="三、计算机体系结构和计算机组成"><a href="#三、计算机体系结构和计算机组成" class="headerlink" title="三、计算机体系结构和计算机组成"></a>三、计算机体系结构和计算机组成</h2><p>相关资料：<a href="https://blog.csdn.net/xifengw/article/details/99717216">微机原理、计算机组成原理与计算机体系结构之间的关系</a></p>
+<ul>
+<li><p>体系结构关注：计算机有哪些功能？</p>
+</li>
+<li><p>组成原理关注：计算机的功能如何实现？</p>
+</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221202446815.png" alt="image-20220221202446815" style="zoom:67%;" /></p>
+<h1 id="1-2-计算机系统组成"><a href="#1-2-计算机系统组成" class="headerlink" title="1.2 计算机系统组成"></a>1.2 计算机系统组成</h1><h2 id="一、冯·诺依曼计算机的特点"><a href="#一、冯·诺依曼计算机的特点" class="headerlink" title="一、冯·诺依曼计算机的特点"></a>一、冯·诺依曼计算机的特点</h2><ol>
+<li>计算机由五大部件组成：<strong>存储器、运算器、控制器、输入设备、输出设备</strong></li>
+<li>指令和数据以同等地位存于<code>存储器</code>，可按地址寻访</li>
+<li>指令和数据用二进制表示</li>
+<li>指令由<code>操作码</code>和<code>地址码</code>组成——具体内容详见ch7</li>
+<li>存储程序：指令在存储器内按顺序存放。指令通常<strong>按顺序执行</strong>，在特定条件下可根据运算结果或设定的条件改变执行顺序</li>
+<li>以<code>运算器</code>为中心：I/O设备与存储器间的数据传送通过运算器完成</li>
+</ol>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221203119436.png" alt="image-20220221203119436" style="zoom:67%;" /></p>
+<p>注：</p>
+<ol>
+<li>运算器：<strong>算术运算和逻辑运算</strong>。将中间结果暂存在运算器内</li>
+<li>存储器：存放数据和程序</li>
+<li>控制器：控制、<strong>指挥</strong>程序和数据的输入、运行以及处理运算结果</li>
+<li>输入设备（键鼠）：转化为机器能够识别的信息形式</li>
+<li>输出设备（打印机输出、显示器输出）：将运算结果转化为人们熟悉的信息形式</li>
+</ol>
+<h2 id="二、计算机硬件框图"><a href="#二、计算机硬件框图" class="headerlink" title="二、计算机硬件框图"></a>二、计算机硬件框图</h2><h3 id="1-以存储器为中心的计算机硬件框图"><a href="#1-以存储器为中心的计算机硬件框图" class="headerlink" title="1.以存储器为中心的计算机硬件框图"></a>1.以存储器为中心的计算机硬件框图</h3><script type="math/tex; mode=display">
+\rightarrow \quad 控制线 \\
+\dashrightarrow \quad 反馈线 \\
+\Rightarrow \quad 数据线 \\</script><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221203951631.png" alt="image-20220221203951631" style="zoom:67%;" /></p>
+<h3 id="2-现代计算机硬件框图"><a href="#2-现代计算机硬件框图" class="headerlink" title="2.现代计算机硬件框图"></a>2.现代计算机硬件框图</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221204027723.png" alt="image-20220221204027723" style="zoom:67%;" /></p>
+<ul>
+<li>CPU（中央处理器）：Central Processing Unit。计算机核心部件，由<strong>运算器</strong>和<strong>控制器</strong>组成</li>
+<li>ALU（算逻部件/算术逻辑单元）：Arithmetic &amp; Logical Unit。运算器核心部件，<strong>进行逻辑运算和算术运算</strong></li>
+<li>CU（控制单元）：Control Unit。控制器核心部件，产生微操作命令序列。<strong>用来解释存储器中的指令，发出各种操作命令来执行指令</strong></li>
+<li>I/O设备：Input/Output Equipment。</li>
+</ul>
+<h2 id="三、计算机的工作步骤"><a href="#三、计算机的工作步骤" class="headerlink" title="三、计算机的工作步骤"></a>三、计算机的工作步骤</h2><h3 id="1-上机前的准备"><a href="#1-上机前的准备" class="headerlink" title="1.上机前的准备"></a>1.上机前的准备</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221205318632.png" alt="image-20220221205318632" style="zoom:67%;" /></p>
+<h4 id="编程举例"><a href="#编程举例" class="headerlink" title="编程举例"></a>编程举例</h4><ul>
+<li>运算：取被操作数、运算操作、暂存中间结果</li>
+<li>存储器：存储运算结果</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221205352807.png" alt="image-20220221205352807" style="zoom:67%;" /></p>
+<h4 id="指令格式举例"><a href="#指令格式举例" class="headerlink" title="指令格式举例"></a>指令格式举例</h4><p>详见ch7。寻址、特征位、不同格式</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221205704580.png" alt="img" style="zoom:67%;" /></p>
+<p>注：打印机的打印操作需要多条指令</p>
+<p>参考资料：<a href="https://blog.csdn.net/weixin_34112181/article/details/89566814">打印机主流的指令类型（ESC命令集+CPCL命令集+TSPL命令集）</a></p>
+<h4 id="计算-ax-2-bx-c-程序清单"><a href="#计算-ax-2-bx-c-程序清单" class="headerlink" title="计算$ax^2+bx+c$程序清单"></a>计算$ax^2+bx+c$程序清单</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221210015842.png" alt="image-20220221210015842" style="zoom:67%;" /></p>
+<h3 id="2-计算机的解题过程-1"><a href="#2-计算机的解题过程-1" class="headerlink" title="2.计算机的解题过程"></a>2.计算机的解题过程</h3><h4 id="（1）存储器的基本组成"><a href="#（1）存储器的基本组成" class="headerlink" title="（1）存储器的基本组成"></a>（1）存储器的基本组成</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221210124089.png" alt="image-20220221210124089" style="zoom:67%;" /></p>
+<ul>
+<li>MAR（存储器地址寄存器）：Memory Address Register</li>
+<li>MDR（主存数据寄存器）：Memory Data Register </li>
+<li>数据总线、读写控制</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221210629442.png" alt="image-20220221210629442" style="zoom:67%;" /></p>
+<script type="math/tex; mode=display">
+计算过程： \\
+由MAR = 4位，存储单元的个数 = 2^4 = 16 \\
+由MDR = 8位，存储字长 = 8 \\</script><h4 id="（2）运算器的基本组成及操作过程"><a href="#（2）运算器的基本组成及操作过程" class="headerlink" title="（2）运算器的基本组成及操作过程"></a>（2）运算器的基本组成及操作过程</h4><p>规定动作的处理</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221210828885.png" alt="image-20220221210828885" style="zoom:67%;" /></p>
+<ul>
+<li><p>ACC（累加器）：Accumulator。一种<strong>寄存器</strong>，能<strong>存放运算前被操作数</strong>，也能<strong>储存计算产生的中间结果</strong>。</p>
 <blockquote>
-<p>S中所有元有R性质（前提）</p>
-<p>a没有R性质（前提）</p>
-<p>a不是S中的元（结论）</p>
+<p>如果没有像累加器这样的寄存器，那么在每次计算 (加法，乘法，移位等等) 后就必须要把结果写回到<a href="https://baike.baidu.com/item/内存">内存</a>，也许马上就得读回来。然而存取主存的速度是比从<a href="https://baike.baidu.com/item/算术逻辑单元">算术逻辑单元</a>(ALU)到有直接路径的累加器存取更慢。</p>
 </blockquote>
 </li>
-<li><p>数理逻辑中，用自然语言陈述命题会带来不方便</p>
+<li><p>MQ（乘商寄存器）：Multiple-Quotient Register。负责数据的乘法与除法运算并可<strong>保存运算结果</strong>，是运算器的基本组成部分。<strong>也可保存运算结果的低位</strong></p>
 </li>
-<li><p>数理逻辑的研究语言为：对象语言、元语言</p>
+</ul>
+<p>注：上图缺少了F寄存器（状态/标志寄存器）</p>
 <ul>
-<li>对象语言：被研究对象的语言。<strong>形式语言</strong>，用符号构成的公式来代替自然语言中的命题，<strong>没有二义性</strong><ul>
-<li>语义：符号，公式的含义</li>
-<li>语法：由符号构成的公式的形状和语法结构</li>
-</ul>
+<li><p>FR（标志寄存器）：Flags Register</p>
+<p>具有<strong>条件标志：进位、奇偶、辅助进位、零、符号、溢出标志</strong>，<strong>控制标记：跟踪、中断、方向标记</strong></p>
 </li>
-<li>元语言：辅助描述对象语言。自然语言</li>
 </ul>
-</li>
-<li><p>数理逻辑产生的动机：将一切推理的正确性化归于计算的通用代数</p>
+<p>参考资料：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/256470714">标志寄存器</a></p>
+<p><a href="https://baike.baidu.com/item/%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8/5757541#:~:text=%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%88%E7%A7%B0%20%E7%A8%8B%E5%BA%8F%E7%8A%B6%E6%80%81%E5%AD%97%20%EF%BC%88%E5%A4%96%E8%AF%AD%E7%BC%A9%E5%86%99%EF%BC%9APSW%E3%80%81%E5%A4%96%E8%AF%AD%E5%85%A8%E7%A7%B0%EF%BC%9AProgram,Status%20Word%EF%BC%89%E3%80%82%20%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA16%E4%BD%8D%E7%9A%84%E5%AD%98%E6%94%BE%E6%9D%A1%E4%BB%B6%E6%A0%87%E5%BF%97%E3%80%81%E6%8E%A7%E5%88%B6%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8C%E4%B8%BB%E8%A6%81%E7%94%A8%E4%BA%8E%E5%8F%8D%E6%98%A0%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8CALU%E8%BF%90%E7%AE%97%E7%BB%93%E6%9E%9C%E7%9A%84%E6%9F%90%E4%BA%9B%E7%89%B9%E5%BE%81%E5%8F%8A%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4%E7%9A%84%E6%89%A7%E8%A1%8C%E3%80%82">标志寄存器-百度百科</a></p>
+<h5 id="①加法操作过程"><a href="#①加法操作过程" class="headerlink" title="①加法操作过程"></a>①加法操作过程</h5><p>[ACC]看作被加数。</p>
+<p>从主存中取M地址号单元内的加数[M]，送至X寄存器中。</p>
+<p>将被加数[ACC]与加数[X]相加，结果（和）保留在ACC中。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221211851184.png" alt="image-20220221211851184" style="zoom:67%;" /></p>
+<h5 id="②减法操作过程"><a href="#②减法操作过程" class="headerlink" title="②减法操作过程"></a>②减法操作过程</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221211932915.png" alt="image-20220221211932915" style="zoom:67%;" /></p>
+<h5 id="③乘法操作过程"><a href="#③乘法操作过程" class="headerlink" title="③乘法操作过程"></a>③乘法操作过程</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221212003668.png" alt="image-20220221212003668" style="zoom:67%;" /></p>
+<h5 id="④除法操作过程"><a href="#④除法操作过程" class="headerlink" title="④除法操作过程"></a>④除法操作过程</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221212038827.png" alt="image-20220221212038827" style="zoom:67%;" /></p>
+<h4 id="（3）控制器的基本组成"><a href="#（3）控制器的基本组成" class="headerlink" title="（3）控制器的基本组成"></a>（3）控制器的基本组成</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221212108592.png" alt="image-20220221212108592" style="zoom:67%;" /></p>
 <ul>
-<li>建立一种普遍适用的精确的科学语言</li>
-<li>建立一种推理的演算</li>
+<li>PC（程序计数器）：Program Counter。存放<strong>欲执行的指令的地址</strong>，并可自动<strong>生成下一条指令地址</strong></li>
+<li>IR（指令寄存器）：Instruction Register。存放当前<strong>正在执行的指令</strong></li>
+<li>CU（控制单元）：Control Unit。控制器核心部件，产生微操作命令序列。<strong>用来解释存储器中的指令，发出各种操作命令来执行指令</strong></li>
 </ul>
-</li>
-<li><p>预备知识：</p>
+<h4 id="（4）主机完成一条指令的过程"><a href="#（4）主机完成一条指令的过程" class="headerlink" title="（4）主机完成一条指令的过程"></a>（4）主机完成一条指令的过程</h4><h5 id="以取数指令为例"><a href="#以取数指令为例" class="headerlink" title="以取数指令为例"></a>以取数指令为例</h5><ol>
+<li>程序计数器获得指令地址的初始值，</li>
+<li>MAR从存储体中获得指令地址对应的指令，通过地址总线送到MAR</li>
+<li>进入读取周期，把指令送至MDR</li>
+<li>通过数据总线送达指令至IR</li>
+<li>开始执行周期：进入CU，分析指令</li>
+<li>开始执行指令，指令寄存器进入MAR，给出数据地址</li>
+<li>通过MAR读取数据地址</li>
+<li>读周期，读取数据</li>
+<li>送达CPU的ACC中，修改PC</li>
+</ol>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220223212632134.png" alt="img" style="zoom: 50%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221212204068.png" alt="image-20220221212204068" style="zoom:67%;" /></p>
+<h5 id="以存数指令为例"><a href="#以存数指令为例" class="headerlink" title="以存数指令为例"></a>以存数指令为例</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220221212232671.png" alt="image-20220221212232671" style="zoom:67%;" /></p>
+<p>ch4详细讨论</p>
+<p>一个CPU（运算器+控制器） + 存储器 + I/O系统 + 总线</p>
+<p>完成指令</p>
+<h4 id="（5）程序的运行过程"><a href="#（5）程序的运行过程" class="headerlink" title="（5）程序的运行过程"></a>（5）程序的运行过程</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220223162855834.png" alt="image-20220223162855834" style="zoom:67%;" /></p>
 <ul>
-<li><p>集合</p>
-<p>集合S上的（n元）关系R</p>
-<p>外延</p>
+<li>PC地址加法器</li>
+</ul>
+<h1 id="1-3-计算机硬件的主要技术指标"><a href="#1-3-计算机硬件的主要技术指标" class="headerlink" title="1.3 计算机硬件的主要技术指标"></a>1.3 计算机硬件的主要技术指标</h1><h3 id="1-机器字长"><a href="#1-机器字长" class="headerlink" title="1.机器字长"></a>1.机器字长</h3><p>机器字长：CPU <strong>一次</strong>能处理数据的<strong>位数</strong>。与CPU中的<strong>寄存器位数</strong>有关</p>
+<ul>
+<li><p>影响精度</p>
+<blockquote>
+<p>字长越长，数的表示范围越大，精度越高</p>
+</blockquote>
 </li>
-<li><p>归纳定义和归纳证明</p>
+<li><p>影响运算速度</p>
+<blockquote>
+<p>若：CPU字长较短，又要运算位数较多的数据，需要经过多次运算才能完成，影响机器的运算速度</p>
+</blockquote>
+</li>
+<li><p>影响硬件的造价</p>
+<blockquote>
+<p>直接影响加法器（或ALU）、数据总线以及存储字长的位数</p>
+</blockquote>
 </li>
 </ul>
+<h3 id="2-运算速度"><a href="#2-运算速度" class="headerlink" title="2.运算速度"></a>2.运算速度</h3><ul>
+<li><p>主频：计算机工作统一步调，时钟周期的倒数</p>
+<p>晶振产生波形，与工作频率相同</p>
+</li>
+<li><p>（测试的方法）吉布森法</p>
+</li>
+<li><p>MIPS（每秒钟执行百万条指令）：Million Instructions Per Second</p>
+</li>
+</ul>
+<ul>
+<li><p>CPI （执行一条指令所需时钟周期数）：Clock Cycle Per Instruction</p>
+<p>一条指令对应波形的节拍数</p>
+</li>
+<li><p>FLOPS（每秒浮点运算次数）：Floating-point Operations Per Second</p>
+<p>浮点数的加法和乘法速度不同</p>
+</li>
+</ul>
+<h3 id="3-存储容量"><a href="#3-存储容量" class="headerlink" title="3.存储容量"></a>3.存储容量</h3><p>存放二进制信息的总位数</p>
+<p><strong>主存容量</strong>：主存中存放二进制代码的总位数。、</p>
+<p><strong>MAR的位数反映存储单元的个数（$2^N$​​），MDR的位数反映存储字长（$M$​）</strong></p>
+<ol>
+<li><p>存储单元个数$\times$​存储字长</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220223163918172.png" alt="image-20220223163918172"></p>
+</li>
+<li><p>字节数——1个字节被定义为8位二进制代码</p>
 </li>
 </ol>
+<p><strong>辅存容量</strong>——字节数</p>
+<p>80GB，1GB = $2^{30}$B</p>
+<h2 id="课后习题"><a href="#课后习题" class="headerlink" title="课后习题"></a>课后习题</h2><p>1、冯·诺伊曼计算机的特点（5条）</p>
+<p>2、计算机如何区分存储器内的指令和数据</p>
+<ul>
+<li><p>通过<strong>不同的时间段</strong>来区分指令和数据</p>
+<p><u>取指令阶段</u>——指令；</p>
+<p><u>执行指令阶段</u>——数据。</p>
+</li>
+<li><p>通过<strong>地址来源</strong>区分</p>
+<p><u>PC（程序计数器）</u>提供的存储地址取出——指令；</p>
+<p><u>指令地址码</u>提供的存储地址取出——数据。</p>
+</li>
+</ul>
+<p>3、计算机硬件组成框图，各部件作用，计算机硬件主要及技术指标</p>
 ]]></content>
       <categories>
         <category>2022 Spring</category>
-        <category>数理逻辑</category>
+        <category>计算机组成原理</category>
       </categories>
       <tags>
-        <tag>mathematical logic</tag>
+        <tag>computer organization</tag>
       </tags>
   </entry>
   <entry>
-    <title>数理逻辑：第2节 命题逻辑等值计算</title>
-    <url>/mathematical-logic/mathematical-logic-ch2/</url>
-    <content><![CDATA[<h1 id="2-1-等值式"><a href="#2-1-等值式" class="headerlink" title="2.1 等值式"></a>2.1 等值式</h1><ul>
-<li><p><strong>定义1</strong>：若<strong>等价式</strong>A $\Leftrightarrow$ B是<strong>重言式</strong>，则称A与B等值，记作A $\Leftrightarrow$ B，并称A $\Leftrightarrow$ B是等值式</p>
-<p>此时A和B真值相同（全0 or 全1）</p>
+    <title>算法设计与分析：第6章 回溯法与分支限界法</title>
+    <url>/algorithm/algorithm-ch6/</url>
+    <content><![CDATA[<p>回溯和蛮力法的区别：回溯法在求解过程中进行剪枝；蛮力法在计算之前优化</p>
+<h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><ul>
+<li>回溯法的设计技术</li>
+<li>回溯法的经典例题</li>
+<li>分支限界法的设计技术</li>
+<li>分支限界法的经典例题</li>
+</ul>
+<h2 id="6-1-回溯法"><a href="#6-1-回溯法" class="headerlink" title="6.1 回溯法"></a>6.1 回溯法</h2><ul>
+<li><p><strong>回溯法(Back Tracking  Algorithm)</strong>：在约束条件下对解空间树进行深度优先搜索的过程，并在搜索过程中剪去那些不满足条件的分支</p>
 </li>
-<li><p>几点说明： </p>
+<li><p><strong>问题的解</strong>：为n元组$(X_1,…,X_i,…X_n)$，其中$X_i$选自有限集$S$，当选出一组值$X=(x_1,…,x_i,…x_n)$能够使评价函数$P(x_1,…,x_i,…x_n) $满足问题的某种约束条件或到达极值</p>
+</li>
+<li><p><strong>基本策略</strong>：每次只考虑一个分量，逐次扩大建立n元组，并随时用<strong>评价函数</strong>$P_i(X_1,…,X_i,…X_n)$去判断正在形成的n元组是否有成功的希望，一旦确定部分元组$(X_1, … ,X_i)$不能求出解时，则立即停止这种搜索，“剪掉”以当前结点为根的分枝，并逐次向上一个分量回溯，然后向其它分支继续探索。</p>
+</li>
+<li><p><strong>算法框架</strong></p>
 <ul>
-<li>定义中的符号$\Leftrightarrow$不是联结符（词） </li>
-<li>用<strong>真值表</strong>可检查两个公式是否等值</li>
+<li>(1) 开始结点是一个活结点，也是一个扩展结点；</li>
+<li>(2) 如果能从当前的扩展结点移动到一个新的结点，那么这个新结点将变成一个活结点和可扩展结点，旧的扩展结点仍是一个活结点。</li>
+<li>(3) 如果不能移动到一个新结点(已经找到一个解或违反约束的情况)，当前的扩展结点就变成了一个死结点，便只能返回到最近被考察的活结点<strong>(回溯)</strong>,这个活结点就变成了新的扩展结点。</li>
+<li>(4) 当找到了最优解或者没有活结点的时候（回溯尽了所有的活结点），搜索过程结束。</li>
 </ul>
-</li>
-</ul>
 <blockquote>
-<p>问题：判别下面命题公式是否为重言式(永真式)？ </p>
-<p>(( p∧ $\neg$ q) → r )∧ p ∧ (q → s) ∧ $\neg$ s → r<br>转化为: (( p∧ $\neg$ q) → r )∧ p ∧ (q → s) ∧ $\neg$ s → r $\Leftrightarrow$ 1</p>
+<p>关注活结点、扩展结点和死结点的变化规律</p>
 </blockquote>
-<span id="more"></span>
-<p>【例1】判断下列各组公式是否等值</p>
-<p>（1）p→(q→r) 与 (p $\land$ q) →r</p>
-<blockquote>
-<p>形式不同，表达含义相同。p，q都是r的前提</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301083009100.png" alt="image-20220301083009100" style="zoom:67%;" /></p>
-<p>（2）p→(q→r) 与 (p→q) →r</p>
-<blockquote>
-<p>含义不同，不等值</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301083123270.png" alt="image-20220301083123270" style="zoom:67%;" /></p>
-<h2 id="基本等值式"><a href="#基本等值式" class="headerlink" title="基本等值式"></a>基本等值式</h2><ul>
-<li><p><strong>双重否定律</strong>：  $\neg$ $\neg$ A $\Leftrightarrow$ A</p>
-</li>
-<li><p><strong>幂等律</strong>： A $\vee$ A $\Leftrightarrow$ A, $\qquad$ A $\land$ A $\Leftrightarrow$ A​ </p>
-<blockquote>
-<p>理解为两个集合的交/并</p>
-</blockquote>
-</li>
-<li><p><strong>交换律</strong>： A $\vee$ B $\Leftrightarrow$ B $\vee$ A,$\qquad$  A $\land$ B $\Leftrightarrow$ B $\land$ A​ </p>
-</li>
-<li><p><strong>结合律</strong> ： (A $\vee$ B) $\vee$ C $\Leftrightarrow$ A $\vee$ (B $\vee$ C), $\qquad$ (A $\land$ B) $\land$ C $\Leftrightarrow$ A $\land$ (B $\land$ C)​ </p>
-</li>
-<li><p><strong>分配律</strong> ：A $\vee$ (B $\land$ C) $\Leftrightarrow$ (A $\vee$ B) $\land$ (A $\vee$ C),$\qquad$ A $\land$ (B $\vee$ C) $\Leftrightarrow$ (A $\land$ B) $\vee$ (A $\land$ C)  </p>
-</li>
-<li><p><strong>德摩根律</strong>： $\neg$ (A $\vee$ B) $\Leftrightarrow$  $\neg$ A $\land$  $\neg$ B, $\qquad$<br>$\neg$ (A $\land$ B) $\Leftrightarrow$  $\neg$ A $\vee$ $\neg$ B​​</p>
-</li>
-<li><p><strong>吸收律</strong>： A $\vee$ (A $\land$ B) $\Leftrightarrow$ A, $\qquad$ A $\land$ (A $\vee$ B) $\Leftrightarrow$ A</p>
-<blockquote>
-<p>A把比它大的部分吸收</p>
-</blockquote>
-</li>
-<li><p><strong>零律</strong>： A $\vee$ 1 $\Leftrightarrow$ 1, $\qquad$  A $\land$ 0 $\Leftrightarrow$ 0</p>
-</li>
-<li><p><strong>同一律</strong>： A $\vee$ 0 $\Leftrightarrow$ A, $\qquad$ A $\land$ 1 $\Leftrightarrow$ A</p>
-</li>
-<li><p><strong>排中律</strong>： A $\vee$ $\neg$ A  $\Leftrightarrow$ 1</p>
-</li>
-<li><p><strong>矛盾律</strong>： A $\land$  $\neg$ A $\Leftrightarrow$ 0</p>
-<blockquote>
-<p>不可能既真又假</p>
-</blockquote>
-</li>
-<li><p><strong>蕴涵等值式</strong>： A→B $\Leftrightarrow$ $\neg$ A $\vee$ B</p>
-</li>
-<li><p><strong>等价等值式</strong>：A $\leftrightarrow$ B $\Leftrightarrow$ (A→B) $\land$ (B→A)</p>
-<blockquote>
-<p>非A或B 与 非B或A</p>
-</blockquote>
-</li>
-<li><p><strong>假言易位</strong>： $\color{red}$ A→B $\Leftrightarrow$ $\neg$ B→$\neg$ A</p>
-<blockquote>
-<p>B是A的必要条件，A是B的充分条件</p>
-<p><strong>有A则有B</strong> 与 <strong>没有B则没有A</strong> 是同一件事</p>
-</blockquote>
-</li>
-<li><p><strong>等价否定等值式</strong>：A $\leftrightarrow$ B $\Leftrightarrow$ $\neg$ A $\leftrightarrow$ $\neg$ B </p>
-</li>
-<li><p><strong>归谬论</strong>： (A→B) $\land$ (A→$\neg$ B) $\Leftrightarrow$ $\neg$ A</p>
-<blockquote>
-<p>在A为真的前提下，能推出矛盾（B既真又假），则前提A为假——反证法</p>
-</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320210108433.png" alt="image-20220320210108433" style="zoom:67%;" /></p>
 </li>
 </ul>
-<p>特别提示：必须牢记这16组等值式(24式)，这是继续学习的基础。</p>
-<h2 id="等值演算与置换规则"><a href="#等值演算与置换规则" class="headerlink" title="等值演算与置换规则"></a>等值演算与置换规则</h2><h3 id="1-等值演算"><a href="#1-等值演算" class="headerlink" title="1.等值演算"></a>1.等值演算</h3><p>由已知的等值式推演出新的等值式的过程</p>
+<p>【思考题】</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321091821748.png" alt="image-20220321091821748" style="zoom: 80%;" /></p>
 <blockquote>
-<p>每一步都是等值变换（每一步都使用等值式）</p>
+<p>（1）不唯一，是n元组</p>
+<p>（2）使用死结点回退至活结点，建立新的可扩展结点进行剪枝</p>
 </blockquote>
-<h3 id="2-等值演算的基础"><a href="#2-等值演算的基础" class="headerlink" title="2.等值演算的基础"></a>2.等值演算的基础</h3><ul>
-<li><p>等值关系的性质：<strong>自反性、对称性、传递性</strong></p>
-<blockquote>
-<p>A与A是等值的</p>
-<p>如果A和B等值，则B和A等值</p>
-<p>如果A和B等值，B和C等值，则A和C等值</p>
-</blockquote>
-</li>
-<li><p>基本的等值式</p>
-</li>
-<li><p><strong>置换规则</strong></p>
-</li>
-</ul>
-<h3 id="3-置换规则"><a href="#3-置换规则" class="headerlink" title="3.置换规则"></a>3.置换规则</h3><p>设 $\Phi$(A)​​​​​ 是含公式 A​​​​ 的命题公式，$\Phi$ (B)​​​ 是用公式B​​置换$\Phi$ (A)​ 中所有的 A 后得到的命题公式。 </p>
-<p>若 B $\Leftrightarrow$ A，则 $\Phi$(B) $\Leftrightarrow$ $\Phi$(A)。</p>
-<blockquote>
-<p>对公式的一部分做等值变换，变换后的结果仍然是等值的</p>
-</blockquote>
-<h3 id="等值演算的应用举例"><a href="#等值演算的应用举例" class="headerlink" title="等值演算的应用举例"></a>等值演算的应用举例</h3><ul>
-<li>证明两个公式等值</li>
-</ul>
-<p>​        <img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301190541286.png" alt="image-20220301190541286" style="zoom: 50%;" /></p>
-<p><strong>注：用等值演算不能直接证明两个公式不等值</strong></p>
 <ul>
-<li>判断公式类型：<script type="math/tex; mode=display">
-A 为矛盾式当且仅当 A \Leftrightarrow 0 \\
-A 为重言式当且仅当 A \Leftrightarrow 1 \\
-A 为非重言式的可满足式 \Leftrightarrow A既有成真赋值又有成假赋值 \\</script></li>
-</ul>
-<h3 id="证明两个公式不等值"><a href="#证明两个公式不等值" class="headerlink" title="证明两个公式不等值"></a>证明两个公式不等值</h3><ul>
-<li><p>真值表法</p>
-</li>
-<li><p>观察法——举出反例</p>
-</li>
-<li><p>先等值演算化简公式，再观察</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301190743753.png" alt="image-20220301190743753" style="zoom:50%;" /></p>
+<li><p>回溯算法的适用条件——<strong>多米诺性质</strong></p>
+<p>求解过程中，下一个解包含之前的解</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320210155001.png" alt="image-20220320210155001" style="zoom: 50%;" /></p>
+<blockquote>
+<p>若不满足多米诺性质，则可能会丢解</p>
+</blockquote>
 </li>
 </ul>
-<h1 id="2-2-析取范式与合取范式"><a href="#2-2-析取范式与合取范式" class="headerlink" title="2.2 析取范式与合取范式"></a>2.2 析取范式与合取范式</h1><p>范式：比较规范的公式形式</p>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
-<li><p><strong>文字</strong>：命题变项及其否定的总称</p>
+<h3 id="【例6-1】求满足下列不等式的所有整数解"><a href="#【例6-1】求满足下列不等式的所有整数解" class="headerlink" title="【例6-1】求满足下列不等式的所有整数解"></a>【例6-1】求满足下列不等式的所有整数解</h3><p>求满足下列不等式的所有整数解：$5x_1+4x_2-x_3≤10 , \ \ 1≤x_i≤3 , \ \ i=1, 2, 3$</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320210354554.png" alt="image-20220320210354554" style="zoom: 67%;" /></p>
 <blockquote>
-<p>p, $\quad$ $\neg$ q</p>
+<p>对于原约束条件，当$x_1 = 1, x_2 = 1$时不满足约束条件，被剪去，不考虑$x_3$的情况，违反了多米诺性质。但是由于是$-x_3$，当$x_3 = 3$时是满足约束条件的，因此丢解。</p>
 </blockquote>
+<h3 id="【例6-2】装载问题"><a href="#【例6-2】装载问题" class="headerlink" title="【例6-2】装载问题"></a>【例6-2】装载问题</h3><p>有$n$个集装箱要装上一艘载重量为$c$的轮船，其中，集装箱$i$的重量为$w_i$。找出一种最优装载方案，让轮船尽可能多装集装箱，即在装载体积不受限制的情况下，尽可能使轮船满载。</p>
+<ul>
+<li><p>问题分析</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320210526008.png" alt="image-20220320210526008" style="zoom: 67%;" /></p>
 </li>
-<li><p><strong>简单析取式</strong>：仅由有限个文字构成的析取式</p>
-<blockquote>
-<p>p,$\quad$ $\neg$ q,$\quad$ p$\vee$ $\neg$ q, $\quad$ p$\vee$ q $\vee$ r,…​</p>
-</blockquote>
+</ul>
+<p>  <img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320210556584.png" alt="image-20220320210556584" style="zoom: 67%;" /></p>
+<ul>
+<li><p>计算模型</p>
+<ol>
+<li><p>数据结构定义</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320210658174.png" alt="image-20220320210658174" style="zoom: 67%;" /></p>
 </li>
-<li><p><strong>简单合取式</strong>：由有限个文字构成的合取式</p>
-<blockquote>
-<p>p,$\quad$ $\neg$ q,$\quad$ p$\land$ $\neg$ q, $\quad$ p$\land$ q $\land$ r,…</p>
-</blockquote>
-</li>
-<li><p><strong>析取范式</strong>：由有限个<strong>简单合取式</strong>组成的<strong>析取式</strong></p>
-<blockquote>
-<p>p,$\quad$ $\neg$ p $\land$ q,（简单合取式）$\quad$ p$\vee$ $\neg$ q, $\quad$ (p $\land$ $\neg$ q) $\vee$ ($\neg$ p $\land$ q $\land$ $\neg$ r) $\vee$ (q $\land$ r),…​</p>
-</blockquote>
-</li>
-<li><p><strong>合取范式</strong>：由有限个<strong>简单析取式</strong>组成的<strong>合取式</strong></p>
-<blockquote>
-<p>p,$\quad$ $\neg$ p $\vee$ q,（简单析取式）$\quad$ p$\land$ $\neg$ q, $\quad$ (p $\vee$ $\neg$ q) $\land$ ($\neg$ p $\vee$ q $\vee$ r) $\land$ (q $\vee$ r),…</p>
-</blockquote>
-</li>
-<li><p><strong>范式</strong>：析取范式与合取范式的总称</p>
+<li><p>迭代公式</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320210731000.png" alt="image-20220320210731000" style="zoom: 67%;" /></p>
 </li>
 </ol>
-<p>说明</p>
-<ul>
-<li>单个文字既是简单析取式，又是简单合取式</li>
-<li>形如 p $\land$ $\neg$ q $\land$ r, $\neg$ p $\land$ q $\vee$ $\neg$ r 的公式既是析取范式，又是合取范式</li>
+</li>
+<li><p>算法设计与描述</p>
+<blockquote>
+<p>i &gt; n时，已经出来一组解。当nowc &gt; maxc时，进行更新</p>
+<p>回溯条件：当前装载的容量加上之前装载的容量大于最大载重量</p>
+<p>左子树：取当前集装箱；</p>
+<p>右子树（之前装载的容量加上当前集装箱的重量超过最大载重量）：不取当前集装箱。同时判断当前分支是否为最优解</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320211935582.png" alt="image-20220320211935582" style="zoom:67%;" /></p>
+</li>
+<li><p>算法分析</p>
+<p>需要考察层数</p>
+<blockquote>
+<p>1, 2, 4, 8, … , $2^{n-1}$</p>
+</blockquote>
+<p>时间复杂度$O(2^n)$</p>
+</li>
 </ul>
-<p><strong>定理1</strong></p>
-<p>（1）一个<strong>简单析取式是重言式</strong>当且仅当<strong>它同时含有某个命题变项和它的否定式</strong></p>
+<h3 id="【例6-3】n皇后问题"><a href="#【例6-3】n皇后问题" class="headerlink" title="【例6-3】n皇后问题"></a>【例6-3】n皇后问题</h3><p>在$n*n$的棋盘上放置相互攻击不到的$n$个皇后。</p>
 <blockquote>
-<p>p $\vee$ $\neg$ p $\vee$ r $\vee$ q</p>
+<p>国际象棋规则：任意两个皇后之间不能处在同一行、同一列和同一斜线上，否则皇后间就可以相互攻击。</p>
 </blockquote>
-<p>（2）一个<strong>简单合取式是矛盾式</strong>当且仅当<strong>它同时含有某个命题变项和它的否定式</strong></p>
-<blockquote>
-<p>p $\land$ $\neg$ p $\land$ q</p>
-</blockquote>
-<p><strong>定理2</strong></p>
-<p>（1）一个<strong>析取范式是矛盾式</strong>当且仅当<strong>它每个简单合取式都是矛盾式</strong></p>
-<blockquote>
-<p>$\triangle$ $\vee$ $\triangle$ $\vee$ $\triangle$</p>
-</blockquote>
-<p>（2）一个<strong>合取范式是重言式</strong>当且仅当<strong>它的每个简单析取式都是重言式</strong></p>
-<blockquote>
-<p>$\triangle$ $\land$ $\triangle$ $\land$ $\triangle$</p>
-</blockquote>
-<p><strong>定理3</strong>（范式存在定理）</p>
-<p>任何命题公式都存在与之等值的析取范式与合取范式</p>
-<blockquote>
-<p>从任何公式出发，都有和它等值的<strong>析取范式</strong>和<strong>合取范式</strong></p>
-</blockquote>
-<h2 id="命题公式的范式"><a href="#命题公式的范式" class="headerlink" title="命题公式的范式"></a>命题公式的范式</h2><h3 id="求公式A的范式的步骤"><a href="#求公式A的范式的步骤" class="headerlink" title="求公式A的范式的步骤"></a>求公式A的范式的步骤</h3><ol>
-<li><p>消去A中的$\to$, $\leftrightarrow$（若存在）——<strong>（蕴含等价式、等价等值式、假言易位、等价否定等值式、归谬论）</strong></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301091705613.png" alt="image-20220301091705613" style="zoom: 50%;" /></p>
+<p>请给出满足条件的所有方案。</p>
+<ul>
+<li><p>问题分析</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320212850861.png" alt="image-20220320212850861" style="zoom: 50%;" /></p>
 </li>
-<li><p>否定连接词的内移或消去<strong>（德摩根律）</strong></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301091721847.png" alt="image-20220301091721847" style="zoom: 50%;" /></p>
+<li><p>计算模型</p>
+<ol>
+<li><p>数据结构</p>
+<blockquote>
+<p>皇后数量为n；sum为可行解的数量。<br>x[ ]记录皇后的摆放位置，下标为皇后所在行，值为列。</p>
+</blockquote>
 </li>
-<li><p>使用<strong>分配律</strong></p>
+<li><p>计算模型</p>
+<blockquote>
+<p>（1）考虑$n\times n$棋盘都要覆盖到</p>
+<p>（2）对行和列约束</p>
+<p>（3）判断是否在对角线的约束条件</p>
+<p>后两个涉及剪枝，是评价函数</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320213114940.png" alt="image-20220320213114940" style="zoom:67%;" /></p>
 </li>
 </ol>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301091734879.png" alt="image-20220301091734879" style="zoom:50%;" /></p>
-<p>范式的不足——不唯一</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301192357658.png" alt="image-20220301192357658" style="zoom:50%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301192420027.png" alt="image-20220301192420027" style="zoom:50%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301192436741.png" alt="image-20220301192436741" style="zoom:50%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301192454515.png" alt="image-20220301192454515" style="zoom:50%;" /></p>
+</li>
+</ul>
+<ul>
+<li><p>算法设计与描述</p>
+<blockquote>
+<p>在ok函数中，需要判断前i-1个已经摆放好位置的皇后与摆放的位置是否冲突</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320213142313.png" alt="image-20220320213142313" style="zoom:67%;" /></p>
+</li>
+</ul>
+<ul>
+<li><p>算法实现</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 判断当前格局是否满足约束</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">ok</span><span class="params">(<span class="type">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; i; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (x[i] == x[j] || (<span class="built_in">abs</span>(x[i] - x[j]) == <span class="built_in">abs</span>(i - j))) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">queen</span><span class="params">(<span class="type">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 找到可行解</span></span><br><span class="line">    <span class="keyword">if</span> (i &gt; n) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,x[j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        ++sum;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">        x[i] = j;</span><br><span class="line">        <span class="comment">// 满足约束</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">ok</span>(i)) &#123;</span><br><span class="line">            <span class="built_in">queen</span>(i+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>算法分析</p>
+<p>在解空间树中，每一层的层数表示皇后摆放的所在行。</p>
+<blockquote>
+<p>1, n, $n^2$, … , $n^n$</p>
+</blockquote>
+<p>还要考虑ok函数的时间复杂度</p>
+<blockquote>
+<p>1, 2, 3, 4, … , n = $(n+1)*n / 2$</p>
+</blockquote>
+<p>时间复杂度为：$T(n) = O(2n^n \times n(n+1)/2) = O(n^{n+2})$</p>
+</li>
+</ul>
+<h3 id="【例6-4】0-1背包问题"><a href="#【例6-4】0-1背包问题" class="headerlink" title="【例6-4】0-1背包问题"></a>【例6-4】0-1背包问题</h3><p>已知有$n$件物品，物品$i$的重量为$w_i$、价值为$p_i$。现从中选取一部分物品装入一个背包内，背包最多可容纳的总重量是$m$，如何选择才能使得物品的总价值最大？</p>
+<ul>
+<li><p>问题分析</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320213511029.png" alt="image-20220320213511029" style="zoom:67%;" /></p>
+</li>
+<li><p>数学模型</p>
+<blockquote>
+<p>目标函数：$p_i$：第$i$个物品的价值；$x_i$：第$i$个物品是否被选中</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320213531394.png" alt="image-20220320213531394" style="zoom: 67%;" /></p>
+</li>
+<li><p>计算模型</p>
+<ol>
+<li><p>数据结构</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320213601774.png" alt="image-20220320213601774" style="zoom: 67%;" /></p>
+</li>
+<li><p>迭代公式</p>
+<blockquote>
+<p>右支：判断剩余物品总价值和当前已装入物品的总价值之和是否小于最大值。小于则剪掉（肯定找不到最优解）</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320213623691.png" alt="image-20220320213623691" style="zoom: 67%;" /></p>
+</li>
+</ol>
+</li>
+<li><p>算法设计与描述</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320213648620.png" alt="image-20220320213648620" style="zoom: 67%;" /></p>
+</li>
+<li><p>算法实现</p>
+</li>
+</ul>
+<ul>
+<li><p>算法分析</p>
+<p>n个物品的选择树，其结点数为：</p>
+<script type="math/tex; mode=display">
+1+2+2^2+...+2^n \ = \ 2^{n+1}-1 \leq 2 \times 2^n \ = \ O(2^n)</script></li>
+</ul>
+<p>【思考题】</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323083748401.png" alt="image-20220323083748401" style="zoom:80%;" /></p>
+<p>都形成了递归树，每次两支</p>
+<p>区别在于是否对右子树进行剪枝。时间渐进复杂度没有太大区别，均为$O(2^n)$</p>
+<h3 id="【例6-5】旅行商问题（TSP）"><a href="#【例6-5】旅行商问题（TSP）" class="headerlink" title="【例6-5】旅行商问题（TSP）"></a>【例6-5】旅行商问题（TSP）</h3><ul>
+<li><p>问题分析</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320213921767.png" alt="image-20220320213921767" style="zoom: 67%;" /></p>
+</li>
+<li><p>计算模型</p>
+<ol>
+<li><p>数据结构</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320213950679.png" alt="image-20220320213950679" style="zoom:67%;" /></p>
+</li>
+<li><p>迭代公式</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320214010571.png" alt="image-20220320214010571" style="zoom:67%;" /></p>
+</li>
+</ol>
+</li>
+<li><p>算法设计与描述</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320214103371.png" alt="image-20220320214103371" style="zoom: 50%;" /></p>
+</li>
+<li><p>算法分析</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220320214126497.png" alt="image-20220320214126497" style="zoom:67%;" /></p>
+</li>
+</ul>
+<p>【思考题】</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323084555758.png" alt="image-20220323084555758" style="zoom: 80%;" /></p>
+<p>回溯法增加了剪枝的操作</p>
+<p>蛮力法与回溯法的时间渐进复杂度均为$O((n-1)!)$</p>
+<h2 id="6-2-分支限界法"><a href="#6-2-分支限界法" class="headerlink" title="6.2 分支限界法"></a>6.2 分支限界法</h2><ul>
+<li>分支限界法：增加约束条件，<strong>剪掉解空间中更多分支</strong>，加快算法的执行速度</li>
+<li>约束条件<ul>
+<li>（1）<strong>上界函数</strong>：用来求得以当前结点为根的可行性解<strong>可能达到的极值</strong>。<em>（预测）</em></li>
+<li>（2）<strong>限界值</strong>：搜索到某一结点时，<strong>已经得到</strong>可行解或可能包含可行性解的<strong>最优值</strong>。</li>
+<li>（3）<strong>评价函数</strong>：判定当前所获得路径或值是否为解的函数。</li>
+</ul>
+</li>
+<li>剪枝<ul>
+<li>（1）该结点的上界小于限界值，即再往下搜索也不可能有更优的值。</li>
+<li>（2）该结点无法代表任何可行解，因为它已经违反了问题的约束，不能满足评价函数。</li>
+<li>（3）该结点代表的可行解的子集只包含一个单独的点。</li>
+</ul>
+</li>
+<li>分支限界法的设计步骤<ul>
+<li>（1）建立上界函数，函数值是以该结点为根的搜索树中的所有可行解在目标函数上求得值的上/下界。</li>
+<li>（2）求得限界值，即当前巳经得到的可行解的目标函数的最大值。</li>
+<li>（3）依据剪枝条件，停止分支的搜索，向上回溯到父结点。</li>
+<li>（4）限界值的更新：当得到的可行解的目标函数值大于/小于当前限界值时，更新之。</li>
+</ul>
+</li>
+</ul>
+<p>【思考题】</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323090228485.png" alt="image-20220323090228485" style="zoom:80%;" /></p>
+<h3 id="【例6-6】装载问题"><a href="#【例6-6】装载问题" class="headerlink" title="【例6-6】装载问题"></a>【例6-6】装载问题</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322163643589.png" alt="image-20220322163643589" style="zoom:67%;" /></p>
+<ul>
+<li><p>问题分析</p>
+<ul>
+<li>目标函数和约束条件（与例6-3相同）</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322163722711.png" alt="image-20220322163722711" style="zoom:67%;" /></p>
+<ul>
+<li><p>解空间树（与例6-3相同）</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322163832040.png" alt="image-20220322163832040" style="zoom:67%;" /></p>
+</li>
+<li><p>考虑限界值</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322163947384.png" alt="image-20220322163947384" style="zoom:67%;" /></p>
+<blockquote>
+<p>限界值：当前最优值</p>
+<p>评价函数：是否超过限制（是否能继续递归）</p>
+<p>上界函数：最优值是否更新</p>
+</blockquote>
+<p>基于评价函数和上界函数的剪枝——使用队列</p>
+<blockquote>
+<p>BFS</p>
+<p>0为分层标志</p>
+<p>对于一个结点，出队，先考察评价函数（不超过最大载重量），再考察上界函数（已装入+剩余 &gt; 当前最大值，则可能取得最大值，可以继续。否则不可能，退出）</p>
+<p><strong>bestw是限界值</strong></p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322164103359.png" alt="image-20220322164103359" style="zoom: 80%;" /></p>
+</li>
+</ul>
+</li>
+<li><p>计算模型</p>
+<ul>
+<li><p>结点的构造</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322164216783.png" alt="image-20220322164216783" style="zoom: 80%;" /></p>
+</li>
+<li><p>评价函数：$lw + w[i] &lt; c$</p>
+</li>
+<li><p>上界函数：$s + lw &gt; c$</p>
+</li>
+</ul>
+</li>
+<li><p>算法设计与描述</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322164354810.png" alt="image-20220322164354810" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322164433362.png" alt="image-20220322164433362" style="zoom:67%;" /></p>
+</li>
+<li><p>算法实现</p>
+<ul>
+<li><code>Queue.h</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __QUEUE_H__</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __QUEUE_H__</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Queue</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Queue</span>() &#123; &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Add</span><span class="params">(<span class="type">const</span> T&amp; element)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Delete</span><span class="params">(T&amp; element)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">IsEmpty</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    queue&lt;T&gt; Q;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 入队</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="type">void</span> Queue&lt;T&gt;::<span class="built_in">Add</span>(<span class="type">const</span> T&amp; element) &#123;</span><br><span class="line">    Q.<span class="built_in">push</span>(element);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 出队</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="type">void</span> Queue&lt;T&gt;::<span class="built_in">Delete</span>(T&amp; element) &#123;</span><br><span class="line">    element = Q.<span class="built_in">front</span>();</span><br><span class="line">    Q.<span class="built_in">pop</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 判断是否为空</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="type">bool</span> Queue&lt;T&gt;::<span class="built_in">IsEmpty</span>() &#123;</span><br><span class="line">    <span class="keyword">return</span> Q.<span class="built_in">empty</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>核心算法</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Queue.h&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明类模板和函数模板</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">QType</span>&gt; <span class="keyword">class</span> <span class="title class_">QNode</span>;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; <span class="type">int</span> <span class="title">EnQueue</span><span class="params">(Queue&lt;QNode&lt;T&gt;*&gt; &amp;Q, T pw, <span class="type">int</span> i, <span class="type">int</span> n, T bestw, QNode&lt;T&gt; *E, QNode&lt;T&gt; *&amp;bestE, <span class="type">int</span> bestv[], <span class="type">bool</span> x)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> Type&gt; Type <span class="title">MaxLoading</span><span class="params">(Type w[], Type c, <span class="type">int</span> n, <span class="type">int</span> bestv[])</span></span>;  </span><br><span class="line"></span><br><span class="line"><span class="comment">// 类模板</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">QType</span>&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">QNode</span> &#123;</span><br><span class="line">    <span class="comment">// 使用友元函数</span></span><br><span class="line">    <span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; </span></span><br><span class="line"><span class="function">    <span class="keyword">friend</span> <span class="type">int</span> <span class="title">EnQueue</span><span class="params">(Queue&lt;QNode&lt;T&gt;*&gt; &amp;Q, T pw, <span class="type">int</span> i, <span class="type">int</span> n, T bestw, QNode&lt;T&gt; *E, QNode&lt;T&gt; *&amp;bestE, <span class="type">int</span> bestv[], <span class="type">bool</span> x)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> Type&gt;</span></span><br><span class="line"><span class="function">    <span class="keyword">friend</span> Type <span class="title">MaxLoading</span><span class="params">(Type w[], Type c, <span class="type">int</span> n, <span class="type">int</span> bestv[])</span></span>;    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    QNode *parent;  <span class="comment">// 父结点</span></span><br><span class="line">    <span class="type">bool</span> LChild;    <span class="comment">// 左孩子标志，1-左，0-右</span></span><br><span class="line">    QType weight;   <span class="comment">// 结点权值</span></span><br><span class="line">    <span class="built_in">QNode</span>(QType pw, QNode *E, <span class="type">bool</span> x) &#123; <span class="comment">// 构造函数，给结点权值、父结点、左孩子标志赋值</span></span><br><span class="line">        <span class="keyword">this</span>-&gt;parent = E;</span><br><span class="line">        <span class="keyword">this</span>-&gt;LChild = x;</span><br><span class="line">        <span class="keyword">this</span>-&gt;weight = pw;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 友元函数的内容</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">Type</span>&gt;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @description: 求最大载重量</span></span><br><span class="line"><span class="comment"> * @param &#123;w&#125; 集装箱重量集合</span></span><br><span class="line"><span class="comment"> * @param &#123;c&#125; 船的载重量</span></span><br><span class="line"><span class="comment"> * @param &#123;n&#125; 集装箱总个数</span></span><br><span class="line"><span class="comment"> * @param &#123;bestv&#125; 装船最优值</span></span><br><span class="line"><span class="comment"> * @return &#123;最大装船值&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function">Type <span class="title">MaxLoading</span><span class="params">(Type w[], Type c, <span class="type">int</span> n, <span class="type">int</span> bestv[])</span> </span>&#123;</span><br><span class="line">    Queue&lt;QNode&lt;Type&gt;*&gt; Q;</span><br><span class="line">    Q.<span class="built_in">Add</span>(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="type">int</span> i = <span class="number">1</span>;  <span class="comment">// 层数，每一层代表递归至层数对应的物品</span></span><br><span class="line">    <span class="comment">// lw已装船总重量，bestw当前装船最优值，s剩余总重量</span></span><br><span class="line">    Type lw = <span class="number">0</span>, bestw = <span class="number">0</span>, s = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">2</span>; j &lt;= n; j++) s += w[j]; <span class="comment">// 初始化s</span></span><br><span class="line">    QNode&lt;Type&gt; *E = <span class="literal">nullptr</span>, *bestE;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        Type pw = lw + w[i]; <span class="comment">// 预装重量</span></span><br><span class="line">        <span class="keyword">if</span> (pw &lt;= c) &#123;  <span class="comment">// 预装重量在载重量范围内</span></span><br><span class="line">            <span class="keyword">if</span> (pw &gt; bestw) &#123; <span class="comment">// 获得更优的值</span></span><br><span class="line">                bestw = pw; <span class="comment">///更新最优值</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">EnQueue</span>(Q,pw,i,n,bestw,E,bestE,bestv,<span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (lw + s &gt;= bestw) &#123; <span class="comment">// 不满足上界函数，剪枝</span></span><br><span class="line">            <span class="comment">// 向队列Q加入右结点，不选择集装箱</span></span><br><span class="line">            <span class="built_in">EnQueue</span>(Q,lw,i,n,bestw,E,bestE,bestv,<span class="literal">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        Q.<span class="built_in">Delete</span>(E);  <span class="comment">// 取出Q队头元素，赋给E</span></span><br><span class="line">        <span class="keyword">if</span> (!E) &#123; </span><br><span class="line">            <span class="keyword">if</span> (Q.<span class="built_in">IsEmpty</span>()) <span class="keyword">break</span>;</span><br><span class="line">            Q.<span class="built_in">Add</span>(<span class="literal">nullptr</span>);  <span class="comment">// 加入分层结点</span></span><br><span class="line">            Q.<span class="built_in">Delete</span>(E);</span><br><span class="line">            i++;</span><br><span class="line">            s -= w[i];</span><br><span class="line">        &#125;</span><br><span class="line">        lw = E-&gt;weight; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 确定取最优值的集装箱装载情况</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = n<span class="number">-1</span>; j &gt; <span class="number">0</span>; --j) &#123;</span><br><span class="line">        bestv[j] = bestE-&gt;LChild;</span><br><span class="line">        bestE = bestE-&gt;parent;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> bestw;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">Type</span>&gt;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @description: 入队操作</span></span><br><span class="line"><span class="comment"> * @param &#123;Q&#125; 用于分支限界的队列</span></span><br><span class="line"><span class="comment"> * @param &#123;pw&#125; 当前已装入货物的总重量</span></span><br><span class="line"><span class="comment"> * @param &#123;i&#125; 当前为第i件集装箱</span></span><br><span class="line"><span class="comment"> * @param &#123;n&#125; 集装箱总个数</span></span><br><span class="line"><span class="comment"> * @param &#123;bestw&#125; 当前装船的最优值</span></span><br><span class="line"><span class="comment"> * @param &#123;E&#125; 当前货物结点的父结点，作为一个中间量，连接parent和child</span></span><br><span class="line"><span class="comment"> * @param &#123;bestE&#125; 指向最优解的叶子节点，然后通过bestE-&gt;parent找到装入了哪些物品</span></span><br><span class="line"><span class="comment"> * @param &#123;bestv&#125; 最优值对应选取货物的集合（1-取，0-未取）</span></span><br><span class="line"><span class="comment"> * @param &#123;x&#125; 左孩子标志</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">EnQueue</span><span class="params">(Queue&lt;QNode&lt;Type&gt;*&gt; &amp;Q, Type pw, <span class="type">int</span> i, <span class="type">int</span> n, Type bestw, QNode&lt;Type&gt; *E, QNode&lt;Type&gt; *&amp;bestE, <span class="type">int</span> bestv[], <span class="type">bool</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i == n) &#123;   <span class="comment">// 到达叶结点</span></span><br><span class="line">        <span class="keyword">if</span> (pw == bestw) &#123;  <span class="comment">// 找到最优值</span></span><br><span class="line">            bestE = E;</span><br><span class="line">            bestv[n] = x;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    QNode&lt;Type&gt; *b = <span class="keyword">new</span> <span class="built_in">QNode</span>&lt;Type&gt;(pw,E,x);</span><br><span class="line">    Q.<span class="built_in">Add</span>(b);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> c = <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> N = <span class="number">4</span>;</span><br><span class="line">    <span class="type">double</span> w[] = &#123;<span class="number">0</span>,<span class="number">7</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">6</span>&#125;;</span><br><span class="line">    <span class="type">int</span> x[N+<span class="number">1</span>];</span><br><span class="line">    <span class="type">double</span> bestw;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;weight of ship is &quot;</span> &lt;&lt; c &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;weight of goods: &quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= N; i++)	cout &lt;&lt; w[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    bestw = <span class="built_in">MaxLoading</span>(w,c,N,x);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;result is: &quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= N; i++)	cout &lt;&lt; x[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;best weight is: &quot;</span> &lt;&lt; bestw &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行截图</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323133553532.png" alt="image-20220323133553532"></p>
+</li>
+</ul>
+<p>【思考题】</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323093725306.png" alt="image-20220323093725306" style="zoom:80%;" /></p>
+<p>分支限界法相较于回溯法省略了更多的分支，效率更高。</p>
+<p>从算法实现的角度，分支限界法使用bfs（利用队列），回溯法采用dfs</p>
+<h3 id="【例6-7】-完全背包问题"><a href="#【例6-7】-完全背包问题" class="headerlink" title="【例6-7】 完全背包问题"></a>【例6-7】 完全背包问题</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322164542720.png" alt="image-20220322164542720" style="zoom: 80%;" /></p>
+<ul>
+<li><p><strong>问题分析</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322164616642.png" alt="image-20220322164616642" style="zoom:80%;" /></p>
+<blockquote>
+<p>子树扩展</p>
+<p>A对应6个分支：0, 1, 2, 3, 4, 5</p>
+<p>C对应3个分支：0, 1, 2</p>
+<p>在满足评估函数的前提下，上界函数：以C为例，$(m-\sum_{i = 1}^{2})\frac{4}{5}$</p>
+<p><strong>限界值的选取</strong>：把物品粉碎，按照每单元价值$\times$剩余单元数，计算得到理想值——剩余单位空间*单位价值</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322164646016.png" alt="image-20220322164646016" style="zoom:67%;" /></p>
+<p>若一个物品都无法装入，k &gt; 0的情况直接回溯，k = 0的情况继续该分支，装下一个物品。</p>
+<p>更新限界值</p>
+<blockquote>
+<p>剪枝：</p>
+<p>①物品能否可以装入——剪当前分支的子分支</p>
+<p>②是否满足上界函数——剪当前整个分支</p>
+</blockquote>
+</li>
+<li><p><strong>计算模型</strong></p>
+<ol>
+<li><p>数据结构</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322164715530.png" alt="image-20220322164715530" style="zoom: 67%;" /></p>
+</li>
+<li><p>递归出口</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322164946783.png" alt="image-20220322164946783" style="zoom: 80%;" /></p>
+<blockquote>
+<p>每一个物品都考虑过了，i == n。此时需要更新最优解</p>
+<p>最优总价值bestV&gt;当前分支的上界ULimit。需要更新最优总价值</p>
+</blockquote>
+</li>
+<li><p>迭代公式</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322165033528.png" alt="image-20220322165033528" style="zoom: 80%;" /></p>
+</li>
+</ol>
+</li>
+<li><p><strong>算法设计与描述</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322165151321.png" alt="image-20220322165151321" style="zoom:80%;" /></p>
+<blockquote>
+<p>maxG：当前分支考虑的子分支个数</p>
+<p>注意背包装满后，把后面的装载物品置为0（不选这些物品）</p>
+<p>与蛮力法和回溯法一样，都需要在递归后恢复</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="【例6-8】旅行商问题"><a href="#【例6-8】旅行商问题" class="headerlink" title="【例6-8】旅行商问题"></a>【例6-8】旅行商问题</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322165230536.png" alt="image-20220322165230536" style="zoom: 80%;" /></p>
+<ul>
+<li><p>问题分析</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322165305657.png" alt="image-20220322165305657" style="zoom:80%;" /></p>
+<blockquote>
+<p>贪心策略：每次找与未访问顶点的最短路。——找到上界</p>
+<p>不考虑每个城市逗留一次的条件，找最短的路径——下届</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220328083919421.png" alt="image-20220328083919421" style="zoom: 80%;" /></p>
+<blockquote>
+<p>求解界函数</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322165344938.png" alt="image-20220322165344938" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322165515919.png" alt="image-20220322165515919" style="zoom:80%;" /></p>
+<blockquote>
+<p>使用优先队列</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322173340996.png" alt="image-20220322173340996" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322173443533.png" alt="image-20220322173443533" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322173613696.png" alt="image-20220322173613696" style="zoom: 80%;" /></p>
+<blockquote>
+<p>代码级优化：</p>
+<p>①向上取整（+1）</p>
+<p>②出现第一个解，发现正好等于上界，停止算法（找不到更优的解了）</p>
+</blockquote>
+</li>
+<li><p><strong>计算模型</strong></p>
+<ol>
+<li><p>数据结构</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322173707452.png" alt="image-20220322173707452" style="zoom:80%;" /></p>
+</li>
+<li><p>贪心算法初始化TSP问题的上界up</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322173737173.png" alt="image-20220322173737173" style="zoom:80%;" /></p>
+</li>
+<li><p>求TSP问题的下届low</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322173800540.png" alt="image-20220322173800540" style="zoom:80%;" /></p>
+</li>
+<li><p>每个分支的下界lb</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322173828412.png" alt="image-20220322173828412" style="zoom:80%;" /></p>
+</li>
+<li><p>计算方法</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322173914894.png" alt="image-20220322173914894" style="zoom: 80%;" /></p>
+</li>
+</ol>
+</li>
+<li><p>算法设计与描述</p>
+<blockquote>
+<p>优化：重载小于</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322173955499.png" alt="image-20220322173955499" style="zoom:80%;" /></p>
+<ul>
+<li>求由p引导的分支的下界和进入并离开每个未遍历城市的最小成本</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322174102069.png" alt="image-20220322174102069" style="zoom: 80%;" /></p>
+<ul>
+<li>使用优先队列，进行dfs。计算上下界</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322174229023.png" alt="image-20220322174229023" style="zoom:80%;" /></p>
+<ul>
+<li><p>求解过程</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322174435695.png" alt="image-20220322174435695" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322174512703.png" alt="image-20220322174512703" style="zoom:80%;" /></p>
+</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>2022 Spring</category>
-        <category>数理逻辑</category>
+        <category>算法设计与分析</category>
       </categories>
       <tags>
-        <tag>mathematical logic</tag>
+        <tag>algorithm</tag>
       </tags>
   </entry>
   <entry>
@@ -2955,295 +2840,6 @@ A 为非重言式的可满足式 \Leftrightarrow A既有成真赋值又有成假
       </categories>
       <tags>
         <tag>computer organization</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数理逻辑：第3节 主析（合）取范式</title>
-    <url>/mathematical_logic/mathematical-logic-ch3/</url>
-    <content><![CDATA[<ul>
-<li>判断命题公式是否为重言式（永真式）？<ul>
-<li>真值表</li>
-<li>等值演算</li>
-<li>主析取范式和主合取范式</li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-<h1 id="3-1主析取范式与主合取范式"><a href="#3-1主析取范式与主合取范式" class="headerlink" title="3.1主析取范式与主合取范式"></a>3.1主析取范式与主合取范式</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
-<li><p><strong>文字</strong>：命题变项及其否定的总称</p>
-<blockquote>
-<p>$p, \quad \neg q$</p>
-</blockquote>
-</li>
-<li><p><strong>简单析取式</strong>：仅由有限个文字构成的析取式</p>
-<blockquote>
-<p>$p,\quad \neg q,\quad p\vee \neg q, \quad p\vee q \vee r,…$​</p>
-</blockquote>
-</li>
-<li><p><strong>简单合取式</strong>：由有限个文字构成的合取式</p>
-<blockquote>
-<p>$p,\quad \neg q,\quad p\land \neg q, \quad p\land q \land r,…$</p>
-</blockquote>
-</li>
-<li><p><strong>析取范式</strong>：由有限个<strong>简单合取式</strong>组成的<strong>析取式</strong></p>
-<blockquote>
-<p>$p,\quad \neg p \land q,（简单合取式）\quad p\vee \neg q, \quad (p \land \neg q) \vee (\neg p \land q \land \neg r) \vee (q \land r),…$​</p>
-</blockquote>
-</li>
-<li><p><strong>合取范式</strong>：由有限个<strong>简单析取式</strong>组成的<strong>合取式</strong></p>
-<blockquote>
-<p>$p,\quad \neg p \vee q,（简单析取式）\quad p\land \neg q, \quad (p \vee \neg q) \land (\neg p \vee q \vee r) \land (q \vee r),…$</p>
-</blockquote>
-</li>
-<li><p><strong>范式</strong>：析取范式与合取范式的总称</p>
-</li>
-</ol>
-<h2 id="求公式-A-的范式的步骤"><a href="#求公式-A-的范式的步骤" class="headerlink" title="求公式$A$的范式的步骤"></a>求公式$A$的范式的步骤</h2><ol>
-<li><p>消去$A$中的$\to, \leftrightarrow$（若存在）——<strong>（蕴含等价式、等价等值式、假言易位、等价否定等值式、归谬论）</strong></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301091705613.png" alt="image-20220301091705613" style="zoom: 50%;" /></p>
-</li>
-<li><p>否定连接词的内移或消去<strong>（德摩根律）</strong></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301091721847.png" alt="image-20220301091721847" style="zoom: 50%;" /></p>
-</li>
-<li><p>使用<strong>分配律</strong></p>
-</li>
-</ol>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301091734879.png" alt="image-20220301091734879" style="zoom:50%;" /></p>
-<ul>
-<li><p>公式范式的不足——不唯一</p>
-</li>
-<li><p>得到唯一的范式——主范式</p>
-</li>
-</ul>
-<h2 id="极小项与极大项"><a href="#极小项与极大项" class="headerlink" title="极小项与极大项"></a>极小项与极大项</h2><ul>
-<li><p><strong>定义1</strong>：在含有$n$个命题变项的<strong>简单合取式</strong>中，若每个命题变项均以文字的形式在其中出现且仅出现一次， 而且第$i$个文字出现在左起第$i$位上（$1 \leq i \leq n$），称这样的简单合取式为<strong>极小项</strong></p>
-<blockquote>
-<p>极小项——合取越多范围越小，取决于真值最小的文字</p>
-<p>对于$p, q, r$（不缺项，规定了顺序：字母、下标）</p>
-<p>$p \land q \land r$</p>
-</blockquote>
-</li>
-<li><p><strong>定义2</strong>：在含有$n$个命题变项的<strong>简单析取式</strong>中，若每个命题变项均以文字的形式在其中出现且仅出现一次， 而且第$i$个文字出现在左起第$i$位上（$1 \leq i \leq n$），称这样的简单析取式为<strong>极大项</strong></p>
-<blockquote>
-<p>极大项——合取越多范围越大，只要有真值为1的文字，该项的真值为1</p>
-<p>对于$p, q, r$（不缺项，规定了顺序：字母、下标）</p>
-<p>$p \vee q \vee r$</p>
-</blockquote>
-</li>
-<li><p>几点说明</p>
-<ul>
-<li><p>$n$个命题变项有$2^n$个极小项和$2^n$个极大项</p>
-</li>
-<li><p>$2^n$个极小项（极大项）均互不等值</p>
-</li>
-<li><p>用$m_i$表示第$i$个极小项，其中$i$是该极小项<strong>成真赋值</strong><br>的十进制表示</p>
-<blockquote>
-<p>$p \land q \land r$的成真赋值为111，$m_7$</p>
-<p>$\neg p \land q \land r$成真赋值为011，$m_3$</p>
-</blockquote>
-</li>
-<li><p>用$M_i$表示第$i$个极大项，其中$i$是该极大项<strong>成假赋值</strong><br>的十进制表示</p>
-<blockquote>
-<p>$p \vee q \vee r$的成假赋值为000，$M_0$</p>
-<p>$\neg p \vee q \vee r$的成假赋值为100，$M_4$</p>
-</blockquote>
-</li>
-<li><p>$m_i$（$M_i$）称为极小项（极大项）的名称</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>【实例】</p>
-<ul>
-<li>由两个命题变项$p, q$形成的极小项和极大项</li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304081627478.png" alt="image-20220304081627478" style="zoom:67%;" /></p>
-<ul>
-<li>由三个命题变项$p,q,r$形成的极小项和极大项</li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304081832381.png" alt="image-20220304081832381" style="zoom:67%;" /></p>
-<ul>
-<li><strong>$m_i与M_i的关系：\neg m_i \Leftrightarrow M_i, \neg M_i \Leftrightarrow m_i$</strong></li>
-</ul>
-<h2 id="主析取范式与主合取范式"><a href="#主析取范式与主合取范式" class="headerlink" title="主析取范式与主合取范式"></a>主析取范式与主合取范式</h2><ul>
-<li>主析取范式——由极小项构成的析取范式</li>
-<li>主合取范式——由极大项构成的合取范式</li>
-</ul>
-<blockquote>
-<p>例如，n=3, 命题变项为 p, q, r 时，</p>
-<p>$(\neg p\land \neg q \land r) \vee (\neg p\land q \land r) \Leftrightarrow  m_1 \vee m_3$ ——主析取范式<br>$(p \vee q \vee \neg r) \land (\neg p \vee \neg q \vee \neg r) \Leftrightarrow M_1 \land M_7$——主合取范式</p>
-</blockquote>
-<ul>
-<li><p><strong>定理1</strong>（主范式的存在唯一定理）</p>
-<p>任何命题公式都存在与之等值的主析取范式和主合取范式, 并且是惟一的</p>
-</li>
-</ul>
-<h2 id="求命题公式主范式的步骤"><a href="#求命题公式主范式的步骤" class="headerlink" title="求命题公式主范式的步骤"></a>求命题公式主范式的步骤</h2><h3 id="1-求公式主析取范式的步骤"><a href="#1-求公式主析取范式的步骤" class="headerlink" title="1.求公式主析取范式的步骤"></a>1.求公式主析取范式的步骤</h3><p><strong>先求出析取范式，再变换成主析取范式</strong></p>
-<p>设公式$A$含命题变项$p_1, p_2,…, p_n$</p>
-<ul>
-<li><p>(1) 求$A$的析取范式$A’=B_1 \vee B_2 \vee … \vee B_s$ , 其中$B_j$是<strong>简单合取式</strong> ，$j=1,2, … ,s$</p>
-</li>
-<li><p>(2) <strong>（每一个简单合取式变为极小项——合取1来补项）</strong></p>
-<p>若某个$B_j$既不含$p_i$, 又不含$\neg p_i$, 则将$B_j$展开成：$B_j \Leftrightarrow B_j \land 1 \Leftrightarrow B_j \land (p_i \vee \neg p_i) \Leftrightarrow (B_j \land p_i) \vee (B_j \land \neg p_i)$</p>
-<p>重复这个过程, 直到<strong>所有简单合取式都是长度为n的极小项</strong>为止</p>
-</li>
-<li><p>(3) <strong>消去重复出现的极小项</strong>, 即用$m_i$代替$m_i \vee m_i$ </p>
-</li>
-<li><p>(4) 将极小项按下标从小到大<strong>排列</strong></p>
-</li>
-</ul>
-<h3 id="2-求公式主合取范式的步骤"><a href="#2-求公式主合取范式的步骤" class="headerlink" title="2.求公式主合取范式的步骤"></a>2.求公式主合取范式的步骤</h3><p><strong>先求出合取范式，再变换成主合取范式</strong></p>
-<p>设公式$A$含命题变项$p_1, p_2,…, p_n$</p>
-<ul>
-<li><p>(1) 求$A$的合取范式$A’=B_1 \land  B_2 \land … \land B_s$ , 其中$B_j$是<strong>简单析取式</strong> ，$j=1,2, … ,s$</p>
-</li>
-<li><p>(2)<strong>（补项——析取0）</strong></p>
-<p>若某个$B_j$既不含$p_i$, 又不含$\neg p_i$, 则将$B_j$展开成：$B_j \Leftrightarrow B_j \vee 0 \Leftrightarrow B_j \vee (p_i \land \neg p_i) \Leftrightarrow (B_j \vee p_i) \land (B_j \vee \neg p_i)$</p>
-<p>重复这个过程, 直到<strong>所有简单析取式都是长度为n的极大项</strong>为止</p>
-</li>
-<li><p>(3)<strong>消去重复出现的极大项</strong>， 即用$M_i$代替$M_i \land M_i$ </p>
-</li>
-<li><p>(4) 将极大项按下标从小到大<strong>排列</strong></p>
-</li>
-</ul>
-<p>【实例】</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304083543458.png" alt="image-20220304083543458" style="zoom:50%;" /></p>
-<p><strong>我觉得可以使用卡诺图</strong></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">p\qr</th>
-<th style="text-align:center">00</th>
-<th style="text-align:center">01</th>
-<th style="text-align:center">11</th>
-<th style="text-align:center">10</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><strong>0</strong></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>1</strong></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>主析取范式：成真赋值为1的项</p>
-<p>主合取范式：成假赋值为0的项</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304083604370.png" alt="image-20220304083604370" style="zoom:50%;" /></p>
-<p><strong>关注主析取范式和主合取范式出现项的下标的关系</strong></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304083622774.png" alt="image-20220304083622774" style="zoom:50%;" /></p>
-<h2 id="由主析（合）取范式确定主合（析）取范式"><a href="#由主析（合）取范式确定主合（析）取范式" class="headerlink" title="由主析（合）取范式确定主合（析）取范式"></a>由主析（合）取范式确定主合（析）取范式</h2><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303230604125.png" alt="image-20220303230604125" style="zoom: 50%;" /></p>
-<h2 id="用成真和成假赋值确定主范式"><a href="#用成真和成假赋值确定主范式" class="headerlink" title="用成真和成假赋值确定主范式"></a>用成真和成假赋值确定主范式</h2><p>已知成真赋值，则知道有多少个最小项。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303230652029.png" alt="image-20220303230652029" style="zoom: 50%;" /></p>
-<h2 id="主范式的应用"><a href="#主范式的应用" class="headerlink" title="主范式的应用"></a>主范式的应用</h2><h3 id="1-求公式的成真成假赋值"><a href="#1-求公式的成真成假赋值" class="headerlink" title="(1)求公式的成真成假赋值"></a>(1)求公式的成真成假赋值</h3><p>设公式$A$含$n$个命题变项, $A$的主析取范式有<strong>$s$个极小项</strong>, 则$A$有<strong>$s$个成真赋值</strong>, 它们是极小项下标的二进制表示, <strong>其余$2^n-s$个赋值都是成假赋值</strong></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303230838562.png" alt="image-20220303230838562" style="zoom:67%;" /></p>
-<h3 id="2-判断公式的类型"><a href="#2-判断公式的类型" class="headerlink" title="(2)判断公式的类型"></a>(2)判断公式的类型</h3><p>根据极小项或成真赋值的个数</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303230918268.png" alt="image-20220303230918268" style="zoom:67%;" /></p>
-<ul>
-<li>重言式：全部赋值为成真赋值</li>
-<li>矛盾式：全部赋值为成假赋值</li>
-<li>非重言的可满足式：<ul>
-<li>至少一个成真赋值</li>
-<li>至少一个成假赋值</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303230949648.png" alt="image-20220303230949648" style="zoom: 50%;" /></p>
-<h3 id="3-判断两个公式是否等值"><a href="#3-判断两个公式是否等值" class="headerlink" title="3.判断两个公式是否等值"></a>3.判断两个公式是否等值</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303231031287.png" alt="image-20220303231031287" style="zoom: 50%;" /></p>
-<h3 id="4-解实际问题"><a href="#4-解实际问题" class="headerlink" title="4.解实际问题"></a>4.解实际问题</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303231044612.png" alt="image-20220303231044612" style="zoom: 50%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303231059094.png" alt="image-20220303231059094" style="zoom: 50%;" /></p>
-<h1 id="3-2-n元真值函数"><a href="#3-2-n元真值函数" class="headerlink" title="3.2 n元真值函数"></a>3.2 n元真值函数</h1><ul>
-<li><p><strong>定义3</strong>：称$F:${0,1}$^n \to$ {0,1}为<strong>n元真值函数</strong></p>
-<blockquote>
-<p>例如，3元真值函数$F(x,y,z) = \begin{cases} 0 \\ 1 \\ \end{cases}$</p>
-<ul>
-<li>有3个变量</li>
-<li>每个变量的取值只能是0或1</li>
-<li>每一组符号串的函数值为0或1</li>
-</ul>
-<p>000，001，010，011，100，101，110，111——8个符号串</p>
-<p>000的函数值可能为0 or 1</p>
-</blockquote>
-<p>$F(p_1,p_2,…p_n) = \begin{cases} 0 \\ 1 \end{cases}$</p>
-<ul>
-<li><p>n个命题变量$p_1,p_2,…,p_n$的取值方式有$2^n$种</p>
-</li>
-<li><p>每一组取值对应的函数值可能为0或1，有2种</p>
-</li>
-</ul>
-<p><strong>共$2^{2^n}$个n元真值函数</strong></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303231356068.png" alt="image-20220303231356068" style="zoom:67%;" /></p>
-</li>
-</ul>
-<h2 id="1元真值函数"><a href="#1元真值函数" class="headerlink" title="1元真值函数"></a>1元真值函数</h2><ul>
-<li>由1个命题变项p形成的极小项与极大项</li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304092048665.png" alt="image-20220304092048665" style="zoom: 67%;" /></p>
-<p>1元真值函数一共有$2^{2^1} = 4$种命题公式</p>
-<blockquote>
-<p>横着看：有4个真值函数——对应$m_0 \vee m_1的四种取值组合——主析取范式$</p>
-<ul>
-<li>第一列：永假式真值表：$\neg m_0 \vee \neg m_1$</li>
-<li>第二列：$p$：$\neg m_0 \vee m_1$</li>
-<li>第三列：$\neg p$：$m_0  \vee \neg  m_1$</li>
-<li>第四列：永真式：$m_0 \vee m_1$</li>
-</ul>
-<p>竖着看：真值函数的取值$p$</p>
-<ul>
-<li>第一行：$p$</li>
-<li>第二行：$\neg p$</li>
-</ul>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304092346111.png" alt="image-20220304092346111" style="zoom:67%;" /></p>
-<h2 id="2元真值函数"><a href="#2元真值函数" class="headerlink" title="2元真值函数"></a>2元真值函数</h2><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304093005762.png" alt="image-20220304093005762" style="zoom:67%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304093027553.png" alt="image-20220304093027553" style="zoom:67%;" /></p>
-<h2 id="公式与真值函数"><a href="#公式与真值函数" class="headerlink" title="公式与真值函数"></a>公式与真值函数</h2><ul>
-<li>任何一个含n个命题变项的命题公式$A$都对应惟一的一个n元真值函数$ F $，$ F $恰好为$A$的真值表。</li>
-<li><strong>等值的公式</strong>对应的<strong>真值函数</strong>相同。</li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304093448005.png" alt="image-20220304093448005" style="zoom:50%;" /></p>
-<h1 id="3-3-联结词的完备集"><a href="#3-3-联结词的完备集" class="headerlink" title="3.3 联结词的完备集"></a>3.3 联结词的完备集</h1><ul>
-<li><strong>定义4</strong>：设$S$是一个联结词集合，如果任何$n(n \geq 1)$ 元真值函数都可以由仅含$S$中的联结词构成的公式表示，则称$S$是<strong>联结词完备集</strong><ul>
-<li>若$S$是联结词完备集, 则任何命题公式都可由$S$中的联结词表示</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>与能够用或非表示，则它们是完备的</p>
-</blockquote>
-<ul>
-<li><strong>定理2</strong>：$S = \{ \neg , \land, \vee\}$是联结词完备集。</li>
-</ul>
-<blockquote>
-<p>证明：由范式存在定理可证</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327153620246.png" alt="image-20220327153620246" style="zoom:67%;" /></p>
-<ul>
-<li><strong>定义5</strong></li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327153701571.png" alt="image-20220327153701571" style="zoom:67%;" /></p>
-<ul>
-<li><strong>定理3</strong></li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327153802714.png" alt="image-20220327153802714" style="zoom:67%;" /></p>
-]]></content>
-      <categories>
-        <category>2022 Spring</category>
-        <category>数理逻辑</category>
-      </categories>
-      <tags>
-        <tag>mathematical logic</tag>
       </tags>
   </entry>
   <entry>
@@ -4247,6 +3843,324 @@ i = j \mod Q</script><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/undefined/hello-world/</url>
+    <content><![CDATA[<p>你好，Hexo！你好，世界！</p>
+<p>欢迎来到我的博客</p>
+<p>我将持续记录日常学习、生活的点点滴滴</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>数理逻辑：绪论</title>
+    <url>/mathematical_logic/mathematical-logic-ch0/</url>
+    <content><![CDATA[<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>数理逻辑是用数学的方法研究<strong>推理</strong>，特别是研究数学中的推理</p>
+<p>推理的前提和结论都是命题，命题的真假与<strong>内容是否符合现实</strong>有关。</p>
+<script type="math/tex; mode=display">
+premises 前提 \quad（命题）\\
+\downarrow  \quad reason 推理 \\
+conclusions 结论 \quad （命题）\\</script><span id="more"></span>
+<ol>
+<li><p>正确的推理：从”正确的前提“能得到”正确的结论“的推理。</p>
+<p>推理正确——可推导关系，属于<code>演绎逻辑</code>（与之相对的是<code>归纳逻辑</code>）</p>
+<p>正确的前提：前提为真</p>
+<p>正确的结论：结论为真</p>
+</li>
+<li><p>推理正确与否<strong>与前提和结论中命题是否为真命题没有关系</strong>。</p>
+<p><strong>推理的正确性与命题的逻辑形式有关</strong></p>
+<p><strong>命题内容决定命题的真假</strong></p>
+<script type="math/tex; mode=display">
+命题：
+\begin{cases}
+内容 \\
+逻辑形式（抽象） \\
+\end{cases}</script><blockquote>
+<p>所有中学生打网球（前提）</p>
+<p>王军不打网球（前提）</p>
+<p>王军不是中学生（结论）</p>
+<p>——推理正确，不是所有命题都为真命题</p>
+</blockquote>
+<p>上述推理的逻辑形式为：</p>
+<blockquote>
+<p>S中所有元有R性质（前提）</p>
+<p>a没有R性质（前提）</p>
+<p>a不是S中的元（结论）</p>
+</blockquote>
+</li>
+<li><p>数理逻辑中，用自然语言陈述命题会带来不方便</p>
+</li>
+<li><p>数理逻辑的研究语言为：对象语言、元语言</p>
+<ul>
+<li>对象语言：被研究对象的语言。<strong>形式语言</strong>，用符号构成的公式来代替自然语言中的命题，<strong>没有二义性</strong><ul>
+<li>语义：符号，公式的含义</li>
+<li>语法：由符号构成的公式的形状和语法结构</li>
+</ul>
+</li>
+<li>元语言：辅助描述对象语言。自然语言</li>
+</ul>
+</li>
+<li><p>数理逻辑产生的动机：将一切推理的正确性化归于计算的通用代数</p>
+<ul>
+<li>建立一种普遍适用的精确的科学语言</li>
+<li>建立一种推理的演算</li>
+</ul>
+</li>
+<li><p>预备知识：</p>
+<ul>
+<li><p>集合</p>
+<p>集合S上的（n元）关系R</p>
+<p>外延</p>
+</li>
+<li><p>归纳定义和归纳证明</p>
+</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>数理逻辑</category>
+      </categories>
+      <tags>
+        <tag>mathematical logic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数理逻辑：第1节 命题逻辑的基本概念</title>
+    <url>/mathematical_logic/mathematical-logic-ch1/</url>
+    <content><![CDATA[<h1 id="1-1-命题与联结词"><a href="#1-1-命题与联结词" class="headerlink" title="1.1 命题与联结词"></a>1.1 命题与联结词</h1><h2 id="命题与真值"><a href="#命题与真值" class="headerlink" title="命题与真值"></a>命题与真值</h2><ul>
+<li>命题：能<strong>唯一</strong>确定<strong>真假值</strong>的<strong>陈述句</strong></li>
+<li>命题的真值：一个命题的真or假</li>
+<li>真值的取值：真or假</li>
+<li>真命题与假命题：由内容是否符合实际情况决定</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li>感叹句、祈使句、疑问句、<strong>悖论</strong>不是命题</li>
+<li>判断结果不唯一确定的陈述句不是命题（针对真值多种取值的情况）</li>
+</ul>
+<span id="more"></span>
+<h2 id="命题分类"><a href="#命题分类" class="headerlink" title="命题分类"></a>命题分类</h2><ul>
+<li>简单命题（原子命题）：不能分解成更简单的命题（基本单位）</li>
+<li>命题符合：由简单命题通过<strong>联结词</strong>联结而成的命题</li>
+<li>联结词有5类：与（$\land$​​）、或（$\vee$​）、非（$\neg$​）、蕴含（如果…那么（则）…）、等价（当且仅当，$\Leftrightarrow$​​）。$\neg$​为单联结词</li>
+</ul>
+<h2 id="简单命题符号化"><a href="#简单命题符号化" class="headerlink" title="简单命题符号化"></a>简单命题符号化</h2><ul>
+<li>用小写英文字母$p,q,r,…,$$p_i$,$q_i$,$r_i(i\geq1)$表示简单命题</li>
+<li>用”1“表示真，用”0“表示假</li>
+</ul>
+<h2 id="否定、合取、析取联结词"><a href="#否定、合取、析取联结词" class="headerlink" title="否定、合取、析取联结词"></a>否定、合取、析取联结词</h2><ul>
+<li><p><strong>定义1</strong>：设 p为命题，<strong>复合命题</strong>“非p”(或“p的否定”) 称为 p的<strong>否定式</strong>，记作$\neg$​p，符号$\neg$​称作<strong>否定联结词</strong>。 </p>
+<p>规定: $\neg$​p 为真当且仅当<u>p为假</u>。</p>
+</li>
+<li><p><strong>定义2</strong>：设p,q为两个命题，复合命题“p并且q”(或 “p 与 q”)称为 p与q的<strong>合取式</strong>，记作p∧q，∧称作<strong>合取联结词</strong>。</p>
+<p>规定: p∧q为真当且仅当<u>p与q同时为真</u>。</p>
+</li>
+<li><p><strong>定义3</strong>：设p, q为两个命题，复合命题“p或q”称作 p 与 q 的<strong>析取式</strong>，记作p∨q，∨称作<strong>析取联结词</strong>。 </p>
+<p>规定: p∨q为假当且仅当<u>p与q同时为假</u>。</p>
+</li>
+<li><p>关于”或“：$\begin{cases} 相容或：可兼 \qquad（例如：我上街买矿泉水或者买饮料） \\ 排斥或（异或）：不相容或,不可兼 \qquad （例如：某人星期一来或者星期二来） \\ \end{cases}$​</p>
+<blockquote>
+<p>又如：</p>
+<p>ab = 0——a = 0 或 b = 0 </p>
+<p>(a-1)·(a-2) = 0——a = 1 或 a = 2</p>
+</blockquote>
+<p>规定：数学上取<strong>相容或</strong></p>
+<p>排斥或：($\neg$ p $\land$q) $\vee$ (p$\land$$\neg$ q)</p>
+</li>
+</ul>
+<h2 id="蕴含联结词"><a href="#蕴含联结词" class="headerlink" title="蕴含联结词"></a>蕴含联结词</h2><ul>
+<li><p><strong>定义4</strong>：设p, q为两个命题，复合命题”如果p, 则q” 称作p与q的<strong>蕴涵式</strong>，记作p→q， </p>
+<p>并称p是蕴涵式的<strong>前件</strong>， q为蕴涵式的<strong>后件</strong>，→称作<strong>蕴涵联结词</strong>。 </p>
+<p>规定：p→q为假当且仅当<u>p为真q为假</u>。</p>
+<blockquote>
+<p>蕴含举例：</p>
+<p>对任何x，如果x&gt;3，则$x^2$&gt;9 真命题 </p>
+<p>令x=4，如果 4&gt;3，则16&gt;9（前提真，结论真） </p>
+<p>令x=-4，如果 -4&gt;3，则16&gt;9（前提假，结论真）</p>
+<p>令x=-2，如果 -2&gt;3, 则4&gt;9（前提假，结论假）——<strong>整个</strong>命题为真</p>
+<p><strong>对于该蕴含命题（真命题），不存在前提真，结论假的情况</strong></p>
+</blockquote>
+</li>
+<li><p>要证明符合命题：如果p, 则q</p>
+<ul>
+<li>一般情况下，<strong>由前提真，证明结论真</strong></li>
+<li>特殊情况下，<strong>前提为假，没有什么可做的</strong></li>
+</ul>
+<blockquote>
+<p>可以用来证明</p>
+<p>证：空集是任意集合的子集</p>
+<p>任何集合S，$\oslash \subseteq S$​​​ </p>
+<p>由子集的定义</p>
+<p><strong>任何x，若$x \in \oslash$​，则$x \in S$​​​​ </strong>——空证明</p>
+</blockquote>
+</li>
+<li><p>关于蕴含联结词的一些概念</p>
+<ul>
+<li><p>p→q 的逻辑关系：（有p一定有q，没有q一定没有p——逆否关系）——p$\subseteq$​​q</p>
+<ul>
+<li>q为p的必要条件</li>
+<li>p为q的充分条件</li>
+</ul>
+<blockquote>
+<p>p$\rightarrow$​​​q  $\Leftrightarrow$​​  $\neg$​q$\to$$\neg$​p</p>
+<p>p与q等价：$\begin{cases} p \to q \\ \neg p \to \neg q  \end{cases}$</p>
+</blockquote>
+</li>
+<li><p>“如果 p, 则 q” 有很多不同的表述方法：<strong>（需要好好理解）</strong></p>
+<ul>
+<li><p>若p，就q</p>
+</li>
+<li><p>只要p，就q</p>
+</li>
+<li><p><strong>p仅当q</strong></p>
+<blockquote>
+<p>p当且仅当q</p>
+<p>$\begin{cases} p当q——当有q就有p（q为充分条件，写在→前面）\\  p仅当q——仅当q，才p（q为必要条件，写在→后面）/除非q，才p：p→q \\ \end{cases}$ </p>
+</blockquote>
+</li>
+<li><p><strong>只有q，才p</strong></p>
+</li>
+<li><p>除非q，才p</p>
+</li>
+<li><p>除非q，否则非p（双重否定）</p>
+<blockquote>
+<p>除非q，否则p：$\neg p \rightarrow q$​</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>当 p 为假时，p→q 恒为真，称为空证明</p>
+</li>
+<li><p>常出现的错误：不分充分与必要条件</p>
+</li>
+<li><p>在自然语言中，“如果 p , 则 q ” ，p, q具有某种内在联系；</p>
+<p><strong>但在数理逻辑中， p, q可以无任何内在联系</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="等价联结词"><a href="#等价联结词" class="headerlink" title="等价联结词"></a>等价联结词</h2><ul>
+<li><p><strong>定义5</strong>：设 p, q为两个命题，复合命题“p当且仅当q” 称作p与q的<strong>等价式</strong>，记作p$\leftrightarrow$​q，$\leftrightarrow$​称作<strong>等价联结词</strong>。 </p>
+<p>规定: <u>p$\leftrightarrow$​​q为真</u>当且仅当<u>p与q同时为真或同时为假。</u></p>
+<p>​         p$\leftrightarrow$q 的逻辑关系：p与q互为充分必要条件。</p>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>基本联结词：构成一层</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220225084811509.png" alt="image-20220225084811509" style="zoom:67%;" /></p>
+<p><strong>注意优先级：括号$&gt;$非$&gt;$与$&gt;$或$&gt;$蕴含$&gt;$等价</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220225085015688.png" alt="image-20220225085015688" style="zoom:67%;" /></p>
+<h1 id="1-2-命题公式及其赋值"><a href="#1-2-命题公式及其赋值" class="headerlink" title="1.2 命题公式及其赋值"></a>1.2 命题公式及其赋值</h1><h2 id="命题变项与合式公式"><a href="#命题变项与合式公式" class="headerlink" title="命题变项与合式公式"></a>命题变项与合式公式</h2><ul>
+<li><p><strong>命题常项</strong>（命题常元）：简单命题（相当于常数或常量）</p>
+</li>
+<li><p><strong>命题变项</strong>（命题变元）：可表示任意命题的变元 （相当于变量）——命题符号，无具体指向</p>
+<p>命题变项不是命题。</p>
+<p>常项与变项均用$ p, q, r, …,$ $p_i$ ,$q_i$ , $r_i$ $, …,$ 等表示。</p>
+<p>将命题变项用联结词和圆括弧按一定的逻辑关系联结起来的符号串称为<strong>合式公式</strong>。</p>
+</li>
+</ul>
+<ul>
+<li><p>当使用联结词集{$\neg$, $\land$, $\vee$, →, $\leftrightarrow$}时，合式公式定义如下：</p>
+<p><strong>定义6</strong>（<strong>合式公式</strong>的递归定义）（也称命题公式，简称公式）：</p>
+<p>​    （1）单个命题变项和命题常项是合式公式, 称作<strong>原子命题公式</strong></p>
+<p>​    （2）若A是合式公式，则 ($\neg$​A)也是合式公式</p>
+<p>​    （3）若A, B是合式公式，则(A$\land$B), (A$\vee$B), (A→B),  (A$\leftrightarrow$B)也是合式公式</p>
+<p>​    （4）只有有限次地应用(1)~(3) 形成的符号串是合式公式</p>
+<p>设A是合式公式，B为A的一部分，若B也是合式公式，则称B为A的<strong>子公式</strong>。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220225090704496.png" alt="image-20220225090704496" style="zoom:67%;" /></p>
+</li>
+</ul>
+<h2 id="合式公式的层次"><a href="#合式公式的层次" class="headerlink" title="合式公式的层次"></a>合式公式的层次</h2><ul>
+<li><p><strong>定义7</strong>：</p>
+<p>(1) 若公式A是单个命题变项，则称A为<strong>0层公式</strong>。 </p>
+<blockquote>
+<p>如：p, q, r</p>
+</blockquote>
+<p>(2) 称 $A$ 是$n+1 \ (n \geq 0)$ 层公式是指下面情况之一： </p>
+<p>​    (a) $A=\neg B$，$B$ 是 $n$ 层公式； </p>
+<p>​    (b)$ A=B \land C$，其中$B,C $分别为$ i $层和 $j$ 层公式，且 $n=max(i,j)$​；</p>
+<p>​    (c)$A=B \vee C $, 其中 $B,C $的层次及 $n$ 同(b)； </p>
+<p>​    (d) $A=B \to C$​, 其中$B,C$ 的层次及 $n$ 同(b)； </p>
+<p>​    (e) $A=B \leftrightarrow C$, 其中$B,C$ 的层次及 $n$ 同(b)。 </p>
+<p>(3) 若公式$A$的层次为$k$, 则称$A$为<strong>k层公式</strong>。</p>
+<blockquote>
+<p>例如：</p>
+<p>公式 A = p，B =$\neg$​p，C=$\neg$​p→q，D=$\neg$​(p→q)$\leftrightarrow$​r,  E=(($\neg$​p$\land$​q) →r) $\leftrightarrow$​($\neg$r$\vee$s) </p>
+<p>分别为0层，1层，2层，3层，4层公式。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="公式赋值"><a href="#公式赋值" class="headerlink" title="公式赋值"></a>公式赋值</h2><ul>
+<li><p><strong>定义8</strong>：设$p_1 , p_2 , … , p_n$是出现在公式$A$中的全部命题变项, 给$p_1 , p_2 , … , p_n$各指定一个真值, 称为对$A$的一个赋值或解释。</p>
+<p>若使$A$为$1$, 则称这组值为$A$的成真赋值;  </p>
+<p>若使$A$为$0$, 则称这组值为$A$的成假赋值。</p>
+</li>
+<li><p>几点说明：<strong>（重要）</strong></p>
+<ul>
+<li><p>$A$中仅出现 $p_1 , p_2 , … , p_n，$给$A$赋值$\alpha = \alpha_1\alpha_2…\alpha_n$是指$p_1 =\alpha_1 , p_2 = \alpha_2 , …, p_n = \alpha_n , \alpha_i = 0$或$1$, $\alpha_i$之间不加标点符号。</p>
+<p>按照命题符号的顺序赋值</p>
+</li>
+<li><p>$A$中仅出现$ p, q, r, …, $给$A$赋值$\alpha_1$$\alpha_2\alpha_3…$是指$ p=\alpha_1 , q=\alpha_2 , r=\alpha_3 …$</p>
+</li>
+<li><p>含$n$个命题变项的公式有$2^n$个赋值。</p>
+<blockquote>
+<p>如：</p>
+<p>000, 010, 101, 110是  $\neg (p→q)\leftrightarrow r$的成真赋值 </p>
+<p>001, 011, 100, 111是成假赋值。</p>
+<p>——以上赋值的顺序按照$p, q, r$的顺序给出</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="真值表"><a href="#真值表" class="headerlink" title="真值表"></a>真值表</h2><ul>
+<li><p><strong>定义9</strong>：将命题公式$A$在所有赋值下取值的情况列成表，称作$A$的真值表。</p>
+</li>
+<li><p>构造真值表的步骤</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220225091751888.png" alt="image-20220225091751888" style="zoom:67%;" /></p>
+</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301200319538.png" alt="image-20220301200319538" style="zoom: 67%;" /></p>
+<blockquote>
+<p><strong>从表中可以看出哪些为成真赋值，那些为成假赋值</strong></p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301200342849.png" alt="image-20220301200342849" style="zoom:50%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301200358601.png" alt="image-20220301200358601" style="zoom:50%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301200413257.png" alt="image-20220301200413257" style="zoom:50%;" /></p>
+<h2 id="公式的类型"><a href="#公式的类型" class="headerlink" title="公式的类型"></a>公式的类型</h2><ul>
+<li><p><strong>定义10</strong>：</p>
+<p>(1) 若$A$在它的任何赋值下均为真，则称$A$为<strong>重言式</strong>或<strong>永真式</strong>；</p>
+<p>(2) 若$A$在它的任何赋值下均为假，则称$A$为<strong>矛盾式</strong>或<strong>永假式</strong>； </p>
+<p>(3) 若$A$不是矛盾式，则称$A$是<strong>可满足式</strong></p>
+<blockquote>
+<p>可满足式包含两种情况</p>
+<p>1.公式的值有时为真，又是为假（非重言式的可满足式）</p>
+<p>2.全部赋值都为真（重言式）</p>
+</blockquote>
+<p>注：重言式是可满足式，但反之不真。</p>
+</li>
+<li><p>真值表的用途：</p>
+<p>（1）求出公式的全部成真赋值与成假赋值；</p>
+<p>（2）判断公式的类型</p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><p>主要内容</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220225093212858.png" alt="image-20220225093212858" style="zoom:67%;" /></p>
+</li>
+<li><p>基本要求</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220225143205004.png" alt="image-20220225143205004" style="zoom:67%;" /></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>数理逻辑</category>
+      </categories>
+      <tags>
+        <tag>mathematical logic</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>数理逻辑：第4节 命题逻辑的推理理论</title>
     <url>/mathematical_logic/mathematical-logic-ch4/</url>
     <content><![CDATA[<h1 id="4-1-推理的形式结构"><a href="#4-1-推理的形式结构" class="headerlink" title="4.1 推理的形式结构"></a>4.1 推理的形式结构</h1><h2 id="定义1："><a href="#定义1：" class="headerlink" title="定义1："></a><strong>定义1：</strong></h2><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220307225116596.png" alt="image-20220307225116596" style="zoom:67%;" /></p>
@@ -4318,6 +4232,504 @@ i = j \mod Q</script><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220308145051717.png" alt="image-20220308145051717" style="zoom:50%;" /></p>
 <h2 id="归谬法（反证法）"><a href="#归谬法（反证法）" class="headerlink" title="归谬法（反证法）"></a>归谬法（反证法）</h2><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220308144510314.png" alt="image-20220308144510314" style="zoom:67%;" /></p>
 <h3 id="归谬法证明举例"><a href="#归谬法证明举例" class="headerlink" title="归谬法证明举例"></a>归谬法证明举例</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220308145122036.png" alt="image-20220308145122036" style="zoom:50%;" /></p>
+]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>数理逻辑</category>
+      </categories>
+      <tags>
+        <tag>mathematical logic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数理逻辑：第2节 命题逻辑等值计算</title>
+    <url>/mathematical-logic/mathematical-logic-ch2/</url>
+    <content><![CDATA[<h1 id="2-1-等值式"><a href="#2-1-等值式" class="headerlink" title="2.1 等值式"></a>2.1 等值式</h1><ul>
+<li><p><strong>定义1</strong>：若<strong>等价式</strong>A $\Leftrightarrow$ B是<strong>重言式</strong>，则称A与B等值，记作A $\Leftrightarrow$ B，并称A $\Leftrightarrow$ B是等值式</p>
+<p>此时A和B真值相同（全0 or 全1）</p>
+</li>
+<li><p>几点说明： </p>
+<ul>
+<li>定义中的符号$\Leftrightarrow$不是联结符（词） </li>
+<li>用<strong>真值表</strong>可检查两个公式是否等值</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>问题：判别下面命题公式是否为重言式(永真式)？ </p>
+<p>(( p∧ $\neg$ q) → r )∧ p ∧ (q → s) ∧ $\neg$ s → r<br>转化为: (( p∧ $\neg$ q) → r )∧ p ∧ (q → s) ∧ $\neg$ s → r $\Leftrightarrow$ 1</p>
+</blockquote>
+<span id="more"></span>
+<p>【例1】判断下列各组公式是否等值</p>
+<p>（1）p→(q→r) 与 (p $\land$ q) →r</p>
+<blockquote>
+<p>形式不同，表达含义相同。p，q都是r的前提</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301083009100.png" alt="image-20220301083009100" style="zoom:67%;" /></p>
+<p>（2）p→(q→r) 与 (p→q) →r</p>
+<blockquote>
+<p>含义不同，不等值</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301083123270.png" alt="image-20220301083123270" style="zoom:67%;" /></p>
+<h2 id="基本等值式"><a href="#基本等值式" class="headerlink" title="基本等值式"></a>基本等值式</h2><ul>
+<li><p><strong>双重否定律</strong>：  $\neg$ $\neg$ A $\Leftrightarrow$ A</p>
+</li>
+<li><p><strong>幂等律</strong>： A $\vee$ A $\Leftrightarrow$ A, $\qquad$ A $\land$ A $\Leftrightarrow$ A​ </p>
+<blockquote>
+<p>理解为两个集合的交/并</p>
+</blockquote>
+</li>
+<li><p><strong>交换律</strong>： A $\vee$ B $\Leftrightarrow$ B $\vee$ A,$\qquad$  A $\land$ B $\Leftrightarrow$ B $\land$ A​ </p>
+</li>
+<li><p><strong>结合律</strong> ： (A $\vee$ B) $\vee$ C $\Leftrightarrow$ A $\vee$ (B $\vee$ C), $\qquad$ (A $\land$ B) $\land$ C $\Leftrightarrow$ A $\land$ (B $\land$ C)​ </p>
+</li>
+<li><p><strong>分配律</strong> ：A $\vee$ (B $\land$ C) $\Leftrightarrow$ (A $\vee$ B) $\land$ (A $\vee$ C),$\qquad$ A $\land$ (B $\vee$ C) $\Leftrightarrow$ (A $\land$ B) $\vee$ (A $\land$ C)  </p>
+</li>
+<li><p><strong>德摩根律</strong>： $\neg$ (A $\vee$ B) $\Leftrightarrow$  $\neg$ A $\land$  $\neg$ B, $\qquad$<br>$\neg$ (A $\land$ B) $\Leftrightarrow$  $\neg$ A $\vee$ $\neg$ B​​</p>
+</li>
+<li><p><strong>吸收律</strong>： A $\vee$ (A $\land$ B) $\Leftrightarrow$ A, $\qquad$ A $\land$ (A $\vee$ B) $\Leftrightarrow$ A</p>
+<blockquote>
+<p>A把比它大的部分吸收</p>
+</blockquote>
+</li>
+<li><p><strong>零律</strong>： A $\vee$ 1 $\Leftrightarrow$ 1, $\qquad$  A $\land$ 0 $\Leftrightarrow$ 0</p>
+</li>
+<li><p><strong>同一律</strong>： A $\vee$ 0 $\Leftrightarrow$ A, $\qquad$ A $\land$ 1 $\Leftrightarrow$ A</p>
+</li>
+<li><p><strong>排中律</strong>： A $\vee$ $\neg$ A  $\Leftrightarrow$ 1</p>
+</li>
+<li><p><strong>矛盾律</strong>： A $\land$  $\neg$ A $\Leftrightarrow$ 0</p>
+<blockquote>
+<p>不可能既真又假</p>
+</blockquote>
+</li>
+<li><p><strong>蕴涵等值式</strong>： A→B $\Leftrightarrow$ $\neg$ A $\vee$ B</p>
+</li>
+<li><p><strong>等价等值式</strong>：A $\leftrightarrow$ B $\Leftrightarrow$ (A→B) $\land$ (B→A)</p>
+<blockquote>
+<p>非A或B 与 非B或A</p>
+</blockquote>
+</li>
+<li><p><strong>假言易位</strong>： $\color{red}$ A→B $\Leftrightarrow$ $\neg$ B→$\neg$ A</p>
+<blockquote>
+<p>B是A的必要条件，A是B的充分条件</p>
+<p><strong>有A则有B</strong> 与 <strong>没有B则没有A</strong> 是同一件事</p>
+</blockquote>
+</li>
+<li><p><strong>等价否定等值式</strong>：A $\leftrightarrow$ B $\Leftrightarrow$ $\neg$ A $\leftrightarrow$ $\neg$ B </p>
+</li>
+<li><p><strong>归谬论</strong>： (A→B) $\land$ (A→$\neg$ B) $\Leftrightarrow$ $\neg$ A</p>
+<blockquote>
+<p>在A为真的前提下，能推出矛盾（B既真又假），则前提A为假——反证法</p>
+</blockquote>
+</li>
+</ul>
+<p>特别提示：必须牢记这16组等值式(24式)，这是继续学习的基础。</p>
+<h2 id="等值演算与置换规则"><a href="#等值演算与置换规则" class="headerlink" title="等值演算与置换规则"></a>等值演算与置换规则</h2><h3 id="1-等值演算"><a href="#1-等值演算" class="headerlink" title="1.等值演算"></a>1.等值演算</h3><p>由已知的等值式推演出新的等值式的过程</p>
+<blockquote>
+<p>每一步都是等值变换（每一步都使用等值式）</p>
+</blockquote>
+<h3 id="2-等值演算的基础"><a href="#2-等值演算的基础" class="headerlink" title="2.等值演算的基础"></a>2.等值演算的基础</h3><ul>
+<li><p>等值关系的性质：<strong>自反性、对称性、传递性</strong></p>
+<blockquote>
+<p>A与A是等值的</p>
+<p>如果A和B等值，则B和A等值</p>
+<p>如果A和B等值，B和C等值，则A和C等值</p>
+</blockquote>
+</li>
+<li><p>基本的等值式</p>
+</li>
+<li><p><strong>置换规则</strong></p>
+</li>
+</ul>
+<h3 id="3-置换规则"><a href="#3-置换规则" class="headerlink" title="3.置换规则"></a>3.置换规则</h3><p>设 $\Phi$(A)​​​​​ 是含公式 A​​​​ 的命题公式，$\Phi$ (B)​​​ 是用公式B​​置换$\Phi$ (A)​ 中所有的 A 后得到的命题公式。 </p>
+<p>若 B $\Leftrightarrow$ A，则 $\Phi$(B) $\Leftrightarrow$ $\Phi$(A)。</p>
+<blockquote>
+<p>对公式的一部分做等值变换，变换后的结果仍然是等值的</p>
+</blockquote>
+<h3 id="等值演算的应用举例"><a href="#等值演算的应用举例" class="headerlink" title="等值演算的应用举例"></a>等值演算的应用举例</h3><ul>
+<li>证明两个公式等值</li>
+</ul>
+<p>​        <img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301190541286.png" alt="image-20220301190541286" style="zoom: 50%;" /></p>
+<p><strong>注：用等值演算不能直接证明两个公式不等值</strong></p>
+<ul>
+<li>判断公式类型：<script type="math/tex; mode=display">
+A 为矛盾式当且仅当 A \Leftrightarrow 0 \\
+A 为重言式当且仅当 A \Leftrightarrow 1 \\
+A 为非重言式的可满足式 \Leftrightarrow A既有成真赋值又有成假赋值 \\</script></li>
+</ul>
+<h3 id="证明两个公式不等值"><a href="#证明两个公式不等值" class="headerlink" title="证明两个公式不等值"></a>证明两个公式不等值</h3><ul>
+<li><p>真值表法</p>
+</li>
+<li><p>观察法——举出反例</p>
+</li>
+<li><p>先等值演算化简公式，再观察</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301190743753.png" alt="image-20220301190743753" style="zoom:50%;" /></p>
+</li>
+</ul>
+<h1 id="2-2-析取范式与合取范式"><a href="#2-2-析取范式与合取范式" class="headerlink" title="2.2 析取范式与合取范式"></a>2.2 析取范式与合取范式</h1><p>范式：比较规范的公式形式</p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li><p><strong>文字</strong>：命题变项及其否定的总称</p>
+<blockquote>
+<p>p, $\quad$ $\neg$ q</p>
+</blockquote>
+</li>
+<li><p><strong>简单析取式</strong>：仅由有限个文字构成的析取式</p>
+<blockquote>
+<p>p,$\quad$ $\neg$ q,$\quad$ p$\vee$ $\neg$ q, $\quad$ p$\vee$ q $\vee$ r,…​</p>
+</blockquote>
+</li>
+<li><p><strong>简单合取式</strong>：由有限个文字构成的合取式</p>
+<blockquote>
+<p>p,$\quad$ $\neg$ q,$\quad$ p$\land$ $\neg$ q, $\quad$ p$\land$ q $\land$ r,…</p>
+</blockquote>
+</li>
+<li><p><strong>析取范式</strong>：由有限个<strong>简单合取式</strong>组成的<strong>析取式</strong></p>
+<blockquote>
+<p>p,$\quad$ $\neg$ p $\land$ q,（简单合取式）$\quad$ p$\vee$ $\neg$ q, $\quad$ (p $\land$ $\neg$ q) $\vee$ ($\neg$ p $\land$ q $\land$ $\neg$ r) $\vee$ (q $\land$ r),…​</p>
+</blockquote>
+</li>
+<li><p><strong>合取范式</strong>：由有限个<strong>简单析取式</strong>组成的<strong>合取式</strong></p>
+<blockquote>
+<p>p,$\quad$ $\neg$ p $\vee$ q,（简单析取式）$\quad$ p$\land$ $\neg$ q, $\quad$ (p $\vee$ $\neg$ q) $\land$ ($\neg$ p $\vee$ q $\vee$ r) $\land$ (q $\vee$ r),…</p>
+</blockquote>
+</li>
+<li><p><strong>范式</strong>：析取范式与合取范式的总称</p>
+</li>
+</ol>
+<p>说明</p>
+<ul>
+<li>单个文字既是简单析取式，又是简单合取式</li>
+<li>形如 p $\land$ $\neg$ q $\land$ r, $\neg$ p $\land$ q $\vee$ $\neg$ r 的公式既是析取范式，又是合取范式</li>
+</ul>
+<p><strong>定理1</strong></p>
+<p>（1）一个<strong>简单析取式是重言式</strong>当且仅当<strong>它同时含有某个命题变项和它的否定式</strong></p>
+<blockquote>
+<p>p $\vee$ $\neg$ p $\vee$ r $\vee$ q</p>
+</blockquote>
+<p>（2）一个<strong>简单合取式是矛盾式</strong>当且仅当<strong>它同时含有某个命题变项和它的否定式</strong></p>
+<blockquote>
+<p>p $\land$ $\neg$ p $\land$ q</p>
+</blockquote>
+<p><strong>定理2</strong></p>
+<p>（1）一个<strong>析取范式是矛盾式</strong>当且仅当<strong>它每个简单合取式都是矛盾式</strong></p>
+<blockquote>
+<p>$\triangle$ $\vee$ $\triangle$ $\vee$ $\triangle$</p>
+</blockquote>
+<p>（2）一个<strong>合取范式是重言式</strong>当且仅当<strong>它的每个简单析取式都是重言式</strong></p>
+<blockquote>
+<p>$\triangle$ $\land$ $\triangle$ $\land$ $\triangle$</p>
+</blockquote>
+<p><strong>定理3</strong>（范式存在定理）</p>
+<p>任何命题公式都存在与之等值的析取范式与合取范式</p>
+<blockquote>
+<p>从任何公式出发，都有和它等值的<strong>析取范式</strong>和<strong>合取范式</strong></p>
+</blockquote>
+<h2 id="命题公式的范式"><a href="#命题公式的范式" class="headerlink" title="命题公式的范式"></a>命题公式的范式</h2><h3 id="求公式A的范式的步骤"><a href="#求公式A的范式的步骤" class="headerlink" title="求公式A的范式的步骤"></a>求公式A的范式的步骤</h3><ol>
+<li><p>消去A中的$\to$, $\leftrightarrow$（若存在）——<strong>（蕴含等价式、等价等值式、假言易位、等价否定等值式、归谬论）</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301091705613.png" alt="image-20220301091705613" style="zoom: 50%;" /></p>
+</li>
+<li><p>否定连接词的内移或消去<strong>（德摩根律）</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301091721847.png" alt="image-20220301091721847" style="zoom: 50%;" /></p>
+</li>
+<li><p>使用<strong>分配律</strong></p>
+</li>
+</ol>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301091734879.png" alt="image-20220301091734879" style="zoom:50%;" /></p>
+<p>范式的不足——不唯一</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301192357658.png" alt="image-20220301192357658" style="zoom:50%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301192420027.png" alt="image-20220301192420027" style="zoom:50%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301192436741.png" alt="image-20220301192436741" style="zoom:50%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301192454515.png" alt="image-20220301192454515" style="zoom:50%;" /></p>
+]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>数理逻辑</category>
+      </categories>
+      <tags>
+        <tag>mathematical logic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数理逻辑：第3节 主析（合）取范式</title>
+    <url>/mathematical_logic/mathematical-logic-ch3/</url>
+    <content><![CDATA[<ul>
+<li>判断命题公式是否为重言式（永真式）？<ul>
+<li>真值表</li>
+<li>等值演算</li>
+<li>主析取范式和主合取范式</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<h1 id="3-1主析取范式与主合取范式"><a href="#3-1主析取范式与主合取范式" class="headerlink" title="3.1主析取范式与主合取范式"></a>3.1主析取范式与主合取范式</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li><p><strong>文字</strong>：命题变项及其否定的总称</p>
+<blockquote>
+<p>$p, \quad \neg q$</p>
+</blockquote>
+</li>
+<li><p><strong>简单析取式</strong>：仅由有限个文字构成的析取式</p>
+<blockquote>
+<p>$p,\quad \neg q,\quad p\vee \neg q, \quad p\vee q \vee r,…$​</p>
+</blockquote>
+</li>
+<li><p><strong>简单合取式</strong>：由有限个文字构成的合取式</p>
+<blockquote>
+<p>$p,\quad \neg q,\quad p\land \neg q, \quad p\land q \land r,…$</p>
+</blockquote>
+</li>
+<li><p><strong>析取范式</strong>：由有限个<strong>简单合取式</strong>组成的<strong>析取式</strong></p>
+<blockquote>
+<p>$p,\quad \neg p \land q,（简单合取式）\quad p\vee \neg q, \quad (p \land \neg q) \vee (\neg p \land q \land \neg r) \vee (q \land r),…$​</p>
+</blockquote>
+</li>
+<li><p><strong>合取范式</strong>：由有限个<strong>简单析取式</strong>组成的<strong>合取式</strong></p>
+<blockquote>
+<p>$p,\quad \neg p \vee q,（简单析取式）\quad p\land \neg q, \quad (p \vee \neg q) \land (\neg p \vee q \vee r) \land (q \vee r),…$</p>
+</blockquote>
+</li>
+<li><p><strong>范式</strong>：析取范式与合取范式的总称</p>
+</li>
+</ol>
+<h2 id="求公式-A-的范式的步骤"><a href="#求公式-A-的范式的步骤" class="headerlink" title="求公式$A$的范式的步骤"></a>求公式$A$的范式的步骤</h2><ol>
+<li><p>消去$A$中的$\to, \leftrightarrow$（若存在）——<strong>（蕴含等价式、等价等值式、假言易位、等价否定等值式、归谬论）</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301091705613.png" alt="image-20220301091705613" style="zoom: 50%;" /></p>
+</li>
+<li><p>否定连接词的内移或消去<strong>（德摩根律）</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301091721847.png" alt="image-20220301091721847" style="zoom: 50%;" /></p>
+</li>
+<li><p>使用<strong>分配律</strong></p>
+</li>
+</ol>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301091734879.png" alt="image-20220301091734879" style="zoom:50%;" /></p>
+<ul>
+<li><p>公式范式的不足——不唯一</p>
+</li>
+<li><p>得到唯一的范式——主范式</p>
+</li>
+</ul>
+<h2 id="极小项与极大项"><a href="#极小项与极大项" class="headerlink" title="极小项与极大项"></a>极小项与极大项</h2><ul>
+<li><p><strong>定义1</strong>：在含有$n$个命题变项的<strong>简单合取式</strong>中，若每个命题变项均以文字的形式在其中出现且仅出现一次， 而且第$i$个文字出现在左起第$i$位上（$1 \leq i \leq n$），称这样的简单合取式为<strong>极小项</strong></p>
+<blockquote>
+<p>极小项——合取越多范围越小，取决于真值最小的文字</p>
+<p>对于$p, q, r$（不缺项，规定了顺序：字母、下标）</p>
+<p>$p \land q \land r$</p>
+</blockquote>
+</li>
+<li><p><strong>定义2</strong>：在含有$n$个命题变项的<strong>简单析取式</strong>中，若每个命题变项均以文字的形式在其中出现且仅出现一次， 而且第$i$个文字出现在左起第$i$位上（$1 \leq i \leq n$），称这样的简单析取式为<strong>极大项</strong></p>
+<blockquote>
+<p>极大项——合取越多范围越大，只要有真值为1的文字，该项的真值为1</p>
+<p>对于$p, q, r$（不缺项，规定了顺序：字母、下标）</p>
+<p>$p \vee q \vee r$</p>
+</blockquote>
+</li>
+<li><p>几点说明</p>
+<ul>
+<li><p>$n$个命题变项有$2^n$个极小项和$2^n$个极大项</p>
+</li>
+<li><p>$2^n$个极小项（极大项）均互不等值</p>
+</li>
+<li><p>用$m_i$表示第$i$个极小项，其中$i$是该极小项<strong>成真赋值</strong><br>的十进制表示</p>
+<blockquote>
+<p>$p \land q \land r$的成真赋值为111，$m_7$</p>
+<p>$\neg p \land q \land r$成真赋值为011，$m_3$</p>
+</blockquote>
+</li>
+<li><p>用$M_i$表示第$i$个极大项，其中$i$是该极大项<strong>成假赋值</strong><br>的十进制表示</p>
+<blockquote>
+<p>$p \vee q \vee r$的成假赋值为000，$M_0$</p>
+<p>$\neg p \vee q \vee r$的成假赋值为100，$M_4$</p>
+</blockquote>
+</li>
+<li><p>$m_i$（$M_i$）称为极小项（极大项）的名称</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>【实例】</p>
+<ul>
+<li>由两个命题变项$p, q$形成的极小项和极大项</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304081627478.png" alt="image-20220304081627478" style="zoom:67%;" /></p>
+<ul>
+<li>由三个命题变项$p,q,r$形成的极小项和极大项</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304081832381.png" alt="image-20220304081832381" style="zoom:67%;" /></p>
+<ul>
+<li><strong>$m_i与M_i的关系：\neg m_i \Leftrightarrow M_i, \neg M_i \Leftrightarrow m_i$</strong></li>
+</ul>
+<h2 id="主析取范式与主合取范式"><a href="#主析取范式与主合取范式" class="headerlink" title="主析取范式与主合取范式"></a>主析取范式与主合取范式</h2><ul>
+<li>主析取范式——由极小项构成的析取范式</li>
+<li>主合取范式——由极大项构成的合取范式</li>
+</ul>
+<blockquote>
+<p>例如，n=3, 命题变项为 p, q, r 时，</p>
+<p>$(\neg p\land \neg q \land r) \vee (\neg p\land q \land r) \Leftrightarrow  m_1 \vee m_3$ ——主析取范式<br>$(p \vee q \vee \neg r) \land (\neg p \vee \neg q \vee \neg r) \Leftrightarrow M_1 \land M_7$——主合取范式</p>
+</blockquote>
+<ul>
+<li><p><strong>定理1</strong>（主范式的存在唯一定理）</p>
+<p>任何命题公式都存在与之等值的主析取范式和主合取范式, 并且是惟一的</p>
+</li>
+</ul>
+<h2 id="求命题公式主范式的步骤"><a href="#求命题公式主范式的步骤" class="headerlink" title="求命题公式主范式的步骤"></a>求命题公式主范式的步骤</h2><h3 id="1-求公式主析取范式的步骤"><a href="#1-求公式主析取范式的步骤" class="headerlink" title="1.求公式主析取范式的步骤"></a>1.求公式主析取范式的步骤</h3><p><strong>先求出析取范式，再变换成主析取范式</strong></p>
+<p>设公式$A$含命题变项$p_1, p_2,…, p_n$</p>
+<ul>
+<li><p>(1) 求$A$的析取范式$A’=B_1 \vee B_2 \vee … \vee B_s$ , 其中$B_j$是<strong>简单合取式</strong> ，$j=1,2, … ,s$</p>
+</li>
+<li><p>(2) <strong>（每一个简单合取式变为极小项——合取1来补项）</strong></p>
+<p>若某个$B_j$既不含$p_i$, 又不含$\neg p_i$, 则将$B_j$展开成：$B_j \Leftrightarrow B_j \land 1 \Leftrightarrow B_j \land (p_i \vee \neg p_i) \Leftrightarrow (B_j \land p_i) \vee (B_j \land \neg p_i)$</p>
+<p>重复这个过程, 直到<strong>所有简单合取式都是长度为n的极小项</strong>为止</p>
+</li>
+<li><p>(3) <strong>消去重复出现的极小项</strong>, 即用$m_i$代替$m_i \vee m_i$ </p>
+</li>
+<li><p>(4) 将极小项按下标从小到大<strong>排列</strong></p>
+</li>
+</ul>
+<h3 id="2-求公式主合取范式的步骤"><a href="#2-求公式主合取范式的步骤" class="headerlink" title="2.求公式主合取范式的步骤"></a>2.求公式主合取范式的步骤</h3><p><strong>先求出合取范式，再变换成主合取范式</strong></p>
+<p>设公式$A$含命题变项$p_1, p_2,…, p_n$</p>
+<ul>
+<li><p>(1) 求$A$的合取范式$A’=B_1 \land  B_2 \land … \land B_s$ , 其中$B_j$是<strong>简单析取式</strong> ，$j=1,2, … ,s$</p>
+</li>
+<li><p>(2)<strong>（补项——析取0）</strong></p>
+<p>若某个$B_j$既不含$p_i$, 又不含$\neg p_i$, 则将$B_j$展开成：$B_j \Leftrightarrow B_j \vee 0 \Leftrightarrow B_j \vee (p_i \land \neg p_i) \Leftrightarrow (B_j \vee p_i) \land (B_j \vee \neg p_i)$</p>
+<p>重复这个过程, 直到<strong>所有简单析取式都是长度为n的极大项</strong>为止</p>
+</li>
+<li><p>(3)<strong>消去重复出现的极大项</strong>， 即用$M_i$代替$M_i \land M_i$ </p>
+</li>
+<li><p>(4) 将极大项按下标从小到大<strong>排列</strong></p>
+</li>
+</ul>
+<p>【实例】</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304083543458.png" alt="image-20220304083543458" style="zoom:50%;" /></p>
+<p><strong>我觉得可以使用卡诺图</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">p\qr</th>
+<th style="text-align:center">00</th>
+<th style="text-align:center">01</th>
+<th style="text-align:center">11</th>
+<th style="text-align:center">10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>0</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>1</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>主析取范式：成真赋值为1的项</p>
+<p>主合取范式：成假赋值为0的项</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304083604370.png" alt="image-20220304083604370" style="zoom:50%;" /></p>
+<p><strong>关注主析取范式和主合取范式出现项的下标的关系</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304083622774.png" alt="image-20220304083622774" style="zoom:50%;" /></p>
+<h2 id="由主析（合）取范式确定主合（析）取范式"><a href="#由主析（合）取范式确定主合（析）取范式" class="headerlink" title="由主析（合）取范式确定主合（析）取范式"></a>由主析（合）取范式确定主合（析）取范式</h2><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303230604125.png" alt="image-20220303230604125" style="zoom: 50%;" /></p>
+<h2 id="用成真和成假赋值确定主范式"><a href="#用成真和成假赋值确定主范式" class="headerlink" title="用成真和成假赋值确定主范式"></a>用成真和成假赋值确定主范式</h2><p>已知成真赋值，则知道有多少个最小项。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303230652029.png" alt="image-20220303230652029" style="zoom: 50%;" /></p>
+<h2 id="主范式的应用"><a href="#主范式的应用" class="headerlink" title="主范式的应用"></a>主范式的应用</h2><h3 id="1-求公式的成真成假赋值"><a href="#1-求公式的成真成假赋值" class="headerlink" title="(1)求公式的成真成假赋值"></a>(1)求公式的成真成假赋值</h3><p>设公式$A$含$n$个命题变项, $A$的主析取范式有<strong>$s$个极小项</strong>, 则$A$有<strong>$s$个成真赋值</strong>, 它们是极小项下标的二进制表示, <strong>其余$2^n-s$个赋值都是成假赋值</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303230838562.png" alt="image-20220303230838562" style="zoom:67%;" /></p>
+<h3 id="2-判断公式的类型"><a href="#2-判断公式的类型" class="headerlink" title="(2)判断公式的类型"></a>(2)判断公式的类型</h3><p>根据极小项或成真赋值的个数</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303230918268.png" alt="image-20220303230918268" style="zoom:67%;" /></p>
+<ul>
+<li>重言式：全部赋值为成真赋值</li>
+<li>矛盾式：全部赋值为成假赋值</li>
+<li>非重言的可满足式：<ul>
+<li>至少一个成真赋值</li>
+<li>至少一个成假赋值</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303230949648.png" alt="image-20220303230949648" style="zoom: 50%;" /></p>
+<h3 id="3-判断两个公式是否等值"><a href="#3-判断两个公式是否等值" class="headerlink" title="3.判断两个公式是否等值"></a>3.判断两个公式是否等值</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303231031287.png" alt="image-20220303231031287" style="zoom: 50%;" /></p>
+<h3 id="4-解实际问题"><a href="#4-解实际问题" class="headerlink" title="4.解实际问题"></a>4.解实际问题</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303231044612.png" alt="image-20220303231044612" style="zoom: 50%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303231059094.png" alt="image-20220303231059094" style="zoom: 50%;" /></p>
+<h1 id="3-2-n元真值函数"><a href="#3-2-n元真值函数" class="headerlink" title="3.2 n元真值函数"></a>3.2 n元真值函数</h1><ul>
+<li><p><strong>定义3</strong>：称$F:${0,1}$^n \to$ {0,1}为<strong>n元真值函数</strong></p>
+<blockquote>
+<p>例如，3元真值函数$F(x,y,z) = \begin{cases} 0 \\ 1 \\ \end{cases}$</p>
+<ul>
+<li>有3个变量</li>
+<li>每个变量的取值只能是0或1</li>
+<li>每一组符号串的函数值为0或1</li>
+</ul>
+<p>000，001，010，011，100，101，110，111——8个符号串</p>
+<p>000的函数值可能为0 or 1</p>
+</blockquote>
+<p>$F(p_1,p_2,…p_n) = \begin{cases} 0 \\ 1 \end{cases}$</p>
+<ul>
+<li><p>n个命题变量$p_1,p_2,…,p_n$的取值方式有$2^n$种</p>
+</li>
+<li><p>每一组取值对应的函数值可能为0或1，有2种</p>
+</li>
+</ul>
+<p><strong>共$2^{2^n}$个n元真值函数</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303231356068.png" alt="image-20220303231356068" style="zoom:67%;" /></p>
+</li>
+</ul>
+<h2 id="1元真值函数"><a href="#1元真值函数" class="headerlink" title="1元真值函数"></a>1元真值函数</h2><ul>
+<li>由1个命题变项p形成的极小项与极大项</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304092048665.png" alt="image-20220304092048665" style="zoom: 67%;" /></p>
+<p>1元真值函数一共有$2^{2^1} = 4$种命题公式</p>
+<blockquote>
+<p>横着看：有4个真值函数——对应$m_0 \vee m_1的四种取值组合——主析取范式$</p>
+<ul>
+<li>第一列：永假式真值表：$\neg m_0 \vee \neg m_1$</li>
+<li>第二列：$p$：$\neg m_0 \vee m_1$</li>
+<li>第三列：$\neg p$：$m_0  \vee \neg  m_1$</li>
+<li>第四列：永真式：$m_0 \vee m_1$</li>
+</ul>
+<p>竖着看：真值函数的取值$p$</p>
+<ul>
+<li>第一行：$p$</li>
+<li>第二行：$\neg p$</li>
+</ul>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304092346111.png" alt="image-20220304092346111" style="zoom:67%;" /></p>
+<h2 id="2元真值函数"><a href="#2元真值函数" class="headerlink" title="2元真值函数"></a>2元真值函数</h2><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304093005762.png" alt="image-20220304093005762" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304093027553.png" alt="image-20220304093027553" style="zoom:67%;" /></p>
+<h2 id="公式与真值函数"><a href="#公式与真值函数" class="headerlink" title="公式与真值函数"></a>公式与真值函数</h2><ul>
+<li>任何一个含n个命题变项的命题公式$A$都对应惟一的一个n元真值函数$ F $，$ F $恰好为$A$的真值表。</li>
+<li><strong>等值的公式</strong>对应的<strong>真值函数</strong>相同。</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304093448005.png" alt="image-20220304093448005" style="zoom:50%;" /></p>
+<h1 id="3-3-联结词的完备集"><a href="#3-3-联结词的完备集" class="headerlink" title="3.3 联结词的完备集"></a>3.3 联结词的完备集</h1><ul>
+<li><strong>定义4</strong>：设$S$是一个联结词集合，如果任何$n(n \geq 1)$ 元真值函数都可以由仅含$S$中的联结词构成的公式表示，则称$S$是<strong>联结词完备集</strong><ul>
+<li>若$S$是联结词完备集, 则任何命题公式都可由$S$中的联结词表示</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>与能够用或非表示，则它们是完备的</p>
+</blockquote>
+<ul>
+<li><strong>定理2</strong>：$S = \{ \neg , \land, \vee\}$是联结词完备集。</li>
+</ul>
+<blockquote>
+<p>证明：由范式存在定理可证</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327153620246.png" alt="image-20220327153620246" style="zoom:67%;" /></p>
+<ul>
+<li><strong>定义5</strong></li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327153701571.png" alt="image-20220327153701571" style="zoom:67%;" /></p>
+<ul>
+<li><strong>定理3</strong></li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327153802714.png" alt="image-20220327153802714" style="zoom:67%;" /></p>
 ]]></content>
       <categories>
         <category>2022 Spring</category>
