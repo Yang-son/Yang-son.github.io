@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.gingkocyx.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1.子句集定义1（文字、子句）定义1：原子（谓词）公式及其否定称为文字；若干个文字的一个析取式称为一个子句；不含任何文字的子句称为空子句，记为$\lambda$或NIL。  例如， $\neg D(y), \ I(a), \ \ P \vee Q \vee \neg R, \ \ \neg I(z) \vee R(z)$ 前两个是文字，后两个是子句  定义2（子句集）定义2：对一个谓词公式G，通过">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数理逻辑：第8节 归结演绎推理">
+<meta property="og:url" content="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-ch8/index.html">
+<meta property="og:site_name" content="Gingkocyx">
+<meta property="og:description" content="1.子句集定义1（文字、子句）定义1：原子（谓词）公式及其否定称为文字；若干个文字的一个析取式称为一个子句；不含任何文字的子句称为空子句，记为$\lambda$或NIL。  例如， $\neg D(y), \ I(a), \ \ P \vee Q \vee \neg R, \ \ \neg I(z) \vee R(z)$ 前两个是文字，后两个是子句  定义2（子句集）定义2：对一个谓词公式G，通过">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074039804.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074122126.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074302416.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074422506.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074515662.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074551682.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074621531.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074704508.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074734346.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322082805868.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322082830549.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322083341470.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322083818917.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322083948079.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322084525323.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322085003781.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322144651496.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322144721069.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322090339597.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322090346074.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322090529132.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322090923746.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322091538439.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322092034615.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322092212294.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322092557126.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322093155338.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322093629391.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322093640601.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322094241849.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322094402280.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322094459522.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411235556655.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411235541896.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220325082447874.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220325082602180.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220325083341917.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/xcUMIjilCQbK1Vw.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411235636057.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/2SZWohym83dOBaQ.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/9gIuYxOVAXCb1sy.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220325090548246.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220325090743794.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220325090932934.png">
+<meta property="article:published_time" content="2022-04-11T15:57:00.000Z">
+<meta property="article:modified_time" content="2022-04-11T15:58:56.921Z">
+<meta property="article:author" content="Bob Cheng">
+<meta property="article:tag" content="mathematical logic">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074039804.png">
+
+<link rel="canonical" href="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-ch8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>数理逻辑：第8节 归结演绎推理 | Gingkocyx</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Gingkocyx</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">BCheng's blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-ch8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bob Cheng">
+      <meta itemprop="description" content="markdown daily life & study">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gingkocyx">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数理逻辑：第8节 归结演绎推理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-11 23:57:00 / 修改时间：23:58:56" itemprop="dateCreated datePublished" datetime="2022-04-11T23:57:00+08:00">2022-04-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2022-Spring/" itemprop="url" rel="index"><span itemprop="name">2022 Spring</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2022-Spring/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/" itemprop="url" rel="index"><span itemprop="name">数理逻辑</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="1-子句集"><a href="#1-子句集" class="headerlink" title="1.子句集"></a>1.子句集</h3><h4 id="定义1（文字、子句）"><a href="#定义1（文字、子句）" class="headerlink" title="定义1（文字、子句）"></a>定义1（文字、子句）</h4><p><strong>定义1</strong>：原子（谓词）公式及其否定称为<strong>文字</strong>；若干个文字的一个<u>析取式</u>称为一个<strong>子句</strong>；<br>不含任何文字的子句称为<strong>空子句</strong>，记为$\lambda$或NIL。</p>
+<blockquote>
+<p>例如，</p>
+<p>$\neg D(y), \ I(a), \ \ P \vee Q \vee \neg R, \ \ \neg I(z) \vee R(z)$</p>
+<p>前两个是文字，后两个是子句</p>
+</blockquote>
+<h4 id="定义2（子句集）"><a href="#定义2（子句集）" class="headerlink" title="定义2（子句集）"></a>定义2（子句集）</h4><p><strong>定义2</strong>：对一个谓词公式G，通过以下步骤所得的子句集S，称为G的<strong>子句集</strong>（clauses）</p>
+<span id="more"></span>
+<h4 id="例1"><a href="#例1" class="headerlink" title="例1"></a>例1</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074039804.png" alt="image-20220322074039804" style="zoom:80%;" /></p>
+<ol>
+<li><p><strong>消蕴含词和等价词</strong></p>
+<blockquote>
+<p>对于等价词，第一行为等价定义，第二行为等价的左右同值</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074122126.png" alt="image-20220322074122126" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>移动否定词作用范围，使其仅作用于原子公式</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074302416.png" alt="image-20220322074302416" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>适当改名，使变量标准</strong></p>
+<p>（即：对于不同的约束，对应不同的变量）</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074422506.png" alt="image-20220322074422506" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>消去存在量词（Skolem化），同时进行变元替换</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074515662.png" alt="image-20220322074515662" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>消去所有全称量词</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074551682.png" alt="image-20220322074551682" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>化公式为合取范式</strong></p>
+<blockquote>
+<p>使用摩根律</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074621531.png" alt="image-20220322074621531" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>适当改名，使子句间无同名变元</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074704508.png" alt="image-20220322074704508" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>消去合取词，以子句为元素组成一个集合S</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322074734346.png" alt="image-20220322074734346" style="zoom:80%;" /></p>
+</li>
+</ol>
+<h4 id="化子句集的步骤（8步）"><a href="#化子句集的步骤（8步）" class="headerlink" title="化子句集的步骤（8步）"></a>化子句集的步骤（8步）</h4><ol>
+<li>消去蕴含词和等价词。</li>
+<li>使否定词仅作用于原子公式。</li>
+<li>适当改名使量词间不含同名指导变元。</li>
+<li>消去存在量词。</li>
+<li>消去全称量词。</li>
+<li>化公式为合取范式。</li>
+<li>适当改名，使子句间无同名变元。</li>
+<li>消去合取词，以子句为元素组成一个集合S。</li>
+</ol>
+<p><strong>子句集</strong>：</p>
+<ul>
+<li>无量词约束；（3，4，5）</li>
+<li>元素只是文字的析取；（1）</li>
+<li>否定符只作用于单个文字；（2）</li>
+<li>元素间默认为合取。（6，7，8）</li>
+</ul>
+<h4 id="例2"><a href="#例2" class="headerlink" title="例2"></a>例2</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322082805868.png" alt="image-20220322082805868" style="zoom:67%;" /></p>
+<ul>
+<li><p>注意：</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322082830549.png" alt="image-20220322082830549" style="zoom:67%;" /></p>
+</li>
+</ul>
+<h4 id="定理1（谓词公式和子句集不可满足的关系）"><a href="#定理1（谓词公式和子句集不可满足的关系）" class="headerlink" title="定理1（谓词公式和子句集不可满足的关系）"></a>定理1（谓词公式和子句集不可满足的关系）</h4><p><strong>定理1</strong>：谓词公式G不可满足当且仅当其子句集S不可满足</p>
+<blockquote>
+<p>G在任何解释下都为假，则子句集不存在解使其为真</p>
+</blockquote>
+<h4 id="定义3（子句集不可满足）"><a href="#定义3（子句集不可满足）" class="headerlink" title="定义3（子句集不可满足）"></a>定义3（子句集不可满足）</h4><p><strong>定义3</strong>：子句集S是不可满足的，当且仅当其全部子句的合取式是不可满足的。</p>
+<h3 id="2-命题逻辑中的归结原理"><a href="#2-命题逻辑中的归结原理" class="headerlink" title="2.命题逻辑中的归结原理"></a>2.命题逻辑中的归结原理</h3><p><strong>归结原理的提出</strong>：归结原理(Principle of resolution)又称消解原理,1965年鲁滨逊（J. A. Robinson）提出，从理论上解决了定理证明问题。归结原理提出的是一种<strong>证明子句集不可满足性</strong>，从而实现定理证明的一种理论及方法。</p>
+<blockquote>
+<p>证明有效性（蕴含式是重言式）可证明<strong>公式否定的不可满足性</strong>（永假式）</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322083341470.png" alt="image-20220322083341470" style="zoom: 67%;" /></p>
+<h4 id="定义4（互补文字）"><a href="#定义4（互补文字）" class="headerlink" title="定义4（互补文字）"></a>定义4（互补文字）</h4><p><strong>定义4</strong>：设$L$为一个文字，则$L$与$\neg L$为<strong>互补文字</strong></p>
+<h4 id="定义5（归结式、亲本子句、消解基）"><a href="#定义5（归结式、亲本子句、消解基）" class="headerlink" title="定义5（归结式、亲本子句、消解基）"></a>定义5（归结式、亲本子句、消解基）</h4><blockquote>
+<p>把两个子句中，互补的删掉，剩余的析取，构成归结式</p>
+</blockquote>
+<p><strong>定义5</strong>： 设$C_1$，$C_2$是命题逻辑中的两个子句，$C_1$中有文字$L_1$ ，$C_2$中有文字$L_2$ ，且$L_1$与$L_2$互补，从$C_1$ 、$C_2$中分别删除$L_1$ 、$L_2$ ，再将剩余部分析取起来，记构成的新子句为$C_{1 \ 2}$，则$C_{1 \  2}$为$C_1$ 、$C_2$的<strong>归结式</strong>，$C_1$ 、$C_2$称为其归结式的<strong>亲本子句</strong>，称$L_1$ 、$L_2$ 为<strong>消解基</strong>。</p>
+<h4 id="例3"><a href="#例3" class="headerlink" title="例3"></a>例3</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322083818917.png" alt="image-20220322083818917" style="zoom:80%;" /></p>
+<blockquote>
+<p>把两个式子中的Q删去</p>
+</blockquote>
+<p>得到的结果为：$C_{1 \ 2} = \neg P \vee R \vee S$</p>
+<h4 id="定理2（归结式和亲本子句的关系）"><a href="#定理2（归结式和亲本子句的关系）" class="headerlink" title="定理2（归结式和亲本子句的关系）"></a>定理2（归结式和亲本子句的关系）</h4><p><strong>定理2</strong>：归结式是其亲本子句的逻辑结果</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322083948079.png" alt="image-20220322083948079" style="zoom:67%;" /></p>
+<h4 id="利用归结原理证明命题公式的思路"><a href="#利用归结原理证明命题公式的思路" class="headerlink" title="利用归结原理证明命题公式的思路"></a>利用归结原理证明命题公式的思路</h4><ol>
+<li>先<strong>求出</strong>要证明的命题公式的<strong>否定式的子句集S</strong>；</li>
+<li>然后对子句集S（一次或者多次）<strong>使用归结原理</strong>；</li>
+<li>若<strong>在某一步推出了空子句，即推出了矛盾</strong>，则说明子句集S是不可满足的，从而原否定式也是不可满足的，进而说明原公式是永真的。</li>
+</ol>
+<p><strong>推出空子句就说明子句集不可满足</strong>，原因是：</p>
+<ul>
+<li><p>空子句就是F，推出空子句就是推出了F</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322084525323.png" alt="image-20220322084525323" style="zoom: 67%;" /></p>
+</li>
+<li><p>归结原理是正确的推理形式，由正确的推理形式推出了F，则<strong>说明前提不真</strong>，即归结出空子句的两个亲本子句至少有一个为假</p>
+</li>
+<li><p>而这两个亲本子句可能都是原子句集S中不可满足的子句。</p>
+</li>
+<li><p>如果这两个亲本子句不是或不全是S中的子句，那么它们必定是某次归结的结果。</p>
+</li>
+<li><p>同样的道理向上回溯，一定会推出原子句集中至少有一个子句为假，从而说明S不可满足</p>
+</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322085003781.png" alt="image-20220322085003781" style="zoom:67%;" /></p>
+<h4 id="例4"><a href="#例4" class="headerlink" title="例4"></a>例4</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322144651496.png" alt="image-20220322144651496" style="zoom:67%;" /></p>
+<p>不断使用归结原理，直到推出矛盾（<strong>NIL</strong>）</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322144721069.png" alt="image-20220322144721069" style="zoom:67%;" /></p>
+<h3 id="3-替换与合一"><a href="#3-替换与合一" class="headerlink" title="3.替换与合一"></a>3.替换与合一</h3><p><strong>问题</strong>：在一阶谓词中应用消解原理，无法直接找到互否文字的子句对</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322090339597.png" alt="image-20220322090339597" style="zoom:67%;" /></p>
+<p><strong>解决方法</strong>：<strong>对个体变元做适当替换</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322090346074.png" alt="image-20220322090346074" style="zoom:67%;" /></p>
+<h4 id="定义6（替换的定义）"><a href="#定义6（替换的定义）" class="headerlink" title="定义6（替换的定义）"></a>定义6（替换的定义）</h4><blockquote>
+<p>替换是一个有限集合</p>
+</blockquote>
+<p><strong>定义6</strong>：一个替换是形如$\{t_1/x_1, t_2/x_2, …, t_n/x_n\}$的有限集合，其中$t_1, \ t_2 , …, t_n$是项，$x_1, x_2, …, x_n$是互不相同的个体变元。$t_i /x_i$表示用$t_i$代换$x_i$，$t_i$与$x_i$不同，$x_i$也不能出现在$t_j$ 中（$j=1,2, …, n$）</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322090529132.png" alt="image-20220322090529132" style="zoom:67%;" /></p>
+<blockquote>
+<p>$g(y)$替换x中，y出现了，则$f(g(y)) / y$，没有消去y</p>
+</blockquote>
+<h4 id="定义7（表达式在替换下的例）"><a href="#定义7（表达式在替换下的例）" class="headerlink" title="定义7（表达式在替换下的例）"></a>定义7（表达式在替换下的例）</h4><p><strong>定义7</strong>：设$θ= \{ t_1/x_1, t_2/x_2, …, t_n/x_n \}$是一个替换，$E$是一个表达式，对公式$E$实施替换$θ$，即把$E$中出现的个体变元$x_j$都用$t_j$替换，记为$E \  θ$ ， 所得的结果称为$E$在$θ$下的例（instance）</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322090923746.png" alt="image-20220322090923746" style="zoom:67%;" /></p>
+<h4 id="定义8（替换的复合-乘积）"><a href="#定义8（替换的复合-乘积）" class="headerlink" title="定义8（替换的复合/乘积）"></a>定义8（替换的复合/乘积）</h4><p><strong>定义8</strong>：设$θ＝ \{ t_1/x_1, t_2/x_2, …, t_n/x_n \}$，$λ＝ \{ u_1/y_1, u_2/y_2, …, u_n/y_n \}$是两个替换，则将$\{ t_1 \ λ /x_1, t_2 \ λ/x_2, …, t_n \ λ /x_n , u_1/y_1, u_2/y_2, …, u_n/y_n \}$中符合下列条件的元素删除<br>（1）$ t_i \ λ /x_i$ 当$t_i \ λ ＝ x_i$<br>（2）$ u_i/y_i $当$y_i \in \{x_1,…, x_n \}$<br>这样得到的集合为$ θ $与$λ $的复合或乘积，记为$θ · λ $</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322091538439.png" alt="image-20220322091538439" style="zoom: 67%;" /></p>
+<h4 id="定义9（公式的合一）"><a href="#定义9（公式的合一）" class="headerlink" title="定义9（公式的合一）"></a>定义9（公式的合一）</h4><blockquote>
+<p>合一是一种替换</p>
+</blockquote>
+<p><strong>定义9</strong>：设$S＝ \{ F_1,F_2,…,F_n \}$ 是一个原子谓词公式集，若存在一个替换$θ$，可使$ F_1 \ θ =F_2 \ θ =…=F_n \ θ $，则称$θ$为$S$的一个合一，称$S$为可合一的。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322092034615.png" alt="image-20220322092034615" style="zoom:67%;" /></p>
+<h4 id="定义10（公式的最一般合一）"><a href="#定义10（公式的最一般合一）" class="headerlink" title="定义10（公式的最一般合一）"></a>定义10（公式的最一般合一）</h4><p><strong>定义10</strong>：设$σ$是原子公式集$S$的一个合一，如果对$S$的任何一个合一$θ$都存在一个替换$λ$，使得</p>
+<script type="math/tex; mode=display">
+θ ＝ σ · λ</script><p>则称$σ$为$S$的<strong>最一般合一(Most General Unifier)</strong>，简称<strong>MGU</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322092212294.png" alt="image-20220322092212294" style="zoom:67%;" /></p>
+<h4 id="定义11（寻找最一般合一）"><a href="#定义11（寻找最一般合一）" class="headerlink" title="定义11（寻找最一般合一）"></a>定义11（寻找最一般合一）</h4><p><strong>定义11</strong>：设$S$是一个非空的具有相同谓词名的原子公式集，从$S$中各公式左边的第一项开始，同时向右比较，<u>直到发现第一个不都相同的项为止</u>，用<strong>这些项的差异部分组成的集合就是S的一个差异集</strong>。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322092557126.png" alt="image-20220322092557126" style="zoom:67%;" /></p>
+<h4 id="合一算法（Unification-Algorithm）"><a href="#合一算法（Unification-Algorithm）" class="headerlink" title="合一算法（Unification Algorithm）"></a>合一算法（Unification Algorithm）</h4><blockquote>
+<p>$S_k$是原子公式集。$\sigma_k$是替换。$D_k$是差异集</p>
+</blockquote>
+<ul>
+<li>SteP1：置$k＝0，S_k＝S， σ_k ＝ \epsilon$；</li>
+<li>SteP2：<strong>若$S_k$只含有一个谓词公式，则算法停止，$σ_k$就是最一般合一</strong>；</li>
+<li>SteP3：求$S_k$的差异集$D_k$；</li>
+<li>SteP4：若中存在元素$x_k$和$t_k$ ，其中$x_k$是变元， $t_k$是项。且$x_k$不在$t_k$中出现，则置$S_{k ＋1}$＝$S_k\{t_k/x_k\}$  ，$σ_{k+1}= σ_k \{t_k / x_k\}$ ，  $k＝k+1$然后转SteP2；</li>
+<li>SteP5：算法停止，S的最一般合一不存在。</li>
+</ul>
+<blockquote>
+<p>变元在项中出现，则不存在最一般合一</p>
+<p>例如，$\{ x, f(x) \}$出现在差异集中，则算法停止，最一般合一（MGU）不存在</p>
+</blockquote>
+<h4 id="例5"><a href="#例5" class="headerlink" title="例5"></a>例5</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322093155338.png" alt="image-20220322093155338" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322093629391.png" alt="image-20220322093629391" style="zoom:67%;" /></p>
+<h4 id="例6"><a href="#例6" class="headerlink" title="例6"></a>例6</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322093640601.png" alt="image-20220322093640601" style="zoom:67%;" /></p>
+<h3 id="4-谓词逻辑中的归结原理"><a href="#4-谓词逻辑中的归结原理" class="headerlink" title="4.谓词逻辑中的归结原理"></a>4.谓词逻辑中的归结原理</h3><h4 id="定义12"><a href="#定义12" class="headerlink" title="定义12"></a>定义12</h4><p><strong>定义12</strong>：C1，C2为<strong>无相同变元</strong>的子句；L1，L2为其中的两个文字，L1和¬L2有最一般合一σ；C1，C2的二元归结式（二元消解式）为：<strong>（C1 σ －{L1 σ}） ∪ （ C2 σ－ {L2 σ}）</strong>其中C1，C2称作归结式的<strong>亲本子句</strong>；L1，L2称作消解文字。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322094241849.png" alt="image-20220322094241849" style="zoom: 80%;" /></p>
+<h4 id="例7"><a href="#例7" class="headerlink" title="例7"></a>例7</h4><blockquote>
+<p>使用a来代换所有的x——a/x</p>
+<p>消去$P(a)$和$\neg P(a)$</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322094402280.png" alt="image-20220322094402280" style="zoom:67%;" /></p>
+<h4 id="例8"><a href="#例8" class="headerlink" title="例8"></a>例8</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220322094459522.png" alt="image-20220322094459522" style="zoom:67%;" /></p>
+<blockquote>
+<p>还需说明的是，如果在参加归结的子句内部含有可合一的文字，则在进行归结之前，也应对这些文字进行合一，从而使子句达到最简。</p>
+</blockquote>
+<h4 id="例9"><a href="#例9" class="headerlink" title="例9"></a>例9</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411235556655.png" alt="image-20220411235556655" style="zoom:80%;" /></p>
+<h4 id="定理4"><a href="#定理4" class="headerlink" title="定理4"></a>定理4</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411235541896.png" alt="image-20220411235541896" style="zoom:80%;" /></p>
+<h4 id="例10"><a href="#例10" class="headerlink" title="例10"></a>例10</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220325082447874.png" alt="image-20220325082447874" style="zoom: 80%;" /></p>
+<blockquote>
+<p>使用归结反演法，结论的否定作为前提条件析取，推出空字句</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220325082602180.png" alt="image-20220325082602180" style="zoom: 67%;" /></p>
+<h4 id="例11"><a href="#例11" class="headerlink" title="例11"></a>例11</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220325083341917.png" alt="image-20220325083341917" style="zoom:80%;" /></p>
+<blockquote>
+<p>使用归结反演法来证明</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/xcUMIjilCQbK1Vw.png" alt="image-20220325084008192" style="zoom: 67%;" /></p>
+<h3 id="5-应用归结原理求取问题答案"><a href="#5-应用归结原理求取问题答案" class="headerlink" title="5.应用归结原理求取问题答案"></a>5.应用归结原理求取问题答案</h3><h4 id="例12"><a href="#例12" class="headerlink" title="例12"></a>例12</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411235636057.png" alt="image-20220411235636057" style="zoom:80%;" /></p>
+<blockquote>
+<p>解题步骤：</p>
+<p>①定义谓词</p>
+<p>②化成谓词公式</p>
+<p>③应用消解法</p>
+<p>首先证明小张老师的存在性</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/2SZWohym83dOBaQ.png" alt="image-20220325084714127" style="zoom:67%;" /></p>
+<blockquote>
+<p>求取答案时，添加辅助谓词</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/9gIuYxOVAXCb1sy.png" alt="image-20220325085105190" style="zoom: 67%;" /></p>
+<h4 id="应用归结原理求取问题答案的方法思路"><a href="#应用归结原理求取问题答案的方法思路" class="headerlink" title="应用归结原理求取问题答案的方法思路"></a>应用归结原理求取问题答案的方法思路</h4><ol>
+<li>为待求解的问题找一个合适的求证目标谓词</li>
+<li>增配（以析取形式）一个辅助谓词，该谓词的变元必须与对应目标谓词中的变元完全一致</li>
+<li>进行归结（把前提的合取和目标的否定化为子句集）</li>
+<li>当归结到刚好只剩下辅助谓词时，辅助谓词中原变元位置上的项就是所求的结果。</li>
+</ol>
+<p><strong>说明</strong>：辅助谓词是一个形式谓词，其作用仅是提取问题的答案</p>
+<h4 id="例13"><a href="#例13" class="headerlink" title="例13"></a>例13</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220325090548246.png" alt="image-20220325090548246" style="zoom:67%;" /></p>
+<blockquote>
+<p>定义谓词，运用归结反演法求解，设置辅助谓词变量</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220325090743794.png" alt="image-20220325090743794" style="zoom:67%;" /></p>
+<blockquote>
+<p>归结，求解</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220325090932934.png" alt="image-20220325090932934" style="zoom:67%;" /></p>
+<p><strong>总结</strong>：</p>
+<ul>
+<li>注意子句间无同名变元</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/mathematical-logic/" rel="tag"># mathematical logic</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/mathematical_logic/mathematical-logic-ch7/" rel="prev" title="数理逻辑：第7节 一阶逻辑自然推理系统">
+      <i class="fa fa-chevron-left"></i> 数理逻辑：第7节 一阶逻辑自然推理系统
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AD%90%E5%8F%A5%E9%9B%86"><span class="nav-text">1.子句集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%891%EF%BC%88%E6%96%87%E5%AD%97%E3%80%81%E5%AD%90%E5%8F%A5%EF%BC%89"><span class="nav-text">定义1（文字、子句）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%892%EF%BC%88%E5%AD%90%E5%8F%A5%E9%9B%86%EF%BC%89"><span class="nav-text">定义2（子句集）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B1"><span class="nav-text">例1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%96%E5%AD%90%E5%8F%A5%E9%9B%86%E7%9A%84%E6%AD%A5%E9%AA%A4%EF%BC%888%E6%AD%A5%EF%BC%89"><span class="nav-text">化子句集的步骤（8步）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B2"><span class="nav-text">例2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E7%90%861%EF%BC%88%E8%B0%93%E8%AF%8D%E5%85%AC%E5%BC%8F%E5%92%8C%E5%AD%90%E5%8F%A5%E9%9B%86%E4%B8%8D%E5%8F%AF%E6%BB%A1%E8%B6%B3%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%89"><span class="nav-text">定理1（谓词公式和子句集不可满足的关系）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%893%EF%BC%88%E5%AD%90%E5%8F%A5%E9%9B%86%E4%B8%8D%E5%8F%AF%E6%BB%A1%E8%B6%B3%EF%BC%89"><span class="nav-text">定义3（子句集不可满足）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E4%B8%AD%E7%9A%84%E5%BD%92%E7%BB%93%E5%8E%9F%E7%90%86"><span class="nav-text">2.命题逻辑中的归结原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%894%EF%BC%88%E4%BA%92%E8%A1%A5%E6%96%87%E5%AD%97%EF%BC%89"><span class="nav-text">定义4（互补文字）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%895%EF%BC%88%E5%BD%92%E7%BB%93%E5%BC%8F%E3%80%81%E4%BA%B2%E6%9C%AC%E5%AD%90%E5%8F%A5%E3%80%81%E6%B6%88%E8%A7%A3%E5%9F%BA%EF%BC%89"><span class="nav-text">定义5（归结式、亲本子句、消解基）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B3"><span class="nav-text">例3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E7%90%862%EF%BC%88%E5%BD%92%E7%BB%93%E5%BC%8F%E5%92%8C%E4%BA%B2%E6%9C%AC%E5%AD%90%E5%8F%A5%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%89"><span class="nav-text">定理2（归结式和亲本子句的关系）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%BD%92%E7%BB%93%E5%8E%9F%E7%90%86%E8%AF%81%E6%98%8E%E5%91%BD%E9%A2%98%E5%85%AC%E5%BC%8F%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="nav-text">利用归结原理证明命题公式的思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B4"><span class="nav-text">例4</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9B%BF%E6%8D%A2%E4%B8%8E%E5%90%88%E4%B8%80"><span class="nav-text">3.替换与合一</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%896%EF%BC%88%E6%9B%BF%E6%8D%A2%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%89"><span class="nav-text">定义6（替换的定义）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%897%EF%BC%88%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%9C%A8%E6%9B%BF%E6%8D%A2%E4%B8%8B%E7%9A%84%E4%BE%8B%EF%BC%89"><span class="nav-text">定义7（表达式在替换下的例）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%898%EF%BC%88%E6%9B%BF%E6%8D%A2%E7%9A%84%E5%A4%8D%E5%90%88-%E4%B9%98%E7%A7%AF%EF%BC%89"><span class="nav-text">定义8（替换的复合&#x2F;乘积）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%899%EF%BC%88%E5%85%AC%E5%BC%8F%E7%9A%84%E5%90%88%E4%B8%80%EF%BC%89"><span class="nav-text">定义9（公式的合一）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%8910%EF%BC%88%E5%85%AC%E5%BC%8F%E7%9A%84%E6%9C%80%E4%B8%80%E8%88%AC%E5%90%88%E4%B8%80%EF%BC%89"><span class="nav-text">定义10（公式的最一般合一）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%8911%EF%BC%88%E5%AF%BB%E6%89%BE%E6%9C%80%E4%B8%80%E8%88%AC%E5%90%88%E4%B8%80%EF%BC%89"><span class="nav-text">定义11（寻找最一般合一）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%88%E4%B8%80%E7%AE%97%E6%B3%95%EF%BC%88Unification-Algorithm%EF%BC%89"><span class="nav-text">合一算法（Unification Algorithm）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B5"><span class="nav-text">例5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B6"><span class="nav-text">例6</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%B0%93%E8%AF%8D%E9%80%BB%E8%BE%91%E4%B8%AD%E7%9A%84%E5%BD%92%E7%BB%93%E5%8E%9F%E7%90%86"><span class="nav-text">4.谓词逻辑中的归结原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%8912"><span class="nav-text">定义12</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B7"><span class="nav-text">例7</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B8"><span class="nav-text">例8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B9"><span class="nav-text">例9</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E7%90%864"><span class="nav-text">定理4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B10"><span class="nav-text">例10</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B11"><span class="nav-text">例11</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%BA%94%E7%94%A8%E5%BD%92%E7%BB%93%E5%8E%9F%E7%90%86%E6%B1%82%E5%8F%96%E9%97%AE%E9%A2%98%E7%AD%94%E6%A1%88"><span class="nav-text">5.应用归结原理求取问题答案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B12"><span class="nav-text">例12</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%BD%92%E7%BB%93%E5%8E%9F%E7%90%86%E6%B1%82%E5%8F%96%E9%97%AE%E9%A2%98%E7%AD%94%E6%A1%88%E7%9A%84%E6%96%B9%E6%B3%95%E6%80%9D%E8%B7%AF"><span class="nav-text">应用归结原理求取问题答案的方法思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B13"><span class="nav-text">例13</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bob Cheng</p>
+  <div class="site-description" itemprop="description">markdown daily life & study</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bob Cheng</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
