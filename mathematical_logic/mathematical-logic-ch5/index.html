@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.gingkocyx.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="引言——我们需要更丰富的语言   极大项$M_6$ 无法表示出“所有”，只能归为简单命题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数理逻辑：第5节 一阶逻辑基本概念">
+<meta property="og:url" content="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-ch5/index.html">
+<meta property="og:site_name" content="Gingkocyx">
+<meta property="og:description" content="引言——我们需要更丰富的语言   极大项$M_6$ 无法表示出“所有”，只能归为简单命题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310153420277.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310201743629.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310201845728.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310202020667.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310202449002.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310202702776.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310202825080.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310202937305.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310202958406.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310203207884.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310203305119.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310203349370.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310203522515.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310204222248.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310204959478.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310205302465.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310205402417.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310205547999.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310205730566.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310210449030.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310210521362.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310210833091.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220311093632739.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220311094113825.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220311094257484.png">
+<meta property="article:published_time" content="2022-04-11T14:36:30.000Z">
+<meta property="article:modified_time" content="2022-04-11T14:39:55.625Z">
+<meta property="article:author" content="Bob Cheng">
+<meta property="article:tag" content="mathematical logic">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310153420277.png">
+
+<link rel="canonical" href="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-ch5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>数理逻辑：第5节 一阶逻辑基本概念 | Gingkocyx</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Gingkocyx</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">BCheng's blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-ch5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bob Cheng">
+      <meta itemprop="description" content="markdown daily life & study">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gingkocyx">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数理逻辑：第5节 一阶逻辑基本概念
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-11 22:36:30 / 修改时间：22:39:55" itemprop="dateCreated datePublished" datetime="2022-04-11T22:36:30+08:00">2022-04-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2022-Spring/" itemprop="url" rel="index"><span itemprop="name">2022 Spring</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2022-Spring/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/" itemprop="url" rel="index"><span itemprop="name">数理逻辑</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>引言</strong>——我们需要更丰富的语言</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310153420277.png" alt="image-20220310153420277" style="zoom: 67%;" /></p>
+<blockquote>
+<p>极大项$M_6$</p>
+<p>无法表示出“所有”，只能归为简单命题</p>
+</blockquote>
+<span id="more"></span>
+<p><strong>主要内容</strong></p>
+<blockquote>
+<p>一阶逻辑命题符号化：$\begin{cases} 个体词、谓词、量词 \\ 一阶逻辑命题符号化 \\  \end{cases}$</p>
+<p>​                $\Downarrow$</p>
+<p>一阶逻辑公式及其解释：$\begin{cases} 一阶语言 \\ 合式公式（谓词公式） \\ 合式公式的解释 \\ 永真式、矛盾式、可满足式 \\ \end{cases}$</p>
+</blockquote>
+<h3 id="5-1-一阶逻辑命题符号化"><a href="#5-1-一阶逻辑命题符号化" class="headerlink" title="5.1 一阶逻辑命题符号化"></a>5.1 一阶逻辑命题符号化</h3><ul>
+<li><p><strong>个体词</strong>：可以独立存在的客体，它可以是一个具体的事物，也可以是一个抽象的概念</p>
+</li>
+<li><p><strong>个体常项</strong>：表示具体或特定的客体的个体词，一般用$a,b,c$表示</p>
+</li>
+<li><p><strong>个体变项</strong>：表示抽象或泛指的客体的个体词，一般用$x,y,z$表示</p>
+</li>
+<li><p><strong>个体域（论域）</strong>：个体变项的取值范围</p>
+<blockquote>
+<ul>
+<li>有限个体域 ，如：$\{a,b,c\},\{1,2\}$</li>
+<li>无限个体域，如：$\N,\Z,\R,…$</li>
+<li>全总个体域——由宇宙间一切事物组成</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p><strong>注意：如没有指明个体域，均指全总个体域</strong></p>
+<h4 id="个体词和谓词"><a href="#个体词和谓词" class="headerlink" title="个体词和谓词"></a>个体词和谓词</h4><blockquote>
+<p>例：数理逻辑是科学。</p>
+<p>可以分解为：主语——数理逻辑；谓语——是科学。</p>
+<p>$P(x)：x是科学$</p>
+<p>表示为$P$（数理逻辑），同理可以表达$P$（高等代数）；$P$（人工智能）……</p>
+<p>上述例子称<strong>“主语”为个体词，“谓语”为谓词。</strong></p>
+</blockquote>
+<ul>
+<li><p><strong>谓词</strong>：表示个体词性质或个体词相互之间关系的词</p>
+</li>
+<li><p><strong>谓词常项</strong>：表示<strong>具体</strong>性质或关系的谓词</p>
+<blockquote>
+<p>如：$M(a):a是人$</p>
+<p>0元谓词，a为谓词常项。</p>
+</blockquote>
+</li>
+<li><p><strong>谓词变项</strong>：表示<strong>抽象或泛指</strong>性质或关系的谓词</p>
+<blockquote>
+<p>如：$M(x):x具有性质M$</p>
+<p>1元谓词，x为谓词变项</p>
+</blockquote>
+</li>
+<li><p><strong>n元谓词</strong>：含$n(n \geq 1)$个个体变项的谓词</p>
+<ul>
+<li><p><strong>一元谓词</strong>（$n = 1$）——表示个体的<strong>性质</strong></p>
+</li>
+<li><p><strong>多元谓词</strong>（$n \geq 2$）——表示个体之间的<strong>关系</strong></p>
+<blockquote>
+<p>如：$H(x,y):x与y有关系H，H(x,y):x \geq y,…$</p>
+</blockquote>
+</li>
+<li><p><strong>0元谓词</strong>——不含个体变项的谓词</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h4><p>表示数量的词</p>
+<ul>
+<li><p><strong>全称量词$\forall$</strong>：表示所有的</p>
+<ul>
+<li>$\forall x：对个体域中的所有x$</li>
+</ul>
+<blockquote>
+<p>$\forall x F(x)$表示：个体域中<strong>所有的</strong>x具有性质F</p>
+<p>$\forall x \forall y G(x,y)$表示：个体域中<strong>所有的</strong>x和y有关系G</p>
+</blockquote>
+</li>
+<li><p><strong>存在量词$\exists$</strong>：表示存在，有一个</p>
+<ul>
+<li>$\exists x：个体域中有一个x$</li>
+</ul>
+<blockquote>
+<p>$\exists xF(x)$表示: 个体域中<strong>有一个</strong>$x$具有性质$F$<br>$\exists x \exists yG(x,y)$表示: 个体域中<strong>存在$x$和$y$</strong>有关系$G$<br>$\forall x \exists yG(x,y)$表示: 对个体域中<strong>每一个</strong>$x$都<strong>存在一个</strong>$y$使得$x$和$y$有关系$G$<br>$\exists x \forall yG(x,y)$表示: 个体域中<strong>存在一个</strong>$x$使得对<strong>每一个</strong>$y$,   $x$和$y$有关系$G$</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="实例-例1（命题逻辑和一阶逻辑）"><a href="#实例-例1（命题逻辑和一阶逻辑）" class="headerlink" title="实例-例1（命题逻辑和一阶逻辑）"></a>实例-例1（命题逻辑和一阶逻辑）</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310201743629.png" alt="image-20220310201743629" style="zoom:50%;" /></p>
+<ul>
+<li>在一阶逻辑中</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310201845728.png" alt="image-20220310201845728" style="zoom:50%;" /></p>
+<p>注意：</p>
+<ul>
+<li>(1) 不含<strong>个体变项</strong>的谓词称为<strong>0元谓词</strong>.</li>
+<li>(2) 当谓词为<strong>谓词常项</strong>时， 0元谓词为命题.</li>
+<li>(3) 任何命题均可以表示成0元谓词，因而可将命题看成特殊的谓词.</li>
+</ul>
+<h5 id="实例-例2"><a href="#实例-例2" class="headerlink" title="实例-例2"></a>实例-例2</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310202020667.png" alt="image-20220310202020667" style="zoom:50%;" /></p>
+<ul>
+<li>引入<strong>特性谓词</strong>$F(x)$（表示x是人）;</li>
+<li>(1),(2)是一阶逻辑中两个“基本”公式.</li>
+</ul>
+<blockquote>
+<p>全称量词——<strong>蕴含式</strong>；（对于宇宙间一切个体，如果个体是人，则他爱美）</p>
+<p>存在量词——<strong>合取</strong>。（在宇宙间存在这样的一个个体，他是人，他用左手写字）</p>
+</blockquote>
+<h5 id="实例-例3（命题符号化的形式和真值）"><a href="#实例-例3（命题符号化的形式和真值）" class="headerlink" title="实例-例3（命题符号化的形式和真值）"></a>实例-例3（命题符号化的形式和真值）</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310202449002.png" alt="image-20220310202449002" style="zoom:50%;" /></p>
+<ul>
+<li>不同个体域内，命题符号化形式可能不同（也可能相同），真值可能不同（也可能相同）</li>
+</ul>
+<h5 id="实例-例4（默认全总个体域）"><a href="#实例-例4（默认全总个体域）" class="headerlink" title="实例-例4（默认全总个体域）"></a>实例-例4（默认全总个体域）</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310202702776.png" alt="image-20220310202702776" style="zoom:50%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310202825080.png" alt="image-20220310202825080" style="zoom:50%;" /></p>
+<ul>
+<li>题目中没给个体域，一律用<strong>全总个体域</strong></li>
+</ul>
+<h5 id="实例-例5"><a href="#实例-例5" class="headerlink" title="实例-例5"></a>实例-例5</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310202937305.png" alt="image-20220310202937305" style="zoom:50%;" /></p>
+<h5 id="实例-例6"><a href="#实例-例6" class="headerlink" title="实例-例6"></a>实例-例6</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310202958406.png" alt="image-20220310202958406" style="zoom:50%;" /></p>
+<ul>
+<li>$\forall$与$\exists$不能随意交换</li>
+</ul>
+<h3 id="5-2-一阶逻辑公式及解释"><a href="#5-2-一阶逻辑公式及解释" class="headerlink" title="5.2 一阶逻辑公式及解释"></a>5.2 一阶逻辑公式及解释</h3><h4 id="定义1-一阶语言的字母表"><a href="#定义1-一阶语言的字母表" class="headerlink" title="定义1 一阶语言的字母表"></a>定义1 一阶语言的字母表</h4><blockquote>
+<p>由<em>L</em>生成一阶语言L的字母表</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310203207884.png" alt="image-20220310203207884" style="zoom: 67%;" /></p>
+<h4 id="定义2-一阶语言L的项"><a href="#定义2-一阶语言L的项" class="headerlink" title="定义2 一阶语言L的项"></a>定义2 一阶语言L的项</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310203305119.png" alt="image-20220310203305119" style="zoom: 67%;" /></p>
+<blockquote>
+<p>项是一个个体（直接生成或函数生成）</p>
+<p>如：$a,x,x+y,f(x),g(x,y)$等都是项</p>
+</blockquote>
+<h4 id="定义3-原子公式"><a href="#定义3-原子公式" class="headerlink" title="定义3 原子公式"></a>定义3 原子公式</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310203349370.png" alt="image-20220310203349370" style="zoom:67%;" /></p>
+<blockquote>
+<p>谓词作用于个体构成的</p>
+<p>$F(x,y),F(f(x_1,x_2),g(x_3,x_4))$等均为原子公式</p>
+</blockquote>
+<h4 id="定义4-一阶语言的公式（合式公式）"><a href="#定义4-一阶语言的公式（合式公式）" class="headerlink" title="定义4 一阶语言的公式（合式公式）"></a>定义4 一阶语言的公式（合式公式）</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310203522515.png" alt="image-20220310203522515" style="zoom:67%;" /></p>
+<blockquote>
+<p>如：$F(x),F(x) \or \neg G(x,y), \forall x(F(x) \to G(x)), \exists x \forall y (F(x) \to G(y) \and L(x,y))$等都是合式公式</p>
+</blockquote>
+<h4 id="定义5-指导变元、辖域、约束出现、自由出现"><a href="#定义5-指导变元、辖域、约束出现、自由出现" class="headerlink" title="定义5 指导变元、辖域、约束出现、自由出现"></a>定义5 指导变元、辖域、约束出现、自由出现</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310204222248.png" alt="image-20220310204222248" style="zoom:67%;" /></p>
+<blockquote>
+<p>例如：考虑公式：$\forall x(F(x,y)→G(x,z)) $，</p>
+<p>$x$为指导变元，$(F(x,y)→G(x,z))$为$\forall x$的辖域，</p>
+<p>$x$的两次出现均为约束出现，$y$与$z$均为自由出现</p>
+<p>又如，$\exists x(F(x,y,z) \to \forall y (G(x,y) \and H(x,y,z)))$，</p>
+<p>$\exists x$中的$x$是指导变元，辖域为$(F(x,y,z) \to \forall y (G(x,y) \and H(x,y,z))).$</p>
+<p>$\forall y$中的$y$是指导变元，辖域为$(G(x,y) \and H(x,y,z)).$</p>
+<p>x的3次出现都是约束出现，y的第一次出现时自由出现，后2次是约束出现，z的2次出现都是自由出现</p>
+</blockquote>
+<h4 id="定义6-封闭的公式"><a href="#定义6-封闭的公式" class="headerlink" title="定义6 封闭的公式"></a>定义6 封闭的公式</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310204959478.png" alt="image-20220310204959478" style="zoom: 67%;" /></p>
+<blockquote>
+<p>例如：$\forall x \forall y (F(x) \and G(y) \to H(x,y))$为闭式，</p>
+<p>而$\exists x (F(x) \and G(x,y))$不是闭式——自由出现的个体变项是y</p>
+</blockquote>
+<h4 id="定义7-公式的解释"><a href="#定义7-公式的解释" class="headerlink" title="定义7 公式的解释"></a>定义7 公式的解释</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310205302465.png" alt="image-20220310205302465" style="zoom:67%;" /></p>
+<h5 id="实例-例7"><a href="#实例-例7" class="headerlink" title="实例-例7"></a>实例-例7</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310205402417.png" alt="image-20220310205402417" style="zoom:50%;" /></p>
+<blockquote>
+<p>前两个是封闭的公式，是命题</p>
+<p>第三个不是封闭的，可能是命题，也可能不是命题</p>
+</blockquote>
+<h4 id="定理1-闭式命题"><a href="#定理1-闭式命题" class="headerlink" title="定理1 闭式命题"></a>定理1 闭式命题</h4><p><strong>定理</strong>1：闭式在任何解释下都是命题</p>
+<p>注意：<strong>不是闭式的公式在解释下可能是命题，也可能不是命题</strong></p>
+<h4 id="定义8-公式的类型"><a href="#定义8-公式的类型" class="headerlink" title="定义8 公式的类型"></a>定义8 公式的类型</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310205547999.png" alt="image-20220310205547999" style="zoom:67%;" /></p>
+<p>说明：</p>
+<ul>
+<li><p>（1）永真式为可满足式，但反之不真. </p>
+</li>
+<li><p>（2）判断公式是否是可满足的(永真式, 矛盾式)是不可判定的，即不存在一个算法能够在有限步内判断。任意给定的公式是可满足的(永真式, 矛盾式)</p>
+<blockquote>
+<p>公式中的谓词和函数可以有各种不同的解释</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="定义9-代换实例"><a href="#定义9-代换实例" class="headerlink" title="定义9 代换实例"></a>定义9 代换实例</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310205730566.png" alt="image-20220310205730566" style="zoom:67%;" /></p>
+<blockquote>
+<p>例如：$F(x) \to G(x), \forall x F(x) \to \exists y G(y)$等都是$p \to q$的代换实例</p>
+</blockquote>
+<h4 id="定理2"><a href="#定理2" class="headerlink" title="定理2"></a>定理2</h4><p><strong>定理2</strong>：重言式的代换实例都是永真式，矛盾式的代换实例都是矛盾式</p>
+<h5 id="实例-例8"><a href="#实例-例8" class="headerlink" title="实例-例8"></a>实例-例8</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310210449030.png" alt="image-20220310210449030" style="zoom:50%;" /></p>
+<h4 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310210521362.png" alt="image-20220310210521362" style="zoom:67%;" /></p>
+<p>注意：当公式不引起歧义时，经常省去关于量词的括号（在约束变元前）</p>
+<h4 id="语法分析树"><a href="#语法分析树" class="headerlink" title="语法分析树"></a>语法分析树</h4><p>谓词公式的语法分析树：</p>
+<ul>
+<li>量词$\forall x$和$\exists x$形成节点，而且和否定一样，只有<strong>一棵子树</strong>；</li>
+<li>对于一般形式$P(t_1,t_2,…,t_n)$的谓词表达式，以符号P为一个结点，P有<strong>n棵子树</strong>，即项$t_1,t_2,…,t_n$的语法分析树</li>
+</ul>
+<h5 id="实例-例9（语法分析树）"><a href="#实例-例9（语法分析树）" class="headerlink" title="实例-例9（语法分析树）"></a>实例-例9（语法分析树）</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220310210833091.png" alt="image-20220310210833091" style="zoom:50%;" /></p>
+<h5 id="实例-例10"><a href="#实例-例10" class="headerlink" title="实例-例10"></a>实例-例10</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220311093632739.png" alt="image-20220311093632739" style="zoom:50%;" /></p>
+<blockquote>
+<p>定义谓词：学生、老师、年轻</p>
+<p>对任意x，如果x是学生。则存在老师，学生比老师年轻</p>
+</blockquote>
+<h5 id="实例-例11"><a href="#实例-例11" class="headerlink" title="实例-例11"></a>实例-例11</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220311094113825.png" alt="image-20220311094113825" style="zoom:50%;" /></p>
+<blockquote>
+<p>没有书是气体——不存在x是书，x是气体</p>
+</blockquote>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>作用于已有的个体，生成新的个体</p>
+<p>函数值是唯一的，表示唯一的关系</p>
+<ul>
+<li><p><strong>函数</strong>：表示个体之间的运算，可作用于一个或数个个体（用小写字母）</p>
+<ul>
+<li><p>给定一个或若干个体（对象），<strong>产生一个新的个体</strong>（对象）</p>
+<blockquote>
+<p>例：x的父亲 $father(张三)$</p>
+<p>两数之和仍是一个数 $add(e_1,e_2)$</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="实例-例11-1"><a href="#实例-例11-1" class="headerlink" title="实例-例11"></a>实例-例11</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220311094257484.png" alt="image-20220311094257484" style="zoom:50%;" /></p>
+<h5 id="谓词和函数的区别"><a href="#谓词和函数的区别" class="headerlink" title="谓词和函数的区别"></a>谓词和函数的区别</h5><ul>
+<li>谓词代表<strong>语句</strong>，<strong>结果是性质或关系</strong>（具有真假值）；</li>
+<li>函数代表<strong>关系运算</strong>，结果将返回一个<strong>新个体</strong>。</li>
+</ul>
+<blockquote>
+<p>例：</p>
+<p>谓词$SUM(e_1, e_2, e_3)$ 说明$e_1、e_2、e_3$之间的关系是$e_1$与$e_2$的和是$e_3$——返回bool类型</p>
+<p>函数$add(e_1, e_2)$说明$e_1$与$e_2$相加的结果仍是一个数——返回个体类型</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/mathematical-logic/" rel="tag"># mathematical logic</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/algorithm/algorithm-ch6/" rel="prev" title="算法设计与分析：第6章 回溯法与分支限界法">
+      <i class="fa fa-chevron-left"></i> 算法设计与分析：第6章 回溯法与分支限界法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/mathematical_logic/mathematical-logic-ch6/" rel="next" title="数理逻辑：第6节 一阶逻辑等值演算与推理定律">
+      数理逻辑：第6节 一阶逻辑等值演算与推理定律 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91%E5%91%BD%E9%A2%98%E7%AC%A6%E5%8F%B7%E5%8C%96"><span class="nav-text">5.1 一阶逻辑命题符号化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AA%E4%BD%93%E8%AF%8D%E5%92%8C%E8%B0%93%E8%AF%8D"><span class="nav-text">个体词和谓词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8F%E8%AF%8D"><span class="nav-text">量词</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-%E4%BE%8B1%EF%BC%88%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E5%92%8C%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91%EF%BC%89"><span class="nav-text">实例-例1（命题逻辑和一阶逻辑）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-%E4%BE%8B2"><span class="nav-text">实例-例2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-%E4%BE%8B3%EF%BC%88%E5%91%BD%E9%A2%98%E7%AC%A6%E5%8F%B7%E5%8C%96%E7%9A%84%E5%BD%A2%E5%BC%8F%E5%92%8C%E7%9C%9F%E5%80%BC%EF%BC%89"><span class="nav-text">实例-例3（命题符号化的形式和真值）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-%E4%BE%8B4%EF%BC%88%E9%BB%98%E8%AE%A4%E5%85%A8%E6%80%BB%E4%B8%AA%E4%BD%93%E5%9F%9F%EF%BC%89"><span class="nav-text">实例-例4（默认全总个体域）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-%E4%BE%8B5"><span class="nav-text">实例-例5</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-%E4%BE%8B6"><span class="nav-text">实例-例6</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91%E5%85%AC%E5%BC%8F%E5%8F%8A%E8%A7%A3%E9%87%8A"><span class="nav-text">5.2 一阶逻辑公式及解释</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%891-%E4%B8%80%E9%98%B6%E8%AF%AD%E8%A8%80%E7%9A%84%E5%AD%97%E6%AF%8D%E8%A1%A8"><span class="nav-text">定义1 一阶语言的字母表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%892-%E4%B8%80%E9%98%B6%E8%AF%AD%E8%A8%80L%E7%9A%84%E9%A1%B9"><span class="nav-text">定义2 一阶语言L的项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%893-%E5%8E%9F%E5%AD%90%E5%85%AC%E5%BC%8F"><span class="nav-text">定义3 原子公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%894-%E4%B8%80%E9%98%B6%E8%AF%AD%E8%A8%80%E7%9A%84%E5%85%AC%E5%BC%8F%EF%BC%88%E5%90%88%E5%BC%8F%E5%85%AC%E5%BC%8F%EF%BC%89"><span class="nav-text">定义4 一阶语言的公式（合式公式）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%895-%E6%8C%87%E5%AF%BC%E5%8F%98%E5%85%83%E3%80%81%E8%BE%96%E5%9F%9F%E3%80%81%E7%BA%A6%E6%9D%9F%E5%87%BA%E7%8E%B0%E3%80%81%E8%87%AA%E7%94%B1%E5%87%BA%E7%8E%B0"><span class="nav-text">定义5 指导变元、辖域、约束出现、自由出现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%896-%E5%B0%81%E9%97%AD%E7%9A%84%E5%85%AC%E5%BC%8F"><span class="nav-text">定义6 封闭的公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%897-%E5%85%AC%E5%BC%8F%E7%9A%84%E8%A7%A3%E9%87%8A"><span class="nav-text">定义7 公式的解释</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-%E4%BE%8B7"><span class="nav-text">实例-例7</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E7%90%861-%E9%97%AD%E5%BC%8F%E5%91%BD%E9%A2%98"><span class="nav-text">定理1 闭式命题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%898-%E5%85%AC%E5%BC%8F%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-text">定义8 公式的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%899-%E4%BB%A3%E6%8D%A2%E5%AE%9E%E4%BE%8B"><span class="nav-text">定义9 代换实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E7%90%862"><span class="nav-text">定理2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-%E4%BE%8B8"><span class="nav-text">实例-例8</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F"><span class="nav-text">公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E6%A0%91"><span class="nav-text">语法分析树</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-%E4%BE%8B9%EF%BC%88%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E6%A0%91%EF%BC%89"><span class="nav-text">实例-例9（语法分析树）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-%E4%BE%8B10"><span class="nav-text">实例-例10</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-%E4%BE%8B11"><span class="nav-text">实例-例11</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-%E4%BE%8B11-1"><span class="nav-text">实例-例11</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%B0%93%E8%AF%8D%E5%92%8C%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">谓词和函数的区别</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bob Cheng</p>
+  <div class="site-description" itemprop="description">markdown daily life & study</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bob Cheng</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

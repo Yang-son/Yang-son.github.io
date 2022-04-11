@@ -21,20 +21,29 @@
     var CONFIG = {"hostname":"www.gingkocyx.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="绪论数理逻辑是用数学的方法研究推理，特别是研究数学中的推理 推理的前提和结论都是命题，命题的真假与内容是否符合现实有关。  premises 前提 \quad（命题）\\ \downarrow  \quad reason 推理 \\ conclusions 结论 \quad （命题）\\">
+  <meta name="description" content="主要内容  自然推理系统$N_L$及其推理规则 一阶逻辑的归结推理法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数理逻辑：绪论">
-<meta property="og:url" content="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-ch0/index.html">
+<meta property="og:title" content="数理逻辑：第7节 一阶逻辑自然推理系统">
+<meta property="og:url" content="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-ch7/index.html">
 <meta property="og:site_name" content="Gingkocyx">
-<meta property="og:description" content="绪论数理逻辑是用数学的方法研究推理，特别是研究数学中的推理 推理的前提和结论都是命题，命题的真假与内容是否符合现实有关。  premises 前提 \quad（命题）\\ \downarrow  \quad reason 推理 \\ conclusions 结论 \quad （命题）\\">
+<meta property="og:description" content="主要内容  自然推理系统$N_L$及其推理规则 一阶逻辑的归结推理法">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-03-19T10:50:45.000Z">
-<meta property="article:modified_time" content="2022-03-21T15:19:59.549Z">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233210071.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233310687.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233502262.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233554926.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233634370.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321234245916.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321234227003.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321234322854.png">
+<meta property="article:published_time" content="2022-04-11T14:41:41.000Z">
+<meta property="article:modified_time" content="2022-04-11T14:42:24.380Z">
 <meta property="article:author" content="Bob Cheng">
 <meta property="article:tag" content="mathematical logic">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233210071.png">
 
-<link rel="canonical" href="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-ch0/">
+<link rel="canonical" href="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-ch7/">
 
 
 <script id="page-configurations">
@@ -47,7 +56,7 @@
   };
 </script>
 
-  <title>数理逻辑：绪论 | Gingkocyx</title>
+  <title>数理逻辑：第7节 一阶逻辑自然推理系统 | Gingkocyx</title>
   
 
 
@@ -194,7 +203,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-ch0/">
+    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-ch7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -207,7 +216,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          数理逻辑：绪论
+          数理逻辑：第7节 一阶逻辑自然推理系统
         </h1>
 
         <div class="post-meta">
@@ -216,16 +225,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-03-19 18:50:45" itemprop="dateCreated datePublished" datetime="2022-03-19T18:50:45+08:00">2022-03-19</time>
+              <time title="创建时间：2022-04-11 22:41:41 / 修改时间：22:42:24" itemprop="dateCreated datePublished" datetime="2022-04-11T22:41:41+08:00">2022-04-11</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-21 23:19:59" itemprop="dateModified" datetime="2022-03-21T23:19:59+08:00">2022-03-21</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -246,14 +249,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>612</span>
+              <span>411</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -265,68 +268,44 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>数理逻辑是用数学的方法研究<strong>推理</strong>，特别是研究数学中的推理</p>
-<p>推理的前提和结论都是命题，命题的真假与<strong>内容是否符合现实</strong>有关。</p>
-<script type="math/tex; mode=display">
-premises 前提 \quad（命题）\\
-\downarrow  \quad reason 推理 \\
-conclusions 结论 \quad （命题）\\</script><span id="more"></span>
-<ol>
-<li><p>正确的推理：从”正确的前提“能得到”正确的结论“的推理。</p>
-<p>推理正确——可推导关系，属于<code>演绎逻辑</code>（与之相对的是<code>归纳逻辑</code>）</p>
-<p>正确的前提：前提为真</p>
-<p>正确的结论：结论为真</p>
-</li>
-<li><p>推理正确与否<strong>与前提和结论中命题是否为真命题没有关系</strong>。</p>
-<p><strong>推理的正确性与命题的逻辑形式有关</strong></p>
-<p><strong>命题内容决定命题的真假</strong></p>
-<script type="math/tex; mode=display">
-命题：
-\begin{cases}
-内容 \\
-逻辑形式（抽象） \\
-\end{cases}</script><blockquote>
-<p>所有中学生打网球（前提）</p>
-<p>王军不打网球（前提）</p>
-<p>王军不是中学生（结论）</p>
-<p>——推理正确，不是所有命题都为真命题</p>
-</blockquote>
-<p>上述推理的逻辑形式为：</p>
-<blockquote>
-<p>S中所有元有R性质（前提）</p>
-<p>a没有R性质（前提）</p>
-<p>a不是S中的元（结论）</p>
-</blockquote>
-</li>
-<li><p>数理逻辑中，用自然语言陈述命题会带来不方便</p>
-</li>
-<li><p>数理逻辑的研究语言为：对象语言、元语言</p>
+        <p><strong>主要内容</strong></p>
 <ul>
-<li>对象语言：被研究对象的语言。<strong>形式语言</strong>，用符号构成的公式来代替自然语言中的命题，<strong>没有二义性</strong><ul>
-<li>语义：符号，公式的含义</li>
-<li>语法：由符号构成的公式的形状和语法结构</li>
+<li>自然推理系统$N_L$及其推理规则</li>
+<li>一阶逻辑的归结推理法</li>
 </ul>
-</li>
-<li>元语言：辅助描述对象语言。自然语言</li>
-</ul>
-</li>
-<li><p>数理逻辑产生的动机：将一切推理的正确性化归于计算的通用代数</p>
+<span id="more"></span>
+<h3 id="自然推理系统-N-L"><a href="#自然推理系统-N-L" class="headerlink" title="自然推理系统$N_L$"></a>自然推理系统$N_L$</h3><p><strong>定义1</strong> 自然推理系统$N_L$定义如下：</p>
 <ul>
-<li>建立一种普遍适用的精确的科学语言</li>
-<li>建立一种推理的演算</li>
-</ul>
-</li>
-<li><p>预备知识：</p>
-<ul>
-<li><p>集合</p>
-<p>集合S上的（n元）关系R</p>
-<p>外延</p>
-</li>
-<li><p>归纳定义和归纳证明</p>
-</li>
-</ul>
-</li>
+<li>字母表（同一阶语言L的字母表）</li>
+<li>合式公式（同L的合式公式的定义）</li>
+<li>推理规则<ol>
+<li>前提引入规则</li>
+<li>结论引入规则</li>
+<li>置换规则</li>
+<li>合取引入、消去规则</li>
+<li>双重否定引入、消去规则</li>
+<li>析取引入、消去规则</li>
+<li>蕴含引入、消去规则</li>
+<li>拒取式规则</li>
+<li>矛盾消去、否定消去、否定引入规则</li>
+<li>假言三段论规则</li>
+<li>析取三段论规则</li>
+<li><strong>$\forall e$规则</strong></li>
+<li><strong>$\forall i$规则</strong></li>
+<li><strong>$\exists e$规则</strong></li>
+<li><strong>$\exists i$规则</strong></li>
 </ol>
+</li>
+</ul>
+<h4 id="全称量词消去规则"><a href="#全称量词消去规则" class="headerlink" title="全称量词消去规则"></a>全称量词消去规则</h4><h5 id="1-全称量词消去规则-forall-e-规则"><a href="#1-全称量词消去规则-forall-e-规则" class="headerlink" title="1.全称量词消去规则($\forall e$规则)"></a>1.全称量词消去规则($\forall e$规则)</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233210071.png" alt="image-20220321233210071" style="zoom:67%;" /></p>
+<p>$\forall$消去规则必须考虑<strong>t对$A(x)$中的x是自由的</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233310687.png" alt="image-20220321233310687" style="zoom: 67%;" /></p>
+<h5 id="2-全称量词引入规则（-forall-i-规则）"><a href="#2-全称量词引入规则（-forall-i-规则）" class="headerlink" title="2.全称量词引入规则（$\forall i$规则）"></a>2.全称量词引入规则（$\forall i$规则）</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233502262.png" style="zoom:67%;" /></p>
+<h5 id="3-存在量词引入规则（-exists-i-规则）"><a href="#3-存在量词引入规则（-exists-i-规则）" class="headerlink" title="3.存在量词引入规则（$\exists i$规则）"></a>3.存在量词引入规则（$\exists i$规则）</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233554926.png" alt="image-20220321233554926" style="zoom:67%;" /></p>
+<h5 id="4-存在量词消去规则（-exists-e-规则）"><a href="#4-存在量词消去规则（-exists-e-规则）" class="headerlink" title="4.存在量词消去规则（$\exists e$规则）"></a>4.存在量词消去规则（$\exists e$规则）</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233634370.png" alt="image-20220321233634370" style="zoom:67%;" /></p>
+<h3 id="一阶逻辑的归结推理法"><a href="#一阶逻辑的归结推理法" class="headerlink" title="一阶逻辑的归结推理法"></a>一阶逻辑的归结推理法</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321234245916.png" alt="image-20220321234245916" style="zoom:67%;" /></p>
+<h4 id="命题逻辑消解证明法（或归结推理法）的做法"><a href="#命题逻辑消解证明法（或归结推理法）的做法" class="headerlink" title="命题逻辑消解证明法（或归结推理法）的做法"></a>命题逻辑消解证明法（或归结推理法）的做法</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321234227003.png" alt="image-20220321234227003" style="zoom: 67%;" /></p>
+<h4 id="一阶逻辑归结推理法的做法"><a href="#一阶逻辑归结推理法的做法" class="headerlink" title="一阶逻辑归结推理法的做法"></a>一阶逻辑归结推理法的做法</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321234322854.png" alt="image-20220321234322854" style="zoom:67%;" /></p>
 
     </div>
 
@@ -345,13 +324,10 @@ conclusions 结论 \quad （命题）\\</script><span id="more"></span>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/computer_organization/computer-organization-ch3/" rel="prev" title="计算机组成原理：第3章 系统总线">
-      <i class="fa fa-chevron-left"></i> 计算机组成原理：第3章 系统总线
+    <a href="/mathematical_logic/mathematical-logic-ch6/" rel="prev" title="数理逻辑：第6节 一阶逻辑等值演算与推理定律">
+      <i class="fa fa-chevron-left"></i> 数理逻辑：第6节 一阶逻辑等值演算与推理定律
     </a></div>
-      <div class="post-nav-item">
-    <a href="/mathematical_logic/mathematical-logic-ch1/" rel="next" title="数理逻辑：第1节 命题逻辑的基本概念">
-      数理逻辑：第1节 命题逻辑的基本概念 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -410,7 +386,7 @@ conclusions 结论 \quad （命题）\\</script><span id="more"></span>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%AA%E8%AE%BA"><span class="nav-text">绪论</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E7%84%B6%E6%8E%A8%E7%90%86%E7%B3%BB%E7%BB%9F-N-L"><span class="nav-text">自然推理系统$N_L$</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A8%E7%A7%B0%E9%87%8F%E8%AF%8D%E6%B6%88%E5%8E%BB%E8%A7%84%E5%88%99"><span class="nav-text">全称量词消去规则</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%85%A8%E7%A7%B0%E9%87%8F%E8%AF%8D%E6%B6%88%E5%8E%BB%E8%A7%84%E5%88%99-forall-e-%E8%A7%84%E5%88%99"><span class="nav-text">1.全称量词消去规则($\forall e$规则)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%85%A8%E7%A7%B0%E9%87%8F%E8%AF%8D%E5%BC%95%E5%85%A5%E8%A7%84%E5%88%99%EF%BC%88-forall-i-%E8%A7%84%E5%88%99%EF%BC%89"><span class="nav-text">2.全称量词引入规则（$\forall i$规则）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E5%AD%98%E5%9C%A8%E9%87%8F%E8%AF%8D%E5%BC%95%E5%85%A5%E8%A7%84%E5%88%99%EF%BC%88-exists-i-%E8%A7%84%E5%88%99%EF%BC%89"><span class="nav-text">3.存在量词引入规则（$\exists i$规则）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E5%AD%98%E5%9C%A8%E9%87%8F%E8%AF%8D%E6%B6%88%E5%8E%BB%E8%A7%84%E5%88%99%EF%BC%88-exists-e-%E8%A7%84%E5%88%99%EF%BC%89"><span class="nav-text">4.存在量词消去规则（$\exists e$规则）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91%E7%9A%84%E5%BD%92%E7%BB%93%E6%8E%A8%E7%90%86%E6%B3%95"><span class="nav-text">一阶逻辑的归结推理法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E6%B6%88%E8%A7%A3%E8%AF%81%E6%98%8E%E6%B3%95%EF%BC%88%E6%88%96%E5%BD%92%E7%BB%93%E6%8E%A8%E7%90%86%E6%B3%95%EF%BC%89%E7%9A%84%E5%81%9A%E6%B3%95"><span class="nav-text">命题逻辑消解证明法（或归结推理法）的做法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91%E5%BD%92%E7%BB%93%E6%8E%A8%E7%90%86%E6%B3%95%E7%9A%84%E5%81%9A%E6%B3%95"><span class="nav-text">一阶逻辑归结推理法的做法</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
