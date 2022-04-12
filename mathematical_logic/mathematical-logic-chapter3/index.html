@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.gingkocyx.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="主要内容 线性时态逻辑的定义、公式、检测 计算树逻辑公式构成、语义，判定状态是否满足公式   背景：软硬件系统错误给人类带来巨大损失：Intel1994、阿丽亚娜火箭1996、诺顿杀毒2007  四种方法来保证软硬件系统的正确性和可靠性  利用输入输出进行黑盒测试$\begin{cases} 模拟 \\ 测试 \\ \end{cases}$  定理证明：应用公理和证明规则来证明系统的正确性，可用于">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数理逻辑：第3章 数理逻辑应用在计算机软、硬件设计中">
+<meta property="og:url" content="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-chapter3/index.html">
+<meta property="og:site_name" content="Gingkocyx">
+<meta property="og:description" content="主要内容 线性时态逻辑的定义、公式、检测 计算树逻辑公式构成、语义，判定状态是否满足公式   背景：软硬件系统错误给人类带来巨大损失：Intel1994、阿丽亚娜火箭1996、诺顿杀毒2007  四种方法来保证软硬件系统的正确性和可靠性  利用输入输出进行黑盒测试$\begin{cases} 模拟 \\ 测试 \\ \end{cases}$  定理证明：应用公理和证明规则来证明系统的正确性，可用于">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330102847511.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329081328823.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329082329423.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329082352044.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329082816542.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329083021756.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329083459604.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329084127968.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329084546637.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329085758649.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329085916297.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329090337424.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329090433297.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329090909667.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329091605442.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329091934336.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329092922234.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329093230097.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329093555609.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329094225852.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330195059716.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330195201692.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220401083711461.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220401084117612.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330202432242.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330203448706.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220405082440715.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220405092210497.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220405094031202.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220405093958091.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407211909317.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407212749016.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407212902428.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407213237670.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407213505591.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407213522987.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407213540267.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407213618961.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407213632094.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407213643278.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407213656773.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407213712573.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220047491.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220131095.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220144209.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220158270.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220211259.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220237865.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220326785.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220423973.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220435260.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220452509.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220507868.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220522428.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220815465.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220828081.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220845848.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220904910.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220923237.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221004332.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221057677.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221124229.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221203324.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221218412.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221233645.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221248981.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412092138941.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221308293.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412092211402.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221331213.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221354702.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221412534.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221441983.png">
+<meta property="article:published_time" content="2022-04-12T01:36:23.000Z">
+<meta property="article:modified_time" content="2022-04-12T01:50:38.499Z">
+<meta property="article:author" content="Bob Cheng">
+<meta property="article:tag" content="mathematical logic">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330102847511.png">
+
+<link rel="canonical" href="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-chapter3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>数理逻辑：第3章 数理逻辑应用在计算机软、硬件设计中 | Gingkocyx</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Gingkocyx</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">BCheng's blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/mathematical_logic/mathematical-logic-chapter3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bob Cheng">
+      <meta itemprop="description" content="markdown daily life & study">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gingkocyx">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数理逻辑：第3章 数理逻辑应用在计算机软、硬件设计中
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-12 09:36:23 / 修改时间：09:50:38" itemprop="dateCreated datePublished" datetime="2022-04-12T09:36:23+08:00">2022-04-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2022-Spring/" itemprop="url" rel="index"><span itemprop="name">2022 Spring</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2022-Spring/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/" itemprop="url" rel="index"><span itemprop="name">数理逻辑</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>9.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>33 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><ul>
+<li>线性时态逻辑的定义、公式、检测</li>
+<li>计算树逻辑公式构成、语义，判定状态是否满足公式</li>
+</ul>
+<blockquote>
+<p>背景：软硬件系统错误给人类带来巨大损失：Intel1994、阿丽亚娜火箭1996、诺顿杀毒2007</p>
+</blockquote>
+<p>四种方法来保证软硬件系统的正确性和可靠性</p>
+<ul>
+<li><p>利用输入输出进行黑盒测试$\begin{cases} 模拟 \\ 测试 \\ \end{cases}$</p>
+</li>
+<li><p><strong>定理证明</strong>：应用公理和证明规则来证明系统的正确性，可用于推理无穷状态系统。耗时，只能由专家完成。不能完全自动化</p>
+</li>
+<li><p><strong>模型检测</strong>：有限状态并发的自动化验证系统</p>
+</li>
+</ul>
+<blockquote>
+<p>关键词：验证的动机、线性时态逻辑、模型检测：系统、工具和性质、分支时间逻辑、CTL*与LTL和CTL的表达能力、模型检测算法</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="3-1-验证的动机（目的）"><a href="#3-1-验证的动机（目的）" class="headerlink" title="3.1 验证的动机（目的）"></a>3.1 验证的动机（目的）</h2><ul>
+<li><p>能够验证计算机系统的正确性</p>
+<blockquote>
+<p>如，系统必须经过验证过程才能应用</p>
+</blockquote>
+</li>
+<li><p>验证系统安全性能</p>
+<blockquote>
+<p>如，银行系统，各种桥梁的设计等都有一个保密问题的验证</p>
+</blockquote>
+</li>
+</ul>
+<p>数理逻辑形式化验证计算机系统和程序正确性</p>
+<h3 id="3-1-1-系统验证的分类"><a href="#3-1-1-系统验证的分类" class="headerlink" title="3.1.1 系统验证的分类"></a>3.1.1 系统验证的分类</h3><ol>
+<li><p><strong>基于证明与基于模型</strong></p>
+<ul>
+<li><p><strong>基于证明</strong>：系统描述为一组逻辑公式$r$，而规范是另一个公式$\Phi$，通过找到$r \Phi$的证明来验证系统</p>
+</li>
+<li><p><strong>基于模型</strong>：系统描述为模型$M$，规范是公式$\Phi$，通过计算模型M是否满足$\Phi$来验证系统</p>
+<blockquote>
+<p>在模型为真的情况下，如果公式也为真，那么模型是满足公式的</p>
+</blockquote>
+</li>
+</ul>
+<p>基于模型的方法更简单（基于单一模型，而不是基于一个可能的无限类）</p>
+<blockquote>
+<p>合理性和完备性的问题</p>
+<p>合理性：从前提$\gamma \Phi$，那么对于每一种解释，$\gamma$的为真，那么$\Phi$也为真</p>
+<p>完备性：如果语义上是完备的，那么从前提推出结论是成立的</p>
+</blockquote>
+</li>
+<li><p><strong>自动化的程度</strong></p>
+<ul>
+<li><p>自动化程度对不同的处理有差异</p>
+<blockquote>
+<p>全自动、全手动和处于二者之间的方法——CAD、CAM</p>
+</blockquote>
+</li>
+<li><p>基于模型的方法高于基于逻辑的方法</p>
+</li>
+</ul>
+</li>
+<li><p><strong>完全验证与性质验证</strong></p>
+<p>规范描述单一性质，和规范描述全部性质</p>
+<p>完全验证的代价要高昂得多</p>
+</li>
+<li><p><strong>预期应用领域</strong></p>
+<p>可应用于硬件或软件系统、顺序的或并发的系统、反应的或终止的系统。</p>
+<ul>
+<li><p>反应系统：对环境做出反应的系统</p>
+<blockquote>
+<p>OS、嵌入式系统，和硬件系统的验证等</p>
+</blockquote>
+</li>
+<li><p>终止系统：类似于我们写的程序</p>
+</li>
+</ul>
+</li>
+<li><p><strong>开发前和开发后</strong></p>
+<p>即：<em>开发过程早期进行验证是必须的</em></p>
+</li>
+</ol>
+<h3 id="3-1-2-模型检测的验证方法"><a href="#3-1-2-模型检测的验证方法" class="headerlink" title="3.1.2 模型检测的验证方法"></a>3.1.2 模型检测的验证方法</h3><blockquote>
+<p>模型检测是<strong>自动的</strong>、<strong>基于模型的</strong>、<strong>性质验证</strong>的处理方法。</p>
+<p>对有限状态的并发的、反应式系统，利用穷举搜索方法判断系统是否满足给定的规范。</p>
+</blockquote>
+<p><strong>大体步骤</strong>：</p>
+<ul>
+<li>由用户定义一个模型开始</li>
+<li>判断用户所断言的假设（规范/性质, property）在模型中是否有效</li>
+<li>若无效，则产生由执行轨迹构成的<strong>反例</strong>（好处：可以对模型修改，使其满足验证的规范）</li>
+</ul>
+<p><strong>形式验证技术</strong>（由三部分构成）</p>
+<ul>
+<li>用于<strong>系统建模的框架</strong>——通常是某种描述语言</li>
+<li>用于描述待验证性质的<strong>规范</strong>语言</li>
+<li>用来确立系统描述<strong>是否满足规范的验证方法</strong></li>
+</ul>
+<p>基于模型检测方法验证系统，要做3件事：</p>
+<ul>
+<li>使用模型检测器的描述性语言对系统进行建模，得到一个模型$M$；</li>
+<li>待证性质的规范利用一个<strong>时态逻辑公式</strong>$\phi$来表示</li>
+<li>以$M$和$\phi$做输入进行模型检测——如果$M \vDash  \phi$（$M$满足$\phi$），输出yes，否则输出no</li>
+</ul>
+<h2 id="3-2-线性时态逻辑-LTL"><a href="#3-2-线性时态逻辑-LTL" class="headerlink" title="3.2 线性时态逻辑(LTL)"></a>3.2 线性时态逻辑(LTL)</h2><blockquote>
+<p>模型检测基于时态逻辑（temporal logic）</p>
+</blockquote>
+<p><strong>思想</strong>：模型$M$是一个状态迁移系统，性质$\phi$是时态逻辑的公式。公式的真和假不是静态的，而是包含若干个状态，在一些状态下为真，在其他状态下为假。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330102847511.png" alt="image-20220330102847511" style="zoom:67%;" /></p>
+<p>时态逻辑是一类逻辑，属于模态逻辑，依赖于对“时间”的特别观点</p>
+<ul>
+<li><strong>线性时间逻辑LTL</strong>：时间是线性的逻辑</li>
+<li><strong>计算树逻辑CTL</strong>：时间形成分支的逻辑</li>
+</ul>
+<blockquote>
+<p>常用于硬件和通信协议的验证中，现在开始用于软件的验证。</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329081328823.png" alt="image-20220329081328823" style="zoom: 67%;" /></p>
+<blockquote>
+<p>在状态$s_1$下，p为真</p>
+<p>一共有4个迁移关系——箭头表示迁移方向</p>
+<p>标记函数是状态到标记集合<strong>幂集</strong>的映射</p>
+</blockquote>
+<p><strong>线性时态逻辑LTL的特点</strong>：</p>
+<ul>
+<li>将时间建模成<strong>状态</strong>的序列，无限延申至未来 。该状态序列称为<strong>计算路径</strong>或路径。</li>
+<li>使用指示<strong>未来</strong>的联结词</li>
+<li>未来一般不确定，出现若干可能路径</li>
+</ul>
+<h3 id="3-2-1-LTL的语法"><a href="#3-2-1-LTL的语法" class="headerlink" title="3.2.1 LTL的语法"></a>3.2.1 LTL的语法</h3><blockquote>
+<p>::=表示定义为</p>
+<p>永真式：$\top$，向下；永假式：$\bot$，向上</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329082329423.png" alt="image-20220329082329423" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329082352044.png" alt="image-20220329082352044" style="zoom: 67%;" /></p>
+<h4 id="LTL公式举例"><a href="#LTL公式举例" class="headerlink" title="LTL公式举例"></a>LTL公式举例</h4><blockquote>
+<p>叶子节点是原子符号，非叶子节点是联结词</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329082816542.png" alt="image-20220329082816542" style="zoom: 67%;" /></p>
+<p>又例，合法的LTL公式和不合法的LTL公式</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329083021756.png" alt="image-20220329083021756" style="zoom: 67%;" /></p>
+<h4 id="时态连接词的优先级"><a href="#时态连接词的优先级" class="headerlink" title="时态连接词的优先级"></a>时态连接词的优先级</h4><ul>
+<li>约定<strong>最高级</strong>：小括号</li>
+<li><p><strong>1级</strong>：一元连接词$\neg, X, F, G(包括时态)$</p>
+</li>
+<li><p><strong>2级</strong>：二元连接词$U, R, W(时态)$</p>
+</li>
+<li><strong>3级</strong>：二元连接词$\vee, \land$</li>
+<li><strong>4级</strong>：二元连接词$\to$</li>
+</ul>
+<blockquote>
+<p>避免出现（歧义）二义性</p>
+</blockquote>
+<h4 id="LTL公式的子公式"><a href="#LTL公式的子公式" class="headerlink" title="LTL公式的子公式"></a>LTL公式的子公式</h4><p><strong>定义</strong>：LTL公式Ф的子公式是任意公式ψ，子公式的语法分析树是Ф的子树</p>
+<blockquote>
+<p>注意：子树可以包括自身</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329083459604.png" alt="image-20220329083459604" style="zoom: 67%;" /></p>
+<h3 id="3-2-2-LTL的语义"><a href="#3-2-2-LTL的语义" class="headerlink" title="3.2.2 LTL的语义"></a>3.2.2 LTL的语义</h3><blockquote>
+<p>Semantics of LTL</p>
+</blockquote>
+<h4 id="模型的概念"><a href="#模型的概念" class="headerlink" title="模型的概念"></a>模型的概念</h4><blockquote>
+<p>可以用迁移系统来建模系统，迁移系统通过<strong>状态</strong>(static structure)和<strong>迁移</strong>(dynamic structure)来建模。</p>
+</blockquote>
+<p><strong>定义</strong>：一个迁移系统$M=(S,\to,L)$：</p>
+<blockquote>
+<p>注：M的意思是：给状态集S赋予一个S上的二元关系迁移$\to$，得到一个标记函数(label function)L。这个迁移系统就叫做模型</p>
+</blockquote>
+<p>（1）是一个状态集合S，</p>
+<p>（2）带有迁移关系$\to$（S上的二元关系），使得每个$s \in S$，有某个$s’ \in S$，且<strong>满足</strong>$s \to s’$</p>
+<p>（3）<strong>L</strong>为：一个标记函数$L:S \to P(Atoms)$</p>
+<p><strong>根据定义</strong>：<br>（1）一个模型有状态的集合S</p>
+<p>（2）每个状态S伴随有原子命题的集合，即：$L(s)$：在特定的状态S下为真的原子集合</p>
+<blockquote>
+<p>我们用：P(Atoms)表示Atoms的幂集（Atoms就是原子公式）</p>
+<p><strong>幂集的概念</strong>（集合论中提到过）</p>
+<p>举例：$\{ p, q \}的幂集是\{ \varnothing, \{ p \}, \{q\},\{p,q \} \}$</p>
+</blockquote>
+<h4 id="状态迁移系统举例"><a href="#状态迁移系统举例" class="headerlink" title="状态迁移系统举例"></a>状态迁移系统举例</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329084127968.png" alt="image-20220329084127968" style="zoom: 67%;" /></p>
+<blockquote>
+<p>①迁移系统M作为有向图表示；</p>
+<p>②用$l$标记状态S当且仅当$l \in L(s)$</p>
+</blockquote>
+<p>添加死锁状态</p>
+<blockquote>
+<p>由迁移系统的定义，每一个状态都要迁移到其他状态。</p>
+<p>但是下图中的左图，$s_4$没有迁移，处于死锁状态，因此添加死锁扩展系统</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329084546637.png" alt="image-20220329084546637" style="zoom: 67%;" /></p>
+<h4 id="路径的概念"><a href="#路径的概念" class="headerlink" title="路径的概念"></a>路径的概念</h4><p><strong>定义</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329085758649.png" alt="image-20220329085758649" style="zoom: 67%;" /></p>
+<blockquote>
+<p>例如，$\pi^3$是$s_3 \to s_4$</p>
+</blockquote>
+<p><strong>迁移系统展开成无限计算树</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329085916297.png" alt="image-20220329085916297" style="zoom: 67%;" /></p>
+<blockquote>
+<p>向左迁移放到左支，向右迁移放在右支</p>
+<p>无限计算树没有环，而有向图中可以有环</p>
+</blockquote>
+<p>将模型M（系统）展开成一个从特定状态开始的所有计算路径的无限树。</p>
+<p>得到的无限计算树中，模型M的执行路径被明确的表示出来。</p>
+<p><strong>关于路径上满足关系的定义</strong>：</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329090337424.png" alt="image-20220329090337424" style="zoom: 67%;" /></p>
+<blockquote>
+<p>永真式永远可以被满足，永假式总是不可满足的</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329090433297.png" alt="image-20220329090433297" style="zoom: 67%;" /></p>
+<blockquote>
+<p>对于3)$s_1$满足p为真，则路径满足p</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329090909667.png" alt="image-20220329090909667" style="zoom: 67%;" /></p>
+<blockquote>
+<p>对于8)满足$X\phi$，则$s_2$满足$\phi$——$s_1$的next</p>
+<p>9)满足$G\phi$，则所有状态满足$\phi$</p>
+<p>10)满足$F\phi$，则未来某个状态满足$\phi$，存在性命题</p>
+<p>11)满足$\phi U \psi$，则前面有限个都满足$\psi$，之后的第一个满足$\phi$</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329091605442.png" alt="image-20220329091605442" style="zoom: 67%;" /></p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329091934336.png" alt="image-20220329091934336" style="zoom: 67%;" /></p>
+<blockquote>
+<p>对于12)<strong>弱直到</strong>包含直到，也可以是（$\psi$一直不出现）从第一个开始都满足$\phi$</p>
+<p>对于13)使用$\phi$<strong>释放</strong>$\psi$：某一个满足$\phi$，在之前（包括释放的点）都满足$\psi$。或者$\phi$始终不出现，$\psi$一直成立。——出现的$\phi$释放了$\psi$</p>
+</blockquote>
+<p><strong>释放R是直到U的对偶</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329092922234.png" alt="image-20220329092922234" style="zoom: 67%;" /></p>
+<blockquote>
+<p>无论是until（直到）还是W（弱-直到）都<strong>未说明until之后所发生的任何事情</strong></p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329093230097.png" alt="image-20220329093230097" style="zoom: 67%;" /></p>
+<blockquote>
+<p>在定义中，未来状态包括当前状态</p>
+<p><strong>在LTL中，U表示之前的状态</strong></p>
+</blockquote>
+<p>如果模型M<strong>每一条可能</strong>的执行路径<strong>都满足某公式</strong>。</p>
+<p>我们可将模型作为整体看待：</p>
+<blockquote>
+<p>前面都是公式满足性质，本条定义是对于所有公式满足性质的条件下，模型中的公式满足性质</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329093555609.png" alt="image-20220329093555609" style="zoom: 67%;" /></p>
+<p>例题：检测模型</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329094225852.png" alt="image-20220329094225852" style="zoom: 67%;" /></p>
+<blockquote>
+<p>对于4)$s_0$的下一个状态都满足r</p>
+<p>对于6)从无限计算树来看容易得到。$s_2$满足前件和后件</p>
+</blockquote>
+<h3 id="3-2-3-规范的实际模式"><a href="#3-2-3-规范的实际模式" class="headerlink" title="3.2.3 规范的实际模式"></a>3.2.3 规范的实际模式</h3><p>在计算机系统中我们经常应用，准备、就绪、</p>
+<p><strong>LTL可以描述实际系统中的以下一些性质</strong>：</p>
+<ol>
+<li><p>永远不可能没有准备好就启动</p>
+<blockquote>
+<p>$G \neg (started \land \neg ready)$</p>
+<p>对每个状态而言</p>
+</blockquote>
+</li>
+<li><p>对任何状态，如果一个请求发生（对某些资源，如打印机），那么将最终被确认</p>
+<blockquote>
+<p>$G(requested \to F \ acknowledge)$</p>
+</blockquote>
+</li>
+<li><p>在每条计算路径上，某特定进程可以无限地处于使能状态</p>
+<blockquote>
+<p>$G F(enabled)$</p>
+<p>对于每个（路径）状态的未来都有使能</p>
+</blockquote>
+</li>
+<li><p>一个特定过程最终被永久死锁</p>
+<blockquote>
+<p>$F G (deadlock)$</p>
+<p>从未来的某一点开始，所有状态都被死锁</p>
+</blockquote>
+</li>
+<li><p>如果该过程使能（被激活）无限多次，则它运行无限多次</p>
+<blockquote>
+<p>$GF(enabled) \to GF(running)$</p>
+<p>对于所有的未来</p>
+</blockquote>
+</li>
+</ol>
+<p>【举例】如果乘客想去5楼，一个上行电梯在2楼不改变方向。</p>
+<blockquote>
+<p>$G(2楼 \land 方向向上 \land 按下5楼按钮 \to (方向向上 \cup 5楼))$</p>
+</blockquote>
+<p><strong>LTL描述不了的事情</strong></p>
+<ol>
+<li>从任何状态出发，都能（即<strong>存在</strong>一条路径）达到重启状态。</li>
+<li>电梯可以在第3层保持关门闲置（即存在一条从该层到该层的路径，沿该路径电梯停留在原地）</li>
+</ol>
+<blockquote>
+<p>无法直接断定这些路径的存在性</p>
+</blockquote>
+<p>表达这些事情需要对路径使用存在量词，<strong>计算树逻辑（CTL）</strong>中可以解决这些问题。</p>
+<h3 id="3-2-4-LTL公式之间的重要等价"><a href="#3-2-4-LTL公式之间的重要等价" class="headerlink" title="3.2.4 LTL公式之间的重要等价"></a>3.2.4 LTL公式之间的重要等价</h3><blockquote>
+<p>线性逻辑也有等价公式</p>
+</blockquote>
+<p><strong>定义</strong>：两个LTL公式$\Phi$和$\Psi$是语义等价的（等价）写为$\Phi \equiv \Psi$，如果对所有模型M以及M中的所有路径。$\pi:\pi \vDash \Phi$ iff $\pi \vDash \Psi$</p>
+<p>（两个公式在任何赋值/解释下，两个公式的含义相同）</p>
+<blockquote>
+<p>我们知道命题等价公式为：</p>
+<p>$\neg (\Phi \land \Psi) \equiv \neg \Phi \vee \neg \Psi$</p>
+<p>$\neg (\Phi \vee \Psi) \equiv \neg \Phi \land \neg \Psi$</p>
+</blockquote>
+<p>类似的，我们给出LTL公式的等价</p>
+<blockquote>
+<p>G和F对偶，X自偶</p>
+<p>U和R对偶</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330195059716.png" alt="image-20220330195059716" style="zoom:67%;" /></p>
+<blockquote>
+<p>A1和A2可以根据对偶公式。不满足所有未来状态满足性质等价于某未来状态不满足性质</p>
+<p>B是关于分配律的等值式</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330195201692.png" alt="image-20220330195201692" style="zoom:67%;" /></p>
+<blockquote>
+<p>C8：某未来状态满足性质，等价于不加约束直到性质</p>
+<p>C10：直到是弱直到和某未来状态$\psi$出现的合取</p>
+<p>C11：弱直到包含直到和全部未来状态满足$\phi$两种情况</p>
+<p>C12：注意到释放点处也满足性质$\psi$，因此需要考虑最后临界点的情况——释放自身点</p>
+<p>即，释放分为了两部分：前面的和它本身</p>
+<p><strong>2022.4.2更新</strong>：新的理解。对于$\pi^i \vDash (\phi \vee \psi)$，标记函数可以取值为$\phi$或者$\psi$（取值范围，从这两个中选）。</p>
+<p>这样，通过$\phi \vee \psi$，对于定义中取$i$的情况，由于取值范围是$\{\phi, \psi\}$。就会出现一个状态有$\pi^i \vDash \psi$，且$\pi^i \nvDash \phi$，得到$j = 1,2,…,i-1$时都满足直到的定义了</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220401083711461.png" alt="image-20220401083711461" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220401084117612.png" alt="image-20220401084117612" style="zoom:67%;" /></p>
+<blockquote>
+<p>X连接词出现在每一个联结词集合</p>
+</blockquote>
+<h2 id="3-3-模型检测：系统、工具和性质"><a href="#3-3-模型检测：系统、工具和性质" class="headerlink" title="3.3 模型检测：系统、工具和性质"></a>3.3 模型检测：系统、工具和性质</h2><p>讨论线性时态逻辑能表达的性质，以互斥为例。</p>
+<h3 id="3-3-1-互斥"><a href="#3-3-1-互斥" class="headerlink" title="3.3.1 互斥"></a>3.3.1 互斥</h3><p>互斥最常见的问题，如：在同一时刻不能有两个用户使用一个资源。也就是说<strong>不能在同一时刻访问一个临界资源</strong>，否则产生互斥，而互斥的结果是死锁。</p>
+<h4 id="检验互斥系统"><a href="#检验互斥系统" class="headerlink" title="检验互斥系统"></a>检验互斥系统</h4><ol>
+<li><p>找到一个协议：给定时刻t，允许某个进程可访问共享资源；</p>
+</li>
+<li><p>检测该协议是否具有某些性质：</p>
+<ul>
+<li><p><strong>安全性</strong>：在任何时候只有一个进程处于临界区；</p>
+<blockquote>
+<p>只有safety是不够的，如果一个协议把所有进程都排除在关键段以外，虽然安全，但没有用处。</p>
+</blockquote>
+</li>
+<li><p><strong>活性</strong>：只要有进程请求进入临界区，则最终会被允许进入（但不知何时发生）</p>
+</li>
+<li><p><strong>无阻性</strong>：进程总可以请求进入临界区</p>
+<blockquote>
+<p>至此一些简单粗暴的协议可以工作。</p>
+<p>但考虑这些协议在进程循环中，而显然一些进程请求访问共享资源更加频繁。</p>
+</blockquote>
+</li>
+<li><p><strong>非严格顺序性</strong>：各进程无需按严格顺序进入临界区</p>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="第一次建模"><a href="#第一次建模" class="headerlink" title="第一次建模"></a>第一次建模</h4><p>对两个进程建模，设：</p>
+<ul>
+<li>排队：非关键状态<code>n</code></li>
+<li>就绪：申请（试图）进入关键状态<code>t</code></li>
+<li>运行：处于关键状态<code>c</code></li>
+</ul>
+<p>每个单独的进程按照循环$n \to t \to c \to n \to … $进行迁移，两个进程交错执行（异步交错，一次只允许一个进程发生迁移）</p>
+<blockquote>
+<p>状态迁移图：</p>
+<ul>
+<li>无$c_1c_2$状态</li>
+<li>每次迁移改一个进程的状态</li>
+</ul>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330202432242.png" alt="image-20220330202432242" style="zoom: 67%;" /></p>
+<p>$s_0$为开始状态，两个进程都处于n状态。下一个状态可能是进程1状态变成t或者进程2状态变成t。</p>
+<p>注意到：对于进程2，$s_4$状态中不能迁移，即不能两个进程都处于临界区关键状态</p>
+<blockquote>
+<p>性质1 安全性：任何时刻，只有一个进程处于关键段</p>
+</blockquote>
+<p>$\Phi = G \neg (c_1 \land c_2)$——任何时刻用G表示，不出现两个进程同时处于关键段</p>
+<p>结论：该协议满足性质1</p>
+<blockquote>
+<p>性质2 活性：任何请求进入关键段的进程，最终必将进入</p>
+</blockquote>
+<p>$\Phi = G(t_1 \to Fc_1)$——以进程1为例，任何（G），请求进入则未来某状态为处于关键段状态</p>
+<p>可找到反例，$s_0 \to s_1 \to s_3 \to s_7 \to s_1 \to s_3 \to s_7 ……$（该路径中进程1始终处于请求状态$t_1$）。同理，$s_0 \to s_5 \to s_3 \to s_4 \to s_5 \to s_3 ……$</p>
+<p>结论：不满足性质2</p>
+<blockquote>
+<p>性质3 无阻性：一个进程总可以请求进入关键段</p>
+</blockquote>
+<p>$\Phi$：对每个满足$n_1$的状态，存在满足$t_1$的后继状态（可以找到这样的路径，但是无法用LTL表示）</p>
+<p>结论：关于路径的存在量词，无法用LTL表达</p>
+<blockquote>
+<p>性质4 非严格顺序性：不需要轮流进入关键段</p>
+</blockquote>
+<p>补公式$\Phi:G(c_1 \to c_1W(\neg c_1 \land \neg c_1Wc_2))$</p>
+<p>（解释：对于所有未来状态，如果处于$c_1$状态，则$c_1$保持运行，直到$c_1$不再运行且$c_1$不运行保持一段时间，直到$c_2$运行）——即$c_1$和$c_2$轮流进入关键段</p>
+<p>补公式可找到一个反例，$s_0 \to s_5 \to s_3 \to s_4 \to s_5 \to s_3 \to s_4……$进程1运行结束后，进程2没有进入关键段。意味着不满足严格顺序性，即满足非严格顺序性。</p>
+<p>结论：满足性质4</p>
+<h4 id="第二次建模"><a href="#第二次建模" class="headerlink" title="第二次建模"></a>第二次建模</h4><blockquote>
+<p>性质2不满足的原因：进程1和进程2存在交叉状态$s_3$，此时进程1和进程2都处于请求进入临界区状态。</p>
+<p>使得进程1请求进入临界区后结果进程2进入了临界区或者2请求，1进入。</p>
+</blockquote>
+<p>将状态$s_3$分成两个状态$s_3$和$s_9$，来解决活性不满足问题</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330203448706.png" alt="image-20220330203448706" style="zoom: 67%;" /></p>
+<h3 id="3-3-2-NuSMV模型检测器"><a href="#3-3-2-NuSMV模型检测器" class="headerlink" title="3.3.2 NuSMV模型检测器"></a>3.3.2 NuSMV模型检测器</h3><blockquote>
+<p>New Symbolic Model verifier, SMV</p>
+</blockquote>
+<p>以新符号模型检测器为例讨论时态逻辑的应用。</p>
+<p><strong>SMV功能</strong></p>
+<ol>
+<li><p>SMV是画成图形的模型语言，提供一种描述模型的语言，用它描述的模型被称为程序</p>
+</li>
+<li><p>SMV可以检测LTL和CTL公式的有效性</p>
+</li>
+<li><p>SMV描述模型的程序和用时态逻辑公式描述的规范作为输入</p>
+<blockquote>
+<p>若，规范成立，则：输出真；否则输出假</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>SMV程序</strong>：由一个或多个模块构成，其中必须有一个main模块。</p>
+<p><strong>模块</strong>：</p>
+<ol>
+<li>变量声明</li>
+<li>赋值（初值）</li>
+<li>程序体</li>
+</ol>
+<p><strong>检测器</strong>：</p>
+<p>输出：真或假</p>
+<p>【例】将一个程序和规范构成的代码输入给SMV</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">MODULE main</span><br><span class="line">VAR</span><br><span class="line">    request : boolean;</span><br><span class="line">    status : &#123;ready, busy&#125;;</span><br><span class="line">ASSIGN</span><br><span class="line">	-- 初始状态为ready</span><br><span class="line">    init(status) := ready;  </span><br><span class="line">    next(status) := case</span><br><span class="line">        -- 有请求置为busy</span><br><span class="line">        request : busy; </span><br><span class="line">        -- 没有请求，下一个状态不确定，1为缺省情况</span><br><span class="line">        TRUE : &#123;ready, busy&#125;; </span><br><span class="line">    esac;</span><br><span class="line">LTLSPEC</span><br><span class="line">    G(request -&gt; F status = busy)</span><br></pre></td></tr></table></figure>
+<p><strong>运行截图</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220405082440715.png" alt="image-20220405082440715" style="zoom:67%;" /></p>
+<p>为了可读性和反应验证的性质和结论，可将程序划分成若干个模块，（类同主程序与子程序）</p>
+<h4 id=""><a href="#" class="headerlink" title=" "></a> </h4><h3 id="3-3-4-重温互斥"><a href="#3-3-4-重温互斥" class="headerlink" title="3.3.4 重温互斥"></a>3.3.4 重温互斥</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">MODULE prc(other_st, turn, myturn)</span><br><span class="line">-- 其他进程状态 other_st</span><br><span class="line">-- 决定哪个进程进入关键段的标志变量 turn</span><br><span class="line">-- 我的进程标志变量 myturn</span><br><span class="line">VAR</span><br><span class="line">    st : &#123;n, t, c&#125;;</span><br><span class="line">ASSIGN</span><br><span class="line">    init(st) := n;</span><br><span class="line">    </span><br><span class="line">    next(st) := case</span><br><span class="line">        -- 当前状态为非关键状态，可能保持n或者请求进入（t）</span><br><span class="line">        (st = n) : &#123;t, n&#125;;</span><br><span class="line">        -- 当前状态为请求进入，如果另一个进程是n，则直接进入临界状态（c）</span><br><span class="line">        (st = t) &amp; (other_st = n) : c;</span><br><span class="line">        -- 状态（就绪）t且其他进程状态（排队）n</span><br><span class="line">        -- 当前状态请求进入，且另一个也是t，在进入c之前，检查轮次turn = myturn</span><br><span class="line">        -- 当它为c，移回n</span><br><span class="line">        (st = t) &amp; (other_st = t) &amp; (turn = myturn) : c;</span><br><span class="line">        -- 当前处于临界/关键状态，可以保持或者变成非关键状态（n）</span><br><span class="line">        (st = c) : &#123;c, n&#125;;</span><br><span class="line">        -- 缺省状态</span><br><span class="line">        TRUE : st;</span><br><span class="line">    esac;</span><br><span class="line">    </span><br><span class="line">    next(turn) := case</span><br><span class="line">        -- 当前状态处于关键状态，则进程交替</span><br><span class="line">        (turn = myturn) &amp; (st = c) : !turn;</span><br><span class="line">        TRUE : turn;</span><br><span class="line">    esac;</span><br><span class="line"></span><br><span class="line">-- 公平性约束条件</span><br><span class="line">-- 限制执行的路径</span><br><span class="line">FAIRNESS running</span><br><span class="line">-- 规范psi，限制进程会无限多次运行某公式的路径和无限多次不运行的情况</span><br><span class="line">-- 前者不满足公平性，后者不满足活性</span><br><span class="line">FAIRNESS !(st = c)</span><br><span class="line"></span><br><span class="line">MODULE main</span><br><span class="line">VAR</span><br><span class="line">	-- process 采用异步方式</span><br><span class="line">    pr1 : process prc(pr2.st, turn, FALSE);</span><br><span class="line">    pr2 : process prc(pr1.st, turn, TRUE);</span><br><span class="line">    turn : boolean;</span><br><span class="line">ASSIGN</span><br><span class="line">    init(turn) := FALSE;</span><br><span class="line"></span><br><span class="line">-- safety 安全性</span><br><span class="line">LTLSPEC </span><br><span class="line">    G ! ((pr1.st = c) &amp; (pr2.st = c))</span><br><span class="line">-- liveness 活性</span><br><span class="line">LTLSPEC</span><br><span class="line">    G((pr1.st = t) -&gt; F (pr1.st = c))</span><br><span class="line">LTLSPEC</span><br><span class="line">    G((pr2.st = t) -&gt; F(pr2.st = c))</span><br><span class="line">-- &#x27;negation&#x27; of strict sequencing (desired to be false)</span><br><span class="line">-- 非严格顺序性，验证补公式</span><br><span class="line">LTLSPEC</span><br><span class="line">    G (pr1.st = c -&gt; (G pr1.st = c | (pr1.st = c U </span><br><span class="line">        (!(pr1.st = c) &amp; G !(pr1.st = c) | (!(pr1.st = c) U pr2.st = c)))))</span><br></pre></td></tr></table></figure>
+<p><strong>运行截图</strong></p>
+<blockquote>
+<p>非严格顺序性不满足</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220405092210497.png" alt="image-20220405092210497" style="zoom:80%;" /></p>
+<h3 id="3-3-5-摆渡者难题"><a href="#3-3-5-摆渡者难题" class="headerlink" title="3.3.5 摆渡者难题"></a>3.3.5 摆渡者难题</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">MODULE main</span><br><span class="line"></span><br><span class="line">VAR </span><br><span class="line">	ferryman : boolean ; goat : boolean ;</span><br><span class="line">	cabbage  : boolean ; wolf : boolean ;</span><br><span class="line">	carry : &#123; g , c , w , none &#125;;</span><br><span class="line"></span><br><span class="line">ASSIGN</span><br><span class="line">	-- 初始状态均为FALSE，表示都在起始河岸</span><br><span class="line">	-- 若都到达河岸，则均为TRUE</span><br><span class="line">	init ( ferryman ) := FALSE ; init ( goat ) := FALSE ;</span><br><span class="line">	init ( cabbage )  := FALSE ; init ( wolf ) := FALSE ;</span><br><span class="line">	init ( carry ) := none;</span><br><span class="line"></span><br><span class="line">	next ( ferryman ) := !ferryman;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	next ( goat ) := case</span><br><span class="line">		ferryman = goat &amp; next ( carry ) = g : next ( ferryman );</span><br><span class="line">		TRUE 	: goat ; </span><br><span class="line">	esac ;</span><br><span class="line"></span><br><span class="line">	next ( cabbage ) := case</span><br><span class="line">		ferryman = cabbage &amp; next ( carry ) = c : next ( ferryman );</span><br><span class="line">		TRUE 	: cabbage ; </span><br><span class="line">	esac ;</span><br><span class="line"></span><br><span class="line">	next ( wolf ) := case</span><br><span class="line">		ferryman = wolf &amp; next ( carry ) = w : next ( ferryman );</span><br><span class="line">		TRUE : wolf ; </span><br><span class="line">	esac ;</span><br><span class="line"></span><br><span class="line">-- 待检测的公式：由初始状态经过多次运转达到目标河岸</span><br><span class="line">-- 安全性 U 到达对岸</span><br><span class="line">-- 山羊和白菜或者山羊和狼在同一侧的话，山羊需要和农夫在同一侧。此时为安全的</span><br><span class="line">-- 由于找的是是否有解（存在一条路径），因此采用补公式。如果补公式不满足，系统会给出反例</span><br><span class="line">LTLSPEC !(( ( goat = cabbage | goat = wolf ) -&gt; goat = ferryman )</span><br><span class="line">U ( cabbage &amp; goat &amp; wolf &amp; ferryman ))</span><br></pre></td></tr></table></figure>
+<p><strong>运行截图</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220405094031202.png" alt="image-20220405094031202" style="zoom:80%;" /></p>
+<p><strong>解路径</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220405093958091.png" alt="image-20220405093958091" style="zoom:80%;" /></p>
+<h2 id="3-4-分支时间逻辑"><a href="#3-4-分支时间逻辑" class="headerlink" title="3.4 分支时间逻辑"></a>3.4 分支时间逻辑</h2><p>计算树逻辑Computation Tree Logic, CTL</p>
+<p>线性时态逻辑（LTL）是在路径上赋值，它定义了一个系统满足一个LTL公式，这里就有一个问题:</p>
+<p>即：LTL隐含着对所有路径做全称量词的限制，因此，断言一条路径存在的性质不能用LTL表达，而分支时间逻辑就解决了这个问题。</p>
+<p>分支时间逻辑通过允许使用<strong>路径量词（全称量词与存在量词）</strong>来解决。<br>分支时间逻辑是在线性逻辑的基础上加上了量词A和E，其中： <strong>A表示对所有路径</strong>；<strong>E表示存在一条路径</strong></p>
+<blockquote>
+<p>例如，我们给出写法：<br>1）存在一个可达状态满足q：</p>
+<p>写为：$EFq$。</p>
+<p>2）对所有满足p的可达状态，可以连续地保持p直到到达一个满足q的状态，</p>
+<p>写为：$AG(p →E[p U q])$</p>
+<p>3）只要满足p的状态是可达的，系统可以永远连续不断呈现q，</p>
+<p>写为：$AG（ p →E Gq）$</p>
+<p>4）存在一个可达状态，由其出发的所有可达状态都满足p，</p>
+<p>写为：$EFAGp$</p>
+</blockquote>
+<h3 id="3-4-1-CTL的语法"><a href="#3-4-1-CTL的语法" class="headerlink" title="3.4.1 CTL的语法"></a>3.4.1 CTL的语法</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407211909317.png" alt="image-20220407211909317" style="zoom:67%;" /></p>
+<p><strong>Note</strong>: CTL时态联结词都是<strong>成对</strong>出现（一对符号），对中第一个是A或E。</p>
+<p><strong>Note</strong>: A是<strong>“沿着所有路径”</strong>无一例外（全部）。实际用处最多的是检查软件的可靠性。</p>
+<blockquote>
+<p>例如：检查某系统的编译程序，必须将所有可能的路径都检查到，看看是否通。</p>
+</blockquote>
+<p><strong>Note</strong>: E的含义是<strong>“沿至少（存在）一条路径”</strong>（可能）。该联结词用于对系统的“溢出”，“死锁”等方面的检查。</p>
+<blockquote>
+<p>例如：某控制系统的上，下限，及死角等。</p>
+</blockquote>
+<p><strong>Note</strong>: 符号对的<strong>第二个符号</strong>是，X，F，G，U，即：X：下一状态，F：某个未来状态，G：所有未来状态（全局），U：直到。而成对的符号是<strong>不能分开</strong>的（在CTL中）。</p>
+<blockquote>
+<p>例如：$E[Ф_1UФ_2]$中的符号对是EU</p>
+</blockquote>
+<p>AU和EU是混和使用中缀和前缀CTL的二元联结词</p>
+<blockquote>
+<p>严格讲<strong>中缀</strong>形式为：$Ф_1 EU Ф_2$；<strong>前缀</strong>形式为：$EU[Ф_1 ，Ф_2]$</p>
+</blockquote>
+<p><strong>Note</strong>: 符号（联结词）X，F，G和U若前面没有<strong>A或E</strong>的情况下不能单独出现（CTL中规定）。</p>
+<p><strong>Note</strong>: CTL中不包含LTL中的W（弱-直到）和R（释放）</p>
+<p>同LTL一样CTL也有优先级。</p>
+<blockquote>
+<p>约定：</p>
+<p>1）一元联结词┐和时态联结词AG，EG，AF，EF，AX，EX</p>
+<p>2）∧，∨</p>
+<p>3）→，AU，EU</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407212749016.png" alt="image-20220407212749016" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407212902428.png" alt="image-20220407212902428" style="zoom:67%;" /></p>
+<p><strong>Note</strong>: $A[(rU q) \land (PUr)]$不是CTL合式公式</p>
+<p>原因：语法定义中不允许布尔联结词，如：（┬，∨，∧，┐）直接放在A和E，如A[…]，E[…]中。</p>
+<p><strong>Note</strong>: <strong>A和E后面必须紧跟着G，F，X，或U之一</strong>出现。例如：$A[ФUФ]$等形式</p>
+<p>CTL同其他语言类同，也有<strong>语法分析树</strong></p>
+<p><strong>定义</strong>：一个CTL公式Ф的子公式是这样的公式ψ，其语法分析树是Ф的语法分析树的子树。</p>
+<blockquote>
+<p>如：下图语法分析树中的EU，AX，EX，均是AU的子树。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407213237670.png" alt="image-20220407213237670" style="zoom:67%;" /></p>
+</blockquote>
+<h3 id="3-4-2-计算树逻辑的语义"><a href="#3-4-2-计算树逻辑的语义" class="headerlink" title="3.4.2 计算树逻辑的语义"></a>3.4.2 计算树逻辑的语义</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407213505591.png" alt="image-20220407213505591" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407213522987.png" alt="image-20220407213522987" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407213540267.png" alt="image-20220407213540267" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407213618961.png" alt="image-20220407213618961" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407213632094.png" alt="image-20220407213632094" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407213643278.png" alt="image-20220407213643278" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407213656773.png" alt="image-20220407213656773" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220407213712573.png" alt="image-20220407213712573" style="zoom:67%;" /></p>
+<h3 id="3-4-3-规范的实际模式"><a href="#3-4-3-规范的实际模式" class="headerlink" title="3.4.3 规范的实际模式"></a>3.4.3 规范的实际模式</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220047491.png" alt="image-20220411220047491" style="zoom: 67%;" /></p>
+<p> 常用的原子的规范的实际描述</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220131095.png" alt="image-20220411220131095" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220144209.png" alt="image-20220411220144209" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220158270.png" alt="image-20220411220158270" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220211259.png" alt="image-20220411220211259" style="zoom: 67%;" /></p>
+<ul>
+<li><strong>LTL能表达，但是CTL不能</strong></li>
+</ul>
+<blockquote>
+<p>沿着路径满足性质的公式</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220237865.png" alt="image-20220411220237865" style="zoom: 67%;" /></p>
+<blockquote>
+<p>LTL表示“对路径，无限次使能则无限次运行”——沿着特殊路径的状态</p>
+<p>CTL——路径的性质</p>
+<p>如果使用计算树逻辑，则表达的enabled和running状态可以没有关系。即不是由使能得到执行，而是”从任何状态出发，都一定能到达使能，则从一切状态出发，都能执行“</p>
+<p>“沿所有路径无限多次使能，那么沿所有路径无限多次运行”（性质更强）</p>
+</blockquote>
+<ul>
+<li><strong>CTL能表达，但是LTL不能</strong></li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220326785.png" alt="image-20220411220326785" style="zoom: 67%;" /></p>
+<h3 id="3-4-4-CTL公式间的重要等价"><a href="#3-4-4-CTL公式间的重要等价" class="headerlink" title="3.4.4 CTL公式间的重要等价"></a>3.4.4 CTL公式间的重要等价</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220423973.png" alt="image-20220411220423973" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220435260.png" alt="image-20220411220435260" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220452509.png" alt="image-20220411220452509" style="zoom: 67%;" /></p>
+<h3 id="3-4-5-CTL联结词的适当集"><a href="#3-4-5-CTL联结词的适当集" class="headerlink" title="3.4.5 CTL联结词的适当集"></a>3.4.5 CTL联结词的适当集</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220507868.png" alt="image-20220411220507868" style="zoom: 67%;" /></p>
+<blockquote>
+<p>AR, ER, AW, EW不是基本的CTL公式，但是可以用EU, AU来表达相同的含义</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220522428.png" alt="image-20220411220522428" style="zoom: 67%;" /></p>
+<blockquote>
+<p>这6组很重要，采用递归定义</p>
+<p>共同点：考虑当前状态和未来状态（对当前状态没有要求）的性质</p>
+<p>对于5) 和6) ，由直到U的定义，对于第一个状态只能$\pi^1 \vDash \psi$</p>
+</blockquote>
+<h2 id="3-5-CTL-与LTL和CTL的表达能力"><a href="#3-5-CTL-与LTL和CTL的表达能力" class="headerlink" title="3.5 CTL*与LTL和CTL的表达能力"></a>3.5 CTL*与LTL和CTL的表达能力</h2><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220815465.png" alt="image-20220411220815465" style="zoom: 67%;" /></p>
+<blockquote>
+<p>LTL隐含的条件是对所有路径成立，但是LTL描述的是每一条路径（特定路径）上的性质，因此可以在路径上选择范围。</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220828081.png" alt="image-20220411220828081" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220845848.png" alt="image-20220411220845848" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220904910.png" alt="image-20220411220904910" style="zoom: 67%;" /></p>
+<blockquote>
+<p>$\vee$可以使用联结词的适当集来表示</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411220923237.png" alt="image-20220411220923237" style="zoom: 67%;" /></p>
+<p>CTL*的常用表示方法在计算机科学中的应用</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221004332.png" alt="image-20220411221004332" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221057677.png" alt="image-20220411221057677" style="zoom: 67%;" /></p>
+<h2 id="3-6-模型检测算法"><a href="#3-6-模型检测算法" class="headerlink" title="3.6 模型检测算法"></a>3.6 模型检测算法</h2><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221124229.png" alt="image-20220411221124229" style="zoom: 67%;" /></p>
+<h3 id="3-6-1-CTL模型检测算法"><a href="#3-6-1-CTL模型检测算法" class="headerlink" title="3.6.1 CTL模型检测算法"></a>3.6.1 CTL模型检测算法</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221203324.png" alt="image-20220411221203324" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221218412.png" alt="image-20220411221218412" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221233645.png" alt="image-20220411221233645" style="zoom: 67%;" /></p>
+<blockquote>
+<p>输入的公式 $\phi$ 变换成只用适当集表示的公式</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221248981.png" alt="image-20220411221248981" style="zoom: 67%;" /></p>
+<blockquote>
+<p>标记$AF\psi_1$是一个逆推的过程，如下图所示。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412092138941.png" alt="image-20220412092138941" style="zoom: 67%;" /></p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221308293.png" alt="image-20220411221308293" style="zoom: 67%;" /></p>
+<blockquote>
+<p>具体过程如下图：</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412092211402.png" alt="image-20220412092211402" style="zoom:67%;" /></p>
+</blockquote>
+<p>算法应用例子：互斥模型，公式$E(\neg c_2 \cup c_1)$</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221331213.png" alt="image-20220411221331213" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221354702.png" alt="image-20220411221354702" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221412534.png" alt="image-20220411221412534" style="zoom: 67%;" /></p>
+<p><strong>算法的问题——状态爆炸</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221441983.png" alt="image-20220411221441983" style="zoom: 67%;" /></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/mathematical-logic/" rel="tag"># mathematical logic</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/mathematical_logic/mathematical-logic-ch8/" rel="prev" title="数理逻辑：第8节 归结演绎推理">
+      <i class="fa fa-chevron-left"></i> 数理逻辑：第8节 归结演绎推理
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9"><span class="nav-text">主要内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E9%AA%8C%E8%AF%81%E7%9A%84%E5%8A%A8%E6%9C%BA%EF%BC%88%E7%9B%AE%E7%9A%84%EF%BC%89"><span class="nav-text">3.1 验证的动机（目的）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-%E7%B3%BB%E7%BB%9F%E9%AA%8C%E8%AF%81%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-text">3.1.1 系统验证的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-%E6%A8%A1%E5%9E%8B%E6%A3%80%E6%B5%8B%E7%9A%84%E9%AA%8C%E8%AF%81%E6%96%B9%E6%B3%95"><span class="nav-text">3.1.2 模型检测的验证方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E7%BA%BF%E6%80%A7%E6%97%B6%E6%80%81%E9%80%BB%E8%BE%91-LTL"><span class="nav-text">3.2 线性时态逻辑(LTL)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-LTL%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="nav-text">3.2.1 LTL的语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LTL%E5%85%AC%E5%BC%8F%E4%B8%BE%E4%BE%8B"><span class="nav-text">LTL公式举例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%B6%E6%80%81%E8%BF%9E%E6%8E%A5%E8%AF%8D%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-text">时态连接词的优先级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LTL%E5%85%AC%E5%BC%8F%E7%9A%84%E5%AD%90%E5%85%AC%E5%BC%8F"><span class="nav-text">LTL公式的子公式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-LTL%E7%9A%84%E8%AF%AD%E4%B9%89"><span class="nav-text">3.2.2 LTL的语义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">模型的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E8%BF%81%E7%A7%BB%E7%B3%BB%E7%BB%9F%E4%B8%BE%E4%BE%8B"><span class="nav-text">状态迁移系统举例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">路径的概念</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-%E8%A7%84%E8%8C%83%E7%9A%84%E5%AE%9E%E9%99%85%E6%A8%A1%E5%BC%8F"><span class="nav-text">3.2.3 规范的实际模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-4-LTL%E5%85%AC%E5%BC%8F%E4%B9%8B%E9%97%B4%E7%9A%84%E9%87%8D%E8%A6%81%E7%AD%89%E4%BB%B7"><span class="nav-text">3.2.4 LTL公式之间的重要等价</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E6%A8%A1%E5%9E%8B%E6%A3%80%E6%B5%8B%EF%BC%9A%E7%B3%BB%E7%BB%9F%E3%80%81%E5%B7%A5%E5%85%B7%E5%92%8C%E6%80%A7%E8%B4%A8"><span class="nav-text">3.3 模型检测：系统、工具和性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-%E4%BA%92%E6%96%A5"><span class="nav-text">3.3.1 互斥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A3%80%E9%AA%8C%E4%BA%92%E6%96%A5%E7%B3%BB%E7%BB%9F"><span class="nav-text">检验互斥系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%BB%BA%E6%A8%A1"><span class="nav-text">第一次建模</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E5%BB%BA%E6%A8%A1"><span class="nav-text">第二次建模</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-NuSMV%E6%A8%A1%E5%9E%8B%E6%A3%80%E6%B5%8B%E5%99%A8"><span class="nav-text">3.3.2 NuSMV模型检测器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-text"> </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-4-%E9%87%8D%E6%B8%A9%E4%BA%92%E6%96%A5"><span class="nav-text">3.3.4 重温互斥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-5-%E6%91%86%E6%B8%A1%E8%80%85%E9%9A%BE%E9%A2%98"><span class="nav-text">3.3.5 摆渡者难题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E5%88%86%E6%94%AF%E6%97%B6%E9%97%B4%E9%80%BB%E8%BE%91"><span class="nav-text">3.4 分支时间逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-1-CTL%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="nav-text">3.4.1 CTL的语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-2-%E8%AE%A1%E7%AE%97%E6%A0%91%E9%80%BB%E8%BE%91%E7%9A%84%E8%AF%AD%E4%B9%89"><span class="nav-text">3.4.2 计算树逻辑的语义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-3-%E8%A7%84%E8%8C%83%E7%9A%84%E5%AE%9E%E9%99%85%E6%A8%A1%E5%BC%8F"><span class="nav-text">3.4.3 规范的实际模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-4-CTL%E5%85%AC%E5%BC%8F%E9%97%B4%E7%9A%84%E9%87%8D%E8%A6%81%E7%AD%89%E4%BB%B7"><span class="nav-text">3.4.4 CTL公式间的重要等价</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-5-CTL%E8%81%94%E7%BB%93%E8%AF%8D%E7%9A%84%E9%80%82%E5%BD%93%E9%9B%86"><span class="nav-text">3.4.5 CTL联结词的适当集</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-CTL-%E4%B8%8ELTL%E5%92%8CCTL%E7%9A%84%E8%A1%A8%E8%BE%BE%E8%83%BD%E5%8A%9B"><span class="nav-text">3.5 CTL*与LTL和CTL的表达能力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-%E6%A8%A1%E5%9E%8B%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95"><span class="nav-text">3.6 模型检测算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-1-CTL%E6%A8%A1%E5%9E%8B%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95"><span class="nav-text">3.6.1 CTL模型检测算法</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bob Cheng</p>
+  <div class="site-description" itemprop="description">markdown daily life & study</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bob Cheng</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
