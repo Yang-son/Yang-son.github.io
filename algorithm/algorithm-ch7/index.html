@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.gingkocyx.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="主要内容 贪心算法的设计思想与技术 用贪心法求问题的解 近似贪心问题  正确性证明是贪心法的难点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法设计与分析：第7章 贪心法">
+<meta property="og:url" content="https://www.gingkocyx.top/algorithm/algorithm-ch7/index.html">
+<meta property="og:site_name" content="Gingkocyx">
+<meta property="og:description" content="主要内容 贪心算法的设计思想与技术 用贪心法求问题的解 近似贪心问题  正确性证明是贪心法的难点">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327210019518.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327210113102.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327210150790.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327210414746.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327210626469.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329161955692.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327211000972.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327211209245.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327211447844.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327211602006.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327211650509.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327211712445.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327212022890.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327212129556.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329163500497.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327212828019.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327212923334.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327213714939.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327214040361.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327214130757.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327214312092.png">
+<meta property="article:published_time" content="2022-04-12T07:45:29.000Z">
+<meta property="article:modified_time" content="2022-04-12T07:46:38.904Z">
+<meta property="article:author" content="Bob Cheng">
+<meta property="article:tag" content="algorithm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327210019518.png">
+
+<link rel="canonical" href="https://www.gingkocyx.top/algorithm/algorithm-ch7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>算法设计与分析：第7章 贪心法 | Gingkocyx</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Gingkocyx</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">BCheng's blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/algorithm/algorithm-ch7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bob Cheng">
+      <meta itemprop="description" content="markdown daily life & study">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gingkocyx">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          算法设计与分析：第7章 贪心法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-12 15:45:29 / 修改时间：15:46:38" itemprop="dateCreated datePublished" datetime="2022-04-12T15:45:29+08:00">2022-04-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2022-Spring/" itemprop="url" rel="index"><span itemprop="name">2022 Spring</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2022-Spring/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>15 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><ul>
+<li>贪心算法的设计思想与技术</li>
+<li>用贪心法求问题的解</li>
+<li>近似贪心问题</li>
+</ul>
+<p><strong>正确性证明是贪心法的难点</strong></p>
+<span id="more"></span>
+<h2 id="7-1-贪心算法的设计思想与技术"><a href="#7-1-贪心算法的设计思想与技术" class="headerlink" title="7.1 贪心算法的设计思想与技术"></a>7.1 贪心算法的设计思想与技术</h2><p>贪心算法是通过求解该问题的每一个子问题的<strong>局部最优解从而逐步得到全局最优解</strong>。</p>
+<p><strong>贪心算法设计技术</strong></p>
+<ul>
+<li>每一步的判断都是当前最优的抉择，这个抉择计算设计的好坏，决定了算法的成败；</li>
+<li>多步判断过程，最终的判断序列对应于问题的最优解；</li>
+<li>适用于能够由<strong>局部最优达到全局最优</strong>的优化问题；</li>
+<li>需要对具体的贪心算法的正确性进行必要的证明——数学归纳法。</li>
+</ul>
+<blockquote>
+<p>贪心——最优化</p>
+<p>但是局部最优解不一定能够达到全局最优解</p>
+<p>难点在于贪心算法正确性的证明</p>
+</blockquote>
+<h2 id="7-2-用贪心法求问题的解"><a href="#7-2-用贪心法求问题的解" class="headerlink" title="7.2 用贪心法求问题的解"></a>7.2 用贪心法求问题的解</h2><h3 id="【例7-1】安排活动"><a href="#【例7-1】安排活动" class="headerlink" title="【例7-1】安排活动"></a>【例7-1】安排活动</h3><p>学生有n项活动申请使用某一个会议室，每项活动都有一个开始时间和一个结束时间。任何两个活动都不能同时使用这个会议室。问如何安排这些活动，使得被安排活动的数量达到最多？</p>
+<ul>
+<li><p><strong>问题分析</strong></p>
+<blockquote>
+<p>活动$i$和活动$j$相容$\Leftrightarrow s_i \geq f_j \vee s_j \geq f_i, \ i \neq j$</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327210019518.png" alt="image-20220327210019518" style="zoom: 67%;" /></p>
+<blockquote>
+<p>按照结束时间从小到大选择可以得到最优解</p>
+</blockquote>
+</li>
+<li><p><strong>正确性证明</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327210113102.png" alt="image-20220327210113102" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327210150790.png" alt="image-20220327210150790" style="zoom: 67%;" /></p>
+<blockquote>
+<p>整理证明的思路：</p>
+<p>数学归纳法。需要证明S是A的最优解，并且S={$i_1, i_2, … , i_m$}</p>
+<p>①证明k=1时，活动1包含在最优解中。</p>
+<p>——使用反证法，在S是最优解的前提下，用1替换$i_1$(不等于1)。</p>
+<p>由于1的结束时间比$i_1$早，1和$i_2,…,i_m$均相容。为了保证S最优解的条件，用1替换$i_1$，仍为最优解。</p>
+<p>②假设前k步选择了k个活动，推出第k+1步的选择。</p>
+<p>——首先构造全局最优解，包含前k步选择的活动：$S = \{i_1, i_2, …, i_k \} \cup B $。假设$S’ = \{j|S_j \geq e_{i_k}, j \in S\}$是S中剩下的与前k个相容的活动构成的集合。（集合中的元素之间可能不相容）。</p>
+<p>——然后证明B一定是S’的一个最优解。（如果B不是最优解，假设为B’则包含B‘活动数比B多，最后总活动数比S多，与S是最优解矛盾）</p>
+<p>——在S’中，第一个元素为$i_{k+1}$。由①，第一个活动包含在某一个最优解$B^<em>$中（$B^</em>$和B中元素个数相等），因此$i_{k+1}$被选中。把$i_{k+1}$放到前半个集合中。得到$S’’ = \{i_1,…,i_k,i_{k+1} \} \cup \{B-\{i_{k+1}\}\}$仍为最优解。此时完成k+1个活动的选择。</p>
+</blockquote>
+</li>
+<li><p><strong>计算模型</strong></p>
+<ol>
+<li><p>存储结构</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Active</span> &#123;</span><br><span class="line">	startTime s;	<span class="comment">// 活动开始时间</span></span><br><span class="line">	endTime e;	<span class="comment">// 活动结束时间</span></span><br><span class="line">	selectflag f;	<span class="comment">// 选标识</span></span><br><span class="line">&#125; A[n];</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<ol>
+<li><p>计算</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327210414746.png" alt="image-20220327210414746" style="zoom:67%;" /></p>
+</li>
+</ol>
+<ul>
+<li><p><strong>算法设计与描述</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327210626469.png" alt="image-20220327210626469" style="zoom:67%;" /></p>
+<blockquote>
+<p>排序可以选择任何高效的排序方法，需要按结束时间升序排列。</p>
+</blockquote>
+</li>
+<li><p><strong>算法实现</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 50</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Active</span> &#123;</span><br><span class="line">    <span class="type">int</span> s; <span class="comment">// 活动开始时间</span></span><br><span class="line">    <span class="type">int</span> e; <span class="comment">// 活动结束时间</span></span><br><span class="line">    <span class="type">bool</span> f; <span class="comment">// 选标识</span></span><br><span class="line">    <span class="keyword">friend</span> <span class="type">bool</span> <span class="keyword">operator</span> &lt; (Active x, Active y) &#123;</span><br><span class="line">        <span class="keyword">return</span> x.e &lt; y.e;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">GreedySelect</span><span class="params">(Active A[], <span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> i, j = <span class="number">1</span>, count;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        A[i].f = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span>(A+<span class="number">1</span>,A+<span class="number">1</span>+n);	<span class="comment">// 按照结束时间排序</span></span><br><span class="line">    A[<span class="number">1</span>].f = <span class="number">1</span>; count = <span class="number">1</span>;	<span class="comment">// 结束时间最早的为第一个被选中的活动</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (A[i].s &gt;= A[j].e) &#123;		<span class="comment">// 实现相容，被选中</span></span><br><span class="line">            A[i].f = <span class="number">1</span>;</span><br><span class="line">            j = i;</span><br><span class="line">            ++count;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;the count is %d\n&quot;</span>,count);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (A[i].f) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Case#%d is selected, start at: %d, end at: %d\n&quot;</span>,i,A[i].s,A[i].e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Active A[N];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">3</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;A[i].s,&amp;A[i].e);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">GreedySelect</span>(A,<span class="number">3</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">0 8</span></span><br><span class="line"><span class="comment">7 10</span></span><br><span class="line"><span class="comment">9 15</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>运行截图</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329161955692.png" alt="image-20220329161955692" style="zoom:80%;" /></p>
+</li>
+</ul>
+<ul>
+<li><p><strong>算法分析</strong></p>
+<ol>
+<li><p>问题的输入规模为n；</p>
+</li>
+<li><p>初始化需要循环n次；</p>
+</li>
+<li><p>按结束时间排序算法的时间复杂度为$O(nlogn)$；</p>
+</li>
+<li><p>用贪心算法选择最多安排的活动数目需要循环n次；</p>
+</li>
+<li><p>依据定理2.2可得，$T(n) = O(nlogn)$</p>
+<blockquote>
+<p>运算是并行的，满足加法原理，时间复杂度选其中最高的。</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="【例7-2】数列极差"><a href="#【例7-2】数列极差" class="headerlink" title="【例7-2】数列极差"></a>【例7-2】数列极差</h3><p>给定含有n个正整数的数列a，做如下两步操作：</p>
+<p><strong>(1)</strong> 每一次删除其中的两个数$a_i$和$a_j$;</p>
+<p><strong>(2)</strong> 在数列中加入一个数$a_i×a_j+1$， 循环执行步骤(1)(2)直到集合中只剩下一个元素为止。</p>
+<p>设计算法求得数列中剩余的数为最大值$max$和最小值$min$，则该数列的极差为$M=max-min$。</p>
+<ul>
+<li><p><strong>问题分析</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327211000972.png" alt="image-20220327211000972" style="zoom:67%;" /></p>
+<blockquote>
+<p>两个最小的数相乘，结果最大；</p>
+<p>两个最大的数相乘，结果最小。</p>
+</blockquote>
+</li>
+<li><p><strong>正确性证明</strong></p>
+<blockquote>
+<p>先用k=3的情况尝试一下。</p>
+<p>设$a = \{ a_1, a_2, a_3 \}$，且$a_1 &lt; a_2 &lt; a_3$。</p>
+<p>三种组合为：</p>
+<p>$\begin{cases} (a_1 \times a_2 + 1) \times a_3 + 1 = a_1 \times a_2 \times a_3 + a_3 + 1 \\ (a_1 \times a_3 + 1) \times a_2 + 1 = a_1 \times a_2 \times a_3 + a_2 + 1 \\ (a_2 \times a_3 + 1) \times a_1 + 1 = a_1 \times a_2 \times a_3 + a_1 + 1 \\ \end{cases}$</p>
+<p>显然命题成立。</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327211209245.png" alt="image-20220327211209245" style="zoom:67%;" /></p>
+<blockquote>
+<p>推广到k = n的情况</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327211447844.png" alt="image-20220327211447844" style="zoom:67%;" /></p>
+<blockquote>
+<p>证明引理</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327211602006.png" alt="image-20220327211602006" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327211650509.png" alt="image-20220327211650509" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327211712445.png" alt="image-20220327211712445" style="zoom:67%;" /></p>
+<blockquote>
+<p>整理证明思路：</p>
+<p>数学归纳法：</p>
+<p>①k=3时，经过简单的推导可证</p>
+<p>②假设k=n时成立，证明k=n+1的情况。</p>
+<p>——先证明引理成立。假设$a_i$和$a_j$的关系，从左边开始对$a_i$进行代换，最后得到右式加上一个正数，得到左&gt;右。</p>
+<p>对引理推广，把[A]推广到{A}</p>
+<p>——然后证明新加入的元素$a_{n+1}$按照数列最小值优先组合的规则，仍可以得到最大值。假设第$i$步变换后，数列中剩余元素均大于$a_{n+1}$。选取最小的元素$a_k &gt; a_{n+1}$，数列中的剩余元素集合表示为$A_j$。由前面证明过的引理，$[[A_i],a_{n+1},\{A_j\},a_k] &gt; [[A_i],a_k,\{A_j\},a_{n+1}]$成立，得到最大值，则k=n+1时命题成立。</p>
+</blockquote>
+</li>
+<li><p><strong>计算模型</strong></p>
+<ol>
+<li><p>存储：用数组<code>a[n]</code>存储数列</p>
+</li>
+<li><p>计算：</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327212022890.png" alt="image-20220327212022890" style="zoom:80%;" /></p>
+</li>
+</ol>
+</li>
+<li><p><strong>算法设计与描述</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327212129556.png" alt="image-20220327212129556" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>算法实现</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 100</span></span><br><span class="line"><span class="type">int</span> a[MAXN];    <span class="comment">// 存储序列元素</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;	<span class="comment">// 降序排序的比较函数</span></span><br><span class="line">    <span class="keyword">return</span> x &gt; y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 求数列的极大值</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">calculation_max</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (n &gt; <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">sort</span>(a+<span class="number">1</span>,a+<span class="number">1</span>+n);    <span class="comment">// 从小到大排序</span></span><br><span class="line">        <span class="comment">// 第一小和第二小</span></span><br><span class="line">        a[<span class="number">1</span>] = a[<span class="number">1</span>]*a[<span class="number">2</span>] + <span class="number">1</span>;</span><br><span class="line">        a[<span class="number">2</span>] = a[n]; <span class="comment">// 用最后一个值覆盖旧值</span></span><br><span class="line">        n--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (a[<span class="number">1</span>]*a[<span class="number">2</span>]+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 求数列的极小值</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">calculation_min</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (n &gt; <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">sort</span>(a+<span class="number">1</span>,a+<span class="number">1</span>+n,cmp);    <span class="comment">// 从大到小排序</span></span><br><span class="line">        a[<span class="number">1</span>] = a[<span class="number">1</span>]*a[<span class="number">2</span>] + <span class="number">1</span>;</span><br><span class="line">        a[<span class="number">2</span>] = a[n];</span><br><span class="line">        n--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (a[<span class="number">1</span>]*a[<span class="number">2</span>]+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> b[] = &#123;<span class="number">0</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">6</span>&#125;;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;min of array:&quot;</span> &lt;&lt; <span class="built_in">calculation_min</span>(b,<span class="number">3</span>) &lt;&lt; endl;</span><br><span class="line">    <span class="type">int</span> c[] = &#123;<span class="number">0</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>&#125;;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;max of array:&quot;</span> &lt;&lt; <span class="built_in">calculation_max</span>(c,<span class="number">3</span>) &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>运行截图</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329163500497.png" alt="image-20220329163500497" style="zoom:80%;" /></p>
+</li>
+</ul>
+<ul>
+<li><p><strong>算法分析</strong></p>
+<ol>
+<li>问题的输入规模为n；</li>
+<li>计算极值循环n-2次；</li>
+<li>若使用堆排序方法，选择第1，2小/大值：$T(n) = logn + log(n-1)$；</li>
+<li>综合（2）和（3），可得：$T(n) = (n-2)(logn+log(n-1)) = O(nlogn)$</li>
+</ol>
+<blockquote>
+<p>贪心：每次都选择极值（最大or最小）</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="【例7-3】最优装载"><a href="#【例7-3】最优装载" class="headerlink" title="【例7-3】最优装载"></a>【例7-3】最优装载</h3><p>有一批集装箱准备装上轮船，编号依次为$1, 2, …, n$，其中集装箱$i$的重量是$w_i，i=1, 2,…, n$。已知轮船最多装载量是$C$，每个集装箱的重量$w_i \leq C$，且对集装箱无体积限制，设计算法求如何选择能够使得装上的集装箱个数最多。</p>
+<ul>
+<li><p><strong>问题分析</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327212828019.png" alt="image-20220327212828019" style="zoom:67%;" /></p>
+<blockquote>
+<p><strong>贪心策略：</strong>轻者优先</p>
+</blockquote>
+</li>
+<li><p><strong>算法设计与描述</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327212923334.png" alt="image-20220327212923334" style="zoom: 80%;" /></p>
+</li>
+<li><p><strong>算法分析</strong></p>
+<ol>
+<li>问题的输入规模为n；</li>
+<li>选择集装箱是主要工作，时间渐近复杂度：$T(n) = n$；</li>
+<li>排序最快的时间复杂度为：$T(n) = O(nlogn)$；</li>
+<li>上述（2）和（3）并列执行的，按照第2章的定理2.2（加法定理）可知本例的时间渐近复杂度为$T(n) = O(nlogn)$</li>
+</ol>
+<blockquote>
+<p>这个问题仍为NP问题，涉及选择树</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="【例7-4】整数变换"><a href="#【例7-4】整数变换" class="headerlink" title="【例7-4】整数变换"></a>【例7-4】整数变换</h3><p>键盘输入一个高精度的正整数N，去掉其中任意 S个数字后剩下的数字按原左右次序将组成一个新的正整数。</p>
+<p>对给于定的N和S，寻找一种方案使得剩下的数字组成的新数最小。</p>
+<p>输出：包括所去掉数字的位置和组成的新正整数。</p>
+<ul>
+<li><p><strong>问题分析</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327213714939.png" alt="image-20220327213714939" style="zoom:80%;" /></p>
+<blockquote>
+<p><strong>删除策略</strong>：</p>
+<p>对于$n_2$：高位的大数没有删除干净——删除一个高位数字后需要回溯继续删除，才能保证把大数字删干净；</p>
+<p>对于$n_3$：当大数都在后面时，直接从后面的数字开始删除；</p>
+<p>对于$n_4$：需要把前面多余的0删掉。</p>
+<p><strong>物理删除</strong>：</p>
+<p>后面的数字把前面的数字覆盖</p>
+<p><strong>注意</strong>：</p>
+<p>需要最优值和最优解（删除后的结果和删除的位置）</p>
+</blockquote>
+</li>
+<li><p><strong>计算模型</strong></p>
+<ol>
+<li><p>存储</p>
+<p><code>a[]</code>存储字数N，<code>data[]</code>记录删除的元素在原数字中的位置；</p>
+<p>存在一位回溯的操作，设置变量<code>j1</code>来记住上一次删除的位置。</p>
+</li>
+<li><p>计算</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327214040361.png" alt="image-20220327214040361" style="zoom: 80%;" /></p>
+</li>
+</ol>
+</li>
+<li><p><strong>算法设计与描述</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327214130757.png" alt="image-20220327214130757" style="zoom: 80%;" /></p>
+<blockquote>
+<p>注意使用了语言上的特色：C语言字符串末尾的’\0’是在ASCII中为0，最小。j不再增长，应对例子中的$n_3$情况。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="7-2-近似贪心问题"><a href="#7-2-近似贪心问题" class="headerlink" title="7.2 近似贪心问题"></a>7.2 近似贪心问题</h2><p>引入随机，使算法变快，提高算法效率。</p>
+<h3 id="找零问题"><a href="#找零问题" class="headerlink" title="找零问题"></a>找零问题</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327214312092.png" alt="image-20220327214312092" style="zoom: 67%;" /></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/algorithm/" rel="tag"># algorithm</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/mathematical_logic/mathematical-logic-chapter3/" rel="prev" title="数理逻辑：第3章 数理逻辑应用在计算机软、硬件设计中">
+      <i class="fa fa-chevron-left"></i> 数理逻辑：第3章 数理逻辑应用在计算机软、硬件设计中
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/algorithm/algorithm-ch8/" rel="next" title="算法设计与分析：第8章 动态规划">
+      算法设计与分析：第8章 动态规划 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9"><span class="nav-text">主要内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3%E4%B8%8E%E6%8A%80%E6%9C%AF"><span class="nav-text">7.1 贪心算法的设计思想与技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-%E7%94%A8%E8%B4%AA%E5%BF%83%E6%B3%95%E6%B1%82%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3"><span class="nav-text">7.2 用贪心法求问题的解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%90%E4%BE%8B7-1%E3%80%91%E5%AE%89%E6%8E%92%E6%B4%BB%E5%8A%A8"><span class="nav-text">【例7-1】安排活动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%90%E4%BE%8B7-2%E3%80%91%E6%95%B0%E5%88%97%E6%9E%81%E5%B7%AE"><span class="nav-text">【例7-2】数列极差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%90%E4%BE%8B7-3%E3%80%91%E6%9C%80%E4%BC%98%E8%A3%85%E8%BD%BD"><span class="nav-text">【例7-3】最优装载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%90%E4%BE%8B7-4%E3%80%91%E6%95%B4%E6%95%B0%E5%8F%98%E6%8D%A2"><span class="nav-text">【例7-4】整数变换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-%E8%BF%91%E4%BC%BC%E8%B4%AA%E5%BF%83%E9%97%AE%E9%A2%98"><span class="nav-text">7.2 近似贪心问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%BE%E9%9B%B6%E9%97%AE%E9%A2%98"><span class="nav-text">找零问题</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bob Cheng</p>
+  <div class="site-description" itemprop="description">markdown daily life & study</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bob Cheng</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
