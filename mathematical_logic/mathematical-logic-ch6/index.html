@@ -49,7 +49,7 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220314211547583.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220314211718384.png">
 <meta property="article:published_time" content="2022-04-11T14:40:05.000Z">
-<meta property="article:modified_time" content="2022-04-11T14:41:23.614Z">
+<meta property="article:modified_time" content="2022-05-01T07:23:03.513Z">
 <meta property="article:author" content="Bob Cheng">
 <meta property="article:tag" content="mathematical logic">
 <meta name="twitter:card" content="summary">
@@ -237,10 +237,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-04-11 22:40:05 / 修改时间：22:41:23" itemprop="dateCreated datePublished" datetime="2022-04-11T22:40:05+08:00">2022-04-11</time>
+              <time title="创建时间：2022-04-11 22:40:05" itemprop="dateCreated datePublished" datetime="2022-04-11T22:40:05+08:00">2022-04-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-01 15:23:03" itemprop="dateModified" datetime="2022-05-01T15:23:03+08:00">2022-05-01</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -328,10 +334,10 @@
 <ul>
 <li><p>推导③</p>
 <blockquote>
-<p>$\Leftrightarrow \ (\neg A(a_1) \or B) \and … \and (\neg A(a_n) \or B)$</p>
-<p>$\Leftrightarrow \ (\neg A(a_1) \and … \and \neg A(a_n) ) \or B$</p>
-<p>$\Leftrightarrow \ \neg  (A(a_1) \or … \or A(a_n) ) \or B$</p>
-<p>$\Leftrightarrow \ ( A(a_1) \or … \or \neg A(a_n) ) \to B$</p>
+<p>$\Leftrightarrow \ (\neg A(a_1) \or B) \land … \land (\neg A(a_n) \vee B)$</p>
+<p>$\Leftrightarrow \ (\neg A(a_1) \land … \land \neg A(a_n) ) \vee B$</p>
+<p>$\Leftrightarrow \ \neg  (A(a_1) \vee … \vee A(a_n) ) \vee B$</p>
+<p>$\Leftrightarrow \ ( A(a_1) \vee … \vee \neg A(a_n) ) \to B$</p>
 <p>$\Leftrightarrow \ 右$</p>
 </blockquote>
 </li>
@@ -344,7 +350,7 @@
 </ul>
 <h6 id="（4）量词分配等值式"><a href="#（4）量词分配等值式" class="headerlink" title="（4）量词分配等值式"></a>（4）量词分配等值式</h6><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220314204236465.png" alt="image-20220314204236465" style="zoom:67%;" /></p>
 <blockquote>
-<p><strong>注意</strong>：==$\forall$ 对 $\or$，$\exists$ 对 $\and$ 无分配律==</p>
+<p><strong>注意</strong>：$\forall$ 对 $\or$，$\exists$ 对 $\and$ 无分配律</p>
 </blockquote>
 <h4 id="置换规则、换名规则、代替规则"><a href="#置换规则、换名规则、代替规则" class="headerlink" title="置换规则、换名规则、代替规则"></a>置换规则、换名规则、代替规则</h4><h5 id="1-置换规则"><a href="#1-置换规则" class="headerlink" title="1.置换规则"></a>1.置换规则</h5><p>设$\Phi(A)$是含$A$的公式，那么，若$A \Leftrightarrow B$，则$\Phi(A) \Leftrightarrow \Phi(B)$。</p>
 <blockquote>
@@ -397,24 +403,24 @@ Q_1x_1Q_2x_2…Q_kx_kB</script><p>则称$A$为<strong>前束范式</strong>，�
 </blockquote>
 <h4 id="定理1（前束范式存在定理）"><a href="#定理1（前束范式存在定理）" class="headerlink" title="定理1（前束范式存在定理）"></a>定理1（前束范式存在定理）</h4><p>一阶逻辑中的任何公式都存在与之等值的前束范式</p>
 <h5 id="实例-例4（前束范式）"><a href="#实例-例4（前束范式）" class="headerlink" title="实例-例4（前束范式）"></a>实例-例4（前束范式）</h5><p>例4 求下列公式的前束范式</p>
-<p>（1）$\neg \exists x (M(x) \and F(x))$</p>
+<p>（1）$\neg \exists x (M(x) \land F(x))$</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220314210729493.png" alt="image-20220314210729493" style="zoom: 67%;" /></p>
-<p>（2）$\forall x F(x) \and \neg \exists G(x)$</p>
+<p>（2）$\forall x F(x) \land \neg \exists G(x)$</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220314210819626.png" alt="image-20220314210819626" style="zoom: 67%;" /></p>
-<p>（3）$\forall x F(x) \to \exists y (G(x,y) \and \neg H(y))$</p>
+<p>（3）$\forall x F(x) \to \exists y (G(x,y) \land \neg H(y))$</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220314210950533.png" alt="image-20220314210950533" style="zoom: 67%;" /></p>
 <h3 id="6-3-一阶逻辑的推理理论"><a href="#6-3-一阶逻辑的推理理论" class="headerlink" title="6.3 一阶逻辑的推理理论"></a>6.3 一阶逻辑的推理理论</h3><blockquote>
 <p>推理理论的形式结构：</p>
 <ol>
-<li><p>$A_1 \and A_2 \and … \and A_k \to B$</p>
+<li><p>$A_1 \land A_2 \land … \land A_k \to B$</p>
 <p>若此式是永真式，则称推理正确，</p>
-<p>记作$A_1 \and A_2 \and … \and A_k \Rightarrow B$</p>
+<p>记作$A_1 \land A_2 \land … \land A_k \Rightarrow B$</p>
 </li>
 <li><p>前提：$A_1,A_2,…,A_k$</p>
 <p>结论：$B$</p>
 </li>
 </ol>
-<p>判断推理是否正确：判别$A_1 \and A_2 \and … \and A_k \rightarrow B$是否为永真式</p>
+<p>判断推理是否正确：判别$A_1 \land A_2 \land … \land A_k \rightarrow B$是否为永真式</p>
 <p>推理定律：永真式的蕴含式</p>
 </blockquote>
 <h4 id="推理定律"><a href="#推理定律" class="headerlink" title="推理定律"></a>推理定律</h4><h5 id="第一组：命题逻辑推理定律的代换实例"><a href="#第一组：命题逻辑推理定律的代换实例" class="headerlink" title="第一组：命题逻辑推理定律的代换实例"></a>第一组：命题逻辑推理定律的代换实例</h5><p>命题逻辑11条推理定律</p>
