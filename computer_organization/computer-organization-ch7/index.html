@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.gingkocyx.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="计算机的最高指挥：晶振——产生指令。 计算机在指令驱动下运行。指令组成程序 7.1 机器指令机器语言：由一条条语句构成，每一条语句又能准确表达某种语义 机器指令：每一条机器语言的语句 指令系统：全部机器指令的集合">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成原理：第7章 指令系统">
+<meta property="og:url" content="https://www.gingkocyx.top/computer_organization/computer-organization-ch7/index.html">
+<meta property="og:site_name" content="Gingkocyx">
+<meta property="og:description" content="计算机的最高指挥：晶振——产生指令。 计算机在指令驱动下运行。指令组成程序 7.1 机器指令机器语言：由一条条语句构成，每一条语句又能准确表达某种语义 机器指令：每一条机器语言的语句 指令系统：全部机器指令的集合">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503140908602.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503141005021.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503141141637.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503141155067.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503142230997.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503143841338.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503144647612.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503150538893.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171448556.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171520628.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171635065.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171657961.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171756033.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171857720.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153526386.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153543995.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153600596.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153713905.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154526162.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154543218.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154600520.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154617609.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154638769.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154658187.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154716131.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154737331.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154815612.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154832850.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155132681.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424161443696.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424161616537.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424161810340.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155316293.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155338256.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155402226.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155423222.png">
+<meta property="article:published_time" content="2022-05-03T08:22:28.000Z">
+<meta property="article:modified_time" content="2022-05-03T08:24:03.761Z">
+<meta property="article:author" content="Bob Cheng">
+<meta property="article:tag" content="computer organization">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503140908602.png">
+
+<link rel="canonical" href="https://www.gingkocyx.top/computer_organization/computer-organization-ch7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>计算机组成原理：第7章 指令系统 | Gingkocyx</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Gingkocyx</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">BCheng's blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/computer_organization/computer-organization-ch7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bob Cheng">
+      <meta itemprop="description" content="markdown daily life & study">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gingkocyx">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机组成原理：第7章 指令系统
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-05-03 16:22:28 / 修改时间：16:24:03" itemprop="dateCreated datePublished" datetime="2022-05-03T16:22:28+08:00">2022-05-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2022-Spring/" itemprop="url" rel="index"><span itemprop="name">2022 Spring</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2022-Spring/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>计算机的最高指挥：晶振——产生指令。</p>
+<p>计算机在指令驱动下运行。指令组成程序</p>
+<h2 id="7-1-机器指令"><a href="#7-1-机器指令" class="headerlink" title="7.1 机器指令"></a>7.1 机器指令</h2><p>机器语言：由一条条语句构成，每一条语句又能准确表达某种语义</p>
+<p>机器指令：每一条机器语言的语句</p>
+<p>指令系统：全部机器指令的集合</p>
+<span id="more"></span>
+<h3 id="一、指令的一般格式"><a href="#一、指令的一般格式" class="headerlink" title="一、指令的一般格式"></a>一、指令的一般格式</h3><h4 id="1-操作码"><a href="#1-操作码" class="headerlink" title="1.操作码"></a>1.操作码</h4><p>反映机器做什么操作</p>
+<blockquote>
+<p>用来指明该指令所要完成的操作，</p>
+<p>如：加法、减法、传送、移位、转移等</p>
+</blockquote>
+<p>位数反映操作种类（机器允许的指令条数）</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503140908602.png" alt="image-20220503140908602" style="zoom: 50%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503141005021.png" alt="image-20220503141005021" style="zoom: 50%;" /></p>
+<p>三地址指令操作码每减少一种可多构成$2^4$种二地址指令</p>
+<p>二地址指令操作码每减少一种可多构成$2^4$种一地址指令</p>
+<h4 id="2-地址码"><a href="#2-地址码" class="headerlink" title="2.地址码"></a>2.地址码</h4><p>用来指出该指令的源操作数的地址（一个或两个）、结果的地址以及下一条指令的地址。</p>
+<blockquote>
+<p>“地址”可以是主存的地址，也可以是寄存器的地址，I/O设备的地址</p>
+</blockquote>
+<h5 id="1-四地址"><a href="#1-四地址" class="headerlink" title="1. 四地址"></a>1. 四地址</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503141141637.png" alt="image-20220503141141637" style="zoom: 50%;" /></p>
+<h5 id="2-三地址"><a href="#2-三地址" class="headerlink" title="2. 三地址"></a>2. 三地址</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503141155067.png" alt="image-20220503141155067" style="zoom: 50%;" /></p>
+<h5 id="3-二地址"><a href="#3-二地址" class="headerlink" title="3. 二地址"></a>3. 二地址</h5><p>4次：取A1，A2，写A1，取指令</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503142230997.png" alt="image-20220503142230997" style="zoom: 50%;" /></p>
+<h5 id="4-一地址"><a href="#4-一地址" class="headerlink" title="4. 一地址"></a>4. 一地址</h5><p>2次：取A1，取指令</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503143841338.png" alt="image-20220503143841338" style="zoom: 50%;" /></p>
+<h5 id="5-零地址"><a href="#5-零地址" class="headerlink" title="5. 零地址"></a>5. 零地址</h5><p>子程序返回（RET）、中断返回（IRET）——没有地址码，操作数的地址隐含在堆栈指针SP中</p>
+<h3 id="二、指令字长"><a href="#二、指令字长" class="headerlink" title="二、指令字长"></a>二、指令字长</h3><p>指令字长取决于$\begin{cases} 操作码的长度\\ 操作数地址的长度 \\ 操作数地址的个数 \\  \end{cases}$</p>
+<ol>
+<li><p>指令字长<strong>固定</strong></p>
+<p>指令字长=存储字长</p>
+<blockquote>
+<p>早期的计算机，访问某个存储单元便可取出一条完整的指令或一个完整的数据。控制方式简单</p>
+</blockquote>
+</li>
+<li><p>指令字长<strong>可变</strong></p>
+<p>按字节的倍数变化</p>
+<blockquote>
+<p>为了提高指令的运行速度和节省存储空间，通常尽可能把常用的指令（如：数据传送指令、算逻运算指令等）设计成单字长或短字长格式的指令</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>小结</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503144647612.png" alt="image-20220503144647612" style="zoom: 50%;" /></p>
+<h2 id="7-2-操作数类型和操作类型"><a href="#7-2-操作数类型和操作类型" class="headerlink" title="7.2 操作数类型和操作类型"></a>7.2 操作数类型和操作类型</h2><h3 id="一、操作数类型"><a href="#一、操作数类型" class="headerlink" title="一、操作数类型"></a>一、操作数类型</h3><p>常见的操作数类型：地址、数字、字符、逻辑数据</p>
+<ul>
+<li><strong>地址</strong>：无符号的整数。涉及操作数地址的计算</li>
+<li><strong>数字</strong>：定点数、浮点数和十进制数</li>
+<li><strong>字符</strong>：普遍采用ASCII码</li>
+<li><strong>逻辑数据</strong>：</li>
+</ul>
+<h3 id="二、数据在存储器中的存放方式"><a href="#二、数据在存储器中的存放方式" class="headerlink" title="二、数据在存储器中的存放方式"></a>二、数据在存储器中的存放方式</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503150538893.png" alt="image-20220503150538893" style="zoom: 50%;" /></p>
+<h3 id="三、操作类型"><a href="#三、操作类型" class="headerlink" title="三、操作类型"></a>三、操作类型</h3><h4 id="1-数据传送"><a href="#1-数据传送" class="headerlink" title="1. 数据传送"></a>1. 数据传送</h4><p>包括：<strong>寄存器与寄存器</strong>、<strong>寄存器与存储单元</strong>、<strong>存储单元与存储单元</strong>之间的传送。</p>
+<blockquote>
+<p>如：从源到目的之间的传送、对存储器读（LOAD）和写（STORE）、交换源和目的的内容、置1、清0、进栈、出栈等</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171448556.png" alt="image-20220420171448556" style="zoom: 80%;" /></p>
+<h4 id="2-算术逻辑操作"><a href="#2-算术逻辑操作" class="headerlink" title="2. 算术逻辑操作"></a>2. 算术逻辑操作</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171520628.png" alt="image-20220420171520628" style="zoom:80%;" /></p>
+<h4 id="3-移位操作"><a href="#3-移位操作" class="headerlink" title="3. 移位操作"></a>3. 移位操作</h4><blockquote>
+<p>移位操作所需时间远比乘除操作执行时间短，用来代替简单的乘法和除法运算</p>
+</blockquote>
+<ul>
+<li>算术移位：对<strong>有符号数</strong>的乘/除以2的运算</li>
+<li>逻辑移位：<strong>无符号数</strong></li>
+<li>循环移位（带进位和不带进位）</li>
+</ul>
+<h4 id="4-转移"><a href="#4-转移" class="headerlink" title="4. 转移"></a>4. 转移</h4><p>多数情况下，计算机按照顺序执行程序的每条指令，但有时需要改变顺序，采用<strong>转移类指令来完成</strong></p>
+<p>分为：无条件转移、条件转移、跳转、过程调用与返回、陷阱等</p>
+<ul>
+<li><p><strong>无条件转移</strong></p>
+<p>不受任何条件约束，可直接把程序转移到下一条需执行指令的地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JMP X	;将指令地址无条件转至X</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>条件转移</strong></p>
+<p>根据当前指令的执行结果来决定是否需要转移。</p>
+<p>若条件满足，则转移；不满足，则继续按顺序执行。</p>
+<p>一般机器都能提供一些条件码，这些条件码是某些操作的结果</p>
+<blockquote>
+<p>如：对于</p>
+<p>零标志位ZF，结果为0，ZF=1；</p>
+<p>负标志位SF，结果为负，SF=1；</p>
+<p>溢出标志位OF，结果有溢出，OF=1；</p>
+<p>进位标志位CF，最高位有进位，CF=1；</p>
+<p>奇偶标志位PF，结果呈偶数，PF=1；</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BRO X	; 若结果（有符号数）溢出(OF)，则指令跳转到X</span><br><span class="line">BRC Y	; 若最高位有进位(CF)，则指令跳转到Y</span><br><span class="line">SKP DZ ; 暗示其下一条指令将被跳过，隐含了转移地址是SKP后的第二条指令，条件是完成触发器D为0</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171635065.png" alt="image-20220420171635065" style="zoom:80%;" /></p>
+<ul>
+<li><p><strong>调用和返回</strong></p>
+<blockquote>
+<p>类似中断</p>
+</blockquote>
+<p>在编写程序时，有些具有特定功能的程序段会被反复使用。为避免重复编写，可将这些程序段设定为独立子程序，当需要执行某子程序时，只需子程序调用指令即可。</p>
+</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171657961.png" alt="image-20220420171657961" style="zoom:80%;" /></p>
+<ul>
+<li><p><strong>陷阱（Trap）与陷阱指令</strong></p>
+<p>陷阱时一种意外事故的中断</p>
+<blockquote>
+<p>如，机器在运行中，可能会出现电源电压不稳定、存储器校验出差错、输入输出设备出现了故障、用户使用未被定义的指令、除数出现0、运算结果溢出、特权指令等</p>
+</blockquote>
+<p>致使计算机不能正常工作，采取措施，发出陷阱信号。暂停当前程序的执行，转入故障处理程序，进行相应的故障处理。</p>
+</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171756033.png" alt="image-20220420171756033" style="zoom:80%;" /></p>
+<h4 id="5-输入输出"><a href="#5-输入输出" class="headerlink" title="5.输入输出"></a>5.输入输出</h4><blockquote>
+<p>AL是8bit，AX是16bit</p>
+<p>输入：端口送入CPU</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171857720.png" alt="image-20220420171857720" style="zoom:80%;" /></p>
+<h2 id="7-3-寻址方式"><a href="#7-3-寻址方式" class="headerlink" title="7.3 寻址方式"></a>7.3 寻址方式</h2><blockquote>
+<p>已知指令的顺序寻址、中断隐指令、开机第一条指令</p>
+</blockquote>
+<p>开机第一条指令的位置：FFFFFFF0</p>
+<p>0xFFFF0 指令：跳转到F000:EO5B</p>
+<blockquote>
+<p>参考资料：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u010383242/article/details/50586782">开机后的第一条指令</a></p>
+</blockquote>
+<p>中断隐指令怎么找</p>
+<h3 id="一、指令寻址"><a href="#一、指令寻址" class="headerlink" title="一、指令寻址"></a>一、指令寻址</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153526386.png" alt="image-20220503153526386" style="zoom: 50%;" /></p>
+<h3 id="二、数据寻址"><a href="#二、数据寻址" class="headerlink" title="二、数据寻址"></a>二、数据寻址</h3><p>指令字中必须设一字段来指明属于哪一种寻址方式——<strong>寻址特征位</strong>，记作M</p>
+<p>指令的地址码字段通常都不代表操作数的真实地址，把它称为<strong>形式地址</strong>，记作A</p>
+<p>操作数的真实地址称为<strong>有效地址</strong>，记作EA</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153543995.png" alt="image-20220503153543995" style="zoom: 50%;" /></p>
+<blockquote>
+<p>假设指令字长、存储字长、机器字长均相同</p>
+</blockquote>
+<h4 id="1-立即寻址"><a href="#1-立即寻址" class="headerlink" title="1. 立即寻址"></a>1. 立即寻址</h4><p>特点：操作数本身设在指令字内，即：<strong>形式地址A不是操作数的地址，而是操作数本身，又称之为立即数</strong></p>
+<blockquote>
+<p>立即数是有符号数，以<strong>补码</strong>形式保存</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153600596.png" alt="image-20220503153600596" style="zoom: 50%;" /></p>
+<p>优点：只要取出指令，便可立即获得操作数，在执行阶段不必再访问存储器</p>
+<p>A的位数限制立即数的范围。</p>
+<h4 id="2-直接寻址"><a href="#2-直接寻址" class="headerlink" title="2. 直接寻址"></a>2. 直接寻址</h4><p>特点：指令字中的形式地址A就是操作数的真实地址EA，即：EA=A</p>
+<blockquote>
+<p>有效地址由形式地址直接给出</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153713905.png" alt="image-20220503153713905" style="zoom: 50%;" /></p>
+<p>优点：寻找操作数简单，不需要专门计算操作数的地址，在指令执行阶段对主存只访问一次。</p>
+<p>A的位数限制了操作数的寻址范围，而且必须修改A的值才能修改操作数的地址。</p>
+<h4 id="3-隐含寻址"><a href="#3-隐含寻址" class="headerlink" title="3. 隐含寻址"></a>3. 隐含寻址</h4><blockquote>
+<p>操作数地址隐含在操作码或某个寄存器中</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154526162.png" alt="image-20220503154526162" style="zoom:50%;" /></p>
+<h4 id="4-间接寻址"><a href="#4-间接寻址" class="headerlink" title="4. 间接寻址"></a>4. 间接寻址</h4><blockquote>
+<p>有效地址由形式地址间接给出。</p>
+<p>类似于指针，有效地址是形式地址单元的数值</p>
+<p>2次访存</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154543218.png" alt="image-20220503154543218" style="zoom: 50%;" /></p>
+<h4 id="5-寄存器寻址"><a href="#5-寄存器寻址" class="headerlink" title="5. 寄存器寻址"></a>5. 寄存器寻址</h4><blockquote>
+<p>有效地址即为寄存器编号</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154600520.png" alt="image-20220503154600520" style="zoom:50%;" /></p>
+<h4 id="6-寄存器间接寻址"><a href="#6-寄存器间接寻址" class="headerlink" title="6. 寄存器间接寻址"></a>6. 寄存器间接寻址</h4><blockquote>
+<p>有效地址在寄存器内（访问寄存器内容）</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154617609.png" alt="image-20220503154617609" style="zoom: 50%;" /></p>
+<h4 id="7-基址寻址"><a href="#7-基址寻址" class="headerlink" title="7. 基址寻址"></a>7. 基址寻址</h4><ol>
+<li><p>采用专用寄存器作基址寄存器</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154638769.png" alt="image-20220503154638769" style="zoom:50%;" /></p>
+</li>
+<li><p>采用通用寄存器$R_0$作基址寄存器</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154658187.png" alt="image-20220503154658187" style="zoom:50%;" /></p>
+</li>
+</ol>
+<h4 id="8-变址寻址"><a href="#8-变址寻址" class="headerlink" title="8. 变址寻址"></a>8. 变址寻址</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154716131.png" alt="image-20220503154716131" style="zoom:50%;" /></p>
+<h4 id="9-相对寻址"><a href="#9-相对寻址" class="headerlink" title="9. 相对寻址"></a>9. 相对寻址</h4><blockquote>
+<p>EA=(PC)+A，A是相对与当前指令的位移量</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154737331.png" alt="image-20220503154737331" style="zoom:50%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154815612.png" alt="image-20220503154815612" style="zoom:50%;" /></p>
+<h4 id="10-堆栈寻址"><a href="#10-堆栈寻址" class="headerlink" title="10. 堆栈寻址"></a>10. 堆栈寻址</h4><blockquote>
+<p>堆栈指令调用内存（堆栈指令或者内存单元操作）</p>
+</blockquote>
+<p>是一种数据格式</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154832850.png" alt="image-20220503154832850" style="zoom:80%;" /></p>
+<h2 id="7-4-指令格式举例"><a href="#7-4-指令格式举例" class="headerlink" title="7.4 指令格式举例"></a>7.4 指令格式举例</h2><h3 id="一、设计指令格式时应考虑的因素"><a href="#一、设计指令格式时应考虑的因素" class="headerlink" title="一、设计指令格式时应考虑的因素"></a>一、设计指令格式时应考虑的因素</h3><h4 id="1-指令系统的兼容性"><a href="#1-指令系统的兼容性" class="headerlink" title="1. 指令系统的兼容性"></a>1. 指令系统的兼容性</h4><p>向上兼容</p>
+<h4 id="2-其他因素"><a href="#2-其他因素" class="headerlink" title="2. 其他因素"></a>2. 其他因素</h4><ul>
+<li><strong>操作类型</strong>：包括指令个数及操作的难易程度</li>
+<li><strong>数据类型</strong>：确定哪些数据类型可参与操作</li>
+<li><strong>指令格式</strong>：指令字长是否固定；操作码位数、是否采用扩展操作码技术，地址码位数、地址个数、寻址方式类型</li>
+<li><strong>寻址方式</strong>：指令寻址、操作数寻址</li>
+<li><strong>寄存器个数</strong>：寄存器的多少直接影响指令的执行时间</li>
+</ul>
+<h3 id="二、指令格式举例"><a href="#二、指令格式举例" class="headerlink" title="二、指令格式举例"></a>二、指令格式举例</h3><ol>
+<li><p>PDP-8</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155132681.png" alt="image-20220503155132681" style="zoom:50%;" /></p>
+</li>
+<li><p>PDP-11</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424161443696.png" alt="image-20220424161443696" style="zoom: 80%;" /></p>
+</li>
+<li><p>IBM 360</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424161616537.png" alt="image-20220424161616537" style="zoom:80%;" /></p>
+</li>
+<li><p>Intel 8086</p>
+<blockquote>
+<p>零地址是空操作数</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424161810340.png" alt="image-20220424161810340" style="zoom:80%;" /></p>
+</li>
+</ol>
+<blockquote>
+<p>要求：条件一定，写出指令格式</p>
+</blockquote>
+<h2 id="考试题型总结——设计指令系统"><a href="#考试题型总结——设计指令系统" class="headerlink" title="考试题型总结——设计指令系统"></a>考试题型总结——设计指令系统</h2><p>操作码多少位</p>
+<p>寻址特征位（是否选择——硬件设计有关）</p>
+<p>M寻址特征位</p>
+<p>A形式地址</p>
+<h2 id="7-5-RISC技术"><a href="#7-5-RISC技术" class="headerlink" title="7.5 RISC技术"></a>7.5 RISC技术</h2><p>RISC(Reduced Instruction set computer)</p>
+<p>硬件简单，寻址方式、指令砍掉，无法运行CISC程序，因此不易指令系统兼容</p>
+<h3 id="一、RISC-的产生和发展"><a href="#一、RISC-的产生和发展" class="headerlink" title="一、RISC 的产生和发展"></a>一、RISC 的产生和发展</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155316293.png" alt="image-20220503155316293" style="zoom:50%;" /></p>
+<h3 id="二、RISC-的主要特征"><a href="#二、RISC-的主要特征" class="headerlink" title="二、RISC 的主要特征"></a>二、RISC 的主要特征</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155338256.png" alt="image-20220503155338256" style="zoom:50%;" /></p>
+<h3 id="三、CISC-的主要特征"><a href="#三、CISC-的主要特征" class="headerlink" title="三、CISC 的主要特征"></a>三、CISC 的主要特征</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155402226.png" alt="image-20220503155402226" style="zoom: 50%;" /></p>
+<h3 id="四、RISC和CISC-的比较"><a href="#四、RISC和CISC-的比较" class="headerlink" title="四、RISC和CISC 的比较"></a>四、RISC和CISC 的比较</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155423222.png" alt="image-20220503155423222" style="zoom:50%;" /></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/computer-organization/" rel="tag"># computer organization</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/algorithm/algorithm-ch8/" rel="prev" title="算法设计与分析：第8章 动态规划">
+      <i class="fa fa-chevron-left"></i> 算法设计与分析：第8章 动态规划
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-%E6%9C%BA%E5%99%A8%E6%8C%87%E4%BB%A4"><span class="nav-text">7.1 机器指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%8C%87%E4%BB%A4%E7%9A%84%E4%B8%80%E8%88%AC%E6%A0%BC%E5%BC%8F"><span class="nav-text">一、指令的一般格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%93%8D%E4%BD%9C%E7%A0%81"><span class="nav-text">1.操作码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%9C%B0%E5%9D%80%E7%A0%81"><span class="nav-text">2.地址码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%9B%9B%E5%9C%B0%E5%9D%80"><span class="nav-text">1. 四地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E4%B8%89%E5%9C%B0%E5%9D%80"><span class="nav-text">2. 三地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E4%BA%8C%E5%9C%B0%E5%9D%80"><span class="nav-text">3. 二地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E4%B8%80%E5%9C%B0%E5%9D%80"><span class="nav-text">4. 一地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E9%9B%B6%E5%9C%B0%E5%9D%80"><span class="nav-text">5. 零地址</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%8C%87%E4%BB%A4%E5%AD%97%E9%95%BF"><span class="nav-text">二、指令字长</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-%E6%93%8D%E4%BD%9C%E6%95%B0%E7%B1%BB%E5%9E%8B%E5%92%8C%E6%93%8D%E4%BD%9C%E7%B1%BB%E5%9E%8B"><span class="nav-text">7.2 操作数类型和操作类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%93%8D%E4%BD%9C%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="nav-text">一、操作数类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E6%8D%AE%E5%9C%A8%E5%AD%98%E5%82%A8%E5%99%A8%E4%B8%AD%E7%9A%84%E5%AD%98%E6%94%BE%E6%96%B9%E5%BC%8F"><span class="nav-text">二、数据在存储器中的存放方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%93%8D%E4%BD%9C%E7%B1%BB%E5%9E%8B"><span class="nav-text">三、操作类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81"><span class="nav-text">1. 数据传送</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E6%93%8D%E4%BD%9C"><span class="nav-text">2. 算术逻辑操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%A7%BB%E4%BD%8D%E6%93%8D%E4%BD%9C"><span class="nav-text">3. 移位操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%BD%AC%E7%A7%BB"><span class="nav-text">4. 转移</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="nav-text">5.输入输出</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="nav-text">7.3 寻址方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80"><span class="nav-text">一、指令寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80"><span class="nav-text">二、数据寻址</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%AB%8B%E5%8D%B3%E5%AF%BB%E5%9D%80"><span class="nav-text">1. 立即寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%9B%B4%E6%8E%A5%E5%AF%BB%E5%9D%80"><span class="nav-text">2. 直接寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%9A%90%E5%90%AB%E5%AF%BB%E5%9D%80"><span class="nav-text">3. 隐含寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80"><span class="nav-text">4. 间接寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80"><span class="nav-text">5. 寄存器寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%AF%84%E5%AD%98%E5%99%A8%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80"><span class="nav-text">6. 寄存器间接寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E5%9F%BA%E5%9D%80%E5%AF%BB%E5%9D%80"><span class="nav-text">7. 基址寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80"><span class="nav-text">8. 变址寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-%E7%9B%B8%E5%AF%B9%E5%AF%BB%E5%9D%80"><span class="nav-text">9. 相对寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-%E5%A0%86%E6%A0%88%E5%AF%BB%E5%9D%80"><span class="nav-text">10. 堆栈寻址</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F%E4%B8%BE%E4%BE%8B"><span class="nav-text">7.4 指令格式举例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%AE%BE%E8%AE%A1%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F%E6%97%B6%E5%BA%94%E8%80%83%E8%99%91%E7%9A%84%E5%9B%A0%E7%B4%A0"><span class="nav-text">一、设计指令格式时应考虑的因素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="nav-text">1. 指令系统的兼容性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%85%B6%E4%BB%96%E5%9B%A0%E7%B4%A0"><span class="nav-text">2. 其他因素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F%E4%B8%BE%E4%BE%8B"><span class="nav-text">二、指令格式举例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%80%83%E8%AF%95%E9%A2%98%E5%9E%8B%E6%80%BB%E7%BB%93%E2%80%94%E2%80%94%E8%AE%BE%E8%AE%A1%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F"><span class="nav-text">考试题型总结——设计指令系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-5-RISC%E6%8A%80%E6%9C%AF"><span class="nav-text">7.5 RISC技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81RISC-%E7%9A%84%E4%BA%A7%E7%94%9F%E5%92%8C%E5%8F%91%E5%B1%95"><span class="nav-text">一、RISC 的产生和发展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81RISC-%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E5%BE%81"><span class="nav-text">二、RISC 的主要特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81CISC-%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E5%BE%81"><span class="nav-text">三、CISC 的主要特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81RISC%E5%92%8CCISC-%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-text">四、RISC和CISC 的比较</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bob Cheng</p>
+  <div class="site-description" itemprop="description">markdown daily life & study</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bob Cheng</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
