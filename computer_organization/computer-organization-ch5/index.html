@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.gingkocyx.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="除了CPU和存储器两大模块外，计算机硬件系统的第三个关键部分是输入输出模块，又称输入输出系统。 本章重点分析I&#x2F;O设备与主机交换信息的三种控制方式（程序查询、中断、DMA）及其相应的接口功能和组成。主要介绍接口和DMA阶段的I&#x2F;O系统 每一节要求掌握的程度：硬件什么样，软件程序如何配合完成数据的输入输出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成原理：第5章 输入输出系统">
+<meta property="og:url" content="https://www.gingkocyx.top/computer_organization/computer-organization-ch5/index.html">
+<meta property="og:site_name" content="Gingkocyx">
+<meta property="og:description" content="除了CPU和存储器两大模块外，计算机硬件系统的第三个关键部分是输入输出模块，又称输入输出系统。 本章重点分析I&#x2F;O设备与主机交换信息的三种控制方式（程序查询、中断、DMA）及其相应的接口功能和组成。主要介绍接口和DMA阶段的I&#x2F;O系统 每一节要求掌握的程度：硬件什么样，软件程序如何配合完成数据的输入输出">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321150200094.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321150239215.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321151006980.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321152113200.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321152607588.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321153333278.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323164951791.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323170333994.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323171031357.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323180258354.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323180421204.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323172434127.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220328163256387.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329194300129.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329192540421.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329193023506.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329193219199.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329193642564.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329193815045.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329194135388.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329194443285.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329201649521.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329201741586.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220328173752751.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220328174231278.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220328174918285.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329201944273.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329202340978.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220402094720119.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220402094822192.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330171310628.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330173009516.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330153935007.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330154137617.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330154400184.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155111776.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155311386.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155645114.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155724136.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155803168.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330160031796.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330160054294.png">
+<meta property="article:published_time" content="2022-05-05T14:48:45.000Z">
+<meta property="article:modified_time" content="2022-05-05T14:50:56.681Z">
+<meta property="article:author" content="Bob Cheng">
+<meta property="article:tag" content="computer organization">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321150200094.png">
+
+<link rel="canonical" href="https://www.gingkocyx.top/computer_organization/computer-organization-ch5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>计算机组成原理：第5章 输入输出系统 | Gingkocyx</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Gingkocyx</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">BCheng's blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/computer_organization/computer-organization-ch5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bob Cheng">
+      <meta itemprop="description" content="markdown daily life & study">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gingkocyx">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机组成原理：第5章 输入输出系统
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-05-05 22:48:45 / 修改时间：22:50:56" itemprop="dateCreated datePublished" datetime="2022-05-05T22:48:45+08:00">2022-05-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2022-Spring/" itemprop="url" rel="index"><span itemprop="name">2022 Spring</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2022-Spring/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>10k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>33 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>除了CPU和存储器两大模块外，计算机硬件系统的第三个关键部分是<strong>输入输出模块</strong>，又称输入输出系统。</p>
+<p>本章重点分析I/O设备与主机交换信息的三种控制方式（程序查询、中断、DMA）及其相应的接口功能和组成。主要介绍<strong>接口和DMA阶段</strong>的I/O系统</p>
+<p><strong>每一节要求掌握的程度</strong>：硬件什么样，软件程序如何配合完成数据的输入输出</p>
+<span id="more"></span>
+<h2 id="5-1-概述"><a href="#5-1-概述" class="headerlink" title="5.1 概述"></a>5.1 概述</h2><p>I/O设备的独立性越来越强。</p>
+<h3 id="一、I-O系统的发展概况"><a href="#一、I-O系统的发展概况" class="headerlink" title="一、I/O系统的发展概况"></a>一、I/O系统的发展概况</h3><ol>
+<li><p><strong>早期阶段</strong>（程序查询方式）</p>
+<p>I/O设备与主存交换信息都是通过CPU才能完成交换。</p>
+<p>每个I/O设备都必须配有一套独立的逻辑电路与CPU相连。 </p>
+<p>输入输出过程穿插在CPU执行程序过程中进行的，当I/O设备与主机交换信息时，CPU不得不停止各种运算，按<strong>串行</strong>方式工作，极浪费时间。</p>
+<p>每个I/O逻辑控制电路与CPU的控制器紧密构成一个不可分割的整体，彼此依赖，相互牵连。难以增添、撤减设备。</p>
+</li>
+<li><p><strong>接口模块和DMA阶段</strong>（中断方式和DMA方式）</p>
+<p>DMA：存储器直接输入输出方式</p>
+<p>I/O设备通过接口模块与主机相连，采用<strong>总线连接</strong>方式</p>
+<blockquote>
+<p>I/O接口、DMA控制器与主机、CPU相互配合完成数据的输入和输出</p>
+<p>连接方式变化：采用总线方式连接。I/O设备通过接口连接在总线上。一个总线连接多个设备</p>
+</blockquote>
+<p>CPU和I/O设备<strong>并行</strong>工作$\begin{cases} 中断方式 \\ DMA方式 \end{cases}$</p>
+<blockquote>
+<p>DMA在系统中可以有多个</p>
+</blockquote>
+</li>
+<li><p><strong>通道结构的阶段</strong>（中大型计算机）</p>
+<blockquote>
+<p>通道用来负责管理I/O设备以及实现主存与I/O设备之间交换信息的部件，视为具有特殊功能的处理器。</p>
+<p>通道有专用的通道指令，能独立地执行用通道指令编写的输入输出程序，但不是完全独立的处理器。（从属于CPU的专用的处理器）</p>
+</blockquote>
+<p>依赖通道管理的I/O设备在与主机交换信息时，CPU不直接参与管理，故提高了CPU的资源利用率。</p>
+</li>
+<li><p><strong>I/O处理机</strong></p>
+<p>（又称“外围处理及”Peripheral Processor）</p>
+<p>在没有处理器的情况下可以作为主机完成任务</p>
+</li>
+</ol>
+<h3 id="二、输入输出系统的组成"><a href="#二、输入输出系统的组成" class="headerlink" title="二、输入输出系统的组成"></a>二、输入输出系统的组成</h3><h4 id="1-I-O软件"><a href="#1-I-O软件" class="headerlink" title="1.I/O软件"></a>1.I/O软件</h4><blockquote>
+<p>功能：</p>
+<p>(1). 将用户编制的程序（或数据）输入到主机内</p>
+<p>(2). 将运算结果输出给用户</p>
+<p>(3). 实现输入输出系统和主机工作的协调</p>
+</blockquote>
+<ul>
+<li><p>指令</p>
+<ul>
+<li>对于接口模块方式，采用<strong>I/O指令</strong>完成</li>
+<li>对于通道管理模式，需要<strong>I/O指令</strong>和<strong>通道指令</strong></li>
+</ul>
+</li>
+<li><p><strong>I/O指令</strong>：CPU指令的一部分</p>
+<script type="math/tex; mode=display">
+\color{red}{操作码|命令码|设备码}</script><p><strong>操作码</strong>字段可作为I/O指令与其他指令的判别代码；</p>
+<blockquote>
+<p>如，访存指令、算逻指令、控制指令</p>
+</blockquote>
+<p><strong>命令码</strong>体现I/O设备的具体操作；</p>
+<blockquote>
+<p>I/O指令的<strong>命令码</strong>一般可表述如下几种情况：</p>
+<ul>
+<li>将数据从I/O设备输入主机</li>
+<li>将数据从主机输出到I/O设备</li>
+<li>状态测试（检测各个I/O设备处于Busy还是Ready状态）</li>
+<li>形成某些操作命令</li>
+</ul>
+</blockquote>
+<p><strong>设备码</strong>是多台设备的选择码。</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>通道指令</strong>：通道自身的指令</p>
+<p>（又称通道控制字, Channel Control Word, CCW）</p>
+<p>指出<strong>数组的首地址、传送字数、操作命令</strong></p>
+<blockquote>
+<p>如，IBM/370通道指令为64位</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-I-O硬件"><a href="#2-I-O硬件" class="headerlink" title="2.I/O硬件"></a>2.I/O硬件</h4><p>包括接口模式、I/O设备两大部分</p>
+<ul>
+<li>设备——I/O接口（通过接口，与主机完成信息交换）</li>
+<li>通道方式：设备——设备控制器——子通道——通道</li>
+</ul>
+<h3 id="三、I-O设备与主机的联系方式"><a href="#三、I-O设备与主机的联系方式" class="headerlink" title="三、I/O设备与主机的联系方式"></a>三、I/O设备与主机的联系方式</h3><p>I/O设备与主机交换信息和CPU与主存交换信息相比，有许多不同点。</p>
+<blockquote>
+<p>例如，CPU如何对I/O设备进行编址；如何寻找I/O设备号；信息传送是如何逐位串行还是多为并行；I/O设备与主机以什么方式进行联络，使它们彼此都知道对方处于何种状态；I/O设备与主机是怎么连接的，等等。</p>
+</blockquote>
+<p>这一系列问题统称为I/O设备与主机的联系方式</p>
+<h4 id="1-I-O设备编址方式"><a href="#1-I-O设备编址方式" class="headerlink" title="1.I/O设备编址方式"></a>1.I/O设备编址方式</h4><blockquote>
+<p>通常将I/O设备码看作地址码</p>
+</blockquote>
+<ul>
+<li><p><strong>统一编址</strong>：把I/O地址看作存储器地址的一部分</p>
+<p>用取数、存数指令。</p>
+<p><strong>占用存储空间</strong>，减少主存容量</p>
+<blockquote>
+<p>如，在64K地址的存储空间中，划分出8K地址作为I/O设备的地址。凡是在这8K地址内的访问，就是对I/O设备的访问。所用指令与访存指令相似。</p>
+</blockquote>
+</li>
+<li><p><strong>不统一编址</strong>（单独编址）：I/O地址和存储器地址分开，所有对I/O设备的访问必须有专用的I/O指令</p>
+<p>有专门的I/O指令</p>
+<p>不占用主存空间，需要设置I/O专用指令</p>
+</li>
+</ul>
+<h4 id="2-设备选址"><a href="#2-设备选址" class="headerlink" title="2.设备选址"></a>2.设备选址</h4><blockquote>
+<p>由于每台设备都赋予一个设备号，因此要启动某一设备时，可由I/O指令的设备码字段直接指出该设备的设备号</p>
+</blockquote>
+<p>用<strong>设备选择电路</strong>识别是否被选中</p>
+<p>（现代计算机已经去掉，设备不给单独地址）</p>
+<h4 id="3-传送方式"><a href="#3-传送方式" class="headerlink" title="3.传送方式"></a>3.传送方式</h4><ul>
+<li><p><strong>串行</strong>：在同一瞬间只传送一位信息，在不同时刻连续逐位传送一串信息。</p>
+<p>传输速度较慢，但只需一根数据线和一根地线。传输距离远</p>
+</li>
+<li><p><strong>并行</strong>：在同一瞬间，n位信息同时从CPU输出至I/O设备，或由I/O设备输入CPU。</p>
+<p>传输速度较快，但要求数据线多</p>
+<blockquote>
+<p>例如，16位信息并行传送需要16根数据线</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="4-联络方式"><a href="#4-联络方式" class="headerlink" title="4.联络方式"></a>4.联络方式</h4><ol>
+<li><p><strong>立即响应</strong></p>
+<p>对于一些工作速度十分缓慢的I/O设备。</p>
+<p>与CPU发生联系时，处于某种等待状态，只要I/O指令一到便立即响应。</p>
+<blockquote>
+<p>如，指示灯的亮和灭、开关的通断、A/D转换器缓变信号的输入</p>
+</blockquote>
+</li>
+<li><p><strong>异步工作采用应答信号</strong></p>
+<p>当I/O设备与主机工作速度不匹配时，采用异步工作方式。</p>
+<p>交换信息前，I/O设备与主机完成各自的任务。一旦出现联络信号，彼此才准备交换信息。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321150200094.png" alt="image-20220321150200094" style="zoom:80%;" /></p>
+</li>
+</ol>
+<p>   <img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321150239215.png" alt="image-20220321150239215" style="zoom:80%;" /></p>
+<blockquote>
+<p>关于异步串行通信：</p>
+<p>参考资料：<a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_41653350/article/details/106018051">异步串行通信</a></p>
+<p>①起始位为0。通讯线在空闲状态时保持高电平，因此下降沿判定为数据传输开始。</p>
+<p>②数据位。传输时低位在前，高位在后。</p>
+<p>③奇偶校验位（可以省略）</p>
+<p>④停止位（终止位），停止位为1——位数可以有分数，因为位数本质含义是信号出现的时间。</p>
+</blockquote>
+<ol>
+<li><p><strong>同步工作采用同步时标</strong></p>
+<p>要求I/O设备与CPU工作速度完全同步。</p>
+<p>这种联络互相之间还得配有<strong>专用电路</strong>，用以产生同步时标来控制同步工作。</p>
+</li>
+</ol>
+<h4 id="5-I-O设备与主机的连接方式"><a href="#5-I-O设备与主机的连接方式" class="headerlink" title="5.I/O设备与主机的连接方式"></a>5.I/O设备与主机的连接方式</h4><blockquote>
+<p>连接方式主要有两种：辐射式连接和总线式</p>
+</blockquote>
+<ul>
+<li><p><strong>辐射式连接</strong></p>
+<p>（计算机发展的初级阶段）</p>
+<p>优点是可靠性高。</p>
+<p>要求每一台I/O设备都有一套控制线路和一组信号线，因此所用的器材和连线较多，对I/O设备的增删都比较困难。</p>
+</li>
+<li><p><strong>总线连接方式</strong></p>
+<p>（现代计算机系统采用的方式）</p>
+<p>通过一组总线（包括地址线、数据线、控制线），将所有的I/O设备和主机连接。</p>
+<p>插件方式容易出现故障</p>
+</li>
+</ul>
+<h3 id="四、I-O设备与主机信息传送的控制方式"><a href="#四、I-O设备与主机信息传送的控制方式" class="headerlink" title="四、I/O设备与主机信息传送的控制方式"></a>四、I/O设备与主机信息传送的控制方式</h3><blockquote>
+<p>I/O与主机交换信息的控制方式有5种：程序查询方式、程序中断方式、直接存储器存取范式（DMA）、I/O通道方式、I/O处理机方式</p>
+</blockquote>
+<h4 id="1-程序查询方式"><a href="#1-程序查询方式" class="headerlink" title="1.程序查询方式"></a>1.程序查询方式</h4><blockquote>
+<p>程序查询方式是由<strong>CPU通过程序不断查询I/O设备是否已做好准备</strong>，从而控制I/O设备与主机交换信息</p>
+</blockquote>
+<ul>
+<li>又称为程序控制I/O方式</li>
+<li>当需要输入/输出时，CPU暂停执行主程序，转去执行<strong>设备输入输出的服务程序（I/O指令编写成的程序）</strong>，根据服务程序中的I/O指令进行数据传送</li>
+<li>CPU不断检查I/O设备是否准备就绪，踏步等待</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321151006980.png" alt="image-20220321151006980" style="zoom:67%;" /></p>
+<blockquote>
+<p>CPU读取I/O的状态，检查是否准备就绪</p>
+<p>CPU需要等待I/O设备的输入输出</p>
+<p>场景：（串行）</p>
+<ul>
+<li>食堂的读卡器，输入刷卡金额后，刷卡机等待刷卡交钱。</li>
+<li>充电桩</li>
+<li>蓝牙设备的连接（暂时不能确定）</li>
+<li>键盘交互（屏幕上字符的输出显示取决于键盘上的输入，I/O和CPU之间速度相差大，使用programmed i/o进行同步工作）</li>
+</ul>
+</blockquote>
+<h4 id="2-程序中断方式（重点内容）"><a href="#2-程序中断方式（重点内容）" class="headerlink" title="2.程序中断方式（重点内容）"></a>2.程序中断方式（重点内容）</h4><ul>
+<li><p><strong>CPU和I/O部分的并行工作</strong></p>
+<p>I/O工作$\begin{cases}自身准备:CPU不查询 \\与主机交换信息：CPU暂停现行程序 \end{cases}$</p>
+</li>
+<li><p><strong>中断请求信号</strong>——中断服务程序</p>
+</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321152113200.png" alt="image-20220321152113200" style="zoom:67%;" /></p>
+<p>CPU执行K条指令后，处理中断服务程序。回来后执行第K+1条指令。</p>
+<p>需要考虑回来后的现场变化问题</p>
+<blockquote>
+<p>传输过程仍然需要CPU的参与，而且要保证程序中断后恢复现场，恢复指令。</p>
+<p>需要指令完成现场的保护和恢复，消耗CPU较大的时间</p>
+</blockquote>
+<ul>
+<li><p><strong>程序中断方式流程</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321152607588.png" alt="image-20220321152607588" style="zoom:67%;" /></p>
+</li>
+</ul>
+<blockquote>
+<p>应用场景：航天飞船的逃逸塔</p>
+</blockquote>
+<h4 id="3-DMA方式"><a href="#3-DMA方式" class="headerlink" title="3.DMA方式"></a>3.DMA方式</h4><blockquote>
+<p>Direct Memory Access，直接存储器访问</p>
+<p>I/O设备能直接与主存交换信息而不占用CPU，CPU的资源利用率可以进一步提升，这就出现了直接存储器存取（DMA）的方式</p>
+</blockquote>
+<ul>
+<li>主存和I/O之间有一条直接数据通道</li>
+<li>不中断现行程序</li>
+<li>周期挪用（周期窃取）</li>
+<li><strong>CPU和I/O外设并行工作</strong></li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321153333278.png" alt="image-20220321153333278" style="zoom:67%;" /></p>
+<blockquote>
+<p>一个存储字，读内存写外设/读外设写内存（性质取决于命令）</p>
+<p>此时CPU关上地址、数据、控制信号（CPU不知道这些信号），DMA信号仍然保持，电源线不能关。——ch4存储器中总线的驱动和隔离</p>
+</blockquote>
+<p>在DMA方式中，主存与I/O设备之间有一条数据通路，主存与I/O设备交换信息时，无须调用中断程序。若出现DMA和CPU同时访问主存，CPU总是将总线占有权让给DMA，通常把DMA的这种占有称为窃取或挪用。</p>
+<p>窃取的时间一般为一个存取周期，故把DMA占用的存取周期称为窃取周期或挪用周期。</p>
+<p>采用DMA方式时，也需要增加必要的DMA接口电路。</p>
+<h4 id="三种方式的CPU工作效率比较"><a href="#三种方式的CPU工作效率比较" class="headerlink" title="三种方式的CPU工作效率比较"></a>三种方式的CPU工作效率比较</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323164951791.png" alt="image-20220323164951791" style="zoom:80%;" /></p>
+<ul>
+<li>中断方式中，CPU为了程序正确执行，进行了现场保护</li>
+</ul>
+<h2 id="5-2-I-O接口"><a href="#5-2-I-O接口" class="headerlink" title="5.2 I/O接口"></a>5.2 I/O接口</h2><h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><blockquote>
+<p>为什么要设置接口？</p>
+</blockquote>
+<ul>
+<li>实现设备的选择</li>
+<li>实现数据缓冲达到速度的匹配</li>
+<li>实现数据串一并格式转换</li>
+<li>实现电平转换</li>
+<li>传送控制命令</li>
+<li>反应设备的状态：忙、就绪、中断请求</li>
+</ul>
+<blockquote>
+<p>CPU想知道什么，接口就提供什么</p>
+</blockquote>
+<h3 id="二、接口的功能和组成"><a href="#二、接口的功能和组成" class="headerlink" title="二、接口的功能和组成"></a>二、接口的功能和组成</h3><p>接口分为硬件和软件。有数据的输入和输出。</p>
+<p>接口需要数字量，外部设备使用的物理形式需要接口把模拟量变成数字量。</p>
+<p>控制对象到接口，接口到计算机。</p>
+<ol>
+<li><p><strong>总线连接方式的I/O接口电路</strong></p>
+<p>设备选择线、数据线、命令线、状态线</p>
+<blockquote>
+<p>设备选择线：（如今不使用）找不同的I/O接口地址——如今使用地址线</p>
+<p>状态线：变成设备状态线——现代计算机大多采用三态逻辑电路来构成总线</p>
+<p>命令线：I/O读、I/O写（2条）</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323170333994.png" alt="image-20220323170333994" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>接口的功能和组成</strong></p>
+<p>|        功能        |          组成          |<br>| :————————: | :——————————: |<br>|      选址功能      |      设备选择电路      |<br>|   传送命令的功能   | 命令寄存器、命令译码器 |<br>|   传送数据的功能   |     数据缓冲寄存器     |<br>| 反应设备状态的功能 |      设备状态标记      |</p>
+<p>$\begin{cases} 完成触发器D\\ 工作触发器B\\ 中断请求触发器INTR\\ 屏蔽触发器MASK \end{cases}$</p>
+</li>
+<li><p><strong>I/O接口的基本组成</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323171031357.png" alt="image-20220323171031357" style="zoom: 67%;" /></p>
+<blockquote>
+<p>对于现代计算机，没有状态线</p>
+<p>接口要有数据存放的地方：DBR</p>
+<p>设备选择：对CPU送来的地址进行译码</p>
+<p>集成化的接口：计时器</p>
+</blockquote>
+<ul>
+<li><p>内部接口：内部接口与系统总线相连，实质上是与内存、CPU相连。并行传输</p>
+</li>
+<li><p>外部接口：外部接口通过接口电缆与外设相连，外部接口的数据传输可能是串行方式。因此外部接口需具有串/并转换功能</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="三、接口类型"><a href="#三、接口类型" class="headerlink" title="三、接口类型"></a>三、接口类型</h3><ol>
+<li><p>按数据<strong>传送方式</strong>分类</p>
+<blockquote>
+<p>并行接口：Intel 8255</p>
+<p>串行接口：Intel 8251</p>
+</blockquote>
+</li>
+<li><p>按功能<strong>选择的灵活性</strong>分类</p>
+<p>可以选择是否编程</p>
+<blockquote>
+<p>可编程接口：Intel 8255、Intel 8251</p>
+<p>不可编程接口：Intel 8212</p>
+</blockquote>
+</li>
+<li><p>按<strong>通用性</strong>分类</p>
+<p>通用：数据口</p>
+<blockquote>
+<p>通用接口：Intel 8255、Intel 8251</p>
+<p>专用接口：Intel 8279、Intel 8275</p>
+</blockquote>
+</li>
+<li><p>按数据传送的<strong>控制方式</strong>分类</p>
+<blockquote>
+<p>中断接口：Intel 8259</p>
+<p>DMA接口：Intel 8257</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="5-4-程序查询方式"><a href="#5-4-程序查询方式" class="headerlink" title="5.4 程序查询方式"></a>5.4 程序查询方式</h2><h3 id="一、程序查询流程"><a href="#一、程序查询流程" class="headerlink" title="一、程序查询流程"></a>一、程序查询流程</h3><ul>
+<li><strong>优先级排序</strong></li>
+<li>计数值</li>
+</ul>
+<ol>
+<li><p><strong>查询流程</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323180258354.png" alt="image-20220323180258354" style="zoom:67%;" /></p>
+</li>
+<li><p><strong>程序流程</strong></p>
+<blockquote>
+<p>首先知道数据的个数、首地址。外部设备要启动。CPU盯住外设是否准备好</p>
+<p>准备好：对于输入，B=0，D=1；对于输出，B=1，D=0</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323180421204.png" alt="image-20220323180421204" style="zoom:67%;" /></p>
+</li>
+</ol>
+<h3 id="二、程序查询方式接口电路"><a href="#二、程序查询方式接口电路" class="headerlink" title="二、程序查询方式接口电路"></a>二、程序查询方式接口电路</h3><p>不仅要有电路，还要有程序，均比较简单。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323172434127.png" alt="image-20220323172434127" style="zoom: 67%;" /></p>
+<blockquote>
+<p>①启动命令（1）送至与非门。CPU通过I/O地址线选择设备（SEL高电平，1），通过与非门变成0，完成触发器D置0（0-没准备好），工作触发器B置1；</p>
+<p>②B置1数据输出，外部设备启动；</p>
+<p>③I/O设备的输入数据串行进入DBR，外设写数据到接口；</p>
+<p>④驱动B触发器的置1信号和D的置0信号翻转，设备工作结束；</p>
+<p>⑤D的1信号输出</p>
+<p>⑥数据线把数据送出接口</p>
+</blockquote>
+<p>指令需要多少个I/O地址才能实现——3</p>
+<p>通过什么命令发送过来——IN命令</p>
+<p>数据CPU通过什么读回去——数据线，配合$\overline{IOW}$</p>
+<p>假如变成<strong>输出</strong>（倒序）</p>
+<blockquote>
+<p>①CPU写入接口，把数据送入DBR</p>
+<p>②CPU启动外设工作，选中设备，启动命令。使两个触发器置位。启动外部设备</p>
+<p>③外部设备从DBR读出数据</p>
+<p>④外设对工作触发器的状态改变，翻转。</p>
+<p>⑤D变成1，告诉CPU可以继续写（覆盖DBR的数据）</p>
+</blockquote>
+<p>总结：输入方式准备好的信号状态D是1，没准备好是0。对于输出设备准备好（DBR中的数据已经送给外部设备。CPU可以再次输入）D是0，没准备好是1</p>
+<blockquote>
+<p>问题：</p>
+<p>①如何使D触发器置0？原理是什么？</p>
+<p>——启动命令有效（<strong>IN指令</strong>）并且地址线上代码与设备选择电路</p>
+<p>对于输出</p>
+<p>①启动命令和地址线是为了给出一个状态——给D送0。</p>
+<p>——在CPU和D之间加入一个三态门，把D的地址流向CPU</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_41653350/article/details/106018051">双向三态门的使用</a></p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220328163256387.png" alt="image-20220328163256387" style="zoom:67%;" /></p>
+<blockquote>
+<p>指令需要三个地址</p>
+<p>第16位地址</p>
+</blockquote>
+<ul>
+<li><p>例题1</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329194300129.png" alt="image-20220329194300129" style="zoom: 67%;" /></p>
+<blockquote>
+<p>例1的解答：按照I/O地址的要求设置反相器（地址为0则使用反相器），由于是输出，最后和$\overline{IOW}$相与，输出作为74LS244三态门电路的使能信号，控制CPU向外设输出的通和断。</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329192540421.png" alt="image-20220329192540421" style="zoom: 67%;" /></p>
+</li>
+<li><p>例2</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329193023506.png" alt="image-20220329193023506" style="zoom:80%;" /></p>
+<blockquote>
+<p>例2解答：设计思路与例1相同。但是需要注意锁存，使用74LS373（8D锁存器）对输出进行锁存</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329193219199.png" alt="image-20220329193219199" style="zoom:67%;" /></p>
+</li>
+<li><p>例3&amp;例4</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329193642564.png" alt="image-20220329193642564" style="zoom:80%;" /></p>
+<blockquote>
+<p>解题思路：设计原则与例1、例2相同。</p>
+<p>注意是1位输出，把一根数据线接入即可。</p>
+</blockquote>
+</li>
+<li><p>例5&amp;例6</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329193815045.png" alt="image-20220329193815045" style="zoom: 67%;" /></p>
+<blockquote>
+<p>解题思路：注意是输入接口。</p>
+<p>有两点变化：①三态门的方向要反过来：从CPU到I/O；②CPU上的控制信号变成了$\overline{IOR}$</p>
+<p>下图中，左为例5答案，右为例6答案</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329194135388.png" alt="image-20220329194135388" style="zoom:80%;" /></p>
+</li>
+</ul>
+<blockquote>
+<p>改造接口：使D触发器变0。使用读控制。读数据需要地址译码和读控制</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329194443285.png" alt="image-20220329194443285" style="zoom:80%;" /></p>
+<p>程序查询在TEST1中踏步等待</p>
+<p>输出的改进：CPU把数据写入锁存器。三态门和锁存器的方向调过来，数据的进和出方向相反</p>
+</blockquote>
+<h2 id="5-5-程序中断方式"><a href="#5-5-程序中断方式" class="headerlink" title="5.5 程序中断方式"></a>5.5 程序中断方式</h2><h3 id="一、中断的概念"><a href="#一、中断的概念" class="headerlink" title="一、中断的概念"></a>一、中断的概念</h3><p>计算机在执行程序的过程中，当出现异常情况或特殊请求时，计算机停止现行程序的运行，转向对这些异常情况或特殊请求的处理，处理结束后再返回到现行程序的间断处，继续执行原程序，这就是<strong>中断</strong></p>
+<blockquote>
+<p>处理异常情况或特殊请求：中断服务程序</p>
+<p>间断处：断点</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329201649521.png" alt="image-20220329201649521" style="zoom: 80%;" /></p>
+<blockquote>
+<p>中断方式可以告诉CPU时间片的信息——OS课程中内容</p>
+<p>应用场景举例——消防采样：烟雾浓度、温度。检测异常后（中断源、断点），报警的同时启动消防设备（中断服务程序）</p>
+</blockquote>
+<h3 id="二、中断的产生"><a href="#二、中断的产生" class="headerlink" title="二、中断的产生"></a>二、中断的产生</h3><ul>
+<li><p>由中断源产生（<strong>部分并行工作</strong>）</p>
+</li>
+<li><p>以打印机为例，CPU与打印机并行工作</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329201741586.png" alt="image-20220329201741586" style="zoom:67%;" /></p>
+</li>
+</ul>
+<h3 id="三、程序中断方式的接口电路"><a href="#三、程序中断方式的接口电路" class="headerlink" title="三、程序中断方式的接口电路"></a>三、程序中断方式的接口电路</h3><ol>
+<li><p>配置<strong>中断请求触发器</strong>(INTR)和<strong>中断屏蔽触发器</strong>(MASK)</p>
+<blockquote>
+<p>，是一个D触发器</p>
+</blockquote>
+<p>检查设备就绪（对于输入，<strong>D=1</strong>，数据已经到达DBR。对于输出，D=1，外设已经取走数据，CPU可以继续输出），且设备未被屏蔽（<strong>MASK=0</strong>，因此输出$\overline{Q}=1$），CPU的中断查询信号可将中断请求触发器置“1”（<strong>INTR=1</strong>）</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220328173752751.png" alt="image-20220328173752751" style="zoom:80%;" /></p>
+<p>对于INTR，使能的信号是来自CPU的中断查询信号</p>
+</li>
+<li><p><strong>排队器</strong></p>
+<p>中断优先级低的要等待，优先级高的可以及时被CPU响应</p>
+<ul>
+<li>硬件：在CPU内或在接口电路中（链式排队器）</li>
+<li>软件：详见第八章</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220328174231278.png" alt="image-20220328174231278" style="zoom:80%;" /></p>
+<blockquote>
+<p>前边的优先级高，可以锁住/屏蔽后面优先级低的设备</p>
+</blockquote>
+</li>
+<li><p><strong>中断向量地址形成部件</strong></p>
+<ul>
+<li><p>入口地址——找到终端服务程序的位置，第一个</p>
+<ul>
+<li><p>由软件产生</p>
+</li>
+<li><p>硬件向量法：由<strong>硬件</strong>产生<strong>向量地址</strong>，再由<strong>向量地址</strong>找到<strong>入口地址</strong></p>
+<blockquote>
+<p>中断向量地址形成部件是一个编码器——设备编码器</p>
+<p>现代计算机可以编出8位二进制数</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220328174918285.png" alt="image-20220328174918285" style="zoom:80%;" /></p>
+<blockquote>
+<p>JMP200：告诉CPU跳转到200的入口地址执行程序</p>
+<p>由RAM芯片（留有用户的接口）控制。每一次系统部分由BIOS基本操作系统负责引导到中断服务程序。用户变成交给系统填写向量表</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>程序中断方式接口电路的基本组成</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329201944273.png" alt="image-20220329201944273" style="zoom:80%;" /></p>
+</li>
+</ol>
+<h3 id="四、I-O中断处理过程"><a href="#四、I-O中断处理过程" class="headerlink" title="四、I/O中断处理过程"></a>四、I/O中断处理过程</h3><ol>
+<li><p>CPU响应中断的条件和时间</p>
+<ul>
+<li><p><strong>条件</strong>：<strong>允许中断触发器EINT=1</strong></p>
+<blockquote>
+<p>CPU有一个对所有中断控制的寄存器</p>
+</blockquote>
+<p>用<strong>开中断</strong>指令将EINT置“1”</p>
+<blockquote>
+<p>STI——详见汇编语言</p>
+</blockquote>
+<p><strong>关中断</strong>置“0”或自动复位</p>
+<blockquote>
+<p>CLI：将中断允许触发器清零</p>
+<p>自动复位：计算机加电启动，中断允许触发器自动关上置零——外围设备都没有初始化。防止未填向量表，没有中断程序的情况下响应中断请求信号</p>
+</blockquote>
+</li>
+<li><p><strong>时间</strong>：当D=1（随机）且MASK=0时</p>
+<p>在<strong>每条指令执行阶段的结束</strong>，CPU<strong>发中断查询信号</strong>（将INTR置“1”）</p>
+<blockquote>
+<p>ch7，间指周期</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>I/O中断处理过程——已经集成到硬件中，中断控制器8259A</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329202340978.png" alt="image-20220329202340978" style="zoom:80%;" /></p>
+<blockquote>
+<p>当CPU通过I/O指令的地址码选中某设备后，则</p>
+<p>①由CPU发启动I/O设备指令，将接口中的B置“1”，D置“0”；</p>
+<p>②接口启动输入设备；</p>
+<p>③输入设备将数据送入数据缓冲存储器DBR；</p>
+<p>④输入设备向接口发出 ”设备工作结束“信号，B置”0“，D置”1“，标志设备准备就绪；</p>
+<p>⑤当设备准备就绪（D=1），且本设备未被屏蔽时（MASK=0）时，在指令执行阶段的结束时刻，由CPU发出中断查询信号；</p>
+<p>⑥设备中断请求触发器INTR被置”1”，标志设备向CPU提出<strong>中断请求</strong>。与此同时，INTR送至排队器，进行<strong>中断判优</strong>；</p>
+<p>⑦若CPU中断允许（EINT=1），设备又被排队选中，即进入<strong>中断响应</strong>阶段，由中断响应信号INTA将排队器输出送至编码器形成的向量地址；</p>
+<p>⑧向量地址送至PC，作为下一条指令的地址；</p>
+<p>⑨由于向量地址中存放的是一条无条件转移指令（<strong>JMP</strong> XXX），故这条指令执行结束后，即无条件转至该设备的服务程序入口地址，开始执行中断服务程序，进入<strong>中断服务阶段</strong>，通过输入指令将数据缓冲存储器DBR中的输入数据送至CPU的通用寄存器，再存入主存相关单元；</p>
+<p>⑩中断服务的最后一条指令是中断返回指令，当其执行结束时，即<strong>中断返回</strong>至原程序的断点处。至此，一个完整的程序中断处理过程即告结束。</p>
+</blockquote>
+</li>
+</ol>
+<p>注意：DBR不能直接连接数据总线。如果DBR是数据寄存器，直接连接会导致数据总线被外设钳制住，。因此需要三态门断开，通过I/O地址执行IN指令。</p>
+<p>向量地址从数据线接入。数据值是一个中断类型</p>
+<h4 id="关于中断允许触发器（EINT）和中断屏蔽触发器（MASK）"><a href="#关于中断允许触发器（EINT）和中断屏蔽触发器（MASK）" class="headerlink" title="关于中断允许触发器（EINT）和中断屏蔽触发器（MASK）"></a>关于中断允许触发器（EINT）和中断屏蔽触发器（MASK）</h4><p>参考资料：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/320290174">关于允许中断触发器和中断屏蔽触发器的疑问？</a></p>
+<p><strong>EINT</strong>：CPU对中断请求的总控制</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220402094720119.png" alt="image-20220402094720119" style="zoom:67%;" /></p>
+<p><strong>MASK</strong>：处理每个具体端口的中断请求</p>
+<blockquote>
+<p>I/O端口：接口电路中可以被CPU直接访问的寄存器</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220402094822192.png" alt="image-20220402094822192" style="zoom:67%;" /></p>
+<h3 id="五、中断服务程序流程"><a href="#五、中断服务程序流程" class="headerlink" title="五、中断服务程序流程"></a>五、中断服务程序流程</h3><p>1.<strong>保护现场</strong></p>
+<p>程序断点的保护（包括程序执行状态）——中断隐指令完成（<strong>中断周期，一系列操作</strong>，在指令系统中不存在，但是相当于指令的功能：开中断、关中断、向量地址采样相当于读数）</p>
+<p>寄存器内容的保护：（防止内容改变而出错）进栈指令</p>
+<blockquote>
+<p>具体而言，可在中断服务的起始部分安排若干条存数指令，将寄存器的内容存至存储器中保存，或用进栈指令（PUSH）将各寄存器的内容推入堆栈保存。</p>
+<p>涉及通用寄存器和状态寄存器</p>
+</blockquote>
+<p>2.<strong>中断服务</strong></p>
+<p>中断程序的主体部分，对不同的I/O设备具有不同内容的设备服务。</p>
+<p>（事先编好，设置到计算机中，可以找到）</p>
+<blockquote>
+<p>例如，打印机要求CPU将需打印的一行字符代码，通过接口送入打印机的缓冲存储器中；</p>
+<p>又如，设备要求CPU将需显示的一行字符代码通过接口送入显示器的显示存储器中。</p>
+</blockquote>
+<p>3.<strong>恢复现场</strong>：出栈命令</p>
+<blockquote>
+<p>要求再推出服务程序前，将原程序中断时的“现场”恢复到原来的寄存器中。</p>
+<p>通常可以用取数指令或出栈指令（POP），将保存在存储器或堆栈中的信息送到原来的寄存器中。</p>
+</blockquote>
+<p>4.<strong>中断返回</strong>：中断返回指令</p>
+<blockquote>
+<p>使其返回到原程序的断点处，以便继续执行原程序。</p>
+<p>汇编语言中的iret指令</p>
+</blockquote>
+<p><strong>目前已经知道三条指令：开中断、关中断、中断返回</strong></p>
+<ul>
+<li><p>单重中断和多重中断</p>
+<ul>
+<li>单重中断：不允许中断现行的中断服务程序</li>
+<li>多重中断：允许级别更高的中断源（嵌套）</li>
+<li><strong>其区别在于”开中断”的设置时间不同</strong></li>
+</ul>
+<p>中断从中断周期（中断隐指令）开始</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330171310628.png" alt="image-20220330171310628" style="zoom:80%;" /></p>
+<blockquote>
+<p>开中断使EINT=1，表示允许中断，</p>
+<p>中断周期（3件事，没有中断响应）：CPU中寄存器EINT=1响应，程序的地址保存再指令寄存器中，最后EINT=0关闭</p>
+<p>中断隐指令中快速，硬件时间。服务程序中的开中断是软件时间，更慢</p>
+</blockquote>
+<p>多重中断在结束开始中断服务后，保护现场后先开中断</p>
+<blockquote>
+<p>注：若不开中断，会影响后面中断请求的响应（INTA）</p>
+</blockquote>
+</li>
+<li><p>宏观上CPU与I/O并行工作</p>
+</li>
+<li><p>微观上CPU中断现行程序，为I/O服务</p>
+</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330173009516.png" alt="image-20220330173009516" style="zoom: 80%;" /></p>
+<blockquote>
+<p>$A_0$可以对应两个I/O地址——0020H和0021H</p>
+<p>$\overline{INTA}$：中断允许信号线</p>
+<p>中断屏蔽寄存器：写“1”即为屏蔽</p>
+</blockquote>
+<p>（跳转到ch8）</p>
+<p>关于中断的补充资料：</p>
+<p>中断分类</p>
+<p>软件中断：由OS发出的指令</p>
+<p>中断系统要解决的问题</p>
+<ol>
+<li><p>如何产生中断？如何准备好信号？</p>
+</li>
+<li><p>允许/禁止中断源发/不发中断？</p>
+</li>
+<li><p>中断请求方式（电平触发/边缘型）？——边沿触发</p>
+</li>
+<li><p>识别信息送到CPU加以识别——中断类型</p>
+</li>
+<li><p>如何处理可屏蔽和非可屏蔽中断</p>
+</li>
+<li><p>如何实现多个中断源的优先级确定？——优先级排队（中断控制器，常选择固定优先级）</p>
+<p>ch8.中断固定</p>
+</li>
+<li><p>防止外设中断、不被重复响应——边沿触发</p>
+</li>
+<li><p>如何处理更高级别？——</p>
+</li>
+<li><p>管理CPU的可屏蔽中断的响应和禁止？——中断控制</p>
+</li>
+<li><p>寻找入口</p>
+</li>
+</ol>
+<p>整个中断服务程序过程中是软件执行</p>
+<p>ip偏移量，cs代码段</p>
+<p>软件堆栈：使用内存空间</p>
+<h2 id="中断系统"><a href="#中断系统" class="headerlink" title="中断系统"></a>中断系统</h2><h3 id="一、概述-1"><a href="#一、概述-1" class="headerlink" title="一、概述"></a>一、概述</h3><ol>
+<li><p>引起中断的各种因素</p>
+<ul>
+<li><p>人为设置的中断——OS</p>
+<blockquote>
+<p>如，转管指令</p>
+<p>int21是对硬盘的操作</p>
+</blockquote>
+</li>
+<li><p>程序性事故</p>
+<blockquote>
+<p>溢出、操作码不能识别、除法非法</p>
+</blockquote>
+</li>
+<li><p>硬件故障</p>
+</li>
+<li><p>I/O设备</p>
+</li>
+<li><p>外部事件</p>
+<blockquote>
+<p>用<strong>键盘中断</strong>现行程序</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>中断系统需解决的问题</p>
+<ul>
+<li>各中断源如何向CPU提出请求？</li>
+<li>各中断源同时提出请求怎么办？</li>
+<li>CPU什么条件、什么时间、以什么方式响应中断？</li>
+<li>如何保护现场？</li>
+</ul>
+<blockquote>
+<p>硬件+软件</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="二、中断请求标记和中断判优逻辑"><a href="#二、中断请求标记和中断判优逻辑" class="headerlink" title="二、中断请求标记和中断判优逻辑"></a>二、中断请求标记和中断判优逻辑</h3><ol>
+<li><p>中断请求标记：INTR</p>
+<p>一个请求源，一个INTR中断请求标记触发器</p>
+<p>多个INTR——组成中断请求标记寄存器</p>
+<p>INTR分散在各个</p>
+</li>
+<li><p>中断判优逻辑</p>
+<ul>
+<li><p>硬件实现（排队器）</p>
+<p>①分散在各个中断源的接口电路中，链式排队器</p>
+<p>②集中在CPU内</p>
+</li>
+<li><p>软件实现（程序查询）</p>
+<p>A、B、C优先级按降序排列</p>
+<blockquote>
+<p>寄存器读到CPU中，一个一个查询</p>
+<p>电路简单，但是速度慢</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="三、中断服务程序入口地址的寻找"><a href="#三、中断服务程序入口地址的寻找" class="headerlink" title="三、中断服务程序入口地址的寻找"></a>三、中断服务程序入口地址的寻找</h3><ol>
+<li>硬件向量法</li>
+<li>软件查询法</li>
+</ol>
+<h3 id="四、中断响应"><a href="#四、中断响应" class="headerlink" title="四、中断响应"></a>四、中断响应</h3><ol>
+<li><p>响应中断的条件</p>
+<p>允许中断触发器EINT=1</p>
+</li>
+<li><p>响应中断的时间</p>
+<p>指令执行周期结束时刻由CPU发查询信号</p>
+</li>
+<li><p>中断隐指令</p>
+<ul>
+<li><p>保护程序断点</p>
+<blockquote>
+<p>早期计算机，断点存于<strong>特定地址（0号地址）</strong>，断点进栈</p>
+</blockquote>
+</li>
+<li><p>寻找服务程序入口地址</p>
+<blockquote>
+<p>向量地址——PC</p>
+<p>中断识别程序入口地址M——PC</p>
+</blockquote>
+</li>
+<li><p>硬件关中断</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="五、保护现场和恢复现场"><a href="#五、保护现场和恢复现场" class="headerlink" title="五、保护现场和恢复现场"></a>五、保护现场和恢复现场</h3><ol>
+<li>保护现场</li>
+<li>恢复现场</li>
+</ol>
+<h3 id="六、中断屏蔽技术（不讲）"><a href="#六、中断屏蔽技术（不讲）" class="headerlink" title="六、中断屏蔽技术（不讲）"></a>六、中断屏蔽技术（不讲）</h3><h2 id="5-6-DMA方式"><a href="#5-6-DMA方式" class="headerlink" title="5.6 DMA方式"></a>5.6 DMA方式</h2><p>纯硬件实现</p>
+<h3 id="一、DMA方式的特点"><a href="#一、DMA方式的特点" class="headerlink" title="一、DMA方式的特点"></a>一、DMA方式的特点</h3><ol>
+<li><p><strong>DMA和程序中断两种方式的数据通路</strong></p>
+<p>程序中断要等待CPU做出中断响应后再进行，很可能因此使数据丢失，</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330153935007.png" alt="image-20220330153935007" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>DMA与主存交换数据的三种方式</strong></p>
+<ul>
+<li><p><strong>停止CPU访问主存</strong></p>
+<blockquote>
+<p>控制简单</p>
+<p>CPU处于不工作状态或保持状态</p>
+<p>未充分发挥CPU对主存的利用率</p>
+</blockquote>
+<p>微机常用</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330154137617.png" alt="image-20220330154137617" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>周期挪用（周期窃取）</strong></p>
+<blockquote>
+<p>DMA访问主存有3种可能</p>
+<ul>
+<li>CPU此时不访存</li>
+<li>CPU正在访存</li>
+<li>CPU与DMA同时请求访存</li>
+</ul>
+<p>此时<strong>CPU将总线控制权让给DMA</strong></p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330154400184.png" alt="image-20220330154400184" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>DMA与CPU交替访问</strong></p>
+<blockquote>
+<p>CPU工作周期$\begin{cases} C_1专供DMA访存 \\ C_2专供CPU访存 \\ \end{cases}$</p>
+<p>工作周期：<strong>所有指令执行过程中的一个基准时间</strong></p>
+</blockquote>
+<p>缺点：DMA可能不是很忙。但是存储器每次都要固定把时间分给DMA和CPU，会降低存储器工作速度。——只适合大型机，不适合微机</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155111776.png" alt="image-20220330155111776" style="zoom:80%;" /></p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="二、DMA接口的功能和组成"><a href="#二、DMA接口的功能和组成" class="headerlink" title="二、DMA接口的功能和组成"></a>二、DMA接口的功能和组成</h3><h4 id="1-DMA接口功能"><a href="#1-DMA接口功能" class="headerlink" title="1.DMA接口功能"></a>1.DMA接口功能</h4><blockquote>
+<p>不通过指令完成</p>
+</blockquote>
+<ul>
+<li><p>向CPU<strong>申请</strong>DMA传送</p>
+</li>
+<li><p><strong>处理总线控制权</strong>的转交</p>
+</li>
+<li><p><strong>管理</strong>系统总线、<strong>控制</strong>数据传送</p>
+<blockquote>
+<p>四条指令：读内存、写外设、读外设、写内存</p>
+</blockquote>
+</li>
+<li><p><strong>确定</strong>数据传送的<strong>首地址和长度</strong>，<strong>修正</strong>传送过程中的数据<strong>地址</strong>和<strong>长度</strong></p>
+</li>
+<li><p>DMA传送结束时，<strong>给出操作完成信号</strong></p>
+</li>
+</ul>
+<h4 id="2-DMA接口组成"><a href="#2-DMA接口组成" class="headerlink" title="2.DMA接口组成"></a>2.DMA接口组成</h4><blockquote>
+<p>DREQ：设备向DMA接口提出申请</p>
+<p>HRQ：DMA控制逻辑向CPU请求DMA服务，发出总线使用权请求信号</p>
+<p>HLDA：CPU发出的响应信号</p>
+<p>DACK：通知设备已经被赋予一个DMA周期</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155311386.png" alt="image-20220330155311386" style="zoom:80%;" /></p>
+<ol>
+<li><p><strong>主存地址寄存器（AR, address register）</strong></p>
+<p>AR用于存放主存中需要交换数据的地址。</p>
+<p>可+1</p>
+</li>
+<li><p><strong>字计数器（WC, word count）</strong></p>
+<p>WC用于记录传送数据的总字节数。</p>
+<p>可+1或-1</p>
+</li>
+<li><p><strong>数据缓冲寄存器（BR, buffer register）</strong></p>
+<p>BR用于暂存每次传送的数据。</p>
+</li>
+<li><p><strong>DMA控制逻辑（Control Logic）</strong></p>
+<p>DMA控制逻辑负责管理DMA的传送过程，由控制电路、时序电路及命令状态控制寄存器等组成。</p>
+</li>
+<li><p><strong>中断机构</strong></p>
+<p>当字计数器溢出（全“0”）时，表示一批数据交换完毕，由“溢出信号”通过中断机构向CPU提出中断请求，请求CPU作DMA操作的后处理。</p>
+</li>
+<li><p><strong>设备地址寄存器（MAR）</strong></p>
+<p>DAR存放I/O设备的设备码或表示设备信息存储区的寻址信息。</p>
+</li>
+</ol>
+<h4 id="三、DMA的工作过程"><a href="#三、DMA的工作过程" class="headerlink" title="三、DMA的工作过程"></a>三、DMA的工作过程</h4><h5 id="1-DMA传送过程"><a href="#1-DMA传送过程" class="headerlink" title="1.DMA传送过程"></a>1.DMA传送过程</h5><blockquote>
+<p>预处理、数据传送、后处理</p>
+</blockquote>
+<p>①<strong>预处理</strong></p>
+<blockquote>
+<p>在CPU中进行处理。开机后对外部设备初始化写入，在DMA申请总线之前</p>
+</blockquote>
+<p>通过DMA控制逻辑传送方向（入/出）</p>
+<ul>
+<li>设备地址$\to$ DMA的DAR</li>
+<li>主存地址$\to$ DMA的AR</li>
+<li>传送字数$\to$ DMA的WC</li>
+</ul>
+<p>②<strong>数据传送</strong></p>
+<ul>
+<li><p>数据传送示意图</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155645114.png" alt="image-20220330155645114" style="zoom:80%;" /></p>
+</li>
+<li><p>数据传送过程（输入）</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155724136.png" alt="image-20220330155724136" style="zoom:80%;" /></p>
+</li>
+<li><p>数据传送过程（输出）</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155803168.png" alt="image-20220330155803168" style="zoom:80%;" /></p>
+</li>
+</ul>
+<p>③<strong>后处理</strong></p>
+<ul>
+<li><p>校验送入主存的数是否正确</p>
+</li>
+<li><p>是否继续用DMA</p>
+</li>
+<li><p>测试传送过程是否正确，错则转诊断程序</p>
+</li>
+</ul>
+<p><strong>由中断服务程序完成</strong>——不需要保留现场和恢复</p>
+<h5 id="2-DMA接口与系统的连接方式"><a href="#2-DMA接口与系统的连接方式" class="headerlink" title="2.DMA接口与系统的连接方式"></a>2.DMA接口与系统的连接方式</h5><ul>
+<li><p><strong>具有公共请求线的DMA请求</strong></p>
+<p>优先级排序</p>
+<p>参考ch3中的链式查询方式</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330160031796.png" alt="image-20220330160031796" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>独立的DMA请求</strong></p>
+<p>CPU内部排序，参考第三章的独立请求方式</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330160054294.png" alt="image-20220330160054294" style="zoom:80%;" /></p>
+</li>
+</ul>
+<h5 id="DMA方式与程序中断方式的比较"><a href="#DMA方式与程序中断方式的比较" class="headerlink" title="DMA方式与程序中断方式的比较"></a>DMA方式与程序中断方式的比较</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">中断方式</th>
+<th style="text-align:center">DMA方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>数据传输</strong></td>
+<td style="text-align:center">程序</td>
+<td style="text-align:center">硬件</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>响应时间</strong></td>
+<td style="text-align:center">指令执行结束</td>
+<td style="text-align:center">存取周期结束</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>处理异常情况</strong></td>
+<td style="text-align:center">能</td>
+<td style="text-align:center">不能</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>中断请求</strong>（完成的任务）</td>
+<td style="text-align:center">传送数据</td>
+<td style="text-align:center">后处理</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>优先级</strong></td>
+<td style="text-align:center">低（可屏蔽中断）</td>
+<td style="text-align:center">高</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="DMA接口的类型"><a href="#DMA接口的类型" class="headerlink" title="DMA接口的类型"></a>DMA接口的类型</h4><ul>
+<li><p>选择型</p>
+<p>在物理上连接多个设备，在逻辑上只允许连接一个设备</p>
+</li>
+<li><p>多路型</p>
+<p>在物理上连接多个设备，在逻辑上允许连接多个设备同时工作</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/computer-organization/" rel="tag"># computer organization</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/computer_organization/computer-organization-ch6/" rel="prev" title="计算机组成原理：第6章 运算方法与运算器">
+      <i class="fa fa-chevron-left"></i> 计算机组成原理：第6章 运算方法与运算器
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-%E6%A6%82%E8%BF%B0"><span class="nav-text">5.1 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81I-O%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%91%E5%B1%95%E6%A6%82%E5%86%B5"><span class="nav-text">一、I&#x2F;O系统的发展概况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%84%E6%88%90"><span class="nav-text">二、输入输出系统的组成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-I-O%E8%BD%AF%E4%BB%B6"><span class="nav-text">1.I&#x2F;O软件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-I-O%E7%A1%AC%E4%BB%B6"><span class="nav-text">2.I&#x2F;O硬件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81I-O%E8%AE%BE%E5%A4%87%E4%B8%8E%E4%B8%BB%E6%9C%BA%E7%9A%84%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F"><span class="nav-text">三、I&#x2F;O设备与主机的联系方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-I-O%E8%AE%BE%E5%A4%87%E7%BC%96%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="nav-text">1.I&#x2F;O设备编址方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%AE%BE%E5%A4%87%E9%80%89%E5%9D%80"><span class="nav-text">2.设备选址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%BC%A0%E9%80%81%E6%96%B9%E5%BC%8F"><span class="nav-text">3.传送方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%81%94%E7%BB%9C%E6%96%B9%E5%BC%8F"><span class="nav-text">4.联络方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-I-O%E8%AE%BE%E5%A4%87%E4%B8%8E%E4%B8%BB%E6%9C%BA%E7%9A%84%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F"><span class="nav-text">5.I&#x2F;O设备与主机的连接方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81I-O%E8%AE%BE%E5%A4%87%E4%B8%8E%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E4%BC%A0%E9%80%81%E7%9A%84%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F"><span class="nav-text">四、I&#x2F;O设备与主机信息传送的控制方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%A8%8B%E5%BA%8F%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F"><span class="nav-text">1.程序查询方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%A8%8B%E5%BA%8F%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%EF%BC%88%E9%87%8D%E7%82%B9%E5%86%85%E5%AE%B9%EF%BC%89"><span class="nav-text">2.程序中断方式（重点内容）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-DMA%E6%96%B9%E5%BC%8F"><span class="nav-text">3.DMA方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%E7%9A%84CPU%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87%E6%AF%94%E8%BE%83"><span class="nav-text">三种方式的CPU工作效率比较</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-I-O%E6%8E%A5%E5%8F%A3"><span class="nav-text">5.2 I&#x2F;O接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0"><span class="nav-text">一、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8A%9F%E8%83%BD%E5%92%8C%E7%BB%84%E6%88%90"><span class="nav-text">二、接口的功能和组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%8E%A5%E5%8F%A3%E7%B1%BB%E5%9E%8B"><span class="nav-text">三、接口类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-%E7%A8%8B%E5%BA%8F%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F"><span class="nav-text">5.4 程序查询方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%A8%8B%E5%BA%8F%E6%9F%A5%E8%AF%A2%E6%B5%81%E7%A8%8B"><span class="nav-text">一、程序查询流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%A8%8B%E5%BA%8F%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F%E6%8E%A5%E5%8F%A3%E7%94%B5%E8%B7%AF"><span class="nav-text">二、程序查询方式接口电路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-%E7%A8%8B%E5%BA%8F%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F"><span class="nav-text">5.5 程序中断方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%B8%AD%E6%96%AD%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">一、中断的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%B8%AD%E6%96%AD%E7%9A%84%E4%BA%A7%E7%94%9F"><span class="nav-text">二、中断的产生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%A8%8B%E5%BA%8F%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E7%9A%84%E6%8E%A5%E5%8F%A3%E7%94%B5%E8%B7%AF"><span class="nav-text">三、程序中断方式的接口电路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81I-O%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B"><span class="nav-text">四、I&#x2F;O中断处理过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E4%B8%AD%E6%96%AD%E5%85%81%E8%AE%B8%E8%A7%A6%E5%8F%91%E5%99%A8%EF%BC%88EINT%EF%BC%89%E5%92%8C%E4%B8%AD%E6%96%AD%E5%B1%8F%E8%94%BD%E8%A7%A6%E5%8F%91%E5%99%A8%EF%BC%88MASK%EF%BC%89"><span class="nav-text">关于中断允许触发器（EINT）和中断屏蔽触发器（MASK）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%B8%AD%E6%96%AD%E6%9C%8D%E5%8A%A1%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B"><span class="nav-text">五、中断服务程序流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E7%B3%BB%E7%BB%9F"><span class="nav-text">中断系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0-1"><span class="nav-text">一、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%B8%AD%E6%96%AD%E8%AF%B7%E6%B1%82%E6%A0%87%E8%AE%B0%E5%92%8C%E4%B8%AD%E6%96%AD%E5%88%A4%E4%BC%98%E9%80%BB%E8%BE%91"><span class="nav-text">二、中断请求标记和中断判优逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%B8%AD%E6%96%AD%E6%9C%8D%E5%8A%A1%E7%A8%8B%E5%BA%8F%E5%85%A5%E5%8F%A3%E5%9C%B0%E5%9D%80%E7%9A%84%E5%AF%BB%E6%89%BE"><span class="nav-text">三、中断服务程序入口地址的寻找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E4%B8%AD%E6%96%AD%E5%93%8D%E5%BA%94"><span class="nav-text">四、中断响应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%BF%9D%E6%8A%A4%E7%8E%B0%E5%9C%BA%E5%92%8C%E6%81%A2%E5%A4%8D%E7%8E%B0%E5%9C%BA"><span class="nav-text">五、保护现场和恢复现场</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E4%B8%AD%E6%96%AD%E5%B1%8F%E8%94%BD%E6%8A%80%E6%9C%AF%EF%BC%88%E4%B8%8D%E8%AE%B2%EF%BC%89"><span class="nav-text">六、中断屏蔽技术（不讲）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-DMA%E6%96%B9%E5%BC%8F"><span class="nav-text">5.6 DMA方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81DMA%E6%96%B9%E5%BC%8F%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-text">一、DMA方式的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81DMA%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8A%9F%E8%83%BD%E5%92%8C%E7%BB%84%E6%88%90"><span class="nav-text">二、DMA接口的功能和组成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-DMA%E6%8E%A5%E5%8F%A3%E5%8A%9F%E8%83%BD"><span class="nav-text">1.DMA接口功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-DMA%E6%8E%A5%E5%8F%A3%E7%BB%84%E6%88%90"><span class="nav-text">2.DMA接口组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81DMA%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="nav-text">三、DMA的工作过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-DMA%E4%BC%A0%E9%80%81%E8%BF%87%E7%A8%8B"><span class="nav-text">1.DMA传送过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-DMA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F"><span class="nav-text">2.DMA接口与系统的连接方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DMA%E6%96%B9%E5%BC%8F%E4%B8%8E%E7%A8%8B%E5%BA%8F%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-text">DMA方式与程序中断方式的比较</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DMA%E6%8E%A5%E5%8F%A3%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-text">DMA接口的类型</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bob Cheng</p>
+  <div class="site-description" itemprop="description">markdown daily life & study</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bob Cheng</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

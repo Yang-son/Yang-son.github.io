@@ -102,7 +102,7 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221412534.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411221441983.png">
 <meta property="article:published_time" content="2022-04-12T01:36:23.000Z">
-<meta property="article:modified_time" content="2022-04-12T01:50:38.499Z">
+<meta property="article:modified_time" content="2022-05-05T08:01:29.204Z">
 <meta property="article:author" content="Bob Cheng">
 <meta property="article:tag" content="mathematical logic">
 <meta name="twitter:card" content="summary">
@@ -290,10 +290,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-04-12 09:36:23 / 修改时间：09:50:38" itemprop="dateCreated datePublished" datetime="2022-04-12T09:36:23+08:00">2022-04-12</time>
+              <time title="创建时间：2022-04-12 09:36:23" itemprop="dateCreated datePublished" datetime="2022-04-12T09:36:23+08:00">2022-04-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-05 16:01:29" itemprop="dateModified" datetime="2022-05-05T16:01:29+08:00">2022-05-05</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -314,7 +320,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>9.9k</span>
+              <span>10k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -369,9 +375,9 @@
 <h3 id="3-1-1-系统验证的分类"><a href="#3-1-1-系统验证的分类" class="headerlink" title="3.1.1 系统验证的分类"></a>3.1.1 系统验证的分类</h3><ol>
 <li><p><strong>基于证明与基于模型</strong></p>
 <ul>
-<li><p><strong>基于证明</strong>：系统描述为一组逻辑公式$r$，而规范是另一个公式$\Phi$，通过找到$r \Phi$的证明来验证系统</p>
+<li><p><strong>基于证明</strong>：系统描述为一组逻辑公式$r$，而规范是另一个公式$\phi$，通过找到$r \vdash \phi$（可证明性）的证明来验证系统</p>
 </li>
-<li><p><strong>基于模型</strong>：系统描述为模型$M$，规范是公式$\Phi$，通过计算模型M是否满足$\Phi$来验证系统</p>
+<li><p><strong>基于模型</strong>：系统描述为模型$M$，规范是公式$\phi$，通过计算模型M是否满足$\phi$（$M \vDash \phi$）来验证系统</p>
 <blockquote>
 <p>在模型为真的情况下，如果公式也为真，那么模型是满足公式的</p>
 </blockquote>
@@ -579,7 +585,11 @@
 <p>对于4)$s_0$的下一个状态都满足r</p>
 <p>对于6)从无限计算树来看容易得到。$s_2$满足前件和后件</p>
 </blockquote>
-<h3 id="3-2-3-规范的实际模式"><a href="#3-2-3-规范的实际模式" class="headerlink" title="3.2.3 规范的实际模式"></a>3.2.3 规范的实际模式</h3><p>在计算机系统中我们经常应用，准备、就绪、</p>
+<h3 id="3-2-3-规范的实际模式"><a href="#3-2-3-规范的实际模式" class="headerlink" title="3.2.3 规范的实际模式"></a>3.2.3 规范的实际模式</h3><p>在计算机系统中我们经常应用，准备、就绪、运行、请求、等待一些状态。</p>
+<blockquote>
+<p>例如：操作系统中的进程</p>
+<p>GFp：沿着问题中的路径，p无限多次地发生</p>
+</blockquote>
 <p><strong>LTL可以描述实际系统中的以下一些性质</strong>：</p>
 <ol>
 <li><p>永远不可能没有准备好就启动</p>
@@ -1002,7 +1012,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

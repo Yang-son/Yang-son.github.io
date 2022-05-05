@@ -212,6 +212,7 @@ a = m \times b + r \to d|r
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220223085012327.png" alt="image-20220223085012327" style="zoom:67%;" /></p>
 </li>
 <li><p>算法实现</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> n; <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="type">int</span> a[n][n];</span><br><span class="line">	<span class="type">int</span> k = <span class="number">1</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 逻辑行 </span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">		<span class="comment">// 逻辑列 </span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n-i; j++) &#123;</span><br><span class="line">			a[i+j][j] = k++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= i; j++) &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%-3d&quot;</span>,a[i][j]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h4 id="（3）改进计算模型提高运算效率"><a href="#（3）改进计算模型提高运算效率" class="headerlink" title="（3）改进计算模型提高运算效率"></a>（3）改进计算模型提高运算效率</h4><h4 id="【例1-4】泰勒公式"><a href="#【例1-4】泰勒公式" class="headerlink" title="【例1-4】泰勒公式"></a>【例1-4】泰勒公式</h4><p>求1/1!-1/3!+1/5!-1/7!+…+$(-1)^{n+1}$/(2n-1)!</p>
@@ -234,9 +235,9 @@ a = m \times b + r \to d|r
 </ul>
 <h3 id="2-递归设计"><a href="#2-递归设计" class="headerlink" title="2.递归设计"></a>2.递归设计</h3><ul>
 <li>定义：一个过程或函数在定义中直接或间接调用自身的一种方法</li>
-<li>设计关键：找出递归关系(方程)和递归终止(边界)条件。递 归关系就是使问题向边界条件转化的规则</li>
+<li>设计关键：找出递归关系(方程)和递归终止(边界)条件。递归关系就是使问题向边界条件转化的规则</li>
 <li>递归设计的步骤：<ul>
-<li>分析问题找到递归关系：找出大规模问题与小规模问题 的关系，以便通过递归使问题规模变小——能用递归用递归，让递归收敛</li>
+<li>分析问题找到递归关系：找出大规模问题与小规模问题的关系，以便通过递归使问题规模变小——能用递归用递归，让递归收敛</li>
 <li>设置终止条件控制递归：通过停止条件的设置，找出可解的最小规模问题。</li>
 <li>设计函数确定数据传递方式</li>
 </ul>
@@ -260,6 +261,7 @@ f_{n} = f_{n-1} + f_{n-2} \quad ,n \geq 3 \qquad(5-2) \\
 <p>第n项对应n次运算</p>
 </li>
 <li><p>算法实现</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">fun</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x == <span class="number">1</span> || x == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">fun</span>(x<span class="number">-1</span>)+<span class="built_in">fun</span>(x<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="3-循环与递归的比较"><a href="#3-循环与递归的比较" class="headerlink" title="3.循环与递归的比较"></a>3.循环与递归的比较</h3><p>【例1-5】任意给定十进制数：</p>
@@ -279,7 +281,7 @@ f_{n} = f_{n-1} + f_{n-2} \quad ,n \geq 3 \qquad(5-2) \\
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220223092831064.png" alt="image-20220223092831064" style="zoom:67%;" /></p>
 </li>
 <li><p>递归法求斐波那契数列</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line">			<span class="built_in">f</span>(<span class="number">9</span>)</span><br><span class="line">	<span class="built_in">f</span>(<span class="number">9</span>-<span class="number">1</span>)			<span class="built_in">f</span>(<span class="number">9</span>-<span class="number">2</span>)</span><br><span class="line"><span class="built_in">f</span>(<span class="number">8</span>-<span class="number">1</span>)	<span class="built_in">f</span>(<span class="number">8</span>-<span class="number">2</span>)	<span class="built_in">f</span>(<span class="number">7</span>-<span class="number">1</span>)	<span class="built_in">f</span>(<span class="number">7</span>-<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line">			 <span class="built_in">f</span>(<span class="number">9</span>)</span><br><span class="line">	 <span class="built_in">f</span>(<span class="number">9</span>-<span class="number">1</span>)		   <span class="built_in">f</span>(<span class="number">9</span>-<span class="number">2</span>)</span><br><span class="line"><span class="built_in">f</span>(<span class="number">8</span>-<span class="number">1</span>)	<span class="built_in">f</span>(<span class="number">8</span>-<span class="number">2</span>)	<span class="built_in">f</span>(<span class="number">7</span>-<span class="number">1</span>)	<span class="built_in">f</span>(<span class="number">7</span>-<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>【例1-6】求从n个自然数(1,2,3,…, n)中取出r个数的所有组合。</p>
@@ -302,276 +304,6 @@ f_{n} = f_{n-1} + f_{n-2} \quad ,n \geq 3 \qquad(5-2) \\
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220223093730037.png" alt="image-20220223093730037" style="zoom:67%;" /></p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">V:</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VNode</span> &#123;</span><br><span class="line">    vertextype data;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">adjvex</span> *firstedge;</span><br><span class="line">&#125;VNode, v[n];</span><br><span class="line"></span><br><span class="line">VR:</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">adjvex</span> &#123;</span><br><span class="line">    <span class="type">int</span> seqNo;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">adjvex</span> *next;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>评价算法看模型</p>
-]]></content>
-      <categories>
-        <category>2022 Spring</category>
-        <category>算法设计与分析</category>
-      </categories>
-      <tags>
-        <tag>algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>算法设计与分析：第2章 算法分析基础</title>
-    <url>/algorithm/algorithm-ch2/</url>
-    <content><![CDATA[<p>算法效率评价的指标：算法对计算机资源的使用</p>
-<p><strong>时间&gt;&gt;内存</strong></p>
-<span id="more"></span>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227163339607.png" alt="image-20220227163339607" style="zoom:67%;" /></p>
-<ul>
-<li><p>计算机资源的计量方法</p>
-<p>设输入数据/问题规模为n。假设算法要用到</p>
-<ul>
-<li><p>m种元运算；（不再分解，一条指令）</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">x = x+<span class="number">1</span>;</span><br><span class="line">y = y*<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>每种元运算执行的时间为$t_1, t_2, … , t_m$；</p>
-</li>
-<li><p>每种元运算的执行的次数为$e_1, e_2, … e_m$；</p>
-</li>
-<li><p>元运算与问题规模的关系：$\forall e_i(n), 1 \leq i \leq m$</p>
-</li>
-</ul>
-<p>若用$T(n)$表示时间复杂度，则有$T(n) = \sum_{i = 1}^{m} t_i \times e_i(n)$​ </p>
-</li>
-<li><p>元运算的提取和时间复杂度的计算</p>
-<p>【例2-1】编程输出具有下述特点的n×n阶三角矩阵，试分析该算法的时间复杂度</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227171256853.png" alt="image-20220227171256853" style="zoom: 50%;" /></p>
-<blockquote>
-<p>只执行一次：</p>
-<p>1.i,j,n,k= 1;</p>
-<p>2.scanf</p>
-<p>3.i = 0;</p>
-<p>4.i &lt; n;</p>
-<p>第一层循环</p>
-<p>1.i &lt; n;</p>
-<p>2.i++;</p>
-<p>3.j = 0;</p>
-<p>4.j &lt; i;</p>
-<p>5.printf(“\n”);</p>
-<p>第二层循环</p>
-<p>1.j &lt; i;</p>
-<p>2.j++;</p>
-<p>3.printf</p>
-<p>4.k++</p>
-</blockquote>
-<p>​        $T(n) = \sum_{i = 0}^{n-1} (5 + \sum_{j = 0}^{i} 3) + 4 \\ = \frac{3}{2}n^2 + \frac{7}{2}n + 4$​​​</p>
-</li>
-</ul>
-<h2 id="一、数学基础"><a href="#一、数学基础" class="headerlink" title="一、数学基础"></a>一、数学基础</h2><h3 id="1-函数渐近的界"><a href="#1-函数渐近的界" class="headerlink" title="1.函数渐近的界"></a>1.函数渐近的界</h3><h4 id="函数渐近的界的概念"><a href="#函数渐近的界的概念" class="headerlink" title="函数渐近的界的概念"></a>函数渐近的界的概念</h4><p>设$T(n)$​是算法A的时间复杂性函数，n是问题规模，$n \geq 0 $​且$n \in Z$​。</p>
-<p>一般来说，当n单调递增且趋于$\infty$时，$T(n)$也将单调递增趋于$\infty$。</p>
-<p>对于$T(n)$，如果存在$T’(n)$，使$n \to \infty$时，有$(T(n)-T’(n))/T(n) \to 0$。</p>
-<p>那么，我们就说$T’(n)$​是$T(n)$​当$n \to \infty$​时的渐近态，或称$T’(n)$​为算法A当$T(n) \to \infty$​​的渐近复杂性。</p>
-<blockquote>
-<p>相似性原理</p>
-<p>突出主体部分——printf，k++</p>
-</blockquote>
-<h4 id="定义2-1（阶的概念）"><a href="#定义2-1（阶的概念）" class="headerlink" title="定义2.1（阶的概念）"></a>定义2.1（阶的概念）</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227165538276.png" alt="image-20220227165538276" style="zoom:67%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227165601851.png" alt="image-20220227165601851" style="zoom:67%;" /></p>
-<h5 id="【例2-2】设有函数-f-n-n-2-3n-1-​，当n足够大时，试证明下述内容："><a href="#【例2-2】设有函数-f-n-n-2-3n-1-​，当n足够大时，试证明下述内容：" class="headerlink" title="【例2-2】设有函数$f(n)=n^2+3n+1$​，当n足够大时，试证明下述内容："></a>【例2-2】设有函数$f(n)=n^2+3n+1$​，当n足够大时，试证明下述内容：</h5><p>​    (1) $f(n)=O(n^2)$​和$f(n)=O(n^3)$​成立；</p>
-<p>​    (2)$f(n)=o(n^2)$​不成立</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227171405514.png" alt="image-20220227171405514" style="zoom:67%;" /></p>
-<ul>
-<li>适当放缩</li>
-</ul>
-<h5 id="【例2-3】试证明-f-n-frac-1-2-n-n-1-有-f-n-Theta-n-2"><a href="#【例2-3】试证明-f-n-frac-1-2-n-n-1-有-f-n-Theta-n-2" class="headerlink" title="【例2-3】试证明$f(n) = \frac{1}{2}n(n-1)$有$f(n) = \Theta(n^2)$"></a>【例2-3】试证明$f(n) = \frac{1}{2}n(n-1)$有$f(n) = \Theta(n^2)$</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227171557402.png" alt="image-20220227171557402" style="zoom:67%;" /></p>
-<ul>
-<li>限定一下n的范围。找对应的$c_1,c_2$​，一个满足上界、一个满足下界：$c_2g(n) \leq f(n) \leq c_1g(n)$</li>
-</ul>
-<h4 id="定理2-1（传递性）"><a href="#定理2-1（传递性）" class="headerlink" title="定理2.1（传递性）"></a><strong>定理2.1（传递性）</strong></h4><p>设$f、g、h$是定义域为自然数集合，</p>
-<p>如果$f=O(g)$且$g=O(h)$，那么$f=O(h)$； </p>
-<p>如果$f=Ω(g)$且$g=Ω(h)$，那么$f=Ω(h)$； </p>
-<p>如果$f=Θ(g)$且$g=Θ(h)$，那么$f=Θ(h)$​。</p>
-<blockquote>
-<p>证明：</p>
-<p>只需要证明第一条，第二条同理。前两条可直接推出第三条</p>
-<p>按照定义展开，找到合适的$n_0$。取$n_0 = max\{n_1, n_2 \}$</p>
-<p>可以直接推出</p>
-</blockquote>
-<h4 id="定理2-2-（同阶合并）"><a href="#定理2-2-（同阶合并）" class="headerlink" title="定理2.2 （同阶合并）"></a>定理2.2 （同阶合并）</h4><p>假设$f$和$g$是定义域为自然数集合的函数，若对于某个其他的函数$h$，有$f=O(h)$和$g=O(h)$，那么$f+g=O(h)$​。</p>
-<blockquote>
-<p>证明：</p>
-<p>证明思路与2.1相同，按照定义，找到合适的$n_0$</p>
-</blockquote>
-<h4 id="常用的渐近函数及其渐近的界"><a href="#常用的渐近函数及其渐近的界" class="headerlink" title="常用的渐近函数及其渐近的界"></a>常用的渐近函数及其渐近的界</h4><ul>
-<li><p>多项式函数、对数函数、不同底a和b的对数</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227170231007.png" alt="image-20220227170231007" style="zoom: 67%;" /></p>
-</li>
-</ul>
-<p>对于多项式函数，每一项的上界都是$n^k$</p>
-<p>对于对数函数，<strong>两边取以b为底的对数</strong>，$log_b{a^{log_bn}} = log_b{n^{log_ba}} = log_ba \times log_bn$​​</p>
-<h4 id="定理2-3-（多项式的阶高于对数）"><a href="#定理2-3-（多项式的阶高于对数）" class="headerlink" title="定理2.3 （多项式的阶高于对数）"></a>定理2.3 （多项式的阶高于对数）</h4><p>对于每一个$b&gt;1$和每一个$a&gt;0$，有$log_bn=o(n^a)$​。</p>
-<p>（多项式函数的阶高于对数函数）</p>
-<h4 id="定理2-4（指数的阶高于多项式）"><a href="#定理2-4（指数的阶高于多项式）" class="headerlink" title="定理2.4（指数的阶高于多项式）"></a>定理2.4（指数的阶高于多项式）</h4><p>对每个$a&gt;1$​和每个$k&gt;0$​，有$n^k=o(a^n)$</p>
-<p>（指数函数的阶高于多项式函数）</p>
-<h3 id="2-利用极限求函数渐近的界"><a href="#2-利用极限求函数渐近的界" class="headerlink" title="2.利用极限求函数渐近的界"></a>2.利用极限求函数渐近的界</h3><h4 id="常用的公式"><a href="#常用的公式" class="headerlink" title="常用的公式"></a>常用的公式</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227170744849.png" alt="image-20220227170744849" style="zoom:67%;" /></p>
-<h4 id="定理2-5（紧的界的极限定义）"><a href="#定理2-5（紧的界的极限定义）" class="headerlink" title="定理2.5（紧的界的极限定义）"></a>定理2.5（紧的界的极限定义）</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227170855787.png" alt="image-20220227170855787" style="zoom:67%;" /></p>
-<p>两个函数互为紧的界</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227170911299.png" alt="image-20220227170911299" style="zoom:67%;" /></p>
-<p>【思考题】：</p>
-<ul>
-<li>证（3）</li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301202430470.png" alt="image-20220301202430470" style="zoom:67%;" /></p>
-<ul>
-<li>列出已讲解渐近函数及它们之间阶的高低（运用斯特林、洛必达、2.5）</li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301202505790.png" alt="image-20220301202505790" style="zoom:67%;" /></p>
-<h3 id="3-有用的求和级数及其推导方法"><a href="#3-有用的求和级数及其推导方法" class="headerlink" title="3.有用的求和级数及其推导方法"></a>3.有用的求和级数及其推导方法</h3><h4 id="两个基本法则和常见的数列"><a href="#两个基本法则和常见的数列" class="headerlink" title="两个基本法则和常见的数列"></a>两个基本法则和常见的数列</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227170956453.png" alt="image-20220227170956453" style="zoom:67%;" /></p>
-<ul>
-<li>调和级数通常使用微积分进行计算</li>
-</ul>
-<h5 id="【例2-6】求和"><a href="#【例2-6】求和" class="headerlink" title="【例2-6】求和"></a>【例2-6】求和</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227171059943.png" alt="image-20220227171059943" style="zoom:67%;" /></p>
-<h5 id="【例2-7】估计-sum-k-1-n-frac-1-k-​的渐近的界"><a href="#【例2-7】估计-sum-k-1-n-frac-1-k-​的渐近的界" class="headerlink" title="【例2-7】估计$\sum_{k=1}^{n} \frac{1}{k}$​的渐近的界"></a>【例2-7】估计$\sum_{k=1}^{n} \frac{1}{k}$​的渐近的界</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220227171113797.png" alt="image-20220227171113797" style="zoom:67%;" /></p>
-<h3 id="4-基本效率类型"><a href="#4-基本效率类型" class="headerlink" title="4.基本效率类型"></a>4.基本效率类型</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301205626390.png" alt="image-20220301205626390" style="zoom: 80%;" /></p>
-<p>$n^3$：迪杰斯特拉、弗洛伊德算法</p>
-<h2 id="二、算法分析实例"><a href="#二、算法分析实例" class="headerlink" title="二、算法分析实例"></a>二、算法分析实例</h2><h3 id="1-非递归形式算法分析"><a href="#1-非递归形式算法分析" class="headerlink" title="1.非递归形式算法分析"></a>1.非递归形式算法分析</h3><p>分析非递归算法是，可遵循以下步骤：</p>
-<ul>
-<li><p>决定用哪些参数表示输入规模；</p>
-</li>
-<li><p>找出算法的核心操作，它通常位于算法的<strong>最内层循环</strong>中；</p>
-</li>
-<li><p>检查核心操作的<strong>执行次数是否依赖于输入规模</strong>。如果它还依赖于一些其他的特性，则可能需要对最差效率、平均效率以及最优效率分别研究；</p>
-<blockquote>
-<p>快排</p>
-</blockquote>
-</li>
-<li><p>以式（2-1）$T(n) = \sum_{i = 1}^{m} t_i \times e_i(n)$ 的思想为核心，建立一个算法基本操作执行次数的求和表达式；</p>
-</li>
-<li><p>利用求和运算标准公式和法则来建立一个操作次数的闭合公式，或者至少确定它的增长次数。</p>
-</li>
-</ul>
-<p>【例2-9】交换$a$和$b$的值</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301210324305.png" alt="image-20220301210324305" style="zoom:67%;" /></p>
-<p>三种算法：</p>
-<ul>
-<li><p>如上图方法</p>
-</li>
-<li><p>加减减运算符</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a = a+b;</span><br><span class="line">b = a-b;</span><br><span class="line">a = a-b;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>异或法</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 利用了位异或运算的特性:一个数据对两一个数据位异或两次，该数本身不变。</span></span><br><span class="line"><span class="type">int</span> a = <span class="number">12</span>;</span><br><span class="line"><span class="type">int</span> b = <span class="number">34</span>;</span><br><span class="line"><span class="comment">// 交换两个整数</span></span><br><span class="line">a = a ^ b;		<span class="comment">// a = 12^34</span></span><br><span class="line">b = a ^ b;		<span class="comment">// b = 12 ^ 34^34=12</span></span><br><span class="line">a = a ^ b;		<span class="comment">// a = 12^ 34 ^12 = 34</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>引用传参</p>
-</li>
-<li><p>指针传参</p>
-</li>
-</ul>
-<h5 id="【例2-10】求-n"><a href="#【例2-10】求-n" class="headerlink" title="【例2-10】求$n!$"></a>【例2-10】求$n!$</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301210412937.png" alt="image-20220301210412937" style="zoom:67%;" /></p>
-<blockquote>
-<p>主体部分：$s = s*i;$</p>
-</blockquote>
-<h5 id="【例2-11】对于任意给定的-n-阶方阵-A-和-B-，求-A×B-的积-C-并且分析它算法执行效率"><a href="#【例2-11】对于任意给定的-n-阶方阵-A-和-B-，求-A×B-的积-C-并且分析它算法执行效率" class="headerlink" title="【例2-11】对于任意给定的$n$阶方阵$A$和$B$，求$A×B$的积$C$并且分析它算法执行效率"></a>【例2-11】对于任意给定的$n$阶方阵$A$和$B$，求$A×B$的积$C$并且分析它算法执行效率</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301210518138.png" alt="image-20220301210518138" style="zoom:67%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301210552598.png" alt="image-20220301210552598" style="zoom:67%;" /></p>
-<p>优化算法：</p>
-<ul>
-<li><p>《算法导论》提及的Strassen算法</p>
-<p>参考资料：<a href="https://zhuanlan.zhihu.com/p/78657463">详解矩阵乘法中的Strassen算法</a></p>
-</li>
-</ul>
-<h4 id="错误印象"><a href="#错误印象" class="headerlink" title="错误印象"></a>错误印象</h4><ul>
-<li><p>循环变量的无规律变化</p>
-<blockquote>
-<p>如，Euclid和斐波那契</p>
-</blockquote>
-</li>
-<li><p>过于复杂而无法求解的求和表达式</p>
-<blockquote>
-<p>有些级数不能求解</p>
-</blockquote>
-</li>
-<li><p>算法分析时固有的难度</p>
-</li>
-</ul>
-<p>【思考题】韩信点兵问题</p>
-<h3 id="2-递归形式算法分析"><a href="#2-递归形式算法分析" class="headerlink" title="2.递归形式算法分析"></a>2.递归形式算法分析</h3><p>分析递归算法时，可遵循以下步骤：</p>
-<ul>
-<li><p>决定用哪些参数作为输入规模的度量标准</p>
-</li>
-<li><p>找出算法的核心操作，它通常是<strong>递推公式</strong></p>
-</li>
-<li><p>检查一下，对于相同规模的不同输入，核心操作的执行次数是否可能不同</p>
-<p><strong>如果有这种可能，则必须对最差效率、平均效率以及最优效率做单独研究</strong></p>
-</li>
-<li><p>对于算法核心操作的执行次数，建立一个递推关系以及相应的边界条件</p>
-</li>
-<li><p>解这个递推式，或者至少<strong>确定它的解的增长次数</strong></p>
-</li>
-</ul>
-<h5 id="【例2-12】求-n"><a href="#【例2-12】求-n" class="headerlink" title="【例2-12】求$n!$"></a>【例2-12】求$n!$</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301212808470.png" alt="image-20220301212808470" style="zoom:67%;" /></p>
-<p>时间效率紧的界是n</p>
-<blockquote>
-<p>递归变非递归：</p>
-<p>1.减少重复计算——去重</p>
-<p>2.减少使用栈——效率低。应从模型入手</p>
-</blockquote>
-<h5 id="【例2-13】汉诺塔问题"><a href="#【例2-13】汉诺塔问题" class="headerlink" title="【例2-13】汉诺塔问题"></a>【例2-13】汉诺塔问题</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301212841660.png" alt="image-20220301212841660" style="zoom:67%;" /></p>
-<ul>
-<li>n为计算规模</li>
-<li>核心操作为移动盘子 </li>
-<li>依据递推公式，两次递推之间，执行一次移动操作，因此有如下推导过程：<br>$T(n) =2T(n-1)+1$</li>
-</ul>
-<blockquote>
-<p>$T(n) =2T(n-1)+1 \\<br>=2[2T(n-2)+1]+1 \\ =2^2T(n-2)+2+1 \\<br>=2^2[2T(n-3)+1]+2+1 \\ = 2^3T(n-3)+2^2+2+1 …… \\<br>=2^{i-1}[2T(n-i)+1]+2^{i-2}+2^{i-3}…+2^0 \\ = 2^iT(n-i)+ 2^{i}-1 …… \\<br>=2^{n-1}T(n-(n-1))+ 2^{n-1}-1 \\ =2^{n-1}T(1)+ 2^{n-1}-1=2^n-1 \$</p>
-</blockquote>
-<p><strong>谨慎使用递归算法，它们的简洁可能会掩盖其低效率的事实</strong></p>
-<h5 id="【例2-14】试分析二路归并排序算法的时间复杂度"><a href="#【例2-14】试分析二路归并排序算法的时间复杂度" class="headerlink" title="【例2-14】试分析二路归并排序算法的时间复杂度"></a>【例2-14】试分析二路归并排序算法的时间复杂度</h5><blockquote>
-<p>二路归并排序：二分 + 合并（简单插入排序）</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301213658379.png" alt="image-20220301213658379" style="zoom:67%;" /></p>
-<p>对于Merge，输入是两个排好序的数组。</p>
-<blockquote>
-<p>计算两个数组的长度</p>
-<p>重构$A$数组，将前半部分存入$B$，后半部分存入$C$</p>
-<p>依次比较$B$和$C$元素大小，按顺序放回$A$</p>
-<p>处理$B$或$C$剩余元素，放回$A$</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301213722688.png" alt="image-20220301213722688" style="zoom:67%;" /></p>
-<p>空间复杂度：上界是$n^2$，下界是$logn \times n$</p>
-<p>【思考题】考虑完全二叉树的先根遍历，找最大值的时间复杂度</p>
-<h3 id="定理2-6（主定理）——重要内容"><a href="#定理2-6（主定理）——重要内容" class="headerlink" title="定理2.6（主定理）——重要内容"></a>定理2.6（主定理）——重要内容</h3><p><strong>定理2.6</strong> 主定理（Master Theorem）设$a \geq 1,b \geq 1$为常数，$f(n)$为函数，$T(n)$为<strong>非负整数</strong>，且$T(n) = aT(n/b) + f(n)$</p>
-<p>则有以下结果：</p>
-<ul>
-<li><p>若$f(n) = O(n^{log_ba-\epsilon}), \epsilon &gt; 0$，那么$T(n) = \Theta(n^{log_ba})$；</p>
-<blockquote>
-<p>必须把$\epsilon$找出来</p>
-</blockquote>
-</li>
-<li><p>若$f(n) = \Theta (n^{log_ba})$，那么$T(n) = \Theta (n^{log_ba} logn)$；</p>
-</li>
-<li><p>若$f(n) = Ω(n^{log_ba+\epsilon}), \epsilon &gt; 0$，且对于常数$c&lt;1$和所有充分大的$n$有$af(n/b) \leq cf(n)$，那么$T(n) = \Theta(f(n))$；</p>
-<blockquote>
-<p>不能使用主定理，可以使用递归式</p>
-</blockquote>
-</li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231134023.png" alt="image-20220301231134023" style="zoom:67%;" /></p>
-<blockquote>
-<p>必须让$T(n)$中的参数$n$收敛</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231214720.png" alt="image-20220301231214720" style="zoom:67%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231230067.png" alt="image-20220301231230067" style="zoom:67%;" /></p>
-<blockquote>
-<p>（3）的整体证明思路：$T(n) = O(f(n)) \and T(n) = \Omega(f(n))$</p>
-<p>①显然有：$T(n) \geq f(n)$</p>
-<p>②需要证明$T(n) \leq \Theta(f(n))$。利用条件$af(n/b) \leq cf(n)$进行放缩</p>
-<p>最后需要用上$f(n)$的阶比$c_1n^{log_ba}$高的条件，使用定理2.2进行合并</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231245912.png" alt="image-20220301231245912" style="zoom:67%;" /></p>
-<p>【思考题】</p>
-<ul>
-<li>自己证明一次主定理</li>
-<li>用主定理证明归并排序的时间复杂度</li>
-</ul>
-<h5 id="【例2-15】求解递推方程-T-n-9T-n-3-n"><a href="#【例2-15】求解递推方程-T-n-9T-n-3-n" class="headerlink" title="【例2-15】求解递推方程$T(n) = 9T(n/3) + n$"></a>【例2-15】求解递推方程$T(n) = 9T(n/3) + n$</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231338193.png" alt="image-20220301231338193" style="zoom:67%;" /></p>
-<h5 id="【例2-16】求解递推方程-T-n-T-2n-3-1"><a href="#【例2-16】求解递推方程-T-n-T-2n-3-1" class="headerlink" title="【例2-16】求解递推方程$T(n) = T(2n/3) + 1$"></a>【例2-16】求解递推方程$T(n) = T(2n/3) + 1$</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231416380.png" alt="image-20220301231416380" style="zoom:67%;" /></p>
-<h5 id="【例2-17】求解递推方程-T-n-3T-n-4-nlogn"><a href="#【例2-17】求解递推方程-T-n-3T-n-4-nlogn" class="headerlink" title="【例2-17】求解递推方程$T(n) = 3T(n/4) + nlogn$"></a>【例2-17】求解递推方程$T(n) = 3T(n/4) + nlogn$</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231458494.png" alt="image-20220301231458494" style="zoom:67%;" /></p>
-<p>递归树</p>
-<p>表示每一层拥有的计算量</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231522615.png" alt="image-20220301231522615" style="zoom:67%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231537308.png" alt="image-20220301231537308" style="zoom:67%;" /></p>
-<h5 id="【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设-n-2-k-："><a href="#【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设-n-2-k-：" class="headerlink" title="【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设$n = 2^k$："></a>【例2-18】以下递归方程，是第四章将介绍的二分算法典型的递归方程。同样假设$n = 2^k$：</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220301231641596.png" alt="image-20220301231641596" style="zoom:67%;" /></p>
 ]]></content>
       <categories>
         <category>2022 Spring</category>
@@ -2130,6 +1862,11 @@ T(n) = 2T(n/2) + \Theta(n)</script><p>由主定理，可以得到：$T(n) = \The
       </tags>
   </entry>
   <entry>
+    <title>algorithm-ch9</title>
+    <url>/null/algorithm-ch9/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>算法设计与分析：第8章 动态规划</title>
     <url>/algorithm/algorithm-ch8/</url>
     <content><![CDATA[<h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><ul>
@@ -3376,237 +3113,6 @@ T(n) = \sum_{k=2}^m(\sum_{i=0}^nC_1 + \sum_{i=0}^n\sum_{j=0}^iC_2 + \sum_{i=0}^n
       </tags>
   </entry>
   <entry>
-    <title>计算机组成原理：第7章 指令系统</title>
-    <url>/computer_organization/computer-organization-ch7/</url>
-    <content><![CDATA[<p>计算机的最高指挥：晶振——产生指令。</p>
-<p>计算机在指令驱动下运行。指令组成程序</p>
-<h2 id="7-1-机器指令"><a href="#7-1-机器指令" class="headerlink" title="7.1 机器指令"></a>7.1 机器指令</h2><p>机器语言：由一条条语句构成，每一条语句又能准确表达某种语义</p>
-<p>机器指令：每一条机器语言的语句</p>
-<p>指令系统：全部机器指令的集合</p>
-<span id="more"></span>
-<h3 id="一、指令的一般格式"><a href="#一、指令的一般格式" class="headerlink" title="一、指令的一般格式"></a>一、指令的一般格式</h3><h4 id="1-操作码"><a href="#1-操作码" class="headerlink" title="1.操作码"></a>1.操作码</h4><p>反映机器做什么操作</p>
-<blockquote>
-<p>用来指明该指令所要完成的操作，</p>
-<p>如：加法、减法、传送、移位、转移等</p>
-</blockquote>
-<p>位数反映操作种类（机器允许的指令条数）</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503140908602.png" alt="image-20220503140908602" style="zoom: 50%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503141005021.png" alt="image-20220503141005021" style="zoom: 50%;" /></p>
-<p>三地址指令操作码每减少一种可多构成$2^4$种二地址指令</p>
-<p>二地址指令操作码每减少一种可多构成$2^4$种一地址指令</p>
-<h4 id="2-地址码"><a href="#2-地址码" class="headerlink" title="2.地址码"></a>2.地址码</h4><p>用来指出该指令的源操作数的地址（一个或两个）、结果的地址以及下一条指令的地址。</p>
-<blockquote>
-<p>“地址”可以是主存的地址，也可以是寄存器的地址，I/O设备的地址</p>
-</blockquote>
-<h5 id="1-四地址"><a href="#1-四地址" class="headerlink" title="1. 四地址"></a>1. 四地址</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503141141637.png" alt="image-20220503141141637" style="zoom: 50%;" /></p>
-<h5 id="2-三地址"><a href="#2-三地址" class="headerlink" title="2. 三地址"></a>2. 三地址</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503141155067.png" alt="image-20220503141155067" style="zoom: 50%;" /></p>
-<h5 id="3-二地址"><a href="#3-二地址" class="headerlink" title="3. 二地址"></a>3. 二地址</h5><p>4次：取A1，A2，写A1，取指令</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503142230997.png" alt="image-20220503142230997" style="zoom: 50%;" /></p>
-<h5 id="4-一地址"><a href="#4-一地址" class="headerlink" title="4. 一地址"></a>4. 一地址</h5><p>2次：取A1，取指令</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503143841338.png" alt="image-20220503143841338" style="zoom: 50%;" /></p>
-<h5 id="5-零地址"><a href="#5-零地址" class="headerlink" title="5. 零地址"></a>5. 零地址</h5><p>子程序返回（RET）、中断返回（IRET）——没有地址码，操作数的地址隐含在堆栈指针SP中</p>
-<h3 id="二、指令字长"><a href="#二、指令字长" class="headerlink" title="二、指令字长"></a>二、指令字长</h3><p>指令字长取决于$\begin{cases} 操作码的长度\\ 操作数地址的长度 \\ 操作数地址的个数 \\  \end{cases}$</p>
-<ol>
-<li><p>指令字长<strong>固定</strong></p>
-<p>指令字长=存储字长</p>
-<blockquote>
-<p>早期的计算机，访问某个存储单元便可取出一条完整的指令或一个完整的数据。控制方式简单</p>
-</blockquote>
-</li>
-<li><p>指令字长<strong>可变</strong></p>
-<p>按字节的倍数变化</p>
-<blockquote>
-<p>为了提高指令的运行速度和节省存储空间，通常尽可能把常用的指令（如：数据传送指令、算逻运算指令等）设计成单字长或短字长格式的指令</p>
-</blockquote>
-</li>
-</ol>
-<p><strong>小结</strong></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503144647612.png" alt="image-20220503144647612" style="zoom: 50%;" /></p>
-<h2 id="7-2-操作数类型和操作类型"><a href="#7-2-操作数类型和操作类型" class="headerlink" title="7.2 操作数类型和操作类型"></a>7.2 操作数类型和操作类型</h2><h3 id="一、操作数类型"><a href="#一、操作数类型" class="headerlink" title="一、操作数类型"></a>一、操作数类型</h3><p>常见的操作数类型：地址、数字、字符、逻辑数据</p>
-<ul>
-<li><strong>地址</strong>：无符号的整数。涉及操作数地址的计算</li>
-<li><strong>数字</strong>：定点数、浮点数和十进制数</li>
-<li><strong>字符</strong>：普遍采用ASCII码</li>
-<li><strong>逻辑数据</strong>：</li>
-</ul>
-<h3 id="二、数据在存储器中的存放方式"><a href="#二、数据在存储器中的存放方式" class="headerlink" title="二、数据在存储器中的存放方式"></a>二、数据在存储器中的存放方式</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503150538893.png" alt="image-20220503150538893" style="zoom: 50%;" /></p>
-<h3 id="三、操作类型"><a href="#三、操作类型" class="headerlink" title="三、操作类型"></a>三、操作类型</h3><h4 id="1-数据传送"><a href="#1-数据传送" class="headerlink" title="1. 数据传送"></a>1. 数据传送</h4><p>包括：<strong>寄存器与寄存器</strong>、<strong>寄存器与存储单元</strong>、<strong>存储单元与存储单元</strong>之间的传送。</p>
-<blockquote>
-<p>如：从源到目的之间的传送、对存储器读（LOAD）和写（STORE）、交换源和目的的内容、置1、清0、进栈、出栈等</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171448556.png" alt="image-20220420171448556" style="zoom: 80%;" /></p>
-<h4 id="2-算术逻辑操作"><a href="#2-算术逻辑操作" class="headerlink" title="2. 算术逻辑操作"></a>2. 算术逻辑操作</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171520628.png" alt="image-20220420171520628" style="zoom:80%;" /></p>
-<h4 id="3-移位操作"><a href="#3-移位操作" class="headerlink" title="3. 移位操作"></a>3. 移位操作</h4><blockquote>
-<p>移位操作所需时间远比乘除操作执行时间短，用来代替简单的乘法和除法运算</p>
-</blockquote>
-<ul>
-<li>算术移位：对<strong>有符号数</strong>的乘/除以2的运算</li>
-<li>逻辑移位：<strong>无符号数</strong></li>
-<li>循环移位（带进位和不带进位）</li>
-</ul>
-<h4 id="4-转移"><a href="#4-转移" class="headerlink" title="4. 转移"></a>4. 转移</h4><p>多数情况下，计算机按照顺序执行程序的每条指令，但有时需要改变顺序，采用<strong>转移类指令来完成</strong></p>
-<p>分为：无条件转移、条件转移、跳转、过程调用与返回、陷阱等</p>
-<ul>
-<li><p><strong>无条件转移</strong></p>
-<p>不受任何条件约束，可直接把程序转移到下一条需执行指令的地址</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">JMP X	;将指令地址无条件转至X</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>条件转移</strong></p>
-<p>根据当前指令的执行结果来决定是否需要转移。</p>
-<p>若条件满足，则转移；不满足，则继续按顺序执行。</p>
-<p>一般机器都能提供一些条件码，这些条件码是某些操作的结果</p>
-<blockquote>
-<p>如：对于</p>
-<p>零标志位ZF，结果为0，ZF=1；</p>
-<p>负标志位SF，结果为负，SF=1；</p>
-<p>溢出标志位OF，结果有溢出，OF=1；</p>
-<p>进位标志位CF，最高位有进位，CF=1；</p>
-<p>奇偶标志位PF，结果呈偶数，PF=1；</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">BRO X	; 若结果（有符号数）溢出(OF)，则指令跳转到X</span><br><span class="line">BRC Y	; 若最高位有进位(CF)，则指令跳转到Y</span><br><span class="line">SKP DZ ; 暗示其下一条指令将被跳过，隐含了转移地址是SKP后的第二条指令，条件是完成触发器D为0</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171635065.png" alt="image-20220420171635065" style="zoom:80%;" /></p>
-<ul>
-<li><p><strong>调用和返回</strong></p>
-<blockquote>
-<p>类似中断</p>
-</blockquote>
-<p>在编写程序时，有些具有特定功能的程序段会被反复使用。为避免重复编写，可将这些程序段设定为独立子程序，当需要执行某子程序时，只需子程序调用指令即可。</p>
-</li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171657961.png" alt="image-20220420171657961" style="zoom:80%;" /></p>
-<ul>
-<li><p><strong>陷阱（Trap）与陷阱指令</strong></p>
-<p>陷阱时一种意外事故的中断</p>
-<blockquote>
-<p>如，机器在运行中，可能会出现电源电压不稳定、存储器校验出差错、输入输出设备出现了故障、用户使用未被定义的指令、除数出现0、运算结果溢出、特权指令等</p>
-</blockquote>
-<p>致使计算机不能正常工作，采取措施，发出陷阱信号。暂停当前程序的执行，转入故障处理程序，进行相应的故障处理。</p>
-</li>
-</ul>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171756033.png" alt="image-20220420171756033" style="zoom:80%;" /></p>
-<h4 id="5-输入输出"><a href="#5-输入输出" class="headerlink" title="5.输入输出"></a>5.输入输出</h4><blockquote>
-<p>AL是8bit，AX是16bit</p>
-<p>输入：端口送入CPU</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171857720.png" alt="image-20220420171857720" style="zoom:80%;" /></p>
-<h2 id="7-3-寻址方式"><a href="#7-3-寻址方式" class="headerlink" title="7.3 寻址方式"></a>7.3 寻址方式</h2><blockquote>
-<p>已知指令的顺序寻址、中断隐指令、开机第一条指令</p>
-</blockquote>
-<p>开机第一条指令的位置：FFFFFFF0</p>
-<p>0xFFFF0 指令：跳转到F000:EO5B</p>
-<blockquote>
-<p>参考资料：<a href="https://blog.csdn.net/u010383242/article/details/50586782">开机后的第一条指令</a></p>
-</blockquote>
-<p>中断隐指令怎么找</p>
-<h3 id="一、指令寻址"><a href="#一、指令寻址" class="headerlink" title="一、指令寻址"></a>一、指令寻址</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153526386.png" alt="image-20220503153526386" style="zoom: 50%;" /></p>
-<h3 id="二、数据寻址"><a href="#二、数据寻址" class="headerlink" title="二、数据寻址"></a>二、数据寻址</h3><p>指令字中必须设一字段来指明属于哪一种寻址方式——<strong>寻址特征位</strong>，记作M</p>
-<p>指令的地址码字段通常都不代表操作数的真实地址，把它称为<strong>形式地址</strong>，记作A</p>
-<p>操作数的真实地址称为<strong>有效地址</strong>，记作EA</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153543995.png" alt="image-20220503153543995" style="zoom: 50%;" /></p>
-<blockquote>
-<p>假设指令字长、存储字长、机器字长均相同</p>
-</blockquote>
-<h4 id="1-立即寻址"><a href="#1-立即寻址" class="headerlink" title="1. 立即寻址"></a>1. 立即寻址</h4><p>特点：操作数本身设在指令字内，即：<strong>形式地址A不是操作数的地址，而是操作数本身，又称之为立即数</strong></p>
-<blockquote>
-<p>立即数是有符号数，以<strong>补码</strong>形式保存</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153600596.png" alt="image-20220503153600596" style="zoom: 50%;" /></p>
-<p>优点：只要取出指令，便可立即获得操作数，在执行阶段不必再访问存储器</p>
-<p>A的位数限制立即数的范围。</p>
-<h4 id="2-直接寻址"><a href="#2-直接寻址" class="headerlink" title="2. 直接寻址"></a>2. 直接寻址</h4><p>特点：指令字中的形式地址A就是操作数的真实地址EA，即：EA=A</p>
-<blockquote>
-<p>有效地址由形式地址直接给出</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153713905.png" alt="image-20220503153713905" style="zoom: 50%;" /></p>
-<p>优点：寻找操作数简单，不需要专门计算操作数的地址，在指令执行阶段对主存只访问一次。</p>
-<p>A的位数限制了操作数的寻址范围，而且必须修改A的值才能修改操作数的地址。</p>
-<h4 id="3-隐含寻址"><a href="#3-隐含寻址" class="headerlink" title="3. 隐含寻址"></a>3. 隐含寻址</h4><blockquote>
-<p>操作数地址隐含在操作码或某个寄存器中</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154526162.png" alt="image-20220503154526162" style="zoom:50%;" /></p>
-<h4 id="4-间接寻址"><a href="#4-间接寻址" class="headerlink" title="4. 间接寻址"></a>4. 间接寻址</h4><blockquote>
-<p>有效地址由形式地址间接给出。</p>
-<p>类似于指针，有效地址是形式地址单元的数值</p>
-<p>2次访存</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154543218.png" alt="image-20220503154543218" style="zoom: 50%;" /></p>
-<h4 id="5-寄存器寻址"><a href="#5-寄存器寻址" class="headerlink" title="5. 寄存器寻址"></a>5. 寄存器寻址</h4><blockquote>
-<p>有效地址即为寄存器编号</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154600520.png" alt="image-20220503154600520" style="zoom:50%;" /></p>
-<h4 id="6-寄存器间接寻址"><a href="#6-寄存器间接寻址" class="headerlink" title="6. 寄存器间接寻址"></a>6. 寄存器间接寻址</h4><blockquote>
-<p>有效地址在寄存器内（访问寄存器内容）</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154617609.png" alt="image-20220503154617609" style="zoom: 50%;" /></p>
-<h4 id="7-基址寻址"><a href="#7-基址寻址" class="headerlink" title="7. 基址寻址"></a>7. 基址寻址</h4><ol>
-<li><p>采用专用寄存器作基址寄存器</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154638769.png" alt="image-20220503154638769" style="zoom:50%;" /></p>
-</li>
-<li><p>采用通用寄存器$R_0$作基址寄存器</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154658187.png" alt="image-20220503154658187" style="zoom:50%;" /></p>
-</li>
-</ol>
-<h4 id="8-变址寻址"><a href="#8-变址寻址" class="headerlink" title="8. 变址寻址"></a>8. 变址寻址</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154716131.png" alt="image-20220503154716131" style="zoom:50%;" /></p>
-<h4 id="9-相对寻址"><a href="#9-相对寻址" class="headerlink" title="9. 相对寻址"></a>9. 相对寻址</h4><blockquote>
-<p>EA=(PC)+A，A是相对与当前指令的位移量</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154737331.png" alt="image-20220503154737331" style="zoom:50%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154815612.png" alt="image-20220503154815612" style="zoom:50%;" /></p>
-<h4 id="10-堆栈寻址"><a href="#10-堆栈寻址" class="headerlink" title="10. 堆栈寻址"></a>10. 堆栈寻址</h4><blockquote>
-<p>堆栈指令调用内存（堆栈指令或者内存单元操作）</p>
-</blockquote>
-<p>是一种数据格式</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154832850.png" alt="image-20220503154832850" style="zoom:80%;" /></p>
-<h2 id="7-4-指令格式举例"><a href="#7-4-指令格式举例" class="headerlink" title="7.4 指令格式举例"></a>7.4 指令格式举例</h2><h3 id="一、设计指令格式时应考虑的因素"><a href="#一、设计指令格式时应考虑的因素" class="headerlink" title="一、设计指令格式时应考虑的因素"></a>一、设计指令格式时应考虑的因素</h3><h4 id="1-指令系统的兼容性"><a href="#1-指令系统的兼容性" class="headerlink" title="1. 指令系统的兼容性"></a>1. 指令系统的兼容性</h4><p>向上兼容</p>
-<h4 id="2-其他因素"><a href="#2-其他因素" class="headerlink" title="2. 其他因素"></a>2. 其他因素</h4><ul>
-<li><strong>操作类型</strong>：包括指令个数及操作的难易程度</li>
-<li><strong>数据类型</strong>：确定哪些数据类型可参与操作</li>
-<li><strong>指令格式</strong>：指令字长是否固定；操作码位数、是否采用扩展操作码技术，地址码位数、地址个数、寻址方式类型</li>
-<li><strong>寻址方式</strong>：指令寻址、操作数寻址</li>
-<li><strong>寄存器个数</strong>：寄存器的多少直接影响指令的执行时间</li>
-</ul>
-<h3 id="二、指令格式举例"><a href="#二、指令格式举例" class="headerlink" title="二、指令格式举例"></a>二、指令格式举例</h3><ol>
-<li><p>PDP-8</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155132681.png" alt="image-20220503155132681" style="zoom:50%;" /></p>
-</li>
-<li><p>PDP-11</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424161443696.png" alt="image-20220424161443696" style="zoom: 80%;" /></p>
-</li>
-<li><p>IBM 360</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424161616537.png" alt="image-20220424161616537" style="zoom:80%;" /></p>
-</li>
-<li><p>Intel 8086</p>
-<blockquote>
-<p>零地址是空操作数</p>
-</blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424161810340.png" alt="image-20220424161810340" style="zoom:80%;" /></p>
-</li>
-</ol>
-<blockquote>
-<p>要求：条件一定，写出指令格式</p>
-</blockquote>
-<h2 id="考试题型总结——设计指令系统"><a href="#考试题型总结——设计指令系统" class="headerlink" title="考试题型总结——设计指令系统"></a>考试题型总结——设计指令系统</h2><p>操作码多少位</p>
-<p>寻址特征位（是否选择——硬件设计有关）</p>
-<p>M寻址特征位</p>
-<p>A形式地址</p>
-<h2 id="7-5-RISC技术"><a href="#7-5-RISC技术" class="headerlink" title="7.5 RISC技术"></a>7.5 RISC技术</h2><p>RISC(Reduced Instruction set computer)</p>
-<p>硬件简单，寻址方式、指令砍掉，无法运行CISC程序，因此不易指令系统兼容</p>
-<h3 id="一、RISC-的产生和发展"><a href="#一、RISC-的产生和发展" class="headerlink" title="一、RISC 的产生和发展"></a>一、RISC 的产生和发展</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155316293.png" alt="image-20220503155316293" style="zoom:50%;" /></p>
-<h3 id="二、RISC-的主要特征"><a href="#二、RISC-的主要特征" class="headerlink" title="二、RISC 的主要特征"></a>二、RISC 的主要特征</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155338256.png" alt="image-20220503155338256" style="zoom:50%;" /></p>
-<h3 id="三、CISC-的主要特征"><a href="#三、CISC-的主要特征" class="headerlink" title="三、CISC 的主要特征"></a>三、CISC 的主要特征</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155402226.png" alt="image-20220503155402226" style="zoom: 50%;" /></p>
-<h3 id="四、RISC和CISC-的比较"><a href="#四、RISC和CISC-的比较" class="headerlink" title="四、RISC和CISC 的比较"></a>四、RISC和CISC 的比较</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155423222.png" alt="image-20220503155423222" style="zoom:50%;" /></p>
-]]></content>
-      <categories>
-        <category>2022 Spring</category>
-        <category>计算机组成原理</category>
-      </categories>
-      <tags>
-        <tag>computer organization</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>计算机组成原理：第4章 存储器</title>
     <url>/computer_organization/computer-organization-ch4/</url>
     <content><![CDATA[<p>需要掌握功能特性（外特性）</p>
@@ -4607,12 +4113,829 @@ i = j \mod Q</script><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/
       </tags>
   </entry>
   <entry>
+    <title>计算机组成原理：第6章 运算方法与运算器</title>
+    <url>/computer_organization/computer-organization-ch6/</url>
+    <content><![CDATA[<p>最终都归结于<strong>指令系统</strong></p>
+<ol>
+<li><p><strong>运算器的功能</strong>：数据加工处理的部件</p>
+<p>数据处理：逻辑运算、算术运算</p>
+<ul>
+<li><p><strong>逻辑运算</strong>：逻辑指令、移位指令</p>
+<p>AND, OR, XOR, NOT, TEST（测试得到结果的状态）</p>
+<ul>
+<li><p><strong>移位指令</strong>：算术移位、逻辑移位</p>
+<p>算术移位：算术左、右移位；算术循环左、右移位；算术带进位循环左、右移位；</p>
+<p>逻辑移位：逻辑左、右移</p>
+</li>
+</ul>
+</li>
+<li><p><strong>算术运算</strong>：</p>
+<p>加法（进/不进位）</p>
+<p>减法（进/不进位）</p>
+<p>乘法、除法等各种算术类指令</p>
+<blockquote>
+<p>通过对数据处理的算法研究：加、减、乘、除运算，可以分解为移位（左、右）和加法两个基本操作；</p>
+<p><strong>移位操作</strong>简单，一个节拍——向左或向右</p>
+<p><strong>加法复杂</strong>，主要因素是<strong>进位时间</strong>的长短</p>
+</blockquote>
+<p>运算器是在<strong>指令的执行周期</strong>，对算术、逻辑运算类指令进行加工处理，计算机的核心部件。</p>
+<span id="more"></span>
+</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220406205210360.png" alt="image-20220406205210360" style="zoom:67%;" /></p>
+</li>
+<li><p><strong>运算器的分类</strong></p>
+<p>定点数运算器、浮点数运算器</p>
+<ul>
+<li><p><strong>定点数运算器</strong>（实现定点数运算），分为：整数定点运算器、小数定点运算器</p>
+<ul>
+<li>整数定点运算器：运算器处理的是纯整数</li>
+<li>小数定点运算器：运算器处理的是纯小数</li>
+</ul>
+<p>纯整数和纯小数都存在局限性，改进为浮点数运算，兼容定点数运算</p>
+</li>
+<li><p><strong>浮点数运算器</strong>（实现浮点数的运算）</p>
+<blockquote>
+<p>组成：<strong>尾数、阶码</strong>。前者本身是小数定点数，后者是整数定点数</p>
+</blockquote>
+<p>float的加减乘除都可以分解为尾数定点运算和阶码定点运算等步骤</p>
+<p>浮点数运算由定点数运算完成，故定点数的运算是运算器的基础</p>
+</li>
+<li><p>定点运算器与浮点运算器的比较</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220406210111941.png" alt="image-20220406210111941" style="zoom: 67%;" /></p>
+</li>
+</ul>
+</li>
+<li><p><strong>运算器组成</strong></p>
+<blockquote>
+<p>只有加法器也是可以通过编写程序来完成乘法和除法运算</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505211155320.png" alt="image-20220505211155320" style="zoom:80%;" /></p>
+<p>CPU的内部结构——示意图中缺少DMA控制器</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505211245016.png" alt="image-20220505211245016" style="zoom:80%;" /></p>
+<p>标志寄存器F</p>
+</li>
+</ol>
+<p>   <img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505211342200.png" alt="image-20220505211342200" style="zoom:80%;" /></p>
+<p>   标志位的作用</p>
+<p>   <img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505211426045.png" alt="image-20220505211426045" style="zoom:80%;" /></p>
+<blockquote>
+<p>PC：包含段寄存器</p>
+<p>FR：IF与中断允许触发器是同步的</p>
+<p>（OF溢出标志位）注：定点数的溢出——运算结果超过当前存放结果目标单元的容量</p>
+<p>溢出不一定有害——DMA中出现溢出通知CPU交权</p>
+<p>（CF进位/借位标志位）</p>
+<p>（SF结果的符号标志位）</p>
+<p>（PF结果1的偶标志位，否则PF置0）</p>
+<p>（ZF结果为0标志）</p>
+<p>（AF辅助进位标志B-D调整）</p>
+<p>（DF增量方式标志位）</p>
+<p>（IF中断允许标志位）</p>
+<p>（TF单步标志位）</p>
+</blockquote>
+<p>   <img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505211548160.png" alt="image-20220505211548160" style="zoom:80%;" /></p>
+<p>   <img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505211608109.png" alt="image-20220505211608109" style="zoom:80%;" /></p>
+<ol>
+<li><p><strong>运算器的设计与实现</strong></p>
+<ul>
+<li><p>确定数据表示方法，找出最优算法；</p>
+</li>
+<li><p>确定操作数获取、操作结果生成、结果状态的生成方法；</p>
+</li>
+<li><p>逻辑正确、时需配合正确、驱动合理；信号稳定、功耗低等；</p>
+</li>
+<li><p>确定运算器的体系结构：</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220406210233474.png" alt="image-20220406210233474" style="zoom: 67%;" /></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="6-1-无符号数和有符号数"><a href="#6-1-无符号数和有符号数" class="headerlink" title="6.1 无符号数和有符号数"></a>6.1 无符号数和有符号数</h2><h3 id="一、无符号数"><a href="#一、无符号数" class="headerlink" title="一、无符号数"></a>一、无符号数</h3><p>应用：存储器地址、I/O地址、指令代码、逻辑操作数等</p>
+<p><strong>寄存器的位数：反应无符号数的表示范围</strong></p>
+<p>通常称寄存器的位数为机器字长</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220406210447646.png" alt="image-20220406210447646" style="zoom:67%;" /></p>
+<h3 id="二、有符号数"><a href="#二、有符号数" class="headerlink" title="二、有符号数"></a>二、有符号数</h3><p>应用：相对地址值、立即数等</p>
+<h4 id="1-机器数与真值"><a href="#1-机器数与真值" class="headerlink" title="1. 机器数与真值"></a>1. 机器数与真值</h4><p>0表示正，1表示负</p>
+<blockquote>
+<p>使用一位或多位二进制数表示符号</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505211840675.png" alt="image-20220505211840675" style="zoom:80%;" /></p>
+<h4 id="2-原码表示法"><a href="#2-原码表示法" class="headerlink" title="2. 原码表示法"></a>2. 原码表示法</h4><ul>
+<li><p>整数原码定义</p>
+<script type="math/tex; mode=display">
+[x]_{原} = 
+\begin{cases}
+0,x \qquad 2^n > x \geq 0 \\
+2^n-x \qquad 0 \geq x > -2^n
+\end{cases}</script><blockquote>
+<p>x为真值，n为整数的位数</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220406210742718.png" alt="image-20220406210742718" style="zoom:67%;" /></p>
+</li>
+<li><p>小数的原码表示</p>
+<script type="math/tex; mode=display">
+[x]_{原} = 
+\begin{cases}
+x \qquad 1 > x \geq 0 \\
+1-x \qquad 0 \geq x > -1\\
+\end{cases}</script><blockquote>
+<p>x为真值</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220406211301317.png" alt="image-20220406211301317" style="zoom:67%;" /></p>
+</li>
+</ul>
+<blockquote>
+<p>0在原码中有两种表示方法：全0或者10000000</p>
+<p>即：在原码的有效编码中，“0”占两个编码值</p>
+</blockquote>
+<h4 id="3-反码表示法"><a href="#3-反码表示法" class="headerlink" title="3. 反码表示法"></a>3. 反码表示法</h4><ul>
+<li><p>整数定义</p>
+<script type="math/tex; mode=display">
+[x]_{反} = 
+\begin{cases}
+0,x \qquad 2^n > x \geq 0 \\
+(2^{n+1}-1)+x \qquad 0 \geq x > -2^n \quad (mod \ 2^{n+1}-1)
+\end{cases}</script><blockquote>
+<p>x为真值，n为整数的位数</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220406211718152.png" alt="image-20220406211718152" style="zoom:67%;" /></p>
+</li>
+<li><p>小数定义</p>
+<script type="math/tex; mode=display">
+[x]_{反} = 
+\begin{cases}
+x \qquad 1 > x \geq 0 \\
+(2-2^{-n}) + x \qquad 0 \geq x > -1 \quad (mod \ 2-2^{-n}) \\
+\end{cases}</script><blockquote>
+<p>x为真值，n为小数的位数</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220406211944750.png" alt="image-20220406211944750" style="zoom:67%;" /></p>
+<blockquote>
+<p>$[x]_{反}$有0,0000和1,1111两种形式</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="4-补码表示法"><a href="#4-补码表示法" class="headerlink" title="4. 补码表示法"></a>4. 补码表示法</h4><ul>
+<li><p>整数补码定义</p>
+<script type="math/tex; mode=display">
+[x]_{补} = 
+\begin{cases}
+0,x \qquad 2^n > x \geq 0 \\
+2^{n+1}+x \qquad 0 > x \geq -2^n \quad (mod \ 2^{n+1}) \\
+\end{cases}</script><blockquote>
+<p>x为真值，n为整数的位数</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220406212548206.png" alt="image-20220406212548206" style="zoom:67%;" /></p>
+</li>
+<li><p>小数补码定义</p>
+<script type="math/tex; mode=display">
+[x]_{补} = 
+\begin{cases}
+x \qquad 1 > x \geq 0 \\
+2+x \qquad 0 > x \geq -1 \quad (mod \ 2) \\
+\end{cases}</script><blockquote>
+<p>x为真值</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220406212715214.png" alt="image-20220406212715214" style="zoom:67%;" /></p>
+</li>
+<li><p>求补码的快捷方式：真值为正取自身，真值为负则取反+1</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220406212832689.png" alt="image-20220406212832689" style="zoom: 67%;" /></p>
+</li>
+</ul>
+<h4 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220406213401446.png" alt="image-20220406213401446" style="zoom:67%;" /></p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><ol>
+<li><p><strong>最高位为符号位</strong>，书写上用“,”（整数）或“.”（小数）将数值部分和符号位隔开</p>
+</li>
+<li><p>对于正数，<strong>原码= 补码 = 反码</strong></p>
+</li>
+<li><p>对于负数，符号位为1，其数值部分：</p>
+<p>补码：原码除符号，位外每位取反末位加1</p>
+<p>反码：原码除符号位外每位取反</p>
+</li>
+</ol>
+<h4 id="例题（必须掌握）"><a href="#例题（必须掌握）" class="headerlink" title="例题（必须掌握）"></a>例题（必须掌握）</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220406213644615.png" alt="image-20220406213644615" style="zoom: 67%;" /></p>
+<blockquote>
+<p>拓展：条件改为——对于小数</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">二进制代码</th>
+<th style="text-align:center">无符号数对应的真值</th>
+<th style="text-align:center">原码对应的真值</th>
+<th style="text-align:center">补码对应的真值</th>
+<th style="text-align:center">反码对应的真值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>00000000</strong></td>
+<td style="text-align:center">0.00000000</td>
+<td style="text-align:center">0.0000000</td>
+<td style="text-align:center">0.0000000</td>
+<td style="text-align:center">0.0000000</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>00000001</strong></td>
+<td style="text-align:center">0.00000001</td>
+<td style="text-align:center">0.0000001</td>
+<td style="text-align:center">0.0000001</td>
+<td style="text-align:center">0.0000001</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>00000010</strong></td>
+<td style="text-align:center">0.00000010</td>
+<td style="text-align:center">0.0000010</td>
+<td style="text-align:center">0.0000010</td>
+<td style="text-align:center">0.0000010</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>……</strong></td>
+<td style="text-align:center"><strong>……</strong></td>
+<td style="text-align:center"><strong>……</strong></td>
+<td style="text-align:center"><strong>……</strong></td>
+<td style="text-align:center"><strong>……</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>01111111</strong></td>
+<td style="text-align:center">0.01111111</td>
+<td style="text-align:center">0.1111111</td>
+<td style="text-align:center">0.1111111</td>
+<td style="text-align:center">0.1111111</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>10000000</strong></td>
+<td style="text-align:center">0.10000000</td>
+<td style="text-align:center">-0.0000000</td>
+<td style="text-align:center">1.0000000</td>
+<td style="text-align:center"><strong>不能表示</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>10000001</strong></td>
+<td style="text-align:center">0.10000001</td>
+<td style="text-align:center">-0.0000001</td>
+<td style="text-align:center">-0.1111111</td>
+<td style="text-align:center">-0.1111110</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>……</strong></td>
+<td style="text-align:center"><strong>……</strong></td>
+<td style="text-align:center"><strong>……</strong></td>
+<td style="text-align:center"><strong>……</strong></td>
+<td style="text-align:center"><strong>……</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>11111101</strong></td>
+<td style="text-align:center">0.11111101</td>
+<td style="text-align:center">-0.1111101</td>
+<td style="text-align:center">-0.0000011</td>
+<td style="text-align:center">-0.0000010</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>11111110</strong></td>
+<td style="text-align:center">0.11111110</td>
+<td style="text-align:center">-0.1111110</td>
+<td style="text-align:center">-0.0000010</td>
+<td style="text-align:center">-0.0000001</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>11111111</strong></td>
+<td style="text-align:center">0.11111111</td>
+<td style="text-align:center">-0.1111111</td>
+<td style="text-align:center">-0.0000001</td>
+<td style="text-align:center">-0.0000000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220406215229663.png" alt="image-20220406215229663" style="zoom: 67%;" /></p>
+<h2 id="6-2-数的定点表示和浮点表示"><a href="#6-2-数的定点表示和浮点表示" class="headerlink" title="6.2 数的定点表示和浮点表示"></a>6.2 数的定点表示和浮点表示</h2><blockquote>
+<p>定点数是重点，浮点数作了解</p>
+</blockquote>
+<p>注意点：</p>
+<ol>
+<li>浮点数的尾数S不能为全0</li>
+</ol>
+<h3 id="一、定点表示"><a href="#一、定点表示" class="headerlink" title="一、定点表示"></a>一、定点表示</h3><p>小数点固定在某一位置的数为定点数，有以下两种格式。</p>
+<blockquote>
+<p>小数点位于数符和第一数值位之间时，机器内的数为纯小数；</p>
+<p>小数点位于数值位之后时，机器内的数为纯整数。</p>
+</blockquote>
+<p>在定点机中，由于小数点的位置固定不变，故当机器处理的数不是纯小数或者纯整数时，必须乘上一个比例因子，否则会产生“溢出”</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412171431311.png" alt="image-20220412171431311" style="zoom:67%;" /></p>
+<h3 id="二、浮点表示"><a href="#二、浮点表示" class="headerlink" title="二、浮点表示"></a>二、浮点表示</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412171516631.png" alt="image-20220412171516631" style="zoom: 67%;" /></p>
+<h4 id="1-浮点数的表示形式"><a href="#1-浮点数的表示形式" class="headerlink" title="1. 浮点数的表示形式"></a>1. 浮点数的表示形式</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412171557311.png" alt="image-20220412171557311" style="zoom:67%;" /></p>
+<h4 id="2-浮点数的表示范围"><a href="#2-浮点数的表示范围" class="headerlink" title="2. 浮点数的表示范围"></a>2. 浮点数的表示范围</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412171631831.png" alt="image-20220412171631831" style="zoom:67%;" /></p>
+<h2 id="6-3-定点运算"><a href="#6-3-定点运算" class="headerlink" title="6.3 定点运算"></a>6.3 定点运算</h2><blockquote>
+<p>包括移位、加、减、乘、除</p>
+</blockquote>
+<h3 id="一、移位运算操作"><a href="#一、移位运算操作" class="headerlink" title="一、移位运算操作"></a>一、移位运算操作</h3><h4 id="1-算术移位方法"><a href="#1-算术移位方法" class="headerlink" title="1. 算术移位方法"></a>1. 算术移位方法</h4><p>算术左移、右移时符号位不变</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412171802533.png" alt="image-20220412171802533" style="zoom:80%;" /></p>
+<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><p>正数的算术移位运算</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412171835286.png" alt="image-20220412171835286" style="zoom: 67%;" /></p>
+<p>负数的算术移位运算</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412171850790.png" alt="image-20220412171850790" style="zoom:67%;" /></p>
+<p><strong>补码和反码</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412172001014.png" alt="image-20220412172001014" style="zoom:67%;" /></p>
+<h4 id="2-算术移位的原理"><a href="#2-算术移位的原理" class="headerlink" title="2. 算术移位的原理"></a>2. 算术移位的原理</h4><blockquote>
+<p>符号位保持不变：符号位的输出接到输入端</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411162154216.png" alt="image-20220411162154216" style="zoom: 80%;" /></p>
+<ul>
+<li>讨论移位丢掉1的情况</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411162555905.png" alt="image-20220411162555905" style="zoom:80%;" /></p>
+<blockquote>
+<p>思考：移位的硬件如何配置</p>
+</blockquote>
+<p>算术左移符号位SF移到进位/借位符号位CF中；右移最低位，移位到CF中。</p>
+<h4 id="3-逻辑移位的原理"><a href="#3-逻辑移位的原理" class="headerlink" title="3. 逻辑移位的原理"></a>3. 逻辑移位的原理</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412172059734.png" alt="image-20220412172059734" style="zoom: 80%;" /></p>
+<h4 id="4-算术移位指令、逻辑移位指令"><a href="#4-算术移位指令、逻辑移位指令" class="headerlink" title="4. 算术移位指令、逻辑移位指令"></a>4. 算术移位指令、逻辑移位指令</h4><blockquote>
+<p>RCL、RCR加上进位标志</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412172146255.png" alt="image-20220412172146255" style="zoom:80%;" /></p>
+<p>算术移位左移</p>
+<blockquote>
+<p>$D_0$的0不能从地线中获取，能够变化</p>
+</blockquote>
+<h3 id="二、定点数加、减法运算方法及实现"><a href="#二、定点数加、减法运算方法及实现" class="headerlink" title="二、定点数加、减法运算方法及实现"></a>二、定点数加、减法运算方法及实现</h3><h4 id="1-原码加减法算法特点"><a href="#1-原码加减法算法特点" class="headerlink" title="1. 原码加减法算法特点"></a>1. 原码加减法算法特点</h4><p><strong>原码加法特点</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412172303437.png" alt="image-20220412172303437" style="zoom:80%;" /></p>
+<p><strong>原码减法特点</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412172402863.png" alt="image-20220412172402863" style="zoom: 80%;" /></p>
+<p>原码和反码被淘汰的原因：两种情况，四种状态。功能部件多</p>
+<h4 id="2-补码加减法运算"><a href="#2-补码加减法运算" class="headerlink" title="2. 补码加减法运算"></a>2. 补码加减法运算</h4><h5 id="a-补码加减运算公式"><a href="#a-补码加减运算公式" class="headerlink" title="a. 补码加减运算公式"></a>a. 补码加减运算公式</h5><ol>
+<li><p><strong>加法</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411170416253.png" alt="image-20220411170416253" style="zoom: 80%;" /></p>
+</li>
+<li><p><strong>减法</strong></p>
+<blockquote>
+<p>B的补码和-B的补码</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412172437131.png" alt="image-20220412172437131" style="zoom:80%;" /></p>
+<p>特点：符号、数值一起参与运算；只做加法操作</p>
+</li>
+<li><p><strong>加法、减法指令</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412172536447.png" alt="image-20220412172536447" style="zoom:80%;" /></p>
+<blockquote>
+<p>ZF：零标志位。ZF=1，目标寄存器中的值全为0</p>
+<p>PF：奇偶标志位。PF=1，结果的所有bit位中1的个数为偶数</p>
+</blockquote>
+</li>
+</ol>
+<h5 id="b-举例"><a href="#b-举例" class="headerlink" title="b. 举例"></a>b. 举例</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412172628341.png" alt="image-20220412172628341" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412172644158.png" alt="image-20220412172644158" style="zoom: 67%;" /></p>
+<h5 id="c-溢出判断"><a href="#c-溢出判断" class="headerlink" title="c. 溢出判断"></a>c. 溢出判断</h5><blockquote>
+<p>实质：结果超过了数据存放的容量，放不下</p>
+</blockquote>
+<ol>
+<li><p><strong>一位符号位判溢出</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412172809098.png" alt="image-20220412172809098" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>两位符号位判溢出</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412172845737.png" alt="image-20220412172845737" style="zoom:80%;" /></p>
+</li>
+</ol>
+<blockquote>
+<p>两位符号位溢出：多占用一位数值位，高位。空间被压缩，效率低，设计简单；——能够知道溢出为正溢出还是负溢出</p>
+<p>一位符号位溢出：效率高，但电路复杂</p>
+<p>常采用1位符号位溢出</p>
+</blockquote>
+<h4 id="3-补码加、减法运算器设计"><a href="#3-补码加、减法运算器设计" class="headerlink" title="3. 补码加、减法运算器设计"></a>3. 补码加、减法运算器设计</h4><ol>
+<li><p><strong>加减运算器硬件组成</strong></p>
+<blockquote>
+<p>对比书和ppt中补码运算器结构示意图：不同在于ppt中的寄存器F。不能只关注溢出，关键是运算的结果处理，要对所有结果状态都要考虑到</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411173444528.png" alt="image-20220411173444528" style="zoom:80%;" /></p>
+<blockquote>
+<p>加法、减法，是否带进位</p>
+</blockquote>
+</li>
+<li><p><strong>多位并行加、减法运算的硬件原理</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220413161938766.png" alt="image-20220413161938766" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>补码加法、减法并行运算步骤分解</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220413162229840.png" alt="image-20220413162229840" style="zoom:80%;" /></p>
+<p>$N_1$时间比$N_0$短，因此按照$N_0$来计算。加法操作一个节拍无法完成，至少需要2个节拍。</p>
+<p>考虑进位链</p>
+<p>（此处放2张补码加减法实现图）</p>
+<p>节拍发生器</p>
+<p><strong>进位标志位CF</strong>与最高位的进位的值相同</p>
+<p><strong>符号标志位SF</strong>与最高位的值相同</p>
+<p><strong>零标志位ZF</strong>取n位的或非（有1，出1）</p>
+<p><strong>溢出标志位OF</strong>取$C_n$与$C_{n-1}$的异或</p>
+<p><strong>偶校验标志位PF</strong>取$A_n$到$A_0$的异或再取反送入输入端</p>
+<p><strong>辅助进位标志位AF</strong>：低四位运算（0,1,2,3），是3向4的进位（与CF相区别）</p>
+<blockquote>
+<p>AF辅助进位标志：在进行算术运算的时候，如果低字节中低4位产生进位或者借位的时候，则置1，否则置0。即当两个字节相加时，如果从第3位向第4位形成了进位，则AF=1</p>
+</blockquote>
+<p>（与逻辑图片）</p>
+<p>电路特点：标志触发器用于完成指令</p>
+<p>CF没有影响</p>
+<p>处理逻辑数</p>
+<p>OF没有影响，没有进位</p>
+<p>ZF有关系，所有位进行或运算</p>
+</li>
+<li><p><strong>状态寄存器各位生成方法及硬件实现</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220413173152581.png" alt="image-20220413173152581" style="zoom:80%;" /></p>
+</li>
+</ol>
+<h3 id="三、乘法运算"><a href="#三、乘法运算" class="headerlink" title="三、乘法运算"></a>三、乘法运算</h3><h4 id="1-分析笔算乘法"><a href="#1-分析笔算乘法" class="headerlink" title="1. 分析笔算乘法"></a>1. 分析笔算乘法</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220413173324978.png" alt="image-20220413173324978" style="zoom:80%;" /></p>
+<h4 id="2-笔算乘法改进"><a href="#2-笔算乘法改进" class="headerlink" title="2. 笔算乘法改进"></a>2. 笔算乘法改进</h4><blockquote>
+<p>A和B按照权重进行打开</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220413173505639.png" alt="image-20220413173505639" style="zoom:80%;" /></p>
+<p>加一位，右移一位</p>
+<h4 id="3-改进后的笔算乘法过程"><a href="#3-改进后的笔算乘法过程" class="headerlink" title="3. 改进后的笔算乘法过程"></a>3. 改进后的笔算乘法过程</h4><p>两个寄存器：部分积和乘数。把符号位去掉，绝对值相乘。最后空出最高位，用于符号位。</p>
+<p>每次执行的过程：①若乘数最右位为1，部分积加上被乘数，部分积右移（末位移到乘数寄存器的高位）；②乘数右移，继续执行①，直到原乘数全部移出</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220413173713347.png" alt="image-20220413173713347" style="zoom:80%;" /></p>
+<h4 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h4><p>全加器的个数与位数有关</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220413174252314.png" alt="image-20220413174252314" style="zoom:80%;" /></p>
+<h4 id="4-原码乘法"><a href="#4-原码乘法" class="headerlink" title="4. 原码乘法"></a>4. 原码乘法</h4><ol>
+<li><p>原码一位乘运算规则</p>
+<blockquote>
+<p>特点：</p>
+<p>①绝对值运算</p>
+<p>②用移位的次数判断乘法是否结束</p>
+<p>③逻辑移位</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418160616645.png" alt="image-20220418160616645" style="zoom:80%;" /></p>
+</li>
+<li><p>原码一位乘递推公式</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418160642037.png" alt="image-20220418160642037" style="zoom:80%;" /></p>
+</li>
+<li><p>原码一位乘的硬件配置</p>
+<blockquote>
+<p>开始准备阶段，存放部分累加和的A寄存器和计数器C清零。放数：被乘数原码放在X，乘数原码放在Q。</p>
+<p>Q的最低位$Q_n$是Q末尾的输出，判断是否进行加被乘数的运算（1-A加X，0-A加0）。</p>
+<p>结束后，把符号位S取出来，放到A的最高位$A_0$。还要把乘法标记$G_M$清零</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418161346366.png" alt="image-20220418161346366" style="zoom:80%;" /></p>
+<blockquote>
+<p>上面的配置图还需要<strong>节拍发生器</strong>来控制系统稳定工作</p>
+<p>节拍有两种：①生成部分积；②右移，前者节拍时间更长；在实际过程中，使用前者节拍作为节拍发生器的节拍。</p>
+</blockquote>
+<p>有很多附加动作，消耗时间大</p>
+</li>
+</ol>
+<h4 id="5-补码乘法"><a href="#5-补码乘法" class="headerlink" title="5. 补码乘法"></a>5. 补码乘法</h4><ol>
+<li><p>补码一位乘运算规则</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418164234429.png" alt="image-20220418164234429" style="zoom:80%;" /></p>
+<ul>
+<li>Booth算法（被乘数、乘数符号任意）</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418164413023.png" alt="image-20220418164413023" style="zoom:80%;" /></p>
+<ul>
+<li>Booth算法递推公式</li>
+</ul>
+<blockquote>
+<p>后项减前项结果决定是否加x补码或者-x补码或者不加，然后右移</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418164627575.png" alt="image-20220418164627575" style="zoom:80%;" /></p>
+<ol>
+<li><p><strong>例题</strong></p>
+<blockquote>
+<p>移位4次，求和5次（乘数符号位参与）</p>
+<p>补码右移用符号位的数值补高位</p>
+<p>最后一次影响精度</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418164915035.png" alt="image-20220418164915035" style="zoom:80%;" /></p>
+</li>
+</ol>
+</li>
+<li><p>Booth算法的硬件配置</p>
+<blockquote>
+<p>输出负数的补码：接到负输出端，末位+1</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418170642139.png" alt="image-20220418170642139" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418171739880.png" alt="image-20220418171739880" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418172034885.png" alt="image-20220418172034885" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418172143592.png" alt="image-20220418172143592" style="zoom:67%;" /></p>
+</li>
+</ol>
+<h4 id="乘法小结"><a href="#乘法小结" class="headerlink" title="乘法小结"></a>乘法小结</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418171322634.png" alt="image-20220418171322634" style="zoom:80%;" /></p>
+<h3 id="四、除法运算"><a href="#四、除法运算" class="headerlink" title="四、除法运算"></a>四、除法运算</h3><h4 id="1-分析笔算除法"><a href="#1-分析笔算除法" class="headerlink" title="1. 分析笔算除法"></a>1. 分析笔算除法</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418173057291.png" alt="image-20220418173057291" style="zoom:80%;" /></p>
+<h4 id="2-笔算除法和机器除法的比较"><a href="#2-笔算除法和机器除法的比较" class="headerlink" title="2. 笔算除法和机器除法的比较"></a>2. 笔算除法和机器除法的比较</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418173159908.png" alt="image-20220418173159908" style="zoom:80%;" /></p>
+<h4 id="3-原码除法"><a href="#3-原码除法" class="headerlink" title="3. 原码除法"></a>3. 原码除法</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418173420700.png" alt="image-20220418173420700" style="zoom:80%;" /></p>
+<ol>
+<li><p>恢复余数法</p>
+<blockquote>
+<p>特点：<strong>硬件无法实现</strong></p>
+<p>被除数和商都左移一位，商寄存器留出低位。</p>
+<p>每次出来一位结果放在商寄存器的低位。</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418174058127.png" alt="image-20220418174058127" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418174114824.png" alt="image-20220418174114824" style="zoom:80%;" /></p>
+</li>
+<li><p>不恢复余数法</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418174349585.png" alt="image-20220418174349585" style="zoom:80%;" /></p>
+</li>
+</ol>
+<h2 id="6-4-浮点四则运算"><a href="#6-4-浮点四则运算" class="headerlink" title="6.4 浮点四则运算"></a>6.4 浮点四则运算</h2><h3 id="一、浮点加减运算"><a href="#一、浮点加减运算" class="headerlink" title="一、浮点加减运算"></a>一、浮点加减运算</h3><script type="math/tex; mode=display">
+x=S_x \times 2^{j_x} \qquad y=S_y \times 2^{j_y}</script><h4 id="1-对阶"><a href="#1-对阶" class="headerlink" title="1. 对阶"></a>1. 对阶</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505215331498.png" alt="image-20220505215331498" style="zoom:80%;" /></p>
+<h4 id="2-尾数求和"><a href="#2-尾数求和" class="headerlink" title="2. 尾数求和"></a>2. 尾数求和</h4><p>（举例）</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505215419266.png" alt="image-20220505215419266" style="zoom:80%;" /></p>
+<h4 id="3-规格化"><a href="#3-规格化" class="headerlink" title="3. 规格化"></a>3. 规格化</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505215403126.png" alt="image-20220505215403126" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505215449370.png" alt="image-20220505215449370" style="zoom:80%;" /></p>
+<p>（例题6.27）</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505215514122.png" alt="image-20220505215514122" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505215554895.png" alt="image-20220505215554895" style="zoom:80%;" /></p>
+<h4 id="4-舍入"><a href="#4-舍入" class="headerlink" title="4. 舍入"></a>4. 舍入</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505215541803.png" alt="image-20220505215541803" style="zoom:80%;" /></p>
+<h4 id="5-溢出判断"><a href="#5-溢出判断" class="headerlink" title="5. 溢出判断"></a>5. 溢出判断</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505215622898.png" alt="image-20220505215622898" style="zoom:80%;" /></p>
+<h3 id="二、浮点乘除运算"><a href="#二、浮点乘除运算" class="headerlink" title="二、浮点乘除运算"></a>二、浮点乘除运算</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420162715858.png" alt="image-20220420162715858" style="zoom:80%;" /></p>
+<blockquote>
+<p>硬件复杂一些</p>
+</blockquote>
+<p>掌握程度：浮点数运算的步骤。</p>
+<p>加减：把阶放成相同</p>
+<p>乘除：两个定点数运算</p>
+<h2 id="6-5-算术逻辑单元"><a href="#6-5-算术逻辑单元" class="headerlink" title="6.5 算术逻辑单元"></a>6.5 算术逻辑单元</h2><p><strong>解决问题</strong>：移位、算术运算</p>
+<h3 id="一、ALU电路"><a href="#一、ALU电路" class="headerlink" title="一、ALU电路"></a>一、ALU电路</h3><blockquote>
+<p>74181</p>
+<p>$S_3-S_0$控制译码</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420163028296.png" alt="image-20220420163028296" style="zoom:80%;" /></p>
+<h3 id="二、快速进位链"><a href="#二、快速进位链" class="headerlink" title="二、快速进位链"></a>二、快速进位链</h3><h4 id="1-并行加法器"><a href="#1-并行加法器" class="headerlink" title="1.并行加法器"></a>1.并行加法器</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420163348777.png" alt="image-20220420163348777" style="zoom:80%;" /></p>
+<h4 id="2-串行进位链"><a href="#2-串行进位链" class="headerlink" title="2.串行进位链"></a>2.串行进位链</h4><blockquote>
+<p>注意串行进位链的延时</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420163512250.png" alt="image-20220420163512250" style="zoom:80%;" /></p>
+<h4 id="3-并行进位链（先行进位，跳跃进位）"><a href="#3-并行进位链（先行进位，跳跃进位）" class="headerlink" title="3.并行进位链（先行进位，跳跃进位）"></a>3.并行进位链（先行进位，跳跃进位）</h4><blockquote>
+<p>二级进位，最慢的是与或非门加上与非门，一共2.5$t_y$</p>
+<p>电路复杂，速度快</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420163858209.png" alt="image-20220420163858209" style="zoom:80%;" /></p>
+<ol>
+<li><p><strong>单重分组跳跃进位链</strong></p>
+<p>组内并行进位，组间串行进位</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420164338906.png" alt="image-20220420164338906" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>双重分组跳跃进位链</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505223944688.png" alt="image-20220505223944688" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>双重分组跳跃进位链：大组进位分析</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505224049764.png" alt="image-20220505224049764" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>双重分组跳跃进位链的大组进位线路</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505224132552.png" alt="image-20220505224132552" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>双重分组跳跃进位链的小组进位线路</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505224213231.png" alt="image-20220505224213231" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>n=16双重分组跳跃进位链</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505224248672.png" alt="image-20220505224248672" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>n=32双重分组跳跃进位链</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505224316996.png" alt="image-20220505224316996" style="zoom:80%;" /></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>computer organization</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/undefined/hello-world/</url>
     <content><![CDATA[<p>你好，Hexo！你好，世界！</p>
 <p>欢迎来到我的博客</p>
 <p>我将持续记录日常学习、生活的点点滴滴</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>计算机组成原理：第7章 指令系统</title>
+    <url>/computer_organization/computer-organization-ch7/</url>
+    <content><![CDATA[<p>计算机的最高指挥：晶振——产生指令。</p>
+<p>计算机在指令驱动下运行。指令组成程序</p>
+<h2 id="7-1-机器指令"><a href="#7-1-机器指令" class="headerlink" title="7.1 机器指令"></a>7.1 机器指令</h2><p>机器语言：由一条条语句构成，每一条语句又能准确表达某种语义</p>
+<p>机器指令：每一条机器语言的语句</p>
+<p>指令系统：全部机器指令的集合</p>
+<span id="more"></span>
+<h3 id="一、指令的一般格式"><a href="#一、指令的一般格式" class="headerlink" title="一、指令的一般格式"></a>一、指令的一般格式</h3><h4 id="1-操作码"><a href="#1-操作码" class="headerlink" title="1.操作码"></a>1.操作码</h4><p>反映机器做什么操作</p>
+<blockquote>
+<p>用来指明该指令所要完成的操作，</p>
+<p>如：加法、减法、传送、移位、转移等</p>
+</blockquote>
+<p>位数反映操作种类（机器允许的指令条数）</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503140908602.png" alt="image-20220503140908602" style="zoom: 50%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503141005021.png" alt="image-20220503141005021" style="zoom: 50%;" /></p>
+<p>三地址指令操作码每减少一种可多构成$2^4$种二地址指令</p>
+<p>二地址指令操作码每减少一种可多构成$2^4$种一地址指令</p>
+<h4 id="2-地址码"><a href="#2-地址码" class="headerlink" title="2.地址码"></a>2.地址码</h4><p>用来指出该指令的源操作数的地址（一个或两个）、结果的地址以及下一条指令的地址。</p>
+<blockquote>
+<p>“地址”可以是主存的地址，也可以是寄存器的地址，I/O设备的地址</p>
+</blockquote>
+<h5 id="1-四地址"><a href="#1-四地址" class="headerlink" title="1. 四地址"></a>1. 四地址</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503141141637.png" alt="image-20220503141141637" style="zoom: 50%;" /></p>
+<h5 id="2-三地址"><a href="#2-三地址" class="headerlink" title="2. 三地址"></a>2. 三地址</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503141155067.png" alt="image-20220503141155067" style="zoom: 50%;" /></p>
+<h5 id="3-二地址"><a href="#3-二地址" class="headerlink" title="3. 二地址"></a>3. 二地址</h5><p>4次：取A1，A2，写A1，取指令</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503142230997.png" alt="image-20220503142230997" style="zoom: 50%;" /></p>
+<h5 id="4-一地址"><a href="#4-一地址" class="headerlink" title="4. 一地址"></a>4. 一地址</h5><p>2次：取A1，取指令</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503143841338.png" alt="image-20220503143841338" style="zoom: 50%;" /></p>
+<h5 id="5-零地址"><a href="#5-零地址" class="headerlink" title="5. 零地址"></a>5. 零地址</h5><p>子程序返回（RET）、中断返回（IRET）——没有地址码，操作数的地址隐含在堆栈指针SP中</p>
+<h3 id="二、指令字长"><a href="#二、指令字长" class="headerlink" title="二、指令字长"></a>二、指令字长</h3><p>指令字长取决于$\begin{cases} 操作码的长度\\ 操作数地址的长度 \\ 操作数地址的个数 \\  \end{cases}$</p>
+<ol>
+<li><p>指令字长<strong>固定</strong></p>
+<p>指令字长=存储字长</p>
+<blockquote>
+<p>早期的计算机，访问某个存储单元便可取出一条完整的指令或一个完整的数据。控制方式简单</p>
+</blockquote>
+</li>
+<li><p>指令字长<strong>可变</strong></p>
+<p>按字节的倍数变化</p>
+<blockquote>
+<p>为了提高指令的运行速度和节省存储空间，通常尽可能把常用的指令（如：数据传送指令、算逻运算指令等）设计成单字长或短字长格式的指令</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>小结</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503144647612.png" alt="image-20220503144647612" style="zoom: 50%;" /></p>
+<h2 id="7-2-操作数类型和操作类型"><a href="#7-2-操作数类型和操作类型" class="headerlink" title="7.2 操作数类型和操作类型"></a>7.2 操作数类型和操作类型</h2><h3 id="一、操作数类型"><a href="#一、操作数类型" class="headerlink" title="一、操作数类型"></a>一、操作数类型</h3><p>常见的操作数类型：地址、数字、字符、逻辑数据</p>
+<ul>
+<li><strong>地址</strong>：无符号的整数。涉及操作数地址的计算</li>
+<li><strong>数字</strong>：定点数、浮点数和十进制数</li>
+<li><strong>字符</strong>：普遍采用ASCII码</li>
+<li><strong>逻辑数据</strong>：</li>
+</ul>
+<h3 id="二、数据在存储器中的存放方式"><a href="#二、数据在存储器中的存放方式" class="headerlink" title="二、数据在存储器中的存放方式"></a>二、数据在存储器中的存放方式</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503150538893.png" alt="image-20220503150538893" style="zoom: 50%;" /></p>
+<h3 id="三、操作类型"><a href="#三、操作类型" class="headerlink" title="三、操作类型"></a>三、操作类型</h3><h4 id="1-数据传送"><a href="#1-数据传送" class="headerlink" title="1. 数据传送"></a>1. 数据传送</h4><p>包括：<strong>寄存器与寄存器</strong>、<strong>寄存器与存储单元</strong>、<strong>存储单元与存储单元</strong>之间的传送。</p>
+<blockquote>
+<p>如：从源到目的之间的传送、对存储器读（LOAD）和写（STORE）、交换源和目的的内容、置1、清0、进栈、出栈等</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171448556.png" alt="image-20220420171448556" style="zoom: 80%;" /></p>
+<h4 id="2-算术逻辑操作"><a href="#2-算术逻辑操作" class="headerlink" title="2. 算术逻辑操作"></a>2. 算术逻辑操作</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171520628.png" alt="image-20220420171520628" style="zoom:80%;" /></p>
+<h4 id="3-移位操作"><a href="#3-移位操作" class="headerlink" title="3. 移位操作"></a>3. 移位操作</h4><blockquote>
+<p>移位操作所需时间远比乘除操作执行时间短，用来代替简单的乘法和除法运算</p>
+</blockquote>
+<ul>
+<li>算术移位：对<strong>有符号数</strong>的乘/除以2的运算</li>
+<li>逻辑移位：<strong>无符号数</strong></li>
+<li>循环移位（带进位和不带进位）</li>
+</ul>
+<h4 id="4-转移"><a href="#4-转移" class="headerlink" title="4. 转移"></a>4. 转移</h4><p>多数情况下，计算机按照顺序执行程序的每条指令，但有时需要改变顺序，采用<strong>转移类指令来完成</strong></p>
+<p>分为：无条件转移、条件转移、跳转、过程调用与返回、陷阱等</p>
+<ul>
+<li><p><strong>无条件转移</strong></p>
+<p>不受任何条件约束，可直接把程序转移到下一条需执行指令的地址</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">JMP X	;将指令地址无条件转至X</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>条件转移</strong></p>
+<p>根据当前指令的执行结果来决定是否需要转移。</p>
+<p>若条件满足，则转移；不满足，则继续按顺序执行。</p>
+<p>一般机器都能提供一些条件码，这些条件码是某些操作的结果</p>
+<blockquote>
+<p>如：对于</p>
+<p>零标志位ZF，结果为0，ZF=1；</p>
+<p>负标志位SF，结果为负，SF=1；</p>
+<p>溢出标志位OF，结果有溢出，OF=1；</p>
+<p>进位标志位CF，最高位有进位，CF=1；</p>
+<p>奇偶标志位PF，结果呈偶数，PF=1；</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">BRO X	; 若结果（有符号数）溢出(OF)，则指令跳转到X</span><br><span class="line">BRC Y	; 若最高位有进位(CF)，则指令跳转到Y</span><br><span class="line">SKP DZ ; 暗示其下一条指令将被跳过，隐含了转移地址是SKP后的第二条指令，条件是完成触发器D为0</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171635065.png" alt="image-20220420171635065" style="zoom:80%;" /></p>
+<ul>
+<li><p><strong>调用和返回</strong></p>
+<blockquote>
+<p>类似中断</p>
+</blockquote>
+<p>在编写程序时，有些具有特定功能的程序段会被反复使用。为避免重复编写，可将这些程序段设定为独立子程序，当需要执行某子程序时，只需子程序调用指令即可。</p>
+</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171657961.png" alt="image-20220420171657961" style="zoom:80%;" /></p>
+<ul>
+<li><p><strong>陷阱（Trap）与陷阱指令</strong></p>
+<p>陷阱时一种意外事故的中断</p>
+<blockquote>
+<p>如，机器在运行中，可能会出现电源电压不稳定、存储器校验出差错、输入输出设备出现了故障、用户使用未被定义的指令、除数出现0、运算结果溢出、特权指令等</p>
+</blockquote>
+<p>致使计算机不能正常工作，采取措施，发出陷阱信号。暂停当前程序的执行，转入故障处理程序，进行相应的故障处理。</p>
+</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171756033.png" alt="image-20220420171756033" style="zoom:80%;" /></p>
+<h4 id="5-输入输出"><a href="#5-输入输出" class="headerlink" title="5.输入输出"></a>5.输入输出</h4><blockquote>
+<p>AL是8bit，AX是16bit</p>
+<p>输入：端口送入CPU</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171857720.png" alt="image-20220420171857720" style="zoom:80%;" /></p>
+<h2 id="7-3-寻址方式"><a href="#7-3-寻址方式" class="headerlink" title="7.3 寻址方式"></a>7.3 寻址方式</h2><blockquote>
+<p>已知指令的顺序寻址、中断隐指令、开机第一条指令</p>
+</blockquote>
+<p>开机第一条指令的位置：FFFFFFF0</p>
+<p>0xFFFF0 指令：跳转到F000:EO5B</p>
+<blockquote>
+<p>参考资料：<a href="https://blog.csdn.net/u010383242/article/details/50586782">开机后的第一条指令</a></p>
+</blockquote>
+<p>中断隐指令怎么找</p>
+<h3 id="一、指令寻址"><a href="#一、指令寻址" class="headerlink" title="一、指令寻址"></a>一、指令寻址</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153526386.png" alt="image-20220503153526386" style="zoom: 50%;" /></p>
+<h3 id="二、数据寻址"><a href="#二、数据寻址" class="headerlink" title="二、数据寻址"></a>二、数据寻址</h3><p>指令字中必须设一字段来指明属于哪一种寻址方式——<strong>寻址特征位</strong>，记作M</p>
+<p>指令的地址码字段通常都不代表操作数的真实地址，把它称为<strong>形式地址</strong>，记作A</p>
+<p>操作数的真实地址称为<strong>有效地址</strong>，记作EA</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153543995.png" alt="image-20220503153543995" style="zoom: 50%;" /></p>
+<blockquote>
+<p>假设指令字长、存储字长、机器字长均相同</p>
+</blockquote>
+<h4 id="1-立即寻址"><a href="#1-立即寻址" class="headerlink" title="1. 立即寻址"></a>1. 立即寻址</h4><p>特点：操作数本身设在指令字内，即：<strong>形式地址A不是操作数的地址，而是操作数本身，又称之为立即数</strong></p>
+<blockquote>
+<p>立即数是有符号数，以<strong>补码</strong>形式保存</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153600596.png" alt="image-20220503153600596" style="zoom: 50%;" /></p>
+<p>优点：只要取出指令，便可立即获得操作数，在执行阶段不必再访问存储器</p>
+<p>A的位数限制立即数的范围。</p>
+<h4 id="2-直接寻址"><a href="#2-直接寻址" class="headerlink" title="2. 直接寻址"></a>2. 直接寻址</h4><p>特点：指令字中的形式地址A就是操作数的真实地址EA，即：EA=A</p>
+<blockquote>
+<p>有效地址由形式地址直接给出</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153713905.png" alt="image-20220503153713905" style="zoom: 50%;" /></p>
+<p>优点：寻找操作数简单，不需要专门计算操作数的地址，在指令执行阶段对主存只访问一次。</p>
+<p>A的位数限制了操作数的寻址范围，而且必须修改A的值才能修改操作数的地址。</p>
+<h4 id="3-隐含寻址"><a href="#3-隐含寻址" class="headerlink" title="3. 隐含寻址"></a>3. 隐含寻址</h4><blockquote>
+<p>操作数地址隐含在操作码或某个寄存器中</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154526162.png" alt="image-20220503154526162" style="zoom:50%;" /></p>
+<h4 id="4-间接寻址"><a href="#4-间接寻址" class="headerlink" title="4. 间接寻址"></a>4. 间接寻址</h4><blockquote>
+<p>有效地址由形式地址间接给出。</p>
+<p>类似于指针，有效地址是形式地址单元的数值</p>
+<p>2次访存</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154543218.png" alt="image-20220503154543218" style="zoom: 50%;" /></p>
+<h4 id="5-寄存器寻址"><a href="#5-寄存器寻址" class="headerlink" title="5. 寄存器寻址"></a>5. 寄存器寻址</h4><blockquote>
+<p>有效地址即为寄存器编号</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154600520.png" alt="image-20220503154600520" style="zoom:50%;" /></p>
+<h4 id="6-寄存器间接寻址"><a href="#6-寄存器间接寻址" class="headerlink" title="6. 寄存器间接寻址"></a>6. 寄存器间接寻址</h4><blockquote>
+<p>有效地址在寄存器内（访问寄存器内容）</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154617609.png" alt="image-20220503154617609" style="zoom: 50%;" /></p>
+<h4 id="7-基址寻址"><a href="#7-基址寻址" class="headerlink" title="7. 基址寻址"></a>7. 基址寻址</h4><ol>
+<li><p>采用专用寄存器作基址寄存器</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154638769.png" alt="image-20220503154638769" style="zoom:50%;" /></p>
+</li>
+<li><p>采用通用寄存器$R_0$作基址寄存器</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154658187.png" alt="image-20220503154658187" style="zoom:50%;" /></p>
+</li>
+</ol>
+<h4 id="8-变址寻址"><a href="#8-变址寻址" class="headerlink" title="8. 变址寻址"></a>8. 变址寻址</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154716131.png" alt="image-20220503154716131" style="zoom:50%;" /></p>
+<h4 id="9-相对寻址"><a href="#9-相对寻址" class="headerlink" title="9. 相对寻址"></a>9. 相对寻址</h4><blockquote>
+<p>EA=(PC)+A，A是相对与当前指令的位移量</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154737331.png" alt="image-20220503154737331" style="zoom:50%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154815612.png" alt="image-20220503154815612" style="zoom:50%;" /></p>
+<h4 id="10-堆栈寻址"><a href="#10-堆栈寻址" class="headerlink" title="10. 堆栈寻址"></a>10. 堆栈寻址</h4><blockquote>
+<p>堆栈指令调用内存（堆栈指令或者内存单元操作）</p>
+</blockquote>
+<p>是一种数据格式</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154832850.png" alt="image-20220503154832850" style="zoom:80%;" /></p>
+<h2 id="7-4-指令格式举例"><a href="#7-4-指令格式举例" class="headerlink" title="7.4 指令格式举例"></a>7.4 指令格式举例</h2><h3 id="一、设计指令格式时应考虑的因素"><a href="#一、设计指令格式时应考虑的因素" class="headerlink" title="一、设计指令格式时应考虑的因素"></a>一、设计指令格式时应考虑的因素</h3><h4 id="1-指令系统的兼容性"><a href="#1-指令系统的兼容性" class="headerlink" title="1. 指令系统的兼容性"></a>1. 指令系统的兼容性</h4><p>向上兼容</p>
+<h4 id="2-其他因素"><a href="#2-其他因素" class="headerlink" title="2. 其他因素"></a>2. 其他因素</h4><ul>
+<li><strong>操作类型</strong>：包括指令个数及操作的难易程度</li>
+<li><strong>数据类型</strong>：确定哪些数据类型可参与操作</li>
+<li><strong>指令格式</strong>：指令字长是否固定；操作码位数、是否采用扩展操作码技术，地址码位数、地址个数、寻址方式类型</li>
+<li><strong>寻址方式</strong>：指令寻址、操作数寻址</li>
+<li><strong>寄存器个数</strong>：寄存器的多少直接影响指令的执行时间</li>
+</ul>
+<h3 id="二、指令格式举例"><a href="#二、指令格式举例" class="headerlink" title="二、指令格式举例"></a>二、指令格式举例</h3><ol>
+<li><p>PDP-8</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155132681.png" alt="image-20220503155132681" style="zoom:50%;" /></p>
+</li>
+<li><p>PDP-11</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424161443696.png" alt="image-20220424161443696" style="zoom: 80%;" /></p>
+</li>
+<li><p>IBM 360</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424161616537.png" alt="image-20220424161616537" style="zoom:80%;" /></p>
+</li>
+<li><p>Intel 8086</p>
+<blockquote>
+<p>零地址是空操作数</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424161810340.png" alt="image-20220424161810340" style="zoom:80%;" /></p>
+</li>
+</ol>
+<blockquote>
+<p>要求：条件一定，写出指令格式</p>
+</blockquote>
+<h2 id="考试题型总结——设计指令系统"><a href="#考试题型总结——设计指令系统" class="headerlink" title="考试题型总结——设计指令系统"></a>考试题型总结——设计指令系统</h2><p>操作码多少位</p>
+<p>寻址特征位（是否选择——硬件设计有关）</p>
+<p>M寻址特征位</p>
+<p>A形式地址</p>
+<h2 id="7-5-RISC技术"><a href="#7-5-RISC技术" class="headerlink" title="7.5 RISC技术"></a>7.5 RISC技术</h2><p>RISC(Reduced Instruction set computer)</p>
+<p>硬件简单，寻址方式、指令砍掉，无法运行CISC程序，因此不易指令系统兼容</p>
+<h3 id="一、RISC-的产生和发展"><a href="#一、RISC-的产生和发展" class="headerlink" title="一、RISC 的产生和发展"></a>一、RISC 的产生和发展</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155316293.png" alt="image-20220503155316293" style="zoom:50%;" /></p>
+<h3 id="二、RISC-的主要特征"><a href="#二、RISC-的主要特征" class="headerlink" title="二、RISC 的主要特征"></a>二、RISC 的主要特征</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155338256.png" alt="image-20220503155338256" style="zoom:50%;" /></p>
+<h3 id="三、CISC-的主要特征"><a href="#三、CISC-的主要特征" class="headerlink" title="三、CISC 的主要特征"></a>三、CISC 的主要特征</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155402226.png" alt="image-20220503155402226" style="zoom: 50%;" /></p>
+<h3 id="四、RISC和CISC-的比较"><a href="#四、RISC和CISC-的比较" class="headerlink" title="四、RISC和CISC 的比较"></a>四、RISC和CISC 的比较</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155423222.png" alt="image-20220503155423222" style="zoom:50%;" /></p>
+]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>computer organization</tag>
+      </tags>
   </entry>
   <entry>
     <title>数理逻辑：绪论</title>
@@ -4672,7 +4995,8 @@ conclusions 结论 \quad （命题）\\</script><span id="more"></span>
 <ul>
 <li><p>集合</p>
 <p>集合S上的（n元）关系R</p>
-<p>外延</p>
+<p>外延：具有概念所反映的特有属性的所有事物</p>
+<p>内涵：概念中所反映事物的特有属性</p>
 </li>
 <li><p>归纳定义和归纳证明</p>
 </li>
@@ -4686,6 +5010,884 @@ conclusions 结论 \quad （命题）\\</script><span id="more"></span>
       </categories>
       <tags>
         <tag>mathematical logic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机组成原理：第5章 输入输出系统</title>
+    <url>/computer_organization/computer-organization-ch5/</url>
+    <content><![CDATA[<p>除了CPU和存储器两大模块外，计算机硬件系统的第三个关键部分是<strong>输入输出模块</strong>，又称输入输出系统。</p>
+<p>本章重点分析I/O设备与主机交换信息的三种控制方式（程序查询、中断、DMA）及其相应的接口功能和组成。主要介绍<strong>接口和DMA阶段</strong>的I/O系统</p>
+<p><strong>每一节要求掌握的程度</strong>：硬件什么样，软件程序如何配合完成数据的输入输出</p>
+<span id="more"></span>
+<h2 id="5-1-概述"><a href="#5-1-概述" class="headerlink" title="5.1 概述"></a>5.1 概述</h2><p>I/O设备的独立性越来越强。</p>
+<h3 id="一、I-O系统的发展概况"><a href="#一、I-O系统的发展概况" class="headerlink" title="一、I/O系统的发展概况"></a>一、I/O系统的发展概况</h3><ol>
+<li><p><strong>早期阶段</strong>（程序查询方式）</p>
+<p>I/O设备与主存交换信息都是通过CPU才能完成交换。</p>
+<p>每个I/O设备都必须配有一套独立的逻辑电路与CPU相连。 </p>
+<p>输入输出过程穿插在CPU执行程序过程中进行的，当I/O设备与主机交换信息时，CPU不得不停止各种运算，按<strong>串行</strong>方式工作，极浪费时间。</p>
+<p>每个I/O逻辑控制电路与CPU的控制器紧密构成一个不可分割的整体，彼此依赖，相互牵连。难以增添、撤减设备。</p>
+</li>
+<li><p><strong>接口模块和DMA阶段</strong>（中断方式和DMA方式）</p>
+<p>DMA：存储器直接输入输出方式</p>
+<p>I/O设备通过接口模块与主机相连，采用<strong>总线连接</strong>方式</p>
+<blockquote>
+<p>I/O接口、DMA控制器与主机、CPU相互配合完成数据的输入和输出</p>
+<p>连接方式变化：采用总线方式连接。I/O设备通过接口连接在总线上。一个总线连接多个设备</p>
+</blockquote>
+<p>CPU和I/O设备<strong>并行</strong>工作$\begin{cases} 中断方式 \\ DMA方式 \end{cases}$</p>
+<blockquote>
+<p>DMA在系统中可以有多个</p>
+</blockquote>
+</li>
+<li><p><strong>通道结构的阶段</strong>（中大型计算机）</p>
+<blockquote>
+<p>通道用来负责管理I/O设备以及实现主存与I/O设备之间交换信息的部件，视为具有特殊功能的处理器。</p>
+<p>通道有专用的通道指令，能独立地执行用通道指令编写的输入输出程序，但不是完全独立的处理器。（从属于CPU的专用的处理器）</p>
+</blockquote>
+<p>依赖通道管理的I/O设备在与主机交换信息时，CPU不直接参与管理，故提高了CPU的资源利用率。</p>
+</li>
+<li><p><strong>I/O处理机</strong></p>
+<p>（又称“外围处理及”Peripheral Processor）</p>
+<p>在没有处理器的情况下可以作为主机完成任务</p>
+</li>
+</ol>
+<h3 id="二、输入输出系统的组成"><a href="#二、输入输出系统的组成" class="headerlink" title="二、输入输出系统的组成"></a>二、输入输出系统的组成</h3><h4 id="1-I-O软件"><a href="#1-I-O软件" class="headerlink" title="1.I/O软件"></a>1.I/O软件</h4><blockquote>
+<p>功能：</p>
+<p>(1). 将用户编制的程序（或数据）输入到主机内</p>
+<p>(2). 将运算结果输出给用户</p>
+<p>(3). 实现输入输出系统和主机工作的协调</p>
+</blockquote>
+<ul>
+<li><p>指令</p>
+<ul>
+<li>对于接口模块方式，采用<strong>I/O指令</strong>完成</li>
+<li>对于通道管理模式，需要<strong>I/O指令</strong>和<strong>通道指令</strong></li>
+</ul>
+</li>
+<li><p><strong>I/O指令</strong>：CPU指令的一部分</p>
+<script type="math/tex; mode=display">
+\color{red}{操作码|命令码|设备码}</script><p><strong>操作码</strong>字段可作为I/O指令与其他指令的判别代码；</p>
+<blockquote>
+<p>如，访存指令、算逻指令、控制指令</p>
+</blockquote>
+<p><strong>命令码</strong>体现I/O设备的具体操作；</p>
+<blockquote>
+<p>I/O指令的<strong>命令码</strong>一般可表述如下几种情况：</p>
+<ul>
+<li>将数据从I/O设备输入主机</li>
+<li>将数据从主机输出到I/O设备</li>
+<li>状态测试（检测各个I/O设备处于Busy还是Ready状态）</li>
+<li>形成某些操作命令</li>
+</ul>
+</blockquote>
+<p><strong>设备码</strong>是多台设备的选择码。</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>通道指令</strong>：通道自身的指令</p>
+<p>（又称通道控制字, Channel Control Word, CCW）</p>
+<p>指出<strong>数组的首地址、传送字数、操作命令</strong></p>
+<blockquote>
+<p>如，IBM/370通道指令为64位</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-I-O硬件"><a href="#2-I-O硬件" class="headerlink" title="2.I/O硬件"></a>2.I/O硬件</h4><p>包括接口模式、I/O设备两大部分</p>
+<ul>
+<li>设备——I/O接口（通过接口，与主机完成信息交换）</li>
+<li>通道方式：设备——设备控制器——子通道——通道</li>
+</ul>
+<h3 id="三、I-O设备与主机的联系方式"><a href="#三、I-O设备与主机的联系方式" class="headerlink" title="三、I/O设备与主机的联系方式"></a>三、I/O设备与主机的联系方式</h3><p>I/O设备与主机交换信息和CPU与主存交换信息相比，有许多不同点。</p>
+<blockquote>
+<p>例如，CPU如何对I/O设备进行编址；如何寻找I/O设备号；信息传送是如何逐位串行还是多为并行；I/O设备与主机以什么方式进行联络，使它们彼此都知道对方处于何种状态；I/O设备与主机是怎么连接的，等等。</p>
+</blockquote>
+<p>这一系列问题统称为I/O设备与主机的联系方式</p>
+<h4 id="1-I-O设备编址方式"><a href="#1-I-O设备编址方式" class="headerlink" title="1.I/O设备编址方式"></a>1.I/O设备编址方式</h4><blockquote>
+<p>通常将I/O设备码看作地址码</p>
+</blockquote>
+<ul>
+<li><p><strong>统一编址</strong>：把I/O地址看作存储器地址的一部分</p>
+<p>用取数、存数指令。</p>
+<p><strong>占用存储空间</strong>，减少主存容量</p>
+<blockquote>
+<p>如，在64K地址的存储空间中，划分出8K地址作为I/O设备的地址。凡是在这8K地址内的访问，就是对I/O设备的访问。所用指令与访存指令相似。</p>
+</blockquote>
+</li>
+<li><p><strong>不统一编址</strong>（单独编址）：I/O地址和存储器地址分开，所有对I/O设备的访问必须有专用的I/O指令</p>
+<p>有专门的I/O指令</p>
+<p>不占用主存空间，需要设置I/O专用指令</p>
+</li>
+</ul>
+<h4 id="2-设备选址"><a href="#2-设备选址" class="headerlink" title="2.设备选址"></a>2.设备选址</h4><blockquote>
+<p>由于每台设备都赋予一个设备号，因此要启动某一设备时，可由I/O指令的设备码字段直接指出该设备的设备号</p>
+</blockquote>
+<p>用<strong>设备选择电路</strong>识别是否被选中</p>
+<p>（现代计算机已经去掉，设备不给单独地址）</p>
+<h4 id="3-传送方式"><a href="#3-传送方式" class="headerlink" title="3.传送方式"></a>3.传送方式</h4><ul>
+<li><p><strong>串行</strong>：在同一瞬间只传送一位信息，在不同时刻连续逐位传送一串信息。</p>
+<p>传输速度较慢，但只需一根数据线和一根地线。传输距离远</p>
+</li>
+<li><p><strong>并行</strong>：在同一瞬间，n位信息同时从CPU输出至I/O设备，或由I/O设备输入CPU。</p>
+<p>传输速度较快，但要求数据线多</p>
+<blockquote>
+<p>例如，16位信息并行传送需要16根数据线</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="4-联络方式"><a href="#4-联络方式" class="headerlink" title="4.联络方式"></a>4.联络方式</h4><ol>
+<li><p><strong>立即响应</strong></p>
+<p>对于一些工作速度十分缓慢的I/O设备。</p>
+<p>与CPU发生联系时，处于某种等待状态，只要I/O指令一到便立即响应。</p>
+<blockquote>
+<p>如，指示灯的亮和灭、开关的通断、A/D转换器缓变信号的输入</p>
+</blockquote>
+</li>
+<li><p><strong>异步工作采用应答信号</strong></p>
+<p>当I/O设备与主机工作速度不匹配时，采用异步工作方式。</p>
+<p>交换信息前，I/O设备与主机完成各自的任务。一旦出现联络信号，彼此才准备交换信息。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321150200094.png" alt="image-20220321150200094" style="zoom:80%;" /></p>
+</li>
+</ol>
+<p>   <img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321150239215.png" alt="image-20220321150239215" style="zoom:80%;" /></p>
+<blockquote>
+<p>关于异步串行通信：</p>
+<p>参考资料：<a href="https://blog.csdn.net/sinat_41653350/article/details/106018051">异步串行通信</a></p>
+<p>①起始位为0。通讯线在空闲状态时保持高电平，因此下降沿判定为数据传输开始。</p>
+<p>②数据位。传输时低位在前，高位在后。</p>
+<p>③奇偶校验位（可以省略）</p>
+<p>④停止位（终止位），停止位为1——位数可以有分数，因为位数本质含义是信号出现的时间。</p>
+</blockquote>
+<ol>
+<li><p><strong>同步工作采用同步时标</strong></p>
+<p>要求I/O设备与CPU工作速度完全同步。</p>
+<p>这种联络互相之间还得配有<strong>专用电路</strong>，用以产生同步时标来控制同步工作。</p>
+</li>
+</ol>
+<h4 id="5-I-O设备与主机的连接方式"><a href="#5-I-O设备与主机的连接方式" class="headerlink" title="5.I/O设备与主机的连接方式"></a>5.I/O设备与主机的连接方式</h4><blockquote>
+<p>连接方式主要有两种：辐射式连接和总线式</p>
+</blockquote>
+<ul>
+<li><p><strong>辐射式连接</strong></p>
+<p>（计算机发展的初级阶段）</p>
+<p>优点是可靠性高。</p>
+<p>要求每一台I/O设备都有一套控制线路和一组信号线，因此所用的器材和连线较多，对I/O设备的增删都比较困难。</p>
+</li>
+<li><p><strong>总线连接方式</strong></p>
+<p>（现代计算机系统采用的方式）</p>
+<p>通过一组总线（包括地址线、数据线、控制线），将所有的I/O设备和主机连接。</p>
+<p>插件方式容易出现故障</p>
+</li>
+</ul>
+<h3 id="四、I-O设备与主机信息传送的控制方式"><a href="#四、I-O设备与主机信息传送的控制方式" class="headerlink" title="四、I/O设备与主机信息传送的控制方式"></a>四、I/O设备与主机信息传送的控制方式</h3><blockquote>
+<p>I/O与主机交换信息的控制方式有5种：程序查询方式、程序中断方式、直接存储器存取范式（DMA）、I/O通道方式、I/O处理机方式</p>
+</blockquote>
+<h4 id="1-程序查询方式"><a href="#1-程序查询方式" class="headerlink" title="1.程序查询方式"></a>1.程序查询方式</h4><blockquote>
+<p>程序查询方式是由<strong>CPU通过程序不断查询I/O设备是否已做好准备</strong>，从而控制I/O设备与主机交换信息</p>
+</blockquote>
+<ul>
+<li>又称为程序控制I/O方式</li>
+<li>当需要输入/输出时，CPU暂停执行主程序，转去执行<strong>设备输入输出的服务程序（I/O指令编写成的程序）</strong>，根据服务程序中的I/O指令进行数据传送</li>
+<li>CPU不断检查I/O设备是否准备就绪，踏步等待</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321151006980.png" alt="image-20220321151006980" style="zoom:67%;" /></p>
+<blockquote>
+<p>CPU读取I/O的状态，检查是否准备就绪</p>
+<p>CPU需要等待I/O设备的输入输出</p>
+<p>场景：（串行）</p>
+<ul>
+<li>食堂的读卡器，输入刷卡金额后，刷卡机等待刷卡交钱。</li>
+<li>充电桩</li>
+<li>蓝牙设备的连接（暂时不能确定）</li>
+<li>键盘交互（屏幕上字符的输出显示取决于键盘上的输入，I/O和CPU之间速度相差大，使用programmed i/o进行同步工作）</li>
+</ul>
+</blockquote>
+<h4 id="2-程序中断方式（重点内容）"><a href="#2-程序中断方式（重点内容）" class="headerlink" title="2.程序中断方式（重点内容）"></a>2.程序中断方式（重点内容）</h4><ul>
+<li><p><strong>CPU和I/O部分的并行工作</strong></p>
+<p>I/O工作$\begin{cases}自身准备:CPU不查询 \\与主机交换信息：CPU暂停现行程序 \end{cases}$</p>
+</li>
+<li><p><strong>中断请求信号</strong>——中断服务程序</p>
+</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321152113200.png" alt="image-20220321152113200" style="zoom:67%;" /></p>
+<p>CPU执行K条指令后，处理中断服务程序。回来后执行第K+1条指令。</p>
+<p>需要考虑回来后的现场变化问题</p>
+<blockquote>
+<p>传输过程仍然需要CPU的参与，而且要保证程序中断后恢复现场，恢复指令。</p>
+<p>需要指令完成现场的保护和恢复，消耗CPU较大的时间</p>
+</blockquote>
+<ul>
+<li><p><strong>程序中断方式流程</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321152607588.png" alt="image-20220321152607588" style="zoom:67%;" /></p>
+</li>
+</ul>
+<blockquote>
+<p>应用场景：航天飞船的逃逸塔</p>
+</blockquote>
+<h4 id="3-DMA方式"><a href="#3-DMA方式" class="headerlink" title="3.DMA方式"></a>3.DMA方式</h4><blockquote>
+<p>Direct Memory Access，直接存储器访问</p>
+<p>I/O设备能直接与主存交换信息而不占用CPU，CPU的资源利用率可以进一步提升，这就出现了直接存储器存取（DMA）的方式</p>
+</blockquote>
+<ul>
+<li>主存和I/O之间有一条直接数据通道</li>
+<li>不中断现行程序</li>
+<li>周期挪用（周期窃取）</li>
+<li><strong>CPU和I/O外设并行工作</strong></li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321153333278.png" alt="image-20220321153333278" style="zoom:67%;" /></p>
+<blockquote>
+<p>一个存储字，读内存写外设/读外设写内存（性质取决于命令）</p>
+<p>此时CPU关上地址、数据、控制信号（CPU不知道这些信号），DMA信号仍然保持，电源线不能关。——ch4存储器中总线的驱动和隔离</p>
+</blockquote>
+<p>在DMA方式中，主存与I/O设备之间有一条数据通路，主存与I/O设备交换信息时，无须调用中断程序。若出现DMA和CPU同时访问主存，CPU总是将总线占有权让给DMA，通常把DMA的这种占有称为窃取或挪用。</p>
+<p>窃取的时间一般为一个存取周期，故把DMA占用的存取周期称为窃取周期或挪用周期。</p>
+<p>采用DMA方式时，也需要增加必要的DMA接口电路。</p>
+<h4 id="三种方式的CPU工作效率比较"><a href="#三种方式的CPU工作效率比较" class="headerlink" title="三种方式的CPU工作效率比较"></a>三种方式的CPU工作效率比较</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323164951791.png" alt="image-20220323164951791" style="zoom:80%;" /></p>
+<ul>
+<li>中断方式中，CPU为了程序正确执行，进行了现场保护</li>
+</ul>
+<h2 id="5-2-I-O接口"><a href="#5-2-I-O接口" class="headerlink" title="5.2 I/O接口"></a>5.2 I/O接口</h2><h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><blockquote>
+<p>为什么要设置接口？</p>
+</blockquote>
+<ul>
+<li>实现设备的选择</li>
+<li>实现数据缓冲达到速度的匹配</li>
+<li>实现数据串一并格式转换</li>
+<li>实现电平转换</li>
+<li>传送控制命令</li>
+<li>反应设备的状态：忙、就绪、中断请求</li>
+</ul>
+<blockquote>
+<p>CPU想知道什么，接口就提供什么</p>
+</blockquote>
+<h3 id="二、接口的功能和组成"><a href="#二、接口的功能和组成" class="headerlink" title="二、接口的功能和组成"></a>二、接口的功能和组成</h3><p>接口分为硬件和软件。有数据的输入和输出。</p>
+<p>接口需要数字量，外部设备使用的物理形式需要接口把模拟量变成数字量。</p>
+<p>控制对象到接口，接口到计算机。</p>
+<ol>
+<li><p><strong>总线连接方式的I/O接口电路</strong></p>
+<p>设备选择线、数据线、命令线、状态线</p>
+<blockquote>
+<p>设备选择线：（如今不使用）找不同的I/O接口地址——如今使用地址线</p>
+<p>状态线：变成设备状态线——现代计算机大多采用三态逻辑电路来构成总线</p>
+<p>命令线：I/O读、I/O写（2条）</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323170333994.png" alt="image-20220323170333994" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>接口的功能和组成</strong></p>
+<p>|        功能        |          组成          |<br>| :————————: | :——————————: |<br>|      选址功能      |      设备选择电路      |<br>|   传送命令的功能   | 命令寄存器、命令译码器 |<br>|   传送数据的功能   |     数据缓冲寄存器     |<br>| 反应设备状态的功能 |      设备状态标记      |</p>
+<p>$\begin{cases} 完成触发器D\\ 工作触发器B\\ 中断请求触发器INTR\\ 屏蔽触发器MASK \end{cases}$</p>
+</li>
+<li><p><strong>I/O接口的基本组成</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323171031357.png" alt="image-20220323171031357" style="zoom: 67%;" /></p>
+<blockquote>
+<p>对于现代计算机，没有状态线</p>
+<p>接口要有数据存放的地方：DBR</p>
+<p>设备选择：对CPU送来的地址进行译码</p>
+<p>集成化的接口：计时器</p>
+</blockquote>
+<ul>
+<li><p>内部接口：内部接口与系统总线相连，实质上是与内存、CPU相连。并行传输</p>
+</li>
+<li><p>外部接口：外部接口通过接口电缆与外设相连，外部接口的数据传输可能是串行方式。因此外部接口需具有串/并转换功能</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="三、接口类型"><a href="#三、接口类型" class="headerlink" title="三、接口类型"></a>三、接口类型</h3><ol>
+<li><p>按数据<strong>传送方式</strong>分类</p>
+<blockquote>
+<p>并行接口：Intel 8255</p>
+<p>串行接口：Intel 8251</p>
+</blockquote>
+</li>
+<li><p>按功能<strong>选择的灵活性</strong>分类</p>
+<p>可以选择是否编程</p>
+<blockquote>
+<p>可编程接口：Intel 8255、Intel 8251</p>
+<p>不可编程接口：Intel 8212</p>
+</blockquote>
+</li>
+<li><p>按<strong>通用性</strong>分类</p>
+<p>通用：数据口</p>
+<blockquote>
+<p>通用接口：Intel 8255、Intel 8251</p>
+<p>专用接口：Intel 8279、Intel 8275</p>
+</blockquote>
+</li>
+<li><p>按数据传送的<strong>控制方式</strong>分类</p>
+<blockquote>
+<p>中断接口：Intel 8259</p>
+<p>DMA接口：Intel 8257</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="5-4-程序查询方式"><a href="#5-4-程序查询方式" class="headerlink" title="5.4 程序查询方式"></a>5.4 程序查询方式</h2><h3 id="一、程序查询流程"><a href="#一、程序查询流程" class="headerlink" title="一、程序查询流程"></a>一、程序查询流程</h3><ul>
+<li><strong>优先级排序</strong></li>
+<li>计数值</li>
+</ul>
+<ol>
+<li><p><strong>查询流程</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323180258354.png" alt="image-20220323180258354" style="zoom:67%;" /></p>
+</li>
+<li><p><strong>程序流程</strong></p>
+<blockquote>
+<p>首先知道数据的个数、首地址。外部设备要启动。CPU盯住外设是否准备好</p>
+<p>准备好：对于输入，B=0，D=1；对于输出，B=1，D=0</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323180421204.png" alt="image-20220323180421204" style="zoom:67%;" /></p>
+</li>
+</ol>
+<h3 id="二、程序查询方式接口电路"><a href="#二、程序查询方式接口电路" class="headerlink" title="二、程序查询方式接口电路"></a>二、程序查询方式接口电路</h3><p>不仅要有电路，还要有程序，均比较简单。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323172434127.png" alt="image-20220323172434127" style="zoom: 67%;" /></p>
+<blockquote>
+<p>①启动命令（1）送至与非门。CPU通过I/O地址线选择设备（SEL高电平，1），通过与非门变成0，完成触发器D置0（0-没准备好），工作触发器B置1；</p>
+<p>②B置1数据输出，外部设备启动；</p>
+<p>③I/O设备的输入数据串行进入DBR，外设写数据到接口；</p>
+<p>④驱动B触发器的置1信号和D的置0信号翻转，设备工作结束；</p>
+<p>⑤D的1信号输出</p>
+<p>⑥数据线把数据送出接口</p>
+</blockquote>
+<p>指令需要多少个I/O地址才能实现——3</p>
+<p>通过什么命令发送过来——IN命令</p>
+<p>数据CPU通过什么读回去——数据线，配合$\overline{IOW}$</p>
+<p>假如变成<strong>输出</strong>（倒序）</p>
+<blockquote>
+<p>①CPU写入接口，把数据送入DBR</p>
+<p>②CPU启动外设工作，选中设备，启动命令。使两个触发器置位。启动外部设备</p>
+<p>③外部设备从DBR读出数据</p>
+<p>④外设对工作触发器的状态改变，翻转。</p>
+<p>⑤D变成1，告诉CPU可以继续写（覆盖DBR的数据）</p>
+</blockquote>
+<p>总结：输入方式准备好的信号状态D是1，没准备好是0。对于输出设备准备好（DBR中的数据已经送给外部设备。CPU可以再次输入）D是0，没准备好是1</p>
+<blockquote>
+<p>问题：</p>
+<p>①如何使D触发器置0？原理是什么？</p>
+<p>——启动命令有效（<strong>IN指令</strong>）并且地址线上代码与设备选择电路</p>
+<p>对于输出</p>
+<p>①启动命令和地址线是为了给出一个状态——给D送0。</p>
+<p>——在CPU和D之间加入一个三态门，把D的地址流向CPU</p>
+<p><a href="https://blog.csdn.net/sinat_41653350/article/details/106018051">双向三态门的使用</a></p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220328163256387.png" alt="image-20220328163256387" style="zoom:67%;" /></p>
+<blockquote>
+<p>指令需要三个地址</p>
+<p>第16位地址</p>
+</blockquote>
+<ul>
+<li><p>例题1</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329194300129.png" alt="image-20220329194300129" style="zoom: 67%;" /></p>
+<blockquote>
+<p>例1的解答：按照I/O地址的要求设置反相器（地址为0则使用反相器），由于是输出，最后和$\overline{IOW}$相与，输出作为74LS244三态门电路的使能信号，控制CPU向外设输出的通和断。</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329192540421.png" alt="image-20220329192540421" style="zoom: 67%;" /></p>
+</li>
+<li><p>例2</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329193023506.png" alt="image-20220329193023506" style="zoom:80%;" /></p>
+<blockquote>
+<p>例2解答：设计思路与例1相同。但是需要注意锁存，使用74LS373（8D锁存器）对输出进行锁存</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329193219199.png" alt="image-20220329193219199" style="zoom:67%;" /></p>
+</li>
+<li><p>例3&amp;例4</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329193642564.png" alt="image-20220329193642564" style="zoom:80%;" /></p>
+<blockquote>
+<p>解题思路：设计原则与例1、例2相同。</p>
+<p>注意是1位输出，把一根数据线接入即可。</p>
+</blockquote>
+</li>
+<li><p>例5&amp;例6</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329193815045.png" alt="image-20220329193815045" style="zoom: 67%;" /></p>
+<blockquote>
+<p>解题思路：注意是输入接口。</p>
+<p>有两点变化：①三态门的方向要反过来：从CPU到I/O；②CPU上的控制信号变成了$\overline{IOR}$</p>
+<p>下图中，左为例5答案，右为例6答案</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329194135388.png" alt="image-20220329194135388" style="zoom:80%;" /></p>
+</li>
+</ul>
+<blockquote>
+<p>改造接口：使D触发器变0。使用读控制。读数据需要地址译码和读控制</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329194443285.png" alt="image-20220329194443285" style="zoom:80%;" /></p>
+<p>程序查询在TEST1中踏步等待</p>
+<p>输出的改进：CPU把数据写入锁存器。三态门和锁存器的方向调过来，数据的进和出方向相反</p>
+</blockquote>
+<h2 id="5-5-程序中断方式"><a href="#5-5-程序中断方式" class="headerlink" title="5.5 程序中断方式"></a>5.5 程序中断方式</h2><h3 id="一、中断的概念"><a href="#一、中断的概念" class="headerlink" title="一、中断的概念"></a>一、中断的概念</h3><p>计算机在执行程序的过程中，当出现异常情况或特殊请求时，计算机停止现行程序的运行，转向对这些异常情况或特殊请求的处理，处理结束后再返回到现行程序的间断处，继续执行原程序，这就是<strong>中断</strong></p>
+<blockquote>
+<p>处理异常情况或特殊请求：中断服务程序</p>
+<p>间断处：断点</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329201649521.png" alt="image-20220329201649521" style="zoom: 80%;" /></p>
+<blockquote>
+<p>中断方式可以告诉CPU时间片的信息——OS课程中内容</p>
+<p>应用场景举例——消防采样：烟雾浓度、温度。检测异常后（中断源、断点），报警的同时启动消防设备（中断服务程序）</p>
+</blockquote>
+<h3 id="二、中断的产生"><a href="#二、中断的产生" class="headerlink" title="二、中断的产生"></a>二、中断的产生</h3><ul>
+<li><p>由中断源产生（<strong>部分并行工作</strong>）</p>
+</li>
+<li><p>以打印机为例，CPU与打印机并行工作</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329201741586.png" alt="image-20220329201741586" style="zoom:67%;" /></p>
+</li>
+</ul>
+<h3 id="三、程序中断方式的接口电路"><a href="#三、程序中断方式的接口电路" class="headerlink" title="三、程序中断方式的接口电路"></a>三、程序中断方式的接口电路</h3><ol>
+<li><p>配置<strong>中断请求触发器</strong>(INTR)和<strong>中断屏蔽触发器</strong>(MASK)</p>
+<blockquote>
+<p>，是一个D触发器</p>
+</blockquote>
+<p>检查设备就绪（对于输入，<strong>D=1</strong>，数据已经到达DBR。对于输出，D=1，外设已经取走数据，CPU可以继续输出），且设备未被屏蔽（<strong>MASK=0</strong>，因此输出$\overline{Q}=1$），CPU的中断查询信号可将中断请求触发器置“1”（<strong>INTR=1</strong>）</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220328173752751.png" alt="image-20220328173752751" style="zoom:80%;" /></p>
+<p>对于INTR，使能的信号是来自CPU的中断查询信号</p>
+</li>
+<li><p><strong>排队器</strong></p>
+<p>中断优先级低的要等待，优先级高的可以及时被CPU响应</p>
+<ul>
+<li>硬件：在CPU内或在接口电路中（链式排队器）</li>
+<li>软件：详见第八章</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220328174231278.png" alt="image-20220328174231278" style="zoom:80%;" /></p>
+<blockquote>
+<p>前边的优先级高，可以锁住/屏蔽后面优先级低的设备</p>
+</blockquote>
+</li>
+<li><p><strong>中断向量地址形成部件</strong></p>
+<ul>
+<li><p>入口地址——找到终端服务程序的位置，第一个</p>
+<ul>
+<li><p>由软件产生</p>
+</li>
+<li><p>硬件向量法：由<strong>硬件</strong>产生<strong>向量地址</strong>，再由<strong>向量地址</strong>找到<strong>入口地址</strong></p>
+<blockquote>
+<p>中断向量地址形成部件是一个编码器——设备编码器</p>
+<p>现代计算机可以编出8位二进制数</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220328174918285.png" alt="image-20220328174918285" style="zoom:80%;" /></p>
+<blockquote>
+<p>JMP200：告诉CPU跳转到200的入口地址执行程序</p>
+<p>由RAM芯片（留有用户的接口）控制。每一次系统部分由BIOS基本操作系统负责引导到中断服务程序。用户变成交给系统填写向量表</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>程序中断方式接口电路的基本组成</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329201944273.png" alt="image-20220329201944273" style="zoom:80%;" /></p>
+</li>
+</ol>
+<h3 id="四、I-O中断处理过程"><a href="#四、I-O中断处理过程" class="headerlink" title="四、I/O中断处理过程"></a>四、I/O中断处理过程</h3><ol>
+<li><p>CPU响应中断的条件和时间</p>
+<ul>
+<li><p><strong>条件</strong>：<strong>允许中断触发器EINT=1</strong></p>
+<blockquote>
+<p>CPU有一个对所有中断控制的寄存器</p>
+</blockquote>
+<p>用<strong>开中断</strong>指令将EINT置“1”</p>
+<blockquote>
+<p>STI——详见汇编语言</p>
+</blockquote>
+<p><strong>关中断</strong>置“0”或自动复位</p>
+<blockquote>
+<p>CLI：将中断允许触发器清零</p>
+<p>自动复位：计算机加电启动，中断允许触发器自动关上置零——外围设备都没有初始化。防止未填向量表，没有中断程序的情况下响应中断请求信号</p>
+</blockquote>
+</li>
+<li><p><strong>时间</strong>：当D=1（随机）且MASK=0时</p>
+<p>在<strong>每条指令执行阶段的结束</strong>，CPU<strong>发中断查询信号</strong>（将INTR置“1”）</p>
+<blockquote>
+<p>ch7，间指周期</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>I/O中断处理过程——已经集成到硬件中，中断控制器8259A</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329202340978.png" alt="image-20220329202340978" style="zoom:80%;" /></p>
+<blockquote>
+<p>当CPU通过I/O指令的地址码选中某设备后，则</p>
+<p>①由CPU发启动I/O设备指令，将接口中的B置“1”，D置“0”；</p>
+<p>②接口启动输入设备；</p>
+<p>③输入设备将数据送入数据缓冲存储器DBR；</p>
+<p>④输入设备向接口发出 ”设备工作结束“信号，B置”0“，D置”1“，标志设备准备就绪；</p>
+<p>⑤当设备准备就绪（D=1），且本设备未被屏蔽时（MASK=0）时，在指令执行阶段的结束时刻，由CPU发出中断查询信号；</p>
+<p>⑥设备中断请求触发器INTR被置”1”，标志设备向CPU提出<strong>中断请求</strong>。与此同时，INTR送至排队器，进行<strong>中断判优</strong>；</p>
+<p>⑦若CPU中断允许（EINT=1），设备又被排队选中，即进入<strong>中断响应</strong>阶段，由中断响应信号INTA将排队器输出送至编码器形成的向量地址；</p>
+<p>⑧向量地址送至PC，作为下一条指令的地址；</p>
+<p>⑨由于向量地址中存放的是一条无条件转移指令（<strong>JMP</strong> XXX），故这条指令执行结束后，即无条件转至该设备的服务程序入口地址，开始执行中断服务程序，进入<strong>中断服务阶段</strong>，通过输入指令将数据缓冲存储器DBR中的输入数据送至CPU的通用寄存器，再存入主存相关单元；</p>
+<p>⑩中断服务的最后一条指令是中断返回指令，当其执行结束时，即<strong>中断返回</strong>至原程序的断点处。至此，一个完整的程序中断处理过程即告结束。</p>
+</blockquote>
+</li>
+</ol>
+<p>注意：DBR不能直接连接数据总线。如果DBR是数据寄存器，直接连接会导致数据总线被外设钳制住，。因此需要三态门断开，通过I/O地址执行IN指令。</p>
+<p>向量地址从数据线接入。数据值是一个中断类型</p>
+<h4 id="关于中断允许触发器（EINT）和中断屏蔽触发器（MASK）"><a href="#关于中断允许触发器（EINT）和中断屏蔽触发器（MASK）" class="headerlink" title="关于中断允许触发器（EINT）和中断屏蔽触发器（MASK）"></a>关于中断允许触发器（EINT）和中断屏蔽触发器（MASK）</h4><p>参考资料：<a href="https://www.zhihu.com/question/320290174">关于允许中断触发器和中断屏蔽触发器的疑问？</a></p>
+<p><strong>EINT</strong>：CPU对中断请求的总控制</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220402094720119.png" alt="image-20220402094720119" style="zoom:67%;" /></p>
+<p><strong>MASK</strong>：处理每个具体端口的中断请求</p>
+<blockquote>
+<p>I/O端口：接口电路中可以被CPU直接访问的寄存器</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220402094822192.png" alt="image-20220402094822192" style="zoom:67%;" /></p>
+<h3 id="五、中断服务程序流程"><a href="#五、中断服务程序流程" class="headerlink" title="五、中断服务程序流程"></a>五、中断服务程序流程</h3><p>1.<strong>保护现场</strong></p>
+<p>程序断点的保护（包括程序执行状态）——中断隐指令完成（<strong>中断周期，一系列操作</strong>，在指令系统中不存在，但是相当于指令的功能：开中断、关中断、向量地址采样相当于读数）</p>
+<p>寄存器内容的保护：（防止内容改变而出错）进栈指令</p>
+<blockquote>
+<p>具体而言，可在中断服务的起始部分安排若干条存数指令，将寄存器的内容存至存储器中保存，或用进栈指令（PUSH）将各寄存器的内容推入堆栈保存。</p>
+<p>涉及通用寄存器和状态寄存器</p>
+</blockquote>
+<p>2.<strong>中断服务</strong></p>
+<p>中断程序的主体部分，对不同的I/O设备具有不同内容的设备服务。</p>
+<p>（事先编好，设置到计算机中，可以找到）</p>
+<blockquote>
+<p>例如，打印机要求CPU将需打印的一行字符代码，通过接口送入打印机的缓冲存储器中；</p>
+<p>又如，设备要求CPU将需显示的一行字符代码通过接口送入显示器的显示存储器中。</p>
+</blockquote>
+<p>3.<strong>恢复现场</strong>：出栈命令</p>
+<blockquote>
+<p>要求再推出服务程序前，将原程序中断时的“现场”恢复到原来的寄存器中。</p>
+<p>通常可以用取数指令或出栈指令（POP），将保存在存储器或堆栈中的信息送到原来的寄存器中。</p>
+</blockquote>
+<p>4.<strong>中断返回</strong>：中断返回指令</p>
+<blockquote>
+<p>使其返回到原程序的断点处，以便继续执行原程序。</p>
+<p>汇编语言中的iret指令</p>
+</blockquote>
+<p><strong>目前已经知道三条指令：开中断、关中断、中断返回</strong></p>
+<ul>
+<li><p>单重中断和多重中断</p>
+<ul>
+<li>单重中断：不允许中断现行的中断服务程序</li>
+<li>多重中断：允许级别更高的中断源（嵌套）</li>
+<li><strong>其区别在于”开中断”的设置时间不同</strong></li>
+</ul>
+<p>中断从中断周期（中断隐指令）开始</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330171310628.png" alt="image-20220330171310628" style="zoom:80%;" /></p>
+<blockquote>
+<p>开中断使EINT=1，表示允许中断，</p>
+<p>中断周期（3件事，没有中断响应）：CPU中寄存器EINT=1响应，程序的地址保存再指令寄存器中，最后EINT=0关闭</p>
+<p>中断隐指令中快速，硬件时间。服务程序中的开中断是软件时间，更慢</p>
+</blockquote>
+<p>多重中断在结束开始中断服务后，保护现场后先开中断</p>
+<blockquote>
+<p>注：若不开中断，会影响后面中断请求的响应（INTA）</p>
+</blockquote>
+</li>
+<li><p>宏观上CPU与I/O并行工作</p>
+</li>
+<li><p>微观上CPU中断现行程序，为I/O服务</p>
+</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330173009516.png" alt="image-20220330173009516" style="zoom: 80%;" /></p>
+<blockquote>
+<p>$A_0$可以对应两个I/O地址——0020H和0021H</p>
+<p>$\overline{INTA}$：中断允许信号线</p>
+<p>中断屏蔽寄存器：写“1”即为屏蔽</p>
+</blockquote>
+<p>（跳转到ch8）</p>
+<p>关于中断的补充资料：</p>
+<p>中断分类</p>
+<p>软件中断：由OS发出的指令</p>
+<p>中断系统要解决的问题</p>
+<ol>
+<li><p>如何产生中断？如何准备好信号？</p>
+</li>
+<li><p>允许/禁止中断源发/不发中断？</p>
+</li>
+<li><p>中断请求方式（电平触发/边缘型）？——边沿触发</p>
+</li>
+<li><p>识别信息送到CPU加以识别——中断类型</p>
+</li>
+<li><p>如何处理可屏蔽和非可屏蔽中断</p>
+</li>
+<li><p>如何实现多个中断源的优先级确定？——优先级排队（中断控制器，常选择固定优先级）</p>
+<p>ch8.中断固定</p>
+</li>
+<li><p>防止外设中断、不被重复响应——边沿触发</p>
+</li>
+<li><p>如何处理更高级别？——</p>
+</li>
+<li><p>管理CPU的可屏蔽中断的响应和禁止？——中断控制</p>
+</li>
+<li><p>寻找入口</p>
+</li>
+</ol>
+<p>整个中断服务程序过程中是软件执行</p>
+<p>ip偏移量，cs代码段</p>
+<p>软件堆栈：使用内存空间</p>
+<h2 id="中断系统"><a href="#中断系统" class="headerlink" title="中断系统"></a>中断系统</h2><h3 id="一、概述-1"><a href="#一、概述-1" class="headerlink" title="一、概述"></a>一、概述</h3><ol>
+<li><p>引起中断的各种因素</p>
+<ul>
+<li><p>人为设置的中断——OS</p>
+<blockquote>
+<p>如，转管指令</p>
+<p>int21是对硬盘的操作</p>
+</blockquote>
+</li>
+<li><p>程序性事故</p>
+<blockquote>
+<p>溢出、操作码不能识别、除法非法</p>
+</blockquote>
+</li>
+<li><p>硬件故障</p>
+</li>
+<li><p>I/O设备</p>
+</li>
+<li><p>外部事件</p>
+<blockquote>
+<p>用<strong>键盘中断</strong>现行程序</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>中断系统需解决的问题</p>
+<ul>
+<li>各中断源如何向CPU提出请求？</li>
+<li>各中断源同时提出请求怎么办？</li>
+<li>CPU什么条件、什么时间、以什么方式响应中断？</li>
+<li>如何保护现场？</li>
+</ul>
+<blockquote>
+<p>硬件+软件</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="二、中断请求标记和中断判优逻辑"><a href="#二、中断请求标记和中断判优逻辑" class="headerlink" title="二、中断请求标记和中断判优逻辑"></a>二、中断请求标记和中断判优逻辑</h3><ol>
+<li><p>中断请求标记：INTR</p>
+<p>一个请求源，一个INTR中断请求标记触发器</p>
+<p>多个INTR——组成中断请求标记寄存器</p>
+<p>INTR分散在各个</p>
+</li>
+<li><p>中断判优逻辑</p>
+<ul>
+<li><p>硬件实现（排队器）</p>
+<p>①分散在各个中断源的接口电路中，链式排队器</p>
+<p>②集中在CPU内</p>
+</li>
+<li><p>软件实现（程序查询）</p>
+<p>A、B、C优先级按降序排列</p>
+<blockquote>
+<p>寄存器读到CPU中，一个一个查询</p>
+<p>电路简单，但是速度慢</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="三、中断服务程序入口地址的寻找"><a href="#三、中断服务程序入口地址的寻找" class="headerlink" title="三、中断服务程序入口地址的寻找"></a>三、中断服务程序入口地址的寻找</h3><ol>
+<li>硬件向量法</li>
+<li>软件查询法</li>
+</ol>
+<h3 id="四、中断响应"><a href="#四、中断响应" class="headerlink" title="四、中断响应"></a>四、中断响应</h3><ol>
+<li><p>响应中断的条件</p>
+<p>允许中断触发器EINT=1</p>
+</li>
+<li><p>响应中断的时间</p>
+<p>指令执行周期结束时刻由CPU发查询信号</p>
+</li>
+<li><p>中断隐指令</p>
+<ul>
+<li><p>保护程序断点</p>
+<blockquote>
+<p>早期计算机，断点存于<strong>特定地址（0号地址）</strong>，断点进栈</p>
+</blockquote>
+</li>
+<li><p>寻找服务程序入口地址</p>
+<blockquote>
+<p>向量地址——PC</p>
+<p>中断识别程序入口地址M——PC</p>
+</blockquote>
+</li>
+<li><p>硬件关中断</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="五、保护现场和恢复现场"><a href="#五、保护现场和恢复现场" class="headerlink" title="五、保护现场和恢复现场"></a>五、保护现场和恢复现场</h3><ol>
+<li>保护现场</li>
+<li>恢复现场</li>
+</ol>
+<h3 id="六、中断屏蔽技术（不讲）"><a href="#六、中断屏蔽技术（不讲）" class="headerlink" title="六、中断屏蔽技术（不讲）"></a>六、中断屏蔽技术（不讲）</h3><h2 id="5-6-DMA方式"><a href="#5-6-DMA方式" class="headerlink" title="5.6 DMA方式"></a>5.6 DMA方式</h2><p>纯硬件实现</p>
+<h3 id="一、DMA方式的特点"><a href="#一、DMA方式的特点" class="headerlink" title="一、DMA方式的特点"></a>一、DMA方式的特点</h3><ol>
+<li><p><strong>DMA和程序中断两种方式的数据通路</strong></p>
+<p>程序中断要等待CPU做出中断响应后再进行，很可能因此使数据丢失，</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330153935007.png" alt="image-20220330153935007" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>DMA与主存交换数据的三种方式</strong></p>
+<ul>
+<li><p><strong>停止CPU访问主存</strong></p>
+<blockquote>
+<p>控制简单</p>
+<p>CPU处于不工作状态或保持状态</p>
+<p>未充分发挥CPU对主存的利用率</p>
+</blockquote>
+<p>微机常用</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330154137617.png" alt="image-20220330154137617" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>周期挪用（周期窃取）</strong></p>
+<blockquote>
+<p>DMA访问主存有3种可能</p>
+<ul>
+<li>CPU此时不访存</li>
+<li>CPU正在访存</li>
+<li>CPU与DMA同时请求访存</li>
+</ul>
+<p>此时<strong>CPU将总线控制权让给DMA</strong></p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330154400184.png" alt="image-20220330154400184" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>DMA与CPU交替访问</strong></p>
+<blockquote>
+<p>CPU工作周期$\begin{cases} C_1专供DMA访存 \\ C_2专供CPU访存 \\ \end{cases}$</p>
+<p>工作周期：<strong>所有指令执行过程中的一个基准时间</strong></p>
+</blockquote>
+<p>缺点：DMA可能不是很忙。但是存储器每次都要固定把时间分给DMA和CPU，会降低存储器工作速度。——只适合大型机，不适合微机</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155111776.png" alt="image-20220330155111776" style="zoom:80%;" /></p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="二、DMA接口的功能和组成"><a href="#二、DMA接口的功能和组成" class="headerlink" title="二、DMA接口的功能和组成"></a>二、DMA接口的功能和组成</h3><h4 id="1-DMA接口功能"><a href="#1-DMA接口功能" class="headerlink" title="1.DMA接口功能"></a>1.DMA接口功能</h4><blockquote>
+<p>不通过指令完成</p>
+</blockquote>
+<ul>
+<li><p>向CPU<strong>申请</strong>DMA传送</p>
+</li>
+<li><p><strong>处理总线控制权</strong>的转交</p>
+</li>
+<li><p><strong>管理</strong>系统总线、<strong>控制</strong>数据传送</p>
+<blockquote>
+<p>四条指令：读内存、写外设、读外设、写内存</p>
+</blockquote>
+</li>
+<li><p><strong>确定</strong>数据传送的<strong>首地址和长度</strong>，<strong>修正</strong>传送过程中的数据<strong>地址</strong>和<strong>长度</strong></p>
+</li>
+<li><p>DMA传送结束时，<strong>给出操作完成信号</strong></p>
+</li>
+</ul>
+<h4 id="2-DMA接口组成"><a href="#2-DMA接口组成" class="headerlink" title="2.DMA接口组成"></a>2.DMA接口组成</h4><blockquote>
+<p>DREQ：设备向DMA接口提出申请</p>
+<p>HRQ：DMA控制逻辑向CPU请求DMA服务，发出总线使用权请求信号</p>
+<p>HLDA：CPU发出的响应信号</p>
+<p>DACK：通知设备已经被赋予一个DMA周期</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155311386.png" alt="image-20220330155311386" style="zoom:80%;" /></p>
+<ol>
+<li><p><strong>主存地址寄存器（AR, address register）</strong></p>
+<p>AR用于存放主存中需要交换数据的地址。</p>
+<p>可+1</p>
+</li>
+<li><p><strong>字计数器（WC, word count）</strong></p>
+<p>WC用于记录传送数据的总字节数。</p>
+<p>可+1或-1</p>
+</li>
+<li><p><strong>数据缓冲寄存器（BR, buffer register）</strong></p>
+<p>BR用于暂存每次传送的数据。</p>
+</li>
+<li><p><strong>DMA控制逻辑（Control Logic）</strong></p>
+<p>DMA控制逻辑负责管理DMA的传送过程，由控制电路、时序电路及命令状态控制寄存器等组成。</p>
+</li>
+<li><p><strong>中断机构</strong></p>
+<p>当字计数器溢出（全“0”）时，表示一批数据交换完毕，由“溢出信号”通过中断机构向CPU提出中断请求，请求CPU作DMA操作的后处理。</p>
+</li>
+<li><p><strong>设备地址寄存器（MAR）</strong></p>
+<p>DAR存放I/O设备的设备码或表示设备信息存储区的寻址信息。</p>
+</li>
+</ol>
+<h4 id="三、DMA的工作过程"><a href="#三、DMA的工作过程" class="headerlink" title="三、DMA的工作过程"></a>三、DMA的工作过程</h4><h5 id="1-DMA传送过程"><a href="#1-DMA传送过程" class="headerlink" title="1.DMA传送过程"></a>1.DMA传送过程</h5><blockquote>
+<p>预处理、数据传送、后处理</p>
+</blockquote>
+<p>①<strong>预处理</strong></p>
+<blockquote>
+<p>在CPU中进行处理。开机后对外部设备初始化写入，在DMA申请总线之前</p>
+</blockquote>
+<p>通过DMA控制逻辑传送方向（入/出）</p>
+<ul>
+<li>设备地址$\to$ DMA的DAR</li>
+<li>主存地址$\to$ DMA的AR</li>
+<li>传送字数$\to$ DMA的WC</li>
+</ul>
+<p>②<strong>数据传送</strong></p>
+<ul>
+<li><p>数据传送示意图</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155645114.png" alt="image-20220330155645114" style="zoom:80%;" /></p>
+</li>
+<li><p>数据传送过程（输入）</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155724136.png" alt="image-20220330155724136" style="zoom:80%;" /></p>
+</li>
+<li><p>数据传送过程（输出）</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155803168.png" alt="image-20220330155803168" style="zoom:80%;" /></p>
+</li>
+</ul>
+<p>③<strong>后处理</strong></p>
+<ul>
+<li><p>校验送入主存的数是否正确</p>
+</li>
+<li><p>是否继续用DMA</p>
+</li>
+<li><p>测试传送过程是否正确，错则转诊断程序</p>
+</li>
+</ul>
+<p><strong>由中断服务程序完成</strong>——不需要保留现场和恢复</p>
+<h5 id="2-DMA接口与系统的连接方式"><a href="#2-DMA接口与系统的连接方式" class="headerlink" title="2.DMA接口与系统的连接方式"></a>2.DMA接口与系统的连接方式</h5><ul>
+<li><p><strong>具有公共请求线的DMA请求</strong></p>
+<p>优先级排序</p>
+<p>参考ch3中的链式查询方式</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330160031796.png" alt="image-20220330160031796" style="zoom:80%;" /></p>
+</li>
+<li><p><strong>独立的DMA请求</strong></p>
+<p>CPU内部排序，参考第三章的独立请求方式</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330160054294.png" alt="image-20220330160054294" style="zoom:80%;" /></p>
+</li>
+</ul>
+<h5 id="DMA方式与程序中断方式的比较"><a href="#DMA方式与程序中断方式的比较" class="headerlink" title="DMA方式与程序中断方式的比较"></a>DMA方式与程序中断方式的比较</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">中断方式</th>
+<th style="text-align:center">DMA方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>数据传输</strong></td>
+<td style="text-align:center">程序</td>
+<td style="text-align:center">硬件</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>响应时间</strong></td>
+<td style="text-align:center">指令执行结束</td>
+<td style="text-align:center">存取周期结束</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>处理异常情况</strong></td>
+<td style="text-align:center">能</td>
+<td style="text-align:center">不能</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>中断请求</strong>（完成的任务）</td>
+<td style="text-align:center">传送数据</td>
+<td style="text-align:center">后处理</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>优先级</strong></td>
+<td style="text-align:center">低（可屏蔽中断）</td>
+<td style="text-align:center">高</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="DMA接口的类型"><a href="#DMA接口的类型" class="headerlink" title="DMA接口的类型"></a>DMA接口的类型</h4><ul>
+<li><p>选择型</p>
+<p>在物理上连接多个设备，在逻辑上只允许连接一个设备</p>
+</li>
+<li><p>多路型</p>
+<p>在物理上连接多个设备，在逻辑上允许连接多个设备同时工作</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>computer organization</tag>
       </tags>
   </entry>
   <entry>
@@ -5364,7 +6566,7 @@ A 为非重言式的可满足式 \Leftrightarrow A既有成真赋值又有成假
 </li>
 </ul>
 <p>【实例】</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304083543458.png" alt="image-20220304083543458" style="zoom:50%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304083543458.png" alt="image-20220304083543458" style="zoom: 67%;" /></p>
 <p><strong>我觉得可以使用卡诺图</strong></p>
 <div class="table-container">
 <table>
@@ -5397,12 +6599,12 @@ A 为非重言式的可满足式 \Leftrightarrow A既有成真赋值又有成假
 </div>
 <p>主析取范式：成真赋值为1的项</p>
 <p>主合取范式：成假赋值为0的项</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304083604370.png" alt="image-20220304083604370" style="zoom:50%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304083604370.png" alt="image-20220304083604370" style="zoom: 67%;" /></p>
 <p><strong>关注主析取范式和主合取范式出现项的下标的关系</strong></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304083622774.png" alt="image-20220304083622774" style="zoom:50%;" /></p>
-<h2 id="由主析（合）取范式确定主合（析）取范式"><a href="#由主析（合）取范式确定主合（析）取范式" class="headerlink" title="由主析（合）取范式确定主合（析）取范式"></a>由主析（合）取范式确定主合（析）取范式</h2><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303230604125.png" alt="image-20220303230604125" style="zoom: 50%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220304083622774.png" alt="image-20220304083622774" style="zoom: 67%;" /></p>
+<h2 id="由主析（合）取范式确定主合（析）取范式"><a href="#由主析（合）取范式确定主合（析）取范式" class="headerlink" title="由主析（合）取范式确定主合（析）取范式"></a>由主析（合）取范式确定主合（析）取范式</h2><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303230604125.png" alt="image-20220303230604125" style="zoom: 67%;" /></p>
 <h2 id="用成真和成假赋值确定主范式"><a href="#用成真和成假赋值确定主范式" class="headerlink" title="用成真和成假赋值确定主范式"></a>用成真和成假赋值确定主范式</h2><p>已知成真赋值，则知道有多少个最小项。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303230652029.png" alt="image-20220303230652029" style="zoom: 50%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303230652029.png" alt="image-20220303230652029" style="zoom: 67%;" /></p>
 <h2 id="主范式的应用"><a href="#主范式的应用" class="headerlink" title="主范式的应用"></a>主范式的应用</h2><h3 id="1-求公式的成真成假赋值"><a href="#1-求公式的成真成假赋值" class="headerlink" title="(1)求公式的成真成假赋值"></a>(1)求公式的成真成假赋值</h3><p>设公式$A$含$n$个命题变项, $A$的主析取范式有<strong>$s$个极小项</strong>, 则$A$有<strong>$s$个成真赋值</strong>, 它们是极小项下标的二进制表示, <strong>其余$2^n-s$个赋值都是成假赋值</strong></p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220303230838562.png" alt="image-20220303230838562" style="zoom:67%;" /></p>
 <h3 id="2-判断公式的类型"><a href="#2-判断公式的类型" class="headerlink" title="(2)判断公式的类型"></a>(2)判断公式的类型</h3><p>根据极小项或成真赋值的个数</p>
@@ -5494,6 +6696,56 @@ A 为非重言式的可满足式 \Leftrightarrow A既有成真赋值又有成假
 <li><strong>定理3</strong></li>
 </ul>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220327153802714.png" alt="image-20220327153802714" style="zoom:67%;" /></p>
+]]></content>
+      <categories>
+        <category>2022 Spring</category>
+        <category>数理逻辑</category>
+      </categories>
+      <tags>
+        <tag>mathematical logic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数理逻辑：第7节 一阶逻辑自然推理系统</title>
+    <url>/mathematical_logic/mathematical-logic-ch7/</url>
+    <content><![CDATA[<p><strong>主要内容</strong></p>
+<ul>
+<li>自然推理系统$N_L$及其推理规则</li>
+<li>一阶逻辑的归结推理法</li>
+</ul>
+<span id="more"></span>
+<h3 id="自然推理系统-N-L"><a href="#自然推理系统-N-L" class="headerlink" title="自然推理系统$N_L$"></a>自然推理系统$N_L$</h3><p><strong>定义1</strong> 自然推理系统$N_L$定义如下：</p>
+<ul>
+<li>字母表（同一阶语言L的字母表）</li>
+<li>合式公式（同L的合式公式的定义）</li>
+<li>推理规则<ol>
+<li>前提引入规则</li>
+<li>结论引入规则</li>
+<li>置换规则</li>
+<li>合取引入、消去规则</li>
+<li>双重否定引入、消去规则</li>
+<li>析取引入、消去规则</li>
+<li>蕴含引入、消去规则</li>
+<li>拒取式规则</li>
+<li>矛盾消去、否定消去、否定引入规则</li>
+<li>假言三段论规则</li>
+<li>析取三段论规则</li>
+<li><strong>$\forall e$规则</strong></li>
+<li><strong>$\forall i$规则</strong></li>
+<li><strong>$\exists e$规则</strong></li>
+<li><strong>$\exists i$规则</strong></li>
+</ol>
+</li>
+</ul>
+<h4 id="全称量词消去规则"><a href="#全称量词消去规则" class="headerlink" title="全称量词消去规则"></a>全称量词消去规则</h4><h5 id="1-全称量词消去规则-forall-e-规则"><a href="#1-全称量词消去规则-forall-e-规则" class="headerlink" title="1.全称量词消去规则($\forall e$规则)"></a>1.全称量词消去规则($\forall e$规则)</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233210071.png" alt="image-20220321233210071" style="zoom:67%;" /></p>
+<p>$\forall$消去规则必须考虑<strong>t对$A(x)$中的x是自由的</strong></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233310687.png" alt="image-20220321233310687" style="zoom: 67%;" /></p>
+<h5 id="2-全称量词引入规则（-forall-i-规则）"><a href="#2-全称量词引入规则（-forall-i-规则）" class="headerlink" title="2.全称量词引入规则（$\forall i$规则）"></a>2.全称量词引入规则（$\forall i$规则）</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233502262.png" style="zoom:67%;" /></p>
+<h5 id="3-存在量词引入规则（-exists-i-规则）"><a href="#3-存在量词引入规则（-exists-i-规则）" class="headerlink" title="3.存在量词引入规则（$\exists i$规则）"></a>3.存在量词引入规则（$\exists i$规则）</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233554926.png" alt="image-20220321233554926" style="zoom:67%;" /></p>
+<h5 id="4-存在量词消去规则（-exists-e-规则）"><a href="#4-存在量词消去规则（-exists-e-规则）" class="headerlink" title="4.存在量词消去规则（$\exists e$规则）"></a>4.存在量词消去规则（$\exists e$规则）</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233634370.png" alt="image-20220321233634370" style="zoom:67%;" /></p>
+<h3 id="一阶逻辑的归结推理法"><a href="#一阶逻辑的归结推理法" class="headerlink" title="一阶逻辑的归结推理法"></a>一阶逻辑的归结推理法</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321234245916.png" alt="image-20220321234245916" style="zoom:67%;" /></p>
+<h4 id="命题逻辑消解证明法（或归结推理法）的做法"><a href="#命题逻辑消解证明法（或归结推理法）的做法" class="headerlink" title="命题逻辑消解证明法（或归结推理法）的做法"></a>命题逻辑消解证明法（或归结推理法）的做法</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321234227003.png" alt="image-20220321234227003" style="zoom: 67%;" /></p>
+<h4 id="一阶逻辑归结推理法的做法"><a href="#一阶逻辑归结推理法的做法" class="headerlink" title="一阶逻辑归结推理法的做法"></a>一阶逻辑归结推理法的做法</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321234322854.png" alt="image-20220321234322854" style="zoom:67%;" /></p>
 ]]></content>
       <categories>
         <category>2022 Spring</category>
@@ -5716,7 +6968,7 @@ A 为非重言式的可满足式 \Leftrightarrow A既有成真赋值又有成假
 </ul>
 </li>
 </ul>
-<h5 id="实例-例11-1"><a href="#实例-例11-1" class="headerlink" title="实例-例11"></a>实例-例11</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220311094257484.png" alt="image-20220311094257484" style="zoom:50%;" /></p>
+<h5 id="实例-例12"><a href="#实例-例12" class="headerlink" title="实例-例12"></a>实例-例12</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220311094257484.png" alt="image-20220311094257484" style="zoom:50%;" /></p>
 <h5 id="谓词和函数的区别"><a href="#谓词和函数的区别" class="headerlink" title="谓词和函数的区别"></a>谓词和函数的区别</h5><ul>
 <li>谓词代表<strong>语句</strong>，<strong>结果是性质或关系</strong>（具有真假值）；</li>
 <li>函数代表<strong>关系运算</strong>，结果将返回一个<strong>新个体</strong>。</li>
@@ -5726,56 +6978,6 @@ A 为非重言式的可满足式 \Leftrightarrow A既有成真赋值又有成假
 <p>谓词$SUM(e_1, e_2, e_3)$ 说明$e_1、e_2、e_3$之间的关系是$e_1$与$e_2$的和是$e_3$——返回bool类型</p>
 <p>函数$add(e_1, e_2)$说明$e_1$与$e_2$相加的结果仍是一个数——返回个体类型</p>
 </blockquote>
-]]></content>
-      <categories>
-        <category>2022 Spring</category>
-        <category>数理逻辑</category>
-      </categories>
-      <tags>
-        <tag>mathematical logic</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数理逻辑：第7节 一阶逻辑自然推理系统</title>
-    <url>/mathematical_logic/mathematical-logic-ch7/</url>
-    <content><![CDATA[<p><strong>主要内容</strong></p>
-<ul>
-<li>自然推理系统$N_L$及其推理规则</li>
-<li>一阶逻辑的归结推理法</li>
-</ul>
-<span id="more"></span>
-<h3 id="自然推理系统-N-L"><a href="#自然推理系统-N-L" class="headerlink" title="自然推理系统$N_L$"></a>自然推理系统$N_L$</h3><p><strong>定义1</strong> 自然推理系统$N_L$定义如下：</p>
-<ul>
-<li>字母表（同一阶语言L的字母表）</li>
-<li>合式公式（同L的合式公式的定义）</li>
-<li>推理规则<ol>
-<li>前提引入规则</li>
-<li>结论引入规则</li>
-<li>置换规则</li>
-<li>合取引入、消去规则</li>
-<li>双重否定引入、消去规则</li>
-<li>析取引入、消去规则</li>
-<li>蕴含引入、消去规则</li>
-<li>拒取式规则</li>
-<li>矛盾消去、否定消去、否定引入规则</li>
-<li>假言三段论规则</li>
-<li>析取三段论规则</li>
-<li><strong>$\forall e$规则</strong></li>
-<li><strong>$\forall i$规则</strong></li>
-<li><strong>$\exists e$规则</strong></li>
-<li><strong>$\exists i$规则</strong></li>
-</ol>
-</li>
-</ul>
-<h4 id="全称量词消去规则"><a href="#全称量词消去规则" class="headerlink" title="全称量词消去规则"></a>全称量词消去规则</h4><h5 id="1-全称量词消去规则-forall-e-规则"><a href="#1-全称量词消去规则-forall-e-规则" class="headerlink" title="1.全称量词消去规则($\forall e$规则)"></a>1.全称量词消去规则($\forall e$规则)</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233210071.png" alt="image-20220321233210071" style="zoom:67%;" /></p>
-<p>$\forall$消去规则必须考虑<strong>t对$A(x)$中的x是自由的</strong></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233310687.png" alt="image-20220321233310687" style="zoom: 67%;" /></p>
-<h5 id="2-全称量词引入规则（-forall-i-规则）"><a href="#2-全称量词引入规则（-forall-i-规则）" class="headerlink" title="2.全称量词引入规则（$\forall i$规则）"></a>2.全称量词引入规则（$\forall i$规则）</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233502262.png" style="zoom:67%;" /></p>
-<h5 id="3-存在量词引入规则（-exists-i-规则）"><a href="#3-存在量词引入规则（-exists-i-规则）" class="headerlink" title="3.存在量词引入规则（$\exists i$规则）"></a>3.存在量词引入规则（$\exists i$规则）</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233554926.png" alt="image-20220321233554926" style="zoom:67%;" /></p>
-<h5 id="4-存在量词消去规则（-exists-e-规则）"><a href="#4-存在量词消去规则（-exists-e-规则）" class="headerlink" title="4.存在量词消去规则（$\exists e$规则）"></a>4.存在量词消去规则（$\exists e$规则）</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321233634370.png" alt="image-20220321233634370" style="zoom:67%;" /></p>
-<h3 id="一阶逻辑的归结推理法"><a href="#一阶逻辑的归结推理法" class="headerlink" title="一阶逻辑的归结推理法"></a>一阶逻辑的归结推理法</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321234245916.png" alt="image-20220321234245916" style="zoom:67%;" /></p>
-<h4 id="命题逻辑消解证明法（或归结推理法）的做法"><a href="#命题逻辑消解证明法（或归结推理法）的做法" class="headerlink" title="命题逻辑消解证明法（或归结推理法）的做法"></a>命题逻辑消解证明法（或归结推理法）的做法</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321234227003.png" alt="image-20220321234227003" style="zoom: 67%;" /></p>
-<h4 id="一阶逻辑归结推理法的做法"><a href="#一阶逻辑归结推理法的做法" class="headerlink" title="一阶逻辑归结推理法的做法"></a>一阶逻辑归结推理法的做法</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321234322854.png" alt="image-20220321234322854" style="zoom:67%;" /></p>
 ]]></content>
       <categories>
         <category>2022 Spring</category>
@@ -6201,9 +7403,9 @@ Q_1x_1Q_2x_2…Q_kx_kB</script><p>则称$A$为<strong>前束范式</strong>，�
 <h3 id="3-1-1-系统验证的分类"><a href="#3-1-1-系统验证的分类" class="headerlink" title="3.1.1 系统验证的分类"></a>3.1.1 系统验证的分类</h3><ol>
 <li><p><strong>基于证明与基于模型</strong></p>
 <ul>
-<li><p><strong>基于证明</strong>：系统描述为一组逻辑公式$r$，而规范是另一个公式$\Phi$，通过找到$r \Phi$的证明来验证系统</p>
+<li><p><strong>基于证明</strong>：系统描述为一组逻辑公式$r$，而规范是另一个公式$\phi$，通过找到$r \vdash \phi$（可证明性）的证明来验证系统</p>
 </li>
-<li><p><strong>基于模型</strong>：系统描述为模型$M$，规范是公式$\Phi$，通过计算模型M是否满足$\Phi$来验证系统</p>
+<li><p><strong>基于模型</strong>：系统描述为模型$M$，规范是公式$\phi$，通过计算模型M是否满足$\phi$（$M \vDash \phi$）来验证系统</p>
 <blockquote>
 <p>在模型为真的情况下，如果公式也为真，那么模型是满足公式的</p>
 </blockquote>
@@ -6411,7 +7613,11 @@ Q_1x_1Q_2x_2…Q_kx_kB</script><p>则称$A$为<strong>前束范式</strong>，�
 <p>对于4)$s_0$的下一个状态都满足r</p>
 <p>对于6)从无限计算树来看容易得到。$s_2$满足前件和后件</p>
 </blockquote>
-<h3 id="3-2-3-规范的实际模式"><a href="#3-2-3-规范的实际模式" class="headerlink" title="3.2.3 规范的实际模式"></a>3.2.3 规范的实际模式</h3><p>在计算机系统中我们经常应用，准备、就绪、</p>
+<h3 id="3-2-3-规范的实际模式"><a href="#3-2-3-规范的实际模式" class="headerlink" title="3.2.3 规范的实际模式"></a>3.2.3 规范的实际模式</h3><p>在计算机系统中我们经常应用，准备、就绪、运行、请求、等待一些状态。</p>
+<blockquote>
+<p>例如：操作系统中的进程</p>
+<p>GFp：沿着问题中的路径，p无限多次地发生</p>
+</blockquote>
 <p><strong>LTL可以描述实际系统中的以下一些性质</strong>：</p>
 <ol>
 <li><p>永远不可能没有准备好就启动</p>
