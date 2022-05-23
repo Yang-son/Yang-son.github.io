@@ -86,7 +86,7 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321170055398.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220130103055884.png">
 <meta property="article:published_time" content="2022-03-21T11:06:17.000Z">
-<meta property="article:modified_time" content="2022-03-25T13:52:39.618Z">
+<meta property="article:modified_time" content="2022-05-23T03:17:54.700Z">
 <meta property="article:author" content="Cheng">
 <meta property="article:tag" content="computer organization">
 <meta name="twitter:card" content="summary">
@@ -282,7 +282,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-25 21:52:39" itemprop="dateModified" datetime="2022-03-25T21:52:39+08:00">2022-03-25</time>
+                <time title="修改时间：2022-05-23 11:17:54" itemprop="dateModified" datetime="2022-05-23T11:17:54+08:00">2022-05-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1090,8 +1090,9 @@ L-1 = D+C \quad (D \geq C)</script><p>（L——编码的最小距离，L=3）</
 </blockquote>
 <p>——避免CPU“空等”现象</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220321165237238.png" alt="image-20220321165237238" style="zoom: 67%;" /></p>
-<h5 id="程序访问的局部性原理"><a href="#程序访问的局部性原理" class="headerlink" title="程序访问的局部性原理"></a>程序访问的局部性原理</h5><p>CPU在访问内存时，在一定时间，是<strong>局部地址区域的访问</strong>，指令和数据中内存中的地址是<strong>连续存放</strong>的，是<strong>相对的簇聚</strong>的。</p>
+<h5 id="程序访问的局部性原理"><a href="#程序访问的局部性原理" class="headerlink" title="程序访问的局部性原理"></a>程序访问的局部性原理</h5><p>CPU在访问<strong>主存</strong>时，在一定时间，是<strong>局部地址区域的访问</strong>，指令和数据中内存中的地址是<strong>连续存放</strong>的，是<strong>相对的簇聚</strong>的。</p>
 <blockquote>
+<p><strong>区分主存和内存</strong>：$内存\begin{cases} 主存(DRAM) \\ Cache(SRAM) \end{cases}$</p>
 <p>如：子程序、循环出现、一些常数等</p>
 </blockquote>
 <ul>
