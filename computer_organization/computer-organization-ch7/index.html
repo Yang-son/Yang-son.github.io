@@ -65,7 +65,7 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155402226.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155423222.png">
 <meta property="article:published_time" content="2022-05-05T08:22:28.000Z">
-<meta property="article:modified_time" content="2022-05-22T15:53:15.276Z">
+<meta property="article:modified_time" content="2022-05-23T12:13:29.514Z">
 <meta property="article:author" content="Cheng">
 <meta property="article:tag" content="computer organization">
 <meta name="twitter:card" content="summary">
@@ -261,7 +261,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-22 23:53:15" itemprop="dateModified" datetime="2022-05-22T23:53:15+08:00">2022-05-22</time>
+                <time title="修改时间：2022-05-23 20:13:29" itemprop="dateModified" datetime="2022-05-23T20:13:29+08:00">2022-05-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -290,14 +290,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.7k</span>
+              <span>4.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>15 分钟</span>
             </span>
 
         </div>
@@ -321,29 +321,53 @@
 <p>如：加法、减法、传送、移位、转移等</p>
 </blockquote>
 <p>位数反映操作种类（机器允许的指令条数）</p>
+<blockquote>
+<p>如，操作码占7位，最多包含$2^7=128$条指令</p>
+</blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503140908602.png" alt="image-20220503140908602" style="zoom: 50%;" /></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503141005021.png" alt="image-20220503141005021" style="zoom: 50%;" /></p>
-<p>三地址指令操作码每减少一种可多构成$2^4$种二地址指令</p>
-<p>二地址指令操作码每减少一种可多构成$2^4$种一地址指令</p>
-<h4 id="2-地址码"><a href="#2-地址码" class="headerlink" title="2.地址码"></a>2.地址码</h4><p>用来指出该指令的源操作数的地址（一个或两个）、结果的地址以及下一条指令的地址。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503141005021.png" alt="image-20220503141005021" style="zoom: 33%;" /></p>
+<ul>
+<li>三地址指令：操作码每减少一种，可多构成$2^4$种二地址指令</li>
+</ul>
+<ul>
+<li>二地址指令：操作码每减少一种，可多构成$2^4$种一地址指令</li>
+</ul>
+<h4 id="2-地址码"><a href="#2-地址码" class="headerlink" title="2.地址码"></a>2.地址码</h4><p>用来指出该指令的<strong>源操作数的地址</strong>（一个或两个）、<strong>结果的地址</strong>以及<strong>下一条指令的地址</strong>。</p>
 <blockquote>
 <p>“地址”可以是主存的地址，也可以是寄存器的地址，I/O设备的地址</p>
 </blockquote>
-<h5 id="1-四地址"><a href="#1-四地址" class="headerlink" title="1. 四地址"></a>1. 四地址</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503141141637.png" alt="image-20220503141141637" style="zoom: 50%;" /></p>
-<h5 id="2-三地址"><a href="#2-三地址" class="headerlink" title="2. 三地址"></a>2. 三地址</h5><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503141155067.png" alt="image-20220503141155067" style="zoom: 50%;" /></p>
-<h5 id="3-二地址"><a href="#3-二地址" class="headerlink" title="3. 二地址"></a>3. 二地址</h5><p>4次：取A1，A2，写A1，取指令</p>
+<h5 id="1-四地址"><a href="#1-四地址" class="headerlink" title="1. 四地址"></a>1. 四地址</h5><blockquote>
+<p>4次访存：取$A_1$，取$A_2$，写$A_3$，取$A_4$指令</p>
+</blockquote>
+<p>4个地址字段各占6位，指令操作数直接寻址范围为$2^6=64$（按lb的说法，应写成：$0-2^6-1$）</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503141141637.png" alt="image-20220503141141637" style="zoom: 50%;" /></p>
+<h5 id="2-三地址"><a href="#2-三地址" class="headerlink" title="2. 三地址"></a>2. 三地址</h5><blockquote>
+<p>4次访存：取$A_1$，取$A_2$，写$A_3$，取指令（程序计数器PC）</p>
+</blockquote>
+<p>3个地址字段各占8位，指令操作数直接寻址范围：256（0-255）</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503141155067.png" alt="image-20220503141155067" style="zoom: 50%;" /></p>
+<h5 id="3-二地址"><a href="#3-二地址" class="headerlink" title="3. 二地址"></a>3. 二地址</h5><blockquote>
+<p>4次访存：取$A_1$，取$A_2$，写$A_1$（或$A_2$），取指令</p>
+<p>3次访存：结果暂存在累加器ACC中，不用写$A_1$或$A_2$</p>
+</blockquote>
+<p>2个地址字段各占12位，直接寻址范围：4096（0 - 4095）</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503142230997.png" alt="image-20220503142230997" style="zoom: 50%;" /></p>
-<h5 id="4-一地址"><a href="#4-一地址" class="headerlink" title="4. 一地址"></a>4. 一地址</h5><p>2次：取A1，取指令</p>
+<h5 id="4-一地址"><a href="#4-一地址" class="headerlink" title="4. 一地址"></a>4. 一地址</h5><blockquote>
+<p>2次访存：取$A_1$，取指令</p>
+</blockquote>
+<p>地址字段16位，直接寻址范围：16M（0 - 16M-1）</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503143841338.png" alt="image-20220503143841338" style="zoom: 50%;" /></p>
 <h5 id="5-零地址"><a href="#5-零地址" class="headerlink" title="5. 零地址"></a>5. 零地址</h5><p>子程序返回（RET）、中断返回（IRET）——没有地址码，操作数的地址隐含在堆栈指针SP中</p>
 <h3 id="二、指令字长"><a href="#二、指令字长" class="headerlink" title="二、指令字长"></a>二、指令字长</h3><p>指令字长取决于$\begin{cases} 操作码的长度\\ 操作数地址的长度 \\ 操作数地址的个数 \\  \end{cases}$</p>
 <ol>
 <li><p>指令字长<strong>固定</strong></p>
-<p>指令字长=存储字长</p>
+<script type="math/tex; mode=display">
+指令字长=存储字长</script></li>
+</ol>
 <blockquote>
 <p>早期的计算机，访问某个存储单元便可取出一条完整的指令或一个完整的数据。控制方式简单</p>
 </blockquote>
-</li>
+<ol>
 <li><p>指令字长<strong>可变</strong></p>
 <p>按字节的倍数变化</p>
 <blockquote>
@@ -352,15 +376,28 @@
 </li>
 </ol>
 <p><strong>小结</strong></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503144647612.png" alt="image-20220503144647612" style="zoom: 50%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503144647612.png" alt="image-20220503144647612" style="zoom: 46%;" /></p>
 <h2 id="7-2-操作数类型和操作类型"><a href="#7-2-操作数类型和操作类型" class="headerlink" title="7.2 操作数类型和操作类型"></a>7.2 操作数类型和操作类型</h2><h3 id="一、操作数类型"><a href="#一、操作数类型" class="headerlink" title="一、操作数类型"></a>一、操作数类型</h3><p>常见的操作数类型：地址、数字、字符、逻辑数据</p>
 <ul>
-<li><strong>地址</strong>：无符号的整数。涉及操作数地址的计算</li>
-<li><strong>数字</strong>：定点数、浮点数和十进制数</li>
-<li><strong>字符</strong>：普遍采用ASCII码</li>
-<li><strong>逻辑数据</strong>：</li>
+<li><p><strong>地址</strong>：无符号的整数。涉及操作数地址的计算</p>
+</li>
+<li><p><strong>数字</strong>：定点数、浮点数和十进制数</p>
+</li>
+<li><p><strong>字符</strong>：普遍采用ASCII码</p>
+</li>
+<li><p><strong>逻辑数据</strong>：用于逻辑运算，0和1的数字组合</p>
+<blockquote>
+<p>注意与算术数字的区别</p>
+<p>例，ASCII码中的0110101（54，表示十进制5），与<strong>逻辑数</strong>0001111做与运算得到NB-CD短十进制码0101</p>
+</blockquote>
+</li>
 </ul>
-<h3 id="二、数据在存储器中的存放方式"><a href="#二、数据在存储器中的存放方式" class="headerlink" title="二、数据在存储器中的存放方式"></a>二、数据在存储器中的存放方式</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503150538893.png" alt="image-20220503150538893" style="zoom: 50%;" /></p>
+<h3 id="二、数据在存储器中的存放方式"><a href="#二、数据在存储器中的存放方式" class="headerlink" title="二、数据在存储器中的存放方式"></a>二、数据在存储器中的存放方式</h3><p>计算机数据存放在<strong>存储器</strong>或<strong>寄存器</strong>中，寄存器位数反映机器字长</p>
+<p>一般取字节的整数倍（1、2、4、8、……）</p>
+<blockquote>
+<p>”边界对齐“是为了便于硬件实现</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503150538893.png" alt="image-20220503150538893" style="zoom: 50%;" /></p>
 <h3 id="三、操作类型"><a href="#三、操作类型" class="headerlink" title="三、操作类型"></a>三、操作类型</h3><h4 id="1-数据传送"><a href="#1-数据传送" class="headerlink" title="1. 数据传送"></a>1. 数据传送</h4><p>包括：<strong>寄存器与寄存器</strong>、<strong>寄存器与存储单元</strong>、<strong>存储单元与存储单元</strong>之间的传送。</p>
 <blockquote>
 <p>如：从源到目的之间的传送、对存储器读（LOAD）和写（STORE）、交换源和目的的内容、置1、清0、进栈、出栈等</p>
@@ -376,7 +413,9 @@
 <li>循环移位（带进位和不带进位）</li>
 </ul>
 <h4 id="4-转移"><a href="#4-转移" class="headerlink" title="4. 转移"></a>4. 转移</h4><p>多数情况下，计算机按照顺序执行程序的每条指令，但有时需要改变顺序，采用<strong>转移类指令来完成</strong></p>
+<blockquote>
 <p>分为：无条件转移、条件转移、跳转、过程调用与返回、陷阱等</p>
+</blockquote>
 <ul>
 <li><p><strong>无条件转移</strong></p>
 <p>不受任何条件约束，可直接把程序转移到下一条需执行指令的地址</p>
@@ -401,7 +440,9 @@
 <ul>
 <li><p><strong>调用和返回</strong></p>
 <blockquote>
-<p>类似中断</p>
+<p>CALL和RETURN配合使用</p>
+<p>CALL用于转到子程序入口，RETURN用于子程序执行完返回原程序断点</p>
+<p><strong>类似中断</strong></p>
 </blockquote>
 <p>在编写程序时，有些具有特定功能的程序段会被反复使用。为避免重复编写，可将这些程序段设定为独立子程序，当需要执行某子程序时，只需子程序调用指令即可。</p>
 </li>
@@ -409,32 +450,54 @@
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171657961.png" alt="image-20220420171657961" style="zoom:80%;" /></p>
 <ul>
 <li><p><strong>陷阱（Trap）与陷阱指令</strong></p>
-<p>陷阱时一种意外事故的中断</p>
+<p>陷阱是一种意外事故的中断</p>
 <blockquote>
 <p>如，机器在运行中，可能会出现电源电压不稳定、存储器校验出差错、输入输出设备出现了故障、用户使用未被定义的指令、除数出现0、运算结果溢出、特权指令等</p>
 </blockquote>
-<p>致使计算机不能正常工作，采取措施，发出陷阱信号。暂停当前程序的执行，转入故障处理程序，进行相应的故障处理。</p>
+<p>一旦出现意外故障，计算机就发出陷阱信号，暂停当前程序的执行，转入故障处理程序，进行相应的故障处理。</p>
 </li>
 </ul>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171756033.png" alt="image-20220420171756033" style="zoom:80%;" /></p>
-<h4 id="5-输入输出"><a href="#5-输入输出" class="headerlink" title="5.输入输出"></a>5.输入输出</h4><blockquote>
+<h4 id="5-输入输出"><a href="#5-输入输出" class="headerlink" title="5.输入输出"></a>5.输入输出</h4><p>针对I/O单独编址的计算机。完成<strong>外设寄存器</strong>与<strong>CPU寄存器</strong>之间的数据读入或输出</p>
+<blockquote>
 <p>AL是8bit，AX是16bit</p>
 <p>输入：端口送入CPU</p>
 </blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220420171857720.png" alt="image-20220420171857720" style="zoom:80%;" /></p>
+<h4 id="6-其他"><a href="#6-其他" class="headerlink" title="6.其他"></a>6.其他</h4><p>包括等待指令、停机指令（STP）、空操作指令、开中断指令、关中断指令、置条件码指令等</p>
 <h2 id="7-3-寻址方式"><a href="#7-3-寻址方式" class="headerlink" title="7.3 寻址方式"></a>7.3 寻址方式</h2><blockquote>
-<p>已知指令的顺序寻址、中断隐指令、开机第一条指令</p>
+<p>思考：已知指令的顺序寻址、中断隐指令、开机第一条指令</p>
 </blockquote>
-<p>开机第一条指令的位置：FFFFFFF0</p>
+<p><strong>开机第一条指令</strong>：自动去取CS:IP地址的指令。也就是位于FFFF:0000（FFFF0）地址的指令</p>
+<blockquote>
+<p>对于8086CPU来说，进行硬件初始化，会把所有的CPU置为0，除了代码段寄存器CS会置为FFFF</p>
+<p>复位和加电的功能等效</p>
+</blockquote>
 <p>0xFFFF0 指令：跳转到F000:EO5B</p>
 <blockquote>
-<p>参考资料：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u010383242/article/details/50586782">开机后的第一条指令</a></p>
+<p>参考资料：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u010383242/article/details/50586782">开机后的第一条指令</a>、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Sna1lGo/p/15681353.html">8086-1-计算机的启动过程 </a></p>
 </blockquote>
-<p>中断隐指令怎么找</p>
-<h3 id="一、指令寻址"><a href="#一、指令寻址" class="headerlink" title="一、指令寻址"></a>一、指令寻址</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153526386.png" alt="image-20220503153526386" style="zoom: 50%;" /></p>
-<h3 id="二、数据寻址"><a href="#二、数据寻址" class="headerlink" title="二、数据寻址"></a>二、数据寻址</h3><p>指令字中必须设一字段来指明属于哪一种寻址方式——<strong>寻址特征位</strong>，记作M</p>
-<p>指令的地址码字段通常都不代表操作数的真实地址，把它称为<strong>形式地址</strong>，记作A</p>
-<p>操作数的真实地址称为<strong>有效地址</strong>，记作EA</p>
+<p><strong>中断隐指令怎么找</strong></p>
+<ul>
+<li><p>中断处理的本质类似于调用，响应中断$\to$运行中断处理程序$\to$恢复被中断程序，整个流程不会导致被中断过程的连贯性。也可以主动调用中断处理程序，int 0xN，只不过就是你不知道中断处理程序的入口地址在哪，入口保存在中断向量表(intel 16位机)、中断描述符表IDT(intel 32位机)。</p>
+</li>
+<li><p>CPU收到中断信息后，首先引发中断过程，由硬件完成，没有指令对应。即中断隐指令。<strong>以8086为例，中断过程做的事：取中断类型码N；EFLAGS进栈；TF=0，IF=0；CS进栈；IP进栈；设置CS、IP为中断处理程序的入口。</strong></p>
+</li>
+<li><p>而<strong>中断处理程序要做的第一件事就是保存通用寄存器的内容</strong>。</p>
+</li>
+</ul>
+<blockquote>
+<p>参考资料：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/504946430/answer/2266775454">操作系统中断处理时的程序断点保存在哪里了？</a></p>
+</blockquote>
+<h3 id="一、指令寻址"><a href="#一、指令寻址" class="headerlink" title="一、指令寻址"></a>一、指令寻址</h3><p>分为<strong>顺序寻址</strong>和<strong>跳跃寻址</strong>两种</p>
+<ul>
+<li>顺序寻址：(PC) + 1$\to$ PC</li>
+<li>跳跃寻址：JMP</li>
+</ul>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153526386.png" alt="image-20220503153526386" style="zoom: 50%;" /></p>
+<h3 id="二、数据寻址"><a href="#二、数据寻址" class="headerlink" title="二、数据寻址"></a>二、数据寻址</h3><p>指令字中必须设一字段来指明属于哪一种寻址方式——<strong>寻址特征位</strong>，记作<code>M</code></p>
+<p>指令的地址码字段通常都不代表操作数的真实地址，把它称为<strong>形式地址</strong>，记作<code>A</code></p>
+<p>操作数的真实地址称为<strong>有效地址</strong>，记作<code>EA</code></p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153543995.png" alt="image-20220503153543995" style="zoom: 50%;" /></p>
 <blockquote>
 <p>假设指令字长、存储字长、机器字长均相同</p>
@@ -444,53 +507,101 @@
 <p>立即数是有符号数，以<strong>补码</strong>形式保存</p>
 </blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153600596.png" alt="image-20220503153600596" style="zoom: 50%;" /></p>
-<p>优点：只要取出指令，便可立即获得操作数，在执行阶段不必再访问存储器</p>
-<p>A的位数限制立即数的范围。</p>
-<h4 id="2-直接寻址"><a href="#2-直接寻址" class="headerlink" title="2. 直接寻址"></a>2. 直接寻址</h4><p>特点：指令字中的形式地址A就是操作数的真实地址EA，即：EA=A</p>
+<p><strong>优点</strong>：只要取出指令，便可立即获得操作数，在执行阶段不必再访问存储器</p>
+<p><strong>缺点</strong>：A的位数限制立即数的范围</p>
+<h4 id="2-直接寻址"><a href="#2-直接寻址" class="headerlink" title="2. 直接寻址"></a>2. 直接寻址</h4><p>特点：指令字中的形式地址<code>A</code>就是操作数的真实地址<code>EA</code>，即：<strong>EA=A</strong></p>
 <blockquote>
 <p>有效地址由形式地址直接给出</p>
 </blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503153713905.png" alt="image-20220503153713905" style="zoom: 50%;" /></p>
-<p>优点：寻找操作数简单，不需要专门计算操作数的地址，在指令执行阶段对主存只访问一次。</p>
-<p>A的位数限制了操作数的寻址范围，而且必须修改A的值才能修改操作数的地址。</p>
+<p><strong>优点</strong>：寻找操作数简单，不需要专门计算操作数的地址，在指令执行阶段对主存只访问一次。</p>
+<p><strong>缺点</strong>：A的位数限制了操作数的寻址范围，而且必须修改A的值才能修改操作数的地址。</p>
 <h4 id="3-隐含寻址"><a href="#3-隐含寻址" class="headerlink" title="3. 隐含寻址"></a>3. 隐含寻址</h4><blockquote>
 <p>操作数地址隐含在操作码或某个寄存器中</p>
 </blockquote>
+<p>另一个操作数隐含在<strong>ACC</strong>中</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154526162.png" alt="image-20220503154526162" style="zoom:50%;" /></p>
 <h4 id="4-间接寻址"><a href="#4-间接寻址" class="headerlink" title="4. 间接寻址"></a>4. 间接寻址</h4><blockquote>
 <p>有效地址由形式地址间接给出。</p>
 <p>类似于指针，有效地址是形式地址单元的数值</p>
-<p>2次访存</p>
+</blockquote>
+<p>一次间址对应两次访存过程：</p>
+<ul>
+<li>第一次：取有效地址EA</li>
+<li>第二次：获得操作数地址</li>
+</ul>
+<blockquote>
+<p>设指令字长和存储字长均为16位，形式地址A为8位。则直接寻址$2^8$，间接寻址范围$2^{16}$</p>
 </blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154543218.png" alt="image-20220503154543218" style="zoom: 50%;" /></p>
-<h4 id="5-寄存器寻址"><a href="#5-寄存器寻址" class="headerlink" title="5. 寄存器寻址"></a>5. 寄存器寻址</h4><blockquote>
-<p>有效地址即为寄存器编号</p>
+<p><strong>优点</strong>：</p>
+<ul>
+<li><p>扩大寻址范围</p>
+<blockquote>
+<p>因为A的位数通常小于指令字长，而存储字长可与指令字长相等</p>
 </blockquote>
+</li>
+<li><p>便于编制程序</p>
+<blockquote>
+<p>方便完成子程序返回</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>缺点</strong>：指令执行期间多次访存，指令执行时间延长</p>
+<h4 id="5-寄存器寻址"><a href="#5-寄存器寻址" class="headerlink" title="5. 寄存器寻址"></a>5. 寄存器寻址</h4><blockquote>
+<p>有效地址即为<strong>寄存器编号</strong></p>
+</blockquote>
+<p>在指令执行阶段无须访存，减少执行时间</p>
+<p>地址字段只需指明寄存器编号，指令字较短，节省存储空间</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154600520.png" alt="image-20220503154600520" style="zoom:50%;" /></p>
 <h4 id="6-寄存器间接寻址"><a href="#6-寄存器间接寻址" class="headerlink" title="6. 寄存器间接寻址"></a>6. 寄存器间接寻址</h4><blockquote>
-<p>有效地址在寄存器内（访问寄存器内容）</p>
+<p>有效地址在寄存器内（访问寄存器内容），操作数在存储器</p>
 </blockquote>
+<p>类似于存储器间接寻址</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154617609.png" alt="image-20220503154617609" style="zoom: 50%;" /></p>
-<h4 id="7-基址寻址"><a href="#7-基址寻址" class="headerlink" title="7. 基址寻址"></a>7. 基址寻址</h4><ol>
-<li><p>采用专用寄存器作基址寄存器</p>
+<h4 id="7-基址寻址"><a href="#7-基址寻址" class="headerlink" title="7. 基址寻址"></a>7. 基址寻址</h4><p>设有基址寄存器BR。操作数有效地址等于形式地址+基址寄存器的内容</p>
+<script type="math/tex; mode=display">
+EA = A + (BR)</script><p>基址寄存器的<strong>内容通常由OS或者管理程序确定</strong>，在程序执行过程中<strong>其值不可变</strong>，而指令字中形式地址<strong>A可变</strong>。</p>
+<p>主要用于<strong>为程序或数据分配存储空间</strong>。</p>
+<ol>
+<li><p><strong>采用专用寄存器作基址寄存器</strong></p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154638769.png" alt="image-20220503154638769" style="zoom:50%;" /></p>
 </li>
-<li><p>采用通用寄存器$R_0$作基址寄存器</p>
+<li><p><strong>采用通用寄存器$R_0$作基址寄存器</strong></p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154658187.png" alt="image-20220503154658187" style="zoom:50%;" /></p>
 </li>
 </ol>
-<h4 id="8-变址寻址"><a href="#8-变址寻址" class="headerlink" title="8. 变址寻址"></a>8. 变址寻址</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154716131.png" alt="image-20220503154716131" style="zoom:50%;" /></p>
-<h4 id="9-相对寻址"><a href="#9-相对寻址" class="headerlink" title="9. 相对寻址"></a>9. 相对寻址</h4><blockquote>
-<p>EA=(PC)+A，A是相对与当前指令的位移量</p>
+<h4 id="8-变址寻址"><a href="#8-变址寻址" class="headerlink" title="8. 变址寻址"></a>8. 变址寻址</h4><blockquote>
+<p>与基址寻址类似</p>
+</blockquote>
+<p>有效地址等于形式地址A与变址寄存器IX的内容相加之和</p>
+<script type="math/tex; mode=display">
+EA = A + (IX)</script><p>变址寄存器<strong>内容由用户设定</strong>，在程序执行过程中<strong>其值可变</strong>，但指令字的形式地址<strong>A不可变</strong>。</p>
+<p>主要用于<strong>处理数组问题</strong>，设定A为数组首地址。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154716131.png" alt="image-20220503154716131" style="zoom:50%;" /></p>
+<h4 id="9-相对寻址"><a href="#9-相对寻址" class="headerlink" title="9. 相对寻址"></a>9. 相对寻址</h4><p>有效地址是将PC的内容（当前指令的地址）与形式地址A相加而成</p>
+<script type="math/tex; mode=display">
+EA=(PC)+A</script><blockquote>
+<p>形式地址A是相对与当前指令的位移量，可正可负，用补码表示</p>
+</blockquote>
+<p>常用于转移类指令，转移后的目标地址与当前指令有一段距离。</p>
+<blockquote>
+<p>例，若位移量为8位，指令寻址范围：(PC) + 127 ~ (PC) - 128</p>
 </blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154737331.png" alt="image-20220503154737331" style="zoom:50%;" /></p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154815612.png" alt="image-20220503154815612" style="zoom:50%;" /></p>
-<h4 id="10-堆栈寻址"><a href="#10-堆栈寻址" class="headerlink" title="10. 堆栈寻址"></a>10. 堆栈寻址</h4><blockquote>
+<p>可与间接寻址配合使用</p>
+<h4 id="10-堆栈寻址"><a href="#10-堆栈寻址" class="headerlink" title="10. 堆栈寻址"></a>10. 堆栈寻址</h4><p>要求计算机中设有堆栈。堆栈既可用<strong>寄存器组（硬堆栈）</strong>来实现，也可利用<strong>主存的一部分空间作为堆栈（软堆栈）</strong></p>
+<blockquote>
 <p>堆栈指令调用内存（堆栈指令或者内存单元操作）</p>
 </blockquote>
-<p>是一种数据格式</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154832850.png" alt="image-20220503154832850" style="zoom:80%;" /></p>
-<h2 id="7-4-指令格式举例"><a href="#7-4-指令格式举例" class="headerlink" title="7.4 指令格式举例"></a>7.4 指令格式举例</h2><h3 id="一、设计指令格式时应考虑的因素"><a href="#一、设计指令格式时应考虑的因素" class="headerlink" title="一、设计指令格式时应考虑的因素"></a>一、设计指令格式时应考虑的因素</h3><h4 id="1-指令系统的兼容性"><a href="#1-指令系统的兼容性" class="headerlink" title="1. 指令系统的兼容性"></a>1. 指令系统的兼容性</h4><p>向上兼容</p>
+<p>可见堆栈寻址也可视为一种隐含寻址，<strong>操作数地址隐含在SP中</strong></p>
+<p>就其本质可视为寄存器间接寻址——SP可视为寄存器，存放操作数的有效地址EA</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503154832850.png" alt="image-20220503154832850" style="zoom: 50%;" /></p>
+<h2 id="7-4-指令格式举例（必考）"><a href="#7-4-指令格式举例（必考）" class="headerlink" title="7.4 指令格式举例（必考）"></a>7.4 指令格式举例（必考）</h2><blockquote>
+<p>参考例7.4-例7.7</p>
+</blockquote>
+<h3 id="一、设计指令格式时应考虑的因素"><a href="#一、设计指令格式时应考虑的因素" class="headerlink" title="一、设计指令格式时应考虑的因素"></a>一、设计指令格式时应考虑的因素</h3><h4 id="1-指令系统的兼容性"><a href="#1-指令系统的兼容性" class="headerlink" title="1. 指令系统的兼容性"></a>1. 指令系统的兼容性</h4><p>向上兼容：高档机兼容低档机的程序运行</p>
 <h4 id="2-其他因素"><a href="#2-其他因素" class="headerlink" title="2. 其他因素"></a>2. 其他因素</h4><ul>
 <li><strong>操作类型</strong>：包括指令个数及操作的难易程度</li>
 <li><strong>数据类型</strong>：确定哪些数据类型可参与操作</li>
@@ -498,7 +609,10 @@
 <li><strong>寻址方式</strong>：指令寻址、操作数寻址</li>
 <li><strong>寄存器个数</strong>：寄存器的多少直接影响指令的执行时间</li>
 </ul>
-<h3 id="二、指令格式举例"><a href="#二、指令格式举例" class="headerlink" title="二、指令格式举例"></a>二、指令格式举例</h3><ol>
+<h3 id="二、指令格式举例"><a href="#二、指令格式举例" class="headerlink" title="二、指令格式举例"></a>二、指令格式举例</h3><blockquote>
+<p>非重要内容</p>
+</blockquote>
+<ol>
 <li><p>PDP-8</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155132681.png" alt="image-20220503155132681" style="zoom:50%;" /></p>
 </li>
@@ -518,12 +632,24 @@
 <blockquote>
 <p>要求：条件一定，写出指令格式</p>
 </blockquote>
-<h2 id="考试题型总结——设计指令系统"><a href="#考试题型总结——设计指令系统" class="headerlink" title="考试题型总结——设计指令系统"></a>考试题型总结——设计指令系统</h2><p>操作码多少位</p>
-<p>寻址特征位（是否选择——硬件设计有关）</p>
-<p>M寻址特征位</p>
-<p>A形式地址</p>
-<h2 id="7-5-RISC技术"><a href="#7-5-RISC技术" class="headerlink" title="7.5 RISC技术"></a>7.5 RISC技术</h2><p>RISC(Reduced Instruction set computer)</p>
-<p>硬件简单，寻址方式、指令砍掉，无法运行CISC程序，因此不易指令系统兼容</p>
+<h2 id="考试题型总结——设计指令系统"><a href="#考试题型总结——设计指令系统" class="headerlink" title="考试题型总结——设计指令系统"></a>考试题型总结——设计指令系统</h2><p>参考例7.4-例7.7</p>
+<ul>
+<li><p>操作码多少位</p>
+</li>
+<li><p>寻址特征位（是否选择——硬件设计有关）</p>
+</li>
+<li><p>M寻址特征位</p>
+</li>
+<li><p>A形式地址</p>
+</li>
+</ul>
+<h2 id="7-5-RISC技术（重要）"><a href="#7-5-RISC技术（重要）" class="headerlink" title="7.5 RISC技术（重要）"></a>7.5 RISC技术（重要）</h2><p>RISC(Reduced Instruction Set Computer)，全称：精简指令系统计算机</p>
+<p>CISC(Complex Instruction Set Computer)，全称：复杂指令系统计算机</p>
+<p>RISC：硬件简单，寻址方式、指令砍掉，无法运行CISC程序，不兼容</p>
+<blockquote>
+<p>RISC指令系统选取使用频度较高的一些<strong>简单</strong>指令，复杂指令的功能由<strong>简单</strong>指令的组合来实现。其指令长度<strong>固定</strong>，指令格式种类<strong>少</strong>，寻址方式种类<strong>少</strong>，只有取数/存数指令访问存储器，其余指令的操作都在寄存器之间进行，且采用流水线技术，大部分指令在<strong>1个时钟周期</strong>时间内完成。</p>
+<p>控制器采用<strong>组合逻辑控制</strong>，不采用微程序控制</p>
+</blockquote>
 <h3 id="一、RISC-的产生和发展"><a href="#一、RISC-的产生和发展" class="headerlink" title="一、RISC 的产生和发展"></a>一、RISC 的产生和发展</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155316293.png" alt="image-20220503155316293" style="zoom:50%;" /></p>
 <h3 id="二、RISC-的主要特征"><a href="#二、RISC-的主要特征" class="headerlink" title="二、RISC 的主要特征"></a>二、RISC 的主要特征</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155338256.png" alt="image-20220503155338256" style="zoom:50%;" /></p>
 <h3 id="三、CISC-的主要特征"><a href="#三、CISC-的主要特征" class="headerlink" title="三、CISC 的主要特征"></a>三、CISC 的主要特征</h3><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220503155402226.png" alt="image-20220503155402226" style="zoom: 50%;" /></p>
@@ -611,7 +737,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-%E6%9C%BA%E5%99%A8%E6%8C%87%E4%BB%A4"><span class="nav-text">7.1 机器指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%8C%87%E4%BB%A4%E7%9A%84%E4%B8%80%E8%88%AC%E6%A0%BC%E5%BC%8F"><span class="nav-text">一、指令的一般格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%93%8D%E4%BD%9C%E7%A0%81"><span class="nav-text">1.操作码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%9C%B0%E5%9D%80%E7%A0%81"><span class="nav-text">2.地址码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%9B%9B%E5%9C%B0%E5%9D%80"><span class="nav-text">1. 四地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E4%B8%89%E5%9C%B0%E5%9D%80"><span class="nav-text">2. 三地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E4%BA%8C%E5%9C%B0%E5%9D%80"><span class="nav-text">3. 二地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E4%B8%80%E5%9C%B0%E5%9D%80"><span class="nav-text">4. 一地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E9%9B%B6%E5%9C%B0%E5%9D%80"><span class="nav-text">5. 零地址</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%8C%87%E4%BB%A4%E5%AD%97%E9%95%BF"><span class="nav-text">二、指令字长</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-%E6%93%8D%E4%BD%9C%E6%95%B0%E7%B1%BB%E5%9E%8B%E5%92%8C%E6%93%8D%E4%BD%9C%E7%B1%BB%E5%9E%8B"><span class="nav-text">7.2 操作数类型和操作类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%93%8D%E4%BD%9C%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="nav-text">一、操作数类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E6%8D%AE%E5%9C%A8%E5%AD%98%E5%82%A8%E5%99%A8%E4%B8%AD%E7%9A%84%E5%AD%98%E6%94%BE%E6%96%B9%E5%BC%8F"><span class="nav-text">二、数据在存储器中的存放方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%93%8D%E4%BD%9C%E7%B1%BB%E5%9E%8B"><span class="nav-text">三、操作类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81"><span class="nav-text">1. 数据传送</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E6%93%8D%E4%BD%9C"><span class="nav-text">2. 算术逻辑操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%A7%BB%E4%BD%8D%E6%93%8D%E4%BD%9C"><span class="nav-text">3. 移位操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%BD%AC%E7%A7%BB"><span class="nav-text">4. 转移</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="nav-text">5.输入输出</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="nav-text">7.3 寻址方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80"><span class="nav-text">一、指令寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80"><span class="nav-text">二、数据寻址</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%AB%8B%E5%8D%B3%E5%AF%BB%E5%9D%80"><span class="nav-text">1. 立即寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%9B%B4%E6%8E%A5%E5%AF%BB%E5%9D%80"><span class="nav-text">2. 直接寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%9A%90%E5%90%AB%E5%AF%BB%E5%9D%80"><span class="nav-text">3. 隐含寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80"><span class="nav-text">4. 间接寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80"><span class="nav-text">5. 寄存器寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%AF%84%E5%AD%98%E5%99%A8%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80"><span class="nav-text">6. 寄存器间接寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E5%9F%BA%E5%9D%80%E5%AF%BB%E5%9D%80"><span class="nav-text">7. 基址寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80"><span class="nav-text">8. 变址寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-%E7%9B%B8%E5%AF%B9%E5%AF%BB%E5%9D%80"><span class="nav-text">9. 相对寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-%E5%A0%86%E6%A0%88%E5%AF%BB%E5%9D%80"><span class="nav-text">10. 堆栈寻址</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F%E4%B8%BE%E4%BE%8B"><span class="nav-text">7.4 指令格式举例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%AE%BE%E8%AE%A1%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F%E6%97%B6%E5%BA%94%E8%80%83%E8%99%91%E7%9A%84%E5%9B%A0%E7%B4%A0"><span class="nav-text">一、设计指令格式时应考虑的因素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="nav-text">1. 指令系统的兼容性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%85%B6%E4%BB%96%E5%9B%A0%E7%B4%A0"><span class="nav-text">2. 其他因素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F%E4%B8%BE%E4%BE%8B"><span class="nav-text">二、指令格式举例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%80%83%E8%AF%95%E9%A2%98%E5%9E%8B%E6%80%BB%E7%BB%93%E2%80%94%E2%80%94%E8%AE%BE%E8%AE%A1%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F"><span class="nav-text">考试题型总结——设计指令系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-5-RISC%E6%8A%80%E6%9C%AF"><span class="nav-text">7.5 RISC技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81RISC-%E7%9A%84%E4%BA%A7%E7%94%9F%E5%92%8C%E5%8F%91%E5%B1%95"><span class="nav-text">一、RISC 的产生和发展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81RISC-%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E5%BE%81"><span class="nav-text">二、RISC 的主要特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81CISC-%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E5%BE%81"><span class="nav-text">三、CISC 的主要特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81RISC%E5%92%8CCISC-%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-text">四、RISC和CISC 的比较</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-%E6%9C%BA%E5%99%A8%E6%8C%87%E4%BB%A4"><span class="nav-text">7.1 机器指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%8C%87%E4%BB%A4%E7%9A%84%E4%B8%80%E8%88%AC%E6%A0%BC%E5%BC%8F"><span class="nav-text">一、指令的一般格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%93%8D%E4%BD%9C%E7%A0%81"><span class="nav-text">1.操作码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%9C%B0%E5%9D%80%E7%A0%81"><span class="nav-text">2.地址码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%9B%9B%E5%9C%B0%E5%9D%80"><span class="nav-text">1. 四地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E4%B8%89%E5%9C%B0%E5%9D%80"><span class="nav-text">2. 三地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E4%BA%8C%E5%9C%B0%E5%9D%80"><span class="nav-text">3. 二地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E4%B8%80%E5%9C%B0%E5%9D%80"><span class="nav-text">4. 一地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E9%9B%B6%E5%9C%B0%E5%9D%80"><span class="nav-text">5. 零地址</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%8C%87%E4%BB%A4%E5%AD%97%E9%95%BF"><span class="nav-text">二、指令字长</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-%E6%93%8D%E4%BD%9C%E6%95%B0%E7%B1%BB%E5%9E%8B%E5%92%8C%E6%93%8D%E4%BD%9C%E7%B1%BB%E5%9E%8B"><span class="nav-text">7.2 操作数类型和操作类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%93%8D%E4%BD%9C%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="nav-text">一、操作数类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E6%8D%AE%E5%9C%A8%E5%AD%98%E5%82%A8%E5%99%A8%E4%B8%AD%E7%9A%84%E5%AD%98%E6%94%BE%E6%96%B9%E5%BC%8F"><span class="nav-text">二、数据在存储器中的存放方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%93%8D%E4%BD%9C%E7%B1%BB%E5%9E%8B"><span class="nav-text">三、操作类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81"><span class="nav-text">1. 数据传送</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E6%93%8D%E4%BD%9C"><span class="nav-text">2. 算术逻辑操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%A7%BB%E4%BD%8D%E6%93%8D%E4%BD%9C"><span class="nav-text">3. 移位操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%BD%AC%E7%A7%BB"><span class="nav-text">4. 转移</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="nav-text">5.输入输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%85%B6%E4%BB%96"><span class="nav-text">6.其他</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="nav-text">7.3 寻址方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80"><span class="nav-text">一、指令寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80"><span class="nav-text">二、数据寻址</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%AB%8B%E5%8D%B3%E5%AF%BB%E5%9D%80"><span class="nav-text">1. 立即寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%9B%B4%E6%8E%A5%E5%AF%BB%E5%9D%80"><span class="nav-text">2. 直接寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%9A%90%E5%90%AB%E5%AF%BB%E5%9D%80"><span class="nav-text">3. 隐含寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80"><span class="nav-text">4. 间接寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80"><span class="nav-text">5. 寄存器寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%AF%84%E5%AD%98%E5%99%A8%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80"><span class="nav-text">6. 寄存器间接寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E5%9F%BA%E5%9D%80%E5%AF%BB%E5%9D%80"><span class="nav-text">7. 基址寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80"><span class="nav-text">8. 变址寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-%E7%9B%B8%E5%AF%B9%E5%AF%BB%E5%9D%80"><span class="nav-text">9. 相对寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-%E5%A0%86%E6%A0%88%E5%AF%BB%E5%9D%80"><span class="nav-text">10. 堆栈寻址</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F%E4%B8%BE%E4%BE%8B%EF%BC%88%E5%BF%85%E8%80%83%EF%BC%89"><span class="nav-text">7.4 指令格式举例（必考）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%AE%BE%E8%AE%A1%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F%E6%97%B6%E5%BA%94%E8%80%83%E8%99%91%E7%9A%84%E5%9B%A0%E7%B4%A0"><span class="nav-text">一、设计指令格式时应考虑的因素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="nav-text">1. 指令系统的兼容性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%85%B6%E4%BB%96%E5%9B%A0%E7%B4%A0"><span class="nav-text">2. 其他因素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F%E4%B8%BE%E4%BE%8B"><span class="nav-text">二、指令格式举例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%80%83%E8%AF%95%E9%A2%98%E5%9E%8B%E6%80%BB%E7%BB%93%E2%80%94%E2%80%94%E8%AE%BE%E8%AE%A1%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F"><span class="nav-text">考试题型总结——设计指令系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-5-RISC%E6%8A%80%E6%9C%AF%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89"><span class="nav-text">7.5 RISC技术（重要）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81RISC-%E7%9A%84%E4%BA%A7%E7%94%9F%E5%92%8C%E5%8F%91%E5%B1%95"><span class="nav-text">一、RISC 的产生和发展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81RISC-%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E5%BE%81"><span class="nav-text">二、RISC 的主要特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81CISC-%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E5%BE%81"><span class="nav-text">三、CISC 的主要特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81RISC%E5%92%8CCISC-%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-text">四、RISC和CISC 的比较</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
