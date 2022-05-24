@@ -82,7 +82,7 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220523161507249.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220523161550166.png">
 <meta property="article:published_time" content="2022-04-25T14:48:45.000Z">
-<meta property="article:modified_time" content="2022-05-23T12:54:33.225Z">
+<meta property="article:modified_time" content="2022-05-24T08:24:27.888Z">
 <meta property="article:author" content="Cheng">
 <meta property="article:tag" content="computer organization">
 <meta name="twitter:card" content="summary">
@@ -278,7 +278,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-23 20:54:33" itemprop="dateModified" datetime="2022-05-23T20:54:33+08:00">2022-05-23</time>
+                <time title="修改时间：2022-05-24 16:24:27" itemprop="dateModified" datetime="2022-05-24T16:24:27+08:00">2022-05-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -307,14 +307,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>10k</span>
+              <span>12k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>34 分钟</span>
+              <span>38 分钟</span>
             </span>
 
         </div>
@@ -851,7 +851,7 @@
 </blockquote>
 <p>3.<strong>恢复现场</strong>：出栈命令</p>
 <blockquote>
-<p>要求再推出服务程序前，将原程序中断时的“现场”恢复到原来的寄存器中。</p>
+<p>要求在退出服务程序前，将原程序中断时的“现场”恢复到原来的寄存器中。</p>
 <p>通常可以用取数指令或出栈指令（POP），将保存在存储器或堆栈中的信息送到原来的寄存器中。</p>
 </blockquote>
 <p>4.<strong>中断返回</strong>：中断返回指令</p>
@@ -1108,27 +1108,30 @@
 </li>
 </ul>
 <h4 id="2-DMA接口组成"><a href="#2-DMA接口组成" class="headerlink" title="2.DMA接口组成"></a>2.DMA接口组成</h4><blockquote>
-<p>DREQ：设备向DMA接口提出申请</p>
-<p>HRQ：DMA控制逻辑向CPU请求DMA服务，发出总线使用权请求信号</p>
-<p>HLDA：CPU发出的响应信号</p>
-<p>DACK：通知设备已经被赋予一个DMA周期</p>
+<p><strong>DREQ</strong>（DMA Request，<strong>DMA请求信号</strong>）：设备向DMA接口提出申请</p>
+<p><strong>HRQ</strong>（Hold Request，<strong>总线使用权请求信号</strong>）：DMA控制逻辑向CPU请求DMA服务，发出总线使用权请求信号</p>
+<p><strong>HLDA</strong>（Hold Acknowledge，<strong>总线保持响应信号</strong>）：CPU发出的响应信号</p>
+<p><strong>DACK</strong>（DMA Acknowledge，<strong>DMA响应信号</strong>）：通知设备已经被赋予一个DMA周期</p>
 </blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155311386.png" alt="image-20220330155311386" style="zoom:80%;" /></p>
 <ol>
-<li><p><strong>主存地址寄存器（AR, address register）</strong></p>
+<li><p><strong>主存地址寄存器（AR, Address Register）</strong></p>
 <p>AR用于存放主存中需要交换数据的地址。</p>
+<p>DMA传送数据前，必须通过程序将数据在主存中的首地址送到AR</p>
 <blockquote>
 <p>可+1</p>
 </blockquote>
 </li>
-<li><p><strong>字计数器（WC, word count）</strong></p>
+<li><p><strong>字计数器（WC, Word Counter）</strong></p>
 <p>WC用于记录传送数据的总字节数。</p>
+<p>通常以交换字数的<strong>补码值</strong>预置</p>
 <blockquote>
 <p>可+1或-1</p>
 </blockquote>
 </li>
-<li><p><strong>数据缓冲寄存器（BR, buffer register）</strong></p>
+<li><p><strong>数据缓冲寄存器（BR, Buffer Register）</strong></p>
 <p>BR用于暂存每次传送的数据。</p>
+<p>通常DMA接口与主存之间采用<strong>字</strong>传送，而DMA与设备之间可能是<strong>字节或位</strong>传送</p>
 </li>
 <li><p><strong>DMA控制逻辑（Control Logic）</strong></p>
 <p>DMA控制逻辑负责管理DMA的传送过程，由控制电路、时序电路及命令状态控制寄存器等组成。</p>
@@ -1136,7 +1139,7 @@
 <li><p><strong>中断机构</strong></p>
 <p>当字计数器溢出（全“0”）时，表示一批数据交换完毕，由“溢出信号”通过中断机构向CPU提出中断请求，请求CPU作DMA操作的后处理。</p>
 </li>
-<li><p><strong>设备地址寄存器（MAR）</strong></p>
+<li><p><strong>设备地址寄存器（DAR）</strong></p>
 <p>DAR存放I/O设备的设备码或表示设备信息存储区的寻址信息。</p>
 </li>
 </ol>
@@ -1147,25 +1150,68 @@
 <blockquote>
 <p>在CPU中进行处理。开机后对外部设备初始化写入，在DMA申请总线之前</p>
 </blockquote>
-<p>通过DMA控制逻辑传送方向（入/出）</p>
 <ul>
-<li>设备地址$\to$ DMA的DAR</li>
-<li>主存地址$\to$ DMA的AR</li>
-<li>传送字数$\to$ DMA的WC</li>
+<li>通过DMA控制逻辑指明<strong>数据传送方向</strong>（入/出）</li>
+</ul>
+<ul>
+<li><strong>向设备地址寄存器DAR送入设备号</strong>：设备地址$\to$ DMA的DAR</li>
+<li><strong>向DMA主存地址寄存器AR送入主存起始地址</strong>：主存地址$\to$ DMA的AR</li>
+<li><strong>对字计数器WC赋予交换数据的个数</strong>：传送字数$\to$ DMA的WC</li>
 </ul>
 <p>②<strong>数据传送</strong></p>
+<blockquote>
+<p>DMA方式<strong>以数据块为单位传送</strong>，下面以周期挪用的DMA方式为例</p>
+</blockquote>
 <ul>
 <li><p>数据传送示意图</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155645114.png" alt="image-20220330155645114" style="zoom:80%;" /></p>
 </li>
+</ul>
+<ul>
 <li><p>数据传送过程（输入）</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155724136.png" alt="image-20220330155724136" style="zoom:80%;" /></p>
+<p><strong>过程</strong>：</p>
+<p>①设备准备好一个字，发出选通信号，将该字读到DMA的数据缓冲寄存器（BR）中，表示数据缓冲寄存器“满”（若I/O面向字符，则一次读入一个字节，组装成一个字）</p>
+<p>②同时设备向DMA接口发请求<strong>（DREQ）</strong></p>
+<p>③DMA接口向CPU申请总线控制权<strong>（HRQ）</strong></p>
+<p>④CPU发回<strong>HLDA信号</strong>（总线保持响应信号），表示允许将总线控制权交给DMA接口</p>
+<p>⑤将DMA主存地址寄存器中的主存地址送到地址总线，并命令存储器写</p>
+<p>⑥通知设备已被授予一个DMA周期<strong>（DACK）</strong>，并为交换下一个字做准备</p>
+<p>⑦将DMA数据缓冲器的内容送数据总线</p>
+<p>⑧主存将数据总线上的信息写至地址总线指定的存储单元中</p>
+<p>⑨修改主存地址和字计数值</p>
+<p>⑩判断数据块是否传输结束：若未结束，则继续传送；若已结束，（字计数器WC溢出），则向CPU申请程序中断，标志数据块传送结束</p>
+<blockquote>
+<p>大致流程：设备 $\to$ 数据缓冲寄存器BR $\to$ DMA接口（DREQ） $\to$ 总线（HRQ） $\to$ DMA接口（HLDA） $\to$ 设备（DACK）</p>
+<p>在获取总线控制权后（HLDA），存储器写操作（地址、数据）</p>
+<p>一个字的数据传送后，修改主存地址和字计数器WC</p>
+</blockquote>
 </li>
+</ul>
+<ul>
 <li><p>数据传送过程（输出）</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220330155803168.png" alt="image-20220330155803168" style="zoom:80%;" /></p>
+<p><strong>过程</strong>：</p>
+<p>①当DMA数据缓冲寄存器已将输出数据送至I/O设备后，表示数据缓冲寄存器已“空”</p>
+<p>②设备向DMA接口发请求<strong>（DREQ）</strong></p>
+<p>③DMA接口向CPU申请总线控制权<strong>（HRQ）</strong></p>
+<p>④CPU发回HLDA信号，表示允许将总线控制权交给DMA接口使用</p>
+<p>⑤将DMA主存地址寄存器中的主存地址送地址总线，并命令存储器读</p>
+<p>⑥通知设备已被授予一个DMA周期<strong>（DACK）</strong>，并为交换下一个字做准备</p>
+<p>⑦主存将相应地址单元的内容通过数据总线读入DMA的数据缓冲寄存器中</p>
+<p>⑧将DMA数据缓冲寄存器的内容送到输出设备，若为字符设备，则需将其拆成字符输出</p>
+<p>⑨修改主存地址和字计数值</p>
+<p>⑩判断数据块是否已传送完毕：若未完毕，继续传送；若传送完毕，则向CPU申请程序中断</p>
+<blockquote>
+<p>大致流程：设备 $\to$ 数据缓冲寄存器BR $\to$ DMA接口（DREQ） $\to$ 总线（HRQ） $\to$ DMA接口（HLDA） $\to$ 设备（DACK）</p>
+<p>流程与输入大致相同。区别在于第⑦步的主存操作——输入：BR送数据总线；输出：BR送输出设备</p>
+</blockquote>
 </li>
 </ul>
 <p>③<strong>后处理</strong></p>
+<blockquote>
+<p>当DMA的中断请求得到响应后，CPU停止原程序的执行，转去执行中断服务程序，做一些DMA的结束工作</p>
+</blockquote>
 <ul>
 <li><p>校验送入主存的数是否正确</p>
 </li>
