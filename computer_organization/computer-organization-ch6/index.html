@@ -118,7 +118,7 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505224248672.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220505224316996.png">
 <meta property="article:published_time" content="2022-05-03T14:47:03.000Z">
-<meta property="article:modified_time" content="2022-05-24T13:22:03.173Z">
+<meta property="article:modified_time" content="2022-05-24T13:56:30.398Z">
 <meta property="article:author" content="Cheng">
 <meta property="article:tag" content="computer organization">
 <meta name="twitter:card" content="summary">
@@ -314,7 +314,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-24 21:22:03" itemprop="dateModified" datetime="2022-05-24T21:22:03+08:00">2022-05-24</time>
+                <time title="修改时间：2022-05-24 21:56:30" itemprop="dateModified" datetime="2022-05-24T21:56:30+08:00">2022-05-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -343,14 +343,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.5k</span>
+              <span>7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>22 分钟</span>
+              <span>23 分钟</span>
             </span>
 
         </div>
@@ -865,22 +865,31 @@ N = S \times r^j</script><p>式中，<code>S</code>为尾数（可正可负）�
 <blockquote>
 <p>$D_0$的0不能从地线中获取，能够变化</p>
 </blockquote>
-<h3 id="二、定点数加、减法运算方法及实现"><a href="#二、定点数加、减法运算方法及实现" class="headerlink" title="二、定点数加、减法运算方法及实现"></a>二、定点数加、减法运算方法及实现</h3><h4 id="1-原码加减法算法特点"><a href="#1-原码加减法算法特点" class="headerlink" title="1. 原码加减法算法特点"></a>1. 原码加减法算法特点</h4><p><strong>原码加法特点</strong></p>
+<h3 id="二、定点数加、减法运算方法及实现"><a href="#二、定点数加、减法运算方法及实现" class="headerlink" title="二、定点数加、减法运算方法及实现"></a>二、定点数加、减法运算方法及实现</h3><h4 id="1-原码加减法算法特点"><a href="#1-原码加减法算法特点" class="headerlink" title="1. 原码加减法算法特点"></a>1. 原码加减法算法特点</h4><blockquote>
+<p><strong>原码和反码被淘汰的原因</strong>：两种情况，四种状态。功能部件多</p>
+</blockquote>
+<p><strong>原码加法特点</strong></p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412172303437.png" alt="image-20220412172303437" style="zoom:80%;" /></p>
 <p><strong>原码减法特点</strong></p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412172402863.png" alt="image-20220412172402863" style="zoom: 80%;" /></p>
-<p>原码和反码被淘汰的原因：两种情况，四种状态。功能部件多</p>
 <h4 id="2-补码加减法运算"><a href="#2-补码加减法运算" class="headerlink" title="2. 补码加减法运算"></a>2. 补码加减法运算</h4><h5 id="a-补码加减运算公式"><a href="#a-补码加减运算公式" class="headerlink" title="a. 补码加减运算公式"></a>a. 补码加减运算公式</h5><ol>
 <li><p><strong>加法</strong></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411170416253.png" alt="image-20220411170416253" style="zoom: 80%;" /></p>
+<p>补码表示的两个数在进行加法运算时，可以把符号位和数值位同等处理，只要结果不超过机器能表示的数值范围</p>
+<p>运算后的结果按$2^{n+1}$取模（对于整数），或者按2取模（对于小数），就能得到加法运算结果</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411170416253.png" alt="image-20220411170416253"  /></p>
 </li>
+</ol>
+<ol>
 <li><p><strong>减法</strong></p>
+<p>把减法变成加法运算</p>
 <blockquote>
-<p>B的补码和-B的补码</p>
+<p>$[B]_补$和$[-B]_补$的补码按照之前提到的公式进行计算：<strong>连同符号位一起按位取反，末位加1</strong></p>
 </blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412172437131.png" alt="image-20220412172437131" style="zoom:80%;" /></p>
 <p><strong>特点</strong>：符号、数值一起参与运算；只做加法操作</p>
 </li>
+</ol>
+<ol>
 <li><p><strong>加法、减法指令</strong></p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412172536447.png" alt="image-20220412172536447" style="zoom:80%;" /></p>
 <blockquote>
@@ -896,59 +905,83 @@ N = S \times r^j</script><p>式中，<code>S</code>为尾数（可正可负）�
 </blockquote>
 <ol>
 <li><p><strong>一位符号位判溢出</strong></p>
+<p><strong>溢出条件</strong>：最高有效位的进位$C_{n-1}$和符号位的进位$C_n$作异或，结果为1即溢出</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412172809098.png" alt="image-20220412172809098" style="zoom:80%;" /></p>
 </li>
 <li><p><strong>两位符号位判溢出</strong></p>
+<blockquote>
+<p><strong>01表示正溢出，10表示负溢出</strong>。00和11表示没有溢出</p>
+</blockquote>
+<p><strong>最高符号位</strong>代表<strong>真正的符号</strong></p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220412172845737.png" alt="image-20220412172845737" style="zoom:80%;" /></p>
 </li>
 </ol>
 <blockquote>
-<p>两位符号位溢出：多占用一位数值位，高位。空间被压缩，效率低，设计简单；——能够知道溢出为正溢出还是负溢出</p>
-<p>一位符号位溢出：效率高，但电路复杂</p>
-<p>常采用1位符号位溢出</p>
+<p><strong>两位符号位溢出</strong>：多占用一位数值位，高位。空间被压缩，效率低，设计简单；——能够知道溢出为正溢出还是负溢出</p>
+<p><strong>一位符号位溢出</strong>：效率高，但电路复杂</p>
+<p><strong>常采用一位符号位溢出</strong></p>
 </blockquote>
 <h4 id="3-补码加、减法运算器设计"><a href="#3-补码加、减法运算器设计" class="headerlink" title="3. 补码加、减法运算器设计"></a>3. 补码加、减法运算器设计</h4><ul>
 <li><p><strong>加减运算器硬件组成</strong></p>
 <blockquote>
 <p>对比书和ppt中补码运算器结构示意图：不同在于ppt中的寄存器F。不能只关注溢出，关键是运算的结果处理，要对所有结果状态都要考虑到</p>
 </blockquote>
-<p> <img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411173444528.png" alt="image-20220411173444528" style="zoom:80%;" /></p>
+<p> 书上P242的流程控制可以看一看，注意流程图中的问题：</p>
+<ul>
+<li>运算后的结果要送到标志寄存器，而不仅仅是溢出标志位（不要只考虑溢出）</li>
+<li>对于减法，负数补码可以直接获得，不用计算</li>
+<li><p>缺少节拍控制</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220411173444528.png" alt="image-20220411173444528" style="zoom:80%;" /></p>
 <blockquote>
 <p>加法、减法，是否带进位</p>
 </blockquote>
 </li>
+</ul>
+</li>
+</ul>
+<ul>
 <li><p><strong>多位并行加、减法运算的硬件原理</strong></p>
+<blockquote>
+<p>串行进位链</p>
+</blockquote>
 <p> <img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220413161938766.png" alt="image-20220413161938766" style="zoom:80%;" /></p>
 </li>
+</ul>
+<ul>
 <li><p><strong>补码加法、减法并行运算步骤分解</strong></p>
 <p> <img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220413162229840.png" alt="image-20220413162229840" style="zoom:80%;" /></p>
 <p> $N_1$时间比$N_0$短，因此按照$N_0$来计算。加法操作一个节拍无法完成，至少需要2个节拍。</p>
 <p> 考虑进位链</p>
-<p> （此处放2张补码加减法实现图）</p>
 <p> 节拍发生器</p>
-<p> <strong>进位标志位CF</strong>：与最高位的进位的值相同</p>
-<p> <strong>符号标志位SF</strong>：与最高位的值相同</p>
-<p> <strong>零标志位ZF</strong>：取n位的或非（有1，出1）</p>
-<p> <strong>溢出标志位OF</strong>：取$C_n$与$C_{n-1}$的异或</p>
-<p> <strong>偶校验标志位PF</strong>：取$A_n$到$A_0$的异或再取反送入输入端</p>
-<p> <strong>辅助进位标志位AF</strong>：低四位运算（0,1,2,3），是3向4的进位（与CF相区别）</p>
+</li>
+</ul>
+<p>   <strong>电路特点</strong>：标志触发器用于完成指令</p>
+<p>   CF没有影响</p>
+<p>   处理逻辑数</p>
+<p>   OF没有影响，没有进位</p>
+<p>   ZF有关系，所有位进行或运算</p>
+<ul>
+<li><p><strong>状态寄存器各位生成方法及硬件实现</strong></p>
+<ul>
+<li><strong>进位标志位CF</strong>：与最高位的进位的值相同</li>
+<li><strong>符号标志位SF</strong>：与最高位的值相同</li>
+<li><strong>零标志位ZF</strong>：取n位的或非（有1，出1）</li>
+<li><strong>溢出标志位OF</strong>：取$C_n$与$C_{n-1}$的异或</li>
+<li><strong>偶校验标志位PF</strong>：取$A_n$到$A_0$的异或再取反送入输入端</li>
+<li><p><strong>辅助进位标志位AF</strong>：低四位运算（0,1,2,3），是3向4的进位（与CF相区别）</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220413173152581.png" alt="image-20220413173152581" style="zoom:80%;" /></p>
 <blockquote>
 <p>AF辅助进位标志：在进行算术运算的时候，如果低字节中低4位产生进位或者借位的时候，则置1，否则置0。即当两个字节相加时，如果从第3位向第4位形成了进位，则AF=1</p>
 </blockquote>
-<p> （与逻辑图片）</p>
-<p> 电路特点：标志触发器用于完成指令</p>
-<p> CF没有影响</p>
-<p> 处理逻辑数</p>
-<p> OF没有影响，没有进位</p>
-<p> ZF有关系，所有位进行或运算</p>
 </li>
 </ul>
-<ul>
-<li><p><strong>状态寄存器各位生成方法及硬件实现</strong></p>
-<p> <img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220413173152581.png" alt="image-20220413173152581" style="zoom:80%;" /></p>
 </li>
 </ul>
-<h3 id="三、乘法运算"><a href="#三、乘法运算" class="headerlink" title="三、乘法运算"></a>三、乘法运算</h3><h4 id="1-分析笔算乘法"><a href="#1-分析笔算乘法" class="headerlink" title="1. 分析笔算乘法"></a>1. 分析笔算乘法</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220413173324978.png" alt="image-20220413173324978" style="zoom:80%;" /></p>
+<h3 id="三、乘法运算"><a href="#三、乘法运算" class="headerlink" title="三、乘法运算"></a>三、乘法运算</h3><p>有的机器使用硬件乘法器直接完成乘法运算；有的机器没有乘法器，用软件编程实现乘法运算的方法</p>
+<h4 id="1-分析笔算乘法"><a href="#1-分析笔算乘法" class="headerlink" title="1. 分析笔算乘法"></a>1. 分析笔算乘法</h4><blockquote>
+<p>包含被乘数A的多次左移，以及4个位积的相加运算</p>
+</blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220413173324978.png" alt="image-20220413173324978" style="zoom:80%;" /></p>
 <h4 id="2-笔算乘法改进"><a href="#2-笔算乘法改进" class="headerlink" title="2. 笔算乘法改进"></a>2. 笔算乘法改进</h4><blockquote>
 <p>A和B按照权重进行打开</p>
 </blockquote>
@@ -958,23 +991,33 @@ N = S \times r^j</script><p>式中，<code>S</code>为尾数（可正可负）�
 <p>每次执行的过程：①若乘数最右位为1，部分积加上被乘数，部分积右移（末位移到乘数寄存器的高位）；②乘数右移，继续执行①，直到原乘数全部移出</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220413173713347.png" alt="image-20220413173713347" style="zoom:80%;" /></p>
 <h4 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h4><p>全加器的个数与位数有关</p>
+<p><strong>运算过程</strong>：</p>
+<p>①乘法运算可用<strong>移位和加法</strong>来实现</p>
+<blockquote>
+<p>两个4位数相乘，总共需要进行4次加法运算和4次移位</p>
+</blockquote>
+<p>②由乘数的末位确定被乘数是否与原部分积相加，然后<strong>右移一位，形成新的部分积</strong>；同时，<strong>乘数也右移一位</strong>，由次低位作新的末位，空出最高位放部分积的最低位</p>
+<p>③每次做加法运算时，被乘数仅仅与原部分积的高位相加，其低位被移至乘数所空出的高位位置</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220413174252314.png" alt="image-20220413174252314" style="zoom:80%;" /></p>
 <h4 id="4-原码乘法"><a href="#4-原码乘法" class="headerlink" title="4. 原码乘法"></a>4. 原码乘法</h4><ol>
-<li><p>原码一位乘运算规则</p>
+<li><p><strong>原码一位乘运算规则</strong></p>
 <blockquote>
-<p>特点：</p>
+<p><strong>特点</strong>：</p>
 <p>①绝对值运算</p>
 <p>②用移位的次数判断乘法是否结束</p>
 <p>③逻辑移位</p>
 </blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418160616645.png" alt="image-20220418160616645" style="zoom:80%;" /></p>
 </li>
-<li><p>原码一位乘递推公式</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418160642037.png" alt="image-20220418160642037" style="zoom:80%;" /></p>
+<li><p><strong>原码一位乘递推公式</strong></p>
 </li>
-<li><p>原码一位乘的硬件配置</p>
+</ol>
+<p>   <img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418160642037.png" alt="image-20220418160642037" style="zoom:80%;" /></p>
+<ol>
+<li><p><strong>原码一位乘的硬件配置</strong></p>
 <blockquote>
-<p>开始准备阶段，存放部分累加和的A寄存器和计数器C清零。放数：被乘数原码放在X，乘数原码放在Q。</p>
+<p>开始准备阶段，存放部分累加和的A寄存器和计数器C清零。</p>
+<p>放数：被乘数原码放在X，乘数原码放在Q。</p>
 <p>Q的最低位$Q_n$是Q末尾的输出，判断是否进行加被乘数的运算（1-A加X，0-A加0）。</p>
 <p>结束后，把符号位S取出来，放到A的最高位$A_0$。还要把乘法标记$G_M$清零</p>
 </blockquote>
@@ -986,15 +1029,15 @@ N = S \times r^j</script><p>式中，<code>S</code>为尾数（可正可负）�
 <p>有很多附加动作，消耗时间大</p>
 </li>
 </ol>
-<h4 id="5-补码乘法"><a href="#5-补码乘法" class="headerlink" title="5. 补码乘法"></a>5. 补码乘法</h4><ol>
-<li><p>补码一位乘运算规则</p>
+<h4 id="5-补码乘法（考试要求内容）"><a href="#5-补码乘法（考试要求内容）" class="headerlink" title="5. 补码乘法（考试要求内容）"></a>5. 补码乘法（考试要求内容）</h4><ol>
+<li><p><strong>补码一位乘运算规则</strong></p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418164234429.png" alt="image-20220418164234429" style="zoom:80%;" /></p>
 <ul>
-<li>Booth算法（被乘数、乘数符号任意）</li>
+<li><strong>Booth算法</strong>（被乘数、乘数符号任意）</li>
 </ul>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220418164413023.png" alt="image-20220418164413023" style="zoom:80%;" /></p>
 <ul>
-<li>Booth算法递推公式</li>
+<li><strong>Booth算法递推公式</strong></li>
 </ul>
 <blockquote>
 <p>后项减前项结果决定是否加x补码或者-x补码或者不加，然后右移</p>
@@ -1011,7 +1054,7 @@ N = S \times r^j</script><p>式中，<code>S</code>为尾数（可正可负）�
 </li>
 </ol>
 </li>
-<li><p>Booth算法的硬件配置</p>
+<li><p><strong>Booth算法的硬件配置</strong></p>
 <blockquote>
 <p>输出负数的补码：接到负输出端，末位+1</p>
 </blockquote>
@@ -1183,7 +1226,7 @@ x=S_x \times 2^{j_x} \qquad y=S_y \times 2^{j_y}</script><h4 id="1-对阶"><a hr
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80%E9%83%A8%E5%88%86"><span class="nav-text">引言部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%92%8C%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0"><span class="nav-text">6.1 无符号数和有符号数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0"><span class="nav-text">一、无符号数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0"><span class="nav-text">二、有符号数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%9C%BA%E5%99%A8%E6%95%B0%E4%B8%8E%E7%9C%9F%E5%80%BC"><span class="nav-text">1. 机器数与真值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%8E%9F%E7%A0%81%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-text">2. 原码表示法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%8F%8D%E7%A0%81%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-text">3. 反码表示法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%A1%A5%E7%A0%81%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-text">4. 补码表示法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0"><span class="nav-text">练习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-text">小结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%88%E5%BF%85%E9%A1%BB%E6%8E%8C%E6%8F%A1%EF%BC%89"><span class="nav-text">例题（必须掌握）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-%E6%95%B0%E7%9A%84%E5%AE%9A%E7%82%B9%E8%A1%A8%E7%A4%BA%E5%92%8C%E6%B5%AE%E7%82%B9%E8%A1%A8%E7%A4%BA"><span class="nav-text">6.2 数的定点表示和浮点表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%AE%9A%E7%82%B9%E8%A1%A8%E7%A4%BA"><span class="nav-text">一、定点表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%B5%AE%E7%82%B9%E8%A1%A8%E7%A4%BA"><span class="nav-text">二、浮点表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%BD%A2%E5%BC%8F"><span class="nav-text">1. 浮点数的表示形式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E8%8C%83%E5%9B%B4"><span class="nav-text">2. 浮点数的表示范围</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-%E5%AE%9A%E7%82%B9%E8%BF%90%E7%AE%97"><span class="nav-text">6.3 定点运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97%E6%93%8D%E4%BD%9C"><span class="nav-text">一、移位运算操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%AE%97%E6%9C%AF%E7%A7%BB%E4%BD%8D%E6%96%B9%E6%B3%95"><span class="nav-text">1. 算术移位方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%AE%97%E6%9C%AF%E7%A7%BB%E4%BD%8D%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-text">2. 算术移位的原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%80%BB%E8%BE%91%E7%A7%BB%E4%BD%8D%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-text">3. 逻辑移位的原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E7%AE%97%E6%9C%AF%E7%A7%BB%E4%BD%8D%E6%8C%87%E4%BB%A4%E3%80%81%E9%80%BB%E8%BE%91%E7%A7%BB%E4%BD%8D%E6%8C%87%E4%BB%A4"><span class="nav-text">4. 算术移位指令、逻辑移位指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9A%E7%82%B9%E6%95%B0%E5%8A%A0%E3%80%81%E5%87%8F%E6%B3%95%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E5%8F%8A%E5%AE%9E%E7%8E%B0"><span class="nav-text">二、定点数加、减法运算方法及实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8E%9F%E7%A0%81%E5%8A%A0%E5%87%8F%E6%B3%95%E7%AE%97%E6%B3%95%E7%89%B9%E7%82%B9"><span class="nav-text">1. 原码加减法算法特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%A1%A5%E7%A0%81%E5%8A%A0%E5%87%8F%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-text">2. 补码加减法运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#a-%E8%A1%A5%E7%A0%81%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97%E5%85%AC%E5%BC%8F"><span class="nav-text">a. 补码加减运算公式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#b-%E4%B8%BE%E4%BE%8B"><span class="nav-text">b. 举例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#c-%E6%BA%A2%E5%87%BA%E5%88%A4%E6%96%AD"><span class="nav-text">c. 溢出判断</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%A1%A5%E7%A0%81%E5%8A%A0%E3%80%81%E5%87%8F%E6%B3%95%E8%BF%90%E7%AE%97%E5%99%A8%E8%AE%BE%E8%AE%A1"><span class="nav-text">3. 补码加、减法运算器设计</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%B9%98%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-text">三、乘法运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%88%86%E6%9E%90%E7%AC%94%E7%AE%97%E4%B9%98%E6%B3%95"><span class="nav-text">1. 分析笔算乘法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%AC%94%E7%AE%97%E4%B9%98%E6%B3%95%E6%94%B9%E8%BF%9B"><span class="nav-text">2. 笔算乘法改进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%94%B9%E8%BF%9B%E5%90%8E%E7%9A%84%E7%AC%94%E7%AE%97%E4%B9%98%E6%B3%95%E8%BF%87%E7%A8%8B"><span class="nav-text">3. 改进后的笔算乘法过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-1"><span class="nav-text">小结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%8E%9F%E7%A0%81%E4%B9%98%E6%B3%95"><span class="nav-text">4. 原码乘法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E8%A1%A5%E7%A0%81%E4%B9%98%E6%B3%95"><span class="nav-text">5. 补码乘法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93"><span class="nav-text">乘法小结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%99%A4%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-text">四、除法运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%88%86%E6%9E%90%E7%AC%94%E7%AE%97%E9%99%A4%E6%B3%95"><span class="nav-text">1. 分析笔算除法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%AC%94%E7%AE%97%E9%99%A4%E6%B3%95%E5%92%8C%E6%9C%BA%E5%99%A8%E9%99%A4%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-text">2. 笔算除法和机器除法的比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%8E%9F%E7%A0%81%E9%99%A4%E6%B3%95"><span class="nav-text">3. 原码除法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-%E6%B5%AE%E7%82%B9%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97"><span class="nav-text">6.4 浮点四则运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%B5%AE%E7%82%B9%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97"><span class="nav-text">一、浮点加减运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AF%B9%E9%98%B6"><span class="nav-text">1. 对阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%B0%BE%E6%95%B0%E6%B1%82%E5%92%8C"><span class="nav-text">2. 尾数求和</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%A7%84%E6%A0%BC%E5%8C%96"><span class="nav-text">3. 规格化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%88%8D%E5%85%A5"><span class="nav-text">4. 舍入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%BA%A2%E5%87%BA%E5%88%A4%E6%96%AD"><span class="nav-text">5. 溢出判断</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%B5%AE%E7%82%B9%E4%B9%98%E9%99%A4%E8%BF%90%E7%AE%97"><span class="nav-text">二、浮点乘除运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-5-%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83"><span class="nav-text">6.5 算术逻辑单元</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81ALU%E7%94%B5%E8%B7%AF"><span class="nav-text">一、ALU电路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%BF%AB%E9%80%9F%E8%BF%9B%E4%BD%8D%E9%93%BE"><span class="nav-text">二、快速进位链</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%B9%B6%E8%A1%8C%E5%8A%A0%E6%B3%95%E5%99%A8"><span class="nav-text">1.并行加法器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%B2%E8%A1%8C%E8%BF%9B%E4%BD%8D%E9%93%BE"><span class="nav-text">2.串行进位链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%B9%B6%E8%A1%8C%E8%BF%9B%E4%BD%8D%E9%93%BE%EF%BC%88%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D%EF%BC%8C%E8%B7%B3%E8%B7%83%E8%BF%9B%E4%BD%8D%EF%BC%89"><span class="nav-text">3.并行进位链（先行进位，跳跃进位）</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80%E9%83%A8%E5%88%86"><span class="nav-text">引言部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%92%8C%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0"><span class="nav-text">6.1 无符号数和有符号数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0"><span class="nav-text">一、无符号数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0"><span class="nav-text">二、有符号数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%9C%BA%E5%99%A8%E6%95%B0%E4%B8%8E%E7%9C%9F%E5%80%BC"><span class="nav-text">1. 机器数与真值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%8E%9F%E7%A0%81%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-text">2. 原码表示法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%8F%8D%E7%A0%81%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-text">3. 反码表示法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%A1%A5%E7%A0%81%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-text">4. 补码表示法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0"><span class="nav-text">练习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-text">小结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%88%E5%BF%85%E9%A1%BB%E6%8E%8C%E6%8F%A1%EF%BC%89"><span class="nav-text">例题（必须掌握）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-%E6%95%B0%E7%9A%84%E5%AE%9A%E7%82%B9%E8%A1%A8%E7%A4%BA%E5%92%8C%E6%B5%AE%E7%82%B9%E8%A1%A8%E7%A4%BA"><span class="nav-text">6.2 数的定点表示和浮点表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%AE%9A%E7%82%B9%E8%A1%A8%E7%A4%BA"><span class="nav-text">一、定点表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%B5%AE%E7%82%B9%E8%A1%A8%E7%A4%BA"><span class="nav-text">二、浮点表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%BD%A2%E5%BC%8F"><span class="nav-text">1. 浮点数的表示形式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E8%8C%83%E5%9B%B4"><span class="nav-text">2. 浮点数的表示范围</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-%E5%AE%9A%E7%82%B9%E8%BF%90%E7%AE%97"><span class="nav-text">6.3 定点运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97%E6%93%8D%E4%BD%9C"><span class="nav-text">一、移位运算操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%AE%97%E6%9C%AF%E7%A7%BB%E4%BD%8D%E6%96%B9%E6%B3%95"><span class="nav-text">1. 算术移位方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%AE%97%E6%9C%AF%E7%A7%BB%E4%BD%8D%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-text">2. 算术移位的原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%80%BB%E8%BE%91%E7%A7%BB%E4%BD%8D%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-text">3. 逻辑移位的原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E7%AE%97%E6%9C%AF%E7%A7%BB%E4%BD%8D%E6%8C%87%E4%BB%A4%E3%80%81%E9%80%BB%E8%BE%91%E7%A7%BB%E4%BD%8D%E6%8C%87%E4%BB%A4"><span class="nav-text">4. 算术移位指令、逻辑移位指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9A%E7%82%B9%E6%95%B0%E5%8A%A0%E3%80%81%E5%87%8F%E6%B3%95%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E5%8F%8A%E5%AE%9E%E7%8E%B0"><span class="nav-text">二、定点数加、减法运算方法及实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8E%9F%E7%A0%81%E5%8A%A0%E5%87%8F%E6%B3%95%E7%AE%97%E6%B3%95%E7%89%B9%E7%82%B9"><span class="nav-text">1. 原码加减法算法特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%A1%A5%E7%A0%81%E5%8A%A0%E5%87%8F%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-text">2. 补码加减法运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#a-%E8%A1%A5%E7%A0%81%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97%E5%85%AC%E5%BC%8F"><span class="nav-text">a. 补码加减运算公式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#b-%E4%B8%BE%E4%BE%8B"><span class="nav-text">b. 举例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#c-%E6%BA%A2%E5%87%BA%E5%88%A4%E6%96%AD"><span class="nav-text">c. 溢出判断</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%A1%A5%E7%A0%81%E5%8A%A0%E3%80%81%E5%87%8F%E6%B3%95%E8%BF%90%E7%AE%97%E5%99%A8%E8%AE%BE%E8%AE%A1"><span class="nav-text">3. 补码加、减法运算器设计</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%B9%98%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-text">三、乘法运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%88%86%E6%9E%90%E7%AC%94%E7%AE%97%E4%B9%98%E6%B3%95"><span class="nav-text">1. 分析笔算乘法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%AC%94%E7%AE%97%E4%B9%98%E6%B3%95%E6%94%B9%E8%BF%9B"><span class="nav-text">2. 笔算乘法改进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%94%B9%E8%BF%9B%E5%90%8E%E7%9A%84%E7%AC%94%E7%AE%97%E4%B9%98%E6%B3%95%E8%BF%87%E7%A8%8B"><span class="nav-text">3. 改进后的笔算乘法过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-1"><span class="nav-text">小结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%8E%9F%E7%A0%81%E4%B9%98%E6%B3%95"><span class="nav-text">4. 原码乘法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E8%A1%A5%E7%A0%81%E4%B9%98%E6%B3%95%EF%BC%88%E8%80%83%E8%AF%95%E8%A6%81%E6%B1%82%E5%86%85%E5%AE%B9%EF%BC%89"><span class="nav-text">5. 补码乘法（考试要求内容）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93"><span class="nav-text">乘法小结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%99%A4%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-text">四、除法运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%88%86%E6%9E%90%E7%AC%94%E7%AE%97%E9%99%A4%E6%B3%95"><span class="nav-text">1. 分析笔算除法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%AC%94%E7%AE%97%E9%99%A4%E6%B3%95%E5%92%8C%E6%9C%BA%E5%99%A8%E9%99%A4%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-text">2. 笔算除法和机器除法的比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%8E%9F%E7%A0%81%E9%99%A4%E6%B3%95"><span class="nav-text">3. 原码除法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-%E6%B5%AE%E7%82%B9%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97"><span class="nav-text">6.4 浮点四则运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%B5%AE%E7%82%B9%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97"><span class="nav-text">一、浮点加减运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AF%B9%E9%98%B6"><span class="nav-text">1. 对阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%B0%BE%E6%95%B0%E6%B1%82%E5%92%8C"><span class="nav-text">2. 尾数求和</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%A7%84%E6%A0%BC%E5%8C%96"><span class="nav-text">3. 规格化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%88%8D%E5%85%A5"><span class="nav-text">4. 舍入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%BA%A2%E5%87%BA%E5%88%A4%E6%96%AD"><span class="nav-text">5. 溢出判断</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%B5%AE%E7%82%B9%E4%B9%98%E9%99%A4%E8%BF%90%E7%AE%97"><span class="nav-text">二、浮点乘除运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-5-%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83"><span class="nav-text">6.5 算术逻辑单元</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81ALU%E7%94%B5%E8%B7%AF"><span class="nav-text">一、ALU电路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%BF%AB%E9%80%9F%E8%BF%9B%E4%BD%8D%E9%93%BE"><span class="nav-text">二、快速进位链</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%B9%B6%E8%A1%8C%E5%8A%A0%E6%B3%95%E5%99%A8"><span class="nav-text">1.并行加法器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%B2%E8%A1%8C%E8%BF%9B%E4%BD%8D%E9%93%BE"><span class="nav-text">2.串行进位链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%B9%B6%E8%A1%8C%E8%BF%9B%E4%BD%8D%E9%93%BE%EF%BC%88%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D%EF%BC%8C%E8%B7%B3%E8%B7%83%E8%BF%9B%E4%BD%8D%EF%BC%89"><span class="nav-text">3.并行进位链（先行进位，跳跃进位）</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
