@@ -69,7 +69,7 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521105741688.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521105815336.png">
 <meta property="article:published_time" content="2022-05-21T03:22:56.000Z">
-<meta property="article:modified_time" content="2022-05-25T13:03:41.664Z">
+<meta property="article:modified_time" content="2022-05-25T13:48:59.772Z">
 <meta property="article:author" content="Cheng">
 <meta property="article:tag" content="computer organization">
 <meta name="twitter:card" content="summary">
@@ -265,7 +265,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-25 21:03:41" itemprop="dateModified" datetime="2022-05-25T21:03:41+08:00">2022-05-25</time>
+                <time title="修改时间：2022-05-25 21:48:59" itemprop="dateModified" datetime="2022-05-25T21:48:59+08:00">2022-05-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -294,14 +294,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.4k</span>
+              <span>4.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>11 分钟</span>
+              <span>14 分钟</span>
             </span>
 
         </div>
@@ -505,7 +505,7 @@
 <p>微程序设计<strong>省去了</strong>组合逻辑设计过程对<strong>逻辑表达式的化简步骤</strong>，无须考虑逻辑门级数和门的扇入系数，使<strong>设计更简便</strong>。</p>
 <p>只需修改微指令代码，就可改变操作内容，便于调试、修改，甚至增删机器指令，有利于计算机仿真。</p>
 <h3 id="二、微程序控制单元框图及工作原理"><a href="#二、微程序控制单元框图及工作原理" class="headerlink" title="二、微程序控制单元框图及工作原理"></a>二、微程序控制单元框图及工作原理</h3><h4 id="1-机器指令对应的微程序"><a href="#1-机器指令对应的微程序" class="headerlink" title="1. 机器指令对应的微程序"></a>1. 机器指令对应的微程序</h4><blockquote>
-<p>n个指令需要n+3条微程序</p>
+<p>n个指令需要n+3条微程序：n个操作对应的微程序 + 取指、间址、中断周期微程序</p>
 </blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521102307209.png" alt="image-20220521102307209" style="zoom:80%;" /></p>
 <h4 id="2-微程序控制单元的基本框图"><a href="#2-微程序控制单元的基本框图" class="headerlink" title="2. 微程序控制单元的基本框图"></a>2. 微程序控制单元的基本框图</h4><blockquote>
@@ -532,16 +532,82 @@
 </ul>
 <blockquote>
 <p>微程序序列</p>
+<p>每一条机器指令都与一个以操作性质命名的微程序对应</p>
 </blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521102425854.png" alt="image-20220521102425854" style="zoom:80%;" /></p>
 <h4 id="3-工作原理"><a href="#3-工作原理" class="headerlink" title="3. 工作原理"></a>3. 工作原理</h4><p>设有一个用户程序如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LDA X	; 从X取数到ACC中</span><br><span class="line">ADD Y	; ACC与Y地址数据相加</span><br><span class="line">STA Z	; 将ACC内容写入Z</span><br><span class="line">STP	; 停机</span><br></pre></td></tr></table></figure>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521102521640.png" alt="image-20220521102521640" style="zoom:80%;" /></p>
+<blockquote>
+<p><strong>首先</strong>将用户程序的首地址送至PC，进入取指阶段</p>
+</blockquote>
 <ol>
 <li><p><strong>取指阶段</strong>——执行取指微程序</p>
+<p><strong>过程</strong></p>
+<p>①将取指周期微程序首地址送到控存地址寄存器CMAR中</p>
+<blockquote>
+<p>$M \to CMAR$</p>
+</blockquote>
+<p>②取微指令</p>
+<blockquote>
+<p>控制存储器M地址单元中的第一条微指令读到控存数据寄存器CMDR中</p>
+<p>$CM(CMAR) \to CMDR$</p>
+</blockquote>
+<p>③产生微操作命令</p>
+<blockquote>
+<p>第一条微指令的操作控制字段中为“1”的各位发出控制信号（如，$PC \to MAR,\ 1 \to R$），命令主存接收程序首地址并进行读操作</p>
+</blockquote>
+<p>④形成下一条微指令的地址</p>
+<blockquote>
+<p>顺序控制字段指出了下一条微指令的地址为M+1，将M+1送至CMAR</p>
+<p>$Ad(CMDR) \to CMAR$</p>
+</blockquote>
+<p>⑤取下一条微指令</p>
+<blockquote>
+<p>将对应控存M+1地址单元中的第二条微指令读到CMDR中</p>
+<p>$CM(CMAR) \to CMDR$</p>
+</blockquote>
+<p>⑥产生微操作命令</p>
+<blockquote>
+<p>由第二条微指令的操作控制字段中对应“1”的各位发出控制信号</p>
+</blockquote>
+<p>⑦形成下一条微操作的地址</p>
+<blockquote>
+<p>将第二条微指令下地址字段指出的地址M+2送至CMAR</p>
+<p>$Ad(CMDR) \to CMAR$</p>
+</blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521102558574.png" alt="image-20220521102558574" style="zoom:80%;" /></p>
 </li>
 <li><p><strong>执行阶段</strong>——执行LDA微程序</p>
+<p><strong>过程</strong></p>
+<p>①取数指令微程序首地址的形成</p>
+<blockquote>
+<p>取数指令<strong>存入指令寄存器IR</strong>后，操作码OP(IR)直接送到<strong>微地址形成部件</strong>，该部件的输出即为<strong>取数指令微程序的首地址P</strong>，且将P送至<strong>CMAR</strong></p>
+<p>$OP(IR) \to 微地址形成部件 \to CMAR$</p>
+</blockquote>
+<p>②取微指令</p>
+<blockquote>
+<p>将对应控存P地址单元中的微指令读到CMDR中</p>
+<p>$CM(CMAR) \to CMDR$</p>
+</blockquote>
+<p>③产生微操作命令</p>
+<blockquote>
+<p>由微指令操作控制字段中对应“1”的各位发出控制信号，命令主存读操作数</p>
+</blockquote>
+<p>④形成下一条微指令的地址</p>
+<blockquote>
+<p>将此条微指令下地址字段指出的P+1送至CMAR</p>
+<p>$Ad(CMDR) \to CMAR$</p>
+</blockquote>
+<p>⑤取微指令</p>
+<blockquote>
+<p>$CM(CMAR) \to CMDR$</p>
+</blockquote>
+<p>⑥产生微操作命令</p>
+<p>……</p>
+<blockquote>
+<p>依次类推，直到取出取数指令微程序的最后一条微指令P+2，并发出微操作命令</p>
+</blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521102741379.png" alt="image-20220521102741379" style="zoom:80%;" /></p>
 </li>
 <li><p><strong>取指阶段</strong>——执行取指微程序</p>
@@ -555,16 +621,21 @@
 </ul>
 <h3 id="三、微指令的编码方式（控制方式）"><a href="#三、微指令的编码方式（控制方式）" class="headerlink" title="三、微指令的编码方式（控制方式）"></a>三、微指令的编码方式（控制方式）</h3><ol>
 <li><p><strong>直接编码（直接控制）方式</strong></p>
+<blockquote>
+<p>操作控制字段中，每一位代表一个微操作命令</p>
+</blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521103017135.png" alt="image-20220521103017135" style="zoom:80%;" /></p>
 </li>
 <li><p><strong>字段直接编码方式</strong></p>
 <blockquote>
-<p>将微指令的控制字段分成若干<strong>“段”</strong>，</p>
-<p>每段经编码后发出控制信号</p>
+<p>将微指令的控制字段分成若干<strong>“段”</strong>，每段经编码后发出控制信号</p>
 </blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521103117790.png" alt="image-20220521103117790" style="zoom:80%;" /></p>
 </li>
 <li><p><strong>字段间接编码方式</strong></p>
+<blockquote>
+<p>一个字段的某些微命令还需由另一个字段中的某些微命令来解释</p>
+</blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521103141661.png" alt="image-20220521103141661" style="zoom:80%;" /></p>
 </li>
 <li><p><strong>混合编码</strong></p>
@@ -573,12 +644,23 @@
 </blockquote>
 </li>
 <li><p><strong>其他</strong></p>
+<blockquote>
+<p>常数字段</p>
+<p>类似机器指令操作码的方式编码</p>
+</blockquote>
 </li>
 </ol>
 <h3 id="四、微指令序列地址的形成"><a href="#四、微指令序列地址的形成" class="headerlink" title="四、微指令序列地址的形成"></a>四、微指令序列地址的形成</h3><ol>
-<li><p><strong>断定方式</strong>：微指令的<strong>下地址字段</strong>指出后续微指令的地址</p>
+<li><p>直接由微指令的<strong>下地址字段</strong>指出</p>
+<blockquote>
+<p>断定方式</p>
+</blockquote>
 </li>
 <li><p>根据机器指令的<strong>操作码</strong>形成</p>
+<blockquote>
+<p>机器指令取至指令寄存器后，微指令的地址由操作码经微地址形成部件形成。</p>
+<p><strong>微地址形成部件</strong>：实际上是一个编码器，输入为指令操作码，输出对应该机器指令微程序的首地址，可采用PROM（可编程只读存储器）实现</p>
+</blockquote>
 </li>
 <li><p><strong>增量计数器</strong></p>
 <blockquote>
