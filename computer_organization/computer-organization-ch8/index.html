@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220425145421783.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220425145435199.png">
 <meta property="article:published_time" content="2022-05-20T03:35:01.000Z">
-<meta property="article:modified_time" content="2022-05-25T03:18:59.873Z">
+<meta property="article:modified_time" content="2022-05-25T05:48:21.415Z">
 <meta property="article:author" content="Cheng">
 <meta property="article:tag" content="computer organization">
 <meta name="twitter:card" content="summary">
@@ -235,7 +235,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-25 11:18:59" itemprop="dateModified" datetime="2022-05-25T11:18:59+08:00">2022-05-25</time>
+                <time title="修改时间：2022-05-25 13:48:21" itemprop="dateModified" datetime="2022-05-25T13:48:21+08:00">2022-05-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -264,14 +264,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
+              <span>2.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
+              <span>9 分钟</span>
             </span>
 
         </div>
@@ -287,7 +287,7 @@
 <p>预期目标：对CPU在计算机中的地位和作用以及更加深入理解中断概念。</p>
 <span id="more"></span>
 <p>写在前面：流水线不作为考试内容，暂未整理</p>
-<h2 id="8-1-CPU的结构"><a href="#8-1-CPU的结构" class="headerlink" title="8.1 CPU的结构"></a>8.1 CPU的结构</h2><h3 id="一、CPU的功能"><a href="#一、CPU的功能" class="headerlink" title="一、CPU的功能"></a>一、CPU的功能</h3><p>由ch1，CPU包括<strong>运算器</strong>和<strong>控制器</strong>两大部分。运算器内容详见ch6</p>
+<h2 id="8-1-CPU的结构"><a href="#8-1-CPU的结构" class="headerlink" title="8.1 CPU的结构"></a>8.1 CPU的结构</h2><h3 id="一、CPU的功能"><a href="#一、CPU的功能" class="headerlink" title="一、CPU的功能"></a>一、CPU的功能</h3><p>回顾ch1，CPU包括<strong>运算器</strong>和<strong>控制器</strong>两大部分。运算器内容详见ch6</p>
 <ol>
 <li><p><strong>控制器的功能</strong></p>
 <p>取指令、分析指令、执行指令，发出各种操作命令</p>
@@ -327,7 +327,7 @@
 <p><strong>指令控制</strong>——程序计数器PC和指令寄存器IR</p>
 <p><strong>操作控制</strong>——CU 时序电路</p>
 <p><strong>时间控制</strong>——CU 时序电路</p>
-<p><strong>数据加工</strong>——算逻单元ALU和寄存器（主要的3个：累加器ACC、乘商寄存器MQ、通用寄存器X）</p>
+<p><strong>数据加工</strong>——算逻单元ALU和寄存器（主要的3个：累加器ACC、乘商寄存器MQ、操作数寄存器X）</p>
 <p><strong>处理中断</strong>——中断系统</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220425145643421.png" alt="image-20220425145643421"  /></p>
 </li>
@@ -336,36 +336,64 @@
 <p>CPU执行机器语言访问的寄存器为用户可见的寄存器</p>
 </blockquote>
 <ol>
-<li>通用寄存器</li>
-<li>数据寄存器</li>
-<li>地址寄存器</li>
-<li>条件码寄存器</li>
+<li><p><strong>通用寄存器</strong></p>
+<p>可由程序设计者指定许多功能，可用于存放操作数，也可作为满足某种<strong>寻址方式所需的寄存器</strong></p>
+<blockquote>
+<p>例如：（ch7寻址方式）</p>
+<p>①基址寻址所需的<strong>基址寄存器BR</strong>、变址寻址所需的<strong>变址寄存器IX</strong>和堆栈寻址所需的<strong>栈指针SP</strong>都可用通用寄存器代替</p>
+<p>②寄存器间接寻址：（register存放形式地址A，memory存放有效地址EA）通用寄存器存放<strong>有效地址的地址</strong></p>
+</blockquote>
+</li>
+<li><p><strong>数据寄存器</strong></p>
+<p>用于存放操作数，位数应满足多数数据类型的数值范围</p>
+</li>
+<li><p><strong>地址寄存器</strong></p>
+<p>用于存放地址，其本身可以具有通用性，也可用于特殊的寻址方式</p>
+<p>位数必须足够长，以满足最大的地址范围</p>
+<blockquote>
+<p>例如：基址寻址的<strong>段指针（存放基地址）</strong>、用于变址寻址的<strong>变址寄存器</strong>和用于堆栈寻址的<strong>栈指针</strong></p>
+</blockquote>
+</li>
+<li><p><strong>条件码寄存器</strong></p>
+<p>存放条件码，对用户是<strong>部分透明</strong>的。</p>
+<p><strong>条件码</strong>：CPU根据运算结果由硬件设置的位</p>
+<blockquote>
+<p>例如：算术运算产生的正负(SF)、零(ZF)、溢出(OF)</p>
+</blockquote>
+</li>
 </ol>
 <h4 id="2-控制和状态寄存器"><a href="#2-控制和状态寄存器" class="headerlink" title="2. 控制和状态寄存器"></a>2. 控制和状态寄存器</h4><blockquote>
 <p>用于控制CPU的操作或运算</p>
 </blockquote>
+<p><strong>四种在指令执行过程中起重要作用的寄存器</strong>：</p>
+<p>①<strong>存储器地址寄存器MAR</strong>：用于存放将被访问的存储单元的地址</p>
+<p>②<strong>存储器数据寄存器MDR</strong>：用于存放欲存入存储器中的数据或最近从存储器中读出的数据</p>
+<p>③<strong>程序计数器PC</strong>：存放现行指令的地址，常具有计数功能</p>
+<blockquote>
+<p>遇到转移类指令时，PC的值可被修改</p>
+</blockquote>
+<p>④<strong>指令寄存器IR</strong>：存放当前欲执行的指令</p>
 <ol>
-<li><p>控制寄存器</p>
+<li><p><strong>控制寄存器</strong></p>
 <blockquote>
 <p>$PC \to MAR \to M \to MDR \to IR$：控制CPU操作</p>
 </blockquote>
 <p>其中MAR, MDR, IR用户不可见，PC用户可见</p>
 </li>
-<li><p>状态寄存器</p>
-<p><strong>状态寄存器</strong>：存放条件码</p>
-<p><strong>PSW寄存器</strong>：存放程序状态字</p>
+<li><p><strong>状态寄存器</strong>：存放条件码</p>
+<p><strong>PSW寄存器</strong>：存放程序状态字(Program Status Word)</p>
 </li>
 </ol>
 <h3 id="四、控制单元CU和中断系统"><a href="#四、控制单元CU和中断系统" class="headerlink" title="四、控制单元CU和中断系统"></a>四、控制单元CU和中断系统</h3><ol>
 <li><strong>CU</strong>：产生全部指令的微操作命令序列<ul>
-<li><strong>组合逻辑设计</strong>：硬连线逻辑——速度快，RISC</li>
-<li><strong>微程序设计</strong>：存储逻辑——CISC</li>
+<li><strong>组合逻辑设计</strong>：硬连线逻辑——速度快，<strong>RISC</strong></li>
+<li><strong>微程序设计</strong>：存储逻辑——<strong>CISC</strong></li>
 </ul>
 </li>
 <li><strong>中断系统</strong>（8.4）</li>
 </ol>
-<h3 id="五、ALU"><a href="#五、ALU" class="headerlink" title="五、ALU"></a>五、ALU</h3><p>ch6</p>
-<h2 id="8-2-指令周期"><a href="#8-2-指令周期" class="headerlink" title="8.2 指令周期"></a>8.2 指令周期</h2><h3 id="一、指令周期的基本概念"><a href="#一、指令周期的基本概念" class="headerlink" title="一、指令周期的基本概念"></a>一、指令周期的基本概念</h3><h4 id="1-指令周期"><a href="#1-指令周期" class="headerlink" title="1. 指令周期"></a>1. 指令周期</h4><p><strong>取出并执行一条指令所需的全部时间</strong></p>
+<h3 id="五、ALU"><a href="#五、ALU" class="headerlink" title="五、ALU"></a>五、ALU</h3><p>详见ch6</p>
+<h2 id="8-2-指令周期"><a href="#8-2-指令周期" class="headerlink" title="8.2 指令周期"></a>8.2 指令周期</h2><h3 id="一、指令周期的基本概念"><a href="#一、指令周期的基本概念" class="headerlink" title="一、指令周期的基本概念"></a>一、指令周期的基本概念</h3><h4 id="1-指令周期"><a href="#1-指令周期" class="headerlink" title="1. 指令周期"></a>1. 指令周期</h4><p><strong>指令周期</strong>：<strong>取出并执行</strong>一条指令所需的全部时间</p>
 <p>完成一条指令$\begin{cases} 取指、分析——取指周期 \\ 执行—— 执行周期\end{cases}$</p>
 <blockquote>
 <p>取指和分析指令对应的时钟周期可能不等</p>
@@ -382,56 +410,63 @@
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424172728075.png" alt="image-20220424172728075" style="zoom:80%;" /></p>
 <h4 id="3-具有间接寻址的指令周期"><a href="#3-具有间接寻址的指令周期" class="headerlink" title="3. 具有间接寻址的指令周期"></a>3. 具有间接寻址的指令周期</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424172842234.png" alt="image-20220424172842234" style="zoom:80%;" /></p>
 <h4 id="4-带有中断周期的指令周期"><a href="#4-带有中断周期的指令周期" class="headerlink" title="4. 带有中断周期的指令周期"></a>4. 带有中断周期的指令周期</h4><blockquote>
-<p>取指周期是为了<strong>取指令</strong></p>
-<p>间址周期是为了<strong>取有效地址</strong></p>
-<p>执行周期是为了<strong>取操作数（当指令为访存指令时）</strong></p>
-<p>中断周期是为了<strong>保存程序断点</strong></p>
+<p><strong>取指周期</strong>是为了<strong>取指令</strong></p>
+<p><strong>间址周期</strong>是为了<strong>取有效地址</strong></p>
+<p><strong>执行周期</strong>是为了<strong>取操作数（当指令为访存指令时）</strong></p>
+<p><strong>中断周期</strong>是为了<strong>保存程序断点</strong></p>
 </blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424172908653.png" alt="image-20220424172908653" style="zoom:80%;" /></p>
 <blockquote>
 <p>硬件——可屏蔽中断</p>
 </blockquote>
-<h4 id="5-指令周期流程"><a href="#5-指令周期流程" class="headerlink" title="5. 指令周期流程"></a>5. 指令周期流程</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424173151144.png" alt="image-20220424173151144" style="zoom:80%;" /></p>
-<blockquote>
+<h4 id="5-指令周期流程"><a href="#5-指令周期流程" class="headerlink" title="5. 指令周期流程"></a>5. 指令周期流程</h4><blockquote>
 <p>执行周期、中断周期后可以是取指周期</p>
 </blockquote>
-<h4 id="6-CPU工作周期的标志"><a href="#6-CPU工作周期的标志" class="headerlink" title="6. CPU工作周期的标志"></a>6. CPU工作周期的标志</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424173458284.png" alt="image-20220424173458284" style="zoom:80%;" /></p>
-<blockquote>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424173151144.png" alt="image-20220424173151144" style="zoom:80%;" /></p>
+<h4 id="6-CPU工作周期的标志"><a href="#6-CPU工作周期的标志" class="headerlink" title="6. CPU工作周期的标志"></a>6. CPU工作周期的标志</h4><blockquote>
 <p>还可以补充DMA控制方式的标志触发器</p>
 </blockquote>
-<h3 id="二、指令周期的数据流"><a href="#二、指令周期的数据流" class="headerlink" title="二、指令周期的数据流"></a>二、指令周期的数据流</h3><h4 id="1-取指周期数据流"><a href="#1-取指周期数据流" class="headerlink" title="1. 取指周期数据流"></a>1. 取指周期数据流</h4><blockquote>
-<p>①PC存放现行指令的地址，该地址送到MAR</p>
-<p>②并送至地址总线</p>
-<p>③控制部件CU通过控制总线向存储器发读命令，</p>
-<p>④使MAR所指单元内容（指令）经数据总线送至MDR</p>
-<p>⑤再送至IR，</p>
-<p>⑥并且CU控制PC内容+1，形成下一条指令的地址</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424173458284.png" alt="image-20220424173458284" style="zoom:80%;" /></p>
+<h3 id="二、指令周期的数据流"><a href="#二、指令周期的数据流" class="headerlink" title="二、指令周期的数据流"></a>二、指令周期的数据流</h3><h4 id="1-取指周期数据流"><a href="#1-取指周期数据流" class="headerlink" title="1. 取指周期数据流"></a>1. 取指周期数据流</h4><p>源头是PC，通过MAR从地址总线取指令的地址；CU控制读操作，从数据总线获得指令内容，读到MDR；MDR送到IR得到当前指令；PC加1。</p>
+<p><strong>过程</strong>：</p>
+<blockquote>
+<p>①<strong>PC</strong>存放现行指令的地址，该地址送到<strong>MAR</strong></p>
+<p>②并送至<strong>地址总线</strong></p>
+<p>③控制部件<strong>CU</strong>通过控制总线向存储器发读命令，</p>
+<p>④使<strong>MAR</strong>所指单元内容（指令）经数据总线送至MDR</p>
+<p>⑤再送至指令寄存器<strong>IR</strong>，</p>
+<p>⑥并且<strong>CU</strong>控制<strong>PC</strong>内容+1，形成下一条指令的地址</p>
 </blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220425145405017.png" alt="image-20220425145405017" style="zoom:80%;" /></p>
 <h4 id="2-间接周期数据流"><a href="#2-间接周期数据流" class="headerlink" title="2. 间接周期数据流"></a>2. 间接周期数据流</h4><blockquote>
 <p>间接寻址驱动源：寻址特征位</p>
 </blockquote>
 <p>取指周期结束，CU检查IR中的内容，以确定其是否有间址操作。</p>
+<p>源头是MDR，形式地址通过MAR送到地址总线；CU发读命令，把有效地址放回MDR</p>
+<p><strong>过程</strong>：</p>
 <blockquote>
-<p>①如果有间址操作，则MDR中指示形式地址的右N位（记作Ad（MDR））将被送到MAR，</p>
-<p>②又再送至地址总线，</p>
-<p>③此后CU向存储器发送读命令，</p>
+<p>①如果有间址操作，则<strong>MDR</strong>中指示形式地址的右N位（<strong>记作Ad(MDR)</strong>）将被送到<strong>MAR</strong>，</p>
+<p>②又再送至<strong>地址总线</strong>，</p>
+<p>③此后<strong>CU</strong>向存储器发送读命令，</p>
 <p>④以获取<strong>有效地址</strong>并存至MDR</p>
 </blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220425145421783.png" alt="image-20220425145421783" style="zoom:80%;" /></p>
 <h4 id="3-执行周期数据流"><a href="#3-执行周期数据流" class="headerlink" title="3. 执行周期数据流"></a>3. 执行周期数据流</h4><p>不同指令的执行周期数据流不同</p>
-<h4 id="4-中断周期数据流"><a href="#4-中断周期数据流" class="headerlink" title="4. 中断周期数据流"></a>4. 中断周期数据流</h4><blockquote>
+<h4 id="4-中断周期数据流"><a href="#4-中断周期数据流" class="headerlink" title="4. 中断周期数据流"></a>4. 中断周期数据流</h4><p>回顾ch5，中断周期要做3件事：①保存程序断点；②生成中断服务程序入口地址（硬件向量法或程序查询法）；③硬件关中断</p>
+<p>这里涉及前两项</p>
+<blockquote>
 <p>看断点保存方式</p>
 </blockquote>
-<p>CPU进入中断周期要完成一系列操作，其中PC当前的内容必须保存起来，以待执行完中断服务程序后可以准确返回到该程序的断点处，这一操作的数据流如下图所示。</p>
 <p><strong>使用堆栈保存断点，不使用0号单元$r_0$</strong></p>
+<p>CPU进入中断周期要完成一系列操作，其中PC当前的内容必须保存起来，以待执行完中断服务程序后可以准确返回到该程序的断点处，这一操作的数据流如下图所示。</p>
+<p><strong>过程</strong>：</p>
 <blockquote>
-<p>①CU把用于保存程序断点的存储器特殊地址（如，栈指针的内容）送往MAR</p>
-<p>②并送往地址总线上</p>
-<p>③CU向存储器发出写命令</p>
-<p>④将PC中的内容（程序断点）送到MDR</p>
-<p>⑤最终使程序断点经数据总线存入存储器</p>
-<p>⑥CU还需将中断服务程序的入口地址送至PC，为下一个指令周期的取指周期做好准备</p>
+<p>①<strong>CU</strong>把用于保存<strong>程序断点</strong>的<strong>存储器特殊地址</strong>（如，栈指针的内容）送往<strong>MAR</strong></p>
+<p>②并送往<strong>地址总线</strong>上</p>
+<p>③<strong>CU</strong>向存储器发出写命令</p>
+<p>④将<strong>PC</strong>中的内容（程序断点）送到<strong>MDR</strong></p>
+<p>⑤最终使程序断点经数据总线<strong>存入存储器</strong></p>
+<p>⑥<strong>CU</strong>还需将<strong>中断服务程序的入口地址</strong>送至<strong>PC</strong>，为下一个指令周期的取指周期做好准备</p>
 </blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220425145435199.png" alt="image-20220425145435199" style="zoom:80%;" /></p>
 <h2 id="8-4-中断系统（必须掌握）"><a href="#8-4-中断系统（必须掌握）" class="headerlink" title="8.4 中断系统（必须掌握）"></a>8.4 中断系统（必须掌握）</h2><p>（详见ch5）</p>

@@ -69,7 +69,7 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521105741688.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521105815336.png">
 <meta property="article:published_time" content="2022-05-21T03:22:56.000Z">
-<meta property="article:modified_time" content="2022-05-21T03:25:15.428Z">
+<meta property="article:modified_time" content="2022-05-25T05:33:13.615Z">
 <meta property="article:author" content="Cheng">
 <meta property="article:tag" content="computer organization">
 <meta name="twitter:card" content="summary">
@@ -257,10 +257,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-05-21 11:22:56 / 修改时间：11:25:15" itemprop="dateCreated datePublished" datetime="2022-05-21T11:22:56+08:00">2022-05-21</time>
+              <time title="创建时间：2022-05-21 11:22:56" itemprop="dateCreated datePublished" datetime="2022-05-21T11:22:56+08:00">2022-05-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-25 13:33:13" itemprop="dateModified" datetime="2022-05-25T13:33:13+08:00">2022-05-25</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -288,14 +294,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.2k</span>
+              <span>2.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
+              <span>8 分钟</span>
             </span>
 
         </div>
@@ -360,7 +366,7 @@
 <ul>
 <li>$T_0:Ad(IR) \to MAR, \ 1 \to R$ </li>
 <li>$T_1:M(MAR) \to MDR$ </li>
-<li>$T_2:$ （空，注意IR不能被MDR写入，补充条件IND=1）</li>
+<li>$T_2:$ （空，<strong>注意IR不能被MDR写入</strong>，补充条件IND=1）</li>
 </ul>
 </li>
 </ol>
@@ -397,18 +403,27 @@
 <li>$T_2:0 \to G$</li>
 </ul>
 <p><strong>⑥ADD X</strong></p>
+<blockquote>
+<p>由于间址周期删掉了MDR写IR的操作，有效地址仍在MDR。因此没有$Ad(IR) \to MAR$这步</p>
+</blockquote>
 <ul>
 <li>$T_0:Ad(IR) \to MAR, \ 1 \to R$ </li>
 <li>$T_1:M(MAR) \to MDR$</li>
 <li>$T_2:(ACC) + (MDR) \to ACC$</li>
 </ul>
 <p><strong>⑦STA X</strong></p>
+<blockquote>
+<p>由于间址周期删掉了MDR写IR的操作，有效地址仍在MDR。因此没有$Ad(IR) \to MAR$这步</p>
+</blockquote>
 <ul>
 <li>$T_0:Ad(IR) \to MAR, \ 1 \to W$ </li>
 <li>$T_1:ACC \to MDR$</li>
 <li>$T_2:MDR \to M(MAR)$</li>
 </ul>
 <p><strong>⑧LDA X</strong></p>
+<blockquote>
+<p>由于间址周期删掉了MDR写IR的操作，有效地址仍在MDR。因此没有$Ad(IR) \to MAR$这步</p>
+</blockquote>
 <ul>
 <li>$T_0:Ad(IR) \to MAR, 1 \to R$ </li>
 <li>$T_1:M(MAR) \to MDR$</li>
@@ -452,7 +467,7 @@
 <p>EX——执行</p>
 </blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521101642789.png" alt="image-20220521101642789" style="zoom:80%;" /></p>
-<p>填入不同节拍下的控制信号</p>
+<p><strong>填入不同节拍下的控制信号</strong></p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521101739885.png" alt="image-20220521101739885" style="zoom:80%;" /></p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521101753764.png" alt="image-20220521101753764" style="zoom:80%;" /></p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521101809069.png" alt="image-20220521101809069" style="zoom:80%;" /></p>
