@@ -21,12 +21,12 @@
     var CONFIG = {"hostname":"www.gingkocyx.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="本章从分析CPU的功能和内部结构入手，详细讨论机器完成一条指令的全过程。 预期目标：对CPU在计算机中的地位和作用以及对中断概念的理解比前面的章节更加深入。">
+  <meta name="description" content="本章从分析CPU的功能和内部结构入手，详细讨论机器完成一条指令的全过程。 预期目标：对CPU在计算机中的地位和作用以及更加深入理解中断概念。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机组成原理：第8章 CPU的结构和功能">
 <meta property="og:url" content="https://www.gingkocyx.top/computer_organization/computer-organization-ch8/index.html">
 <meta property="og:site_name" content="gingkocyx">
-<meta property="og:description" content="本章从分析CPU的功能和内部结构入手，详细讨论机器完成一条指令的全过程。 预期目标：对CPU在计算机中的地位和作用以及对中断概念的理解比前面的章节更加深入。">
+<meta property="og:description" content="本章从分析CPU的功能和内部结构入手，详细讨论机器完成一条指令的全过程。 预期目标：对CPU在计算机中的地位和作用以及更加深入理解中断概念。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220425145643421.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424172555727.png">
@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220425145421783.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220425145435199.png">
 <meta property="article:published_time" content="2022-05-20T03:35:01.000Z">
-<meta property="article:modified_time" content="2022-05-20T03:37:49.248Z">
+<meta property="article:modified_time" content="2022-05-25T03:18:59.873Z">
 <meta property="article:author" content="Cheng">
 <meta property="article:tag" content="computer organization">
 <meta name="twitter:card" content="summary">
@@ -227,10 +227,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-05-20 11:35:01 / 修改时间：11:37:49" itemprop="dateCreated datePublished" datetime="2022-05-20T11:35:01+08:00">2022-05-20</time>
+              <time title="创建时间：2022-05-20 11:35:01" itemprop="dateCreated datePublished" datetime="2022-05-20T11:35:01+08:00">2022-05-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-25 11:18:59" itemprop="dateModified" datetime="2022-05-25T11:18:59+08:00">2022-05-25</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -258,14 +264,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.6k</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -278,25 +284,52 @@
 
       
         <p>本章从分析CPU的功能和内部结构入手，详细讨论机器完成一条指令的全过程。</p>
-<p>预期目标：对CPU在计算机中的地位和作用以及对中断概念的理解比前面的章节更加深入。</p>
+<p>预期目标：对CPU在计算机中的地位和作用以及更加深入理解中断概念。</p>
 <span id="more"></span>
-<h2 id="8-1-CPU的结构"><a href="#8-1-CPU的结构" class="headerlink" title="8.1 CPU的结构"></a>8.1 CPU的结构</h2><h3 id="一、CPU的功能"><a href="#一、CPU的功能" class="headerlink" title="一、CPU的功能"></a>一、CPU的功能</h3><ol>
+<p>写在前面：流水线不作为考试内容，暂未整理</p>
+<h2 id="8-1-CPU的结构"><a href="#8-1-CPU的结构" class="headerlink" title="8.1 CPU的结构"></a>8.1 CPU的结构</h2><h3 id="一、CPU的功能"><a href="#一、CPU的功能" class="headerlink" title="一、CPU的功能"></a>一、CPU的功能</h3><p>由ch1，CPU包括<strong>运算器</strong>和<strong>控制器</strong>两大部分。运算器内容详见ch6</p>
+<ol>
 <li><p><strong>控制器的功能</strong></p>
 <p>取指令、分析指令、执行指令，发出各种操作命令</p>
 <p>控制程序输入及结果的输出、总线管理、处理异常情况和特殊请求</p>
+<ul>
+<li><p><strong>取指令</strong></p>
+<p>控制器必须具备能自动从存储器取出指令的功能</p>
+<blockquote>
+<p>要求CU能自动形成指令的地址，并发出取指令的命令</p>
+<p>第一条指令地址可以人为设定</p>
+</blockquote>
 </li>
+<li><p><strong>分析指令</strong></p>
+<p>包括两方面内容：$\begin{cases} 分析此指令完成什么样的操作——CU操作命令 \\ 分析参与操作的操作数地址——操作数有效地址EA \end{cases}$</p>
+</li>
+<li><p><strong>执行指令</strong></p>
+<p>形成控制信号序列。通过对运算器、存储器及I/O设备的操作，执行每条指令</p>
+</li>
+</ul>
+</li>
+</ol>
+<ol>
 <li><p><strong>运算器的功能</strong></p>
 <p>实现算术运算和逻辑运算</p>
 </li>
 </ol>
+<p><strong>总结</strong>：CPU必须具有<strong>指令控制</strong>、<strong>操作控制</strong>、<strong>时间控制</strong>、<strong>数据加工</strong>、<strong>中断处理等</strong>功能</p>
+<blockquote>
+<p><strong>指令控制</strong>：控制程序顺序执行</p>
+<p><strong>操作控制</strong>：产生指令的控制命令</p>
+<p><strong>时间控制</strong>：对操作加以时间上的控制（多级时序系统）</p>
+<p><strong>数据加工</strong>：算术运算和逻辑运算</p>
+<p><strong>处理中断</strong>：处理机器运行的异常情况和特殊请求</p>
+</blockquote>
 <h3 id="二、CPU结构框图"><a href="#二、CPU结构框图" class="headerlink" title="二、CPU结构框图"></a>二、CPU结构框图</h3><ol>
 <li><p><strong>CPU与系统总线</strong></p>
-<p>指令控制——PC, IR</p>
-<p>操作控制——CU 时序电路</p>
-<p>时间控制——CU 时序电路</p>
-<p>数据加工——ALU 寄存器</p>
-<p>处理中断——中断系统</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220425145643421.png" alt="image-20220425145643421" style="zoom:80%;" /></p>
+<p><strong>指令控制</strong>——程序计数器PC和指令寄存器IR</p>
+<p><strong>操作控制</strong>——CU 时序电路</p>
+<p><strong>时间控制</strong>——CU 时序电路</p>
+<p><strong>数据加工</strong>——算逻单元ALU和寄存器（主要的3个：累加器ACC、乘商寄存器MQ、通用寄存器X）</p>
+<p><strong>处理中断</strong>——中断系统</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220425145643421.png" alt="image-20220425145643421"  /></p>
 </li>
 </ol>
 <h3 id="三、CPU的寄存器"><a href="#三、CPU的寄存器" class="headerlink" title="三、CPU的寄存器"></a>三、CPU的寄存器</h3><h4 id="1-用户可见的寄存器"><a href="#1-用户可见的寄存器" class="headerlink" title="1. 用户可见的寄存器"></a>1. 用户可见的寄存器</h4><blockquote>
@@ -337,14 +370,14 @@
 <blockquote>
 <p>取指和分析指令对应的时钟周期可能不等</p>
 </blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424172555727.png" alt="image-20220424172555727" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424172555727.png" alt="image-20220424172555727"  /></p>
 <p>不同指令时长不等</p>
 <h4 id="2-每条指令的指令周期不同"><a href="#2-每条指令的指令周期不同" class="headerlink" title="2. 每条指令的指令周期不同"></a>2. 每条指令的指令周期不同</h4><p>NOP（空操作指令）</p>
 <blockquote>
 <p>举例：</p>
-<p>无条件跳转指令：”JMP X”，在<strong>执行阶段不需要访问主存</strong>，而且操作简单，<strong>指令周期就是取指周期</strong>（可以在取指阶段的后期将转移地址X送至PC，达到转移的目的）</p>
-<p>一地址格式的加法指令：”ADD X”，在执行阶段首先要从X指示的存储单元中取出操作数，然后和ACC的内容相加，结果存于ACC。<strong>指令周期在取指和执行阶段各访问一次存储器，指令周期包含两个存取周期</strong></p>
-<p>乘法指令：在执行阶段所要完成的操作比加法指令多得多，故<strong>执行周期超过了加法指令</strong></p>
+<p>①无条件跳转指令：”JMP X”，在<strong>执行阶段不需要访问主存</strong>，而且操作简单，<strong>指令周期就是取指周期</strong>（可以在取指阶段的后期将转移地址X送至PC，达到转移的目的）</p>
+<p>②一地址格式的加法指令：”ADD X”，在执行阶段首先要从X指示的存储单元中取出操作数，然后和ACC的内容相加，结果存于ACC。<strong>指令周期在取指和执行阶段各访问一次存储器，指令周期包含两个存取周期</strong></p>
+<p>③乘法指令：在执行阶段所要完成的操作比加法指令多得多，故<strong>执行周期超过了加法指令</strong></p>
 </blockquote>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424172728075.png" alt="image-20220424172728075" style="zoom:80%;" /></p>
 <h4 id="3-具有间接寻址的指令周期"><a href="#3-具有间接寻址的指令周期" class="headerlink" title="3. 具有间接寻址的指令周期"></a>3. 具有间接寻址的指令周期</h4><p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220424172842234.png" alt="image-20220424172842234" style="zoom:80%;" /></p>
