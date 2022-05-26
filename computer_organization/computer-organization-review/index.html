@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.gingkocyx.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="计组重新梳理一遍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成原理：复习">
+<meta property="og:url" content="https://www.gingkocyx.top/computer_organization/computer-organization-review/index.html">
+<meta property="og:site_name" content="gingkocyx">
+<meta property="og:description" content="计组重新梳理一遍">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-26T06:38:19.000Z">
+<meta property="article:modified_time" content="2022-05-26T06:40:02.250Z">
+<meta property="article:author" content="Cheng">
+<meta property="article:tag" content="computer organization">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.gingkocyx.top/computer_organization/computer-organization-review/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>计算机组成原理：复习 | gingkocyx</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">gingkocyx</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">every piece of life</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/computer_organization/computer-organization-review/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Cheng">
+      <meta itemprop="description" content="my first blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gingkocyx">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机组成原理：复习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-05-26 14:38:19 / 修改时间：14:40:02" itemprop="dateCreated datePublished" datetime="2022-05-26T14:38:19+08:00">2022-05-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2022-Spring/" itemprop="url" rel="index"><span itemprop="name">2022 Spring</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2022-Spring/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>19 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>计组重新梳理一遍</p>
+<span id="more"></span>
+<p>写在前面：<strong>没有整理完，持续更新中……</strong></p>
+<h2 id="问题汇总"><a href="#问题汇总" class="headerlink" title="问题汇总"></a>问题汇总</h2><ol>
+<li>解释工作原理需要包含哪些内容？</li>
+<li>计算机开机执行第一条指令后能否响应中断？中断向量表？</li>
+<li>分离式通信和DMA与CPU交替访存的联系？</li>
+<li>间址周期不把MDR写IR，那么对应执行周期是否不把IR写MAR？</li>
+<li>直接、间址时MDR和IR的对应关系</li>
+<li>多级时序系统包含哪些？（除了指令、机器、时钟）</li>
+<li>控制信号举例（ch9例题）</li>
+<li>组合逻辑设计的表和原理图</li>
+</ol>
+<h2 id="第1章-概论"><a href="#第1章-概论" class="headerlink" title="第1章 概论"></a>第1章 概论</h2><blockquote>
+<p>重点：技术指标——运算速度、测试方法</p>
+</blockquote>
+<h2 id="第3章-总线"><a href="#第3章-总线" class="headerlink" title="第3章 总线"></a>第3章 总线</h2><blockquote>
+<p>工作原理、分类、特点、性能指标、控制、使用</p>
+</blockquote>
+<p><strong>总线控制</strong>：三种集中式总线控制中（链式查询方式、计数器定时查询方式、独立请求方式），<strong>链式查询</strong>对电路故障最敏感；<strong>独立请求方式</strong>响应时间最快，以增加控制线数为代价；<strong>计数器定时查询方式</strong>下，每次计数从上一次计数的终止点开始则使用总线的机会均等，每次从0开始计数则设备号小的优先级高。</p>
+<blockquote>
+<p>对于N个设备，链式查询3条线：BR, BG, BS；计数器定时查询$log_2n+2$（设备地址线, BR, BS）；独立请求2n条线（BR, BG）</p>
+</blockquote>
+<p>数据信号和地址信号分别用一组线路传输的方式称为<strong>并行传输</strong>；不同信号共用一组信号线，分时传送是<strong>复用传输</strong>。</p>
+<p><strong>通信方式</strong>（4种）：同步通信、异步通信、半同步通信、分布式通信（任何设备都可以成为主设备）</p>
+<h3 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h3><blockquote>
+<p><strong>3.4</strong> 为什么设置总线判优系统？</p>
+</blockquote>
+<p>解决多个部件同时申请总线时的使用权分配的问题。主设备启动，发出总线请求信号。当有多个主设备同时请求使用总线时，需要由总线控制器的判优控制，仲裁逻辑根据一定优先等级确定哪个主设备能使用总线</p>
+<h2 id="第4章-存储器（重点）"><a href="#第4章-存储器（重点）" class="headerlink" title="第4章 存储器（重点）"></a>第4章 存储器（重点）</h2><blockquote>
+<p>内部结构不看，关注外特性（功能表、性能指标），设计CPU原理图</p>
+<p>存储器校验、提升速度措施</p>
+</blockquote>
+<p><strong>存储器的三级结构</strong>：主存-缓存结构、主存-辅存结构</p>
+<p><strong>提高访存速度</strong>：①采用Cache；②调整主存结构：单体多字系统、多体并行系统；③采用高速器件：高性能存储芯片</p>
+<blockquote>
+<p>单体多字：同一地址取出多条指令，逐条送到CPU执行，每个1/n存取周期主存向CPU送一条指令</p>
+<p>多体并行：高位交叉顺序编址、低位交叉并行多体、存储器控制部件</p>
+</blockquote>
+<p><strong>提高存储器的可靠性</strong>：①三态门电路，驱动和隔离，数据双向传输；②存储器控制部件——排队器、存控标记触发器、节拍发生器、控制线路</p>
+<p><strong>Cache的工作原理</strong>：主存和缓存的块内地址位数相同，主存的块数远大于缓存的块数</p>
+<p><strong>Cache的工作过程</strong>（2020）</p>
+<blockquote>
+<p>读：</p>
+<p>当CPU发出主存地址后，首先判断该存储字是否在Cache中，若命中，直接访问Cache，将该存储字送入CPU中；若未命中，则一方面要访问主存，将该字送入CPU中，与此同时将改字所在的主存块装入Cache中。如果此时Cache已装满，就要执行替换算法，腾出空位将新的主存块装入</p>
+<p>写：</p>
+<p>①写回法：数据既写入主存又写入Cache——Cache中的数据与主存始终保持一致，对应访问主存的时间，频繁访问主存。</p>
+<p>②写直达法：数据只写入Cache不写入主存，当Cache数据被替换出去时写主存——Cache与主存中的数据会出现不一致，操作时间就是访问Cache的时间</p>
+</blockquote>
+<p><strong>Cache-主存地址映射</strong>：直接映射、全相联映射、组相联映射</p>
+<blockquote>
+<p>直接映射：每个主存块只与一个缓存块相对应</p>
+<p>全相联映射：每一个主存块可以映射到任何一个缓存块</p>
+<p>组相联映射：前两种的折中，组间是直接映射，组内是全相联映射</p>
+</blockquote>
+<p>（参考资料：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44166630/article/details/116396751">cache-主存的三种映射方式</a>）</p>
+<h2 id="第5章-I-O（重点）"><a href="#第5章-I-O（重点）" class="headerlink" title="第5章 I/O（重点）"></a>第5章 I/O（重点）</h2><blockquote>
+<p>重点：程序查询方式、程序中断方式的工作原理，软硬件配合；DMA</p>
+</blockquote>
+<p><strong>编址方式</strong>：统一编制和不统一编址</p>
+<p><strong>联络方式</strong>：立即响应、异步工作应答信号、同步工作同步时序</p>
+<p><strong>I/O控制方式</strong>：程序查询方式、程序中断方式、DMA方式（还有：I/O通道方式、I/O处理机）</p>
+<blockquote>
+<p>程序查询方式：CPU不断查询I/O设备是否准备好</p>
+<p>程序中断方式：I/O设备准备就绪且向CPU发送中断请求后予以响应</p>
+<p>DMA：</p>
+</blockquote>
+<p><strong>程序中断方式</strong>：（参考资料：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_37329910/article/details/89891165">深入理解中断</a>）</p>
+<p><strong>中断隐指令</strong>：CPU在中断周期内由硬件自动完成，不是真正的指令。包括：保存程序断点（堆栈）、将中断向量地址放入程序计数器PC（硬件查询法）、关中断、中断识别程序入口地址送入PC（软件查询法）（参考资料：<a target="_blank" rel="noopener" href="https://blog.csdn.net/fivedoumi/article/details/53173260">中断隐指令</a>）</p>
+<h3 id="习题-1"><a href="#习题-1" class="headerlink" title="习题"></a>习题</h3><blockquote>
+<p><strong>8.15</strong> 设计中断系统需要考虑的问题</p>
+</blockquote>
+<p>①中断源如何向CPU提出请求；</p>
+<p>②当多个中断源同时提出请求时，CPU如何确定响应的优先次序；</p>
+<p>③CPU在什么情况（时间、条件）下响应中断；</p>
+<p>④如何保护现场；</p>
+<p>⑤如何寻找中断服务程序的入口地址；</p>
+<p>⑥如何恢复现场；</p>
+<p>⑦当出现中断嵌套时如何处理？</p>
+<blockquote>
+<p><strong>8.16</strong> 中断硬件设置？作用？对指令系统的考虑？</p>
+</blockquote>
+<p>INTR, EINT, INT（中断标志寄存器）, 排队器、向量地址形成部件、堆栈、中断信息查询信息号电路</p>
+<p>为了管理中断，指令系统应设有<strong>开中断、关中断、置屏蔽字及中断返回</strong>等指令</p>
+<blockquote>
+<p><strong>8.22</strong> 为什么要中断判优？几种方法实现？改变优先顺序可采取什么措施？</p>
+</blockquote>
+<p>CPU在某一时刻只能响应一个中断请求，故必须进行中断判优。</p>
+<p>有2种方式实现：硬件排队和软件排队，前者组合逻辑，后者用程序按优先级别顺序查询各中断源实现排队。</p>
+<p>欲改变优先顺序，可采用屏蔽技术，重新设置屏蔽字，封锁级别高的请求源，开放级别低的请求源。</p>
+<blockquote>
+<p><strong>8.23</strong> 保护现场需要完成哪些任务？如何实现？</p>
+</blockquote>
+<p>完成：①保存程序断点；②保存各通用寄存器及状态寄存器的内容</p>
+<p>保存程序断点使用中断隐指令；后者在中断服务程序中用机器指令完成（堆栈）</p>
+<h2 id="第6章-ALU（重点）"><a href="#第6章-ALU（重点）" class="headerlink" title="第6章 ALU（重点）"></a>第6章 ALU（重点）</h2><blockquote>
+<p>数的表示、定义（原、反、补）</p>
+</blockquote>
+<p><strong>ALU工作原理</strong>：ALU是组合逻辑电路，运算过程中输入数据保持连通，在输出端设置数据暂存器（锁存器）。核心部件是加法器和寄存器。有A和B两个输入变量，控制信号k，输出函数F</p>
+<p><strong>提高运算器速度</strong>：通常可采用<strong>高速器件、快速进位链、改进算法</strong>三种方法。（2020 三2）</p>
+<blockquote>
+<p>快速进位链：并行加法器、串行进位链、并行进位链（单重分组跳跃进位、双重分组跳跃进位）</p>
+</blockquote>
+<p><strong>补码1位乘法</strong>：Booth算法</p>
+<blockquote>
+<p>对于乘数y进行讨论：正数则不减$[x]_补$，负数则减；其余与原码一位乘相同，但是注意补码一位规则（负数右移添1）</p>
+</blockquote>
+<h2 id="第7章-指令系统"><a href="#第7章-指令系统" class="headerlink" title="第7章 指令系统"></a>第7章 指令系统</h2><blockquote>
+<p>指令的组成、特点、性质</p>
+<p>数据、指令寻址方式</p>
+<p>设计指令格式</p>
+<p>掌握RISC技术</p>
+</blockquote>
+<p><strong>操作码扩展技术</strong></p>
+<p><strong>寻址方式</strong>：$\begin{cases} 指令寻址 \begin{cases} 顺序 \\ 跳跃 \end{cases} \\ 数据寻址(10种) \end{cases}$</p>
+<p><strong>指令格式设计</strong>：</p>
+<ul>
+<li><p>对于寄存器型指令，需要设置寄存器号字段$R_i$</p>
+<blockquote>
+<p>如果是寄存器-寄存器型（RR），需要两个字段$R_i$和$R_j$</p>
+<p>字段长度与寄存器个数有关：N个寄存器对应$log_2N$</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>RISC技术</strong>：用20%的简单指令的组合实现不常用的80%的指令功能。采用“减少指令的执行周期数”提高性能（高级语言编译后在机器上运行的机器指令数<code>I</code>比CISC多，但是机器指令所需的平均机器周期<code>C</code>远小于CISC，每个机器周期的执行时间<code>T</code>更少）</p>
+<h3 id="习题-2"><a href="#习题-2" class="headerlink" title="习题"></a>习题</h3><blockquote>
+<p><strong>7.1</strong> 机器指令，指令系统，为什么说指令系统与机器主要功能以及与硬件结构之间存在密切的关系？</p>
+</blockquote>
+<p><strong>机器指令</strong>：由一条条语句构成，每一条语句又能准确表达某种语义。<strong>机器语言的语句</strong>。</p>
+<p><strong>指令系统</strong>：全部机器指令的集合</p>
+<p><strong>原因</strong>：</p>
+<p>①指令系统设计者研究指令系统的确定，如何用硬件电路、芯片和设备来实现功能。</p>
+<p>②使用者依据指令系统，编制汇编程序。使用者依据指令系统描述的功能，能很清楚地了解计算机内部RS（寄存器-存储器）的结构、计算机能直接支持的各种数据类型。</p>
+<blockquote>
+<p><strong>7.2</strong> 寻址方式，是什么？学习的目的？</p>
+</blockquote>
+<p><strong>寻址方式</strong>：<u>确定本条指令的数据地址和下一条将要执行的指令地址的方法</u>。与硬件结构密切相关，而且直接影响指令格式和指令功能。</p>
+<p>寻址方式分为指令寻址和数据寻址两大类：①指令寻址分为顺序寻址（程序计数器加1，自动形成）和跳跃寻址（跳转类指令）；②数据寻址方式种类多，需要设置一字段表明寻址方式（寻址特征位M）。指令的地址码字段通常不代表操作数的真实地址，称为形式地址（记作A）。操作数的真实地址称为有效地址（记作EA）</p>
+<p><strong>学习的目的</strong>：对于汇编语言编程，用户只有了解和掌握机器寻址方式，才能正确编程，否则程序无法正常运行。若参与指令系统设计，必须了解寻址方式以确定机器指令格式。倘若透彻了解机器指令的寻址方式，会加深对机器内信息流程及整机工作概念的理解。</p>
+<blockquote>
+<p><strong>7.3</strong> 指令字长、机器字长、存储字长是什么？</p>
+</blockquote>
+<p><strong>指令字长</strong>：<strong>一个指令字中包含二进制代码的位数</strong>。取决于操作码的长度、操作数地址的长度和操作数地址的个数</p>
+<p><strong>机器字长</strong>：<strong>机器能直接处理的二进制代码的位数</strong>，决定计算机运算精度</p>
+<p><strong>存储字长</strong>：<strong>存储字的位数</strong>。一个存储空间存储一串二进制代码，代码位数称为存储字长，对应存储空间的范围。</p>
+<blockquote>
+<p><strong>7.4</strong> 零地址指令的操作数来自哪里？一地址指令另一个操作数的地址通过什么寻址方式获得 ？</p>
+</blockquote>
+<p>零地址操作数隐含在<strong>堆栈SP</strong>中；</p>
+<p>一地址指令另一个操作数地址通过<strong>隐含寻址方式</strong>获得，保存在累加器ACC中——既存放操作数，又存放中间结果。(ACC) OP ($A_1$) $\to$ (ACC)</p>
+<blockquote>
+<p><strong>7.9</strong> 间接寻址和寄存器间接寻址的比较</p>
+</blockquote>
+<p>都可扩大寻址范围，但形成有效地址的方式不同。</p>
+<p><strong>间接寻址</strong>：访问存储器获得有效地址。另一个优点是便于编制程序。缺点是需要访存2次（或者多次），指令执行时间延长；</p>
+<p><strong>寄存器间接寻址</strong>：访问寄存器获得有效地址在内存中的地址，再通过访存获得有效地址。形式地址在寄存器中，有效地址在存储器中。比间接寻址少访问内存一次，执行时间比间接寻址短。</p>
+<blockquote>
+<p><strong>7.10</strong> 基址寻址和变址寻址的比较</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">基址寻址</th>
+<th style="text-align:center">变址寻址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>有效地址EA</strong></td>
+<td style="text-align:center">有效地址=形式地址+基址寄存器的内容</td>
+<td style="text-align:center">有效地址=形式地址+变址寄存器的内容</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>优点/特点</strong></td>
+<td style="text-align:center">可有效扩大指令寻址范围</td>
+<td style="text-align:center">可有效扩大指令寻址范围</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>对应寄存器的内容及特点</strong></td>
+<td style="text-align:center">基址寄存器内容由操作系统给定，且在程序执行过程中不可改变<br />形式地址A可以改变</td>
+<td style="text-align:center">变址寄存器的内容由用户给定，且在程序的执行过程中可变<br />形式地址A不可以改变</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>应用</strong></td>
+<td style="text-align:center">支持多道程序技术的应用</td>
+<td style="text-align:center">用于处理数组程序，作为数组首地址</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>7.17</strong> 哪几种寻址方式在指令执行阶段不访存，哪几种只访问一次？完成什么样的指令，包括取指令在内共访问存储器4次？</p>
+</blockquote>
+<p><strong>一地址不访存</strong>：寄存器寻址、立即寻址；</p>
+<p><strong>一地址访存1次</strong>：直接寻址、寄存器间接寻址、基址寻址、变址寻址、相对寻址</p>
+<p><strong>访存4次</strong>：二重间址的一地址指令；一重间址的二地址指令，当另一操作数采用直接、基址、变址、相对、寄存器间接寻址时。</p>
+<p>（PS一点不相关的内容：相对寻址便于程序浮动）</p>
+<blockquote>
+<p><strong>7.20</strong> RISC是什么？有什么特点？</p>
+</blockquote>
+<p><strong>RISC是什么</strong>：RISC即精简指令系统计算机，与CISC，复杂指令系统计算机相对应。</p>
+<p>人们从80-20规律得到启发：仅用最常用的20%的简单指令，重新组合不常用的80%的指令功能，引发出RISC技术。</p>
+<p>RISC技术通过<strong>简化指令</strong>，复杂指令的功能由执行频度高的简单指令组合来实现</p>
+<p><strong>特点</strong>：</p>
+<p>①选取使用<strong>频度较高的一些简单指令</strong>以及一些<strong>很有用但又不复杂的指令</strong>，让<strong>复杂指令的功能由频度高的简单指令的组合来实现</strong>；</p>
+<p>②<strong>指令长度固定，指令格式种类少，寻址方式种类少</strong>；</p>
+<p>③只有<strong>取数/存数（LOAD/STORE）指令访问存储器</strong>，<strong>其余</strong>指令的操作都在<strong>寄存器</strong>内完成；</p>
+<p>④CPU中有<strong>多个通用寄存器</strong>；</p>
+<p>⑤采用<strong>流水线技术</strong>，<strong>大部分指令在一个时钟周期内完成</strong>。采用超标量和超流水线技术，可使每条指令的平均执行时间小于一个时钟周期；</p>
+<p>⑥控制器采用<strong>组合逻辑控制</strong>，不用微程序控制；</p>
+<p>⑦采用<strong>优化的编译程序</strong>。</p>
+<blockquote>
+<p><strong>7.21</strong> 比较RISC和CISC的异同</p>
+</blockquote>
+<p><strong>感觉必答的内容</strong>：简单、指令字长定长、LOAD和STORE访存、流水线技术，大多数指令在1个时钟周期内完成、组合逻辑控制、优化编译、多个通用寄存器</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">比较内容</th>
+<th style="text-align:center">RISC</th>
+<th style="text-align:center">CISC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>指令系统</strong></td>
+<td style="text-align:center">简单、精简</td>
+<td style="text-align:center">复杂、庞大</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>指令数目</strong></td>
+<td style="text-align:center">一般小于100</td>
+<td style="text-align:center">一般大于200</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>指令格式</strong></td>
+<td style="text-align:center">一般小于4</td>
+<td style="text-align:center">一般大于4</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>寻址方式</strong></td>
+<td style="text-align:center">一般小于4</td>
+<td style="text-align:center">一般大于4</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>指令字长</strong></td>
+<td style="text-align:center">定长</td>
+<td style="text-align:center">不固定</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>可访存指令</strong></td>
+<td style="text-align:center">只有取数(LOAD)/存数(STORE)指令<br />其余在寄存器内完成</td>
+<td style="text-align:center">不加限制</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>各种指令使用频率</strong></td>
+<td style="text-align:center">相差不大</td>
+<td style="text-align:center">相差很大</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>各种指令执行时间</strong></td>
+<td style="text-align:center">绝大多数在一个周期内完成</td>
+<td style="text-align:center">相差很大</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>优化编译实现</strong></td>
+<td style="text-align:center">较容易</td>
+<td style="text-align:center">很难</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>程序源代码长度</strong></td>
+<td style="text-align:center">较长</td>
+<td style="text-align:center">较短</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>控制器实现方式</strong></td>
+<td style="text-align:center">绝大多数为组合逻辑控制（硬布线控制）</td>
+<td style="text-align:center">绝大多数为微程序控制</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>软件系统开发时间</strong></td>
+<td style="text-align:center">较长</td>
+<td style="text-align:center">较短</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>7.22</strong> 举例RISC用什么方式实现常用指令的功能</p>
+</blockquote>
+<p>（抄RISC定义）</p>
+<p>选取使用频度较高的一些功能简单、能在一个节拍内执行完成的指令，而把较复杂的功能用频度高的简单指令组成一段子程序来实现。</p>
+<blockquote>
+<p>例：约定$R_0$寄存器内容恒为0。使用<strong>加法和减法指令</strong>替代<strong>传送、清除、取负数指令</strong></p>
+<p><strong>传送</strong>：$(R_c) + (R_0) \to R_d$ —— $R_c$替换$R_d$</p>
+<p><strong>清除</strong>：$(R_0) + (R_0) \to R_d$ —— $R_d$清零</p>
+<p><strong>取负</strong>：$(R_0) - (R_c) \to R_d$ —— $R_d$等于$R_c$取负</p>
+</blockquote>
+<h2 id="第8章-CPU"><a href="#第8章-CPU" class="headerlink" title="第8章 CPU"></a>第8章 CPU</h2><blockquote>
+<p>CPU的结构、组成、特点、性质</p>
+<p>指令周期</p>
+</blockquote>
+<h3 id="习题-3"><a href="#习题-3" class="headerlink" title="习题"></a>习题</h3><blockquote>
+<p><strong>8.1</strong> CPU有哪些功能？画出结构框图，说明部件作用</p>
+</blockquote>
+<p><strong>CPU功能</strong>：</p>
+<ul>
+<li><p><strong>指令控制</strong>：控制程序顺序执行</p>
+</li>
+<li><p><strong>操作控制</strong>：产生指令的控制命令</p>
+</li>
+<li><p><strong>时间控制</strong>：对操作加以时间上的控制（多级时序系统）</p>
+</li>
+<li><p><strong>数据加工</strong>：算术运算和逻辑运算</p>
+</li>
+<li><p><strong>处理中断</strong>：处理机器运行的异常情况和特殊请求</p>
+</li>
+</ul>
+<p><strong>结构框图</strong>：见ch8（包括ALU、寄存器、中断系统、CU）</p>
+<p><strong>部件作用</strong>：</p>
+<ul>
+<li><p><strong>寄存器</strong>：包括专用寄存器和通用寄存器（存放操作数）</p>
+</li>
+<li><p><strong>CU</strong>：产生微操作命令序列</p>
+</li>
+<li><strong>ALU</strong>：完成算术和逻辑运算</li>
+<li><strong>中断系统</strong>：处理中断</li>
+</ul>
+<blockquote>
+<p><strong>8.2</strong> 什么是指令周期？指令周期是否有一个固定值？为什么</p>
+</blockquote>
+<p><strong>指令周期</strong>：取出并执行一条指令所需的全部时间。擦偶哦指令分为：取指、分析、执行指令</p>
+<p><strong>没有固定值</strong>：因为各种指令操作功能不同。指令周期的长短和指令在执行阶段的访存次数和执行阶段所需要完成的操作有关</p>
+<p>（可以参考无条件转移、加法指令、乘法指令比较的图片）</p>
+<blockquote>
+<p><strong>8.3</strong> 画出指令周期的流程图，说明每个子周期作用</p>
+</blockquote>
+<p><strong>子周期作用</strong>：</p>
+<ul>
+<li><strong>取指周期</strong>：完成取指令和分析指令的操作</li>
+<li><strong>间址周期</strong>：取操作数的有效地址</li>
+<li><strong>执行周期</strong>：完成执行指令的操作</li>
+<li><strong>中断周期</strong>：当CPU响应中断时，由中断隐指令完成断点程序保护程序断点、硬件关中断和向量地址送PC（硬件向量法）的操作</li>
+</ul>
+<blockquote>
+<p><strong>8.5</strong> 中断周期前是什么阶段？中断周期后是什么阶段？在中断周期CPU应完成什么操作？</p>
+</blockquote>
+<p>中断周期前是执行周期，中断周期后是取指周期</p>
+<p><strong>中断周期CPU操作</strong>：</p>
+<ol>
+<li>CPU访存操作；</li>
+<li>保护程序断点；</li>
+<li>硬件关中断；</li>
+<li>将向量地址送PC（硬件向量法）或将中断识别程序入口地址送PC（软件查询法）</li>
+</ol>
+<h2 id="第9章-CU"><a href="#第9章-CU" class="headerlink" title="第9章 CU"></a>第9章 CU</h2><blockquote>
+<p>CPU操作特点、指令周期动作的分解</p>
+<p>多级时序</p>
+</blockquote>
+<p><strong>多级时序</strong>：指令周期、机器周期、时钟周期（节拍）</p>
+<h2 id="第10章-CU设计"><a href="#第10章-CU设计" class="headerlink" title="第10章 CU设计"></a>第10章 CU设计</h2><blockquote>
+<p>组合逻辑设计控制器</p>
+<p>微程序设计控制器</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/computer-organization/" rel="tag"># computer organization</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/computer_organization/computer-organization-ch10/" rel="prev" title="计算机组成原理：第10章 控制单元的设计">
+      <i class="fa fa-chevron-left"></i> 计算机组成原理：第10章 控制单元的设计
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB"><span class="nav-text">问题汇总</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC1%E7%AB%A0-%E6%A6%82%E8%AE%BA"><span class="nav-text">第1章 概论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC3%E7%AB%A0-%E6%80%BB%E7%BA%BF"><span class="nav-text">第3章 总线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%A0%E9%A2%98"><span class="nav-text">习题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC4%E7%AB%A0-%E5%AD%98%E5%82%A8%E5%99%A8%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="nav-text">第4章 存储器（重点）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC5%E7%AB%A0-I-O%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="nav-text">第5章 I&#x2F;O（重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%A0%E9%A2%98-1"><span class="nav-text">习题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC6%E7%AB%A0-ALU%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="nav-text">第6章 ALU（重点）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC7%E7%AB%A0-%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F"><span class="nav-text">第7章 指令系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%A0%E9%A2%98-2"><span class="nav-text">习题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC8%E7%AB%A0-CPU"><span class="nav-text">第8章 CPU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%A0%E9%A2%98-3"><span class="nav-text">习题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC9%E7%AB%A0-CU"><span class="nav-text">第9章 CU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC10%E7%AB%A0-CU%E8%AE%BE%E8%AE%A1"><span class="nav-text">第10章 CU设计</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cheng</p>
+  <div class="site-description" itemprop="description">my first blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheng</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
