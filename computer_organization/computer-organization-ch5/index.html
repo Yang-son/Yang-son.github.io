@@ -82,7 +82,7 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220523161507249.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220523161550166.png">
 <meta property="article:published_time" content="2022-04-25T14:48:45.000Z">
-<meta property="article:modified_time" content="2022-05-24T09:37:25.335Z">
+<meta property="article:modified_time" content="2022-05-27T11:50:36.752Z">
 <meta property="article:author" content="Cheng">
 <meta property="article:tag" content="computer organization">
 <meta name="twitter:card" content="summary">
@@ -278,7 +278,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-24 17:37:25" itemprop="dateModified" datetime="2022-05-24T17:37:25+08:00">2022-05-24</time>
+                <time title="修改时间：2022-05-27 19:50:36" itemprop="dateModified" datetime="2022-05-27T19:50:36+08:00">2022-05-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -565,7 +565,7 @@
 <li>实现数据串一并格式转换</li>
 <li>实现电平转换</li>
 <li>传送控制命令</li>
-<li>反应设备的状态：忙、就绪、中断请求</li>
+<li>反映设备的状态：忙、就绪、中断请求</li>
 </ul>
 <blockquote>
 <p>CPU想知道什么，接口就提供什么</p>
@@ -581,14 +581,14 @@
 <p>状态线：变成设备状态线——现代计算机大多采用三态逻辑电路来构成总线</p>
 <p>命令线：I/O读、I/O写（2条）</p>
 </blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323170333994.png" alt="image-20220323170333994" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323170333994.png" alt="image-20220323170333994"  /></p>
 </li>
 <li><p><strong>接口的功能和组成</strong></p>
 <p>|        功能        |          组成          |<br>| :————————: | :——————————: |<br>|      选址功能      |      设备选择电路      |<br>|   传送命令的功能   | 命令寄存器、命令译码器 |<br>|   传送数据的功能   |     数据缓冲寄存器     |<br>| 反应设备状态的功能 |      设备状态标记      |</p>
 <p>$\begin{cases} 完成触发器D\\ 工作触发器B\\ 中断请求触发器INTR\\ 屏蔽触发器MASK \end{cases}$</p>
 </li>
 <li><p><strong>I/O接口的基本组成</strong></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323171031357.png" alt="image-20220323171031357" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323171031357.png" alt="image-20220323171031357" style="zoom: 80%;" /></p>
 <blockquote>
 <p>对于现代计算机，没有状态线</p>
 <p>接口要有数据存放的地方：DBR</p>
@@ -596,13 +596,13 @@
 <p>集成化的接口：计时器</p>
 </blockquote>
 <ul>
-<li><p>内部接口：内部接口与系统总线相连，实质上是与内存、CPU相连。并行传输</p>
-</li>
-<li><p>外部接口：外部接口通过接口电缆与外设相连，外部接口的数据传输可能是串行方式。因此外部接口需具有串/并转换功能</p>
-</li>
+<li>内部接口：内部接口与系统总线相连，实质上是与内存、CPU相连。并行传输</li>
 </ul>
 </li>
 </ol>
+<ul>
+<li>外部接口：外部接口通过接口电缆与外设相连，外部接口的数据传输可能是串行方式。因此外部接口需具有串/并转换功能</li>
+</ul>
 <h3 id="三、接口类型"><a href="#三、接口类型" class="headerlink" title="三、接口类型"></a>三、接口类型</h3><ol>
 <li><p>按数据<strong>传送方式</strong>分类</p>
 <blockquote>
@@ -637,18 +637,19 @@
 </ul>
 <ol>
 <li><p><strong>查询流程</strong></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323180258354.png" alt="image-20220323180258354" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323180258354.png" alt="image-20220323180258354" style="zoom: 80%;" /></p>
 </li>
 <li><p><strong>程序流程</strong></p>
 <blockquote>
 <p>首先知道数据的个数、首地址。外部设备要启动。CPU盯住外设是否准备好</p>
 <p>准备好：对于输入，B=0，D=1；对于输出，B=1，D=0</p>
 </blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323180421204.png" alt="image-20220323180421204" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323180421204.png" alt="image-20220323180421204" style="zoom: 80%;" /></p>
 </li>
 </ol>
 <h3 id="二、程序查询方式接口电路"><a href="#二、程序查询方式接口电路" class="headerlink" title="二、程序查询方式接口电路"></a>二、程序查询方式接口电路</h3><p>不仅要有电路，还要有程序，均比较简单。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323172434127.png" alt="image-20220323172434127" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220323172434127.png" alt="image-20220323172434127" style="zoom: 80%;" /></p>
+<p><strong>输入过程</strong></p>
 <blockquote>
 <p>①启动命令（1）送至与非门。CPU通过I/O地址线选择设备（SEL高电平，1），通过与非门变成0，完成触发器D置0（0-没准备好），工作触发器B置1；</p>
 <p>②B置1数据输出，外部设备启动；</p>
@@ -657,9 +658,9 @@
 <p>⑤D的1信号输出</p>
 <p>⑥数据线把数据送出接口</p>
 </blockquote>
-<p>指令需要多少个I/O地址才能实现——3</p>
-<p>通过什么命令发送过来——IN命令</p>
-<p>数据CPU通过什么读回去——数据线，配合$\overline{IOW}$</p>
+<p>指令需要多少个I/O地址才能实现——<strong>3</strong></p>
+<p>通过什么命令发送过来——<strong>IN命令</strong></p>
+<p>数据CPU通过什么读回去——<strong>数据线</strong>，配合$\overline{IOW}$</p>
 <p>假如变成<strong>输出</strong>（倒序）</p>
 <blockquote>
 <p>①CPU写入接口，把数据送入DBR</p>
@@ -668,9 +669,9 @@
 <p>④外设对工作触发器的状态改变，翻转。</p>
 <p>⑤D变成1，告诉CPU可以继续写（覆盖DBR的数据）</p>
 </blockquote>
-<p>总结：输入方式准备好的信号状态D是1，没准备好是0。对于输出设备准备好（DBR中的数据已经送给外部设备。CPU可以再次输入）D是0，没准备好是1</p>
+<p><strong>总结</strong>：输入方式准备好的信号状态D是1，没准备好是0。对于输出设备准备好（DBR中的数据已经送给外部设备。CPU可以再次输入）D是0，没准备好是1</p>
+<p><strong>问题</strong>：</p>
 <blockquote>
-<p>问题：</p>
 <p>①如何使D触发器置0？原理是什么？</p>
 <p>——启动命令有效（<strong>IN指令</strong>）并且地址线上代码与设备选择电路</p>
 <p>对于输出</p>
@@ -678,25 +679,25 @@
 <p>——在CPU和D之间加入一个三态门，把D的地址流向CPU</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_41653350/article/details/106018051">双向三态门的使用</a></p>
 </blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220328163256387.png" alt="image-20220328163256387" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220328163256387.png" alt="image-20220328163256387" style="zoom: 80%;" /></p>
 <blockquote>
 <p>指令需要三个地址</p>
 <p>第16位地址</p>
 </blockquote>
 <ul>
 <li><p>例题1</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329194300129.png" alt="image-20220329194300129" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329194300129.png" alt="image-20220329194300129" style="zoom: 80%;" /></p>
 <blockquote>
 <p>例1的解答：按照I/O地址的要求设置反相器（地址为0则使用反相器），由于是输出，最后和$\overline{IOW}$相与，输出作为74LS244三态门电路的使能信号，控制CPU向外设输出的通和断。</p>
 </blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329192540421.png" alt="image-20220329192540421" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329192540421.png" alt="image-20220329192540421" style="zoom: 80%;" /></p>
 </li>
 <li><p>例2</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329193023506.png" alt="image-20220329193023506" style="zoom:80%;" /></p>
 <blockquote>
 <p>例2解答：设计思路与例1相同。但是需要注意锁存，使用74LS373（8D锁存器）对输出进行锁存</p>
 </blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329193219199.png" alt="image-20220329193219199" style="zoom:67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329193219199.png" alt="image-20220329193219199" style="zoom: 80%;" /></p>
 </li>
 <li><p>例3&amp;例4</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329193642564.png" alt="image-20220329193642564" style="zoom:80%;" /></p>
@@ -706,7 +707,7 @@
 </blockquote>
 </li>
 <li><p>例5&amp;例6</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329193815045.png" alt="image-20220329193815045" style="zoom: 67%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329193815045.png" alt="image-20220329193815045" style="zoom: 80%;" /></p>
 <blockquote>
 <p>解题思路：注意是输入接口。</p>
 <p>有两点变化：①三态门的方向要反过来：从CPU到I/O；②CPU上的控制信号变成了$\overline{IOR}$</p>
@@ -741,7 +742,7 @@
 <h3 id="三、程序中断方式的接口电路"><a href="#三、程序中断方式的接口电路" class="headerlink" title="三、程序中断方式的接口电路"></a>三、程序中断方式的接口电路</h3><ol>
 <li><p>配置<strong>中断请求触发器</strong>(INTR)和<strong>中断屏蔽触发器</strong>(MASK)</p>
 <blockquote>
-<p>，是一个D触发器</p>
+<p>D触发器</p>
 </blockquote>
 <p>检查设备就绪（对于输入，<strong>D=1</strong>，数据已经到达DBR。对于输出，D=1，外设已经取走数据，CPU可以继续输出），且设备未被屏蔽（<strong>MASK=0</strong>，因此输出$\overline{Q}=1$），CPU的中断查询信号可将中断请求触发器置“1”（<strong>INTR=1</strong>）</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220328173752751.png" alt="image-20220328173752751" style="zoom:80%;" /></p>
@@ -750,8 +751,8 @@
 <li><p><strong>排队器</strong></p>
 <p>中断优先级低的要等待，优先级高的可以及时被CPU响应</p>
 <ul>
-<li>硬件：在CPU内或在接口电路中（链式排队器）</li>
-<li>软件：详见第八章</li>
+<li><strong>硬件</strong>：在CPU内或在接口电路中（链式排队器）</li>
+<li><strong>软件</strong>：详见第八章</li>
 </ul>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220328174231278.png" alt="image-20220328174231278" style="zoom:80%;" /></p>
 <blockquote>
@@ -808,10 +809,10 @@
 </li>
 </ul>
 </li>
-<li><p>I/O中断处理过程——已经集成到硬件中，中断控制器8259A</p>
+<li><p><strong>I/O中断处理过程</strong>——已经集成到硬件中，中断控制器8259A</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220329202340978.png" alt="image-20220329202340978" style="zoom:80%;" /></p>
-<blockquote>
 <p>当CPU通过I/O指令的地址码选中某设备后，则</p>
+<blockquote>
 <p>①由CPU发启动I/O设备指令，将接口中的B置“1”，D置“0”；</p>
 <p>②接口启动输入设备；</p>
 <p>③输入设备将数据送入数据缓冲存储器DBR；</p>
@@ -825,7 +826,7 @@
 </blockquote>
 </li>
 </ol>
-<p>注意：DBR不能直接连接数据总线。如果DBR是数据寄存器，直接连接会导致数据总线被外设钳制住，。因此需要三态门断开，通过I/O地址执行IN指令。</p>
+<p><strong>注意</strong>：DBR不能直接连接数据总线。如果DBR是数据寄存器，直接连接会导致数据总线被外设钳制住。因此需要三态门断开，通过I/O地址执行IN指令。</p>
 <p>向量地址从数据线接入。数据值是一个中断类型</p>
 <h4 id="关于中断允许触发器（EINT）和中断屏蔽触发器（MASK）"><a href="#关于中断允许触发器（EINT）和中断屏蔽触发器（MASK）" class="headerlink" title="关于中断允许触发器（EINT）和中断屏蔽触发器（MASK）"></a>关于中断允许触发器（EINT）和中断屏蔽触发器（MASK）</h4><p>参考资料：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/320290174">关于允许中断触发器和中断屏蔽触发器的疑问？</a></p>
 <p><strong>EINT</strong>：CPU对中断请求的总控制</p>
@@ -992,10 +993,10 @@
 </li>
 </ul>
 <h3 id="三、中断服务程序入口地址的寻找"><a href="#三、中断服务程序入口地址的寻找" class="headerlink" title="三、中断服务程序入口地址的寻找"></a>三、中断服务程序入口地址的寻找</h3><ol>
-<li><p>硬件向量法</p>
+<li><p><strong>硬件向量法</strong></p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220523160513855.png" alt="image-20220523160513855" style="zoom:80%;" /></p>
 </li>
-<li><p>软件查询法</p>
+<li><p><strong>软件查询法</strong></p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220523160530099.png" alt="image-20220523160530099" style="zoom:80%;" /></p>
 </li>
 </ol>
@@ -1027,7 +1028,7 @@
 <p>EINT：允许中断</p>
 <p>R-S触发器</p>
 </blockquote>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220523160759243.png" alt="image-20220523160759243" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220523160759243.png" alt="image-20220523160759243"  /></p>
 </li>
 </ul>
 </li>
@@ -1040,7 +1041,7 @@
 </ul>
 </li>
 <li><p>恢复现场——<strong>中断服务程序完成</strong></p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220523160924632.png" alt="image-20220523160924632" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220523160924632.png" alt="image-20220523160924632"  /></p>
 </li>
 </ol>
 <h3 id="六、中断屏蔽技术（不讲）"><a href="#六、中断屏蔽技术（不讲）" class="headerlink" title="六、中断屏蔽技术（不讲）"></a>六、中断屏蔽技术（不讲）</h3><ol>
@@ -1203,7 +1204,7 @@
 <p>⑨修改主存地址和字计数值</p>
 <p>⑩判断数据块是否已传送完毕：若未完毕，继续传送；若传送完毕，则向CPU申请程序中断</p>
 <blockquote>
-<p>大致流程：设备 $\to$ 数据缓冲寄存器BR $\to$ DMA接口（DREQ） $\to$ 总线（HRQ） $\to$ DMA接口（HLDA） $\to$ 设备（DACK）</p>
+<p>大致流程：数据缓冲寄存器BR $\to$ 设备 $\to$ DMA接口（DREQ） $\to$ 总线（HRQ） $\to$ DMA接口（HLDA） $\to$ 设备（DACK）</p>
 <p>流程与输入大致相同。区别在于第⑦和⑧步的主存操作——输入：BR送数据总线，数据总线送主存；输出：数据线送BR，BR送输出设备</p>
 </blockquote>
 </li>
