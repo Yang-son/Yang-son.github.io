@@ -69,7 +69,7 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521105741688.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521105815336.png">
 <meta property="article:published_time" content="2022-05-21T03:22:56.000Z">
-<meta property="article:modified_time" content="2022-05-26T13:38:01.513Z">
+<meta property="article:modified_time" content="2022-05-27T06:46:22.871Z">
 <meta property="article:author" content="Cheng">
 <meta property="article:tag" content="computer organization">
 <meta name="twitter:card" content="summary">
@@ -265,7 +265,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-26 21:38:01" itemprop="dateModified" datetime="2022-05-26T21:38:01+08:00">2022-05-26</time>
+                <time title="修改时间：2022-05-27 14:46:22" itemprop="dateModified" datetime="2022-05-27T14:46:22+08:00">2022-05-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -294,14 +294,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.3k</span>
+              <span>4.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>14 分钟</span>
+              <span>15 分钟</span>
             </span>
 
         </div>
@@ -408,7 +408,7 @@
 </ul>
 <p><strong>⑥加法指令 ADD X</strong></p>
 <blockquote>
-<p>由于间址周期删掉了MDR写IR的操作，有效地址仍在MDR。因此没有$Ad(IR) \to MAR$这步</p>
+<p>由于间址周期删掉了MDR写IR的操作，有效地址仍在MDR。因此如果有间址则$Ad(IR) \to MAR$这步，<strong>把IR换成MDR</strong>。</p>
 </blockquote>
 <ul>
 <li>$T_0:Ad(IR) \to MAR, \ 1 \to R$ </li>
@@ -417,7 +417,7 @@
 </ul>
 <p><strong>⑦存数指令 STA X</strong>（Store ACC）</p>
 <blockquote>
-<p>由于间址周期删掉了MDR写IR的操作，有效地址仍在MDR。因此没有$Ad(IR) \to MAR$这步</p>
+<p>由于间址周期删掉了MDR写IR的操作，有效地址仍在MDR。因此如果有间址则$Ad(IR) \to MAR$这步，<strong>把IR换成MDR</strong>。</p>
 </blockquote>
 <ul>
 <li>$T_0:Ad(IR) \to MAR, \ 1 \to W$ </li>
@@ -426,7 +426,7 @@
 </ul>
 <p><strong>⑧取数指令 LDA X</strong>（Load ACC）</p>
 <blockquote>
-<p>由于间址周期删掉了MDR写IR的操作，有效地址仍在MDR。因此没有$Ad(IR) \to MAR$这步</p>
+<p>由于间址周期删掉了MDR写IR的操作，有效地址仍在MDR。因此如果有间址则$Ad(IR) \to MAR$这步，<strong>把IR换成MDR</strong>。</p>
 </blockquote>
 <ul>
 <li>$T_0:Ad(IR) \to MAR, 1 \to R$ </li>
@@ -450,16 +450,16 @@
 <blockquote>
 <p>在执行周期的最后时刻，CPU要向所有中断源发送中断查询信号，若检测到某个中断源有请求，并且未被屏蔽又被排队选中，则在允许中断的条件下，CPU进入中断周期，此时CPU由中断隐指令完成下列操作（注意程序断点以堆栈方式存入）</p>
 </blockquote>
-<ol>
-<li>$T_0:(SP)-1 \to SP, \ SP \to MAR, \ 1 \to W, \ 硬件关中断$ </li>
+<ul>
+<li>$T_0:(SP)-1 \to SP, \ SP \to MAR, \ 1 \to W, \ 硬件关中断(0 \to EINT)$</li>
 <li>$T_1:PC \to MDR$ </li>
 <li>$T_2:MDR \to M(MAR), \ 中断向量地址 \to PC$</li>
-</ol>
+</ul>
 </li>
 </ol>
 <h3 id="三、组合逻辑设计步骤"><a href="#三、组合逻辑设计步骤" class="headerlink" title="三、组合逻辑设计步骤"></a>三、组合逻辑设计步骤</h3><ol>
 <li><p><strong>列出微操作命令的操作时间表</strong></p>
-<p>FE, IND, EX为CPU工作周期标志，$T_0-T_2$为节拍，$I$为间址标志（若取指$T_2$时刻$I=1$则IND置1，进入间址周期）</p>
+<p><strong>FE</strong>, <strong>IND</strong>, <strong>EX</strong>为CPU工作周期标志，$T_0-T_2$为节拍，$I$为间址标志（若取指$T_2$时刻$I=1$则<strong>IND</strong>置1，进入间址周期）</p>
 <blockquote>
 <p>FE（Fetch）取指</p>
 </blockquote>
@@ -484,7 +484,7 @@
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220521101904539.png" alt="image-20220521101904539" style="zoom:80%;" /></p>
 </li>
 </ol>
-<p><strong>特点</strong>：</p>
+<p><strong>特点</strong>：（考点）</p>
 <ul>
 <li>思路清晰，简单明了</li>
 <li>庞杂，调试困难，修改困难</li>
