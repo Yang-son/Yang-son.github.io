@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.gingkocyx.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言：愿世间不再有近世代数，愿此时正在肝&#x2F;熬夜的你不再畏惧  注：主要总结证明思路，不一一列举公式定理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="近世代数">
+<meta property="og:url" content="https://www.gingkocyx.top/modern-algebra/modern-algebra/index.html">
+<meta property="og:site_name" content="gingkocyx">
+<meta property="og:description" content="前言：愿世间不再有近世代数，愿此时正在肝&#x2F;熬夜的你不再畏惧  注：主要总结证明思路，不一一列举公式定理">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-02T18:16:34.000Z">
+<meta property="article:modified_time" content="2022-06-02T18:17:52.677Z">
+<meta property="article:author" content="Cheng">
+<meta property="article:tag" content="modern algebra">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.gingkocyx.top/modern-algebra/modern-algebra/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>近世代数 | gingkocyx</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">gingkocyx</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">every piece of life</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.gingkocyx.top/modern-algebra/modern-algebra/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Cheng">
+      <meta itemprop="description" content="my first blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gingkocyx">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          近世代数
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-06-03 02:16:34 / 修改时间：02:17:52" itemprop="dateCreated datePublished" datetime="2022-06-03T02:16:34+08:00">2022-06-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BF%91%E4%B8%96%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">近世代数</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>28 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>前言</strong>：愿世间不再有近世代数，愿此时正在肝/熬夜的你不再畏惧</p>
+<blockquote>
+<p>注：主要总结证明思路，不一一列举公式定理</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="第1节-概述"><a href="#第1节-概述" class="headerlink" title="第1节 概述"></a>第1节 概述</h1><p>回顾集合论内容。映射的概念对于后续证明很有帮助，需要记住</p>
+<h2 id="子集、集合的相等"><a href="#子集、集合的相等" class="headerlink" title="子集、集合的相等"></a>子集、集合的相等</h2><p>（P37-P41）</p>
+<p><strong>证明两个集合相等的唯一方法</strong>：每一个集合都是另一个集合的子集</p>
+<script type="math/tex; mode=display">
+A = B \Leftrightarrow A \subseteq B \ 且 \ B \subseteq A</script><h2 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h2><blockquote>
+<p>均为充要条件</p>
+</blockquote>
+<ol>
+<li><p><strong>映射</strong>：①$\forall a \in A, a有象$；②象是唯一的 —— 通常是构造映射或者直接给出``</p>
+<blockquote>
+<p>在满足映射的情况下才能谈相等、单、满、双</p>
+</blockquote>
+</li>
+<li><p><strong>相等</strong>：两个映射 $f$ 与 $g$ 称为是<strong>相等</strong>当且仅当 $f$ 和 $g$ 都是 $X$ 到 $Y$ 的映射，而且 $\forall x \in X$，总有$f(x) = g(x)$</p>
+</li>
+<li><p><strong>单射</strong>：（有两种证法）$\forall x, x’ \in X \begin{cases} x \neq x’ 则f(x) \neq f(x’) \\ f(x) = f(x’) 则 x = x’ \end{cases}$  其中第二条在单射证明中常用</p>
+</li>
+<li><p><strong>满射</strong>：$\forall y \in Y, \exists x \in X$ 使得 $f(x) = y$</p>
+</li>
+<li><p><strong>一一映射</strong>：单射且满射。</p>
+</li>
+<li><p><strong>恒等映射</strong>：设$f:X \to X$，如果 $\forall x \in X, f(x)=x$，则 $f$ 为 $X$ 上的恒等映射</p>
+</li>
+</ol>
+<h3 id="映射的合成"><a href="#映射的合成" class="headerlink" title="映射的合成"></a>映射的合成</h3><p><strong>定义</strong>：设 $f:X\to Y,g:Y \to Z, h:X \to Z$。如果</p>
+<script type="math/tex; mode=display">
+\forall x \in X, \quad h(x) = g(f(x))</script><p>则称 $h$ 为 $f$ 与 $g$ 的合成。</p>
+<blockquote>
+<p>$g \circ f(x) = gf(x) = g(f(x))$</p>
+</blockquote>
+<h3 id="映射合成的性质"><a href="#映射合成的性质" class="headerlink" title="映射合成的性质"></a>映射合成的性质</h3><p>（P47-P48）</p>
+<p>映射合成运算满足结合律</p>
+<h3 id="逆映射的定义"><a href="#逆映射的定义" class="headerlink" title="逆映射的定义"></a>逆映射的定义</h3><p>（P49-P50）</p>
+<p><strong>定义</strong>：设 $f:X \to Y$，如果存在一个映射 $g:Y \to X$，使得 $fg = I_Y$ 且 $gf = I_X$，则称映射 $f$ 是<strong>可逆的</strong>，而 $g$ 称为 $f$ 的<strong>逆映射</strong></p>
+<blockquote>
+<p>按定义 $f$ 可逆 $\Leftrightarrow fg = I_Y 且 gf = I_X$ 同时成立，缺一不可 </p>
+</blockquote>
+<h3 id="逆映射的性质"><a href="#逆映射的性质" class="headerlink" title="逆映射的性质"></a>逆映射的性质</h3><p><strong>定理7</strong>：设 $f:X \to Y$，则 $f$ 是可逆的充分必要条件是 $f$ 为双射（一一对应）</p>
+<p><strong>定理9</strong>：设 $f:X \to Y,g:Y \to Z$ 都是可逆的，则 $gf$ 也可逆且 $(gf)^{-1} = f^{-1}g^{-1},(f^{-1})^{-1} = f$</p>
+<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><p>（P52-P76）</p>
+<blockquote>
+<p>这部分内容是后续群、环、域、格等概念的基础，需要了解</p>
+</blockquote>
+<h3 id="关系闭包"><a href="#关系闭包" class="headerlink" title="关系闭包"></a>关系闭包</h3><h3 id="等价关系"><a href="#等价关系" class="headerlink" title="等价关系"></a>等价关系</h3><h3 id="等价类"><a href="#等价类" class="headerlink" title="等价类"></a>等价类</h3><h3 id="商集与划分"><a href="#商集与划分" class="headerlink" title="商集与划分"></a>商集与划分</h3><h3 id="偏序关系"><a href="#偏序关系" class="headerlink" title="偏序关系"></a>偏序关系</h3><h1 id="第2节-基本概念"><a href="#第2节-基本概念" class="headerlink" title="第2节 基本概念"></a>第2节 基本概念</h1><p>运算的概念源于映射，是构成半群、幺半群、群、环、域的重要部分</p>
+<h2 id="1-二元运算"><a href="#1-二元运算" class="headerlink" title="1. 二元运算"></a>1. 二元运算</h2><p><strong>二元运算定义</strong>：设 $S$ 为集合，映射$f:S \times S \to S$ 称为 $S$ 上的一个<strong>二元运算</strong></p>
+<p><strong>封闭性</strong>：任何两个元素都可以运算，且结果唯一，属于 $S$</p>
+<h2 id="2-运算规律"><a href="#2-运算规律" class="headerlink" title="2. 运算规律"></a>2. 运算规律</h2><h2 id="3-特异元素"><a href="#3-特异元素" class="headerlink" title="3. 特异元素"></a>3. 特异元素</h2><h3 id="单位元"><a href="#单位元" class="headerlink" title="单位元"></a>单位元</h3><p>（P17）</p>
+<blockquote>
+<p>又称幺元</p>
+</blockquote>
+<p><strong>定义</strong>：设 $\circ$ 是 $S$ 上的二元运算，</p>
+<p>如果存在 $e_l \in S$，使得对任意 $x \in S$ 都有</p>
+<script type="math/tex; mode=display">
+e_l \circ x = x</script><p>则称 $e_l$ 是 $S$ 中关于 $\circ$ 运算的<strong>左单位元</strong>。</p>
+<p>如果存在 $e_r \in S$，使得对任意 $x \in S$ 都有</p>
+<script type="math/tex; mode=display">
+x \circ e_r = x</script><p>则称 $e_r$ 是 $S$ 中关于 $\circ$ 运算的<strong>右单位元</strong></p>
+<p><strong>单位元</strong>：左单位元+右单位元</p>
+<ul>
+<li><p><strong>单位元唯一性定理</strong></p>
+<p>$e_l = e_r = e$ 为 $S$ 上关于 $\circ$ 运算的唯一的单位元</p>
+<blockquote>
+<p><strong>证明思路</strong>：</p>
+<p>①证相等：（已知 $\forall x \in S, e_l \circ x = x,x \circ e_r = x$）</p>
+<p>由 $x$ 的任意性，把 $x 换成 e_r,e_l$ 则 $\begin{cases} e_l \circ e_r = e_r \\ e_l \circ e_r = e_l \end{cases}$</p>
+<p>因此 $e_l \circ e_r = e_l = e_r$</p>
+<p>②证唯一：（$\forall e_1,e_2是单位元 \Rightarrow e_1 = e_2$）</p>
+<p>由单位元的定义，$\forall x \in S,\begin{cases} e_1 \circ x = x \\x \circ e_2 = x \end{cases}$</p>
+<p>在单位元的定义中，分别用 $e_2,e_1$ 替换 $x$，得到 $\begin{cases} e_1 \circ e_2 = e_2 \\ e_1 \circ e_2 = e_1 \end{cases}$</p>
+<p>因此 $e_1 = e_2$</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="零元"><a href="#零元" class="headerlink" title="零元"></a>零元</h3><p>（P20-P22）</p>
+<p><strong>定义</strong>：设 $\circ$ 是 $S$ 上的二元运算，</p>
+<p>如果存在 $\theta_l \in S$，使得对任意 $x \in S$ 都有</p>
+<script type="math/tex; mode=display">
+\theta_l \circ x = \theta_l</script><p>则称 $\theta_l$ 是 $S$ 中关于 $\circ$ 运算的<strong>左零元</strong>。</p>
+<p>如果存在 $\theta_r \in S$，使得对任意 $x \in S$ 都有</p>
+<script type="math/tex; mode=display">
+x \circ \theta_r = \theta_r</script><p>则称 $\theta_r$ 是 $S$ 中关于 $\circ$ 运算的<strong>右零元</strong></p>
+<p><strong>零元</strong>：左零元+右零元</p>
+<ul>
+<li><p><strong>零元唯一性定理</strong></p>
+<p>$\theta_l = \theta_r = \theta$ 为 $S$ 上关于 $\circ$ 运算的唯一的单位元</p>
+<blockquote>
+<p>证明思路与单位元唯一性定理相同，根据定义和 $x$ 的任意性进行代换</p>
+<p>①零元相等；②零元唯一</p>
+</blockquote>
+<p><strong>注意</strong>：</p>
+<ul>
+<li>当 $|S| \geq 2$，单位元与零元不同；</li>
+<li>当 $|S| = 1$，这个元素既是单位元也是零元；</li>
+</ul>
+</li>
+</ul>
+<h3 id="可逆元素和逆元"><a href="#可逆元素和逆元" class="headerlink" title="可逆元素和逆元"></a>可逆元素和逆元</h3><p><strong>定义</strong>：设 $\circ$ 是 $S$ 上的二元运算，令 $e$ 为 $S$ 中关于运算 $\circ$ 的单位元，对 $\forall x \in S$</p>
+<p>如果存在 $y_l \in S$ 使得</p>
+<script type="math/tex; mode=display">
+y_l \circ x = e</script><p>则称 $y_l$ 是 $S$ 中关于 $\circ$ 运算的<strong>左逆元</strong>。</p>
+<p>如果存在 $y_r \in S$使得</p>
+<script type="math/tex; mode=display">
+x \circ y_r = e</script><p>则称 $y_r$ 是 $S$ 中关于 $\circ$ 运算的<strong>右逆元</strong>。</p>
+<p><strong>逆元</strong>：左逆元+右逆元</p>
+<p>如果 $x$ 的逆元存在，就称 $x$ 是<strong>可逆的</strong></p>
+<ul>
+<li><p><strong>逆元唯一性定理</strong></p>
+<p>设 $\circ$ 是 $S$ 上的二元运算，令 $e$ 为 $S$ 中关于运算 $\circ$ 的单位元，对 $\forall x \in S$ 如果存在左逆元 $y_l$ 和右逆元 $y_r$，则有 $y_l = y_r = y$，且 $y$ 是 $x$ 的唯一的逆元</p>
+<blockquote>
+<p><strong>证明</strong>：（技巧是结合律）</p>
+<p>已知 $\begin{cases} y_l \circ x = e \\ x \circ y_r = e \end{cases}$ 还有 $\begin{cases} e_l = e_l \circ e_r = e_r \\ \theta_l = \theta_l \circ \theta_r = \theta_r \end{cases}$</p>
+<p>$y_l = y_l \circ e = e \circ y_l$ （交换律）</p>
+<p>$= y_l \circ (x \circ y_r) = (y_l \circ x) \circ y_r$（结合律）</p>
+<p>$= e \circ y_r = y_r$</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="二元运算规律之二——消去律"><a href="#二元运算规律之二——消去律" class="headerlink" title="二元运算规律之二——消去律"></a>二元运算规律之二——消去律</h3><p><strong>定义8</strong>：设 $\circ$ 为非空集合 $S$ 上二元运算，如果 $\forall x,y,z \in S$，</p>
+<p>若 $x \circ y = x \circ z$，且 $x$ 不是零元，则 $y = z$；</p>
+<p>若 $y \circ x = z \circ x$，且 $x$ 不是零元，则 $y = z$。</p>
+<p>则称 $\circ$ 运算（在 $S$ 上）满足<strong>消去律</strong></p>
+<h2 id="4-代数系统的定义"><a href="#4-代数系统的定义" class="headerlink" title="4. 代数系统的定义"></a>4. 代数系统的定义</h2><p>（P28-P30）</p>
+<p><strong>定义9</strong>：非空集合 $S$ 和 $S$ 上 $k$ 个一元或二元运算 $<em>_1,</em>_2,…,<em>_k$ 组成的系统称为一个<strong>代数系统</strong>，记作 $(S,</em>_1,<em>_2,…,</em>_k)$</p>
+<h2 id="5-代数系统的同态与同构"><a href="#5-代数系统的同态与同构" class="headerlink" title="5. 代数系统的同态与同构"></a>5. 代数系统的同态与同构</h2><p>（P31-P37）</p>
+<p><strong>定义10</strong>：设 $(A,\circ)$ 和 $(B,<em>)$ 是两个代数系统，$f:A \to B$，且 $\forall x,y \in A$ 有 $f(x \circ y) = f(x) </em> f(y)$，则称 $f$ 是 $A$ 到 $B$ 的<strong>同态映射</strong>，简称<strong>同态</strong>。</p>
+<p><strong>同态分类</strong>：</p>
+<ul>
+<li>$f$ 如果是单射，则称为<strong>单同态</strong></li>
+<li>如果是满射，则称为<strong>满同态</strong>，$B$ 是 $A$ 的<strong>同态象</strong>，记作 $A \sim B$</li>
+<li>如果是双射，则称为<strong>同构</strong>，也称 $A$ 同构于 $B$，记作 $A \cong B$</li>
+<li>如果 $A = B$，则称作<strong>自同态</strong> </li>
+</ul>
+<h3 id="满同态映射保持运算的规律"><a href="#满同态映射保持运算的规律" class="headerlink" title="满同态映射保持运算的规律"></a>满同态映射保持运算的规律</h3><p>（P34）</p>
+<p>设 $(A,\circ,<em>)$ 和 $(B,\circ’,</em>‘)$ 是两个代数系统。如果存在 $A$ 到 $B$ 的满同态映射 $f$，则：</p>
+<ul>
+<li><p>若运算 $\circ$ 满足交换律（结合律），则运算 $\circ’$ 也满足交换律（结合律）</p>
+<blockquote>
+<p><strong>证明过程</strong>：（交换律）</p>
+<p><strong>整体思路</strong>：把 $\circ’$ 上的运算通过同态映射转至 $\circ$，利用 $\circ$ 的性质变换，最后再回到 $\circ’$</p>
+<p>（欲证：$\circ’$ 满足交换律 $\Leftrightarrow \forall x,y \in B, x \circ’ y = y \circ’ x$ ）</p>
+<p>由满同态定义：</p>
+<p>①同态：$\forall a,b \in A, f(a \circ b) = f(a) \circ’ f(b)$</p>
+<p>②满射：$\forall x,y \in B, \exists a,b \in A \Rightarrow f(a) = x,f(b) = y$</p>
+<p>$x \circ’ y = f(a) \circ’ f(b) = f(a \circ b) = f(b \circ a) = f(b) \circ’ f(a) = y \circ’ x$</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>若运算 $\circ$ 满足分配律，则运算 $\circ’$ 也满足分配律</li>
+</ul>
+<h3 id="满同态映射保持特异元素"><a href="#满同态映射保持特异元素" class="headerlink" title="满同态映射保持特异元素"></a>满同态映射保持特异元素</h3><p>（P35）</p>
+<blockquote>
+<p>特异元素：单位元、零元、逆元</p>
+</blockquote>
+<p>设 $(A,\circ,<em>)$ 和 $(B,\circ’,</em>‘)$ 是两个代数系统。如果存在 $A$ 到 $B$ 的满同态映射 $f$，则：</p>
+<ul>
+<li>若 $e$ 为运算 $\circ$ 的单位元，则 $f(e)$ 为运算 $\circ’$ 的单位元</li>
+<li>若 $\theta$ 为运算 $\circ$ 的零元，则 $f(\theta)$ 为运算 $\circ’$ 的零元</li>
+<li>设 $u \in A$，若 $u^{-1}$是 $u$ 关于运算 $\circ$ 的逆元，则 $f(u^{-1})$  是 $f(u)$ 关于运算 $\circ’$ 的逆元，即 $[f(u)]^{-1} = f(u^{-1})$</li>
+</ul>
+<h2 id="讨论：运算封闭"><a href="#讨论：运算封闭" class="headerlink" title="讨论：运算封闭"></a>讨论：运算封闭</h2><p>（P36）</p>
+<h1 id="第3节-半群"><a href="#第3节-半群" class="headerlink" title="第3节 半群"></a>第3节 半群</h1><p>简单概括一下，<strong>半群</strong>是一个运算满足<strong>结合律</strong>的<strong>代数系统</strong></p>
+<h2 id="1-半群的定义"><a href="#1-半群的定义" class="headerlink" title="1. 半群的定义"></a>1. 半群的定义</h2><p>（P2）</p>
+<blockquote>
+<p>PPT上的定义1看一下即可</p>
+</blockquote>
+<p><strong>定义1’</strong>：设 $(S,\circ)$ 是一个<strong>代数系统</strong>，如果运算 $\circ$ <strong>满足结合律</strong>，则称 $(S,\circ)$ 为一个<strong>半群</strong></p>
+<p>如果半群 $(S,\circ)$ 中的二元运算满足<strong>交换律</strong>，则称 $(S,\circ)$ 为<strong>交换半群</strong>或<strong>可换半群</strong></p>
+<h3 id="半群的实例"><a href="#半群的实例" class="headerlink" title="半群的实例"></a>半群的实例</h3><p>对称差运算 $\oplus$，集合的并和交都满足结合律。差运算不满足结合律，不能构成半群</p>
+<p>$(S^S,\circ)$ 是半群，但不是可换半群，其中 $\circ$ 为 $S^S$ 上的合成运算</p>
+<h3 id="有关半群的术语"><a href="#有关半群的术语" class="headerlink" title="有关半群的术语"></a>有关半群的术语</h3><p><strong>定义2</strong>：若 $S$ 是有限集，称半群 $(S,\circ)$ 是<strong>有限半群</strong>；若 $S$ 是无限集，称半群 $(S,\circ)$ 是<strong>无限半群</strong></p>
+<blockquote>
+<p>一般地，对任何一个正整数 $n$，必有一个恰好含有 $n$ 个元素的半群</p>
+</blockquote>
+<h3 id="半群的单位元问题"><a href="#半群的单位元问题" class="headerlink" title="半群的单位元问题"></a>半群的单位元问题</h3><p>（P7-P9）</p>
+<p><strong>单位元不是半群的固有性质</strong></p>
+<ul>
+<li>存在半群含有单位元的情况</li>
+<li>存在半群不含有单位元的情况</li>
+<li>在没有单位元的半群中可能有左单位元，或有右单位元，而且左（右）单位元也可能不只一个，甚至可能有无穷多个</li>
+</ul>
+<p><strong>定理</strong>：如果半群 $(S,\circ)$ 既有左单位元又有右单位元，则左单位元与右单位元相等，从而有单位元且单位元是唯一的</p>
+<h2 id="2-子半群"><a href="#2-子半群" class="headerlink" title="2. 子半群"></a>2. 子半群</h2><p>（P10-P20）</p>
+<blockquote>
+<p>简单来讲，证明子半群只需要证明：①非空子集；②运算封闭</p>
+</blockquote>
+<h3 id="子半群的定义"><a href="#子半群的定义" class="headerlink" title="子半群的定义"></a>子半群的定义</h3><p><strong>定义</strong>：设 $(S,\circ)$ 是一个半群， $B$ 是 $S$ 的一个非空子集。如果 $B$ 对运算 $\circ$ 封闭，则称 $(B,\circ)$ 是 $(S,\circ)$ 的一个<strong>子半群</strong>，并简称 $B$ 是 $S$ 的子半群 </p>
+<p><strong>定义</strong>：设 $(S,\circ)$ 是一个半群， $B$ 是 $S$ 的一个非空子集。如果 $\forall a,b \in B$，都有 $a \circ b \in B$，则称 $(B,\circ)$ 是 $(S,\circ)$ 的一个<strong>子半群</strong></p>
+<blockquote>
+<p>子半群是半群，只需要满足封闭性的原因：满足封闭则是二元映射，唯一满足映射定义</p>
+</blockquote>
+<h3 id="子半群的判别"><a href="#子半群的判别" class="headerlink" title="子半群的判别"></a>子半群的判别</h3><p>半群 $(S,\circ)$ 的<strong>非空子集</strong> $B$ 是子半群<strong>当且仅当</strong> $B \circ B \subseteq B$</p>
+<blockquote>
+<p>（$\Rightarrow$必要性）</p>
+<p>显然成立，因为子半群满足运算封闭</p>
+<p>由 $B$ 是子半群，$\forall a,b \in B \Rightarrow a \circ b \in B \Rightarrow B \circ B \subseteq B$</p>
+<p>（$\Leftarrow$充分性）</p>
+<p><strong>思路</strong>：证明子半群需要证明运算封闭</p>
+<p>（留一个坑）</p>
+</blockquote>
+<h3 id="子半群的性质"><a href="#子半群的性质" class="headerlink" title="子半群的性质"></a>子半群的性质</h3><p><strong>性质1</strong>：设 $(S,\circ)$ 是一个半群，$A$ 是 $S$ 的一个非空子集，则 $S$ 的一切包含 $A$ 的子半群的交集 $Q$ 也是 $S$ 的子半群</p>
+<blockquote>
+<p><strong>证明</strong>：</p>
+<p><strong>思路</strong>：分两步$\begin{cases} 1) Q \neq \varnothing (保证Q非空) \\ 2) \forall a,b \in Q,有 a \circ b \in Q (保证Q封闭) \end{cases}$</p>
+<p>$A \subseteq Q \Rightarrow Q \neq \varnothing$</p>
+<p>$\forall a,b \in Q \Rightarrow a \circ b \in Q$</p>
+</blockquote>
+<h3 id="生成子半群"><a href="#生成子半群" class="headerlink" title="生成子半群"></a>生成子半群</h3><h3 id="半群的理想"><a href="#半群的理想" class="headerlink" title="半群的理想"></a>半群的理想</h3><h2 id="3-特殊半群：循环半群"><a href="#3-特殊半群：循环半群" class="headerlink" title="3. 特殊半群：循环半群"></a>3. 特殊半群：循环半群</h2><h2 id="4-半群的同态与同构"><a href="#4-半群的同态与同构" class="headerlink" title="4. 半群的同态与同构"></a>4. 半群的同态与同构</h2><h3 id="半群的同态"><a href="#半群的同态" class="headerlink" title="半群的同态"></a>半群的同态</h3><h3 id="商半群"><a href="#商半群" class="headerlink" title="商半群"></a>商半群</h3><h1 id="第12节-格的定义和性质"><a href="#第12节-格的定义和性质" class="headerlink" title="第12节 格的定义和性质"></a>第12节 格的定义和性质</h1><h2 id="1-格的定义"><a href="#1-格的定义" class="headerlink" title="1. 格的定义"></a>1. 格的定义</h2><p>二元运算满足交换律、结合律、吸收率，集合有偏序关系</p>
+<h2 id="2-格的实例"><a href="#2-格的实例" class="headerlink" title="2. 格的实例"></a>2. 格的实例</h2><h2 id="3-格的性质"><a href="#3-格的性质" class="headerlink" title="3. 格的性质"></a>3. 格的性质</h2><blockquote>
+<p>对偶原理 + 8条性质（常用的证明手法）</p>
+</blockquote>
+<h3 id="对偶原理"><a href="#对偶原理" class="headerlink" title="对偶原理"></a>对偶原理</h3><p>（P9）</p>
+<blockquote>
+<p>$\forall a,b \in L，a \land b \preceq a$ 与 $\forall a,b \in L, a \vee b \succeq a$互为对偶，要么同时成立，要么同时为假</p>
+</blockquote>
+<h3 id="证明手法"><a href="#证明手法" class="headerlink" title="证明手法"></a>证明手法</h3><p>（P11）</p>
+<p><strong>性质1</strong>：设 $(L,\preceq)$ 是格， $\forall x,y \in L$，则</p>
+<script type="math/tex; mode=display">
+x \preceq x \vee y, \quad y \preceq x \vee y \\
+x \land y \preceq x, \quad x \land y \preceq y</script><blockquote>
+<p>上确界也是上界，是最小的上界；下确界是最大的下界</p>
+<p>$x \land y \preceq x(或者y)\preceq x \vee y$</p>
+</blockquote>
+<p><strong>性质2</strong>：设 $(L,\preceq)$ 是格， $\forall x,y,z \in L,$</p>
+<p>（1）若 $x \preceq z, y \preceq z,$则 $x \vee y \preceq z$</p>
+<p>（2）若 $z \preceq x, z \preceq y,$则 $z \preceq x \land y$</p>
+<blockquote>
+<p>证明常用手法，必记（理由见上面）</p>
+<p>对于（1），z是x和y的上界，也是x和y上确界的一个上界</p>
+<p>对于（2），z是x和y的下界，也是x和y下确界的一个下界</p>
+</blockquote>
+<p><strong>说明</strong>：证明$A \vee B \preceq C$ 只需证：$A \preceq C, B \preceq C$；证明 $C \preceq A \land B$ 只需证：$C \preceq A, C \preceq B$</p>
+<h3 id="运算规律"><a href="#运算规律" class="headerlink" title="运算规律"></a>运算规律</h3><p>（P12）</p>
+<blockquote>
+<p>注：由于对偶原理，下面的公式只需要证明前一个，后一个自然成立</p>
+</blockquote>
+<p><strong>性质3</strong>：设 $(L,\preceq)$ 是格，则运算 $\vee$ 和 $\land$ 适合交换律、结合律、幂等律和吸收率， 即</p>
+<p>（1）<strong>交换律</strong>：$\forall a,b \in L$有：</p>
+<script type="math/tex; mode=display">
+a \vee b = b \vee a \\ a \land b = b \land a</script><p>（2）<strong>结合律</strong>：$\forall a,b,c \in L$有：</p>
+<script type="math/tex; mode=display">
+(a \vee b) \vee c = a \vee (b \vee c) \\ (a \land b) \land c = a \land (b \land c)</script><p>（3）<strong>幂等律</strong>：$\forall a \in L$有：</p>
+<script type="math/tex; mode=display">
+a \vee a = a \\ a \land a = a</script><p>（4）<strong>吸收率</strong>：$\forall a,b \in L$有：</p>
+<script type="math/tex; mode=display">
+a \vee (a \land b) = a \\ a \land (a \vee b) = a</script><blockquote>
+<p><strong>证明过程</strong>（注意使用的手法）</p>
+<p>（1）<strong>交换律</strong></p>
+<p>$a \vee b$ 是 $\{a,b\}$ 的上确界，$b \vee a$ 是 $\{b,a\}$ 的上确界，由于$\{a,b\} = \{b,a\}$，$a \vee b = b \vee a$</p>
+</blockquote>
+<p>联系偏序关系 $R$ 的性质：$R \subseteq L \times L$，且 $R$ 满足：①自反；②反对称；③传递</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+R自反：\forall x \in L, (x,x) \in R \ 表示 \ x \preceq x \Leftrightarrow x R x\\
+R反对称：\forall (x,y) \in R, (y,x) \in R \Rightarrow x = y \ 表示 \ x \preceq y, y \preceq x \Leftrightarrow x = y \\
+R传递：\forall (x,y) \in R, (y,z) \in R \Rightarrow (x,z) \in R \ 表示 \ x \preceq y, y \preceq z \Rightarrow x \preceq z \\
+\end{cases}</script><blockquote>
+<p>（2）<strong>结合律</strong></p>
+<p><strong>手法</strong>：相等可视作互为偏序关系</p>
+<p>$（a \vee b) \vee c = a \vee (b \vee c) \ 转化为证明 \ \begin{cases} (a \vee b) \vee c \preceq a \vee (b \vee c) \qquad ①\\ a \vee (b \vee c) \preceq (a \vee b) \vee c \qquad ② \end{cases}$ </p>
+<p>利用<strong>反对称</strong>和<strong>传递性</strong>，对于①，转化为$\begin{cases} (a \vee b) \preceq a \vee (b \vee c) \\ c \preceq a \vee (b \vee c) \end{cases}$，再进一步转化为$\begin{cases} a \preceq a \vee (b \vee c) \\ b \preceq a \vee (b \vee c) \\  c \preceq a \vee (b \vee c) \\ \end{cases}$</p>
+<p>对于 $a \preceq a \vee (b \vee c)$ ，由<strong>性质1</strong>和<strong>自反性</strong>显然成立。</p>
+<p>对于 $b \preceq a \vee (b \vee c)$，由<strong>传递性</strong>，$b \preceq b\vee c \preceq a \vee (b \vee c)$</p>
+<p>对于 $c \preceq a \vee (b \vee c)$，由<strong>传递性</strong>，$c \preceq b \vee c \preceq a \vee (b \vee c)$</p>
+<p>（3）<strong>幂等律</strong></p>
+<p>依然是证相等的手法</p>
+<p>$a \vee a = a \ 转化为 \ \begin{cases} a \vee a \preceq a \qquad ① \\ a \preceq a \vee a \qquad ② \\ \end{cases}$</p>
+<p>对于①，按照<strong>性质2</strong>，分解为$\begin{cases} a \preceq a \\  a \preceq a \end{cases}$，由<strong>自反性</strong>显然成立</p>
+<p>对于②，显然成立</p>
+<p>（4）<strong>吸收律</strong></p>
+<p>$a \vee (a \land b) = a \ 转化为 \ \begin{cases} a \vee (a \land b) \preceq a \qquad ① \\ a \preceq a \vee (a \land b) \qquad ② \\ \end{cases}$</p>
+<p>对于①，继续分解为$\begin{cases} a \preceq a \\ a \land b \preceq a \end{cases}$ 其中，第一条由<strong>自反性</strong>显然成立，第二条由<strong>性质1</strong>（$a \land b \preceq a$ 且 $a \land b \preceq b$）成立</p>
+<p>对于②，由<strong>性质1</strong>显然成立</p>
+</blockquote>
+<h3 id="偏序与运算的关系"><a href="#偏序与运算的关系" class="headerlink" title="偏序与运算的关系"></a>偏序与运算的关系</h3><p>（P15）</p>
+<p><strong>性质5</strong>：设 $L$ 是格，则 $\forall a,b \in L$ 有：</p>
+<script type="math/tex; mode=display">
+a \preceq b \Leftrightarrow a \land b = a \Leftrightarrow a \vee b = b</script><blockquote>
+<p><strong>思路</strong>：</p>
+<p>①$a \preceq b \Rightarrow a \land b = a$：加上<strong>自反性</strong>$a \preceq a，则a是 \{a,b\}的下界，故a \preceq a \land b$（下确界$a \land b$是最大下界）</p>
+<p>②$a \land b = a \Rightarrow a \vee b = b$：<strong>吸收律</strong> $b = (a \land b) \vee b$，将已知条件代入即成立</p>
+<p>③$a \vee b = b \Rightarrow a \preceq b$：由<strong>性质1</strong>，$a \preceq a \vee b$ 代入已知条件即成立</p>
+</blockquote>
+<h3 id="保序"><a href="#保序" class="headerlink" title="保序"></a>保序</h3><p>（P16）</p>
+<p><strong>性质6</strong>：设 <strong>L</strong>是格， $\forall a,b,c,d \in L$，若 $a \preceq b$ 且 $c \preceq d$，则</p>
+<script type="math/tex; mode=display">
+a \land c \preceq b \land d \\ a \vee c \preceq b \vee d</script><blockquote>
+<p><strong>思路</strong></p>
+<p>$a \land c \preceq a \preceq b$ 且 $a \land c \preceq c \preceq d$，所以 $a \land c$ 是 $\{b,d\}$ 的下界，因此 $a \land c \preceq b \land d$</p>
+</blockquote>
+<p><strong>性质7</strong>：设 $L$ 是格，$\forall a,b,c \in L$，若 $b \preceq c$，则</p>
+<script type="math/tex; mode=display">
+a \land b \preceq a \land c \\
+a \vee b \preceq a \vee c</script><h2 id="4-格作为代数系统的定义"><a href="#4-格作为代数系统的定义" class="headerlink" title="4. 格作为代数系统的定义"></a>4. 格作为代数系统的定义</h2><h1 id="第13节-子格-同态-特殊格"><a href="#第13节-子格-同态-特殊格" class="headerlink" title="第13节 子格-同态-特殊格"></a>第13节 子格-同态-特殊格</h1><h2 id="1-子格"><a href="#1-子格" class="headerlink" title="1. 子格"></a>1. 子格</h2><p><strong>定义1</strong>：设 $(L,\land,\vee)$ 是格，$S$ 是 $L$ 的非空子集，若 $S$ 关于 $L$ 中的运算 $\vee$ 和 $\land$ 封闭，则 $S$ 是 $L$ 的子格</p>
+<p><strong>子格的判定</strong></p>
+<h2 id="2-格的同态与同构"><a href="#2-格的同态与同构" class="headerlink" title="2. 格的同态与同构"></a>2. 格的同态与同构</h2><p><strong>格同态</strong></p>
+<p><strong>满同态</strong></p>
+<p><strong>单同态</strong></p>
+<p><strong>同构</strong></p>
+<h2 id="3-有界格、有补格、分配格"><a href="#3-有界格、有补格、分配格" class="headerlink" title="3. 有界格、有补格、分配格"></a>3. 有界格、有补格、分配格</h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/modern-algebra/" rel="tag"># modern algebra</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/computer_organization/computer-organization-review/" rel="prev" title="计算机组成原理：复习">
+      <i class="fa fa-chevron-left"></i> 计算机组成原理：复习
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC1%E8%8A%82-%E6%A6%82%E8%BF%B0"><span class="nav-text">第1节 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%90%E9%9B%86%E3%80%81%E9%9B%86%E5%90%88%E7%9A%84%E7%9B%B8%E7%AD%89"><span class="nav-text">子集、集合的相等</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%A0%E5%B0%84"><span class="nav-text">映射</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%A0%E5%B0%84%E7%9A%84%E5%90%88%E6%88%90"><span class="nav-text">映射的合成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%A0%E5%B0%84%E5%90%88%E6%88%90%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">映射合成的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%86%E6%98%A0%E5%B0%84%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">逆映射的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%86%E6%98%A0%E5%B0%84%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">逆映射的性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB"><span class="nav-text">关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E9%97%AD%E5%8C%85"><span class="nav-text">关系闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E5%85%B3%E7%B3%BB"><span class="nav-text">等价关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E7%B1%BB"><span class="nav-text">等价类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%86%E9%9B%86%E4%B8%8E%E5%88%92%E5%88%86"><span class="nav-text">商集与划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%8F%E5%BA%8F%E5%85%B3%E7%B3%BB"><span class="nav-text">偏序关系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC2%E8%8A%82-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">第2节 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BA%8C%E5%85%83%E8%BF%90%E7%AE%97"><span class="nav-text">1. 二元运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%BF%90%E7%AE%97%E8%A7%84%E5%BE%8B"><span class="nav-text">2. 运算规律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%89%B9%E5%BC%82%E5%85%83%E7%B4%A0"><span class="nav-text">3. 特异元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BD%8D%E5%85%83"><span class="nav-text">单位元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%B6%E5%85%83"><span class="nav-text">零元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E9%80%86%E5%85%83%E7%B4%A0%E5%92%8C%E9%80%86%E5%85%83"><span class="nav-text">可逆元素和逆元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%85%83%E8%BF%90%E7%AE%97%E8%A7%84%E5%BE%8B%E4%B9%8B%E4%BA%8C%E2%80%94%E2%80%94%E6%B6%88%E5%8E%BB%E5%BE%8B"><span class="nav-text">二元运算规律之二——消去律</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%BB%A3%E6%95%B0%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">4. 代数系统的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BB%A3%E6%95%B0%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84"><span class="nav-text">5. 代数系统的同态与同构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BB%A1%E5%90%8C%E6%80%81%E6%98%A0%E5%B0%84%E4%BF%9D%E6%8C%81%E8%BF%90%E7%AE%97%E7%9A%84%E8%A7%84%E5%BE%8B"><span class="nav-text">满同态映射保持运算的规律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BB%A1%E5%90%8C%E6%80%81%E6%98%A0%E5%B0%84%E4%BF%9D%E6%8C%81%E7%89%B9%E5%BC%82%E5%85%83%E7%B4%A0"><span class="nav-text">满同态映射保持特异元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A8%E8%AE%BA%EF%BC%9A%E8%BF%90%E7%AE%97%E5%B0%81%E9%97%AD"><span class="nav-text">讨论：运算封闭</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC3%E8%8A%82-%E5%8D%8A%E7%BE%A4"><span class="nav-text">第3节 半群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">1. 半群的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="nav-text">半群的实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%85%B3%E5%8D%8A%E7%BE%A4%E7%9A%84%E6%9C%AF%E8%AF%AD"><span class="nav-text">有关半群的术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%8D%95%E4%BD%8D%E5%85%83%E9%97%AE%E9%A2%98"><span class="nav-text">半群的单位元问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AD%90%E5%8D%8A%E7%BE%A4"><span class="nav-text">2. 子半群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">子半群的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%88%A4%E5%88%AB"><span class="nav-text">子半群的判别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E5%8D%8A%E7%BE%A4%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">子半群的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%AD%90%E5%8D%8A%E7%BE%A4"><span class="nav-text">生成子半群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8A%E7%BE%A4%E7%9A%84%E7%90%86%E6%83%B3"><span class="nav-text">半群的理想</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%89%B9%E6%AE%8A%E5%8D%8A%E7%BE%A4%EF%BC%9A%E5%BE%AA%E7%8E%AF%E5%8D%8A%E7%BE%A4"><span class="nav-text">3. 特殊半群：循环半群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84"><span class="nav-text">4. 半群的同态与同构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%90%8C%E6%80%81"><span class="nav-text">半群的同态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%86%E5%8D%8A%E7%BE%A4"><span class="nav-text">商半群</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC12%E8%8A%82-%E6%A0%BC%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E6%80%A7%E8%B4%A8"><span class="nav-text">第12节 格的定义和性质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%A0%BC%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">1. 格的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%A0%BC%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="nav-text">2. 格的实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%A0%BC%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">3. 格的性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E5%81%B6%E5%8E%9F%E7%90%86"><span class="nav-text">对偶原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%81%E6%98%8E%E6%89%8B%E6%B3%95"><span class="nav-text">证明手法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E8%A7%84%E5%BE%8B"><span class="nav-text">运算规律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%8F%E5%BA%8F%E4%B8%8E%E8%BF%90%E7%AE%97%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">偏序与运算的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%9D%E5%BA%8F"><span class="nav-text">保序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%A0%BC%E4%BD%9C%E4%B8%BA%E4%BB%A3%E6%95%B0%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">4. 格作为代数系统的定义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC13%E8%8A%82-%E5%AD%90%E6%A0%BC-%E5%90%8C%E6%80%81-%E7%89%B9%E6%AE%8A%E6%A0%BC"><span class="nav-text">第13节 子格-同态-特殊格</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AD%90%E6%A0%BC"><span class="nav-text">1. 子格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%A0%BC%E7%9A%84%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84"><span class="nav-text">2. 格的同态与同构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%9C%89%E7%95%8C%E6%A0%BC%E3%80%81%E6%9C%89%E8%A1%A5%E6%A0%BC%E3%80%81%E5%88%86%E9%85%8D%E6%A0%BC"><span class="nav-text">3. 有界格、有补格、分配格</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cheng</p>
+  <div class="site-description" itemprop="description">my first blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheng</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
