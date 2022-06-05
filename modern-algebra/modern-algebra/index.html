@@ -29,7 +29,7 @@
 <meta property="og:description" content="前言：愿世间不再有近世代数，愿此时正在肝&#x2F;熬夜的你不再畏惧  注：主要总结证明思路，不一一列举公式定理">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-02T18:16:34.000Z">
-<meta property="article:modified_time" content="2022-06-04T17:21:45.637Z">
+<meta property="article:modified_time" content="2022-06-05T06:14:19.620Z">
 <meta property="article:author" content="Cheng">
 <meta property="article:tag" content="modern algebra">
 <meta name="twitter:card" content="summary">
@@ -224,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-05 01:21:45" itemprop="dateModified" datetime="2022-06-05T01:21:45+08:00">2022-06-05</time>
+                <time title="修改时间：2022-06-05 14:14:19" itemprop="dateModified" datetime="2022-06-05T14:14:19+08:00">2022-06-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -249,14 +249,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>10k</span>
+              <span>13k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>33 分钟</span>
+              <span>45 分钟</span>
             </span>
 
         </div>
@@ -274,6 +274,21 @@
 </blockquote>
 <span id="more"></span>
 <h1 id="第1节-概述"><a href="#第1节-概述" class="headerlink" title="第1节 概述"></a>第1节 概述</h1><p>回顾集合论内容。映射的概念对于后续证明很有帮助，需要记住</p>
+<blockquote>
+<p><strong>预备知识与课程主要内容的对应</strong>：</p>
+<ul>
+<li>集合及其运算——代数系统</li>
+<li>映射——变换（幺）半群、交换群、同态与同构</li>
+<li>无穷集合及其基数——子群的陪集、同构</li>
+<li>关系<ul>
+<li>关系闭包——生成子群等</li>
+<li>等价关系——商（幺）半群、（陪集）、商群</li>
+<li>映射按等价关系分解——群（环）的同态基本定理</li>
+<li>偏序关系——格、布尔代数</li>
+</ul>
+</li>
+</ul>
+</blockquote>
 <h2 id="子集、集合的相等"><a href="#子集、集合的相等" class="headerlink" title="子集、集合的相等"></a>子集、集合的相等</h2><p>（P37-P41）</p>
 <p><strong>证明两个集合相等的唯一方法</strong>：每一个集合都是另一个集合的子集</p>
 <script type="math/tex; mode=display">
@@ -317,9 +332,39 @@ A = B \Leftrightarrow A \subseteq B \ 且 \ B \subseteq A</script><h2 id="映射
 <p>这部分内容是后续群、环、域、格等概念的基础，需要了解</p>
 </blockquote>
 <h3 id="关系闭包"><a href="#关系闭包" class="headerlink" title="关系闭包"></a>关系闭包</h3><h3 id="等价关系"><a href="#等价关系" class="headerlink" title="等价关系"></a>等价关系</h3><h3 id="等价类"><a href="#等价类" class="headerlink" title="等价类"></a>等价类</h3><h3 id="商集与划分"><a href="#商集与划分" class="headerlink" title="商集与划分"></a>商集与划分</h3><h3 id="偏序关系"><a href="#偏序关系" class="headerlink" title="偏序关系"></a>偏序关系</h3><h1 id="第2节-基本概念"><a href="#第2节-基本概念" class="headerlink" title="第2节 基本概念"></a>第2节 基本概念</h1><p>运算的概念源于映射，是构成半群、幺半群、群、环、域的重要部分</p>
-<h2 id="1-二元运算"><a href="#1-二元运算" class="headerlink" title="1. 二元运算"></a>1. 二元运算</h2><p><strong>二元运算定义</strong>：设 $S$ 为集合，映射$f:S \times S \to S$ 称为 $S$ 上的一个<strong>二元运算</strong></p>
+<blockquote>
+<p><strong>基本要求</strong>：</p>
+<ul>
+<li>判断给定的集合和运算能否构成代数系统</li>
+<li>判断给定二元运算的性质</li>
+<li>求二元运算的特异元素</li>
+</ul>
+</blockquote>
+<h2 id="1-二元运算的定义"><a href="#1-二元运算的定义" class="headerlink" title="1. 二元运算的定义"></a>1. 二元运算的定义</h2><p>（P3）</p>
+<blockquote>
+<p>简要概括：满足封闭性的映射</p>
+</blockquote>
+<p><strong>二元运算定义</strong>：设 $S$ 为集合，映射$f:S \times S \to S$ 称为 $S$ 上的一个<strong>二元运算</strong></p>
 <p><strong>封闭性</strong>：任何两个元素都可以运算，且结果唯一，属于 $S$</p>
-<h2 id="2-运算规律"><a href="#2-运算规律" class="headerlink" title="2. 运算规律"></a>2. 运算规律</h2><h2 id="3-特异元素"><a href="#3-特异元素" class="headerlink" title="3. 特异元素"></a>3. 特异元素</h2><h3 id="单位元"><a href="#单位元" class="headerlink" title="单位元"></a>单位元</h3><p>（P17）</p>
+<h2 id="2-运算规律"><a href="#2-运算规律" class="headerlink" title="2. 运算规律"></a>2. 运算规律</h2><h3 id="二元运算的规律之一"><a href="#二元运算的规律之一" class="headerlink" title="二元运算的规律之一"></a>二元运算的规律之一</h3><p>（P10-P11）</p>
+<ul>
+<li>结合律</li>
+<li>交换律</li>
+<li>分配律：左分配律、右分配律</li>
+</ul>
+<h3 id="二元运算的性质"><a href="#二元运算的性质" class="headerlink" title="二元运算的性质"></a>二元运算的性质</h3><p>（P14-P16）</p>
+<ol>
+<li><p>满足结合律：$\forall a_i\in S, i = 1,2,…,n$，$n$ 个元素 $a_1,a_2,…,a_n$的乘积<strong>仅与这n个元素及其顺序有关而唯一决定</strong></p>
+<blockquote>
+<p>对n应用数学归纳法证明</p>
+</blockquote>
+</li>
+<li><p>满足交换律和结合律：乘积<strong>仅与这n个元素有关而与其顺序无关</strong></p>
+</li>
+<li><p>分配律：让两种代数运算间有一种联系</p>
+</li>
+</ol>
+<h2 id="3-特异元素"><a href="#3-特异元素" class="headerlink" title="3. 特异元素"></a>3. 特异元素</h2><h3 id="单位元"><a href="#单位元" class="headerlink" title="单位元"></a>单位元</h3><p>（P17）</p>
 <blockquote>
 <p>又称幺元</p>
 </blockquote>
@@ -479,6 +524,8 @@ x \circ y_r = e</script><p>则称 $y_r$ 是 $S$ 中关于 $\circ$ 运算的<stro
 <p>由 $B$ 是子半群，$\forall a,b \in B \Rightarrow a \circ b \in B \Rightarrow B \circ B \subseteq B$</p>
 <p>（$\Leftarrow$充分性）</p>
 <p><strong>思路</strong>：证明子半群需要证明运算封闭</p>
+<p>$\forall a, b \in B \Rightarrow a \circ b \in B$</p>
+<p>又 $B \subseteq S$，则 $\forall a,b \in S \Rightarrow a \circ b \in S$</p>
 <p>（留一个坑）</p>
 </blockquote>
 <h3 id="子半群的性质"><a href="#子半群的性质" class="headerlink" title="子半群的性质"></a>子半群的性质</h3><p><strong>性质1</strong>：设 $(S,\circ)$ 是一个半群，$A$ 是 $S$ 的一个非空子集，则 $S$ 的一切包含 $A$ 的子半群的交集 $Q$ 也是 $S$ 的子半群</p>
@@ -533,10 +580,24 @@ S = \{ a^k | k \in N, k \geq 1 \}</script><p>则称 $S$ 是<strong>循环半群<
 <p>如果循环半群 $S$ 是由 $a$ 生成的，则 $\forall b \in S$，存在一个正整数 $m$ 使得 $b = a^m$</p>
 </blockquote>
 <p><strong>性质</strong>：循环半群必是可换半群</p>
-<h2 id="4-半群的同态与同构"><a href="#4-半群的同态与同构" class="headerlink" title="4. 半群的同态与同构"></a>4. 半群的同态与同构</h2><h3 id="半群的同态"><a href="#半群的同态" class="headerlink" title="半群的同态"></a>半群的同态</h3><p>（P23-P25）</p>
+<h2 id="4-半群的同态与同构"><a href="#4-半群的同态与同构" class="headerlink" title="4. 半群的同态与同构"></a>4. 半群的同态与同构</h2><blockquote>
+<p>概括：同构映射是双射的同态</p>
+</blockquote>
+<p><strong>定义</strong>：设 $(S_1,\circ)$ 和 $(S_2,\ast)$ 是两个半群。如果存在一个从 $S_1$ 到 $S_2$ 的映射 $f$，使得 $\forall x,y \in S_1$ 有：</p>
+<script type="math/tex; mode=display">
+f(x \circ y) = f(x) \ast f(y)</script><p>则称 $f$ 是 $S_1$ 到 $S_2$ 的一个<strong>同态</strong>（映射），而称半群 $S_1$ 与 $S_2$ <strong>同态</strong></p>
+<ul>
+<li>如果同态 $f$ 是单射，则称 $f$ 是 $S_1$ 到 $S_2$ 的一个<strong>单同态</strong>（映射），而称半群 $S_1$ 与 $S_2$ <strong>单同态</strong>；</li>
+<li>如果同态 $f$ 是满射，则称 $f$ 是 $S_1$ 到 $S_2$ 的一个<strong>满同态</strong>（映射），而称半群 $S_1$ 与 $S_2$ <strong>满同态</strong>，并记为 $S_1 \sim S_2$；</li>
+<li>如果同态 $f$ 是双射，则称 $f$ 是 $S_1$ 到 $S_2$ 的一个<strong>同构</strong>（映射），而称半群 $S_1$ 与 $S_2$ <strong>同构</strong>，并记为 $S_1 \cong S_2$</li>
+</ul>
+<h3 id="半群的同态"><a href="#半群的同态" class="headerlink" title="半群的同态"></a>半群的同态</h3><p>（P23-P25）</p>
+<p><strong>定理</strong>：设 $(S_1,\circ)$ 是一个半群，$(S_2,\ast)$ 是一个代数系统。如果存在一个从 $S_1$ 到 $S_2$ 的满射 $f$，使得 $\forall x,y \in S_1$ 有</p>
+<script type="math/tex; mode=display">
+f(x \circ y) = f(x) \ast f(y)</script><p>则 $(S_2,\ast)$ 是一个半群</p>
 <h3 id="商半群"><a href="#商半群" class="headerlink" title="商半群"></a>商半群</h3><p>（P26-P28）</p>
 <p>利用等价关系 $E_f$ 对集合 $S$ 进行划分，得到商集 $S/E_f$</p>
-<p>现在利用 $S$ 上的二元运算 $\circ$ 定义商集 $S/E_f$ 上的一个二元运算 $\cdot$</p>
+<p>现在利用 $S$ 上的二元运算 $\circ$ 定义商集 $S/E_f$ 上的一个二元运算 “$\cdot$”</p>
 <script type="math/tex; mode=display">
 \forall [x],[y] \in S/E_f, \quad [x] \cdot [y] = [x \circ y]</script><blockquote>
 <p>可证明：$S/E_f$ 关于二元运算 $\cdot$ 作成一个半群</p>
@@ -550,7 +611,125 @@ S = \{ a^k | k \in N, k \geq 1 \}</script><p>则称 $S$ 是<strong>循环半群<
 <blockquote>
 <p>基本要求：</p>
 </blockquote>
-<h2 id="1-幺半群的定义"><a href="#1-幺半群的定义" class="headerlink" title="1. 幺半群的定义"></a>1. 幺半群的定义</h2><h2 id="2-子幺半群"><a href="#2-子幺半群" class="headerlink" title="2. 子幺半群"></a>2. 子幺半群</h2><h2 id="3-特殊幺半群：循环幺半群"><a href="#3-特殊幺半群：循环幺半群" class="headerlink" title="3. 特殊幺半群：循环幺半群"></a>3. 特殊幺半群：循环幺半群</h2><h2 id="4-幺半群的同态与同构"><a href="#4-幺半群的同态与同构" class="headerlink" title="4. 幺半群的同态与同构"></a>4. 幺半群的同态与同构</h2><h1 id="第12节-格的定义和性质"><a href="#第12节-格的定义和性质" class="headerlink" title="第12节 格的定义和性质"></a>第12节 格的定义和性质</h1><h2 id="1-格的定义"><a href="#1-格的定义" class="headerlink" title="1. 格的定义"></a>1. 格的定义</h2><p>二元运算满足交换律、结合律、吸收率，集合有偏序关系</p>
+<h2 id="1-幺半群的定义"><a href="#1-幺半群的定义" class="headerlink" title="1. 幺半群的定义"></a>1. 幺半群的定义</h2><p>（P2）</p>
+<p><strong>定义</strong>：有<strong>单位元</strong>的<strong>半群</strong> $(S,\circ)$ 称为<strong>幺半群</strong>或<strong>独异点</strong>（monoid）</p>
+<blockquote>
+<p>有时将独异点 $(S,\circ)$ 记作 $(S,\circ,e)$</p>
+</blockquote>
+<p>如果幺半群 $(S,\circ,e)$ 中的二元运算 $\circ$ 满足<strong>交换律</strong>，则称 $(S,\circ,e)$ 为<strong>交换幺半群</strong>或<strong>可换幺半群</strong></p>
+<h3 id="幺半群的实例"><a href="#幺半群的实例" class="headerlink" title="幺半群的实例"></a>幺半群的实例</h3><p><strong>总结</strong>：</p>
+<ul>
+<li><p>并非所有半群都是幺半群</p>
+<blockquote>
+<p>例：对于实数集合 $R$，二元运算$\forall x,y \in R, x \ast y = y$，则 $(R,\ast)$ 是半群，但不是幺半群</p>
+</blockquote>
+</li>
+<li><p>并非所有幺半群都是可换幺半群</p>
+<blockquote>
+<p>例：矩阵乘法</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="有关幺半群的术语"><a href="#有关幺半群的术语" class="headerlink" title="有关幺半群的术语"></a>有关幺半群的术语</h3><p>（P6）</p>
+<p><strong>定义</strong>：称幺半群 $(S,\circ,e)$ 是<strong>有限幺半群</strong>，若 $S$ 是有限集；称幺半群 $(S,\circ,e)$ 是<strong>无限幺半群</strong>，若 $S$ 是无限集；</p>
+<p>通常把 <strong>S</strong> 的基数称为幺半群 $(S,\circ,e)$ 的<strong>阶</strong></p>
+<blockquote>
+<p>说明：一般地，对任何一个正整数 $n$，必有一个恰好含有 $n$ 个元素的幺半群</p>
+</blockquote>
+<h3 id="幺半群的零元问题"><a href="#幺半群的零元问题" class="headerlink" title="幺半群的零元问题"></a>幺半群的零元问题</h3><p>（P7）</p>
+<ul>
+<li>有零元并不是幺半群的固有属性</li>
+<li>在一个代数系统中，同一运算的单位元和零元可以同时存在（不是一定）</li>
+</ul>
+<h3 id="幺半群的逆元问题"><a href="#幺半群的逆元问题" class="headerlink" title="幺半群的逆元问题"></a>幺半群的逆元问题</h3><p>（P8-P9）</p>
+<p><strong>定理</strong>：若幺半群 $(S,\circ,e)$ 中元素 $a$ 既有左逆元 $a_l$ 又有右逆元 $a_r$，则 $a_l = a_r$。于是 $a$ 有逆元且 $a$ 的逆元唯一。此时，$a$ 的唯一逆元记为 $a^{-1}$</p>
+<p><strong>定义</strong>：每个元素都有逆元的幺半群称为<strong>群</strong>(Group)</p>
+<h3 id="有限幺半群"><a href="#有限幺半群" class="headerlink" title="有限幺半群"></a>有限幺半群</h3><p>（P10）</p>
+<p><strong>定理2</strong>：有限半群 $(S,\circ)$ 为一个幺半群<strong>当且仅当 </strong>$\exists s,t \in S$ 使得 $sS = S, St = S$</p>
+<blockquote>
+<p><strong>证明</strong>：</p>
+<p>（$\Rightarrow$）必要性</p>
+<p>令 $s = t = e$ 即可，由单位元的性质，$eS = Se = S$</p>
+<p>（$\Leftarrow$）充分性</p>
+<p><strong>置换群</strong></p>
+<p>（先留一个坑）</p>
+</blockquote>
+<p><strong>定理3</strong>：有限半群 $(S,\circ)$ 为一个群<strong>当且仅当</strong> $\forall s \in S$ 有 $sS = S$，且 $\exists t \in S$ 使得 $St = S$</p>
+<blockquote>
+<p><strong>证明</strong>：</p>
+<p>（$\Rightarrow$）必要性</p>
+<p><strong>群的性质</strong><br>（留一个坑）</p>
+<p>（$\Leftarrow$）充分性</p>
+<p><strong>定理2的证明过程</strong></p>
+<p>（留一个坑）</p>
+</blockquote>
+<h2 id="2-子幺半群"><a href="#2-子幺半群" class="headerlink" title="2. 子幺半群"></a>2. 子幺半群</h2><blockquote>
+<p>子幺半群侧重往小了研究幺半群，取子集并<strong>继承二元运算和单位元</strong></p>
+</blockquote>
+<p>（P11）</p>
+<p>设 $(S,\circ,e)$ 是一个幺半群， $B \subseteq S$。则 $B$ 是 $S$ 的子幺半群<strong>当且仅当</strong> $e \in B$ 且 $\forall a,b \in B$ 都有 $a \circ b \in B$</p>
+<blockquote>
+<p><strong>证明子幺半群的手法</strong>：①证明单位元；②证明封闭性：取任意两个元素，运算后结果属于元素集合（见下）</p>
+</blockquote>
+<h3 id="子幺半群的判别"><a href="#子幺半群的判别" class="headerlink" title="子幺半群的判别"></a>子幺半群的判别</h3><p><strong>定理</strong>：幺半群 $(S,\circ,e)$ 的子集 $B$ 是子幺半群<strong>当且仅当</strong> $e \in B$ 且 $B \circ B \subseteq B$</p>
+<blockquote>
+<p><strong>小结</strong>：<br>幺半群 $(S,\circ,e)$ 的子集 $B$ 是子幺半群</p>
+<p>$\Leftrightarrow e \in B 且B是S的子半群$； </p>
+<p>$\Leftrightarrow e \in B 且 B \circ B \subseteq B$； </p>
+<p>$\Leftrightarrow e \in B 且 \forall a,b \in B, 都有 a \circ b \in B$； </p>
+</blockquote>
+<h3 id="子幺半群的性质"><a href="#子幺半群的性质" class="headerlink" title="子幺半群的性质"></a>子幺半群的性质</h3><p>（P15）</p>
+<p><strong>性质1</strong>：一个幺半群的任意多个子幺半群的交集仍是该幺半群的子幺半群</p>
+<p>（注意：在子半群中不成立，两个子半群的交集可能为空）</p>
+<blockquote>
+<p><strong>证明</strong>：$(S,\circ,e)为幺半群。A,B为子幺半群 \Rightarrow A \cap B 为子幺半群$</p>
+<p><strong>手法</strong>：按照子幺半群的判别：① 单位元$e \in A \cap B$；② 运算封闭性$\forall a,b \in A \cap B \Rightarrow a \circ b \in A \cap B$</p>
+<p>对于①，由于子幺半群继承单位元，$e \in A, e \in B \Rightarrow e \in A \cap B$</p>
+<p>对于②，由子幺半群继承运算和任意性，$\begin{cases} a \in A, b \in B \Rightarrow a \circ b \in A \\ a \in A, b \in B \Rightarrow a \circ b \in B \end{cases}$ ，因此 $a \circ b \in A \cap B$</p>
+<p>证毕</p>
+</blockquote>
+<p><strong>性质2</strong>：设 $(S,\circ,e)$ 是一个幺半群， $A$ 是 $S$ 的一个非空子集，则 $S$ 的一切包含 $A$ 的子幺半群的交集 $Q$ 也是 $S$ 子幺半群</p>
+<p>（这两个性质说的是一回事）</p>
+<h3 id="生成子幺半群"><a href="#生成子幺半群" class="headerlink" title="生成子幺半群"></a>生成子幺半群</h3><p>（P16）</p>
+<p><strong>定义</strong>：设 $A$ 是幺半群 $(S,\circ,e)$ 的一个非空子集，称 $A’$ 为<strong>由A生成的子幺半群</strong>，若 $A’$ 满足以下条件：</p>
+<ol>
+<li>$A’$ 是 $S$ 的子幺半群；</li>
+<li>$A \subseteq A’$；—— 在 A 的基础上生成</li>
+<li>对 $S$ 上任何包含 $A$ 的子幺半群 $A’’$ 有 $A’ \subseteq A’’$——包含元素最少</li>
+</ol>
+<blockquote>
+<p>所谓“生成”，在线性代数中指<strong>扩张</strong></p>
+</blockquote>
+<h3 id="幺半群的理想"><a href="#幺半群的理想" class="headerlink" title="幺半群的理想"></a>幺半群的理想</h3><p>（P17-P19）</p>
+<p><strong>定义</strong>：幺半群 $(S,\circ,e)$ 的一个<strong>非空</strong>子集 $A$ 称为 $S$ 的一个<strong>左理想</strong>，如果 $SA \subseteq A$。</p>
+<p><strong>右理想</strong>：$AS \subseteq A$</p>
+<p>如果 $A$ 既是 $S$ 的左理想又是 $S$ 的右理想，则称 $A$ 是 $S$ 的理想</p>
+<p><strong>生成理想</strong>：幺半群 $(S,\circ,e)$ 的包含 $A$ 的一切理想的交</p>
+<blockquote>
+<p>以证明左理想为例，需证：$A \subseteq SA$</p>
+<p><strong>证明手法</strong>：利用幺半群的单位元，$A = eA \subseteq SA(e \in S)$</p>
+</blockquote>
+<p><strong>定理</strong>：设 $A$ 是幺半群 $(S,\circ,e)$ 的一个非空子集，则</p>
+<ul>
+<li>由 $A$ 生成的左理想是 $SA$；</li>
+<li>由 $A$ 生成的右理想是 $AS$；</li>
+<li>由 $A$ 生成的理想是 $SAS$</li>
+</ul>
+<h2 id="3-特殊幺半群：循环幺半群"><a href="#3-特殊幺半群：循环幺半群" class="headerlink" title="3. 特殊幺半群：循环幺半群"></a>3. 特殊幺半群：循环幺半群</h2><p>（P20-P21）</p>
+<blockquote>
+<p>概括：由其中某个元素生成的幺半群</p>
+</blockquote>
+<p><strong>定义</strong>：设 $S$ 是幺半群，若存在 $a \in S$ 使得</p>
+<script type="math/tex; mode=display">
+S = \{ a^k | k \in N \}</script><p>则称 $S$ 是<strong>循环幺半群</strong>，记作 $S = (a)$，称 $a$ 为 $S$ 的生成元</p>
+<p>如果循环幺半群 $S$ 是由 $a$ 生成的，则 $\forall b \in S$，存在一个非负整数 $m$ 使得 $b = a^m$</p>
+<p><strong>性质3</strong>：循环幺半群必是可换幺半群</p>
+<blockquote>
+<p><strong>证明</strong>：（需证交换律：$x \circ y = y \circ x$）</p>
+<p>$\forall x,y \in S, x = a^m, y = a^n \Rightarrow x \circ y = a^m \circ a^n = a^{m+n} = a^n \circ a^m = y \circ x$</p>
+</blockquote>
+<h2 id="4-幺半群的同态与同构"><a href="#4-幺半群的同态与同构" class="headerlink" title="4. 幺半群的同态与同构"></a>4. 幺半群的同态与同构</h2><p><strong>定义</strong>：</p>
+<h1 id="第12节-格的定义和性质"><a href="#第12节-格的定义和性质" class="headerlink" title="第12节 格的定义和性质"></a>第12节 格的定义和性质</h1><h2 id="1-格的定义"><a href="#1-格的定义" class="headerlink" title="1. 格的定义"></a>1. 格的定义</h2><p>二元运算满足交换律、结合律、吸收率，集合有偏序关系</p>
 <h2 id="2-格的实例"><a href="#2-格的实例" class="headerlink" title="2. 格的实例"></a>2. 格的实例</h2><h2 id="3-格的性质"><a href="#3-格的性质" class="headerlink" title="3. 格的性质"></a>3. 格的性质</h2><blockquote>
 <p>对偶原理 + 8条性质（常用的证明手法）</p>
 </blockquote>
@@ -722,7 +901,7 @@ a \vee b \preceq a \vee c</script><h2 id="4-格作为代数系统的定义"><a h
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC1%E8%8A%82-%E6%A6%82%E8%BF%B0"><span class="nav-text">第1节 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%90%E9%9B%86%E3%80%81%E9%9B%86%E5%90%88%E7%9A%84%E7%9B%B8%E7%AD%89"><span class="nav-text">子集、集合的相等</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%A0%E5%B0%84"><span class="nav-text">映射</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%A0%E5%B0%84%E7%9A%84%E5%90%88%E6%88%90"><span class="nav-text">映射的合成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%A0%E5%B0%84%E5%90%88%E6%88%90%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">映射合成的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%86%E6%98%A0%E5%B0%84%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">逆映射的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%86%E6%98%A0%E5%B0%84%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">逆映射的性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB"><span class="nav-text">关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E9%97%AD%E5%8C%85"><span class="nav-text">关系闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E5%85%B3%E7%B3%BB"><span class="nav-text">等价关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E7%B1%BB"><span class="nav-text">等价类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%86%E9%9B%86%E4%B8%8E%E5%88%92%E5%88%86"><span class="nav-text">商集与划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%8F%E5%BA%8F%E5%85%B3%E7%B3%BB"><span class="nav-text">偏序关系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC2%E8%8A%82-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">第2节 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BA%8C%E5%85%83%E8%BF%90%E7%AE%97"><span class="nav-text">1. 二元运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%BF%90%E7%AE%97%E8%A7%84%E5%BE%8B"><span class="nav-text">2. 运算规律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%89%B9%E5%BC%82%E5%85%83%E7%B4%A0"><span class="nav-text">3. 特异元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BD%8D%E5%85%83"><span class="nav-text">单位元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%B6%E5%85%83"><span class="nav-text">零元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E9%80%86%E5%85%83%E7%B4%A0%E5%92%8C%E9%80%86%E5%85%83"><span class="nav-text">可逆元素和逆元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%85%83%E8%BF%90%E7%AE%97%E8%A7%84%E5%BE%8B%E4%B9%8B%E4%BA%8C%E2%80%94%E2%80%94%E6%B6%88%E5%8E%BB%E5%BE%8B"><span class="nav-text">二元运算规律之二——消去律</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%BB%A3%E6%95%B0%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">4. 代数系统的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BB%A3%E6%95%B0%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84"><span class="nav-text">5. 代数系统的同态与同构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BB%A1%E5%90%8C%E6%80%81%E6%98%A0%E5%B0%84%E4%BF%9D%E6%8C%81%E8%BF%90%E7%AE%97%E7%9A%84%E8%A7%84%E5%BE%8B"><span class="nav-text">满同态映射保持运算的规律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BB%A1%E5%90%8C%E6%80%81%E6%98%A0%E5%B0%84%E4%BF%9D%E6%8C%81%E7%89%B9%E5%BC%82%E5%85%83%E7%B4%A0"><span class="nav-text">满同态映射保持特异元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A8%E8%AE%BA%EF%BC%9A%E8%BF%90%E7%AE%97%E5%B0%81%E9%97%AD"><span class="nav-text">讨论：运算封闭</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC3%E8%8A%82-%E5%8D%8A%E7%BE%A4"><span class="nav-text">第3节 半群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">1. 半群的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="nav-text">半群的实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%85%B3%E5%8D%8A%E7%BE%A4%E7%9A%84%E6%9C%AF%E8%AF%AD"><span class="nav-text">有关半群的术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%8D%95%E4%BD%8D%E5%85%83%E9%97%AE%E9%A2%98"><span class="nav-text">半群的单位元问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AD%90%E5%8D%8A%E7%BE%A4"><span class="nav-text">2. 子半群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">子半群的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%88%A4%E5%88%AB"><span class="nav-text">子半群的判别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E5%8D%8A%E7%BE%A4%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">子半群的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%AD%90%E5%8D%8A%E7%BE%A4"><span class="nav-text">生成子半群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8A%E7%BE%A4%E7%9A%84%E7%90%86%E6%83%B3"><span class="nav-text">半群的理想</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%89%B9%E6%AE%8A%E5%8D%8A%E7%BE%A4%EF%BC%9A%E5%BE%AA%E7%8E%AF%E5%8D%8A%E7%BE%A4"><span class="nav-text">3. 特殊半群：循环半群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84"><span class="nav-text">4. 半群的同态与同构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%90%8C%E6%80%81"><span class="nav-text">半群的同态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%86%E5%8D%8A%E7%BE%A4"><span class="nav-text">商半群</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC4%E8%8A%82-%E5%B9%BA%E5%8D%8A%E7%BE%A4"><span class="nav-text">第4节 幺半群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%B9%BA%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">1. 幺半群的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AD%90%E5%B9%BA%E5%8D%8A%E7%BE%A4"><span class="nav-text">2. 子幺半群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%89%B9%E6%AE%8A%E5%B9%BA%E5%8D%8A%E7%BE%A4%EF%BC%9A%E5%BE%AA%E7%8E%AF%E5%B9%BA%E5%8D%8A%E7%BE%A4"><span class="nav-text">3. 特殊幺半群：循环幺半群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%B9%BA%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84"><span class="nav-text">4. 幺半群的同态与同构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC12%E8%8A%82-%E6%A0%BC%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E6%80%A7%E8%B4%A8"><span class="nav-text">第12节 格的定义和性质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%A0%BC%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">1. 格的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%A0%BC%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="nav-text">2. 格的实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%A0%BC%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">3. 格的性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E5%81%B6%E5%8E%9F%E7%90%86"><span class="nav-text">对偶原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%81%E6%98%8E%E6%89%8B%E6%B3%95"><span class="nav-text">证明手法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E8%A7%84%E5%BE%8B"><span class="nav-text">运算规律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%8F%E5%BA%8F%E4%B8%8E%E8%BF%90%E7%AE%97%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">偏序与运算的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%9D%E5%BA%8F"><span class="nav-text">保序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%A0%BC%E4%BD%9C%E4%B8%BA%E4%BB%A3%E6%95%B0%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">4. 格作为代数系统的定义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC13%E8%8A%82-%E5%AD%90%E6%A0%BC-%E5%90%8C%E6%80%81-%E7%89%B9%E6%AE%8A%E6%A0%BC"><span class="nav-text">第13节 子格-同态-特殊格</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AD%90%E6%A0%BC"><span class="nav-text">1. 子格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%A0%BC%E7%9A%84%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84"><span class="nav-text">2. 格的同态与同构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%9C%89%E7%95%8C%E6%A0%BC%E3%80%81%E6%9C%89%E8%A1%A5%E6%A0%BC%E3%80%81%E5%88%86%E9%85%8D%E6%A0%BC"><span class="nav-text">3. 有界格、有补格、分配格</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC1%E8%8A%82-%E6%A6%82%E8%BF%B0"><span class="nav-text">第1节 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%90%E9%9B%86%E3%80%81%E9%9B%86%E5%90%88%E7%9A%84%E7%9B%B8%E7%AD%89"><span class="nav-text">子集、集合的相等</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%A0%E5%B0%84"><span class="nav-text">映射</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%A0%E5%B0%84%E7%9A%84%E5%90%88%E6%88%90"><span class="nav-text">映射的合成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%A0%E5%B0%84%E5%90%88%E6%88%90%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">映射合成的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%86%E6%98%A0%E5%B0%84%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">逆映射的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%86%E6%98%A0%E5%B0%84%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">逆映射的性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB"><span class="nav-text">关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E9%97%AD%E5%8C%85"><span class="nav-text">关系闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E5%85%B3%E7%B3%BB"><span class="nav-text">等价关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E7%B1%BB"><span class="nav-text">等价类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%86%E9%9B%86%E4%B8%8E%E5%88%92%E5%88%86"><span class="nav-text">商集与划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%8F%E5%BA%8F%E5%85%B3%E7%B3%BB"><span class="nav-text">偏序关系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC2%E8%8A%82-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">第2节 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BA%8C%E5%85%83%E8%BF%90%E7%AE%97%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">1. 二元运算的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%BF%90%E7%AE%97%E8%A7%84%E5%BE%8B"><span class="nav-text">2. 运算规律</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%85%83%E8%BF%90%E7%AE%97%E7%9A%84%E8%A7%84%E5%BE%8B%E4%B9%8B%E4%B8%80"><span class="nav-text">二元运算的规律之一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%85%83%E8%BF%90%E7%AE%97%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">二元运算的性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%89%B9%E5%BC%82%E5%85%83%E7%B4%A0"><span class="nav-text">3. 特异元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BD%8D%E5%85%83"><span class="nav-text">单位元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%B6%E5%85%83"><span class="nav-text">零元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E9%80%86%E5%85%83%E7%B4%A0%E5%92%8C%E9%80%86%E5%85%83"><span class="nav-text">可逆元素和逆元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%85%83%E8%BF%90%E7%AE%97%E8%A7%84%E5%BE%8B%E4%B9%8B%E4%BA%8C%E2%80%94%E2%80%94%E6%B6%88%E5%8E%BB%E5%BE%8B"><span class="nav-text">二元运算规律之二——消去律</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%BB%A3%E6%95%B0%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">4. 代数系统的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BB%A3%E6%95%B0%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84"><span class="nav-text">5. 代数系统的同态与同构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BB%A1%E5%90%8C%E6%80%81%E6%98%A0%E5%B0%84%E4%BF%9D%E6%8C%81%E8%BF%90%E7%AE%97%E7%9A%84%E8%A7%84%E5%BE%8B"><span class="nav-text">满同态映射保持运算的规律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BB%A1%E5%90%8C%E6%80%81%E6%98%A0%E5%B0%84%E4%BF%9D%E6%8C%81%E7%89%B9%E5%BC%82%E5%85%83%E7%B4%A0"><span class="nav-text">满同态映射保持特异元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A8%E8%AE%BA%EF%BC%9A%E8%BF%90%E7%AE%97%E5%B0%81%E9%97%AD"><span class="nav-text">讨论：运算封闭</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC3%E8%8A%82-%E5%8D%8A%E7%BE%A4"><span class="nav-text">第3节 半群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">1. 半群的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="nav-text">半群的实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%85%B3%E5%8D%8A%E7%BE%A4%E7%9A%84%E6%9C%AF%E8%AF%AD"><span class="nav-text">有关半群的术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%8D%95%E4%BD%8D%E5%85%83%E9%97%AE%E9%A2%98"><span class="nav-text">半群的单位元问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AD%90%E5%8D%8A%E7%BE%A4"><span class="nav-text">2. 子半群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">子半群的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%88%A4%E5%88%AB"><span class="nav-text">子半群的判别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E5%8D%8A%E7%BE%A4%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">子半群的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%AD%90%E5%8D%8A%E7%BE%A4"><span class="nav-text">生成子半群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8A%E7%BE%A4%E7%9A%84%E7%90%86%E6%83%B3"><span class="nav-text">半群的理想</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%89%B9%E6%AE%8A%E5%8D%8A%E7%BE%A4%EF%BC%9A%E5%BE%AA%E7%8E%AF%E5%8D%8A%E7%BE%A4"><span class="nav-text">3. 特殊半群：循环半群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84"><span class="nav-text">4. 半群的同态与同构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%90%8C%E6%80%81"><span class="nav-text">半群的同态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%86%E5%8D%8A%E7%BE%A4"><span class="nav-text">商半群</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC4%E8%8A%82-%E5%B9%BA%E5%8D%8A%E7%BE%A4"><span class="nav-text">第4节 幺半群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%B9%BA%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">1. 幺半群的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%BA%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="nav-text">幺半群的实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%85%B3%E5%B9%BA%E5%8D%8A%E7%BE%A4%E7%9A%84%E6%9C%AF%E8%AF%AD"><span class="nav-text">有关幺半群的术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%BA%E5%8D%8A%E7%BE%A4%E7%9A%84%E9%9B%B6%E5%85%83%E9%97%AE%E9%A2%98"><span class="nav-text">幺半群的零元问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%BA%E5%8D%8A%E7%BE%A4%E7%9A%84%E9%80%86%E5%85%83%E9%97%AE%E9%A2%98"><span class="nav-text">幺半群的逆元问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E9%99%90%E5%B9%BA%E5%8D%8A%E7%BE%A4"><span class="nav-text">有限幺半群</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AD%90%E5%B9%BA%E5%8D%8A%E7%BE%A4"><span class="nav-text">2. 子幺半群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E5%B9%BA%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%88%A4%E5%88%AB"><span class="nav-text">子幺半群的判别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E5%B9%BA%E5%8D%8A%E7%BE%A4%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">子幺半群的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%AD%90%E5%B9%BA%E5%8D%8A%E7%BE%A4"><span class="nav-text">生成子幺半群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%BA%E5%8D%8A%E7%BE%A4%E7%9A%84%E7%90%86%E6%83%B3"><span class="nav-text">幺半群的理想</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%89%B9%E6%AE%8A%E5%B9%BA%E5%8D%8A%E7%BE%A4%EF%BC%9A%E5%BE%AA%E7%8E%AF%E5%B9%BA%E5%8D%8A%E7%BE%A4"><span class="nav-text">3. 特殊幺半群：循环幺半群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%B9%BA%E5%8D%8A%E7%BE%A4%E7%9A%84%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84"><span class="nav-text">4. 幺半群的同态与同构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC12%E8%8A%82-%E6%A0%BC%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E6%80%A7%E8%B4%A8"><span class="nav-text">第12节 格的定义和性质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%A0%BC%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">1. 格的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%A0%BC%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="nav-text">2. 格的实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%A0%BC%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">3. 格的性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E5%81%B6%E5%8E%9F%E7%90%86"><span class="nav-text">对偶原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%81%E6%98%8E%E6%89%8B%E6%B3%95"><span class="nav-text">证明手法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E8%A7%84%E5%BE%8B"><span class="nav-text">运算规律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%8F%E5%BA%8F%E4%B8%8E%E8%BF%90%E7%AE%97%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">偏序与运算的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%9D%E5%BA%8F"><span class="nav-text">保序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%A0%BC%E4%BD%9C%E4%B8%BA%E4%BB%A3%E6%95%B0%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">4. 格作为代数系统的定义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC13%E8%8A%82-%E5%AD%90%E6%A0%BC-%E5%90%8C%E6%80%81-%E7%89%B9%E6%AE%8A%E6%A0%BC"><span class="nav-text">第13节 子格-同态-特殊格</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AD%90%E6%A0%BC"><span class="nav-text">1. 子格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%A0%BC%E7%9A%84%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84"><span class="nav-text">2. 格的同态与同构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%9C%89%E7%95%8C%E6%A0%BC%E3%80%81%E6%9C%89%E8%A1%A5%E6%A0%BC%E3%80%81%E5%88%86%E9%85%8D%E6%A0%BC"><span class="nav-text">3. 有界格、有补格、分配格</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
