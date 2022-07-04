@@ -31,6 +31,7 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220125182839787.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220125190214435.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704112837341.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704215806297.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704143920143.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704144506902.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704145946183.png">
@@ -51,8 +52,11 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704190643558.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704191509583.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704191828619.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704201419046.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704201628781.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704212728390.png">
 <meta property="article:published_time" content="2022-07-04T11:45:46.000Z">
-<meta property="article:modified_time" content="2022-07-04T11:57:48.388Z">
+<meta property="article:modified_time" content="2022-07-04T14:07:17.615Z">
 <meta property="article:author" content="Cheng">
 <meta property="article:tag" content="linux os">
 <meta name="twitter:card" content="summary">
@@ -242,7 +246,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-07-04 19:45:46 / 修改时间：19:57:48" itemprop="dateCreated datePublished" datetime="2022-07-04T19:45:46+08:00">2022-07-04</time>
+              <time title="创建时间：2022-07-04 19:45:46 / 修改时间：22:07:17" itemprop="dateCreated datePublished" datetime="2022-07-04T19:45:46+08:00">2022-07-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -271,14 +275,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.3k</span>
+              <span>7.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>21 分钟</span>
+              <span>25 分钟</span>
             </span>
 
         </div>
@@ -310,14 +314,65 @@
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/nmgrd/article/details/51754704">恢复centos7与windows7系统引导方法-亲测可用</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43002202/article/details/120951578">Windows11安装Ubuntu 20.04.3 LTS双系统（详细过程）</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/robator/article/details/110452439">centos下添加windows启动项</a></p>
-<h1 id="2022Linux实验"><a href="#2022Linux实验" class="headerlink" title="2022Linux实验"></a>2022Linux实验</h1><h2 id="实验1"><a href="#实验1" class="headerlink" title="实验1"></a>实验1</h2><h3 id="建立用户账号"><a href="#建立用户账号" class="headerlink" title="建立用户账号"></a>建立用户账号</h3><p>使用<code>useradd</code>命令即可，使用<code>passwd</code>命令设置密码。在root用户下使用<code>su</code>命令切换用户开始实验。</p>
+<h1 id="2022Linux实验"><a href="#2022Linux实验" class="headerlink" title="2022Linux实验"></a>2022Linux实验</h1><h2 id="实验1"><a href="#实验1" class="headerlink" title="实验1"></a>实验1</h2><h3 id="一、建立用户账号"><a href="#一、建立用户账号" class="headerlink" title="一、建立用户账号"></a>一、建立用户账号</h3><p>使用<code>useradd</code>命令即可，使用<code>passwd</code>命令设置密码。在root用户下使用<code>su</code>命令切换用户开始实验。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建用户</span></span><br><span class="line">useradd -m c2200400109</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置密码</span></span><br><span class="line">passwd c2200400109 &lt;&lt; EOF</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">2200400109</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">2200400109</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">EOF</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">切换用户</span></span><br><span class="line">su c2200400109</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注：<span class="built_in">exit</span>退出用户</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704112837341.png" alt="image-20220704112837341" style="zoom:80%;" /></p>
-<h3 id="可能存在的问题"><a href="#可能存在的问题" class="headerlink" title="可能存在的问题"></a>可能存在的问题</h3><p>如果直接对文件进行操作会出现”Permission denied”的报错，因为<strong>权限不够</strong>。</p>
+<h4 id="可能存在的问题"><a href="#可能存在的问题" class="headerlink" title="可能存在的问题"></a>可能存在的问题</h4><p>如果直接对文件进行操作会出现”Permission denied”的报错，因为<strong>权限不够</strong>。</p>
 <p>可以在root账号下，给予刚刚创建的用户权限。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 /home/用户名	# 可读可写可执行</span><br></pre></td></tr></table></figure>
 <p>进入创建的用户中，在”/home/用户名”路径下进行实验。</p>
-<h3 id="文件管理操作"><a href="#文件管理操作" class="headerlink" title="文件管理操作"></a>文件管理操作</h3><h3 id="文件阅读与查找"><a href="#文件阅读与查找" class="headerlink" title="文件阅读与查找"></a>文件阅读与查找</h3><h4 id="文件阅读命令"><a href="#文件阅读命令" class="headerlink" title="文件阅读命令"></a>文件阅读命令</h4><p>为了对文件显示进行实验，需要事<strong>先创建文件并向文件写入内容</strong>。而且为了比较cat, more, less, head, tail命令的异同，文件需要有较多的内容。使用”&gt;”进行目标文件的写入。使用”&gt;&gt;”对内容进行追加。</p>
+<h3 id="二、文件管理操作"><a href="#二、文件管理操作" class="headerlink" title="二、文件管理操作"></a>二、文件管理操作</h3><p>对于文件的操作主要包含增、删、改、查。这些命令如果再细化，结合课上的内容还有这样几类：文件的创建命令，文件匹配排序命令，比较文件内容命令，复制、删除和移动文件的命令，文件内容统计命令。对于文件的查（阅读命令）将在后面第四个标题中详细介绍。</p>
+<h5 id="touch命令"><a href="#touch命令" class="headerlink" title="touch命令"></a><code>touch</code>命令</h5><p><strong>功能</strong>：用于修改文件或者目录的时间属性，包括存取时间和更改时间。若文件不存在，系统会建立一个新的文件。</p>
+<p><strong>格式</strong>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch [-acfm][-d&lt;日期时间&gt;][-r&lt;参考文件或目录&gt;] [-t&lt;日期时间&gt;][--help][--version][文件或目录…]</span><br></pre></td></tr></table></figure>
+<p><strong>命令参数</strong>：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">选项与参数</th>
+<th style="text-align:center">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-a</td>
+<td style="text-align:center">改变档案的读取时间记录</td>
+</tr>
+<tr>
+<td style="text-align:center">-m</td>
+<td style="text-align:center">改变档案的修改时间记录</td>
+</tr>
+<tr>
+<td style="text-align:center">-c</td>
+<td style="text-align:center">假如目的档案不存在，不会建立新的档案。与 —no-create 的效果一样</td>
+</tr>
+<tr>
+<td style="text-align:center">-f</td>
+<td style="text-align:center">不使用，是为了与其他 unix 系统的相容性而保留</td>
+</tr>
+<tr>
+<td style="text-align:center">-r</td>
+<td style="text-align:center">使用参考档的时间记录，与 —file 的效果一样</td>
+</tr>
+<tr>
+<td style="text-align:center">-d</td>
+<td style="text-align:center">设定时间与日期，可以使用各种不同的格式</td>
+</tr>
+<tr>
+<td style="text-align:center">-t</td>
+<td style="text-align:center">设定档案的时间记录，格式与 date 指令相同</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>输入测试1</strong>：在/home/c2200400109目录下创建一个空白文件test08</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls -la	# 查看当前目录下的所有文件</span><br><span class="line">touch test08</span><br><span class="line">ls -la	# 查看创建后的目录下所有文件</span><br><span class="line">cat test08 # 查看test08文件内容</span><br></pre></td></tr></table></figure>
+<p>结果：使用touch命令能够创建空白文件</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704215806297.png" alt="image-20220704215806297" style="zoom:80%;" /></p>
+<p><strong>输入测试2</strong>：在已存在非空白文件test09的情况下使用touch命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;1&quot;</span> &gt; test09	<span class="comment"># 创建test09并写入字符1</span></span><br><span class="line"><span class="built_in">cat</span> test09			<span class="comment"># 查看test09内容</span></span><br><span class="line"><span class="built_in">touch</span> test09		<span class="comment"># touch</span></span><br><span class="line"><span class="built_in">cat</span> test09			<span class="comment"># 检验to</span></span><br></pre></td></tr></table></figure>
+<h3 id="三、目录管理操作"><a href="#三、目录管理操作" class="headerlink" title="三、目录管理操作"></a>三、目录管理操作</h3><h3 id="四、管理使用与权限设置"><a href="#四、管理使用与权限设置" class="headerlink" title="四、管理使用与权限设置"></a>四、管理使用与权限设置</h3><h3 id="五、文件阅读与查找"><a href="#五、文件阅读与查找" class="headerlink" title="五、文件阅读与查找"></a>五、文件阅读与查找</h3><h4 id="1、文件阅读命令"><a href="#1、文件阅读命令" class="headerlink" title="1、文件阅读命令"></a>1、文件阅读命令</h4><p>为了对文件显示进行实验，需要事<strong>先创建文件并向文件写入内容</strong>。而且为了比较cat, more, less, head, tail命令的异同，文件需要有较多的内容。使用”&gt;”进行目标文件的写入。使用”&gt;&gt;”对内容进行追加。</p>
 <p>用于实验的第一个文件为<code>test01</code>，内容为系统进程信息。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top ps -ef &gt; test01	# 将进程信息存入test01文件保存</span><br></pre></td></tr></table></figure>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704143920143.png" alt="image-20220704143920143" style="zoom:80%;" /></p>
@@ -326,11 +381,11 @@
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704144506902.png" alt="image-20220704144506902" style="zoom:80%;" /></p>
 <p>用于测试空白行输出的追加内容。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704145946183.png" alt="image-20220704145946183" style="zoom:80%;" /></p>
-<h5 id="cat命令"><a href="#cat命令" class="headerlink" title="cat命令"></a><code>cat</code>命令</h5><p>格式：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat [命令参数] [文件] </span><br></pre></td></tr></table></figure>
-<p>功能：由第一行开始显示文件内容，也可以完成文件的创建和合并。</p>
+<h5 id="cat命令"><a href="#cat命令" class="headerlink" title="cat命令"></a><code>cat</code>命令</h5><p><strong>功能</strong>：由第一行开始显示文件内容，也可以完成文件的创建和合并。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat [filename]	# 从第一行开始，一次显示整个文件</span><br><span class="line">cat &gt; [filename] # 创建文件名为&quot;filename&quot;的文件</span><br><span class="line">cat [f1] [f2] ... [fn] &gt; [file] # 将多个文件合并为一个</span><br></pre></td></tr></table></figure>
-<p>命令参数：</p>
+<p><strong>格式</strong>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat [命令参数] [文件] </span><br></pre></td></tr></table></figure>
+<p><strong>命令参数</strong>：</p>
 <div class="table-container">
 <table>
 <thead>
@@ -367,41 +422,41 @@
 </tbody>
 </table>
 </div>
-<p>输入测试1：test01文件内容显示（缺省命令参数）</p>
+<p><strong>输入测试1</strong>：test01文件内容显示（缺省命令参数）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat test01	# 对test01文件cat</span><br></pre></td></tr></table></figure>
 <p>结果：由于文件行数过多，输出的结果可能并不完整。（后续添加-n参数能够验证）</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704143959369.png" alt="image-20220704143959369" style="zoom:80%;" /></p>
-<p>输入测试2：test01文件内容带行号显示（命令参数：-n）</p>
+<p><strong>输入测试2</strong>：test01文件内容带行号显示（命令参数：-n）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat -n test01	# 使用-n参数对test01文件cat</span><br></pre></td></tr></table></figure>
 <p>结果：可以看到每一行都加上了行号，可以知道test01文件中一共有138行。输出从108行的末尾开始，由此可知cat命令在本测试样例中无法显示前108行的内容，且显示行数为30-40。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704145411562.png" alt="image-20220704145411562" style="zoom:80%;" /></p>
-<p>输入测试3：test02文件内容显示（缺省命令参数）</p>
+<p><strong>输入测试3</strong>：test02文件内容显示（缺省命令参数）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat test02	# 对test02文件cat</span><br></pre></td></tr></table></figure>
 <p>结果：可以看到test02文件里的完整内容。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704145002614.png" alt="image-20220704145002614" style="zoom:80%;" /></p>
 <p>后期向test02文件又追加了空白行和一行文本信息。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704150124662.png" alt="image-20220704150124662" style="zoom:80%;" /></p>
-<p>输入测试4：test02测试-A命令参数</p>
+<p><strong>输入测试4</strong>：test02测试-A命令参数</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat -A test02	# 使用-A参数对test02文件cat</span><br></pre></td></tr></table></figure>
 <p>结果：输出test02文件的全部内容，每一行结尾的结束符可见。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704152424046.png" alt="image-20220704152424046" style="zoom:80%;" /></p>
-<p>输入测试5：test02对非空行进行编号并显示（命令参数：-b）</p>
+<p><strong>输入测试5</strong>：test02对非空行进行编号并显示（命令参数：-b）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat -b test02	# 使用-b参数对test02文件cat</span><br></pre></td></tr></table></figure>
 <p>结果：输出test02文件的全部内容（包括空白行），但是没有对空白行进行编号。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704151111934.png" alt="image-20220704151111934" style="zoom:80%;" /></p>
-<p>输入测试6：test02文件内容每一行结尾显示”$”：（命令参数：-e）</p>
+<p><strong>输入测试6</strong>：test02文件内容每一行结尾显示”$”：（命令参数：-e）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat -e test02	# 使用-e参数对test02文件cat</span><br></pre></td></tr></table></figure>
 <p>结果：输出test02文件的全部内容，每一行结尾的结束符可见。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704152715510.png" alt="image-20220704152715510" style="zoom:80%;" /></p>
-<p>输入测试7：test02文件内容带行号显示（命令参数：-n）</p>
+<p><strong>输入测试7</strong>：test02文件内容带行号显示（命令参数：-n）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat -n test02	# 使用-n参数对test02文件cat</span><br></pre></td></tr></table></figure>
 <p>结果：可以看到test02文件内容与行号。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704150533477.png" alt="image-20220704150533477" style="zoom:80%;" /></p>
 <p>总结：cat命令的显示顺序为从上到下。因此如果文件内容的行数过多（比如超过40行），使用cat命令无法在屏幕上看到完整的输出结果，仅能看到文件最末尾的40行内容的输出。</p>
-<h5 id="more命令"><a href="#more命令" class="headerlink" title="more命令"></a><code>more</code>命令</h5><p>格式：</p>
+<h5 id="more命令"><a href="#more命令" class="headerlink" title="more命令"></a><code>more</code>命令</h5><p><strong>功能</strong>：可翻页检视，一页一页地显示文件内容。</p>
+<p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">more [选项参数] [文件名]</span><br><span class="line">more [-dlfpcsu] [-num] [+/pattern] [+linenum] [fileNames..]</span><br></pre></td></tr></table></figure>
-<p>功能：可翻页检视，一页一页地显示文件内容。</p>
-<p>命令参数：</p>
+<p><strong>命令参数</strong>：</p>
 <div class="table-container">
 <table>
 <thead>
@@ -454,7 +509,7 @@
 </tbody>
 </table>
 </div>
-<p>常用操作命令</p>
+<p><strong>常用操作命令</strong>：</p>
 <div class="table-container">
 <table>
 <thead>
@@ -503,7 +558,7 @@
 </tbody>
 </table>
 </div>
-<p>输入测试1：test01文件按页显示</p>
+<p><strong>输入测试1</strong>：test01文件按页显示</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more test01</span><br></pre></td></tr></table></figure>
 <p>结果：文件从第一页开始显示，左下角显示阅读进度。可以使用空格键向下翻页，使用b键向上翻页</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704161023915.png" alt="image-20220704161023915" style="zoom:80%;" /></p>
@@ -512,20 +567,20 @@
 <p>在浏览文件的过程中，可以用”=”查看当前页最后一行内容对应的行号。（比如第一页对应的最后一行的行号为35）</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704161517579.png" alt="image-20220704161517579" style="zoom:80%;" /></p>
 <p>除此之外，还可以用”v”调用vi编辑器对文件内容进行编辑。输入”:f”可以当前文件的文件名以及目前显示的行数。输入”/[子串]”能够在文件中对子串内容进行匹配查找。</p>
-<p>输入测试2：test01文件测试指定每页显示的行数（命令参数：-num(num = 10)）</p>
+<p><strong>输入测试2</strong>：test01文件测试指定每页显示的行数（命令参数：-num(num = 10)）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more -10 test01</span><br></pre></td></tr></table></figure>
 <p>结果：test01文件内容每10行为1页显示。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704163340575.png" alt="image-20220704163340575" style="zoom:80%;" /></p>
-<p>输入测试3：test02文件从第3行开始输出（命令参数：+num(num = 3)）</p>
+<p><strong>输入测试3</strong>：test02文件从第3行开始输出（命令参数：+num(num = 3)）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more +3 test02</span><br></pre></td></tr></table></figure>
 <p>结果：test02文件的前三行都是”this is a test.”，从第三行输出，则只输出一行”this is a test.”。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704163954960.png" alt="image-20220704163954960" style="zoom:80%;" /></p>
 <p>总结：与cat命令相比，more命令提供的功能更加强大，能够完整查看文件并且在查看文件的同时可以对文件进行编辑，也可以调用shell执行命令。在查看行数较多文件时应优先采用more命令。</p>
-<h5 id="less命令"><a href="#less命令" class="headerlink" title="less命令"></a><code>less</code>命令</h5><p>功能：与more类似，可以向前翻页</p>
-<h5 id="head命令"><a href="#head命令" class="headerlink" title="head命令"></a><code>head</code>命令</h5><h5 id="tail命令"><a href="#tail命令" class="headerlink" title="tail命令"></a><code>tail</code>命令</h5><h4 id="文件查找命令"><a href="#文件查找命令" class="headerlink" title="文件查找命令"></a>文件查找命令</h4><h5 id="find命令"><a href="#find命令" class="headerlink" title="find命令"></a><code>find</code>命令</h5><p>功能：用于在指令目录下查找文件。缺省参数则在当前目录下查找子目录与文件</p>
-<p>格式：</p>
+<h5 id="less命令"><a href="#less命令" class="headerlink" title="less命令"></a><code>less</code>命令</h5><p><strong>功能</strong>：与more类似，可以向前翻页</p>
+<h5 id="head命令"><a href="#head命令" class="headerlink" title="head命令"></a><code>head</code>命令</h5><h5 id="tail命令"><a href="#tail命令" class="headerlink" title="tail命令"></a><code>tail</code>命令</h5><h4 id="2、文件查找命令"><a href="#2、文件查找命令" class="headerlink" title="2、文件查找命令"></a>2、文件查找命令</h4><h5 id="find命令"><a href="#find命令" class="headerlink" title="find命令"></a><code>find</code>命令</h5><p><strong>功能</strong>：用于在指令目录下查找文件。缺省参数则在当前目录下查找子目录与文件</p>
+<p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">find [文件路径] [表达式]</span><br><span class="line">find [PATH] [option] [action]</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">find 根据下列规则判断 path 和 expression，在命令列上第一个 - ( ) , ! 之前的部份为 path，之后的是 expression。如果 path 是空字串则使用目前路径，如果 expression 是空字串则使用 -<span class="built_in">print</span> 为预设 expression。</span></span><br><span class="line">find   path   -option   [   -print ]   [ -exec   -ok   command ]   &#123;&#125; \;</span><br></pre></td></tr></table></figure>
-<p>选项与参数：</p>
+<p><strong>选项与参数</strong>：</p>
 <div class="table-container">
 <table>
 <thead>
@@ -627,25 +682,26 @@
 </table>
 </div>
 <p>文件结构为：/home/c2200400109路径下，有文件夹：findtest，文件：test01, test02, test03, test04.txt, test05.cpp, test06.py, test07.asm。其中，test04.txt, test05.cpp, test06.py, test07.asm均为空文件（文件大小为0）。实验在/home/c2200400109路径下进行。</p>
-<p>输入测试1：列出文件目录下符合后缀要求的文件。</p>
+<p><strong>输入测试1</strong>：列出文件目录下符合后缀要求的文件。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">find . -name &quot;*.txt&quot;	# 将当前目录及其子目录下所有文件后缀为.txt的文件列出来</span><br><span class="line">find . -name &quot;*.cpp&quot;	# 将当前目录及其子目录下所有文件后缀为.cpp的文件列出来</span><br><span class="line">find . -name &quot;*.py&quot;		# 将当前目录及其子目录下所有文件后缀为.py的文件列出来</span><br><span class="line">find . -name &quot;*.asm&quot;	# 将当前目录及其子目录下所有文件后缀为.asm的文件列出来</span><br></pre></td></tr></table></figure>
 <p>结果：使用find命令能够输出查找到符合格式要求的文件路径，分别将test04.txt, test05.cpp, test06.py, test07.asm的路径列出。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704190006605.png" alt="image-20220704190006605" style="zoom:80%;" /></p>
-<p>输入测试2：列出当前目录及其子目录中的所有文件。</p>
+<p><strong>输入测试2</strong>：列出当前目录及其子目录中的所有文件。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -type f</span><br></pre></td></tr></table></figure>
 <p>结果：分行列出了路径/home/c2200400109下的所有文件，包括隐藏文件。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704190643558.png" alt="image-20220704190643558" style="zoom:80%;" /></p>
-<p>输入测试3：查找当前目录及其子目录中所有文件长度为 0 的普通文件，并列出它们的完整路径。</p>
+<p><strong>输入测试3</strong>：查找当前目录及其子目录中所有文件长度为 0 的普通文件，并列出它们的完整路径。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -type f -size 0 -exec ls -l &#123;&#125; \;</span><br></pre></td></tr></table></figure>
 <p>结果：分行列出了所有空文件：test04.txt, text05.cpp, text06.py, text07.asm。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704191509583.png" alt="image-20220704191509583" style="zoom:80%;" /></p>
-<p>输入测试4：将当前目录及其子目录下所有比test01文件更新的文件列出。</p>
+<p><strong>输入测试4</strong>：将当前目录及其子目录下所有比test01文件更新的文件列出。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -newer test01</span><br></pre></td></tr></table></figure>
 <p>结果：将创建时间晚于test01的所有文件及文件夹列出：test02, test03, test04.txt, test05.cpp, test06.py, test07.asm, findtest。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704191828619.png" alt="image-20220704191828619" style="zoom:80%;" /></p>
-<h5 id="grep命令"><a href="#grep命令" class="headerlink" title="grep命令"></a><code>grep</code>命令</h5><p>格式：</p>
+<h5 id="grep命令"><a href="#grep命令" class="headerlink" title="grep命令"></a><code>grep</code>命令</h5><p><strong>功能</strong>：用于查找文件中符合条件的字符串。在文本文件中查找指定模式的单词或短评，并在标准输出上显示包括给定字符串模式的所有行。若不指定任何文件名称，或是所给予的文件名为 <strong>-</strong>，则 grep 指令会从标准输入设备读取数据。</p>
+<p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grep [选项] 文件名</span><br><span class="line">grep [-abcEFGhHilLnqrsvVwxy][-A&lt;显示行数&gt;][-B&lt;显示列数&gt;][-C&lt;显示列数&gt;][-d&lt;进行动作&gt;][-e&lt;范本样式&gt;][-f&lt;范本文件&gt;][--help][范本样式][文件或目录...]</span><br></pre></td></tr></table></figure>
-<p>命令参数：</p>
+<p><strong>命令参数</strong>：</p>
 <div class="table-container">
 <table>
 <thead>
@@ -766,7 +822,19 @@
 </tbody>
 </table>
 </div>
-
+<p><strong>输入测试1</strong>：在口令文件/etc/passwd中查找包含”root”的所有行。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep root /etc/passwd	# 模式串为root，在passwd文件中查找</span><br></pre></td></tr></table></figure>
+<p>结果：在passwd文件中找到包含root的行，并且标红高亮显示。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704201419046.png" alt="image-20220704201419046" style="zoom:80%;" /></p>
+<p><strong>输入测试2</strong>：在/home/c2200400109/test02中查找包含”test”的所有行。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep test /home/c2200400109</span><br></pre></td></tr></table></figure>
+<p>结果：在test02文件中找到了含有test的行并标红高亮显示</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704201628781.png" alt="image-20220704201628781" style="zoom:80%;" /></p>
+<p><strong>输入测试3</strong>：在当前目录中，查找前缀有test字样的文件中包含test子串的文件，并打印出包含test的行。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;test1234&quot; &gt;&gt; test03	# 向test03文件追加一行含test的子串</span><br><span class="line">echo &quot;test1111&quot; &gt;&gt; test01	# 向test01文件追加一行含test的子串</span><br><span class="line">grep test test*</span><br></pre></td></tr></table></figure>
+<p>结果：在test01, test02, test03文件中均找到含有test的行</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704212728390.png" alt="image-20220704212728390" style="zoom:80%;" /></p>
+<h3 id="六、系统用户和组的管理"><a href="#六、系统用户和组的管理" class="headerlink" title="六、系统用户和组的管理"></a>六、系统用户和组的管理</h3><h4 id="1、用户管理"><a href="#1、用户管理" class="headerlink" title="1、用户管理"></a>1、用户管理</h4><h4 id="2、组管理"><a href="#2、组管理" class="headerlink" title="2、组管理"></a>2、组管理</h4><h3 id="七、网络配置与网络状态分析和检查"><a href="#七、网络配置与网络状态分析和检查" class="headerlink" title="七、网络配置与网络状态分析和检查"></a>七、网络配置与网络状态分析和检查</h3>
     </div>
 
     
@@ -846,7 +914,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85CentOS7"><span class="nav-text">安装CentOS7</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E5%88%BB%E5%BD%95"><span class="nav-text">镜像刻录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85"><span class="nav-text">系统安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%AF%BC%E9%A1%B9"><span class="nav-text">引导项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2022Linux%E5%AE%9E%E9%AA%8C"><span class="nav-text">2022Linux实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C1"><span class="nav-text">实验1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7"><span class="nav-text">建立用户账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">可能存在的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E6%93%8D%E4%BD%9C"><span class="nav-text">文件管理操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E9%98%85%E8%AF%BB%E4%B8%8E%E6%9F%A5%E6%89%BE"><span class="nav-text">文件阅读与查找</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E9%98%85%E8%AF%BB%E5%91%BD%E4%BB%A4"><span class="nav-text">文件阅读命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#cat%E5%91%BD%E4%BB%A4"><span class="nav-text">cat命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#more%E5%91%BD%E4%BB%A4"><span class="nav-text">more命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#less%E5%91%BD%E4%BB%A4"><span class="nav-text">less命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#head%E5%91%BD%E4%BB%A4"><span class="nav-text">head命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tail%E5%91%BD%E4%BB%A4"><span class="nav-text">tail命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4"><span class="nav-text">文件查找命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#find%E5%91%BD%E4%BB%A4"><span class="nav-text">find命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#grep%E5%91%BD%E4%BB%A4"><span class="nav-text">grep命令</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85CentOS7"><span class="nav-text">安装CentOS7</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E5%88%BB%E5%BD%95"><span class="nav-text">镜像刻录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85"><span class="nav-text">系统安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%AF%BC%E9%A1%B9"><span class="nav-text">引导项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2022Linux%E5%AE%9E%E9%AA%8C"><span class="nav-text">2022Linux实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C1"><span class="nav-text">实验1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%BB%BA%E7%AB%8B%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7"><span class="nav-text">一、建立用户账号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">可能存在的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E6%93%8D%E4%BD%9C"><span class="nav-text">二、文件管理操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#touch%E5%91%BD%E4%BB%A4"><span class="nav-text">touch命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86%E6%93%8D%E4%BD%9C"><span class="nav-text">三、目录管理操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%AE%A1%E7%90%86%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE"><span class="nav-text">四、管理使用与权限设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%96%87%E4%BB%B6%E9%98%85%E8%AF%BB%E4%B8%8E%E6%9F%A5%E6%89%BE"><span class="nav-text">五、文件阅读与查找</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E6%96%87%E4%BB%B6%E9%98%85%E8%AF%BB%E5%91%BD%E4%BB%A4"><span class="nav-text">1、文件阅读命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#cat%E5%91%BD%E4%BB%A4"><span class="nav-text">cat命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#more%E5%91%BD%E4%BB%A4"><span class="nav-text">more命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#less%E5%91%BD%E4%BB%A4"><span class="nav-text">less命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#head%E5%91%BD%E4%BB%A4"><span class="nav-text">head命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tail%E5%91%BD%E4%BB%A4"><span class="nav-text">tail命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4"><span class="nav-text">2、文件查找命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#find%E5%91%BD%E4%BB%A4"><span class="nav-text">find命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#grep%E5%91%BD%E4%BB%A4"><span class="nav-text">grep命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84%E7%9A%84%E7%AE%A1%E7%90%86"><span class="nav-text">六、系统用户和组的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="nav-text">1、用户管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E7%BB%84%E7%AE%A1%E7%90%86"><span class="nav-text">2、组管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81%E5%88%86%E6%9E%90%E5%92%8C%E6%A3%80%E6%9F%A5"><span class="nav-text">七、网络配置与网络状态分析和检查</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
