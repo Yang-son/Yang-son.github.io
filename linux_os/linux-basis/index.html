@@ -21,12 +21,12 @@
     var CONFIG = {"hostname":"www.gingkocyx.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="安装CentOS7写安装日志的时间为2022寒假。在电脑上安装OpenEuler与CentOS的过程大同小异。 镜像刻录【参考资料】centos7&#x2F;win7 双系统安装教程  准备好镜像和刻录工具 Ultraiso CentOS镜像    等待刻录完成  系统安装大致过程是插入U盘，重启电脑进入BIOS，使用USB启动，进入系统安装引导程序。 按照教程安装系统即可。 引导项最后需要把Windows">
+  <meta name="description" content="前言：前半部分为安装Linux系统的一些经验以及参考资料。后面为Linux实验报告内容 （2022.7.4 19:58 持续更新中……）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux-basis">
+<meta property="og:title" content="Linux操作系统">
 <meta property="og:url" content="https://www.gingkocyx.top/linux_os/linux-basis/index.html">
 <meta property="og:site_name" content="gingkocyx">
-<meta property="og:description" content="安装CentOS7写安装日志的时间为2022寒假。在电脑上安装OpenEuler与CentOS的过程大同小异。 镜像刻录【参考资料】centos7&#x2F;win7 双系统安装教程  准备好镜像和刻录工具 Ultraiso CentOS镜像    等待刻录完成  系统安装大致过程是插入U盘，重启电脑进入BIOS，使用USB启动，进入系统安装引导程序。 按照教程安装系统即可。 引导项最后需要把Windows">
+<meta property="og:description" content="前言：前半部分为安装Linux系统的一些经验以及参考资料。后面为Linux实验报告内容 （2022.7.4 19:58 持续更新中……）">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220125182839787.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220125190214435.png">
@@ -52,7 +52,7 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704191509583.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704191828619.png">
 <meta property="article:published_time" content="2022-07-04T11:45:46.000Z">
-<meta property="article:modified_time" content="2022-07-04T11:47:21.302Z">
+<meta property="article:modified_time" content="2022-07-04T11:57:48.388Z">
 <meta property="article:author" content="Cheng">
 <meta property="article:tag" content="linux os">
 <meta name="twitter:card" content="summary">
@@ -71,7 +71,7 @@
   };
 </script>
 
-  <title>linux-basis | gingkocyx</title>
+  <title>Linux操作系统 | gingkocyx</title>
   
 
 
@@ -231,7 +231,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          linux-basis
+          Linux操作系统
         </h1>
 
         <div class="post-meta">
@@ -242,7 +242,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-07-04 19:45:46 / 修改时间：19:47:21" itemprop="dateCreated datePublished" datetime="2022-07-04T19:45:46+08:00">2022-07-04</time>
+              <time title="创建时间：2022-07-04 19:45:46 / 修改时间：19:57:48" itemprop="dateCreated datePublished" datetime="2022-07-04T19:45:46+08:00">2022-07-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -271,14 +271,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6k</span>
+              <span>6.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>20 分钟</span>
+              <span>21 分钟</span>
             </span>
 
         </div>
@@ -290,7 +290,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="安装CentOS7"><a href="#安装CentOS7" class="headerlink" title="安装CentOS7"></a>安装CentOS7</h1><p>写安装日志的时间为2022寒假。在电脑上安装OpenEuler与CentOS的过程大同小异。</p>
+        <p>前言：前半部分为安装Linux系统的一些经验以及参考资料。后面为Linux实验报告内容</p>
+<p>（2022.7.4 19:58 持续更新中……）</p>
+<span id="more"></span>
+<h1 id="安装CentOS7"><a href="#安装CentOS7" class="headerlink" title="安装CentOS7"></a>安装CentOS7</h1><p>写安装日志的时间为2022寒假。在电脑上安装OpenEuler与CentOS的过程大同小异。</p>
 <h2 id="镜像刻录"><a href="#镜像刻录" class="headerlink" title="镜像刻录"></a>镜像刻录</h2><p>【参考资料】<a target="_blank" rel="noopener" href="https://blog.csdn.net/realzuile/article/details/82688654">centos7/win7 双系统安装教程</a></p>
 <ul>
 <li><p>准备好镜像和刻录工具</p>
@@ -519,7 +522,8 @@
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704163954960.png" alt="image-20220704163954960" style="zoom:80%;" /></p>
 <p>总结：与cat命令相比，more命令提供的功能更加强大，能够完整查看文件并且在查看文件的同时可以对文件进行编辑，也可以调用shell执行命令。在查看行数较多文件时应优先采用more命令。</p>
 <h5 id="less命令"><a href="#less命令" class="headerlink" title="less命令"></a><code>less</code>命令</h5><p>功能：与more类似，可以向前翻页</p>
-<h5 id="head命令"><a href="#head命令" class="headerlink" title="head命令"></a><code>head</code>命令</h5><h5 id="tail命令"><a href="#tail命令" class="headerlink" title="tail命令"></a><code>tail</code>命令</h5><h4 id="文件查找命令"><a href="#文件查找命令" class="headerlink" title="文件查找命令"></a>文件查找命令</h4><h5 id="find命令"><a href="#find命令" class="headerlink" title="find命令"></a><code>find</code>命令</h5><p>格式：</p>
+<h5 id="head命令"><a href="#head命令" class="headerlink" title="head命令"></a><code>head</code>命令</h5><h5 id="tail命令"><a href="#tail命令" class="headerlink" title="tail命令"></a><code>tail</code>命令</h5><h4 id="文件查找命令"><a href="#文件查找命令" class="headerlink" title="文件查找命令"></a>文件查找命令</h4><h5 id="find命令"><a href="#find命令" class="headerlink" title="find命令"></a><code>find</code>命令</h5><p>功能：用于在指令目录下查找文件。缺省参数则在当前目录下查找子目录与文件</p>
+<p>格式：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">find [文件路径] [表达式]</span><br><span class="line">find [PATH] [option] [action]</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">find 根据下列规则判断 path 和 expression，在命令列上第一个 - ( ) , ! 之前的部份为 path，之后的是 expression。如果 path 是空字串则使用目前路径，如果 expression 是空字串则使用 -<span class="built_in">print</span> 为预设 expression。</span></span><br><span class="line">find   path   -option   [   -print ]   [ -exec   -ok   command ]   &#123;&#125; \;</span><br></pre></td></tr></table></figure>
 <p>选项与参数：</p>
 <div class="table-container">
@@ -646,113 +650,118 @@
 <table>
 <thead>
 <tr>
-<th>选项与参数</th>
-<th>含义</th>
+<th style="text-align:center">选项与参数</th>
+<th style="text-align:center">含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>-a或—text</td>
-<td>不忽略二进制数据</td>
+<td style="text-align:center">-a或—text</td>
+<td style="text-align:center">不忽略二进制数据</td>
 </tr>
 <tr>
-<td>-A&lt;显示行数&gt;或—after-context=&lt;显示行数&gt;</td>
-<td>除了显示符合范本样式的那一列之外，并显示该行之后的内容</td>
+<td style="text-align:center">-A&lt;显示行数&gt;或—after-context=&lt;显示行数&gt;</td>
+<td style="text-align:center">除了显示符合范本样式的那一列之外，并显示该行之后的内容</td>
 </tr>
 <tr>
-<td>-b或—byte-offset</td>
-<td>在显示符合样式的那一行之前，标示出该行第一个字符的编号</td>
+<td style="text-align:center">-b或—byte-offset</td>
+<td style="text-align:center">在显示符合样式的那一行之前，标示出该行第一个字符的编号</td>
 </tr>
 <tr>
-<td>-B&lt;显示行数&gt; 或 —before-context=&lt;显示行数&gt;</td>
-<td>除了显示符合样式的那一行之外，并显示该行之前的内容</td>
+<td style="text-align:center">-B&lt;显示行数&gt; 或 —before-context=&lt;显示行数&gt;</td>
+<td style="text-align:center">除了显示符合样式的那一行之外，并显示该行之前的内容</td>
 </tr>
 <tr>
-<td>-c 或 —count</td>
-<td>计算符合样式的列数</td>
+<td style="text-align:center">-c 或 —count</td>
+<td style="text-align:center">计算符合样式的列数</td>
 </tr>
 <tr>
-<td>-C&lt;显示行数&gt; 或 —context=&lt;显示行数&gt;或-&lt;显示行数&gt;</td>
-<td>除了显示符合样式的那一行之外，并显示该行之前后的内容</td>
+<td style="text-align:center">-C&lt;显示行数&gt; 或 —context=&lt;显示行数&gt;或-&lt;显示行数&gt;</td>
+<td style="text-align:center">除了显示符合样式的那一行之外，并显示该行之前后的内容</td>
 </tr>
 <tr>
-<td>-d &lt;动作&gt; 或 —directories=&lt;动作&gt;</td>
-<td>当指定要查找的是目录而非文件时，必须使用这项参数，否则grep指令将回报信息并停止动作</td>
+<td style="text-align:center">-d &lt;动作&gt; 或 —directories=&lt;动作&gt;</td>
+<td style="text-align:center">当指定要查找的是目录而非文件时，必须使用这项参数，否则grep指令将回报信息并停止动作</td>
 </tr>
 <tr>
-<td>-e&lt;范本样式&gt; 或 —regexp=&lt;范本样式&gt;</td>
-<td>指定字符串做为查找文件内容的样式</td>
+<td style="text-align:center">-e&lt;范本样式&gt; 或 —regexp=&lt;范本样式&gt;</td>
+<td style="text-align:center">指定字符串做为查找文件内容的样式</td>
 </tr>
 <tr>
-<td>-E 或 —extended-regexp</td>
-<td>将样式为延伸的正则表达式来使用</td>
+<td style="text-align:center">-E 或 —extended-regexp</td>
+<td style="text-align:center">将样式为延伸的正则表达式来使用</td>
 </tr>
 <tr>
-<td>-f&lt;规则文件&gt; 或 —file=&lt;规则文件&gt;</td>
-<td>指定规则文件，其内容含有一个或多个规则样式，让grep查找符合规则条件的文件内容，格式为每行一个规则样式</td>
+<td style="text-align:center">-f&lt;规则文件&gt; 或 —file=&lt;规则文件&gt;</td>
+<td style="text-align:center">指定规则文件，其内容含有一个或多个规则样式，让grep查找符合规则条件的文件内容，格式为每行一个规则样式</td>
 </tr>
 <tr>
-<td>-F 或 —fixed-regexp</td>
-<td>将样式视为固定字符串的列表</td>
+<td style="text-align:center">-F 或 —fixed-regexp</td>
+<td style="text-align:center">将样式视为固定字符串的列表</td>
 </tr>
 <tr>
-<td>-G 或 —basic-regexp</td>
-<td>将样式视为普通的表示法来使用</td>
+<td style="text-align:center">-G 或 —basic-regexp</td>
+<td style="text-align:center">将样式视为普通的表示法来使用</td>
 </tr>
 <tr>
-<td>-h 或 —no-filename</td>
-<td>在显示符合样式的那一行之前，不标示该行所属的文件名称</td>
+<td style="text-align:center">-h 或 —no-filename</td>
+<td style="text-align:center">在显示符合样式的那一行之前，不标示该行所属的文件名称</td>
 </tr>
 <tr>
-<td>-H 或 —with-filename</td>
-<td>在显示符合样式的那一行之前，表示该行所属的文件名称</td>
+<td style="text-align:center">-H 或 —with-filename</td>
+<td style="text-align:center">在显示符合样式的那一行之前，表示该行所属的文件名称</td>
 </tr>
 <tr>
-<td>-i 或 —ignore-case</td>
-<td>忽略字符大小写的差别</td>
+<td style="text-align:center">-i 或 —ignore-case</td>
+<td style="text-align:center">忽略字符大小写的差别</td>
 </tr>
 <tr>
-<td>-l 或 —file-with-matches</td>
-<td>列出文件内容符合指定的样式的文件名称</td>
+<td style="text-align:center">-l 或 —file-with-matches</td>
+<td style="text-align:center">列出文件内容符合指定的样式的文件名称</td>
 </tr>
 <tr>
-<td>-L 或 —files-without-match</td>
-<td>列出文件内容不符合指定的样式的文件名称</td>
+<td style="text-align:center">-L 或 —files-without-match</td>
+<td style="text-align:center">列出文件内容不符合指定的样式的文件名称</td>
 </tr>
 <tr>
-<td>-n 或 —line-number</td>
-<td></td>
+<td style="text-align:center">-n 或 —line-number</td>
+<td style="text-align:center">在显示符合样式的那一行之前，标示出该行的列数编号</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td style="text-align:center">-o 或 —only-matching</td>
+<td style="text-align:center">只显示匹配PATTERN 部分</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td style="text-align:center">-q 或 —quiet或—silent</td>
+<td style="text-align:center">不显示任何信息</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td style="text-align:center">-r 或 —recursive</td>
+<td style="text-align:center">此参数的效果和指定”-d recurse”参数相同</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td style="text-align:center">-s 或 —no-messages</td>
+<td style="text-align:center">不显示错误信息</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td style="text-align:center">-v 或 —invert-match</td>
+<td style="text-align:center">显示不包含匹配文本的所有行</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td style="text-align:center">-V 或 —version</td>
+<td style="text-align:center">显示版本信息</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td style="text-align:center">-w 或 —word-regexp</td>
+<td style="text-align:center">只显示全字符合的列</td>
 </tr>
 <tr>
-<td></td>
+<td style="text-align:center">-x —line-regexp</td>
+<td style="text-align:center">只显示全列符合的列</td>
+</tr>
+<tr>
+<td style="text-align:center">-y</td>
+<td style="text-align:center">此参数的效果和指定”-i”参数相同</td>
 </tr>
 </tbody>
 </table>
