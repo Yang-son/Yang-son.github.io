@@ -104,7 +104,7 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220706001112093.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220706000447630.png">
 <meta property="article:published_time" content="2022-07-04T11:45:46.000Z">
-<meta property="article:modified_time" content="2022-07-05T16:20:19.355Z">
+<meta property="article:modified_time" content="2022-07-05T17:10:03.616Z">
 <meta property="article:author" content="Cheng">
 <meta property="article:tag" content="linux os">
 <meta name="twitter:card" content="summary">
@@ -300,7 +300,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-06 00:20:19" itemprop="dateModified" datetime="2022-07-06T00:20:19+08:00">2022-07-06</time>
+                <time title="修改时间：2022-07-06 01:10:03" itemprop="dateModified" datetime="2022-07-06T01:10:03+08:00">2022-07-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -329,7 +329,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>16k</span>
+              <span>17k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -370,7 +370,7 @@
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/robator/article/details/110452439">centos下添加windows启动项</a></p>
 <h1 id="2022Linux实验"><a href="#2022Linux实验" class="headerlink" title="2022Linux实验"></a>2022Linux实验</h1><h2 id="实验1"><a href="#实验1" class="headerlink" title="实验1"></a>实验1</h2><h3 id="一、建立用户账号"><a href="#一、建立用户账号" class="headerlink" title="一、建立用户账号"></a>一、建立用户账号</h3><p>使用<code>useradd</code>命令即可，使用<code>passwd</code>命令设置密码。在root用户下使用<code>su</code>命令切换用户开始实验。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建用户，并自动建立用户的登入目录</span></span><br><span class="line">useradd -m c2200400109</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置密码</span></span><br><span class="line">passwd c2200400109 &lt;&lt; EOF</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">2200400109</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">2200400109</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">EOF</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">切换用户</span></span><br><span class="line">su c2200400109</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注：<span class="built_in">exit</span>退出用户</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704112837341.png" alt="image-20220704112837341" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704112837341.png" alt="图1 创建用户" style="zoom:80%;" /></p>
 <h4 id="可能存在的问题"><a href="#可能存在的问题" class="headerlink" title="可能存在的问题"></a>可能存在的问题</h4><p>如果直接对文件进行操作会出现”Permission denied”的报错，因为<strong>权限不够</strong>。</p>
 <p>可以在root账号下，给予刚刚创建的用户权限。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 /home/用户名	# 可读可写可执行</span><br></pre></td></tr></table></figure>
@@ -423,15 +423,15 @@
 <p><strong>输入测试1</strong>：在/home/c2200400109目录下创建一个空白文件test08</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls -la	# 查看当前目录下的所有文件</span><br><span class="line">touch test08</span><br><span class="line">ls -la	# 查看创建后的目录下所有文件</span><br><span class="line">cat test08 # 查看test08文件内容</span><br></pre></td></tr></table></figure>
 <p>结果：使用touch命令在文件不存在的前提下能够创建空白文件。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704215806297.png" alt="image-20220704215806297" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704215806297.png" alt="图2 创建空白文件test08" style="zoom:80%;" /></p>
 <p><strong>输入测试2</strong>：在已存在非空白文件test09的情况下使用touch命令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;1&quot; &gt; test09	# 创建test09并写入字符1</span><br><span class="line">cat test09			# 查看test09内容</span><br><span class="line">touch test09		# touch</span><br><span class="line">cat test09			# 检验touch是否起作用</span><br></pre></td></tr></table></figure>
 <p>结果：touch命令无法创建已存在的文件，或者对已存在的文件进行覆盖。（这点与echo命令不同）</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704221450001.png" alt="image-20220704221450001" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704221450001.png" alt="图3 对已存在文件test09使用touch命令" style="zoom:80%;" /></p>
 <p><strong>输入测试3</strong>：修改已存在文件test03的时间属性。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -l test03	# 查看test03的时间属性</span><br><span class="line">touch test03	# 修改test03的时间属性</span><br><span class="line">ls -l test03	# 查看修改后的test03时间属性</span><br></pre></td></tr></table></figure>
 <p>结果：原来test03文件的时间属性为20:23，经过touch命令修改后，时间属性变为22:21。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704222123222.png" alt="image-20220704222123222" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704222123222.png" alt="图4 修改时间属性" style="zoom:80%;" /></p>
 <h5 id="rm命令"><a href="#rm命令" class="headerlink" title="rm命令"></a><code>rm</code>命令</h5><p><strong>功能</strong>：用于删除一个文件或者一个目录</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm [命令参数] [文件/目录名]</span><br></pre></td></tr></table></figure>
@@ -463,15 +463,15 @@
 <p><strong>输入测试1</strong>：删除/home/c2200400109目录下的test09文件。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls			# 查看当前目录下的文件</span><br><span class="line">rm test09	# 删除test09</span><br><span class="line">ls			# 检查是否删除成功</span><br></pre></td></tr></table></figure>
 <p>结果：目录下已存在的文件test09被成功删除。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704223551560.png" alt="image-20220704223551560" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704223551560.png" alt="图5 删除test09文件" style="zoom:80%;" /></p>
 <p><strong>输入测试2</strong>：使用询问确认的方式删除test08文件。（命令参数：-i）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls			# 查看当前目录下的文件</span><br><span class="line">rm test08	# 删除test08</span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">y			<span class="comment"># 确认删除</span></span></span><br><span class="line">ls			# 检查是否删除成功</span><br></pre></td></tr></table></figure>
 <p>结果：经过询问后成功删除test08文件。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704223913279.png" alt="image-20220704223913279" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704223913279.png" alt="图6 删除test08文件" style="zoom:80%;" /></p>
 <p><strong>输入测试3</strong>：以递归的方式删除rmtest目录（包含rmtest01目录和文本文件rmtest.txt）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mkdir rmtest		# 创建rmtest目录</span><br><span class="line">ls					# 检查rmtest目录是否创建成功</span><br><span class="line">cd rmtest			# 进入rmtest目录</span><br><span class="line">touch rmtest.txt	# 创建文本文件</span><br><span class="line">mkdir rmtest01		# 创建目录</span><br><span class="line">ls					# 检查目录和文本文件是否创建成功</span><br><span class="line">cd .. 				# 返回到/home/c2200400109</span><br><span class="line">rm -i -r rmtest		# 删除目录</span><br><span class="line">ls					# 检查目录是否已被删除</span><br></pre></td></tr></table></figure>
 <p>结果：rmtest目录被删除，连同其中的目录rmtest01和文本文件rmtest.txt</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704225154082.png" alt="image-20220704225154082" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704225154082.png" alt="图7 删除rmtest目录" style="zoom:80%;" /></p>
 <p>总结：如果是删除整个目录文件使用参数-r进行递归删除；删除有风险，建议每次删除加上命令参数-i。</p>
 <h5 id="cp命令"><a href="#cp命令" class="headerlink" title="cp命令"></a><code>cp</code>命令</h5><p><strong>功能：</strong>用于复制文件或目录，将源文件或目录赋值拷贝到目标文件或目录中。</p>
 <p><strong>格式</strong>：</p>
@@ -520,15 +520,15 @@
 <p><strong>输入测试1</strong>：（文件复制）将/home/c2200400109目录下的test02文件复制到当前目录的test002文件中。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ls					# 查看当前目录下的文件</span><br><span class="line">cat test02			# 查看test02文件内容</span><br><span class="line">cp test02 test002	# 文件复制</span><br><span class="line">ls					# 查看复制后目录中的文件</span><br><span class="line">cat test002			# 查看test002文件内容</span><br></pre></td></tr></table></figure>
 <p>结果：test02成功复制到同目录下的test002文件中，且文件内容与test02一致。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704231539897.png" alt="image-20220704231539897" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704231539897.png" alt="图8 复制test02文件" style="zoom:80%;" /></p>
 <p><strong>输入测试2</strong>：（文件复制）将test01文件复制到findtest目录下且不改变文件名。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ls					# 查看当前目录下的所有文件</span><br><span class="line">tail -5 test01		# 查看test01文件最后5行</span><br><span class="line">cp test01 findtest	# 复制test01文件到findtest目录</span><br><span class="line">cd findtest			# 进入findtest目录</span><br><span class="line">ls					# 查看findtest目录下的文件</span><br><span class="line">tail -5 test01		# 查看复制后的test01文件最后5行</span><br></pre></td></tr></table></figure>
 <p>结果：test01文件成功复制到findtest目录且生成了同名文件，文件的内容不变。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704232626395.png" alt="image-20220704232626395" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704232626395.png" alt="图9 复制test01文件" style="zoom:80%;" /></p>
 <p><strong>输入测试3</strong>：（目录复制）将findtest目录递归复制到newfindtest目录</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp -r findtest/ newfindtest</span><br><span class="line">cd newfindtest</span><br><span class="line">ls</span><br><span class="line">tail -5 test01</span><br></pre></td></tr></table></figure>
 <p>结果：findtest连通里面的test01文件被复制到newfindtest目录下，且文件内容没有发生变化。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704234446377.png" alt="image-20220704234446377" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704234446377.png" alt="图10 复制目录" style="zoom:80%;" /></p>
 <p>总结：有一点需要注意区分，将文件夹拷贝到另一个文件夹和将文件夹中所有的文件拷贝到另一个文件夹的区别。前者可以使用/*完成，均需要-r参数。</p>
 <h5 id="mv命令"><a href="#mv命令" class="headerlink" title="mv命令"></a><code>mv</code>命令</h5><p><strong>功能</strong>：为文件或目录改名、或将文件或目录移入其它位置</p>
 <p><strong>格式</strong>：</p>
@@ -569,10 +569,10 @@
 <p><strong>输入测试1</strong>：将test002重命名为test0002。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">mv test002 test0002</span><br><span class="line">ls</span><br><span class="line">cat test0002</span><br></pre></td></tr></table></figure>
 <p>结果：可以看到test002文件没有出现在当前目录中，目录中多了test0002文件，且文件内容与之前的test002内容一致，则完成了移动（重命名）的操作。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705001311498.png" alt="image-20220705001311498" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705001311498.png" alt="图11 移动文件" style="zoom:80%;" /></p>
 <p><strong>输入测试2</strong>：将test0002文件移动到newfindtest目录中，覆盖原有的test01文件。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">mv -i test0002 newfindtest/test01</span><br><span class="line">cd newfindtest</span><br><span class="line">ls</span><br><span class="line">tail -5 test01</span><br></pre></td></tr></table></figure>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705001623697.png" alt="image-20220705001623697" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705001623697.png" alt="图12 移动并覆盖文件" style="zoom:80%;" /></p>
 <h3 id="三、目录管理操作"><a href="#三、目录管理操作" class="headerlink" title="三、目录管理操作"></a>三、目录管理操作</h3><p>目录管理主要包含查看目录的命令（ls），创建目录的命令（mkdir），删除目录的命令（rmdir）以及目录跳转的命令（cd）</p>
 <h5 id="ls命令"><a href="#ls命令" class="headerlink" title="ls命令"></a><code>ls</code>命令</h5><p><strong>功能</strong>：用于显示指定工作目录下之内容（列出目前工作目录所含之文件及子目录)</p>
 <p><strong>格式</strong>：</p>
@@ -621,11 +621,11 @@
 <p><strong>输入测试1</strong>：列出根目录下的所有目录</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /</span><br></pre></td></tr></table></figure>
 <p>结果：显示bin, dev, lib, root等根目录下的目录，并且只显示目录，不显示隐藏文件。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705003005314.png" alt="image-20220705003005314" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705003005314.png" alt="图13 显示目录" style="zoom:80%;" /></p>
 <p><strong>输入测试2</strong>：列出/home/c2200400109目录下的所有以test开头的文件，排序顺序按照时间属性从早到晚。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -ltr test*</span><br></pre></td></tr></table></figure>
 <p>结果：依次列出test02, test04.txt, test05.cpp, test06.py, test07.asm, test01, test03，并显示文件权限，文件拥有者以及时间属性。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705003311832.png" alt="image-20220705003311832" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705003311832.png" alt="图14 列出属性" style="zoom:80%;" /></p>
 <h5 id="mkdir命令"><a href="#mkdir命令" class="headerlink" title="mkdir命令"></a><code>mkdir</code>命令</h5><p><strong>功能</strong>：用于创建目录</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir [-p] dirName</span><br></pre></td></tr></table></figure>
@@ -634,14 +634,14 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">选项与参数</th>
-<th style="text-align:center">含义</th>
+<th>选项与参数</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">-p</td>
-<td style="text-align:center">确保目录名称存在，不存在则创建</td>
+<td>-p</td>
+<td>确保目录名称存在，不存在则创建</td>
 </tr>
 </tbody>
 </table>
@@ -649,11 +649,11 @@
 <p><strong>输入测试1</strong>：在/home/c2200400109工作目录下，创建一个名为dirtest的子目录。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -l</span><br><span class="line">mkdir dirtest</span><br><span class="line">ls -l</span><br></pre></td></tr></table></figure>
 <p>结果：子目录dirtest创建成功。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705003927838.png" alt="image-20220705003927838" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705003927838.png" alt="图15 创建子目录" style="zoom:80%;" /></p>
 <p><strong>输入测试2</strong>：在dirtest目录中，创建一个dirtest001的目录。测试在不使用-p命令下，能否在未被创建的目录dirtest2中创建dirtest001目录。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir	 dirtest2/dirtest001</span><br><span class="line">mkdir -p dirtest/dirtest001</span><br></pre></td></tr></table></figure>
 <p>结果：在目录不存在且不适用-p参数时产生错误。使用-p命令可以顺利完成创建二级子目录的操作。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705004308888.png" alt="image-20220705004308888" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705004308888.png" alt="图16 -p参数使用对比测试" style="zoom:80%;" /></p>
 <h5 id="rmdir命令"><a href="#rmdir命令" class="headerlink" title="rmdir命令"></a><code>rmdir</code>命令</h5><p><strong>功能</strong>：用于删除空的目录。</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir [-p] dirName</span><br></pre></td></tr></table></figure>
@@ -662,14 +662,14 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">选项与参数</th>
-<th style="text-align:center">含义</th>
+<th>选项与参数</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">-p</td>
-<td style="text-align:center">当子目录被删除后使它也成为空目录的话，则顺便一并删除</td>
+<td>-p</td>
+<td>当子目录被删除后使它也成为空目录的话，则顺便一并删除</td>
 </tr>
 </tbody>
 </table>
@@ -677,21 +677,21 @@
 <p><strong>输入测试1</strong>：删除在刚刚的/home/c2200400109/dirtest中的dirtest子目录（非空）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir dirtest</span><br></pre></td></tr></table></figure>
 <p>结果：dirtest目录无法被删除，因为目录非空。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705005033407.png" alt="image-20220705005033407" style="zoom: 80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705005033407.png" alt="图17 删除非空目录尝试" style="zoom: 80%;" /></p>
 <p><strong>输入测试2</strong>：删除在刚刚的/home/c2200400109/dirtest中的dirtest子目录（非空）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">rmdir -p dirtest001</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
 <p>结果：dirtest001目录被成功删除。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705005356264.png" alt="image-20220705005356264" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705005356264.png" alt="图18 使用-p参数删除非空目录" style="zoom:80%;" /></p>
 <h5 id="cd命令"><a href="#cd命令" class="headerlink" title="cd命令"></a><code>cd</code>命令</h5><p><strong>功能</strong>：用于切换当前工作目录。</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd [dirName]</span><br></pre></td></tr></table></figure>
 <p><strong>输入测试</strong>：跳到/usr/bin目录。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/bin</span><br></pre></td></tr></table></figure>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705005657308.png" alt="image-20220705005657308" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705005657308.png" alt="图19 目录跳转切换" style="zoom:80%;" /></p>
 <h3 id="四、管理使用与权限设置"><a href="#四、管理使用与权限设置" class="headerlink" title="四、管理使用与权限设置"></a>四、管理使用与权限设置</h3><p>管理权限设置主要用到的命令有chmod（改变文件/目录的权限）, umask（设置新文件权限的掩码）, chgrp（改变用户组和文件主）,  chown（改变某个文件或目录的所有者和所属的组）</p>
 <h5 id="chmod命令"><a href="#chmod命令" class="headerlink" title="chmod命令"></a><code>chmod</code>命令</h5><p><strong>功能</strong>：控制用户对文件的权限的命令</p>
 <p><strong>说明</strong>：文件调用权限分为三级 : 文件所有者（Owner）、用户组（Group）、其它用户（Other Users）。只有文件所有者和超级用户可以修改文件或目录的权限。可以使用绝对模式（八进制数字模式），符号模式指定文件的权限。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/file-permissions-rwx.jpg" alt="img" style="zoom:50%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/file-permissions-rwx.jpg" alt="图20 权限示意图" style="zoom:50%;" /></p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod [选项] 文件和目录列表</span><br><span class="line">chmod [-cfvR] [--help] [--version] mode file...</span><br></pre></td></tr></table></figure>
 <p><strong>命令参数</strong>：</p>
@@ -699,31 +699,31 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">符号模式</th>
-<th style="text-align:center">用户类型</th>
-<th style="text-align:center">说明</th>
+<th>符号模式</th>
+<th>用户类型</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">u</td>
-<td style="text-align:center">user</td>
-<td style="text-align:center">文件所有者</td>
+<td>u</td>
+<td>user</td>
+<td>文件所有者</td>
 </tr>
 <tr>
-<td style="text-align:center">g</td>
-<td style="text-align:center">group</td>
-<td style="text-align:center">文件所有者所在组</td>
+<td>g</td>
+<td>group</td>
+<td>文件所有者所在组</td>
 </tr>
 <tr>
-<td style="text-align:center">o</td>
-<td style="text-align:center">others</td>
-<td style="text-align:center">所有其他用户</td>
+<td>o</td>
+<td>others</td>
+<td>所有其他用户</td>
 </tr>
 <tr>
-<td style="text-align:center">a</td>
-<td style="text-align:center">all</td>
-<td style="text-align:center">所用用户, 相当于 <em>ugo</em></td>
+<td>a</td>
+<td>all</td>
+<td>所用用户, 相当于 <em>ugo</em></td>
 </tr>
 </tbody>
 </table>
@@ -732,22 +732,22 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">Operator</th>
-<th style="text-align:center">说明</th>
+<th>Operator</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center"><code>+</code></td>
-<td style="text-align:center">为指定的用户类型增加权限</td>
+<td><code>+</code></td>
+<td>为指定的用户类型增加权限</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>-</code></td>
-<td style="text-align:center">去除指定用户类型的权限</td>
+<td><code>-</code></td>
+<td>去除指定用户类型的权限</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>=</code></td>
-<td style="text-align:center">设置指定用户权限的设置，即将用户类型的所有权限重新设置</td>
+<td><code>=</code></td>
+<td>设置指定用户权限的设置，即将用户类型的所有权限重新设置</td>
 </tr>
 </tbody>
 </table>
@@ -756,60 +756,60 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">#</th>
-<th style="text-align:center">权限</th>
-<th style="text-align:center">rwx</th>
-<th style="text-align:center">二进制</th>
+<th>#</th>
+<th>权限</th>
+<th>rwx</th>
+<th>二进制</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">7</td>
-<td style="text-align:center">读 + 写 + 执行</td>
-<td style="text-align:center">rwx</td>
-<td style="text-align:center">111</td>
+<td>7</td>
+<td>读 + 写 + 执行</td>
+<td>rwx</td>
+<td>111</td>
 </tr>
 <tr>
-<td style="text-align:center">6</td>
-<td style="text-align:center">读 + 写</td>
-<td style="text-align:center">rw-</td>
-<td style="text-align:center">110</td>
+<td>6</td>
+<td>读 + 写</td>
+<td>rw-</td>
+<td>110</td>
 </tr>
 <tr>
-<td style="text-align:center">5</td>
-<td style="text-align:center">读 + 执行</td>
-<td style="text-align:center">r-x</td>
-<td style="text-align:center">101</td>
+<td>5</td>
+<td>读 + 执行</td>
+<td>r-x</td>
+<td>101</td>
 </tr>
 <tr>
-<td style="text-align:center">4</td>
-<td style="text-align:center">只读</td>
-<td style="text-align:center">r—</td>
-<td style="text-align:center">100</td>
+<td>4</td>
+<td>只读</td>
+<td>r—</td>
+<td>100</td>
 </tr>
 <tr>
-<td style="text-align:center">3</td>
-<td style="text-align:center">写 + 执行</td>
-<td style="text-align:center">-wx</td>
-<td style="text-align:center">011</td>
+<td>3</td>
+<td>写 + 执行</td>
+<td>-wx</td>
+<td>011</td>
 </tr>
 <tr>
-<td style="text-align:center">2</td>
-<td style="text-align:center">只写</td>
-<td style="text-align:center">-w-</td>
-<td style="text-align:center">010</td>
+<td>2</td>
+<td>只写</td>
+<td>-w-</td>
+<td>010</td>
 </tr>
 <tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">只执行</td>
-<td style="text-align:center">—x</td>
-<td style="text-align:center">001</td>
+<td>1</td>
+<td>只执行</td>
+<td>—x</td>
+<td>001</td>
 </tr>
 <tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">无</td>
-<td style="text-align:center">—-</td>
-<td style="text-align:center">000</td>
+<td>0</td>
+<td>无</td>
+<td>—-</td>
+<td>000</td>
 </tr>
 </tbody>
 </table>
@@ -817,11 +817,11 @@
 <p><strong>输入测试1</strong>：使用符号模式，将/home/c2200400109目录下的test04.txt文件的所有者权限设置为可读可写可执行。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -l test04.txt			# 查看test04.txt的权限</span><br><span class="line">chmod u = rwx test04.txt 	# 修改test04.txt的权限</span><br><span class="line">ls -l test04.txt			# 检查权限是否修改成功</span><br></pre></td></tr></table></figure>
 <p>结果：原test04.txt文件的所有者权限为可读可写（rw），经过修改权限后，所有者权限变成可读可写可执行（rwx）。文件的所有者权限修改成功。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705094917623.png" alt="image-20220705094917623" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705094917623.png" alt="图21 符号模式改变权限" style="zoom:80%;" /></p>
 <p><strong>输入测试2</strong>：使用八进制数模式，将/home/c2200400109目录下的dirtest目录的权限设置为所有者权限为可读，同组用户权限为可写，其他用户权限为可执行，同时将dirtest的所有子目录和文件权限一其处理。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ls -l dirtest			# 查看dirtest的权限</span><br><span class="line">chmod -R 421 dirtest    # 递归修改dirtest权限及其子目录和文件的权限</span><br><span class="line">ls -l dirtest			# 查看dirtest修改后的权限</span><br><span class="line">cd dirtest				# 查看子目录和文件的权限</span><br><span class="line">ls -l</span><br></pre></td></tr></table></figure>
 <p>结果：dirtest目录的权限原本是775（所有者权限为可读可写可执行，同组用户权限为可读可写可执行，其他用户权限为可读可执行）经过修改后所有者权限为可读，同组用户权限为可写，其他用户权限为可执行，并且子目录的权限也被修改。（同名子目录dirtest）不过由于自己创建的用户没有添加到root组，因此上述操作均是在root用户下执行，但是修改权限的文件都是新创建用户的。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705100333458.png" alt="image-20220705100333458" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705100333458.png" alt="图22 八进制数改变权限" style="zoom:80%;" /></p>
 <h5 id="chgrp命令"><a href="#chgrp命令" class="headerlink" title="chgrp命令"></a><code>chgrp</code>命令</h5><p><strong>功能</strong>：用于变更文件或目录的所属群组。需要注意的是，<code>chgrp</code>命令允许普通用户改变文件所属的组，只要该用户是该组的一员。</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chgrp [选项] 组名 文件名</span><br><span class="line">chgrp [-cfhRv][--help][--version][所属群组][文件或目录...] 或 chgrp [-cfhRv][--help][--reference=&lt;参考文件或目录&gt;][--version][文件或目录...]</span><br></pre></td></tr></table></figure>
@@ -830,46 +830,46 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">选项与参数</th>
-<th style="text-align:center">含义</th>
+<th>选项与参数</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">-c 或 —changes</td>
-<td style="text-align:center">效果类似”-v”参数，但仅报告更改的部分</td>
+<td>-c 或 —changes</td>
+<td>效果类似”-v”参数，但仅报告更改的部分</td>
 </tr>
 <tr>
-<td style="text-align:center">-f 或 —quiet 或 —silent</td>
-<td style="text-align:center">不显示错误信息</td>
+<td>-f 或 —quiet 或 —silent</td>
+<td>不显示错误信息</td>
 </tr>
 <tr>
-<td style="text-align:center">-h 或 —no-dereference</td>
-<td style="text-align:center">只对符号连接的文件作修改，而不改动其他任何相关文件</td>
+<td>-h 或 —no-dereference</td>
+<td>只对符号连接的文件作修改，而不改动其他任何相关文件</td>
 </tr>
 <tr>
-<td style="text-align:center">-R 或 —recursive</td>
-<td style="text-align:center">递归处理，将指定目录下的所有文件及子目录一并处理</td>
+<td>-R 或 —recursive</td>
+<td>递归处理，将指定目录下的所有文件及子目录一并处理</td>
 </tr>
 <tr>
-<td style="text-align:center">-v 或 —verbose</td>
-<td style="text-align:center">显示指令执行过程</td>
+<td>-v 或 —verbose</td>
+<td>显示指令执行过程</td>
 </tr>
 </tbody>
 </table>
 </div>
 <p>在进行实验之前，首先要创建一个新用户组<code>newHiter</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">groupadd newHiter			# 如果不是在root权限下，需要使用sudo</span><br><span class="line">grep newHiter /etc/group 	# 查看是否创建用户组成功</span><br></pre></td></tr></table></figure>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705102143197.png" alt="image-20220705102143197" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705102143197.png" alt="图23 创建用户组" style="zoom:80%;" /></p>
 <p>在/etc/group文件中，知道了newHiter用户组的ID为1003。</p>
 <p><strong>输入测试1</strong>：将/home/c2200400109目录下的findtest目录的用户组改为newHiter。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -l</span><br><span class="line"><span class="built_in">chgrp</span> -R newHiter findtest</span><br><span class="line"><span class="built_in">ls</span> -l findtest</span><br></pre></td></tr></table></figure>
 <p>结果：findtest目录的用户组由c2200400109变更为newHiter。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705104326318.png" alt="image-20220705104326318" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705104326318.png" alt="图24 变更用户组" style="zoom:80%;" /></p>
 <p><strong>输入测试2</strong>：将/home/c2200400109目录下的test05.cpp文件的用户组改为root。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -l test05.cpp			# 查看test05.cpp文件的用户组</span><br><span class="line">chgrp root test05.cpp		# 变更用户组为root</span><br><span class="line">ls -l test05.cpp			# 检查用户组是否更改</span><br></pre></td></tr></table></figure>
 <p>结果：test05.cpp文件的用户组由c2200400109变更为root。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705104711885.png" alt="image-20220705104711885" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705104711885.png" alt="图25 变更root用户组" style="zoom:80%;" /></p>
 <p>总结：chgrp命令需要root权限，否则需要使用sudo提权。对于用户组更改的命令更适合管理员/权限较高者使用，以便用户管理。</p>
 <h5 id="chown命令"><a href="#chown命令" class="headerlink" title="chown命令"></a><code>chown</code>命令</h5><p><strong>功能</strong>：用于设置文件所有者和文件关联组。利用 chown 将指定文件的拥有者改为指定的用户或组，用户可以是用户名或者用户 ID，组可以是组名或者组 ID，文件是以空格分开的要改变权限的文件列表，支持通配符。注意：需要root权限才能执行chown命令。</p>
 <p><strong>格式</strong>：</p>
@@ -879,38 +879,38 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">选项与参数</th>
-<th style="text-align:center">含义</th>
+<th>选项与参数</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">user</td>
-<td style="text-align:center">新的文件拥有者的使用者 ID</td>
+<td>user</td>
+<td>新的文件拥有者的使用者 ID</td>
 </tr>
 <tr>
-<td style="text-align:center">group</td>
-<td style="text-align:center">新的文件拥有者的使用者组(group)</td>
+<td>group</td>
+<td>新的文件拥有者的使用者组(group)</td>
 </tr>
 <tr>
-<td style="text-align:center">-c</td>
-<td style="text-align:center">显示更改的部分的信息</td>
+<td>-c</td>
+<td>显示更改的部分的信息</td>
 </tr>
 <tr>
-<td style="text-align:center">-f</td>
-<td style="text-align:center">忽略错误信息</td>
+<td>-f</td>
+<td>忽略错误信息</td>
 </tr>
 <tr>
-<td style="text-align:center">-h</td>
-<td style="text-align:center">修复符号链接</td>
+<td>-h</td>
+<td>修复符号链接</td>
 </tr>
 <tr>
-<td style="text-align:center">-v</td>
-<td style="text-align:center">显示详细的处理信息</td>
+<td>-v</td>
+<td>显示详细的处理信息</td>
 </tr>
 <tr>
-<td style="text-align:center">-R</td>
-<td style="text-align:center">处理指定目录以及其子目录下的所有文件</td>
+<td>-R</td>
+<td>处理指定目录以及其子目录下的所有文件</td>
 </tr>
 </tbody>
 </table>
@@ -918,16 +918,16 @@
 <p><strong>输入测试</strong>：将/home/c2200400109目录下面的test06.py和test07.asm文件的用户改成root。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -l test06.py test07.asm</span><br><span class="line">chown root test06.py test07.asm</span><br><span class="line">ls -l test06.py test07.asm</span><br></pre></td></tr></table></figure>
 <p>结果：test06.py和test07.asm文件的拥有者从c2200400109变更为root。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705110121374.png" alt="image-20220705110121374" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705110121374.png" alt="图26 变更文件拥有者" style="zoom:80%;" /></p>
 <h3 id="五、文件阅读与查找"><a href="#五、文件阅读与查找" class="headerlink" title="五、文件阅读与查找"></a>五、文件阅读与查找</h3><h4 id="1、文件阅读命令"><a href="#1、文件阅读命令" class="headerlink" title="1、文件阅读命令"></a>1、文件阅读命令</h4><p>为了对文件显示进行实验，需要事<strong>先创建文件并向文件写入内容</strong>。而且为了比较cat, more, less, head, tail命令的异同，文件需要有较多的内容。使用”&gt;”进行目标文件的写入。使用”&gt;&gt;”对内容进行追加。</p>
 <p>用于实验的第一个文件为<code>test01</code>，内容为系统进程信息。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top ps -ef &gt; test01		# 将进程信息存入test01文件保存</span><br></pre></td></tr></table></figure>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704143920143.png" alt="image-20220704143920143" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704143920143.png" alt="图27 保存test01文件" style="zoom:80%;" /></p>
 <p>用于实验的第二个文件为<code>test02</code>，内容为三行”this is a test.”。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建test02文件</span></span><br><span class="line">touch test02</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">添加三行内容</span></span><br><span class="line">echo &quot;this is a test.&quot; &gt;&gt; test02</span><br><span class="line">echo &quot;this is a test.&quot; &gt;&gt; test02</span><br><span class="line">echo &quot;this is a test.&quot; &gt;&gt; test02</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">后期为了测试空白行，追加空白行和文本内容</span></span><br><span class="line">echo &gt;&gt; test02</span><br><span class="line">echo &quot;this is a test for blank line.&quot; &gt;&gt; test02</span><br></pre></td></tr></table></figure>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704144506902.png" alt="image-20220704144506902" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704144506902.png" alt="图28 保存test02文件" style="zoom:80%;" /></p>
 <p>用于测试空白行输出的追加内容。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704145946183.png" alt="image-20220704145946183" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704145946183.png" alt="图29 向test02追加内容" style="zoom:80%;" /></p>
 <h5 id="cat命令"><a href="#cat命令" class="headerlink" title="cat命令"></a><code>cat</code>命令</h5><p><strong>功能</strong>：由第一行开始显示文件内容，也可以完成文件的创建和合并。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat [filename]	# 从第一行开始，一次显示整个文件</span><br><span class="line">cat &gt; [filename] # 创建文件名为&quot;filename&quot;的文件</span><br><span class="line">cat [f1] [f2] ... [fn] &gt; [file] # 将多个文件合并为一个</span><br></pre></td></tr></table></figure>
 <p><strong>格式</strong>：</p>
@@ -972,33 +972,33 @@
 <p><strong>输入测试1</strong>：test01文件内容显示（缺省命令参数）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat test01	# 对test01文件cat</span><br></pre></td></tr></table></figure>
 <p>结果：由于文件行数过多，输出的结果可能并不完整。（后续添加-n参数能够验证）</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704143959369.png" alt="image-20220704143959369" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704143959369.png" alt="图30 对test01使用cat" style="zoom:80%;" /></p>
 <p><strong>输入测试2</strong>：test01文件内容带行号显示（命令参数：-n）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat -n test01	# 使用-n参数对test01文件cat</span><br></pre></td></tr></table></figure>
 <p>结果：可以看到每一行都加上了行号，可以知道test01文件中一共有138行。输出从108行的末尾开始，由此可知cat命令在本测试样例中无法显示前108行的内容，且显示行数为30-40。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704145411562.png" alt="image-20220704145411562" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704145411562.png" alt="图31 cat显示行号" style="zoom:80%;" /></p>
 <p><strong>输入测试3</strong>：test02文件内容显示（缺省命令参数）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat test02	# 对test02文件cat</span><br></pre></td></tr></table></figure>
 <p>结果：可以看到test02文件里的完整内容。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704145002614.png" alt="image-20220704145002614" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704145002614.png" alt="图32 对test02使用cat" style="zoom:80%;" /></p>
 <p>后期向test02文件又追加了空白行和一行文本信息。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704150124662.png" alt="image-20220704150124662" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704150124662.png" alt="图33 对追加内容后的test02文件使用cat" style="zoom:80%;" /></p>
 <p><strong>输入测试4</strong>：test02测试-A命令参数</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat -A test02	# 使用-A参数对test02文件cat</span><br></pre></td></tr></table></figure>
 <p>结果：输出test02文件的全部内容，每一行结尾的结束符可见。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704152424046.png" alt="image-20220704152424046" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704152424046.png" alt="图34 cat测试-A参数" style="zoom:80%;" /></p>
 <p><strong>输入测试5</strong>：test02对非空行进行编号并显示（命令参数：-b）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat -b test02	# 使用-b参数对test02文件cat</span><br></pre></td></tr></table></figure>
 <p>结果：输出test02文件的全部内容（包括空白行），但是没有对空白行进行编号。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704151111934.png" alt="image-20220704151111934" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704151111934.png" alt="图35 cat测试-b参数" style="zoom:80%;" /></p>
 <p><strong>输入测试6</strong>：test02文件内容每一行结尾显示”$”：（命令参数：-e）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat -e test02	# 使用-e参数对test02文件cat</span><br></pre></td></tr></table></figure>
 <p>结果：输出test02文件的全部内容，每一行结尾的结束符可见。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704152715510.png" alt="image-20220704152715510" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704152715510.png" alt="图36 cat测试-e参数" style="zoom:80%;" /></p>
 <p><strong>输入测试7</strong>：test02文件内容带行号显示（命令参数：-n）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat -n test02	# 使用-n参数对test02文件cat</span><br></pre></td></tr></table></figure>
 <p>结果：可以看到test02文件内容与行号。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704150533477.png" alt="image-20220704150533477" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704150533477.png" alt="图37 cat测试-n参数" style="zoom:80%;" /></p>
 <p>总结：cat命令的显示顺序为从上到下。因此如果文件内容的行数过多（比如超过40行），使用cat命令无法在屏幕上看到完整的输出结果，仅能看到文件最末尾的40行内容的输出。</p>
 <h5 id="more命令"><a href="#more命令" class="headerlink" title="more命令"></a><code>more</code>命令</h5><p><strong>功能</strong>：可翻页检视，一页一页地显示文件内容。</p>
 <p><strong>格式</strong>：</p>
@@ -1108,23 +1108,31 @@
 <p><strong>输入测试1</strong>：test01文件按页显示</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more test01</span><br></pre></td></tr></table></figure>
 <p>结果：文件从第一页开始显示，左下角显示阅读进度。可以使用空格键向下翻页，使用b键向上翻页</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704161023915.png" alt="image-20220704161023915" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704161023915.png" alt="图38 more命令显示" style="zoom:80%;" /></p>
 <p>向下翻两页后，到达文件尾部99%的位置。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704161101850.png" alt="image-20220704161101850" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704161101850.png" alt="图39 more命令翻页" style="zoom:80%;" /></p>
 <p>在浏览文件的过程中，可以用”=”查看当前页最后一行内容对应的行号。（比如第一页对应的最后一行的行号为35）</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704161517579.png" alt="image-20220704161517579" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704161517579.png" alt="图40 more命令查看行号" style="zoom:80%;" /></p>
 <p>除此之外，还可以用”v”调用vi编辑器对文件内容进行编辑。输入”:f”可以当前文件的文件名以及目前显示的行数。输入”/[子串]”能够在文件中对子串内容进行匹配查找。</p>
 <p><strong>输入测试2</strong>：test01文件测试指定每页显示的行数（命令参数：-num(num = 10)）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more -10 test01</span><br></pre></td></tr></table></figure>
 <p>结果：test01文件内容每10行为1页显示。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704163340575.png" alt="image-20220704163340575" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704163340575.png" alt="图41 more命令指定每页行数" style="zoom:80%;" /></p>
 <p><strong>输入测试3</strong>：test02文件从第3行开始输出（命令参数：+num(num = 3)）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more +3 test02</span><br></pre></td></tr></table></figure>
 <p>结果：test02文件的前三行都是”this is a test.”，从第三行输出，则只输出一行”this is a test.”。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704163954960.png" alt="image-20220704163954960" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704163954960.png" alt="图42 more命令从指令行数开始" style="zoom:80%;" /></p>
 <p>总结：与cat命令相比，more命令提供的功能更加强大，能够完整查看文件并且在查看文件的同时可以对文件进行编辑，也可以调用shell执行命令。在查看行数较多文件时应优先采用more命令。</p>
 <h5 id="less命令"><a href="#less命令" class="headerlink" title="less命令"></a><code>less</code>命令</h5><p><strong>功能</strong>：与more类似，可以向前翻页</p>
-<h5 id="head命令"><a href="#head命令" class="headerlink" title="head命令"></a><code>head</code>命令</h5><h5 id="tail命令"><a href="#tail命令" class="headerlink" title="tail命令"></a><code>tail</code>命令</h5><h4 id="2、文件查找命令"><a href="#2、文件查找命令" class="headerlink" title="2、文件查找命令"></a>2、文件查找命令</h4><h5 id="find命令"><a href="#find命令" class="headerlink" title="find命令"></a><code>find</code>命令</h5><p><strong>功能</strong>：用于在指令目录下查找文件。缺省参数则在当前目录下查找子目录与文件</p>
+<p><strong>格式</strong>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">less [参数] 文件</span><br></pre></td></tr></table></figure>
+<h5 id="head命令"><a href="#head命令" class="headerlink" title="head命令"></a><code>head</code>命令</h5><p><strong>功能</strong>：可用于查看文件的开头部分的内容，有一个常用的参数 -n 用于显示行数，默认为 10，即显示 10 行的内容。</p>
+<p><strong>格式</strong>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head [参数] [文件]  </span><br></pre></td></tr></table></figure>
+<h5 id="tail命令"><a href="#tail命令" class="headerlink" title="tail命令"></a><code>tail</code>命令</h5><p><strong>功能</strong>：可用于查看文件的内容，有一个常用的参数 -f 常用于查阅正在改变的日志文件。</p>
+<p><strong>格式</strong>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail [参数] [文件]  </span><br></pre></td></tr></table></figure>
+<h4 id="2、文件查找命令"><a href="#2、文件查找命令" class="headerlink" title="2、文件查找命令"></a>2、文件查找命令</h4><h5 id="find命令"><a href="#find命令" class="headerlink" title="find命令"></a><code>find</code>命令</h5><p><strong>功能</strong>：用于在指令目录下查找文件。缺省参数则在当前目录下查找子目录与文件</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">find [文件路径] [表达式]</span><br><span class="line">find [PATH] [option] [action]</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">find 根据下列规则判断 path 和 expression，在命令列上第一个 - ( ) , ! 之前的部份为 path，之后的是 expression。如果 path 是空字串则使用目前路径，如果 expression 是空字串则使用 -<span class="built_in">print</span> 为预设 expression。</span></span><br><span class="line">find   path   -option   [   -print ]   [ -exec   -ok   command ]   &#123;&#125; \;</span><br></pre></td></tr></table></figure>
 <p><strong>选项与参数</strong>：</p>
@@ -1232,19 +1240,19 @@
 <p><strong>输入测试1</strong>：列出文件目录下符合后缀要求的文件。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">find . -name &quot;*.txt&quot;	# 将当前目录及其子目录下所有文件后缀为.txt的文件列出来</span><br><span class="line">find . -name &quot;*.cpp&quot;	# 将当前目录及其子目录下所有文件后缀为.cpp的文件列出来</span><br><span class="line">find . -name &quot;*.py&quot;		# 将当前目录及其子目录下所有文件后缀为.py的文件列出来</span><br><span class="line">find . -name &quot;*.asm&quot;	# 将当前目录及其子目录下所有文件后缀为.asm的文件列出来</span><br></pre></td></tr></table></figure>
 <p>结果：使用find命令能够输出查找到符合格式要求的文件路径，分别将test04.txt, test05.cpp, test06.py, test07.asm的路径列出。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704190006605.png" alt="image-20220704190006605" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704190006605.png" alt="图43 find查找对应后缀文件" style="zoom:80%;" /></p>
 <p><strong>输入测试2</strong>：列出当前目录及其子目录中的所有文件。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -type f</span><br></pre></td></tr></table></figure>
 <p>结果：分行列出了路径/home/c2200400109下的所有文件，包括隐藏文件。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704190643558.png" alt="image-20220704190643558" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704190643558.png" alt="图44 分行列出文件" style="zoom:80%;" /></p>
 <p><strong>输入测试3</strong>：查找当前目录及其子目录中所有文件长度为 0 的普通文件，并列出它们的完整路径。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -type f -size 0 -exec ls -l &#123;&#125; \;</span><br></pre></td></tr></table></figure>
 <p>结果：分行列出了所有空文件：test04.txt, text05.cpp, text06.py, text07.asm。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704191509583.png" alt="image-20220704191509583" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704191509583.png" alt="图45 查找并列出长度为0普通文件" style="zoom:80%;" /></p>
 <p><strong>输入测试4</strong>：将当前目录及其子目录下所有比test01文件更新的文件列出。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -newer test01</span><br></pre></td></tr></table></figure>
 <p>结果：将创建时间晚于test01的所有文件及文件夹列出：test02, test03, test04.txt, test05.cpp, test06.py, test07.asm, findtest。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704191828619.png" alt="image-20220704191828619" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704191828619.png" alt="图46 列出新文件" style="zoom:80%;" /></p>
 <h5 id="grep命令"><a href="#grep命令" class="headerlink" title="grep命令"></a><code>grep</code>命令</h5><p><strong>功能</strong>：用于查找文件中符合条件的字符串。在文本文件中查找指定模式的单词或短评，并在标准输出上显示包括给定字符串模式的所有行。若不指定任何文件名称，或是所给予的文件名为 <strong>-</strong>，则 grep 指令会从标准输入设备读取数据。</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grep [选项] 文件名</span><br><span class="line">grep [-abcEFGhHilLnqrsvVwxy][-A&lt;显示行数&gt;][-B&lt;显示列数&gt;][-C&lt;显示列数&gt;][-d&lt;进行动作&gt;][-e&lt;范本样式&gt;][-f&lt;范本文件&gt;][--help][范本样式][文件或目录...]</span><br></pre></td></tr></table></figure>
@@ -1372,15 +1380,15 @@
 <p><strong>输入测试1</strong>：在口令文件/etc/passwd中查找包含”root”的所有行。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep root /etc/passwd	# 模式串为root，在passwd文件中查找</span><br></pre></td></tr></table></figure>
 <p>结果：在passwd文件中找到包含root的行，并且标红高亮显示。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704201419046.png" alt="image-20220704201419046" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704201419046.png" alt="图47 列出包含root的行" style="zoom:80%;" /></p>
 <p><strong>输入测试2</strong>：在/home/c2200400109/test02中查找包含”test”的所有行。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep test /home/c2200400109</span><br></pre></td></tr></table></figure>
 <p>结果：在test02文件中找到了含有test的行并标红高亮显示</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704201628781.png" alt="image-20220704201628781" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704201628781.png" alt="图48 找到含test的行" style="zoom:80%;" /></p>
 <p><strong>输入测试3</strong>：在当前目录中，查找前缀有test字样的文件中包含test子串的文件，并打印出包含test的行。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;test1234&quot; &gt;&gt; test03	# 向test03文件追加一行含test的子串</span><br><span class="line">echo &quot;test1111&quot; &gt;&gt; test01	# 向test01文件追加一行含test的子串</span><br><span class="line">grep test test*</span><br></pre></td></tr></table></figure>
 <p>结果：在test01, test02, test03文件中均找到含有test的行</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704212728390.png" alt="image-20220704212728390" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704212728390.png" alt="图49 查找含test的行" style="zoom:80%;" /></p>
 <h3 id="六、系统用户和组的管理"><a href="#六、系统用户和组的管理" class="headerlink" title="六、系统用户和组的管理"></a>六、系统用户和组的管理</h3><h4 id="1、用户管理"><a href="#1、用户管理" class="headerlink" title="1、用户管理"></a>1、用户管理</h4><h5 id="useradd命令（配合passwd命令使用）"><a href="#useradd命令（配合passwd命令使用）" class="headerlink" title="useradd命令（配合passwd命令使用）"></a><code>useradd</code>命令（配合<code>passwd</code>命令使用）</h5><p><strong>功能</strong>：用来建立用户帐号。帐号建好之后，再用 passwd 设定帐号的密码。而可用 userdel 删除帐号。使用 useradd 指令所建立的帐号，实际上是保存在 /etc/passwd 文本文件中。</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd [-mMnr][-c &lt;备注&gt;][-d &lt;登入目录&gt;][-e &lt;有效期限&gt;][-f &lt;缓冲天数&gt;][-g &lt;群组&gt;][-G &lt;群组&gt;][-s &lt;shell&gt;][-u &lt;uid&gt;][用户帐号]</span><br><span class="line">useradd -D [-b][-e &lt;有效期限&gt;][-f &lt;缓冲天数&gt;][-g &lt;群组&gt;][-G &lt;群组&gt;][-s &lt;shell&gt;]</span><br></pre></td></tr></table></figure>
@@ -1389,62 +1397,62 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">选项与参数</th>
-<th style="text-align:center">含义</th>
+<th>选项与参数</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">-c&lt;备注&gt;</td>
-<td style="text-align:center">加上备注文字。备注文字会保存在passwd的备注栏位中</td>
+<td>-c&lt;备注&gt;</td>
+<td>加上备注文字。备注文字会保存在passwd的备注栏位中</td>
 </tr>
 <tr>
-<td style="text-align:center">-d&lt;登入目录&gt;</td>
-<td style="text-align:center">指定用户登入时的起始目录</td>
+<td>-d&lt;登入目录&gt;</td>
+<td>指定用户登入时的起始目录</td>
 </tr>
 <tr>
-<td style="text-align:center">-D</td>
-<td style="text-align:center">变更预设值</td>
+<td>-D</td>
+<td>变更预设值</td>
 </tr>
 <tr>
-<td style="text-align:center">-e&lt;有效期限&gt;</td>
-<td style="text-align:center">指定帐号的有效期限</td>
+<td>-e&lt;有效期限&gt;</td>
+<td>指定帐号的有效期限</td>
 </tr>
 <tr>
-<td style="text-align:center">-f&lt;缓冲天数&gt;</td>
-<td style="text-align:center">指定在密码过期后多少天即关闭该帐号</td>
+<td>-f&lt;缓冲天数&gt;</td>
+<td>指定在密码过期后多少天即关闭该帐号</td>
 </tr>
 <tr>
-<td style="text-align:center">-g&lt;群组&gt;</td>
-<td style="text-align:center">指定用户所属的群组</td>
+<td>-g&lt;群组&gt;</td>
+<td>指定用户所属的群组</td>
 </tr>
 <tr>
-<td style="text-align:center">-G&lt;群组&gt;</td>
-<td style="text-align:center">指定用户所属的附加群组</td>
+<td>-G&lt;群组&gt;</td>
+<td>指定用户所属的附加群组</td>
 </tr>
 <tr>
-<td style="text-align:center">-m</td>
-<td style="text-align:center">自动建立用户的登入目录</td>
+<td>-m</td>
+<td>自动建立用户的登入目录</td>
 </tr>
 <tr>
-<td style="text-align:center">-M</td>
-<td style="text-align:center">不要自动建立用户的登入目录</td>
+<td>-M</td>
+<td>不要自动建立用户的登入目录</td>
 </tr>
 <tr>
-<td style="text-align:center">-n</td>
-<td style="text-align:center">取消建立以用户名称为名的群组</td>
+<td>-n</td>
+<td>取消建立以用户名称为名的群组</td>
 </tr>
 <tr>
-<td style="text-align:center">-r</td>
-<td style="text-align:center">建立系统帐号</td>
+<td>-r</td>
+<td>建立系统帐号</td>
 </tr>
 <tr>
-<td style="text-align:center">-s</td>
-<td style="text-align:center">指定用户登入后所使用的shell</td>
+<td>-s</td>
+<td>指定用户登入后所使用的shell</td>
 </tr>
 <tr>
-<td style="text-align:center">-u</td>
-<td style="text-align:center">指定用户ID</td>
+<td>-u</td>
+<td>指定用户ID</td>
 </tr>
 </tbody>
 </table>
@@ -1452,11 +1460,11 @@
 <p><strong>输入测试1</strong>：创建用户hiter001，自动创建登录目录。并设置密码为123456。进入hiter001用户并确认身份。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">useradd -m hiter001			# 创建用户hiter001</span><br><span class="line">passwd hiter001 &lt;&lt; EOF		# 设置密码</span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">123456</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">123456</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">EOF</span></span><br><span class="line">su hiter001					# 切换用户</span><br><span class="line">whoami						# 确认身份</span><br></pre></td></tr></table></figure>
 <p>结果：创建用户成功，并成功配置密码。切换用户后，确认了hiter001的身份。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705111509601.png" alt="image-20220705111509601" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705111509601.png" alt="图50 创建用户并设置密码" style="zoom:80%;" /></p>
 <p><strong>输入测试2</strong>：创建用户hiter002，自动创建登录目录。将当前工作目录切换到新创建的用户hiter002家目录，使用pwd命令打印出当前的工作目录。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">useradd -m hiter002</span><br><span class="line">cd /home/hiter002</span><br><span class="line">pwd</span><br></pre></td></tr></table></figure>
 <p>结果：创建用户hiter002成功，并且能够切换至家目录，打印出当前工作目录。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705112006318.png" alt="image-20220705112006318" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705112006318.png" alt="图51 创建用户并切换目录" style="zoom:80%;" /></p>
 <h5 id="usermod命令"><a href="#usermod命令" class="headerlink" title="usermod命令"></a><code>usermod</code>命令</h5><p><strong>功能</strong>：用于修改用户账号的各项设定，例如主目录、私有组、shell等内容。</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod [-LU][-c &lt;备注&gt;][-d &lt;登入目录&gt;][-e &lt;有效期限&gt;][-f &lt;缓冲天数&gt;][-g &lt;群组&gt;][-G &lt;群组&gt;][-l &lt;帐号名称&gt;][-s &lt;shell&gt;][-u &lt;uid&gt;][用户帐号]</span><br></pre></td></tr></table></figure>
@@ -1465,54 +1473,54 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">选项与参数</th>
-<th style="text-align:center">含义</th>
+<th>选项与参数</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">-c&lt;备注&gt;</td>
-<td style="text-align:center">修改用户帐号的备注文字</td>
+<td>-c&lt;备注&gt;</td>
+<td>修改用户帐号的备注文字</td>
 </tr>
 <tr>
-<td style="text-align:center">-d&lt;登入目录&gt;</td>
-<td style="text-align:center">修改用户登入时的目录</td>
+<td>-d&lt;登入目录&gt;</td>
+<td>修改用户登入时的目录</td>
 </tr>
 <tr>
-<td style="text-align:center">-e&lt;有效期限&gt;</td>
-<td style="text-align:center">修改帐号的有效期限</td>
+<td>-e&lt;有效期限&gt;</td>
+<td>修改帐号的有效期限</td>
 </tr>
 <tr>
-<td style="text-align:center">-f&lt;缓冲天数&gt;</td>
-<td style="text-align:center">修改在密码过期后多少天即关闭该帐号</td>
+<td>-f&lt;缓冲天数&gt;</td>
+<td>修改在密码过期后多少天即关闭该帐号</td>
 </tr>
 <tr>
-<td style="text-align:center">-g&lt;群组&gt;</td>
-<td style="text-align:center">修改用户所属的群组</td>
+<td>-g&lt;群组&gt;</td>
+<td>修改用户所属的群组</td>
 </tr>
 <tr>
-<td style="text-align:center">-G&lt;群组&gt;</td>
-<td style="text-align:center">修改用户所属的附加群组</td>
+<td>-G&lt;群组&gt;</td>
+<td>修改用户所属的附加群组</td>
 </tr>
 <tr>
-<td style="text-align:center">-l&lt;帐号名称&gt;</td>
-<td style="text-align:center">修改用户帐号名称</td>
+<td>-l&lt;帐号名称&gt;</td>
+<td>修改用户帐号名称</td>
 </tr>
 <tr>
-<td style="text-align:center">-L</td>
-<td style="text-align:center">锁定用户密码，使密码无效</td>
+<td>-L</td>
+<td>锁定用户密码，使密码无效</td>
 </tr>
 <tr>
-<td style="text-align:center">-s</td>
-<td style="text-align:center">修改用户登入后所使用的shell</td>
+<td>-s</td>
+<td>修改用户登入后所使用的shell</td>
 </tr>
 <tr>
-<td style="text-align:center">-u</td>
-<td style="text-align:center">修改用户ID</td>
+<td>-u</td>
+<td>修改用户ID</td>
 </tr>
 <tr>
-<td style="text-align:center">-U</td>
-<td style="text-align:center">解除密码锁定</td>
+<td>-U</td>
+<td>解除密码锁定</td>
 </tr>
 </tbody>
 </table>
@@ -1520,11 +1528,11 @@
 <p><strong>输入测试1</strong>：修改账号hiter002的名称为Hitwher。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grep hiter002 /etc/passwd</span><br><span class="line">usermod -l Hitwher hiter002</span><br><span class="line">grep Hitwher /etc/passwd</span><br></pre></td></tr></table></figure>
 <p>结果：用户的名称从hiter002变更为Hitwher，但是已经创建的用户文件（/home/hiter002）没有发生改变。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705150326911.png" alt="image-20220705150326911" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705150326911.png" alt="图52 改变用户名称" style="zoom:80%;" /></p>
 <p><strong>输入测试2</strong>：更改用户Hitwher的uid，将其改为1214。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grep Hitwher /etc/passwd</span><br><span class="line">usermod -u 1214 Hitwher</span><br><span class="line">grep Hitwher /etc/passwd</span><br></pre></td></tr></table></figure>
 <p>结果：使用usermod命令并配合-u参数将用户Hitwher的uid从1004变更为1214。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705151532737.png" alt="image-20220705151532737" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705151532737.png" alt="图53 改变用户的uid" style="zoom:80%;" /></p>
 <h4 id="2、组管理"><a href="#2、组管理" class="headerlink" title="2、组管理"></a>2、组管理</h4><h5 id="groupadd命令"><a href="#groupadd命令" class="headerlink" title="groupadd命令"></a><code>groupadd</code>命令</h5><p><strong>功能</strong>：用于创建一个新的工作组，新工作组的信息将被添加到系统文件中。</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">groupadd [参数] 组名</span><br><span class="line">groupadd [-g gid [-o]] [-r] [-f] group</span><br></pre></td></tr></table></figure>
@@ -1533,30 +1541,30 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">选项与参数</th>
-<th style="text-align:center">含义</th>
+<th>选项与参数</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">-g</td>
-<td style="text-align:center">指定新建工作组的 id</td>
+<td>-g</td>
+<td>指定新建工作组的 id</td>
 </tr>
 <tr>
-<td style="text-align:center">-r</td>
-<td style="text-align:center">创建系统工作组，系统工作组的组 ID 小于 500</td>
+<td>-r</td>
+<td>创建系统工作组，系统工作组的组 ID 小于 500</td>
 </tr>
 <tr>
-<td style="text-align:center">-K</td>
-<td style="text-align:center">覆盖配置文件 /etc/login.defs</td>
+<td>-K</td>
+<td>覆盖配置文件 /etc/login.defs</td>
 </tr>
 <tr>
-<td style="text-align:center">-o</td>
-<td style="text-align:center">允许添加组 ID 号不唯一的工作组</td>
+<td>-o</td>
+<td>允许添加组 ID 号不唯一的工作组</td>
 </tr>
 <tr>
-<td style="text-align:center">-f,—force</td>
-<td style="text-align:center">如果指定的组已经存在，此选项将失明了仅以成功状态退出</td>
+<td>-f,—force</td>
+<td>如果指定的组已经存在，此选项将失明了仅以成功状态退出</td>
 </tr>
 </tbody>
 </table>
@@ -1564,7 +1572,7 @@
 <p><strong>输入测试</strong>：创建一个新的组，并添加组ID(1111)。在/etc/group文件中检验添加是否成功。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">groupadd -g 1111 HITwh</span><br><span class="line">grep HITwh /etc/group</span><br></pre></td></tr></table></figure>
 <p>结果：添加了ID为1111的用户组HITwh。使用grep可以在/etc/group找到这一行。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705143933085.png" alt="image-20220705143933085" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705143933085.png" alt="图54 创建新的组" style="zoom:80%;" /></p>
 <h5 id="groupdel命令"><a href="#groupdel命令" class="headerlink" title="groupdel命令"></a><code>groupdel</code>命令</h5><p><strong>功能</strong>：用于删除群组。</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">groupdel</span><span class="meta"> [群组名称]</span></span><br></pre></td></tr></table></figure>
@@ -1572,7 +1580,7 @@
 <p><strong>输入测试</strong>：删除用户组HITwh。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grep HITwh /etc/group</span><br><span class="line">groupdel HITwh</span><br><span class="line">grep HITwh /etc/group</span><br></pre></td></tr></table></figure>
 <p>结果：成功删除用户组HITwh，使用grep命令无法在/etc/group文件中找到关于HITwh用户组的信息。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705153536868.png" alt="image-20220705153536868" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705153536868.png" alt="图55 删除用户组" style="zoom:80%;" /></p>
 <h3 id="七、网络配置与网络状态分析和检查"><a href="#七、网络配置与网络状态分析和检查" class="headerlink" title="七、网络配置与网络状态分析和检查"></a>七、网络配置与网络状态分析和检查</h3><h4 id="1、网络配置"><a href="#1、网络配置" class="headerlink" title="1、网络配置"></a>1、网络配置</h4><h5 id="ifconfig命令"><a href="#ifconfig命令" class="headerlink" title="ifconfig命令"></a><code>ifconfig</code>命令</h5><p><strong>功能</strong>：用于设置网络设备的状态，或是显示目前的设置。</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig [网络设备][down up -allmulti -arp -promisc][add&lt;地址&gt;][del&lt;地址&gt;][&lt;hw&lt;网络设备类型&gt;&lt;硬件地址&gt;][io_addr&lt;I/O地址&gt;][irq&lt;IRQ地址&gt;][media&lt;网络媒介类型&gt;][mem_start&lt;内存地址&gt;][metric&lt;数目&gt;][mtu&lt;字节&gt;][netmask&lt;子网掩码&gt;][tunnel&lt;地址&gt;][-broadcast&lt;地址&gt;][-pointopoint&lt;地址&gt;][IP地址]</span><br></pre></td></tr></table></figure>
@@ -1581,82 +1589,82 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">选项与参数</th>
-<th style="text-align:center">含义</th>
+<th>选项与参数</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">add&lt;地址&gt;</td>
-<td style="text-align:center">设置网络设备IPv6的IP地址</td>
+<td>add&lt;地址&gt;</td>
+<td>设置网络设备IPv6的IP地址</td>
 </tr>
 <tr>
-<td style="text-align:center">del&lt;地址&gt;</td>
-<td style="text-align:center">删除网络设备IPv6的IP地址</td>
+<td>del&lt;地址&gt;</td>
+<td>删除网络设备IPv6的IP地址</td>
 </tr>
 <tr>
-<td style="text-align:center">down</td>
-<td style="text-align:center">关闭指定的网络设备</td>
+<td>down</td>
+<td>关闭指定的网络设备</td>
 </tr>
 <tr>
-<td style="text-align:center"><hw<网络设备类型>&lt;硬件地址&gt;</td>
-<td style="text-align:center">设置网络设备的类型与硬件地址</td>
+<td><hw<网络设备类型>&lt;硬件地址&gt;</td>
+<td>设置网络设备的类型与硬件地址</td>
 </tr>
 <tr>
-<td style="text-align:center">io_addr<I/O地址></td>
-<td style="text-align:center">设置网络设备的I/O地址</td>
+<td>io_addr<I/O地址></td>
+<td>设置网络设备的I/O地址</td>
 </tr>
 <tr>
-<td style="text-align:center">irq<IRQ地址></td>
-<td style="text-align:center">设置网络设备的IRQ</td>
+<td>irq<IRQ地址></td>
+<td>设置网络设备的IRQ</td>
 </tr>
 <tr>
-<td style="text-align:center">media&lt;网络媒介类型&gt;</td>
-<td style="text-align:center">设置网络设备的媒介类型</td>
+<td>media&lt;网络媒介类型&gt;</td>
+<td>设置网络设备的媒介类型</td>
 </tr>
 <tr>
-<td style="text-align:center">mem_start&lt;内存地址&gt;</td>
-<td style="text-align:center">设置网络设备在主内存所占用的起始地址</td>
+<td>mem_start&lt;内存地址&gt;</td>
+<td>设置网络设备在主内存所占用的起始地址</td>
 </tr>
 <tr>
-<td style="text-align:center">metric&lt;数目&gt;</td>
-<td style="text-align:center">指定在计算数据包的转送次数时，所要加上的数目</td>
+<td>metric&lt;数目&gt;</td>
+<td>指定在计算数据包的转送次数时，所要加上的数目</td>
 </tr>
 <tr>
-<td style="text-align:center">mtu&lt;字节&gt;</td>
-<td style="text-align:center">设置网络设备的MTU</td>
+<td>mtu&lt;字节&gt;</td>
+<td>设置网络设备的MTU</td>
 </tr>
 <tr>
-<td style="text-align:center">netmask&lt;子网掩码&gt;</td>
-<td style="text-align:center">设置网络设备的子网掩码</td>
+<td>netmask&lt;子网掩码&gt;</td>
+<td>设置网络设备的子网掩码</td>
 </tr>
 <tr>
-<td style="text-align:center">tunnel&lt;地址&gt;</td>
-<td style="text-align:center">建立IPv4与IPv6之间的隧道通信地址</td>
+<td>tunnel&lt;地址&gt;</td>
+<td>建立IPv4与IPv6之间的隧道通信地址</td>
 </tr>
 <tr>
-<td style="text-align:center">up</td>
-<td style="text-align:center">启动指定的网络设备</td>
+<td>up</td>
+<td>启动指定的网络设备</td>
 </tr>
 <tr>
-<td style="text-align:center">-broadcast&lt;地址&gt;</td>
-<td style="text-align:center">将要送往指定地址的数据包当成广播数据包来处理</td>
+<td>-broadcast&lt;地址&gt;</td>
+<td>将要送往指定地址的数据包当成广播数据包来处理</td>
 </tr>
 <tr>
-<td style="text-align:center">-pointopoint&lt;地址&gt;</td>
-<td style="text-align:center">与指定地址的网络设备建立直接连线，此模式具有保密功能</td>
+<td>-pointopoint&lt;地址&gt;</td>
+<td>与指定地址的网络设备建立直接连线，此模式具有保密功能</td>
 </tr>
 <tr>
-<td style="text-align:center">-promisc</td>
-<td style="text-align:center">关闭或启动指定网络设备的promiscuous模式</td>
+<td>-promisc</td>
+<td>关闭或启动指定网络设备的promiscuous模式</td>
 </tr>
 <tr>
-<td style="text-align:center">[IP地址]</td>
-<td style="text-align:center">指定网络设备的IP地址</td>
+<td>[IP地址]</td>
+<td>指定网络设备的IP地址</td>
 </tr>
 <tr>
-<td style="text-align:center">[网络设备]</td>
-<td style="text-align:center">指定网络设备的名称</td>
+<td>[网络设备]</td>
+<td>指定网络设备的名称</td>
 </tr>
 </tbody>
 </table>
@@ -1664,11 +1672,11 @@
 <p><strong>输入测试1</strong>：使用ifconfig命令查看网络配置信息。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
 <p>结果：显示了网络设备设备信息，分别是ens33和lo。显示了两台网络设备的ip和子网掩码。ens33是RedHat系列的网卡名称，其中的en标识ethernet（以太网），s表示热插拔网卡，USB一类的扩展槽索引号。数字是根据MAC地址和主板信息计算得出的唯一序列。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705160212068.png" alt="image-20220705160212068" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705160212068.png" alt="图56 ifconfig查看" style="zoom:80%;" /></p>
 <p><strong>输入测试2</strong>：关闭和启动指令的网络设备（以太网卡）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ifconfig ens33 down</span><br><span class="line">ifconfig ens33 up</span><br></pre></td></tr></table></figure>
 <p>结果：第一条命令使用后，ens33设备被关闭；第二条命令使用后，ens33设备启动。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705160834402.png" alt="image-20220705160834402" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705160834402.png" alt="图57 关闭和开启网络设备" style="zoom:80%;" /></p>
 <h5 id="netstat命令"><a href="#netstat命令" class="headerlink" title="netstat命令"></a><code>netstat</code>命令</h5><p><strong>功能</strong>：用于显示网络状态。</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat [-acCeFghilMnNoprstuvVwx][-A&lt;网络类型&gt;][--ip]</span><br></pre></td></tr></table></figure>
@@ -1677,102 +1685,102 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">选项与参数</th>
-<th style="text-align:center">含义</th>
+<th>选项与参数</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">-a或—all</td>
-<td style="text-align:center">显示所有连线中的Socket</td>
+<td>-a或—all</td>
+<td>显示所有连线中的Socket</td>
 </tr>
 <tr>
-<td style="text-align:center">-A&lt;网络类型&gt;或—&lt;网络类型&gt;</td>
-<td style="text-align:center">列出该网络类型连线中的相关地址</td>
+<td>-A&lt;网络类型&gt;或—&lt;网络类型&gt;</td>
+<td>列出该网络类型连线中的相关地址</td>
 </tr>
 <tr>
-<td style="text-align:center">-c或—continuous</td>
-<td style="text-align:center">持续列出网络状态</td>
+<td>-c或—continuous</td>
+<td>持续列出网络状态</td>
 </tr>
 <tr>
-<td style="text-align:center">-C或—cache</td>
-<td style="text-align:center">显示路由器配置的快取信息</td>
+<td>-C或—cache</td>
+<td>显示路由器配置的快取信息</td>
 </tr>
 <tr>
-<td style="text-align:center">-e或—extend</td>
-<td style="text-align:center">显示网络其他相关信息</td>
+<td>-e或—extend</td>
+<td>显示网络其他相关信息</td>
 </tr>
 <tr>
-<td style="text-align:center">-F或—fib</td>
-<td style="text-align:center">显示路由缓存</td>
+<td>-F或—fib</td>
+<td>显示路由缓存</td>
 </tr>
 <tr>
-<td style="text-align:center">-g或—groups</td>
-<td style="text-align:center">显示多重广播功能群组组员名单</td>
+<td>-g或—groups</td>
+<td>显示多重广播功能群组组员名单</td>
 </tr>
 <tr>
-<td style="text-align:center">-i或—interfaces</td>
-<td style="text-align:center">显示网络界面信息表单</td>
+<td>-i或—interfaces</td>
+<td>显示网络界面信息表单</td>
 </tr>
 <tr>
-<td style="text-align:center">-l或—listening</td>
-<td style="text-align:center">显示监控中的服务器的Socket</td>
+<td>-l或—listening</td>
+<td>显示监控中的服务器的Socket</td>
 </tr>
 <tr>
-<td style="text-align:center">-M或—masquerade</td>
-<td style="text-align:center">显示伪装的网络连线</td>
+<td>-M或—masquerade</td>
+<td>显示伪装的网络连线</td>
 </tr>
 <tr>
-<td style="text-align:center">-n或—numeric</td>
-<td style="text-align:center">直接使用IP地址，而不通过域名服务器</td>
+<td>-n或—numeric</td>
+<td>直接使用IP地址，而不通过域名服务器</td>
 </tr>
 <tr>
-<td style="text-align:center">-N或—netlink或—symbolic</td>
-<td style="text-align:center">显示网络硬件外围设备的符号连接名称</td>
+<td>-N或—netlink或—symbolic</td>
+<td>显示网络硬件外围设备的符号连接名称</td>
 </tr>
 <tr>
-<td style="text-align:center">-o或—timers</td>
-<td style="text-align:center">显示计时器</td>
+<td>-o或—timers</td>
+<td>显示计时器</td>
 </tr>
 <tr>
-<td style="text-align:center">-p或—programs</td>
-<td style="text-align:center">显示正在使用Socket的程序识别码和程序名称</td>
+<td>-p或—programs</td>
+<td>显示正在使用Socket的程序识别码和程序名称</td>
 </tr>
 <tr>
-<td style="text-align:center">-r或—route</td>
-<td style="text-align:center">显示Routing Table</td>
+<td>-r或—route</td>
+<td>显示Routing Table</td>
 </tr>
 <tr>
-<td style="text-align:center">-s或—statistics</td>
-<td style="text-align:center">显示网络工作信息统计表</td>
+<td>-s或—statistics</td>
+<td>显示网络工作信息统计表</td>
 </tr>
 <tr>
-<td style="text-align:center">-t或—tcp</td>
-<td style="text-align:center">显示TCP传输协议的连线状况</td>
+<td>-t或—tcp</td>
+<td>显示TCP传输协议的连线状况</td>
 </tr>
 <tr>
-<td style="text-align:center">-u或—udp</td>
-<td style="text-align:center">显示UDP传输协议的连线状况</td>
+<td>-u或—udp</td>
+<td>显示UDP传输协议的连线状况</td>
 </tr>
 <tr>
-<td style="text-align:center">-v或—verbose</td>
-<td style="text-align:center">显示指令执行过程</td>
+<td>-v或—verbose</td>
+<td>显示指令执行过程</td>
 </tr>
 <tr>
-<td style="text-align:center">-V或—version</td>
-<td style="text-align:center">显示版本信息</td>
+<td>-V或—version</td>
+<td>显示版本信息</td>
 </tr>
 <tr>
-<td style="text-align:center">-w或—raw</td>
-<td style="text-align:center">显示RAW传输协议的连线状况</td>
+<td>-w或—raw</td>
+<td>显示RAW传输协议的连线状况</td>
 </tr>
 <tr>
-<td style="text-align:center">-x或—unix</td>
-<td style="text-align:center">此参数的效果和指定”-A unix”参数相同</td>
+<td>-x或—unix</td>
+<td>此参数的效果和指定”-A unix”参数相同</td>
 </tr>
 <tr>
-<td style="text-align:center">—ip或—inet</td>
-<td style="text-align:center">此参数的效果和指定”-A inet”参数相同</td>
+<td>—ip或—inet</td>
+<td>此参数的效果和指定”-A inet”参数相同</td>
 </tr>
 </tbody>
 </table>
@@ -1780,15 +1788,15 @@
 <p><strong>输入测试1</strong>：查看网络监听端口（命令参数：-lnp）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -lnp</span><br></pre></td></tr></table></figure>
 <p>结果：输出网络端口的监听结果。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705170634657.png" alt="image-20220705170634657" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705170634657.png" alt="图58 查看网络监听端口" style="zoom:80%;" /></p>
 <p><strong>输入测试2</strong>：显示详细的TCP传输协议和UDP的连线状况。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">netstat --tcp</span><br><span class="line">netstat --udp</span><br></pre></td></tr></table></figure>
 <p>结果：只打印表头，没有显示连线状况。分析原因：输入命令不完整，只显示端口，但没有进行套接字监听。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705170251733.png" alt="image-20220705170251733" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705170251733.png" alt="图59 查看tcp和udp连线状况" style="zoom:80%;" /></p>
 <p><strong>输入测试3</strong>：显示Routing Table（命令参数：-r）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -r</span><br></pre></td></tr></table></figure>
 <p>结果：输出两行，包括目标ip、子网掩码、flags、MSS Window、设备信息。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705170046349.png" alt="image-20220705170046349" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705170046349.png" alt="图60 显示Routing Table" style="zoom:80%;" /></p>
 <h4 id="2、网络状态分析"><a href="#2、网络状态分析" class="headerlink" title="2、网络状态分析"></a>2、网络状态分析</h4><h5 id="ping命令"><a href="#ping命令" class="headerlink" title="ping命令"></a><code>ping</code>命令</h5><p><strong>功能</strong>：用于检测主机。使用 ICMP 传输协议，发出要求回应的信息，若远端主机的网络功能没有问题，就会回应该信息，因而得知该主机运作正常。</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping [-dfnqrRv][-c&lt;完成次数&gt;][-i&lt;间隔秒数&gt;][-I&lt;网络界面&gt;][-l&lt;前置载入&gt;][-p&lt;范本样式&gt;][-s&lt;数据包大小&gt;][-t&lt;存活数值&gt;][主机名称或IP地址]</span><br></pre></td></tr></table></figure>
@@ -1797,74 +1805,74 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">选项与参数</th>
-<th style="text-align:center">含义</th>
+<th>选项与参数</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">-d</td>
-<td style="text-align:center">使用Socket的SO_DEBUG功能</td>
+<td>-d</td>
+<td>使用Socket的SO_DEBUG功能</td>
 </tr>
 <tr>
-<td style="text-align:center">-c &lt;完成次数&gt;</td>
-<td style="text-align:center">设置完成要求回应的次数</td>
+<td>-c &lt;完成次数&gt;</td>
+<td>设置完成要求回应的次数</td>
 </tr>
 <tr>
-<td style="text-align:center">-f</td>
-<td style="text-align:center">极限检测</td>
+<td>-f</td>
+<td>极限检测</td>
 </tr>
 <tr>
-<td style="text-align:center">-i&lt;间隔秒数&gt;</td>
-<td style="text-align:center">指定收发信息的间隔时间</td>
+<td>-i&lt;间隔秒数&gt;</td>
+<td>指定收发信息的间隔时间</td>
 </tr>
 <tr>
-<td style="text-align:center">-I&lt;网络界面&gt;</td>
-<td style="text-align:center">使用指定的网络接口送出数据包</td>
+<td>-I&lt;网络界面&gt;</td>
+<td>使用指定的网络接口送出数据包</td>
 </tr>
 <tr>
-<td style="text-align:center">-l&lt;前置载入&gt;</td>
-<td style="text-align:center">设置在送出要求信息之前，先行发出的数据包</td>
+<td>-l&lt;前置载入&gt;</td>
+<td>设置在送出要求信息之前，先行发出的数据包</td>
 </tr>
 <tr>
-<td style="text-align:center">-n</td>
-<td style="text-align:center">只输出数值</td>
+<td>-n</td>
+<td>只输出数值</td>
 </tr>
 <tr>
-<td style="text-align:center">-p&lt;范本样式&gt;</td>
-<td style="text-align:center">设置填满数据包的范本样式</td>
+<td>-p&lt;范本样式&gt;</td>
+<td>设置填满数据包的范本样式</td>
 </tr>
 <tr>
-<td style="text-align:center">-q</td>
-<td style="text-align:center">不显示指令执行过程，开头和结尾的相关信息除外</td>
+<td>-q</td>
+<td>不显示指令执行过程，开头和结尾的相关信息除外</td>
 </tr>
 <tr>
-<td style="text-align:center">-r</td>
-<td style="text-align:center">忽略普通的Routing Table，直接将数据包送到远端主机上</td>
+<td>-r</td>
+<td>忽略普通的Routing Table，直接将数据包送到远端主机上</td>
 </tr>
 <tr>
-<td style="text-align:center">-R</td>
-<td style="text-align:center">记录路由过程</td>
+<td>-R</td>
+<td>记录路由过程</td>
 </tr>
 <tr>
-<td style="text-align:center">-s&lt;数据包大小&gt;</td>
-<td style="text-align:center">设置数据包的大小</td>
+<td>-s&lt;数据包大小&gt;</td>
+<td>设置数据包的大小</td>
 </tr>
 <tr>
-<td style="text-align:center">-t&lt;存活数值&gt;</td>
-<td style="text-align:center">设置存活数值TTL的大小</td>
+<td>-t&lt;存活数值&gt;</td>
+<td>设置存活数值TTL的大小</td>
 </tr>
 <tr>
-<td style="text-align:center">-v</td>
-<td style="text-align:center">详细显示指令的执行过程</td>
+<td>-v</td>
+<td>详细显示指令的执行过程</td>
 </tr>
 <tr>
-<td style="text-align:center">-w&lt;最后期限&gt;</td>
-<td style="text-align:center">在最后期限秒后退出</td>
+<td>-w&lt;最后期限&gt;</td>
+<td>在最后期限秒后退出</td>
 </tr>
 <tr>
-<td style="text-align:center">-W&lt;一段时间&gt;</td>
-<td style="text-align:center">在等待一段时间秒后开始执行</td>
+<td>-W&lt;一段时间&gt;</td>
+<td>在等待一段时间秒后开始执行</td>
 </tr>
 </tbody>
 </table>
@@ -1872,44 +1880,44 @@
 <p><strong>输入测试1</strong>：检测是否能与校园网（www.hitwh.edu.cn）连通。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping www.hitwh.edu.cn</span><br></pre></td></tr></table></figure>
 <p>结果：显示了相应内容，ping命令将域名转换为IP，显示ttl（生存时间），即数据包能在网络上存在多少时间。本地机器会发出一个数据包，数据包经过一定数量的路由器传送到目的主机，但是由于很多的原因，一些数据包不能正常传送到目的主机，那如果不给这些数据包一个生存时间的话，这些数据包会一直在网络上传送，导致网络开销的增大。当数据包传送到一个路由器之后，TTL就自动减1，如果减到0了还是没有传送到目的主机，那么就自动丢失。显示了响应时间time，数值小表示连通速度快。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705163605416.png" alt="image-20220705163605416" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705163605416.png" alt="图61 ping测试" style="zoom:80%;" /></p>
 <p><strong>输入测试2</strong>：测试是否与baidu.com连通，指定接收包的次数为5。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping -c 5 baidu.com</span><br></pre></td></tr></table></figure>
 <p>结果：5次后结束发送数据包。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705164021373.png" alt="image-20220705164021373" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705164021373.png" alt="图62 ping5次测试" style="zoom:80%;" /></p>
 <h2 id="实验2"><a href="#实验2" class="headerlink" title="实验2"></a>实验2</h2><h4 id="1、创建一个shell脚本程序：输入圆半径值，输出圆面积的值"><a href="#1、创建一个shell脚本程序：输入圆半径值，输出圆面积的值" class="headerlink" title="1、创建一个shell脚本程序：输入圆半径值，输出圆面积的值"></a>1、创建一个shell脚本程序：输入圆半径值，输出圆面积的值</h4><p>程序源代码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Program:</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">User input a <span class="built_in">float</span> number as radius of a circle.</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Program outputs the area of this circle.</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">History:</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2022/07/05	2200400109 gingkocyx	1st_release</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">定义圆周率PI</span></span><br><span class="line">PI=3.1415926535</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输入圆的半径值</span></span><br><span class="line">echo &quot;input radius of a circle:&quot;</span><br><span class="line">read r</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输出圆的面积值</span></span><br><span class="line">echo &quot;The area of circle is:&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">调用系统自带的awk计算器完成浮点数的计算</span></span><br><span class="line">echo &quot;$r $r $PI&quot; | awk &#x27;&#123;print($1*$2*$3)&#125;&#x27;</span><br></pre></td></tr></table></figure>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705194207762.png" alt="image-20220705194207762" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705194207762.png" alt="图1 程序1源代码文件截图" style="zoom:80%;" /></p>
 <p>遇到的主要问题是浮点数计算。如果用乘号只能完成整数运算。由于软件包的冲突问题，未能成功安装bc计算器。最终使用Linux系统自带的awk计算器完成计算。</p>
 <p><strong>运行结果分析</strong>：</p>
 <p><strong>输入测试1</strong>：输入半径：r=1，输出：area=3.14159，符合预期。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705202439216.png" alt="image-20220705202439216" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705202439216.png" alt="图2 输入测试1" style="zoom:80%;" /></p>
 <p><strong>输入测试2</strong>：输入半径：r=2，输出：area=12.5664，符合预期。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705202506838.png" alt="image-20220705202506838" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705202506838.png" alt="图3 输入测试2" style="zoom:80%;" /></p>
 <p><strong>输入测试3</strong>：输入半径：r=11.1，输出：area=387.076，符合预期。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705202543774.png" alt="image-20220705202543774" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705202543774.png" alt="图4 输入测试3" style="zoom:80%;" /></p>
 <p>以下为运行截图：</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705194512120.png" alt="image-20220705194512120" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705194512120.png" alt="图5 运行截图" style="zoom:80%;" /></p>
 <h3 id="2、编程求解n个数的和，要求n由键盘输入，使用循环语句完成"><a href="#2、编程求解n个数的和，要求n由键盘输入，使用循环语句完成" class="headerlink" title="2、编程求解n个数的和，要求n由键盘输入，使用循环语句完成"></a>2、编程求解n个数的和，要求n由键盘输入，使用循环语句完成</h3><p>程序源代码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Program:</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">user input n, <span class="keyword">then</span> input n numbers.</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">calculate <span class="built_in">sum</span> of n numbers.</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="keyword">then</span> output <span class="built_in">sum</span></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">接收用户输入n</span></span><br><span class="line">read -p &quot;input n:&quot; n</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">循环变量i</span></span><br><span class="line">i=1</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">sum</span>存放结果</span></span><br><span class="line">sum=0</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">循环语句</span></span><br><span class="line"><span class="meta prompt_">while(($</span><span class="language-bash">i &lt;= n))</span></span><br><span class="line">do</span><br><span class="line"><span class="meta prompt_">	# </span><span class="language-bash">输入数字</span></span><br><span class="line">	read -p &quot;No.$i num:&quot; num</span><br><span class="line"><span class="meta prompt_">	# </span><span class="language-bash">求和</span></span><br><span class="line">	sum=`expr $sum + $num`</span><br><span class="line"><span class="meta prompt_">	# </span><span class="language-bash">循环变量自增</span></span><br><span class="line">	let &quot;i++&quot;</span><br><span class="line">done</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输出结果</span></span><br><span class="line">echo &quot;sum is :&quot;</span><br><span class="line">echo $sum</span><br></pre></td></tr></table></figure>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705201728741.png" alt="image-20220705201728741" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705201728741.png" alt="图6 程序2源代码截图" style="zoom:80%;" /></p>
 <p>使用while循环语句完成数字的输入和求和运算。</p>
 <p><strong>运行结果分析</strong>：</p>
 <p><strong>输入测试1</strong>：n=5，数字分别为：1, -1, 20, 30, 8。输出结果为：58。符合预期。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705201323025.png" alt="image-20220705201323025" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705201323025.png" alt="图7 输入测试1" style="zoom:80%;" /></p>
 <p><strong>输入测试2</strong>：n=10，数字分别为：1, 2, 3, 4, 5, 6, 7, 8, 9, 10。输出结果为：55。符合预期。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705201448884.png" alt="image-20220705201448884" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705201448884.png" alt="图8 输入测试2" style="zoom:80%;" /></p>
 <p><strong>输入测试3</strong>：n=4，数字分别为：1234567890, 9876543210, 999999999999, 1。输出结果为：1011111111100。符合预期。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705201635239.png" alt="image-20220705201635239" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705201635239.png" alt="图9 输入测试3" style="zoom:80%;" /></p>
 <h3 id="三、利用for循环将当前目录下的指定扩展名（由输入决定）文件转移到指定的目录下，并按照文件大小排序，并显示移动后指定目录的内容"><a href="#三、利用for循环将当前目录下的指定扩展名（由输入决定）文件转移到指定的目录下，并按照文件大小排序，并显示移动后指定目录的内容" class="headerlink" title="三、利用for循环将当前目录下的指定扩展名（由输入决定）文件转移到指定的目录下，并按照文件大小排序，并显示移动后指定目录的内容"></a>三、利用for循环将当前目录下的指定扩展名（由输入决定）文件转移到指定的目录下，并按照文件大小排序，并显示移动后指定目录的内容</h3><p><strong>程序源代码</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Program</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">user input filetype and destionation(a directory)</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">program <span class="keyword">then</span> move all files satisfy filetype into destionation</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取扩展名和转移的目标目录</span></span><br><span class="line">read -p &quot;input filetype:&quot; filetype</span><br><span class="line">read -p &quot;input destionation:&quot; desdir</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用<span class="keyword">for</span>循环移动文件</span></span><br><span class="line">for file in `find . -name &quot;*.filetype&quot;`</span><br><span class="line">do</span><br><span class="line">	mv $file $desdir</span><br><span class="line">done</span><br><span class="line">ls -Sl $desdir</span><br></pre></td></tr></table></figure>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220706001112093.png" alt="image-20220706001112093" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220706001112093.png" alt="图10 程序3源代码截图" style="zoom:80%;" /></p>
 <p><strong>程序运行结果</strong>：</p>
 <p>在/home/c2200400109/test目录下有三个文本文件：a.txt, b.txt, c.txt。</p>
 <p>执行task003.sh脚本后，提示输入文件后缀与待转移的目录。</p>
 <p>输入文件类型为”.txt”，目标目录为同目录下的test子目录。</p>
 <p>完成移动文件命令后，按照文件从大到小顺序排序并显示。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220706000447630.png" alt="image-20220706000447630" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220706000447630.png" alt="图11 测试运行结果" style="zoom:80%;" /></p>
 <p><strong>遇到的主要问题及解决</strong>：</p>
 <p>处理文件名后缀，采用输入后缀名，使用find命令对符合后缀要求的文件进行查找。找到相应文件后执行mv命令对文件进行移动操作。在实验过程中，由于忘记添加美元符号$导致不能使用变量的值，消耗了大量时间进行改错。</p>
 <p>一开始还考虑了直接获取命令行参数的方式。这样输入命令时只需要添加类似”./*.txt”的参数即可获得后缀。但是经过测试验证，发现这种参数会把当前目录下所有符合后缀要求的每个文件都作为一个参数进行输入。即：1,2,…,n-1的参数都是文件参数，只有最后一个参数是移动的目标目录。这种方式带来的问题是处理输入参数个数以及区分、处理的过程比较麻烦，故最后放弃这种方案，采用bash内提示用户输入信息的方式处理。</p>
