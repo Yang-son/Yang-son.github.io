@@ -49,6 +49,13 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705005033407.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705005356264.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705005657308.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/file-permissions-rwx.jpg">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705094917623.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705100333458.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705102143197.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705104326318.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705104711885.png">
+<meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705110121374.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704143920143.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704144506902.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704145946183.png">
@@ -73,7 +80,7 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704201628781.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704212728390.png">
 <meta property="article:published_time" content="2022-07-04T11:45:46.000Z">
-<meta property="article:modified_time" content="2022-07-04T17:04:46.960Z">
+<meta property="article:modified_time" content="2022-07-05T03:01:23.726Z">
 <meta property="article:author" content="Cheng">
 <meta property="article:tag" content="linux os">
 <meta name="twitter:card" content="summary">
@@ -269,7 +276,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-05 01:04:46" itemprop="dateModified" datetime="2022-07-05T01:04:46+08:00">2022-07-05</time>
+                <time title="修改时间：2022-07-05 11:01:23" itemprop="dateModified" datetime="2022-07-05T11:01:23+08:00">2022-07-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -298,14 +305,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>11k</span>
+              <span>14k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>38 分钟</span>
+              <span>46 分钟</span>
             </span>
 
         </div>
@@ -610,7 +617,7 @@
 <tbody>
 <tr>
 <td style="text-align:center">-p</td>
-<td style="text-align:center">确保目录名称存在，不存在的就建一个</td>
+<td style="text-align:center">确保目录名称存在，不存在则创建</td>
 </tr>
 </tbody>
 </table>
@@ -638,7 +645,7 @@
 <tbody>
 <tr>
 <td style="text-align:center">-p</td>
-<td style="text-align:center">确保目录名称存在，不存在的就建一个</td>
+<td style="text-align:center">当子目录被删除后使它也成为空目录的话，则顺便一并删除</td>
 </tr>
 </tbody>
 </table>
@@ -658,9 +665,239 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/bin</span><br></pre></td></tr></table></figure>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705005657308.png" alt="image-20220705005657308" style="zoom:80%;" /></p>
 <h3 id="四、管理使用与权限设置"><a href="#四、管理使用与权限设置" class="headerlink" title="四、管理使用与权限设置"></a>四、管理使用与权限设置</h3><p>管理权限设置主要用到的命令有chmod（改变文件/目录的权限）, umask（设置新文件权限的掩码）, chgrp（改变用户组和文件主）,  chown（改变某个文件或目录的所有者和所属的组）</p>
-<h5 id="chmod命令"><a href="#chmod命令" class="headerlink" title="chmod命令"></a><code>chmod</code>命令</h5><h5 id="chgrp命令"><a href="#chgrp命令" class="headerlink" title="chgrp命令"></a><code>chgrp</code>命令</h5><h5 id="chown命令"><a href="#chown命令" class="headerlink" title="chown命令"></a><code>chown</code>命令</h5><h3 id="五、文件阅读与查找"><a href="#五、文件阅读与查找" class="headerlink" title="五、文件阅读与查找"></a>五、文件阅读与查找</h3><h4 id="1、文件阅读命令"><a href="#1、文件阅读命令" class="headerlink" title="1、文件阅读命令"></a>1、文件阅读命令</h4><p>为了对文件显示进行实验，需要事<strong>先创建文件并向文件写入内容</strong>。而且为了比较cat, more, less, head, tail命令的异同，文件需要有较多的内容。使用”&gt;”进行目标文件的写入。使用”&gt;&gt;”对内容进行追加。</p>
+<h5 id="chmod命令"><a href="#chmod命令" class="headerlink" title="chmod命令"></a><code>chmod</code>命令</h5><p><strong>功能</strong>：控制用户对文件的权限的命令</p>
+<p><strong>说明</strong>：文件调用权限分为三级 : 文件所有者（Owner）、用户组（Group）、其它用户（Other Users）。只有文件所有者和超级用户可以修改文件或目录的权限。可以使用绝对模式（八进制数字模式），符号模式指定文件的权限。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/file-permissions-rwx.jpg" alt="img" style="zoom:50%;" /></p>
+<p><strong>格式</strong>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod [选项] 文件和目录列表</span><br><span class="line">chmod [-cfvR] [--help] [--version] mode file...</span><br></pre></td></tr></table></figure>
+<p><strong>命令参数</strong>：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">符号模式</th>
+<th style="text-align:center">用户类型</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">u</td>
+<td style="text-align:center">user</td>
+<td style="text-align:center">文件所有者</td>
+</tr>
+<tr>
+<td style="text-align:center">g</td>
+<td style="text-align:center">group</td>
+<td style="text-align:center">文件所有者所在组</td>
+</tr>
+<tr>
+<td style="text-align:center">o</td>
+<td style="text-align:center">others</td>
+<td style="text-align:center">所有其他用户</td>
+</tr>
+<tr>
+<td style="text-align:center">a</td>
+<td style="text-align:center">all</td>
+<td style="text-align:center">所用用户, 相当于 <em>ugo</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Operator</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>+</code></td>
+<td style="text-align:center">为指定的用户类型增加权限</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>-</code></td>
+<td style="text-align:center">去除指定用户类型的权限</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>=</code></td>
+<td style="text-align:center">设置指定用户权限的设置，即将用户类型的所有权限重新设置</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">#</th>
+<th style="text-align:center">权限</th>
+<th style="text-align:center">rwx</th>
+<th style="text-align:center">二进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">读 + 写 + 执行</td>
+<td style="text-align:center">rwx</td>
+<td style="text-align:center">111</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">读 + 写</td>
+<td style="text-align:center">rw-</td>
+<td style="text-align:center">110</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">读 + 执行</td>
+<td style="text-align:center">r-x</td>
+<td style="text-align:center">101</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">只读</td>
+<td style="text-align:center">r—</td>
+<td style="text-align:center">100</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">写 + 执行</td>
+<td style="text-align:center">-wx</td>
+<td style="text-align:center">011</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">只写</td>
+<td style="text-align:center">-w-</td>
+<td style="text-align:center">010</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">只执行</td>
+<td style="text-align:center">—x</td>
+<td style="text-align:center">001</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">—-</td>
+<td style="text-align:center">000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>输入测试1</strong>：使用符号模式，将/home/c2200400109目录下的test04.txt文件的所有者权限设置为可读可写可执行。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -l test04.txt			# 查看test04.txt的权限</span><br><span class="line">chmod u = rwx test04.txt 	# 修改test04.txt的权限</span><br><span class="line">ls -l test04.txt			# 检查权限是否修改成功</span><br></pre></td></tr></table></figure>
+<p>结果：原test04.txt文件的所有者权限为可读可写（rw），经过修改权限后，所有者权限变成可读可写可执行（rwx）。文件的所有者权限修改成功。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705094917623.png" alt="image-20220705094917623" style="zoom:80%;" /></p>
+<p><strong>输入测试2</strong>：使用八进制数模式，将/home/c2200400109目录下的dirtest目录的权限设置为所有者权限为可读，同组用户权限为可写，其他用户权限为可执行，同时将dirtest的所有子目录和文件权限一其处理。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ls -l dirtest			# 查看dirtest的权限</span><br><span class="line">chmod -R 421 dirtest    # 递归修改dirtest权限及其子目录和文件的权限</span><br><span class="line">ls -l dirtest			# 查看dirtest修改后的权限</span><br><span class="line">cd dirtest				# 查看子目录和文件的权限</span><br><span class="line">ls -l</span><br></pre></td></tr></table></figure>
+<p>结果：dirtest目录的权限原本是775（所有者权限为可读可写可执行，同组用户权限为可读可写可执行，其他用户权限为可读可执行）经过修改后所有者权限为可读，同组用户权限为可写，其他用户权限为可执行，并且子目录的权限也被修改。（同名子目录dirtest）不过由于自己创建的用户没有添加到root组，因此上述操作均是在root用户下执行，但是修改权限的文件都是新创建用户的。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705100333458.png" alt="image-20220705100333458" style="zoom:80%;" /></p>
+<h5 id="chgrp命令"><a href="#chgrp命令" class="headerlink" title="chgrp命令"></a><code>chgrp</code>命令</h5><p><strong>功能</strong>：用于变更文件或目录的所属群组。需要注意的是，<code>chgrp</code>命令允许普通用户改变文件所属的组，只要该用户是该组的一员。</p>
+<p><strong>格式</strong>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chgrp [选项] 组名 文件名</span><br><span class="line">chgrp [-cfhRv][--help][--version][所属群组][文件或目录...] 或 chgrp [-cfhRv][--help][--reference=&lt;参考文件或目录&gt;][--version][文件或目录...]</span><br></pre></td></tr></table></figure>
+<p><strong>命令参数</strong>：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">选项与参数</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-c 或 —changes</td>
+<td style="text-align:center">效果类似”-v”参数，但仅报告更改的部分</td>
+</tr>
+<tr>
+<td style="text-align:center">-f 或 —quiet 或 —silent</td>
+<td style="text-align:center">不显示错误信息</td>
+</tr>
+<tr>
+<td style="text-align:center">-h 或 —no-dereference</td>
+<td style="text-align:center">只对符号连接的文件作修改，而不改动其他任何相关文件</td>
+</tr>
+<tr>
+<td style="text-align:center">-R 或 —recursive</td>
+<td style="text-align:center">递归处理，将指定目录下的所有文件及子目录一并处理</td>
+</tr>
+<tr>
+<td style="text-align:center">-v 或 —verbose</td>
+<td style="text-align:center">显示指令执行过程</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>在进行实验之前，首先要创建一个新用户组<code>newHiter</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">groupadd newHiter			# 如果不是在root权限下，需要使用sudo</span><br><span class="line">grep newHiter /etc/group 	# 查看是否创建用户组成功</span><br></pre></td></tr></table></figure>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705102143197.png" alt="image-20220705102143197" style="zoom:80%;" /></p>
+<p>在/etc/group文件中，知道了newHiter用户组的ID为1003。</p>
+<p><strong>输入测试1</strong>：将/home/c2200400109目录下的findtest目录的用户组改为newHiter。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -l</span><br><span class="line"><span class="built_in">chgrp</span> -R newHiter findtest</span><br><span class="line"><span class="built_in">ls</span> -l findtest</span><br></pre></td></tr></table></figure>
+<p>结果：findtest目录的用户组由c2200400109变更为newHiter。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705104326318.png" alt="image-20220705104326318" style="zoom:80%;" /></p>
+<p><strong>输入测试2</strong>：将/home/c2200400109目录下的test05.cpp文件的用户组改为root。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -l test05.cpp			# 查看test05.cpp文件的用户组</span><br><span class="line">chgrp root test05.cpp		# 变更用户组为root</span><br><span class="line">ls -l test05.cpp			# 检查用户组是否更改</span><br></pre></td></tr></table></figure>
+<p>结果：test05.cpp文件的用户组由c2200400109变更为root。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705104711885.png" alt="image-20220705104711885" style="zoom:80%;" /></p>
+<p>总结：chgrp命令需要root权限，否则需要使用sudo提权。对于用户组更改的命令更适合管理员/权限较高者使用，以便用户管理。</p>
+<h5 id="chown命令"><a href="#chown命令" class="headerlink" title="chown命令"></a><code>chown</code>命令</h5><p><strong>功能</strong>：用于设置文件所有者和文件关联组。利用 chown 将指定文件的拥有者改为指定的用户或组，用户可以是用户名或者用户 ID，组可以是组名或者组 ID，文件是以空格分开的要改变权限的文件列表，支持通配符。注意：需要root权限才能执行chown命令。</p>
+<p><strong>格式</strong>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown [选项] 用户或组 文件名</span><br><span class="line">chown [-cfhvR] [--help] [--version] user[:group] file...</span><br></pre></td></tr></table></figure>
+<p><strong>命令参数</strong>：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">选项与参数</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">user</td>
+<td style="text-align:center">新的文件拥有者的使用者 ID</td>
+</tr>
+<tr>
+<td style="text-align:center">group</td>
+<td style="text-align:center">新的文件拥有者的使用者组(group)</td>
+</tr>
+<tr>
+<td style="text-align:center">-c</td>
+<td style="text-align:center">显示更改的部分的信息</td>
+</tr>
+<tr>
+<td style="text-align:center">-f</td>
+<td style="text-align:center">忽略错误信息</td>
+</tr>
+<tr>
+<td style="text-align:center">-h</td>
+<td style="text-align:center">修复符号链接</td>
+</tr>
+<tr>
+<td style="text-align:center">-v</td>
+<td style="text-align:center">显示详细的处理信息</td>
+</tr>
+<tr>
+<td style="text-align:center">-R</td>
+<td style="text-align:center">处理指定目录以及其子目录下的所有文件</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>输入测试</strong>：将/home/c2200400109目录下面的test06.py和test07.asm文件的用户改成root。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -l test06.py test07.asm</span><br><span class="line">chown root test06.py test07.asm</span><br><span class="line">ls -l test06.py test07.asm</span><br></pre></td></tr></table></figure>
+<p>结果：test06.py和test07.asm文件的拥有者从c2200400109变更为root。</p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705110121374.png" alt="image-20220705110121374" style="zoom:80%;" /></p>
+<h3 id="五、文件阅读与查找"><a href="#五、文件阅读与查找" class="headerlink" title="五、文件阅读与查找"></a>五、文件阅读与查找</h3><h4 id="1、文件阅读命令"><a href="#1、文件阅读命令" class="headerlink" title="1、文件阅读命令"></a>1、文件阅读命令</h4><p>为了对文件显示进行实验，需要事<strong>先创建文件并向文件写入内容</strong>。而且为了比较cat, more, less, head, tail命令的异同，文件需要有较多的内容。使用”&gt;”进行目标文件的写入。使用”&gt;&gt;”对内容进行追加。</p>
 <p>用于实验的第一个文件为<code>test01</code>，内容为系统进程信息。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top ps -ef &gt; test01	# 将进程信息存入test01文件保存</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top ps -ef &gt; test01		# 将进程信息存入test01文件保存</span><br></pre></td></tr></table></figure>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704143920143.png" alt="image-20220704143920143" style="zoom:80%;" /></p>
 <p>用于实验的第二个文件为<code>test02</code>，内容为三行”this is a test.”。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建test02文件</span></span><br><span class="line">touch test02</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">添加三行内容</span></span><br><span class="line">echo &quot;this is a test.&quot; &gt;&gt; test02</span><br><span class="line">echo &quot;this is a test.&quot; &gt;&gt; test02</span><br><span class="line">echo &quot;this is a test.&quot; &gt;&gt; test02</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">后期为了测试空白行，追加空白行和文本内容</span></span><br><span class="line">echo &gt;&gt; test02</span><br><span class="line">echo &quot;this is a test for blank line.&quot; &gt;&gt; test02</span><br></pre></td></tr></table></figure>
