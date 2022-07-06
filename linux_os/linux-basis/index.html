@@ -123,7 +123,7 @@
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220706133852053.png">
 <meta property="og:image" content="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/650075-5a40190134864d49.png">
 <meta property="article:published_time" content="2022-07-04T11:45:46.000Z">
-<meta property="article:modified_time" content="2022-07-06T05:40:45.535Z">
+<meta property="article:modified_time" content="2022-07-06T08:22:25.004Z">
 <meta property="article:author" content="Cheng">
 <meta property="article:tag" content="linux os">
 <meta name="twitter:card" content="summary">
@@ -319,7 +319,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-06 13:40:45" itemprop="dateModified" datetime="2022-07-06T13:40:45+08:00">2022-07-06</time>
+                <time title="修改时间：2022-07-06 16:22:25" itemprop="dateModified" datetime="2022-07-06T16:22:25+08:00">2022-07-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -395,7 +395,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 /home/用户名	# 可读可写可执行</span><br></pre></td></tr></table></figure>
 <p>进入创建的用户中，在”/home/用户名”路径下进行实验。</p>
 <h3 id="二、文件管理操作"><a href="#二、文件管理操作" class="headerlink" title="二、文件管理操作"></a>二、文件管理操作</h3><p>对于文件的操作主要包含增、删、改、查。这些命令如果再细化，结合课上的内容还有这样几类：文件的创建命令，文件匹配排序命令，比较文件内容命令，复制、删除和移动文件的命令，文件内容统计命令。对于文件的查（阅读命令，如cat, more, less, head, tail）将在后面第四个标题中详细介绍。</p>
-<h5 id="touch命令"><a href="#touch命令" class="headerlink" title="touch命令"></a><code>touch</code>命令</h5><p><strong>功能</strong>：用于修改文件或者目录的时间属性，包括存取时间和更改时间。若文件不存在，系统会建立一个新的文件。</p>
+<h4 id="touch命令"><a href="#touch命令" class="headerlink" title="touch命令"></a><code>touch</code>命令</h4><p><strong>功能</strong>：用于修改文件或者目录的时间属性，包括存取时间和更改时间。若文件不存在，系统会建立一个新的文件。</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch [-acfm][-d&lt;日期时间&gt;][-r&lt;参考文件或目录&gt;] [-t&lt;日期时间&gt;][--help][--version][文件或目录…]</span><br></pre></td></tr></table></figure>
 <p><strong>命令参数</strong>：</p>
@@ -451,7 +451,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -l test03	# 查看test03的时间属性</span><br><span class="line">touch test03	# 修改test03的时间属性</span><br><span class="line">ls -l test03	# 查看修改后的test03时间属性</span><br></pre></td></tr></table></figure>
 <p>结果：原来test03文件的时间属性为20:23，经过touch命令修改后，时间属性变为22:21。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704222123222.png" alt="图4 修改时间属性" style="zoom:80%;" /></p>
-<h5 id="rm命令"><a href="#rm命令" class="headerlink" title="rm命令"></a><code>rm</code>命令</h5><p><strong>功能</strong>：用于删除一个文件或者一个目录</p>
+<h4 id="rm命令"><a href="#rm命令" class="headerlink" title="rm命令"></a><code>rm</code>命令</h4><p><strong>功能</strong>：用于删除一个文件或者一个目录</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm [命令参数] [文件/目录名]</span><br></pre></td></tr></table></figure>
 <p><strong>命令参数</strong>：</p>
@@ -492,7 +492,7 @@
 <p>结果：rmtest目录被删除，连同其中的目录rmtest01和文本文件rmtest.txt</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704225154082.png" alt="图7 删除rmtest目录" style="zoom:80%;" /></p>
 <p>总结：如果是删除整个目录文件使用参数-r进行递归删除；删除有风险，建议每次删除加上命令参数-i。</p>
-<h5 id="cp命令"><a href="#cp命令" class="headerlink" title="cp命令"></a><code>cp</code>命令</h5><p><strong>功能：</strong>用于复制文件或目录，将源文件或目录赋值拷贝到目标文件或目录中。</p>
+<h4 id="cp命令"><a href="#cp命令" class="headerlink" title="cp命令"></a><code>cp</code>命令</h4><p><strong>功能：</strong>用于复制文件或目录，将源文件或目录赋值拷贝到目标文件或目录中。</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp [options] source... dirctory </span><br></pre></td></tr></table></figure>
 <p><strong>命令参数</strong>：</p>
@@ -549,7 +549,7 @@
 <p>结果：findtest连通里面的test01文件被复制到newfindtest目录下，且文件内容没有发生变化。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220704234446377.png" alt="图10 复制目录" style="zoom:80%;" /></p>
 <p>总结：有一点需要注意区分，将文件夹拷贝到另一个文件夹和将文件夹中所有的文件拷贝到另一个文件夹的区别。前者可以使用/*完成，均需要-r参数。</p>
-<h5 id="mv命令"><a href="#mv命令" class="headerlink" title="mv命令"></a><code>mv</code>命令</h5><p><strong>功能</strong>：为文件或目录改名、或将文件或目录移入其它位置</p>
+<h4 id="mv命令"><a href="#mv命令" class="headerlink" title="mv命令"></a><code>mv</code>命令</h4><p><strong>功能</strong>：为文件或目录改名、或将文件或目录移入其它位置</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv [options] source dest</span><br><span class="line">mv [options] source... directory</span><br></pre></td></tr></table></figure>
 <p><strong>命令参数</strong>：</p>
@@ -593,7 +593,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">mv -i test0002 newfindtest/test01</span><br><span class="line">cd newfindtest</span><br><span class="line">ls</span><br><span class="line">tail -5 test01</span><br></pre></td></tr></table></figure>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705001623697.png" alt="图12 移动并覆盖文件" style="zoom:80%;" /></p>
 <h3 id="三、目录管理操作"><a href="#三、目录管理操作" class="headerlink" title="三、目录管理操作"></a>三、目录管理操作</h3><p>目录管理主要包含查看目录的命令（ls），创建目录的命令（mkdir），删除目录的命令（rmdir）以及目录跳转的命令（cd）</p>
-<h5 id="ls命令"><a href="#ls命令" class="headerlink" title="ls命令"></a><code>ls</code>命令</h5><p><strong>功能</strong>：用于显示指定工作目录下之内容（列出目前工作目录所含之文件及子目录)</p>
+<h4 id="ls命令"><a href="#ls命令" class="headerlink" title="ls命令"></a><code>ls</code>命令</h4><p><strong>功能</strong>：用于显示指定工作目录下之内容（列出目前工作目录所含之文件及子目录)</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls [-alrtAFR] [name...]</span><br></pre></td></tr></table></figure>
 <p><strong>命令参数</strong>：</p>
@@ -645,7 +645,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -ltr test*</span><br></pre></td></tr></table></figure>
 <p>结果：依次列出test02, test04.txt, test05.cpp, test06.py, test07.asm, test01, test03，并显示文件权限，文件拥有者以及时间属性。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705003311832.png" alt="图14 列出属性" style="zoom:80%;" /></p>
-<h5 id="mkdir命令"><a href="#mkdir命令" class="headerlink" title="mkdir命令"></a><code>mkdir</code>命令</h5><p><strong>功能</strong>：用于创建目录</p>
+<h4 id="mkdir命令"><a href="#mkdir命令" class="headerlink" title="mkdir命令"></a><code>mkdir</code>命令</h4><p><strong>功能</strong>：用于创建目录</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir [-p] dirName</span><br></pre></td></tr></table></figure>
 <p><strong>命令参数</strong>：</p>
@@ -673,7 +673,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir	 dirtest2/dirtest001</span><br><span class="line">mkdir -p dirtest/dirtest001</span><br></pre></td></tr></table></figure>
 <p>结果：在目录不存在且不适用-p参数时产生错误。使用-p命令可以顺利完成创建二级子目录的操作。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705004308888.png" alt="图16 -p参数使用对比测试" style="zoom:80%;" /></p>
-<h5 id="rmdir命令"><a href="#rmdir命令" class="headerlink" title="rmdir命令"></a><code>rmdir</code>命令</h5><p><strong>功能</strong>：用于删除空的目录。</p>
+<h4 id="rmdir命令"><a href="#rmdir命令" class="headerlink" title="rmdir命令"></a><code>rmdir</code>命令</h4><p><strong>功能</strong>：用于删除空的目录。</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir [-p] dirName</span><br></pre></td></tr></table></figure>
 <p><strong>命令参数</strong>：</p>
@@ -701,14 +701,14 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">rmdir -p dirtest001</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
 <p>结果：dirtest001目录被成功删除。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705005356264.png" alt="图18 使用-p参数删除非空目录" style="zoom:80%;" /></p>
-<h5 id="cd命令"><a href="#cd命令" class="headerlink" title="cd命令"></a><code>cd</code>命令</h5><p><strong>功能</strong>：用于切换当前工作目录。</p>
+<h4 id="cd命令"><a href="#cd命令" class="headerlink" title="cd命令"></a><code>cd</code>命令</h4><p><strong>功能</strong>：用于切换当前工作目录。</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd [dirName]</span><br></pre></td></tr></table></figure>
 <p><strong>输入测试</strong>：跳到/usr/bin目录。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/bin</span><br></pre></td></tr></table></figure>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705005657308.png" alt="图19 目录跳转切换" style="zoom:80%;" /></p>
 <h3 id="四、管理使用与权限设置"><a href="#四、管理使用与权限设置" class="headerlink" title="四、管理使用与权限设置"></a>四、管理使用与权限设置</h3><p>管理权限设置主要用到的命令有chmod（改变文件/目录的权限）, umask（设置新文件权限的掩码）, chgrp（改变用户组和文件主）,  chown（改变某个文件或目录的所有者和所属的组）</p>
-<h5 id="chmod命令"><a href="#chmod命令" class="headerlink" title="chmod命令"></a><code>chmod</code>命令</h5><p><strong>功能</strong>：控制用户对文件的权限的命令</p>
+<h4 id="chmod命令"><a href="#chmod命令" class="headerlink" title="chmod命令"></a><code>chmod</code>命令</h4><p><strong>功能</strong>：控制用户对文件的权限的命令</p>
 <p><strong>说明</strong>：文件调用权限分为三级 : 文件所有者（Owner）、用户组（Group）、其它用户（Other Users）。只有文件所有者和超级用户可以修改文件或目录的权限。可以使用绝对模式（八进制数字模式），符号模式指定文件的权限。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/file-permissions-rwx.jpg" alt="图20 权限示意图" style="zoom:50%;" /></p>
 <p><strong>格式</strong>：</p>
@@ -718,31 +718,31 @@
 <table>
 <thead>
 <tr>
-<th>符号模式</th>
-<th>用户类型</th>
-<th>说明</th>
+<th style="text-align:center">符号模式</th>
+<th style="text-align:center">用户类型</th>
+<th style="text-align:center">说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>u</td>
-<td>user</td>
-<td>文件所有者</td>
+<td style="text-align:center">u</td>
+<td style="text-align:center">user</td>
+<td style="text-align:center">文件所有者</td>
 </tr>
 <tr>
-<td>g</td>
-<td>group</td>
-<td>文件所有者所在组</td>
+<td style="text-align:center">g</td>
+<td style="text-align:center">group</td>
+<td style="text-align:center">文件所有者所在组</td>
 </tr>
 <tr>
-<td>o</td>
-<td>others</td>
-<td>所有其他用户</td>
+<td style="text-align:center">o</td>
+<td style="text-align:center">others</td>
+<td style="text-align:center">所有其他用户</td>
 </tr>
 <tr>
-<td>a</td>
-<td>all</td>
-<td>所用用户, 相当于 <em>ugo</em></td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">all</td>
+<td style="text-align:center">所用用户, 相当于 <em>ugo</em></td>
 </tr>
 </tbody>
 </table>
@@ -751,22 +751,22 @@
 <table>
 <thead>
 <tr>
-<th>Operator</th>
-<th>说明</th>
+<th style="text-align:center">Operator</th>
+<th style="text-align:center">说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>+</code></td>
-<td>为指定的用户类型增加权限</td>
+<td style="text-align:center"><code>+</code></td>
+<td style="text-align:center">为指定的用户类型增加权限</td>
 </tr>
 <tr>
-<td><code>-</code></td>
-<td>去除指定用户类型的权限</td>
+<td style="text-align:center"><code>-</code></td>
+<td style="text-align:center">去除指定用户类型的权限</td>
 </tr>
 <tr>
-<td><code>=</code></td>
-<td>设置指定用户权限的设置，即将用户类型的所有权限重新设置</td>
+<td style="text-align:center"><code>=</code></td>
+<td style="text-align:center">设置指定用户权限的设置，即将用户类型的所有权限重新设置</td>
 </tr>
 </tbody>
 </table>
@@ -775,60 +775,60 @@
 <table>
 <thead>
 <tr>
-<th>#</th>
-<th>权限</th>
-<th>rwx</th>
-<th>二进制</th>
+<th style="text-align:center">#</th>
+<th style="text-align:center">权限</th>
+<th style="text-align:center">rwx</th>
+<th style="text-align:center">二进制</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>7</td>
-<td>读 + 写 + 执行</td>
-<td>rwx</td>
-<td>111</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">读 + 写 + 执行</td>
+<td style="text-align:center">rwx</td>
+<td style="text-align:center">111</td>
 </tr>
 <tr>
-<td>6</td>
-<td>读 + 写</td>
-<td>rw-</td>
-<td>110</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">读 + 写</td>
+<td style="text-align:center">rw-</td>
+<td style="text-align:center">110</td>
 </tr>
 <tr>
-<td>5</td>
-<td>读 + 执行</td>
-<td>r-x</td>
-<td>101</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">读 + 执行</td>
+<td style="text-align:center">r-x</td>
+<td style="text-align:center">101</td>
 </tr>
 <tr>
-<td>4</td>
-<td>只读</td>
-<td>r—</td>
-<td>100</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">只读</td>
+<td style="text-align:center">r—</td>
+<td style="text-align:center">100</td>
 </tr>
 <tr>
-<td>3</td>
-<td>写 + 执行</td>
-<td>-wx</td>
-<td>011</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">写 + 执行</td>
+<td style="text-align:center">-wx</td>
+<td style="text-align:center">011</td>
 </tr>
 <tr>
-<td>2</td>
-<td>只写</td>
-<td>-w-</td>
-<td>010</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">只写</td>
+<td style="text-align:center">-w-</td>
+<td style="text-align:center">010</td>
 </tr>
 <tr>
-<td>1</td>
-<td>只执行</td>
-<td>—x</td>
-<td>001</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">只执行</td>
+<td style="text-align:center">—x</td>
+<td style="text-align:center">001</td>
 </tr>
 <tr>
-<td>0</td>
-<td>无</td>
-<td>—-</td>
-<td>000</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">—-</td>
+<td style="text-align:center">000</td>
 </tr>
 </tbody>
 </table>
@@ -841,7 +841,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ls -l dirtest			# 查看dirtest的权限</span><br><span class="line">chmod -R 421 dirtest    # 递归修改dirtest权限及其子目录和文件的权限</span><br><span class="line">ls -l dirtest			# 查看dirtest修改后的权限</span><br><span class="line">cd dirtest				# 查看子目录和文件的权限</span><br><span class="line">ls -l</span><br></pre></td></tr></table></figure>
 <p>结果：dirtest目录的权限原本是775（所有者权限为可读可写可执行，同组用户权限为可读可写可执行，其他用户权限为可读可执行）经过修改后所有者权限为可读，同组用户权限为可写，其他用户权限为可执行，并且子目录的权限也被修改。（同名子目录dirtest）不过由于自己创建的用户没有添加到root组，因此上述操作均是在root用户下执行，但是修改权限的文件都是新创建用户的。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705100333458.png" alt="图22 八进制数改变权限" style="zoom:80%;" /></p>
-<h5 id="chgrp命令"><a href="#chgrp命令" class="headerlink" title="chgrp命令"></a><code>chgrp</code>命令</h5><p><strong>功能</strong>：用于变更文件或目录的所属群组。需要注意的是，<code>chgrp</code>命令允许普通用户改变文件所属的组，只要该用户是该组的一员。</p>
+<h4 id="chgrp命令"><a href="#chgrp命令" class="headerlink" title="chgrp命令"></a><code>chgrp</code>命令</h4><p><strong>功能</strong>：用于变更文件或目录的所属群组。需要注意的是，<code>chgrp</code>命令允许普通用户改变文件所属的组，只要该用户是该组的一员。</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chgrp [选项] 组名 文件名</span><br><span class="line">chgrp [-cfhRv][--help][--version][所属群组][文件或目录...] 或 chgrp [-cfhRv][--help][--reference=&lt;参考文件或目录&gt;][--version][文件或目录...]</span><br></pre></td></tr></table></figure>
 <p><strong>命令参数</strong>：</p>
@@ -890,7 +890,7 @@
 <p>结果：test05.cpp文件的用户组由c2200400109变更为root。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705104711885.png" alt="图25 变更root用户组" style="zoom:80%;" /></p>
 <p>总结：chgrp命令需要root权限，否则需要使用sudo提权。对于用户组更改的命令更适合管理员/权限较高者使用，以便用户管理。</p>
-<h5 id="chown命令"><a href="#chown命令" class="headerlink" title="chown命令"></a><code>chown</code>命令</h5><p><strong>功能</strong>：用于设置文件所有者和文件关联组。利用 chown 将指定文件的拥有者改为指定的用户或组，用户可以是用户名或者用户 ID，组可以是组名或者组 ID，文件是以空格分开的要改变权限的文件列表，支持通配符。注意：需要root权限才能执行chown命令。</p>
+<h4 id="chown命令"><a href="#chown命令" class="headerlink" title="chown命令"></a><code>chown</code>命令</h4><p><strong>功能</strong>：用于设置文件所有者和文件关联组。利用 chown 将指定文件的拥有者改为指定的用户或组，用户可以是用户名或者用户 ID，组可以是组名或者组 ID，文件是以空格分开的要改变权限的文件列表，支持通配符。注意：需要root权限才能执行chown命令。</p>
 <p><strong>格式</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown [选项] 用户或组 文件名</span><br><span class="line">chown [-cfhvR] [--help] [--version] user[:group] file...</span><br></pre></td></tr></table></figure>
 <p><strong>命令参数</strong>：</p>
@@ -1904,7 +1904,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping -c 5 baidu.com</span><br></pre></td></tr></table></figure>
 <p>结果：5次后结束发送数据包。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705164021373.png" alt="图62 ping5次测试" style="zoom:80%;" /></p>
-<h2 id="实验2"><a href="#实验2" class="headerlink" title="实验2"></a>实验2</h2><h4 id="1、创建一个shell脚本程序：输入圆半径值，输出圆面积的值"><a href="#1、创建一个shell脚本程序：输入圆半径值，输出圆面积的值" class="headerlink" title="1、创建一个shell脚本程序：输入圆半径值，输出圆面积的值"></a>1、创建一个shell脚本程序：输入圆半径值，输出圆面积的值</h4><p>程序源代码：</p>
+<h2 id="实验2"><a href="#实验2" class="headerlink" title="实验2"></a>实验2</h2><h3 id="1、创建一个shell脚本程序：输入圆半径值，输出圆面积的值"><a href="#1、创建一个shell脚本程序：输入圆半径值，输出圆面积的值" class="headerlink" title="1、创建一个shell脚本程序：输入圆半径值，输出圆面积的值"></a>1、创建一个shell脚本程序：输入圆半径值，输出圆面积的值</h3><p>程序源代码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Program:</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">User input a <span class="built_in">float</span> number as radius of a circle.</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Program outputs the area of this circle.</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">History:</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2022/07/05	2200400109 gingkocyx	1st_release</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">定义圆周率PI</span></span><br><span class="line">PI=3.1415926535</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输入圆的半径值</span></span><br><span class="line">echo &quot;input radius of a circle:&quot;</span><br><span class="line">read r</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输出圆的面积值</span></span><br><span class="line">echo &quot;The area of circle is:&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">调用系统自带的awk计算器完成浮点数的计算</span></span><br><span class="line">echo &quot;$r $r $PI&quot; | awk &#x27;&#123;print($1*$2*$3)&#125;&#x27;</span><br></pre></td></tr></table></figure>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705194207762.png" alt="图1 程序1源代码文件截图" style="zoom:80%;" /></p>
 <p>遇到的主要问题是浮点数计算。如果用乘号只能完成整数运算。由于软件包的冲突问题，未能成功安装bc计算器。最终使用Linux系统自带的awk计算器完成计算。</p>
@@ -1928,7 +1928,7 @@
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705201448884.png" alt="图8 输入测试2" style="zoom:80%;" /></p>
 <p><strong>输入测试3</strong>：n=4，数字分别为：1234567890, 9876543210, 999999999999, 1。输出结果为：1011111111100。符合预期。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220705201635239.png" alt="图9 输入测试3" style="zoom:80%;" /></p>
-<h3 id="三、利用for循环将当前目录下的指定扩展名（由输入决定）文件转移到指定的目录下，并按照文件大小排序，并显示移动后指定目录的内容"><a href="#三、利用for循环将当前目录下的指定扩展名（由输入决定）文件转移到指定的目录下，并按照文件大小排序，并显示移动后指定目录的内容" class="headerlink" title="三、利用for循环将当前目录下的指定扩展名（由输入决定）文件转移到指定的目录下，并按照文件大小排序，并显示移动后指定目录的内容"></a>三、利用for循环将当前目录下的指定扩展名（由输入决定）文件转移到指定的目录下，并按照文件大小排序，并显示移动后指定目录的内容</h3><p><strong>程序源代码</strong>：</p>
+<h3 id="3、利用for循环将当前目录下的指定扩展名（由输入决定）文件转移到指定的目录下，并按照文件大小排序，并显示移动后指定目录的内容"><a href="#3、利用for循环将当前目录下的指定扩展名（由输入决定）文件转移到指定的目录下，并按照文件大小排序，并显示移动后指定目录的内容" class="headerlink" title="3、利用for循环将当前目录下的指定扩展名（由输入决定）文件转移到指定的目录下，并按照文件大小排序，并显示移动后指定目录的内容"></a>3、利用for循环将当前目录下的指定扩展名（由输入决定）文件转移到指定的目录下，并按照文件大小排序，并显示移动后指定目录的内容</h3><p><strong>程序源代码</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Program</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">user input filetype and destionation(a directory)</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">program <span class="keyword">then</span> move all files satisfy filetype into destionation</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取扩展名和转移的目标目录</span></span><br><span class="line">read -p &quot;input filetype:&quot; filetype</span><br><span class="line">read -p &quot;input destionation:&quot; desdir</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用<span class="keyword">for</span>循环移动文件</span></span><br><span class="line">for file in `find . -name &quot;*.filetype&quot;`</span><br><span class="line">do</span><br><span class="line">	mv $file $desdir</span><br><span class="line">done</span><br><span class="line">ls -Sl $desdir</span><br></pre></td></tr></table></figure>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220706001112093.png" alt="图10 程序3源代码截图" style="zoom:80%;" /></p>
 <p><strong>程序运行结果</strong>：</p>
@@ -1969,90 +1969,90 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">32-bit mode</th>
-<th style="text-align:center"></th>
-<th style="text-align:center"></th>
-<th style="text-align:center"></th>
-<th style="text-align:center"></th>
+<th>32-bit mode</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">Item</td>
-<td style="text-align:center">1KiB</td>
-<td style="text-align:center">2KiB</td>
-<td style="text-align:center">4KiB</td>
-<td style="text-align:center">64KiB</td>
+<td>Item</td>
+<td>1KiB</td>
+<td>2KiB</td>
+<td>4KiB</td>
+<td>64KiB</td>
 </tr>
 <tr>
-<td style="text-align:center">Blocks</td>
-<td style="text-align:center">2^32</td>
-<td style="text-align:center">2^32</td>
-<td style="text-align:center">2^32</td>
-<td style="text-align:center">2^32</td>
+<td>Blocks</td>
+<td>2^32</td>
+<td>2^32</td>
+<td>2^32</td>
+<td>2^32</td>
 </tr>
 <tr>
-<td style="text-align:center">Inodes</td>
-<td style="text-align:center">2^32</td>
-<td style="text-align:center">2^32</td>
-<td style="text-align:center">2^32</td>
-<td style="text-align:center">2^32</td>
+<td>Inodes</td>
+<td>2^32</td>
+<td>2^32</td>
+<td>2^32</td>
+<td>2^32</td>
 </tr>
 <tr>
-<td style="text-align:center">File System Size</td>
-<td style="text-align:center">4TiB</td>
-<td style="text-align:center">8TiB</td>
-<td style="text-align:center">16TiB</td>
-<td style="text-align:center">256PiB</td>
+<td>File System Size</td>
+<td>4TiB</td>
+<td>8TiB</td>
+<td>16TiB</td>
+<td>256PiB</td>
 </tr>
 <tr>
-<td style="text-align:center">Blocks Per Block Group</td>
-<td style="text-align:center">8,192</td>
-<td style="text-align:center">16,384</td>
-<td style="text-align:center">32,768</td>
-<td style="text-align:center">524,288</td>
+<td>Blocks Per Block Group</td>
+<td>8,192</td>
+<td>16,384</td>
+<td>32,768</td>
+<td>524,288</td>
 </tr>
 <tr>
-<td style="text-align:center">Inodes Per Block Group</td>
-<td style="text-align:center">8,192</td>
-<td style="text-align:center">16,384</td>
-<td style="text-align:center">32,768</td>
-<td style="text-align:center">524,288</td>
+<td>Inodes Per Block Group</td>
+<td>8,192</td>
+<td>16,384</td>
+<td>32,768</td>
+<td>524,288</td>
 </tr>
 <tr>
-<td style="text-align:center">Block Group Size</td>
-<td style="text-align:center">8MiB</td>
-<td style="text-align:center">32MiB</td>
-<td style="text-align:center">128MiB</td>
-<td style="text-align:center">32GiB</td>
+<td>Block Group Size</td>
+<td>8MiB</td>
+<td>32MiB</td>
+<td>128MiB</td>
+<td>32GiB</td>
 </tr>
 <tr>
-<td style="text-align:center">Blocks Per File, Extents</td>
-<td style="text-align:center">2^32</td>
-<td style="text-align:center">2^32</td>
-<td style="text-align:center">2^32</td>
-<td style="text-align:center">2^32</td>
+<td>Blocks Per File, Extents</td>
+<td>2^32</td>
+<td>2^32</td>
+<td>2^32</td>
+<td>2^32</td>
 </tr>
 <tr>
-<td style="text-align:center">Blocks Per File, Block Maps</td>
-<td style="text-align:center">16,843,020</td>
-<td style="text-align:center">134,480,396</td>
-<td style="text-align:center">1,074,791,436</td>
-<td style="text-align:center">4,398,314,962,956 (really 2^32 due to field size limitations)</td>
+<td>Blocks Per File, Block Maps</td>
+<td>16,843,020</td>
+<td>134,480,396</td>
+<td>1,074,791,436</td>
+<td>4,398,314,962,956 (really 2^32 due to field size limitations)</td>
 </tr>
 <tr>
-<td style="text-align:center">File Size, Extents</td>
-<td style="text-align:center">4TiB</td>
-<td style="text-align:center">8TiB</td>
-<td style="text-align:center">16TiB</td>
-<td style="text-align:center">256TiB</td>
+<td>File Size, Extents</td>
+<td>4TiB</td>
+<td>8TiB</td>
+<td>16TiB</td>
+<td>256TiB</td>
 </tr>
 <tr>
-<td style="text-align:center">File Size, Block Maps</td>
-<td style="text-align:center">16GiB</td>
-<td style="text-align:center">256GiB</td>
-<td style="text-align:center">4TiB</td>
-<td style="text-align:center">256TiB</td>
+<td>File Size, Block Maps</td>
+<td>16GiB</td>
+<td>256GiB</td>
+<td>4TiB</td>
+<td>256TiB</td>
 </tr>
 </tbody>
 </table>
@@ -2061,90 +2061,90 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center"></th>
+<th></th>
 <th>64-bit mode</th>
-<th style="text-align:center"></th>
-<th style="text-align:center"></th>
-<th style="text-align:center"></th>
+<th></th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">Item</td>
+<td>Item</td>
 <td>1KiB</td>
-<td style="text-align:center">2KiB</td>
-<td style="text-align:center">4KiB</td>
-<td style="text-align:center">64KiB</td>
+<td>2KiB</td>
+<td>4KiB</td>
+<td>64KiB</td>
 </tr>
 <tr>
-<td style="text-align:center">Blocks</td>
+<td>Blocks</td>
 <td>2^64</td>
-<td style="text-align:center">2^64</td>
-<td style="text-align:center">2^64</td>
-<td style="text-align:center">2^64</td>
+<td>2^64</td>
+<td>2^64</td>
+<td>2^64</td>
 </tr>
 <tr>
-<td style="text-align:center">Inodes</td>
+<td>Inodes</td>
 <td>2^32</td>
-<td style="text-align:center">2^32</td>
-<td style="text-align:center">2^32</td>
-<td style="text-align:center">2^32</td>
+<td>2^32</td>
+<td>2^32</td>
+<td>2^32</td>
 </tr>
 <tr>
-<td style="text-align:center">File System Size</td>
+<td>File System Size</td>
 <td>16ZiB</td>
-<td style="text-align:center">32ZiB</td>
-<td style="text-align:center">64ZiB</td>
-<td style="text-align:center">1YiB</td>
+<td>32ZiB</td>
+<td>64ZiB</td>
+<td>1YiB</td>
 </tr>
 <tr>
-<td style="text-align:center">Blocks Per Block Group</td>
+<td>Blocks Per Block Group</td>
 <td>8,192</td>
-<td style="text-align:center">16,384</td>
-<td style="text-align:center">32,768</td>
-<td style="text-align:center">524,288</td>
+<td>16,384</td>
+<td>32,768</td>
+<td>524,288</td>
 </tr>
 <tr>
-<td style="text-align:center">Inodes Per Block Group</td>
+<td>Inodes Per Block Group</td>
 <td>8,192</td>
-<td style="text-align:center">16,384</td>
-<td style="text-align:center">32,768</td>
-<td style="text-align:center">524,288</td>
+<td>16,384</td>
+<td>32,768</td>
+<td>524,288</td>
 </tr>
 <tr>
-<td style="text-align:center">Block Group Size</td>
+<td>Block Group Size</td>
 <td>8MiB</td>
-<td style="text-align:center">32MiB</td>
-<td style="text-align:center">128MiB</td>
-<td style="text-align:center">32GiB</td>
+<td>32MiB</td>
+<td>128MiB</td>
+<td>32GiB</td>
 </tr>
 <tr>
-<td style="text-align:center">Blocks Per File, Extents</td>
+<td>Blocks Per File, Extents</td>
 <td>2^32</td>
-<td style="text-align:center">2^32</td>
-<td style="text-align:center">2^32</td>
-<td style="text-align:center">2^32</td>
+<td>2^32</td>
+<td>2^32</td>
+<td>2^32</td>
 </tr>
 <tr>
-<td style="text-align:center">Blocks Per File, Block Maps</td>
+<td>Blocks Per File, Block Maps</td>
 <td>16,843,020</td>
-<td style="text-align:center">134,480,396</td>
-<td style="text-align:center">1,074,791,436</td>
-<td style="text-align:center">4,398,314,962,956 (really 2^32 due to field size limitations)</td>
+<td>134,480,396</td>
+<td>1,074,791,436</td>
+<td>4,398,314,962,956 (really 2^32 due to field size limitations)</td>
 </tr>
 <tr>
-<td style="text-align:center">File Size, Extents</td>
+<td>File Size, Extents</td>
 <td>4TiB</td>
-<td style="text-align:center">8TiB</td>
-<td style="text-align:center">16TiB</td>
-<td style="text-align:center">256TiB</td>
+<td>8TiB</td>
+<td>16TiB</td>
+<td>256TiB</td>
 </tr>
 <tr>
-<td style="text-align:center">File Size, Block Maps</td>
+<td>File Size, Block Maps</td>
 <td>16GiB</td>
-<td style="text-align:center">256GiB</td>
-<td style="text-align:center">4TiB</td>
-<td style="text-align:center">256TiB</td>
+<td>256GiB</td>
+<td>4TiB</td>
+<td>256TiB</td>
 </tr>
 </tbody>
 </table>
@@ -2242,7 +2242,7 @@
 <p>任何进程所获得的处理器时间是由它自己和其他所有可运行进程nice值的相对差值决定的。nice值对时间片的作用不再是算术加权，而是几何加权。CFS称为公平调度是因为它确保给每个进程公平间不再是一个绝对值，而是处理器的使用比。</p>
 <p>CFS不是完美的公平，它只是近乎完美的多任务。确实在多进程环境下，降低了调度延迟带来的不公平性。</p>
 <h2 id="3-Linux内核的下载、安装、编译"><a href="#3-Linux内核的下载、安装、编译" class="headerlink" title="3. Linux内核的下载、安装、编译"></a>3. Linux内核的下载、安装、编译</h2><h3 id="3-1-配置华为云ECS"><a href="#3-1-配置华为云ECS" class="headerlink" title="3.1 配置华为云ECS"></a>3.1 配置华为云ECS</h3><p>按照QQ群中的教程配置好服务器。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220706122125648.png" alt="image-20220706122125648" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220706122125648.png" alt="图 配置ECS" style="zoom:80%;" /></p>
 <p>使用ssh命令登录。经过确认并输入密码后进入创建好的弹性云服务器中。</p>
 <p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/image-20220706122034504.png" alt="图5 ssh登录" style="zoom:80%;" /></p>
 <h3 id="3-2-内核的编译和安装"><a href="#3-2-内核的编译和安装" class="headerlink" title="3.2 内核的编译和安装"></a>3.2 内核的编译和安装</h3><h4 id="3-2-1-安装工具，构建开发环境"><a href="#3-2-1-安装工具，构建开发环境" class="headerlink" title="3.2.1 安装工具，构建开发环境"></a>3.2.1 安装工具，构建开发环境</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@c2200400109 ~] # yum group install -y &quot;Development Tools&quot;</span><br><span class="line">[root@c2200400109 ~] # yum install -y bc</span><br><span class="line">[root@c2200400109 ~]# yum install -y openssl-devel</span><br></pre></td></tr></table></figure>
@@ -2280,7 +2280,7 @@
 <h3 id="4-1-Linux堆内存管理原理"><a href="#4-1-Linux堆内存管理原理" class="headerlink" title="4.1 Linux堆内存管理原理"></a>4.1 Linux堆内存管理原理</h3><p>linux下的进程堆管理提供两种分配方式，一个是brk()系统调用，另外一个是mmap()。brk的作用实际上就是设置进程数据段的结束地址，即它可以扩大或者缩小数据段。我们可以将数据段扩大的那一部分作为堆空间使用。mmap()的作用和windows下的VitualAlloc很相似，作用是向操作系统申请一段虚拟地址空间，当这块虚拟地址可以映射到某个文件的时候它的作用是共享内存，当它没有映射到文件的时候，那么这块虚拟地址空间成为匿名空间，可以被用来当做堆空间。</p>
 <p>linux的堆内存管理分为三个层次，分别为分配区area、堆heap和内存块chunk。</p>
 <p>area：堆内存最上层即为分配区area。分配区area分为主分配区（main area）和线程分配区（thread area）。</p>
-<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/650075-5a40190134864d49.png" alt="图5 Linux内存布局" style="zoom:80%;" /></p>
+<p><img src="https://gingkopic.oss-cn-beijing.aliyuncs.com/img/650075-5a40190134864d49.png" alt="图18 Linux内存布局" style="zoom:80%;" /></p>
 <h4 id="4-1-1-页"><a href="#4-1-1-页" class="headerlink" title="4.1.1 页"></a>4.1.1 页</h4><p>内核把物理页作为内存管理的基本单位。尽管处理器的最小可寻址单位通常为字（甚至字节)，但是，内存管理单元(MMU，管理内存并把虚拟地址转换为物理地址的硬件）通常以页为单位进行处理。正因为如此，MMU以页(page)大小为单位来管理系统中的页表（这也是页表名的来由)。从虚拟内存的角度来看，页就是最小单位。<br>体系结构不同，支持的页大小也不尽相同，还有些体系结构甚至支持几种不同的页大小。大多数32位体系结构支持4KB的页，而64位体系结构一般会支持8KB的页。这就意味着，在支持4KB页大小并有1GB物理内存的机器上，物理内存会被划分为262144个页。<br>内核用struct page结构表示系统中的每个物理页，该结构位于<linux/mm_types.h>中。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">page</span> &#123;</span></span><br><span class="line">	<span class="type">unsigned</span> <span class="type">long</span> flags;</span><br><span class="line">	<span class="type">atomic_t</span> _count ;</span><br><span class="line">	<span class="type">atomic_t</span> _mapcount ;</span><br><span class="line">	<span class="type">unsigned</span> <span class="type">long</span> private;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">address_space</span> *<span class="title">mapping</span>;</span></span><br><span class="line">	<span class="type">pgoff_t</span> index;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">list_head</span> <span class="title">lru</span>;</span></span><br><span class="line">	<span class="type">void</span> *virtual ;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>count域存放页的引用计数——也就是这一页被引用了多少次。当计数值变为-1时，就说明当前内核并没有引用这一页，于是，在新的分配中就可以使用它。内核代码不应当直接检查该域，而是调用page_count()函数进行检查，该函数唯一的参数就是page结构。当页空闲时，尽管该结构内部的_count值是负的，但是对page_count()函数而言，返回0表示页空闲，返回一个正整数表示页在使用。一个页可以由页缓存使用（这时，mapping域指向和这个页关联的addresss_space对象)，或者作为私有数据（由private指向)，或者作为进程页表中的映射。</p>
@@ -2376,7 +2376,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85CentOS7"><span class="nav-text">安装CentOS7</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E5%88%BB%E5%BD%95"><span class="nav-text">镜像刻录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85"><span class="nav-text">系统安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%AF%BC%E9%A1%B9"><span class="nav-text">引导项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2022Linux%E5%AE%9E%E9%AA%8C"><span class="nav-text">2022Linux实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C1"><span class="nav-text">实验1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%BB%BA%E7%AB%8B%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7"><span class="nav-text">一、建立用户账号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">可能存在的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E6%93%8D%E4%BD%9C"><span class="nav-text">二、文件管理操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#touch%E5%91%BD%E4%BB%A4"><span class="nav-text">touch命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#rm%E5%91%BD%E4%BB%A4"><span class="nav-text">rm命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cp%E5%91%BD%E4%BB%A4"><span class="nav-text">cp命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mv%E5%91%BD%E4%BB%A4"><span class="nav-text">mv命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86%E6%93%8D%E4%BD%9C"><span class="nav-text">三、目录管理操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ls%E5%91%BD%E4%BB%A4"><span class="nav-text">ls命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mkdir%E5%91%BD%E4%BB%A4"><span class="nav-text">mkdir命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#rmdir%E5%91%BD%E4%BB%A4"><span class="nav-text">rmdir命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cd%E5%91%BD%E4%BB%A4"><span class="nav-text">cd命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%AE%A1%E7%90%86%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE"><span class="nav-text">四、管理使用与权限设置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#chmod%E5%91%BD%E4%BB%A4"><span class="nav-text">chmod命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#chgrp%E5%91%BD%E4%BB%A4"><span class="nav-text">chgrp命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#chown%E5%91%BD%E4%BB%A4"><span class="nav-text">chown命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%96%87%E4%BB%B6%E9%98%85%E8%AF%BB%E4%B8%8E%E6%9F%A5%E6%89%BE"><span class="nav-text">五、文件阅读与查找</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E6%96%87%E4%BB%B6%E9%98%85%E8%AF%BB%E5%91%BD%E4%BB%A4"><span class="nav-text">1、文件阅读命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#cat%E5%91%BD%E4%BB%A4"><span class="nav-text">cat命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#more%E5%91%BD%E4%BB%A4"><span class="nav-text">more命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#less%E5%91%BD%E4%BB%A4"><span class="nav-text">less命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#head%E5%91%BD%E4%BB%A4"><span class="nav-text">head命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tail%E5%91%BD%E4%BB%A4"><span class="nav-text">tail命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4"><span class="nav-text">2、文件查找命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#find%E5%91%BD%E4%BB%A4"><span class="nav-text">find命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#grep%E5%91%BD%E4%BB%A4"><span class="nav-text">grep命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84%E7%9A%84%E7%AE%A1%E7%90%86"><span class="nav-text">六、系统用户和组的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="nav-text">1、用户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#useradd%E5%91%BD%E4%BB%A4%EF%BC%88%E9%85%8D%E5%90%88passwd%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="nav-text">useradd命令（配合passwd命令使用）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#usermod%E5%91%BD%E4%BB%A4"><span class="nav-text">usermod命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E7%BB%84%E7%AE%A1%E7%90%86"><span class="nav-text">2、组管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#groupadd%E5%91%BD%E4%BB%A4"><span class="nav-text">groupadd命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#groupdel%E5%91%BD%E4%BB%A4"><span class="nav-text">groupdel命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81%E5%88%86%E6%9E%90%E5%92%8C%E6%A3%80%E6%9F%A5"><span class="nav-text">七、网络配置与网络状态分析和检查</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="nav-text">1、网络配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ifconfig%E5%91%BD%E4%BB%A4"><span class="nav-text">ifconfig命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#netstat%E5%91%BD%E4%BB%A4"><span class="nav-text">netstat命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81%E5%88%86%E6%9E%90"><span class="nav-text">2、网络状态分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ping%E5%91%BD%E4%BB%A4"><span class="nav-text">ping命令</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C2"><span class="nav-text">实验2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAshell%E8%84%9A%E6%9C%AC%E7%A8%8B%E5%BA%8F%EF%BC%9A%E8%BE%93%E5%85%A5%E5%9C%86%E5%8D%8A%E5%BE%84%E5%80%BC%EF%BC%8C%E8%BE%93%E5%87%BA%E5%9C%86%E9%9D%A2%E7%A7%AF%E7%9A%84%E5%80%BC"><span class="nav-text">1、创建一个shell脚本程序：输入圆半径值，输出圆面积的值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E7%BC%96%E7%A8%8B%E6%B1%82%E8%A7%A3n%E4%B8%AA%E6%95%B0%E7%9A%84%E5%92%8C%EF%BC%8C%E8%A6%81%E6%B1%82n%E7%94%B1%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%EF%BC%8C%E4%BD%BF%E7%94%A8%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5%E5%AE%8C%E6%88%90"><span class="nav-text">2、编程求解n个数的和，要求n由键盘输入，使用循环语句完成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%88%A9%E7%94%A8for%E5%BE%AA%E7%8E%AF%E5%B0%86%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%8C%87%E5%AE%9A%E6%89%A9%E5%B1%95%E5%90%8D%EF%BC%88%E7%94%B1%E8%BE%93%E5%85%A5%E5%86%B3%E5%AE%9A%EF%BC%89%E6%96%87%E4%BB%B6%E8%BD%AC%E7%A7%BB%E5%88%B0%E6%8C%87%E5%AE%9A%E7%9A%84%E7%9B%AE%E5%BD%95%E4%B8%8B%EF%BC%8C%E5%B9%B6%E6%8C%89%E7%85%A7%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E6%8E%92%E5%BA%8F%EF%BC%8C%E5%B9%B6%E6%98%BE%E7%A4%BA%E7%A7%BB%E5%8A%A8%E5%90%8E%E6%8C%87%E5%AE%9A%E7%9B%AE%E5%BD%95%E7%9A%84%E5%86%85%E5%AE%B9"><span class="nav-text">三、利用for循环将当前目录下的指定扩展名（由输入决定）文件转移到指定的目录下，并按照文件大小排序，并显示移动后指定目录的内容</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2022Linux%E5%A4%A7%E4%BD%9C%E4%B8%9A"><span class="nav-text">2022Linux大作业</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%88%86%E6%9E%90ext4%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86"><span class="nav-text">1. 分析ext4文件系统原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E8%99%9A%E6%8B%9F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-text">1.1 虚拟文件系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-ext4%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%B8%83%E5%B1%80"><span class="nav-text">1.2 ext4文件系统布局</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-%E8%B6%85%E7%BA%A7%E5%9D%97"><span class="nav-text">1.2.1 超级块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-%E5%9D%97%E7%BB%84%E6%8F%8F%E8%BF%B0%E7%AC%A6%E8%A1%A8"><span class="nav-text">1.2.2 块组描述符表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-%E5%9D%97%E4%BD%8D%E5%9B%BE%E5%92%8Cinode%E4%BD%8D%E5%9B%BE"><span class="nav-text">1.2.3 块位图和inode位图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-4-inode%E8%A1%A8"><span class="nav-text">1.2.4 inode表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-5-%E7%9B%AE%E5%BD%95%E9%A1%B9%E5%AF%B9%E8%B1%A1"><span class="nav-text">1.2.5 目录项对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-6-%E6%95%B0%E6%8D%AE%E5%9D%97"><span class="nav-text">1.2.6 数据块</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%88%86%E6%9E%90Linux%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E6%BA%90%E7%A0%81"><span class="nav-text">2. 分析Linux进程调度源码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E5%8E%9F%E5%88%99"><span class="nav-text">2.1 进程调度原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-CFS%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-text">2.2 CFS调度算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-%E6%97%B6%E9%97%B4%E8%AE%B0%E8%B4%A6"><span class="nav-text">2.2.1 时间记账</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E8%B0%83%E5%BA%A6%E5%99%A8%E5%AE%9E%E4%BD%93%E7%BB%93%E6%9E%84"><span class="nav-text">1.调度器实体结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E8%99%9A%E6%8B%9F%E5%AE%9E%E6%97%B6"><span class="nav-text">2.虚拟实时</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-%E8%BF%9B%E7%A8%8B%E9%80%89%E6%8B%A9"><span class="nav-text">2.2.2 进程选择</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E6%8C%91%E9%80%89%E4%B8%8B%E4%B8%80%E4%B8%AA%E4%BB%BB%E5%8A%A1"><span class="nav-text">1.挑选下一个任务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%90%91%E6%A0%91%E4%B8%AD%E5%8A%A0%E5%85%A5%E8%BF%9B%E7%A8%8B"><span class="nav-text">2.向树中加入进程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E4%BB%8E%E6%A0%91%E4%B8%AD%E5%88%A0%E9%99%A4%E8%BF%9B%E7%A8%8B"><span class="nav-text">3.从树中删除进程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3-%E8%B0%83%E5%BA%A6%E5%99%A8%E5%85%A5%E5%8F%A3"><span class="nav-text">2.2.3 调度器入口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-4-%E7%9D%A1%E7%9C%A0%E5%92%8C%E5%94%A4%E9%86%92"><span class="nav-text">2.2.4 睡眠和唤醒</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E7%AD%89%E5%BE%85%E9%98%9F%E5%88%97"><span class="nav-text">1.等待队列</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%94%A4%E9%86%92"><span class="nav-text">2.唤醒</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E5%85%AC%E5%B9%B3%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93"><span class="nav-text">2.3 公平调度算法总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Linux%E5%86%85%E6%A0%B8%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E3%80%81%E7%BC%96%E8%AF%91"><span class="nav-text">3. Linux内核的下载、安装、编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E9%85%8D%E7%BD%AE%E5%8D%8E%E4%B8%BA%E4%BA%91ECS"><span class="nav-text">3.1 配置华为云ECS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%86%85%E6%A0%B8%E7%9A%84%E7%BC%96%E8%AF%91%E5%92%8C%E5%AE%89%E8%A3%85"><span class="nav-text">3.2 内核的编译和安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7%EF%BC%8C%E6%9E%84%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-text">3.2.1 安装工具，构建开发环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-2-%E5%A4%87%E4%BB%BDboot%E7%9B%AE%E5%BD%95%E4%BB%A5%E9%98%B2%E5%90%8E%E7%BB%AD%E6%AD%A5%E9%AA%A4%E6%9B%B4%E6%96%B0%E5%86%85%E6%A0%B8%E5%A4%B1%E8%B4%A5"><span class="nav-text">3.2.2 备份boot目录以防后续步骤更新内核失败</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-3-%E8%8E%B7%E5%8F%96%E5%86%85%E6%A0%B8%E6%BA%90%E4%BB%A3%E7%A0%81%E5%B9%B6%E8%A7%A3%E5%8E%8B"><span class="nav-text">3.2.3 获取内核源代码并解压</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-4-%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8"><span class="nav-text">3.2.4 编译内核</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-5-%E5%AE%89%E8%A3%85%E5%86%85%E6%A0%B8"><span class="nav-text">3.2.5 安装内核</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E5%86%85%E6%A0%B8%E5%90%AF%E5%8A%A8"><span class="nav-text">3.3 内核启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Linux%E5%A0%86%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-text">4. Linux堆内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Linux%E5%A0%86%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%8E%9F%E7%90%86"><span class="nav-text">4.1 Linux堆内存管理原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-1-%E9%A1%B5"><span class="nav-text">4.1.1 页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-2-%E5%8C%BA"><span class="nav-text">4.1.2 区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-3-%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"><span class="nav-text">4.1.3 内存分配</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E4%B8%8EWindows%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%8C%BA%E5%88%AB"><span class="nav-text">4.2 与Windows内存管理区别</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85CentOS7"><span class="nav-text">安装CentOS7</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E5%88%BB%E5%BD%95"><span class="nav-text">镜像刻录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85"><span class="nav-text">系统安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%AF%BC%E9%A1%B9"><span class="nav-text">引导项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2022Linux%E5%AE%9E%E9%AA%8C"><span class="nav-text">2022Linux实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C1"><span class="nav-text">实验1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%BB%BA%E7%AB%8B%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7"><span class="nav-text">一、建立用户账号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">可能存在的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E6%93%8D%E4%BD%9C"><span class="nav-text">二、文件管理操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#touch%E5%91%BD%E4%BB%A4"><span class="nav-text">touch命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rm%E5%91%BD%E4%BB%A4"><span class="nav-text">rm命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cp%E5%91%BD%E4%BB%A4"><span class="nav-text">cp命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mv%E5%91%BD%E4%BB%A4"><span class="nav-text">mv命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86%E6%93%8D%E4%BD%9C"><span class="nav-text">三、目录管理操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ls%E5%91%BD%E4%BB%A4"><span class="nav-text">ls命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mkdir%E5%91%BD%E4%BB%A4"><span class="nav-text">mkdir命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rmdir%E5%91%BD%E4%BB%A4"><span class="nav-text">rmdir命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cd%E5%91%BD%E4%BB%A4"><span class="nav-text">cd命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%AE%A1%E7%90%86%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE"><span class="nav-text">四、管理使用与权限设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#chmod%E5%91%BD%E4%BB%A4"><span class="nav-text">chmod命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#chgrp%E5%91%BD%E4%BB%A4"><span class="nav-text">chgrp命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#chown%E5%91%BD%E4%BB%A4"><span class="nav-text">chown命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%96%87%E4%BB%B6%E9%98%85%E8%AF%BB%E4%B8%8E%E6%9F%A5%E6%89%BE"><span class="nav-text">五、文件阅读与查找</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E6%96%87%E4%BB%B6%E9%98%85%E8%AF%BB%E5%91%BD%E4%BB%A4"><span class="nav-text">1、文件阅读命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#cat%E5%91%BD%E4%BB%A4"><span class="nav-text">cat命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#more%E5%91%BD%E4%BB%A4"><span class="nav-text">more命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#less%E5%91%BD%E4%BB%A4"><span class="nav-text">less命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#head%E5%91%BD%E4%BB%A4"><span class="nav-text">head命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tail%E5%91%BD%E4%BB%A4"><span class="nav-text">tail命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4"><span class="nav-text">2、文件查找命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#find%E5%91%BD%E4%BB%A4"><span class="nav-text">find命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#grep%E5%91%BD%E4%BB%A4"><span class="nav-text">grep命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84%E7%9A%84%E7%AE%A1%E7%90%86"><span class="nav-text">六、系统用户和组的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="nav-text">1、用户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#useradd%E5%91%BD%E4%BB%A4%EF%BC%88%E9%85%8D%E5%90%88passwd%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="nav-text">useradd命令（配合passwd命令使用）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#usermod%E5%91%BD%E4%BB%A4"><span class="nav-text">usermod命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E7%BB%84%E7%AE%A1%E7%90%86"><span class="nav-text">2、组管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#groupadd%E5%91%BD%E4%BB%A4"><span class="nav-text">groupadd命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#groupdel%E5%91%BD%E4%BB%A4"><span class="nav-text">groupdel命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81%E5%88%86%E6%9E%90%E5%92%8C%E6%A3%80%E6%9F%A5"><span class="nav-text">七、网络配置与网络状态分析和检查</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="nav-text">1、网络配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ifconfig%E5%91%BD%E4%BB%A4"><span class="nav-text">ifconfig命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#netstat%E5%91%BD%E4%BB%A4"><span class="nav-text">netstat命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81%E5%88%86%E6%9E%90"><span class="nav-text">2、网络状态分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ping%E5%91%BD%E4%BB%A4"><span class="nav-text">ping命令</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C2"><span class="nav-text">实验2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAshell%E8%84%9A%E6%9C%AC%E7%A8%8B%E5%BA%8F%EF%BC%9A%E8%BE%93%E5%85%A5%E5%9C%86%E5%8D%8A%E5%BE%84%E5%80%BC%EF%BC%8C%E8%BE%93%E5%87%BA%E5%9C%86%E9%9D%A2%E7%A7%AF%E7%9A%84%E5%80%BC"><span class="nav-text">1、创建一个shell脚本程序：输入圆半径值，输出圆面积的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E7%BC%96%E7%A8%8B%E6%B1%82%E8%A7%A3n%E4%B8%AA%E6%95%B0%E7%9A%84%E5%92%8C%EF%BC%8C%E8%A6%81%E6%B1%82n%E7%94%B1%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%EF%BC%8C%E4%BD%BF%E7%94%A8%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5%E5%AE%8C%E6%88%90"><span class="nav-text">2、编程求解n个数的和，要求n由键盘输入，使用循环语句完成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%88%A9%E7%94%A8for%E5%BE%AA%E7%8E%AF%E5%B0%86%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%8C%87%E5%AE%9A%E6%89%A9%E5%B1%95%E5%90%8D%EF%BC%88%E7%94%B1%E8%BE%93%E5%85%A5%E5%86%B3%E5%AE%9A%EF%BC%89%E6%96%87%E4%BB%B6%E8%BD%AC%E7%A7%BB%E5%88%B0%E6%8C%87%E5%AE%9A%E7%9A%84%E7%9B%AE%E5%BD%95%E4%B8%8B%EF%BC%8C%E5%B9%B6%E6%8C%89%E7%85%A7%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E6%8E%92%E5%BA%8F%EF%BC%8C%E5%B9%B6%E6%98%BE%E7%A4%BA%E7%A7%BB%E5%8A%A8%E5%90%8E%E6%8C%87%E5%AE%9A%E7%9B%AE%E5%BD%95%E7%9A%84%E5%86%85%E5%AE%B9"><span class="nav-text">3、利用for循环将当前目录下的指定扩展名（由输入决定）文件转移到指定的目录下，并按照文件大小排序，并显示移动后指定目录的内容</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2022Linux%E5%A4%A7%E4%BD%9C%E4%B8%9A"><span class="nav-text">2022Linux大作业</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%88%86%E6%9E%90ext4%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86"><span class="nav-text">1. 分析ext4文件系统原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E8%99%9A%E6%8B%9F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-text">1.1 虚拟文件系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-ext4%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%B8%83%E5%B1%80"><span class="nav-text">1.2 ext4文件系统布局</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-%E8%B6%85%E7%BA%A7%E5%9D%97"><span class="nav-text">1.2.1 超级块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-%E5%9D%97%E7%BB%84%E6%8F%8F%E8%BF%B0%E7%AC%A6%E8%A1%A8"><span class="nav-text">1.2.2 块组描述符表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-%E5%9D%97%E4%BD%8D%E5%9B%BE%E5%92%8Cinode%E4%BD%8D%E5%9B%BE"><span class="nav-text">1.2.3 块位图和inode位图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-4-inode%E8%A1%A8"><span class="nav-text">1.2.4 inode表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-5-%E7%9B%AE%E5%BD%95%E9%A1%B9%E5%AF%B9%E8%B1%A1"><span class="nav-text">1.2.5 目录项对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-6-%E6%95%B0%E6%8D%AE%E5%9D%97"><span class="nav-text">1.2.6 数据块</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%88%86%E6%9E%90Linux%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E6%BA%90%E7%A0%81"><span class="nav-text">2. 分析Linux进程调度源码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E5%8E%9F%E5%88%99"><span class="nav-text">2.1 进程调度原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-CFS%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-text">2.2 CFS调度算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-%E6%97%B6%E9%97%B4%E8%AE%B0%E8%B4%A6"><span class="nav-text">2.2.1 时间记账</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E8%B0%83%E5%BA%A6%E5%99%A8%E5%AE%9E%E4%BD%93%E7%BB%93%E6%9E%84"><span class="nav-text">1.调度器实体结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E8%99%9A%E6%8B%9F%E5%AE%9E%E6%97%B6"><span class="nav-text">2.虚拟实时</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-%E8%BF%9B%E7%A8%8B%E9%80%89%E6%8B%A9"><span class="nav-text">2.2.2 进程选择</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E6%8C%91%E9%80%89%E4%B8%8B%E4%B8%80%E4%B8%AA%E4%BB%BB%E5%8A%A1"><span class="nav-text">1.挑选下一个任务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%90%91%E6%A0%91%E4%B8%AD%E5%8A%A0%E5%85%A5%E8%BF%9B%E7%A8%8B"><span class="nav-text">2.向树中加入进程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E4%BB%8E%E6%A0%91%E4%B8%AD%E5%88%A0%E9%99%A4%E8%BF%9B%E7%A8%8B"><span class="nav-text">3.从树中删除进程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3-%E8%B0%83%E5%BA%A6%E5%99%A8%E5%85%A5%E5%8F%A3"><span class="nav-text">2.2.3 调度器入口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-4-%E7%9D%A1%E7%9C%A0%E5%92%8C%E5%94%A4%E9%86%92"><span class="nav-text">2.2.4 睡眠和唤醒</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E7%AD%89%E5%BE%85%E9%98%9F%E5%88%97"><span class="nav-text">1.等待队列</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%94%A4%E9%86%92"><span class="nav-text">2.唤醒</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E5%85%AC%E5%B9%B3%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93"><span class="nav-text">2.3 公平调度算法总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Linux%E5%86%85%E6%A0%B8%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E3%80%81%E7%BC%96%E8%AF%91"><span class="nav-text">3. Linux内核的下载、安装、编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E9%85%8D%E7%BD%AE%E5%8D%8E%E4%B8%BA%E4%BA%91ECS"><span class="nav-text">3.1 配置华为云ECS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%86%85%E6%A0%B8%E7%9A%84%E7%BC%96%E8%AF%91%E5%92%8C%E5%AE%89%E8%A3%85"><span class="nav-text">3.2 内核的编译和安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7%EF%BC%8C%E6%9E%84%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-text">3.2.1 安装工具，构建开发环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-2-%E5%A4%87%E4%BB%BDboot%E7%9B%AE%E5%BD%95%E4%BB%A5%E9%98%B2%E5%90%8E%E7%BB%AD%E6%AD%A5%E9%AA%A4%E6%9B%B4%E6%96%B0%E5%86%85%E6%A0%B8%E5%A4%B1%E8%B4%A5"><span class="nav-text">3.2.2 备份boot目录以防后续步骤更新内核失败</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-3-%E8%8E%B7%E5%8F%96%E5%86%85%E6%A0%B8%E6%BA%90%E4%BB%A3%E7%A0%81%E5%B9%B6%E8%A7%A3%E5%8E%8B"><span class="nav-text">3.2.3 获取内核源代码并解压</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-4-%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8"><span class="nav-text">3.2.4 编译内核</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-5-%E5%AE%89%E8%A3%85%E5%86%85%E6%A0%B8"><span class="nav-text">3.2.5 安装内核</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E5%86%85%E6%A0%B8%E5%90%AF%E5%8A%A8"><span class="nav-text">3.3 内核启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Linux%E5%A0%86%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-text">4. Linux堆内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Linux%E5%A0%86%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%8E%9F%E7%90%86"><span class="nav-text">4.1 Linux堆内存管理原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-1-%E9%A1%B5"><span class="nav-text">4.1.1 页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-2-%E5%8C%BA"><span class="nav-text">4.1.2 区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-3-%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"><span class="nav-text">4.1.3 内存分配</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E4%B8%8EWindows%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%8C%BA%E5%88%AB"><span class="nav-text">4.2 与Windows内存管理区别</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
